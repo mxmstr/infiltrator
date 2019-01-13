@@ -64,7 +64,7 @@ func draw_waypoint_path(waypoint):
 	
 	line.begin(Mesh.PRIMITIVE_LINE_STRIP, null)
 	for vertex in Array(path):
-		line.add_vertex(x)
+		line.add_vertex(vertex)
 	line.end()
 
 

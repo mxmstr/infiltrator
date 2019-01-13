@@ -85,7 +85,7 @@ func _ready():
 
 
 func _process(delta):
-
+	
 	if Engine.editor_hint:
 		
 		if translation != last_position:

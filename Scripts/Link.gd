@@ -1,8 +1,7 @@
 extends Node
 
-# class member variables go here, for example:
-#export var a = 2
-#export var b = "textvar"
+export(NodePath) var from
+export(NodePath) var to
 
 
 func _ready():
