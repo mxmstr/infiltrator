@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Lab_Floor1.dae-b22627fc15ed94c682791f9ffda32dd9.scn"
+path="res://.import/Button.dae-084ac9ae7ca3e2a8a10aa48ed59c4273.scn"
 
 [deps]
 
-source_file="res://Models/Lab/Lab_Floor1.dae"
-dest_files=[ "res://.import/Lab_Floor1.dae-b22627fc15ed94c682791f9ffda32dd9.scn" ]
+source_file="res://Models/Devices/Button/Button.dae"
+dest_files=[ "res://.import/Button.dae-084ac9ae7ca3e2a8a10aa48ed59c4273.scn" ]
 
 [params]
 

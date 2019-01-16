@@ -1,8 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Navigation.gd" type="Script" id=1]
-[ext_resource path="res://Models/Lab/Floor1.material" type="Material" id=2]
+[ext_resource path="res://Models/Maps/Lab/Floor1.material" type="Material" id=2]
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=3]
+
 
 [sub_resource type="NavigationMesh" id=3]
 
