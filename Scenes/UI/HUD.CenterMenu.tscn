@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/UI.HUD.CenterMenu.gd" type="Script" id=1]
+[ext_resource path="res://Textures/panel.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/UI.HUD.CenterMenu.List.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/UI/HUD.CenterMenu.Item.tscn" type="PackedScene" id=4]
+
+[node name="CenterMenu" type="MarginContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 570.0
+margin_bottom = 365.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Rect" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Background" type="NinePatchRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_right = 58.0
+margin_bottom = 65.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 512, 512 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 40
+_sections_unfolded = [ "Patch Margin", "Rect", "Size Flags" ]
+
+[node name="MarginContainer" type="MarginContainer" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_right = 28.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 30
+_sections_unfolded = [ "Rect", "Size Flags", "custom_constants" ]
+
+[node name="ListContainer" type="VBoxContainer" parent="MarginContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 10.0
+margin_bottom = 10.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+script = ExtResource( 3 )
+_sections_unfolded = [ "Size Flags" ]
+color_select = Color( 0, 1, 0.554688, 1 )
+color_default = null
+list_item = ExtResource( 4 )
+
+

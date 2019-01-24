@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Interaction.Preset.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Interactions/Interaction.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Animations/Devices/Button/Default.anim" type="Animation" id=3]
+[ext_resource path="res://Animations/Devices/Button/Interaction.Push.tres" type="Animation" id=4]
+
+[node name="Interaction" type="Node"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+interaction = NodePath("Default")
+
+[node name="Default" parent="." index="0" instance=ExtResource( 2 )]
+
+margin_left = -402.0
+margin_top = 100.0
+margin_right = -102.0
+margin_bottom = -207.0
+animation = ExtResource( 3 )
+
+[node name="Push" parent="." index="1" instance=ExtResource( 2 )]
+
+margin_left = 18.0
+margin_top = 100.0
+margin_right = 318.0
+margin_bottom = -207.0
+animation = ExtResource( 4 )
+
+

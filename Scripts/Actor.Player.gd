@@ -1,6 +1,7 @@
 extends "res://Scripts/Actor.gd"
 
 export var SENSITIVITY = 0.002
+export(PackedScene) var INTERACTION
 
 
 func look_updown_rotation(rotation=0):
@@ -48,14 +49,16 @@ func _physics_process(delta):
 	direction = Vector3()
 	var cam_xform = get_global_transform()
 	
-	if Input.is_action_pressed('forward'):
+	if Input.is_action_pressed('Forward'):
 		direction += -cam_xform.basis.z
-	if Input.is_action_pressed('backward'):
+	if Input.is_action_pressed('Backward'):
 		direction += cam_xform.basis.z
-	if Input.is_action_pressed('left'):
+	if Input.is_action_pressed('Left'):
 		direction += -cam_xform.basis.x
-	if Input.is_action_pressed('right'):
+	if Input.is_action_pressed('Right'):
 		direction += cam_xform.basis.x
 	
 	direction.y = 0
 	direction = direction.normalized()
+	
+	

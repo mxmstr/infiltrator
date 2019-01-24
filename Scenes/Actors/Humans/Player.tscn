@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Actor.Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Actors/Humans/DefaultShape.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Actor.Player.Camera.RayCast.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Inputs/Input.Actor.Human.Abilities.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Inputs/Input.Actor.Human.Movement.tscn" type="PackedScene" id=6]
 
 [node name="Player" type="KinematicBody"]
 
@@ -18,12 +22,13 @@ axis_lock_angular_z = false
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
 SENSITIVITY = 0.002
+INTERACTION = null
 
 [node name="DefaultShape" parent="." index="0" instance=ExtResource( 2 )]
 
 [node name="Camera" type="Camera" parent="." index="1"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11125, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
@@ -38,4 +43,38 @@ near = 0.05
 far = 100.0
 _sections_unfolded = [ "Transform" ]
 
+[node name="RayCast" type="RayCast" parent="Camera" index="0"]
 
+enabled = true
+exclude_parent = true
+cast_to = Vector3( 0, 0, -10 )
+collision_mask = 1
+script = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="HUD" parent="." index="2" instance=ExtResource( 4 )]
+
+[node name="InputAbilities" parent="." index="3" instance=ExtResource( 5 )]
+
+[node name="InputMovement" parent="." index="4" instance=ExtResource( 6 )]
+
+[connection signal="changed_selection" from="Camera/RayCast" to="HUD/CenterMenu/MarginContainer/ListContainer" method="update_interactions"]
+
+[connection signal="on_just_pressed" from="InputAbilities/Default/Interaction" to="InputAbilities" method="set_context" binds= [ "Interaction" ]]
+
+[connection signal="on_just_pressed" from="InputAbilities/Default/Interaction" to="HUD/CenterMenu" method="show"]
+
+[connection signal="on_just_pressed" from="InputAbilities/Interaction/Up" to="HUD/CenterMenu/MarginContainer/ListContainer" method="scroll_up"]
+
+[connection signal="on_just_pressed" from="InputAbilities/Interaction/Down" to="HUD/CenterMenu/MarginContainer/ListContainer" method="scroll_down"]
+
+[connection signal="on_just_released" from="InputAbilities/Interaction/Select" to="InputAbilities" method="set_context" binds= [ "Default" ]]
+
+[connection signal="on_just_released" from="InputAbilities/Interaction/Select" to="HUD/CenterMenu" method="hide"]
+
+[connection signal="on_just_released" from="InputAbilities/Interaction/Select" to="HUD/CenterMenu/MarginContainer/ListContainer" method="select"]
+
+
+[editable path="HUD"]
+[editable path="HUD/CenterMenu"]
+[editable path="InputAbilities"]
