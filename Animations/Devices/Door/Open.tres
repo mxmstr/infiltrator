@@ -7,7 +7,7 @@ length = 1.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
+tracks/0/path = NodePath("..:translation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -16,6 +16,20 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 4 ),
 "update": 0,
-"values": [ Vector3( 0, 1, 0 ), Vector3( -1, 1, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( -1, 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../Behavior")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Opened" ],
+"method": "set_behavior"
+} ]
 }
 

@@ -1,7 +1,15 @@
 tool
 extends MarginContainer
 
-export(Resource) var animation
+enum visibility {
+	PHYSICAL, 
+	REMOTE, 
+	INVISIBLE
+}
+
+export(visibility) var type
+export(int) var priority
+export(String) var animation
 export(float) var dist
 export(float) var obj_min_angle
 export(float) var obj_max_angle
@@ -23,6 +31,11 @@ signal on_property_changed
 signal on_enter
 signal on_execute
 signal on_exit
+
+
+func is_visible():
+	
+	return type != INVISIBLE
 
 
 func is_exported_var(prop):

@@ -5,8 +5,10 @@ export(Color) var color_default
 export(PackedScene) var list_item
 
 var update = true
-var selection
+var interactions = []
 var select_index = 0
+
+signal option_selected
 
 
 func has_interactions():
@@ -30,9 +32,7 @@ func select():
 	
 	if has_interactions():
 		
-		selection.get_node('Interaction').start_interaction(
-			get_children()[select_index].text
-			)
+		emit_signal('option_selected', get_children()[select_index].text)
 			
 		select_index = 0
 		highlight_child()
@@ -49,20 +49,16 @@ func highlight_child():
 			children[index].set('custom_colors/font_color', color_default)
 
 
-func update_interactions(_selection):
-	
-	selection = _selection
+func update_interactions(interactions):
 	
 	for child in get_children():
 		child.queue_free()
 	
-	if selection != null and selection.has_node('Interaction'):
-		
-		var interactions = selection.get_node('Interaction').get_children()
+	if len(interactions) > 0:
 		
 		for interaction in interactions:
 			var child = list_item.instance()
-			child.text = interaction.name
+			child.text = interaction
 			add_child(child)
 		
 		var child = list_item.instance()

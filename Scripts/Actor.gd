@@ -1,33 +1,62 @@
-extends KinematicBody
+tool
+extends StaticBody
 
-const GRAVITY = -9.8
-const MAX_SPEED = 5
-const JUMP_SPEED = 7
-const ACCEL= 2
-const DEACCEL= 4
-const MAX_SLOPE_ANGLE = 30
+const animations_root = 'res://Animations/'
 
-var direction = Vector3()
-var velocity = Vector3()
+export(PackedScene) var model setget set_model
+export(String) var animations
+export(String) var behaviors
 
 
-func _physics_process(delta):
+
+func set_model(new_model):
 	
-	velocity.y += delta * GRAVITY
+	model = new_model
 	
-	var hvelocity = velocity
-	hvelocity.y = 0
-	
-	var target = direction * MAX_SPEED
-	var accel
-	if direction.dot(hvelocity) > 0:
-		accel = ACCEL
-	else:
-		accel = DEACCEL
+	if Engine.editor_hint:
 		
-	hvelocity = hvelocity.linear_interpolate(target, accel * delta)
+		if model != null:
+			var s_new = model.instance().get_child(0).duplicate()
+			$Model.add_child(s_new)
+
+
+func replace_model():
 	
-	velocity.x = hvelocity.x
-	velocity.z = hvelocity.z
+	if model != null:
+		
+		var s_old = $Model/SkeletonName
+		s_old.name = 'SkeletonName2'
+		s_old.queue_free()
+		
+		var s_new = model.instance().get_child(0).duplicate()
+		$Model.add_child(s_new)
+
+
+func add_animations():
 	
-	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
+	if animations != null:
+		
+		var files = []
+		var dir = Directory.new()
+		dir.open(animations_root + animations)
+		dir.list_dir_begin()
+		
+		while true:
+			var file = dir.get_next()
+			if file == '':
+				break
+			elif not file.begins_with('.'):
+				var anim_name = file.replace('.anim', '').replace('.tres', '')
+				var anim_source = load(animations_root + animations + '/' + file)
+				$Model/AnimationPlayer.add_animation(anim_name, anim_source)
+				files.append(file)
+				
+		dir.list_dir_end()
+
+
+func _ready():
+	
+	if not Engine.editor_hint:
+		
+		replace_model()
+		add_animations()

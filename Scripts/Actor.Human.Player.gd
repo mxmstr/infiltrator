@@ -1,7 +1,6 @@
-extends "res://Scripts/Actor.gd"
+extends "res://Scripts/Actor.Human.gd"
 
 export var SENSITIVITY = 0.002
-export(PackedScene) var INTERACTION
 
 
 func look_updown_rotation(rotation=0):
