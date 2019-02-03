@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Models/DefaultModel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Behaviors/Devices/Button/Behavior.Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Behaviors/Devices/Button/Default.tscn" type="PackedScene" id=3]
+
 
 
 

@@ -8,18 +8,15 @@ signal animation_changed
 
 func set_behavior(new_behavior):
 	
-	print(new_behavior)
-#	for child in get_children():
-#		child.queue_free()
-#
-#
-#	var behavior_source = load(behavior_path).instance()
-#	var behavior = behavior_source.get_node('Behavior')
-#
-#	for child in behavior.get_children():
-#		add_child(child.duplicate())
-#
-#	behavior_source.queue_free()
+	var path = owner.behaviors_root + owner.behaviors + new_behavior + '.tscn'
+	var behavior_source = load(path).instance()
+	
+	for child in behavior_source.get_children():
+		add_child(child.duplicate())
+	
+	start_interaction(behavior_source.interaction)
+	
+	behavior_source.queue_free()
 
 
 func get_visible_interactions(sender):
@@ -36,12 +33,17 @@ func get_visible_interactions(sender):
 	return interactions
 
 
+func reset_interaction():
+	
+	start_interaction('Default')
+
+
 func start_interaction(_name):
 	
 	var next = get_node(_name)
 	var last = get_node(interaction)
 	
-	if next != null and next.priority > last.priority:
+	if next != null and (next.priority == -1 or next.priority > last.priority):
 		
 		last.exit()
 		
@@ -54,4 +56,4 @@ func start_interaction(_name):
 
 func _ready():
 	
-	get_node(interaction).enter()
+	pass#get_node(interaction).enter()
