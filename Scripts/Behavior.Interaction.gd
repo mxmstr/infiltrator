@@ -10,6 +10,8 @@ enum visibility {
 export(visibility) var type
 export(int) var priority
 export(String) var animation
+export(float) var speed = 1.0
+export(float) var blend = 0.0
 export(float) var dist
 export(float) var obj_min_angle
 export(float) var obj_max_angle

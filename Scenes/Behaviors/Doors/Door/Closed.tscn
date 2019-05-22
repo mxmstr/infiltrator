@@ -9,11 +9,11 @@ interaction = "Default"
 
 [node name="Default" parent="." instance=ExtResource( 2 )]
 margin_top = 320.0
-margin_bottom = 51.0
+margin_bottom = 89.0
 type = 2
 priority = -1
 
 [node name="Open" parent="." instance=ExtResource( 2 )]
-margin_bottom = -269.0
+margin_bottom = -231.0
 priority = 1
 animation = "Open"

@@ -2,6 +2,7 @@ extends Node
 
 export(String) var interaction
 
+""" Signal is pre-connected in Actor.Static prefab """
 signal animation_changed
 
 
@@ -67,7 +68,7 @@ func start_interaction(_name, override=false):
 	if has_priority:
 		
 		if not next.animation in [null, 'Null']:
-			emit_signal('animation_changed', next.animation)
+			emit_signal('animation_changed', next.animation, next.blend, next.speed)
 		
 		next.enter()
 		interaction = next.name
