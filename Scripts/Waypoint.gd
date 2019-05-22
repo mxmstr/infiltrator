@@ -9,7 +9,7 @@ var auto_floor = false
 var moving = false
 var last_position = Vector3(0, 0, 0)
 
-onready var Editor_Map = $'/root/EditorNode/@@5/@@6/@@14/@@16/@@20/@@24/@@25/@@26/@@42/@@43/@@50/@@51/@@6457/@@6323/@@6324/@@6325/@@6326/@@6327/@@6328/Game/Static/Map'
+var Editor_Map #/@@5/@@6/@@14/@@16/@@20/@@24/@@25/@@26/@@42/@@43/@@50/@@51/@@6457/@@6323/@@6324/@@6325/@@6326/@@6327/@@6328/Game/Static/Map'
 
 signal position_changed
 signal next_position_changed
@@ -73,13 +73,15 @@ func _ready():
 #	selection = EditorPlugin.new().get_editor_interface().get_selection()
 #	selection.connect('selection_changed', self, 'on_selection_changed')
 	
-	var Nav = Editor_Map
-	
-	if not is_connected('position_changed', Nav, 'update_waypoint_path'):
-		connect('position_changed', Nav, 'update_waypoint_path', [self])
-	
-	if not is_connected('next_position_changed', Nav, 'update_waypoint_path'):
-		connect('next_position_changed', Nav, 'update_waypoint_path', [self])
+	if Engine.editor_hint:
+		
+		var Nav = $'/root/EditorNode'.find_node('Map', true, false)
+		
+		if not is_connected('position_changed', Nav, 'update_waypoint_path'):
+			connect('position_changed', Nav, 'update_waypoint_path', [self])
+		
+		if not is_connected('next_position_changed', Nav, 'update_waypoint_path'):
+			connect('next_position_changed', Nav, 'update_waypoint_path', [self])
 	
 	visible = Engine.editor_hint
 

@@ -1,147 +1,119 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Actors/Humans/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Actors/Actor.Static.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Models/Devices/Button/Button.dae" type="PackedScene" id=4]
-[ext_resource path="res://Models/Devices/Button/Button.Collision.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Rooms/Room.Default.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=8]
-[ext_resource path="res://Scenes/Markers/Waypoint.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Maps/Lab.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Actors/Humans/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/Actor.Static.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Models/Devices/Button/Button.dae" type="PackedScene" id=3]
+[ext_resource path="res://Models/Devices/Button/Button.Collision.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Models/Doors/Door/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Models/Doors/Door/Door.Collision.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Properties/DoorMovement.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Rooms/Room.Default.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=10]
+[ext_resource path="res://Scenes/Markers/Waypoint.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Maps/Lab.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CubeMesh" id=1]
+material = ExtResource( 10 )
 
-material = ExtResource( 8 )
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-size = Vector3( 2, 2, 2 )
-subdivide_width = 0
-subdivide_height = 0
-subdivide_depth = 0
+[node name="Game" type="Spatial"]
 
-[node name="Game" type="Spatial" index="0"]
-
-_sections_unfolded = [ "Transform" ]
-
-[node name="Links" type="Node" parent="." index="0"]
-
-[node name="ControlDevice" parent="Links" index="0" instance=ExtResource( 1 )]
-
-from = NodePath("../../Actors/Button")
-to = NodePath("../../Actors/Spatial/Door")
-from_interaction = "Push"
-to_interaction = "Open"
-
-[node name="Actors" type="Spatial" parent="." index="1"]
-
+[node name="Actors" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Player" parent="Actors" index="0" instance=ExtResource( 2 )]
-
+[node name="Player" parent="Actors" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.10357, 0.1843, 1.02873 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Button" parent="Actors" index="1" instance=ExtResource( 3 )]
+[node name="Button" parent="Actors" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0, 0.1, -3.7852, 1.31673, 2.13247 )
+model = ExtResource( 3 )
+collision = ExtResource( 4 )
+animations = "Devices/Button"
+behaviors = "Devices/Button"
+default_behavior = "Button"
 
-transform = Transform( -4.37114e-009, -0.1, 0, 0.1, -4.37114e-009, 0, 0, 0, 0.1, -3.7852, 1, 2.13247 )
-model = ExtResource( 4 )
-collision = ExtResource( 5 )
-animations = "Devices/Button/"
-behaviors = "Devices/Button/"
-default_behavior = "Default"
+[node name="Door" parent="Actors" instance=ExtResource( 2 )]
+transform = Transform( -5.85737e-08, 0, -1, 0, 1.19065, 0, 1.34001, 0, -4.37114e-08, -3.65944, 0.150846, 1.29874 )
+model = ExtResource( 5 )
+collision = ExtResource( 6 )
+animations = "Doors/Door"
+behaviors = "Doors/Door"
+default_behavior = "Closed"
 
-[node name="Rooms" type="Spatial" parent="." index="2"]
+[node name="DoorMovement" parent="Actors/Door" instance=ExtResource( 7 )]
+current_status = 1
+closed_position = Vector3( -3.659, 0.151, 1.299 )
+open_position = Vector3( -3.659, 0.151, -0.063 )
+closed_angle = Vector3( 0, -90, 0 )
+open_angle = Vector3( 0, -90, 0 )
+speed = 2.0
 
-editor/display_folded = true
+[node name="Rooms" type="Spatial" parent="."]
 visible = false
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RoomDefault" parent="Rooms" index="0" instance=ExtResource( 6 )]
-
+[node name="RoomDefault" parent="Rooms" instance=ExtResource( 8 )]
 transform = Transform( 3.96034, 0, 0, 0, 1.92944, 0, 0, 0, 5.33637, 0.0433272, 1.19629, -2.03905 )
 
-[node name="RoomHallwayLarge" parent="Rooms" index="1" instance=ExtResource( 7 )]
-
+[node name="RoomHallwayLarge" parent="Rooms" instance=ExtResource( 9 )]
 transform = Transform( 4.82482, 0, 0, 0, 1.35264, 0, 0, 0, 6.50121, -8.73931, 1.44925, -3.05406 )
 mesh = SubResource( 1 )
 
-[node name="RoomHallwayLarge2" parent="Rooms" index="2" instance=ExtResource( 7 )]
-
+[node name="RoomHallwayLarge2" parent="Rooms" instance=ExtResource( 9 )]
 transform = Transform( 11.7907, 0, 0, 0, 1.2947, 0, 0, 0, 5.16032, -2.13926, 1.59451, 8.42728 )
 
-[node name="RoomHallwayLarge3" parent="Rooms" index="3" instance=ExtResource( 7 )]
-
+[node name="RoomHallwayLarge3" parent="Rooms" instance=ExtResource( 9 )]
 transform = Transform( -2.76438, 0, 0, 0, 1.27882, 0, 0, 0, 6.50173, 6.65176, 1.45852, -2.91559 )
 
-[node name="RoomHallwayLarge4" parent="Rooms" index="4" instance=ExtResource( 7 )]
-
+[node name="RoomHallwayLarge4" parent="Rooms" instance=ExtResource( 9 )]
 transform = Transform( -4.06241, 0, 0, 0, 1.32636, 0, 0, 0, -1.02, -0.0186815, 1.39212, -8.37323 )
 
-[node name="Markers" type="Spatial" parent="." index="3"]
-
-editor/display_folded = true
-_sections_unfolded = [ "Transform" ]
+[node name="Markers" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Waypoint" parent="Markers" index="0" instance=ExtResource( 9 )]
-
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217301, 0.1843, 5.07589 )
+[node name="Waypoint" parent="Markers" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01449, 0.1843, 4.43018 )
 next = NodePath("../Waypoint2")
 
-[node name="Waypoint2" parent="Markers" index="1" instance=ExtResource( 9 )]
-
+[node name="Waypoint2" parent="Markers" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14671, 0.098032, -5.52101 )
 next = NodePath("../Waypoint3")
 
-[node name="Waypoint3" parent="Markers" index="2" instance=ExtResource( 9 )]
-
+[node name="Waypoint3" parent="Markers" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2646, 0.1843, -0.170586 )
 next = NodePath("../Waypoint")
 
-[node name="Static" type="Spatial" parent="." index="4"]
+[node name="Links" type="Node" parent="."]
 
-_sections_unfolded = [ "Transform" ]
+[node name="ControlDevice" parent="Links" instance=ExtResource( 12 )]
+enabled = true
+from = NodePath("../../Actors/Button")
+to = NodePath("../../Actors/Door")
+from_interaction = "Push"
+to_interaction = "Open"
+
+[node name="ControlDevice2" parent="Links" instance=ExtResource( 12 )]
+enabled = true
+from = NodePath("../../Actors/Button")
+to = NodePath("../../Actors/Door")
+from_interaction = "Push"
+to_interaction = "Close"
+
+[node name="Static" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Static" index="0"]
-
+[node name="DirectionalLight" type="DirectionalLight" parent="Static"]
 transform = Transform( 0.707107, -0.578505, 0.40661, 0, 0.575033, 0.81813, -0.707107, -0.578505, 0.40661, 15.5091, 10.4849, 16.3808 )
-layers = 1
-light_color = Color( 1, 1, 1, 1 )
-light_energy = 1.0
-light_indirect_energy = 1.0
-light_negative = false
 light_specular = 0.0
-light_bake_mode = 1
-light_cull_mask = -1
 shadow_enabled = true
-shadow_color = Color( 0, 0, 0, 1 )
-shadow_bias = 0.1
-shadow_contact = 0.0
-shadow_reverse_cull_face = false
-editor_only = false
-directional_shadow_mode = 2
-directional_shadow_split_1 = 0.1
-directional_shadow_split_2 = 0.2
-directional_shadow_split_3 = 0.5
-directional_shadow_blend_splits = false
-directional_shadow_normal_bias = 0.8
-directional_shadow_bias_split_scale = 0.25
-directional_shadow_depth_range = 0
-directional_shadow_max_distance = 200.0
-_sections_unfolded = [ "Light", "Shadow", "Transform" ]
 
-[node name="Map" parent="Static" index="1" instance=ExtResource( 10 )]
-
-_sections_unfolded = [ "Transform" ]
-
-
+[node name="Map" parent="Static" instance=ExtResource( 13 )]

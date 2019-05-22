@@ -92,6 +92,6 @@ func _ready():
 	
 	print('asdf')
 	
-	m.flags_unshaded = true
-	m.flags_use_point_size = true
-	m.albedo_color = Color(1.0, 1.0, 1.0, 1.0)
+#	m.flags_unshaded = true
+#	m.flags_use_point_size = true
+#	m.albedo_color = Color(1.0, 1.0, 1.0, 1.0)

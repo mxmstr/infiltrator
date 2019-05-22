@@ -5,51 +5,39 @@
 [ext_resource path="res://Scripts/Input.Context.Action.gd" type="Script" id=3]
 
 [node name="Input" type="Node"]
-
 script = ExtResource( 1 )
 context = "Default"
 
-[node name="Default" type="Node" parent="." index="0"]
-
+[node name="Default" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="Interaction" type="Node" parent="Default" index="0"]
-
+[node name="Interaction" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Interaction"
 
-[node name="Primary" type="Node" parent="Default" index="1"]
-
+[node name="Primary" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Primary"
 
-[node name="Secondary" type="Node" parent="Default" index="2"]
-
+[node name="Secondary" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Secondary"
 
-[node name="Interaction" type="Node" parent="." index="1"]
-
+[node name="Interaction" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="Up" type="Node" parent="Interaction" index="0"]
-
+[node name="Up" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "ScrollUp"
 
-[node name="Down" type="Node" parent="Interaction" index="1"]
-
+[node name="Down" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "ScrollDown"
 
-[node name="Select" type="Node" parent="Interaction" index="2"]
-
+[node name="Select" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "Interaction"
 
-[node name="Cancel" type="Node" parent="Interaction" index="3"]
-
+[node name="Cancel" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "Secondary"
-
-

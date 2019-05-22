@@ -32,8 +32,9 @@ func select():
 	
 	if has_interactions():
 		
-		emit_signal('option_selected', get_children()[select_index].text)
-			
+		if select_index < len(get_children()) - 1:
+			emit_signal('option_selected', get_children()[select_index].text)
+				
 		select_index = 0
 		highlight_child()
 

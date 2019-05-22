@@ -8,76 +8,48 @@
 [ext_resource path="res://Scenes/Inputs/Input.Actor.Human.Movement.tscn" type="PackedScene" id=6]
 
 [node name="Actor" type="KinematicBody"]
-
-input_ray_pickable = true
-input_capture_on_drag = false
-collision_layer = 1
-collision_mask = 1
-axis_lock_linear_x = false
-axis_lock_linear_y = false
-axis_lock_linear_z = false
-axis_lock_angular_x = false
-axis_lock_angular_y = false
-axis_lock_angular_z = false
-collision/safe_margin = 0.001
 script = ExtResource( 1 )
-SENSITIVITY = 0.002
 
-[node name="DefaultShape" parent="." index="0" instance=ExtResource( 2 )]
+[node name="DefaultShape" parent="." instance=ExtResource( 2 )]
 
-[node name="Camera" type="Camera" parent="." index="1"]
-
+[node name="Camera" type="Camera" parent="."]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-keep_aspect = 1
-cull_mask = 1048575
-environment = null
-h_offset = 0.0
-v_offset = 0.0
-doppler_tracking = 0
-projection = 0
-current = false
-fov = 70.0
-size = 1.0
-near = 0.05
-far = 100.0
-_sections_unfolded = [ "Transform" ]
 
-[node name="RayCast" type="RayCast" parent="Camera" index="0"]
-
+[node name="RayCast" type="RayCast" parent="Camera"]
 enabled = true
-exclude_parent = true
 cast_to = Vector3( 0, 0, -10 )
-collision_mask = 1
 script = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="HUD" parent="." index="2" instance=ExtResource( 4 )]
+[node name="HUD" parent="." instance=ExtResource( 4 )]
 
-[node name="InputAbilities" parent="." index="3" instance=ExtResource( 5 )]
+[node name="Background" parent="HUD/CenterMenu" index="0"]
+margin_left = 0.0
 
-[node name="InputMovement" parent="." index="4" instance=ExtResource( 6 )]
+[node name="MarginContainer" parent="HUD/CenterMenu" index="1"]
+margin_left = 0.0
+margin_right = 20.0
 
+[node name="ListContainer" parent="HUD/CenterMenu/MarginContainer" index="0"]
+color_default = Color( 0, 0, 0, 1 )
+
+[node name="InputAbilities" parent="." instance=ExtResource( 5 )]
+
+[node name="InputMovement" parent="." instance=ExtResource( 6 )]
 [connection signal="changed_selection" from="Camera/RayCast" to="HUD/CenterMenu/MarginContainer/ListContainer" method="update_interactions"]
-
 [connection signal="option_selected" from="HUD/CenterMenu/MarginContainer/ListContainer" to="Camera/RayCast" method="on_option_selected"]
-
-[connection signal="on_just_pressed" from="InputAbilities/Default/Interaction" to="HUD/CenterMenu" method="show"]
-
 [connection signal="on_just_pressed" from="InputAbilities/Default/Interaction" to="InputAbilities" method="set_context" binds= [ "Interaction" ]]
-
+[connection signal="on_just_pressed" from="InputAbilities/Default/Interaction" to="HUD/CenterMenu" method="show"]
 [connection signal="on_just_pressed" from="InputAbilities/Interaction/Up" to="HUD/CenterMenu/MarginContainer/ListContainer" method="scroll_up"]
-
 [connection signal="on_just_pressed" from="InputAbilities/Interaction/Down" to="HUD/CenterMenu/MarginContainer/ListContainer" method="scroll_down"]
-
+[connection signal="on_just_released" from="InputAbilities/Interaction/Select" to="InputAbilities" method="set_context" binds= [ "Default" ]]
 [connection signal="on_just_released" from="InputAbilities/Interaction/Select" to="HUD/CenterMenu/MarginContainer/ListContainer" method="select"]
-
 [connection signal="on_just_released" from="InputAbilities/Interaction/Select" to="HUD/CenterMenu" method="hide"]
 
-[connection signal="on_just_released" from="InputAbilities/Interaction/Select" to="InputAbilities" method="set_context" binds= [ "Default" ]]
-
-
 [editable path="HUD"]
+
 [editable path="HUD/CenterMenu"]
+
 [editable path="InputAbilities"]
+
 [editable path="InputMovement"]

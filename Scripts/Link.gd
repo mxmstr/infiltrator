@@ -1,15 +1,27 @@
 extends Node
 
+export(bool) var enabled
 export(NodePath) var from
 export(NodePath) var to
 
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	
+	if enabled:
+		_on_enter()
+	else:
+		set_process(false)
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+
+func _on_enter(): pass
+
+
+func _on_execute(): pass
+
+
+func _on_exit(): pass
+
+
+func _process(delta):
+	
+	_on_execute()

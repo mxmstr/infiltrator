@@ -44,7 +44,7 @@ func update_waypoint_path(waypoint):
 
 func _ready():
 	
-	pass#print('asdf')
+	pass#print(get_path())
 
 
 func _process(delta):

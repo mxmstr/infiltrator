@@ -59,5 +59,3 @@ func _physics_process(delta):
 	
 	direction.y = 0
 	direction = direction.normalized()
-	
-	

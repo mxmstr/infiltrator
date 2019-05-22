@@ -35,7 +35,7 @@ signal on_exit
 
 func is_visible():
 	
-	return type != INVISIBLE
+	return type != visibility.INVISIBLE
 
 
 func is_exported_var(prop):
