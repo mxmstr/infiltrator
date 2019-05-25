@@ -11,7 +11,6 @@ export(String) var behaviors
 export(String) var default_behavior
 
 
-
 func set_model(new_model):
 	
 	model = new_model
@@ -92,6 +91,11 @@ func add_interactions():
 	if behaviors != null:
 		
 		$Behavior.set_behavior(default_behavior)
+
+
+func _send_message(path, message, params):
+	
+	get_node(path).call(message, [params])
 
 
 func _ready():

@@ -4,33 +4,25 @@
 [ext_resource path="res://Scripts/Input.Context.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Input.Context.Action.gd" type="Script" id=3]
 
-[node name="Input" type="Node"]
-
+[node name="InputMovement" type="Node"]
 script = ExtResource( 1 )
 context = "Default"
 
-[node name="Default" type="Node" parent="." index="0"]
-
+[node name="Default" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="Forward" type="Node" parent="Default" index="0"]
-
+[node name="Forward" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Forward"
 
-[node name="Backward" type="Node" parent="Default" index="1"]
-
+[node name="Backward" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Backward"
 
-[node name="Left" type="Node" parent="Default" index="2"]
-
+[node name="Left" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Left"
 
-[node name="Right" type="Node" parent="Default" index="3"]
-
+[node name="Right" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Right"
-
-

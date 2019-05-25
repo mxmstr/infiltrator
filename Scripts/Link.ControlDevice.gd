@@ -6,17 +6,17 @@ export(String) var to_interaction
 
 func _on_sender_enter():
 	
-	if has_node(to) and to_interaction != null:
+	for receiver in to:
 		
-		var receiver = get_node(to).get_node('Behavior')
-		
-		receiver.start_interaction(to_interaction)
+		if has_node(to) and to_interaction != null:
+			get_node(to).get_node('Behavior').start_interaction(to_interaction)
 
 
 func _on_enter():
 	
-	if has_node(from) and from_interaction != null:
-		
-		var sender = get_node(from).get_node('Behavior').get_node(from_interaction)
-		
-		sender.connect('on_enter', self, '_on_sender_enter')#receiver, 'start_interaction', [to_interaction])
+	for sender in from:
+	
+		if has_node(sender) and from_interaction != null:
+			
+			var sender_action = get_node(sender).get_node('Behavior').get_node(from_interaction)
+			sender_action.connect('on_enter', self, '_on_sender_enter')

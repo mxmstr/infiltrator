@@ -5,7 +5,7 @@ export var SENSITIVITY = 0.002
 
 func look_updown_rotation(rotation=0):
 	
-	var toReturn = $Camera.get_rotation() + Vector3(rotation, 0, 0)
+	var toReturn = $ViewportContainer/Viewport/Camera.get_rotation() + Vector3(rotation, 0, 0)
 	toReturn.x = clamp(toReturn.x, PI / -2, PI / 2)
 	
 	return toReturn
@@ -18,7 +18,7 @@ func look_leftright_rotation(rotation=0):
 
 func mouse(event):
 	
-	$Camera.set_rotation(look_updown_rotation(event.relative.y * -SENSITIVITY))
+	$ViewportContainer/Viewport/Camera.set_rotation(look_updown_rotation(event.relative.y * -SENSITIVITY))
 	set_rotation(look_leftright_rotation(event.relative.x * -SENSITIVITY))
 
 

@@ -1,27 +1,18 @@
 [gd_scene load_steps=3 format=2]
 
 [sub_resource type="CapsuleShape" id=1]
-
 radius = 0.25
-height = 1.0
 
 [sub_resource type="CapsuleMesh" id=2]
-
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 radius = 0.25
-mid_height = 1.0
-radial_segments = 64
-rings = 8
 
 [node name="DefaultShape" type="CollisionShape"]
-
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.75, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.75, 0 )
 shape = SubResource( 1 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
-
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -35,5 +26,3 @@ mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
-
-

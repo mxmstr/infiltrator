@@ -2,6 +2,7 @@ extends VBoxContainer
 
 export(Color) var color_select
 export(Color) var color_default
+export(Color) var color_cancel
 export(PackedScene) var list_item
 
 var update = true
@@ -43,11 +44,15 @@ func highlight_child():
 	
 	var children = get_children()
 	
-	for index in range(len(children)):
-		if index == select_index:
-			children[index].set('custom_colors/font_color', color_select)
-		else:
-			children[index].set('custom_colors/font_color', color_default)
+	if len(children) > 0:
+	
+		for index in range(len(children)):
+			if index == select_index:
+				children[index].set('custom_colors/font_color', color_select)
+			elif index == len(children) - 1:
+				children[index].set('custom_colors/font_color', color_cancel)
+			else:
+				children[index].set('custom_colors/font_color', color_default)
 
 
 func update_interactions(interactions):

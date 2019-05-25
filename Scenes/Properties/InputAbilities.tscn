@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Input.Context.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Input.Context.Action.gd" type="Script" id=3]
 
-[node name="Input" type="Node"]
+[node name="InputAbilities" type="Node"]
 script = ExtResource( 1 )
 context = "Default"
 

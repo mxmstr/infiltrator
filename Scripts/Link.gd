@@ -1,8 +1,8 @@
 extends Node
 
-export(bool) var enabled
-export(NodePath) var from
-export(NodePath) var to
+export var enabled = true
+export var from = [NodePath()]
+export var to = [NodePath()]
 
 
 func _ready():
