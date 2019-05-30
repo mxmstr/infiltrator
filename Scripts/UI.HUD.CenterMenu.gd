@@ -2,11 +2,11 @@ extends MarginContainer
 
 
 
-func show():
+func _show():
 	
-	visible = $MarginContainer/ListContainer.has_interactions()
+	visible = $MarginContainer/ListContainer._has_interactions()
 
 
-func hide():
+func _hide():
 	
 	visible = false

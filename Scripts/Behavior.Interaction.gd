@@ -13,16 +13,18 @@ export(String) var animation
 export(float) var speed = 1.0
 export(float) var blend = 0.0
 export(float) var dist
-export(float) var obj_min_angle
-export(float) var obj_max_angle
-export(float) var subj_min_angle
-export(float) var subj_max_angle
-export(String) var input_context
-export(String) var movement_preset
-export(bool) var enable_events
-export(bool) var inherit_subj
-export(bool) var must_be_reset
-export(PoolIntArray) var triggers 
+export(String, 'Default', 'Interaction') var input_context = 'Default'
+export(String, 'Default', 'CenterMenu') var hud_context = 'Default'
+#export(float) var obj_min_angle
+#export(float) var obj_max_angle
+#export(float) var subj_min_angle
+#export(float) var subj_max_angle
+#export(String) var input_context
+#export(String) var movement_preset
+#export(bool) var enable_events
+#export(bool) var inherit_subj
+#export(bool) var must_be_reset
+#export(PoolIntArray) var triggers 
 
 export(PackedScene) var property_display
 export(PackedScene) var signal_display
@@ -80,6 +82,15 @@ func update_props():
 func on_script_changed():
 	
 	pass#get_tree().reload_current_scene();#update_props()
+
+
+func _can_start():
+	
+	for child in get_children():
+		if child.has_method('_evaluate') and not child._evaluate():
+			return false
+	
+	return true
 
 
 func enter():

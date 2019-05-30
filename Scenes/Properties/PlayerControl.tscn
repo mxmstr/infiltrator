@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Prop.PlayerControl.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Prop.PlayerControl.Viewport.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Actor.Human.Player.Camera.RayCast.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Prop.PlayerControl.Viewport.Camera.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Actor.Human.Player.Camera.RayCast.gd" type="Script" id=5]
 
 [node name="PlayerControl" type="ViewportContainer"]
 anchor_right = 1.0
@@ -15,18 +16,19 @@ script = ExtResource( 1 )
 size = Vector2( 1024, 600 )
 handle_input_locally = false
 render_target_update_mode = 3
-shadow_atlas_size = 10
+shadow_atlas_size = 1
 script = ExtResource( 2 )
 
 [node name="HUD" parent="Viewport" instance=ExtResource( 3 )]
 editor/display_folded = true
 
 [node name="Camera" type="Camera" parent="Viewport"]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 current = true
+script = ExtResource( 4 )
+offset = Vector3( 0, 2, 0 )
 
 [node name="RayCast" type="RayCast" parent="Viewport/Camera"]
 enabled = true
 cast_to = Vector3( 0, 0, -10 )
-script = ExtResource( 4 )
+script = ExtResource( 5 )

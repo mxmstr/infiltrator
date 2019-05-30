@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Actors/Actor.Static.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Devices/Button/Button.dae" type="PackedScene" id=2]
@@ -9,19 +9,21 @@
 [ext_resource path="res://Scenes/Actors/Actor.Kinematic.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Models/Humans/DefaultHuman.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Models/Humans/DefaultHuman.Collision.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Properties/PlayerControl.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Properties/InputAbilities.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Properties/InputMovement.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Rooms/Room.Default.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=15]
-[ext_resource path="res://Scenes/Markers/Waypoint.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/Links/LocalCoopPartner.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Scenes/Maps/Lab.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Properties/ActorMovement.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Properties/PlayerControl.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Properties/InputAbilities.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Properties/InputMovement.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Properties/InputRotation.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Rooms/Room.Default.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=17]
+[ext_resource path="res://Scenes/Markers/Waypoint.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Links/LocalCoopPartner.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Maps/Lab.tscn" type="PackedScene" id=21]
 
 [sub_resource type="CubeMesh" id=1]
-material = ExtResource( 15 )
+material = ExtResource( 17 )
 
 [node name="Game" type="Spatial"]
 
@@ -60,32 +62,40 @@ open_angle = Vector3( 0, -90, 0 )
 speed = 2.0
 
 [node name="Player" parent="Actors" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28711, 0, -2.08252 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.63163, 0, 1.20033 )
 model = ExtResource( 8 )
 collision = ExtResource( 9 )
-animations = "Devices/Button"
-behaviors = "Devices/Button"
-default_behavior = "Button"
+animations = "Human"
+behaviors = "Human"
+default_behavior = "Human"
 
-[node name="PlayerControl" parent="Actors/Player" instance=ExtResource( 10 )]
+[node name="ActorMovement" parent="Actors/Player" instance=ExtResource( 10 )]
 
-[node name="InputAbilities" parent="Actors/Player" instance=ExtResource( 11 )]
+[node name="PlayerControl" parent="Actors/Player" instance=ExtResource( 11 )]
 
-[node name="InputMovement" parent="Actors/Player" instance=ExtResource( 12 )]
+[node name="InputAbilities" parent="Actors/Player" instance=ExtResource( 12 )]
+
+[node name="InputMovement" parent="Actors/Player" instance=ExtResource( 13 )]
+
+[node name="InputRotation" parent="Actors/Player" instance=ExtResource( 14 )]
 
 [node name="Player2" parent="Actors" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28711, 0, -2.08252 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.30676, 0, -2.12298 )
 model = ExtResource( 8 )
 collision = ExtResource( 9 )
-animations = "Devices/Button"
-behaviors = "Devices/Button"
-default_behavior = "Button"
+animations = "Human"
+behaviors = "Human"
+default_behavior = "Human"
 
-[node name="PlayerControl" parent="Actors/Player2" instance=ExtResource( 10 )]
+[node name="ActorMovement" parent="Actors/Player2" instance=ExtResource( 10 )]
 
-[node name="InputAbilities" parent="Actors/Player2" instance=ExtResource( 11 )]
+[node name="PlayerControl" parent="Actors/Player2" instance=ExtResource( 11 )]
 
-[node name="InputMovement" parent="Actors/Player2" instance=ExtResource( 12 )]
+[node name="InputAbilities" parent="Actors/Player2" instance=ExtResource( 12 )]
+
+[node name="InputMovement" parent="Actors/Player2" instance=ExtResource( 13 )]
+
+[node name="InputRotation" parent="Actors/Player2" instance=ExtResource( 14 )]
 
 [node name="Rooms" type="Spatial" parent="."]
 visible = false
@@ -93,20 +103,20 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RoomDefault" parent="Rooms" instance=ExtResource( 13 )]
+[node name="RoomDefault" parent="Rooms" instance=ExtResource( 15 )]
 transform = Transform( 3.96034, 0, 0, 0, 1.92944, 0, 0, 0, 5.33637, 0.0433272, 1.19629, -2.03905 )
 
-[node name="RoomHallwayLarge" parent="Rooms" instance=ExtResource( 14 )]
+[node name="RoomHallwayLarge" parent="Rooms" instance=ExtResource( 16 )]
 transform = Transform( 4.82482, 0, 0, 0, 1.35264, 0, 0, 0, 6.50121, -8.73931, 1.44925, -3.05406 )
 mesh = SubResource( 1 )
 
-[node name="RoomHallwayLarge2" parent="Rooms" instance=ExtResource( 14 )]
+[node name="RoomHallwayLarge2" parent="Rooms" instance=ExtResource( 16 )]
 transform = Transform( 11.7907, 0, 0, 0, 1.2947, 0, 0, 0, 5.16032, -2.13926, 1.59451, 8.42728 )
 
-[node name="RoomHallwayLarge3" parent="Rooms" instance=ExtResource( 14 )]
+[node name="RoomHallwayLarge3" parent="Rooms" instance=ExtResource( 16 )]
 transform = Transform( -2.76438, 0, 0, 0, 1.27882, 0, 0, 0, 6.50173, 6.65176, 1.45852, -2.91559 )
 
-[node name="RoomHallwayLarge4" parent="Rooms" instance=ExtResource( 14 )]
+[node name="RoomHallwayLarge4" parent="Rooms" instance=ExtResource( 16 )]
 transform = Transform( -4.06241, 0, 0, 0, 1.32636, 0, 0, 0, -1.02, -0.0186815, 1.39212, -8.37323 )
 
 [node name="Markers" type="Spatial" parent="."]
@@ -114,31 +124,32 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Waypoint" parent="Markers" instance=ExtResource( 16 )]
+[node name="Waypoint" parent="Markers" instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01449, 0.1843, 4.43018 )
 next = NodePath("../Waypoint2")
 
-[node name="Waypoint2" parent="Markers" instance=ExtResource( 16 )]
+[node name="Waypoint2" parent="Markers" instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14671, 0.098032, -5.52101 )
 next = NodePath("../Waypoint3")
 
-[node name="Waypoint3" parent="Markers" instance=ExtResource( 16 )]
+[node name="Waypoint3" parent="Markers" instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2646, 0.1843, -0.170586 )
 next = NodePath("../Waypoint")
 
 [node name="Links" type="Node" parent="."]
 
-[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 17 )]
+[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 19 )]
+enabled = false
 from = [ NodePath("../../Actors/Player") ]
 to = [ NodePath("../../Actors/Player2") ]
 
-[node name="ControlDevice" parent="Links" instance=ExtResource( 18 )]
+[node name="ControlDevice" parent="Links" instance=ExtResource( 20 )]
 from = [ NodePath("../../Actors/Button") ]
 to = [ NodePath("../../Actors/Door") ]
 from_interaction = "Push"
 to_interaction = "Open"
 
-[node name="ControlDevice2" parent="Links" instance=ExtResource( 18 )]
+[node name="ControlDevice2" parent="Links" instance=ExtResource( 20 )]
 from = [ NodePath("../../Actors/Button") ]
 to = [ NodePath("../../Actors/Door") ]
 from_interaction = "Push"
@@ -154,4 +165,4 @@ transform = Transform( 0.707107, -0.578505, 0.40661, 0, 0.575033, 0.81813, -0.70
 light_specular = 0.0
 shadow_enabled = true
 
-[node name="Map" parent="Static" instance=ExtResource( 19 )]
+[node name="Map" parent="Static" instance=ExtResource( 21 )]

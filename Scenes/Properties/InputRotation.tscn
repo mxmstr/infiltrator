@@ -2,20 +2,17 @@
 
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Input.Context.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Input.Context.Movement.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Input.Context.Mouse.gd" type="Script" id=3]
 
-[node name="InputMovement" type="Node"]
+[node name="InputRotation" type="Node"]
 script = ExtResource( 1 )
 context = "Default"
 
 [node name="Default" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="Move" type="Node" parent="Default"]
+[node name="Rotate" type="Node" parent="Default"]
 script = ExtResource( 3 )
 
 [node name="Interaction" type="Node" parent="."]
 script = ExtResource( 2 )
-
-[node name="Move" type="Node" parent="Interaction"]
-script = ExtResource( 3 )

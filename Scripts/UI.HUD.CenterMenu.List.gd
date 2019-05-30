@@ -12,35 +12,35 @@ var select_index = 0
 signal option_selected
 
 
-func has_interactions():
+func _has_interactions():
 	
 	return len(get_children()) > 0
 
 
-func scroll_up():
+func _scroll_up():
 	
 	select_index = max(0, select_index - 1)
-	highlight_child()
+	_highlight_child()
 
 
-func scroll_down():
+func _scroll_down():
 	
 	select_index = min(len(get_children()) - 1, select_index + 1)
-	highlight_child()
+	_highlight_child()
 
 
-func select():
+func _select():
 	
-	if has_interactions():
+	if _has_interactions():
 		
 		if select_index < len(get_children()) - 1:
-			emit_signal('option_selected', get_children()[select_index].text)
+			emit_signal('_option_selected', get_children()[select_index].text)
 				
 		select_index = 0
-		highlight_child()
+		_highlight_child()
 
 
-func highlight_child():
+func _highlight_child():
 	
 	var children = get_children()
 	
@@ -55,7 +55,7 @@ func highlight_child():
 				children[index].set('custom_colors/font_color', color_default)
 
 
-func update_interactions(interactions):
+func _update_interactions(interactions):
 	
 	for child in get_children():
 		child.queue_free()
@@ -73,7 +73,7 @@ func update_interactions(interactions):
 	
 	select_index = 0
 	
-	highlight_child()
+	_highlight_child()
 
 
 func _ready():

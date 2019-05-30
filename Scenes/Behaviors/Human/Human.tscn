@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Behaviors/Interaction.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Interaction.Trigger.gd" type="Script" id=3]
+
+[node name="Behavior" type="Node"]
+script = ExtResource( 1 )
+interaction = "Default"
+
+[node name="Default" parent="." instance=ExtResource( 2 )]
+margin_left = -402.0
+margin_top = 100.0
+margin_right = -102.0
+margin_bottom = -283.0
+type = 2
+priority = -1
+
+[node name="Interact" parent="." instance=ExtResource( 2 )]
+margin_left = -12.0
+margin_top = 100.0
+margin_right = 288.0
+margin_bottom = -283.0
+type = 2
+priority = 50
+animation = "Interact"
+input_context = "Interaction"
+hud_context = "CenterMenu"
+
+[node name="RayCastHasSelection" type="Node" parent="Interact"]
+script = ExtResource( 3 )
+target = "../../../PlayerControl/Viewport/Camera/RayCast"
+method = "_has_selection"
+
+[node name="OutOfRange" type="Node" parent="Interact"]
+script = ExtResource( 3 )
+
+[node name="InteractSelect" parent="." instance=ExtResource( 2 )]
+margin_left = -271.485
+margin_top = 599.838
+margin_right = 28.5149
+margin_bottom = 216.838
+type = 2
+priority = 51
+animation = "InteractSelect"
+input_context = "Interaction"
+hud_context = "CenterMenu"
+
+[node name="InteractCancel" parent="." instance=ExtResource( 2 )]
+margin_left = -420.72
+margin_top = 352.079
+margin_right = -120.72
+margin_bottom = -30.921
+type = 2
+priority = 51
+animation = "InteractCancel"
+input_context = "Interaction"
+hud_context = "CenterMenu"
+
+[node name="InteractUp" parent="." instance=ExtResource( 2 )]
+margin_left = 95.0828
+margin_top = 396.994
+margin_right = 395.083
+margin_bottom = 13.994
+type = 2
+priority = 51
+animation = "InteractUp"
+input_context = "Interaction"
+hud_context = "CenterMenu"
+
+[node name="InteractDown" parent="." instance=ExtResource( 2 )]
+margin_left = -420.72
+margin_top = 352.079
+margin_right = -120.72
+margin_bottom = -30.921
+type = 2
+priority = 51
+animation = "InteractDown"
+input_context = "Interaction"
+hud_context = "CenterMenu"

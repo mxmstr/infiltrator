@@ -6,9 +6,6 @@
 
 [node name="Actor" type="StaticBody"]
 script = ExtResource( 1 )
-animations = null
-behaviors = null
-default_behavior = null
 
 [node name="Model" parent="." instance=ExtResource( 2 )]
 

@@ -3,11 +3,12 @@ extends Node
 export(String) var interaction
 
 """ Signal is pre-connected in Actor.Static prefab """
+signal interaction_started
 signal animation_changed
 
 
 
-func set_behavior(new_behavior):
+func _set_behavior(new_behavior):
 	
 	var path = owner.behaviors_root + owner.behaviors + '/' + new_behavior + '.tscn'
 	var behavior_source = load(path).instance()
@@ -22,12 +23,12 @@ func set_behavior(new_behavior):
 		add_child(new_child)
 		new_child.name = child_name
 	
-	start_interaction(behavior_source.interaction, true)
+	_start_interaction(behavior_source.interaction, true)
 	
 	behavior_source.queue_free()
 
 
-func get_visible_interactions(sender):
+func _get_visible_interactions(sender):
 	
 	var interactions = []
 	
@@ -41,16 +42,15 @@ func get_visible_interactions(sender):
 	return interactions
 
 
-func reset_interaction():
+func _reset_interaction():
 	
-	start_interaction('Default')
+	_start_interaction('Default')
 
 
-func start_interaction(_name, override=false):
+func _start_interaction(_name, override=false):
 	
-	if not has_node(_name):
+	if not has_node(_name):# or not get_node(_name)._can_start():
 		return
-	
 	
 	var next = get_node(_name)
 	var has_priority = false
@@ -65,13 +65,15 @@ func start_interaction(_name, override=false):
 			last.exit()
 	
 	
-	if has_priority:
+	if has_priority:# and (next.dist == 0 or next.dist < next.distance_to):
 		
 		if not next.animation in [null, 'Null']:
 			emit_signal('animation_changed', next.animation, next.blend, next.speed)
 		
 		next.enter()
 		interaction = next.name
+		
+		emit_signal('interaction_started', next)
 
 
 func _ready():

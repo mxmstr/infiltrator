@@ -9,7 +9,7 @@ func _on_sender_enter():
 	for receiver in to:
 		
 		if has_node(to) and to_interaction != null:
-			get_node(to).get_node('Behavior').start_interaction(to_interaction)
+			get_node(to).get_node('Behavior')._start_interaction(to_interaction)
 
 
 func _on_enter():

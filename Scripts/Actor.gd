@@ -51,7 +51,7 @@ func replace_collision():
 		
 		var root = collision.instance()
 		var shape = root.get_node('CollisionShape').duplicate()
-		$Model.add_child(shape)
+		add_child(shape)
 		
 		shape_owner_add_shape(create_shape_owner(shape), shape.shape)
 		
@@ -90,12 +90,12 @@ func add_interactions():
 	
 	if behaviors != null:
 		
-		$Behavior.set_behavior(default_behavior)
+		$Behavior._set_behavior(default_behavior)
 
 
 func _send_message(path, message, params):
 	
-	get_node(path).call(message, [params])
+	find_node(path, true, false).call(message, [params])
 
 
 func _ready():

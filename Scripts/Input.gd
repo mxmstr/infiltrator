@@ -1,6 +1,12 @@
 extends Node
 
+export(int) var device
 export(String) var context
+
+
+func _on_interaction_started(interaction):
+	
+	set_context(interaction.input_context)
 
 
 func set_context(_context):
@@ -18,3 +24,5 @@ func _ready():
 		child.disable()
 	
 	set_context(context)
+	
+	$'../Behavior'.connect('interaction_started', self, '_on_interaction_started')
