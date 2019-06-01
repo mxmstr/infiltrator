@@ -15,6 +15,7 @@ export(float) var blend = 0.0
 export(float) var dist
 export(String, 'Default', 'Interaction') var input_context = 'Default'
 export(String, 'Default', 'CenterMenu') var hud_context = 'Default'
+export var resets_to = 'Default'
 #export(float) var obj_min_angle
 #export(float) var obj_max_angle
 #export(float) var subj_min_angle

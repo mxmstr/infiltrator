@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Animations/Human/Interact.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/InteractCancel.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/InteractDown.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/InteractSelect.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/InteractUp.tres" type="Animation" id=5]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.25
@@ -17,3 +21,7 @@ material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Interact = ExtResource( 1 )
+anims/InteractCancel = ExtResource( 2 )
+anims/InteractDown = ExtResource( 3 )
+anims/InteractSelect = ExtResource( 4 )
+anims/InteractUp = ExtResource( 5 )

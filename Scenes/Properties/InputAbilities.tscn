@@ -39,10 +39,8 @@ on_just_pressed = [ [ "../../../Behavior", "_start_interaction", "InteractDown" 
 
 [node name="Select" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
-action_name = "Select"
-on_just_pressed = [ [ "../../../Behavior", "_start_interaction", "InteractSelect" ] ]
+action_name = "Interaction"
+on_just_released = [ [ "../../../Behavior", "_start_interaction", "InteractSelect" ] ]
 
 [node name="Cancel" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
-action_name = "Interaction"
-on_just_pressed = [ [ "../../../Behavior", "_start_interaction", "InteractCancel" ] ]

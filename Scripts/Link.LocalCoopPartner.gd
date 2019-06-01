@@ -31,3 +31,8 @@ func _on_enter():
 					
 					var receiver_control = get_node(receiver).get_node('PlayerControl')
 					_split_viewports(sender_control, receiver_control)
+
+
+func _on_execute():
+	
+	_on_enter()

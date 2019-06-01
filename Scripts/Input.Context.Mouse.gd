@@ -48,3 +48,8 @@ func _input(event):
 	
 	if event is InputEventMouseMotion:
 		return mouse(event)
+
+
+func _process(delta):
+	
+	Input.warp_mouse_position(Vector2(0.5, 0.5))

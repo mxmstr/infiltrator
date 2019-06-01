@@ -11,9 +11,9 @@ func _has_selection():
 	return selection != null
 
 
-func on_option_selected(interaction):
+func _on_option_selected(interaction):
 	
-	last_selection.get_node('Behavior').start_interaction(interaction)
+	last_selection.get_node('Behavior')._start_interaction(interaction)
 
 
 func _ready():
@@ -22,11 +22,6 @@ func _ready():
 
 
 func _process(delta):
-	
-	#if is_colliding():
-	
-	if get_collider() != null:
-		print(get_collider().name)
 	
 	if selection != get_collider():
 		selection = get_collider()

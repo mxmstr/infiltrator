@@ -44,10 +44,10 @@ func _get_visible_interactions(sender):
 
 func _reset_interaction():
 	
-	_start_interaction('Default')
+	_start_interaction(get_node(interaction).resets_to)
 
 
-func _start_interaction(_name, override=false):
+func _start_interaction(_name, override=true):
 	
 	if not has_node(_name):# or not get_node(_name)._can_start():
 		return

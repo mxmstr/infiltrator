@@ -9,6 +9,9 @@ var update = true
 var interactions = []
 var select_index = 0
 
+onready var parent = $'../../../../../../'
+onready var raycast = parent.get_node('PlayerControl/Viewport/Camera/RayCast')
+
 signal option_selected
 
 
@@ -34,7 +37,8 @@ func _select():
 	if _has_interactions():
 		
 		if select_index < len(get_children()) - 1:
-			emit_signal('_option_selected', get_children()[select_index].text)
+			var interaction = get_children()[select_index].text
+			emit_signal('option_selected', interaction)
 				
 		select_index = 0
 		_highlight_child()
@@ -58,7 +62,8 @@ func _highlight_child():
 func _update_interactions(interactions):
 	
 	for child in get_children():
-		child.queue_free()
+		child.name = child.name + '_'
+		child.free()
 	
 	if len(interactions) > 0:
 		
@@ -70,7 +75,7 @@ func _update_interactions(interactions):
 		var child = list_item.instance()
 		child.text = 'Cancel'
 		add_child(child)
-	
+		
 	select_index = 0
 	
 	_highlight_child()
@@ -78,7 +83,8 @@ func _update_interactions(interactions):
 
 func _ready():
 	
-	pass
+	raycast.connect('changed_selection', self, '_update_interactions')
+	connect('option_selected', raycast, '_on_option_selected')
 
 
 func _process(delta):

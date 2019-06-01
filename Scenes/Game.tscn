@@ -27,10 +27,6 @@ material = ExtResource( 17 )
 
 [node name="Game" type="Spatial"]
 
-[node name="UI" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
 [node name="Actors" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
@@ -62,7 +58,7 @@ open_angle = Vector3( 0, -90, 0 )
 speed = 2.0
 
 [node name="Player" parent="Actors" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.63163, 0, 1.20033 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.63163, 0.1843, 1.20033 )
 model = ExtResource( 8 )
 collision = ExtResource( 9 )
 animations = "Human"
@@ -80,7 +76,7 @@ default_behavior = "Human"
 [node name="InputRotation" parent="Actors/Player" instance=ExtResource( 14 )]
 
 [node name="Player2" parent="Actors" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.30676, 0, -2.12298 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.86671, 0.1843, -2.15186 )
 model = ExtResource( 8 )
 collision = ExtResource( 9 )
 animations = "Human"
@@ -139,7 +135,6 @@ next = NodePath("../Waypoint")
 [node name="Links" type="Node" parent="."]
 
 [node name="LocalCoopPartner" parent="Links" instance=ExtResource( 19 )]
-enabled = false
 from = [ NodePath("../../Actors/Player") ]
 to = [ NodePath("../../Actors/Player2") ]
 

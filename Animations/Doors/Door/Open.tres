@@ -14,7 +14,7 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Opened" ],
-"method": "set_behavior"
+"method": "_set_behavior"
 } ]
 }
 tracks/1/type = "method"
