@@ -75,24 +75,6 @@ default_behavior = "Human"
 
 [node name="InputRotation" parent="Actors/Player" instance=ExtResource( 14 )]
 
-[node name="Player2" parent="Actors" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.86671, 0.1843, -2.15186 )
-model = ExtResource( 8 )
-collision = ExtResource( 9 )
-animations = "Human"
-behaviors = "Human"
-default_behavior = "Human"
-
-[node name="ActorMovement" parent="Actors/Player2" instance=ExtResource( 10 )]
-
-[node name="PlayerControl" parent="Actors/Player2" instance=ExtResource( 11 )]
-
-[node name="InputAbilities" parent="Actors/Player2" instance=ExtResource( 12 )]
-
-[node name="InputMovement" parent="Actors/Player2" instance=ExtResource( 13 )]
-
-[node name="InputRotation" parent="Actors/Player2" instance=ExtResource( 14 )]
-
 [node name="Rooms" type="Spatial" parent="."]
 visible = false
 __meta__ = {
@@ -135,6 +117,7 @@ next = NodePath("../Waypoint")
 [node name="Links" type="Node" parent="."]
 
 [node name="LocalCoopPartner" parent="Links" instance=ExtResource( 19 )]
+enabled = false
 from = [ NodePath("../../Actors/Player") ]
 to = [ NodePath("../../Actors/Player2") ]
 

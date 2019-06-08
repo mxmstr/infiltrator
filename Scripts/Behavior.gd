@@ -42,6 +42,11 @@ func _get_visible_interactions(sender):
 	return interactions
 
 
+func _has_interaction(_name):
+	
+	return has_node(_name)
+
+
 func _reset_interaction():
 	
 	_start_interaction(get_node(interaction).resets_to)
@@ -49,7 +54,7 @@ func _reset_interaction():
 
 func _start_interaction(_name, override=true):
 	
-	if not has_node(_name):# or not get_node(_name)._can_start():
+	if not _has_interaction(_name) or not get_node(_name)._can_start():
 		return
 	
 	var next = get_node(_name)

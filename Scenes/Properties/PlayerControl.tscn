@@ -29,5 +29,5 @@ offset = Vector3( 0, 1.75, 0 )
 
 [node name="RayCast" type="RayCast" parent="Viewport/Camera"]
 enabled = true
-cast_to = Vector3( 0, 0, -10 )
+cast_to = Vector3( 0, 0, -3 )
 script = ExtResource( 5 )

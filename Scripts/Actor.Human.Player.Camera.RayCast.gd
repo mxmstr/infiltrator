@@ -8,7 +8,7 @@ signal changed_selection
 
 func _has_selection():
 	
-	return selection != null
+	return selection != null and selection.has_node('Behavior')
 
 
 func _on_option_selected(interaction):
@@ -23,12 +23,12 @@ func _ready():
 
 func _process(delta):
 	
-	if selection != get_collider():
-		selection = get_collider()
-		
-		if selection != null and selection.has_node('Behavior'):
-			var interactions = selection.get_node('Behavior')._get_visible_interactions(self)
-			last_selection = selection
-			emit_signal('changed_selection', interactions)
-		else:
-			emit_signal('changed_selection', [])
+	#if selection != get_collider():
+	selection = get_collider()
+	
+	if selection != null and selection.has_node('Behavior'):
+		var interactions = selection.get_node('Behavior')._get_visible_interactions(self)
+		last_selection = selection
+		emit_signal('changed_selection', interactions)
+	else:
+		emit_signal('changed_selection', [])

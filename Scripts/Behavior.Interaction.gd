@@ -94,6 +94,19 @@ func _can_start():
 	return true
 
 
+func _evaluate_triggers():
+	
+	for child in get_children():
+		if child.has_method('_evaluate') and not child._evaluate():
+			
+			#print('exit')
+			#if get_parent()._has_interaction(animation + '.Exit'):
+			get_parent().emit_signal('animation_changed', animation + '.Exit')
+			get_parent()._reset_interaction()
+				
+			return
+
+
 func enter():
 	
 	emit_signal('on_enter')
@@ -134,4 +147,5 @@ func _process(delta):
 	
 	else:
 		
+		_evaluate_triggers()
 		emit_signal('on_execute')
