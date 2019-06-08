@@ -28,15 +28,14 @@ func _set_behavior(new_behavior):
 	behavior_source.queue_free()
 
 
-func _get_visible_interactions(sender):
+func _get_visible_interactions():
 	
 	var interactions = []
 	
-	var dist = sender.global_transform.origin.distance_to(owner.global_transform.origin)
+	#var dist = sender.global_transform.origin.distance_to(owner.global_transform.origin)
 	
 	for child in get_children():
-		if child.is_visible() \
-			and (child.dist == 0 or child.dist > dist):
+		if child.is_visible(): #and (child.dist == 0 or child.dist > dist):
 			interactions.append(child.name)
 	
 	return interactions

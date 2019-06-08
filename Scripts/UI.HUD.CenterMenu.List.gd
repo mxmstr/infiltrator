@@ -6,6 +6,7 @@ export(Color) var color_cancel
 export(PackedScene) var list_item
 
 var update = true
+var selection = null
 var interactions = []
 var select_index = 0
 
@@ -18,6 +19,11 @@ signal option_selected
 func _has_interactions():
 	
 	return len(get_children()) > 0
+
+
+func _selection_is_actor():
+	
+	return selection != null and selection.has_node('Behavior')
 
 
 func _scroll_up():
@@ -38,7 +44,9 @@ func _select():
 		
 		if select_index < len(get_children()) - 1:
 			var interaction = get_children()[select_index].text
-			emit_signal('option_selected', interaction)
+			
+			if _selection_is_actor():
+				selection.get_node('Behavior')._start_interaction(interaction)
 				
 		select_index = 0
 		_highlight_child()
@@ -59,7 +67,14 @@ func _highlight_child():
 				children[index].set('custom_colors/font_color', color_default)
 
 
-func _update_interactions(interactions):
+func _on_selection_changed(_selection):
+	
+	selection = _selection
+	
+	_update_interactions()
+
+
+func _refresh_children():
 	
 	for child in get_children():
 		child.name = child.name + '_'
@@ -77,16 +92,30 @@ func _update_interactions(interactions):
 		add_child(child)
 		
 	select_index = 0
-	
 	_highlight_child()
+
+
+func _update_interactions():
+	
+	if _selection_is_actor():
+	
+		var last_interactions = interactions.duplicate()
+		interactions = selection.get_node('Behavior')._get_visible_interactions()
+		
+		if last_interactions != interactions:
+			_refresh_children()
+	
+	else:
+		
+		interactions = []
+		_refresh_children()
 
 
 func _ready():
 	
-	raycast.connect('changed_selection', self, '_update_interactions')
-	connect('option_selected', raycast, '_on_option_selected')
+	raycast.connect('changed_selection', self, '_on_selection_changed')
 
 
 func _process(delta):
 	
-	pass
+	_update_interactions()
