@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Animations/Human/Interact.tres" type="Animation" id=1]
-[ext_resource path="res://Animations/Human/Interact.Exit.tres" type="Animation" id=2]
-[ext_resource path="res://Animations/Human/InteractCancel.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Human/InteractDown.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/InteractSelect.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Human/InteractUp.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/Climb.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/Climb.Exit.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/Interact.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/Interact.Exit.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/InteractCancel.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/InteractDown.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/InteractSelect.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/InteractUp.tres" type="Animation" id=8]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.25
@@ -21,9 +23,11 @@ skeleton = NodePath("")
 material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Interact = ExtResource( 1 )
-anims/Interact.Exit = ExtResource( 2 )
-anims/InteractCancel = ExtResource( 3 )
-anims/InteractDown = ExtResource( 4 )
-anims/InteractSelect = ExtResource( 5 )
-anims/InteractUp = ExtResource( 6 )
+anims/Climb = ExtResource( 1 )
+anims/Climb.Exit = ExtResource( 2 )
+anims/Interact = ExtResource( 3 )
+anims/Interact.Exit = ExtResource( 4 )
+anims/InteractCancel = ExtResource( 5 )
+anims/InteractDown = ExtResource( 6 )
+anims/InteractSelect = ExtResource( 7 )
+anims/InteractUp = ExtResource( 8 )

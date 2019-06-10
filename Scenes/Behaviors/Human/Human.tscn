@@ -32,6 +32,21 @@ script = ExtResource( 3 )
 target = "../../../PlayerControl/Viewport/Camera/RayCast"
 method = "_has_selection"
 
+[node name="Climb" parent="." instance=ExtResource( 2 )]
+margin_left = 347.596
+margin_top = 133.589
+margin_right = 647.596
+margin_bottom = -230.411
+type = 2
+priority = 50
+animation = "Climb"
+input_context = "Climb"
+
+[node name="HasClimbTarget" type="Node" parent="Climb"]
+script = ExtResource( 3 )
+target = "../../../ActorMovement"
+method = "_get_climb_target"
+
 [node name="InteractSelect" parent="." instance=ExtResource( 2 )]
 margin_left = -271.485
 margin_top = 599.838

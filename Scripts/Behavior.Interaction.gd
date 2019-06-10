@@ -13,7 +13,7 @@ export(String) var animation
 export(float) var speed = 1.0
 export(float) var blend = 0.0
 export(float) var dist
-export(String, 'Default', 'Interaction') var input_context = 'Default'
+export(String, 'Default', 'Climb', 'Interaction') var input_context = 'Default'
 export(String, 'Default', 'CenterMenu') var hud_context = 'Default'
 export var resets_to = 'Default'
 #export(float) var obj_min_angle

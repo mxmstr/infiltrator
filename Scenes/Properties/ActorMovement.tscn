@@ -2,5 +2,5 @@
 
 [ext_resource path="res://Scripts/Prop.ActorMovement.gd" type="Script" id=1]
 
-[node name="ActorMovement" type="Node"]
+[node name="ActorMovement" type="Spatial"]
 script = ExtResource( 1 )

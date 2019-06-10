@@ -3,6 +3,8 @@ extends RayCast
 var selection
 var last_selection
 
+onready var parent = $'../../../../'
+
 signal changed_selection
 
 
@@ -12,6 +14,8 @@ func _has_selection():
 
 
 func _ready():
+	
+	add_exception(parent)
 	
 	selection = get_collider()
 

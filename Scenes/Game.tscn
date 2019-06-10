@@ -58,7 +58,7 @@ open_angle = Vector3( 0, -90, 0 )
 speed = 2.0
 
 [node name="Player" parent="Actors" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.63163, 0.1843, 1.20033 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.37323, 0.184299, -4.07821 )
 model = ExtResource( 8 )
 collision = ExtResource( 9 )
 animations = "Human"

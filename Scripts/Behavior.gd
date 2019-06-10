@@ -57,19 +57,17 @@ func _start_interaction(_name, override=true):
 		return
 	
 	var next = get_node(_name)
+	var last = get_node(interaction)
 	var has_priority = false
 	
 	if override:
 		has_priority = true
 	else:
-		var last = get_node(interaction)
 		has_priority = next.priority == -1 or next.priority > last.priority
-		
-		if has_priority:
-			last.exit()
-	
 	
 	if has_priority:# and (next.dist == 0 or next.dist < next.distance_to):
+		
+		last.exit()
 		
 		if not next.animation in [null, 'Null']:
 			emit_signal('animation_changed', next.animation, next.blend, next.speed)

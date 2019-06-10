@@ -14,6 +14,9 @@ script = ExtResource( 2 )
 [node name="Rotate" type="Node" parent="Default"]
 script = ExtResource( 3 )
 
+[node name="Climb" type="Node" parent="."]
+script = ExtResource( 2 )
+
 [node name="Interaction" type="Node" parent="."]
 script = ExtResource( 2 )
 
