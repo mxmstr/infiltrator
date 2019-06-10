@@ -10,7 +10,7 @@
 [ext_resource path="res://Animations/Human/InteractUp.tres" type="Animation" id=8]
 
 [sub_resource type="CapsuleMesh" id=1]
-radius = 0.25
+radius = 0.15
 
 [node name="DefaultHuman" type="Spatial"]
 

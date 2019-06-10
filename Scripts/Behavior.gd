@@ -67,7 +67,8 @@ func _start_interaction(_name, override=true):
 	
 	if has_priority:# and (next.dist == 0 or next.dist < next.distance_to):
 		
-		last.exit()
+		if last != null:
+			last.exit()
 		
 		if not next.animation in [null, 'Null']:
 			emit_signal('animation_changed', next.animation, next.blend, next.speed)
