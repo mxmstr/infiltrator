@@ -16,6 +16,8 @@ export var climb_speed = 100.0
 
 var direction = Vector3()
 var velocity = Vector3()
+var climb_height_mult = 2
+var climb_steps = 50
 var climb_target = Vector3()
 var climb_progress = 0
 
@@ -32,19 +34,20 @@ func _get_climb_target():
 		return true
 	
 	var in_range = false
-	var height = get_parent().get_node('CollisionShape').shape.height
+	var height = climb_height_mult * get_parent().get_node('CollisionShape').shape.height
 	
 	var ray = RayCast.new()
 	ray.add_exception(get_parent())
 	add_child(ray)
 	
-	var offsets = range(5)
+	var last_point
+	var offsets = range(climb_steps)
 	offsets.invert()
 	
 	#print('asdf')
 	for i in offsets:
 		
-		var offset = Vector3(0, height * ((i + 1) / 5.0), 0)
+		var offset = Vector3(0, height * ((i + 1) / float(climb_steps)), 0)
 		var origin = get_parent().global_transform.origin + offset
 		
 		ray.global_transform.origin = origin
@@ -57,10 +60,16 @@ func _get_climb_target():
 			in_range = true
 		elif in_range:
 			#print('target')
+			#if last_point == null:
 			climb_target = ray.get_collision_point()
+#			else:
+#				climb_target = last_point
+			
 			climb_progress = 0
 			#print(climb_target)
 			return true
+		
+		last_point = ray.get_collision_point()
 	
 	ray.queue_free()
 	
