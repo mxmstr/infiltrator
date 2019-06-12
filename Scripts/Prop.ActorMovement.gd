@@ -13,10 +13,11 @@ export var accel = 2
 export var deaccel = 4
 export var max_slope_angle = 30
 export var climb_speed = 100.0
+export var climb_height_mult = 2
+export var climb_range = 1.0
 
 var direction = Vector3()
 var velocity = Vector3()
-var climb_height_mult = 2
 var climb_steps = 50
 var climb_target = Vector3()
 var climb_progress = 0
@@ -33,45 +34,58 @@ func _get_climb_target():
 	if current_state == state.CLIMBING:
 		return true
 	
-	var in_range = false
-	var height = climb_height_mult * get_parent().get_node('CollisionShape').shape.height
 	
-	var ray = RayCast.new()
-	ray.add_exception(get_parent())
-	add_child(ray)
+	var in_range = false
+	var height = get_parent().get_node('CollisionShape').shape.height
+	
+	var ray_to_target = RayCast.new()
+	ray_to_target.add_exception(get_parent())
+	add_child(ray_to_target)
+	
+	var ray_to_self = RayCast.new()
+	ray_to_self.add_exception(get_parent())
+	add_child(ray_to_self)
+	
 	
 	var last_point
 	var offsets = range(climb_steps)
 	offsets.invert()
 	
-	#print('asdf')
 	for i in offsets:
 		
-		var offset = Vector3(0, height * ((i + 1) / float(climb_steps)), 0)
+		var climb_height = height * climb_height_mult * ((i + 1) / float(climb_steps))
+		var offset = Vector3(0, climb_height, 0)
 		var origin = get_parent().global_transform.origin + offset
 		
-		ray.global_transform.origin = origin
-		ray.cast_to = Vector3(0, 0, -1.0)
-		ray.force_raycast_update()
+		ray_to_target.global_transform.origin = origin
+		ray_to_target.cast_to = Vector3(0, 0, -climb_range)
+		ray_to_target.force_raycast_update()
 		
-		#print(ray.get_collider())
+		ray_to_self.global_transform.origin = origin
+		ray_to_self.cast_to = origin.direction_to(get_parent().global_transform.origin + Vector3(0, 0.0, 0))
+		ray_to_self.force_raycast_update()
 		
-		if ray.get_collider() == null:
-			in_range = true
-		elif in_range:
-			#print('target')
-			#if last_point == null:
-			climb_target = ray.get_collision_point()
-#			else:
-#				climb_target = last_point
+		
+		var wall_found = ray_to_target.get_collider() == null
+		var climb_blocked = ray_to_self.get_collider() != null
+		
+		if climb_height < height or not climb_blocked:
 			
-			climb_progress = 0
-			#print(climb_target)
-			return true
+			if wall_found:
+				in_range = true
+			elif in_range:
+				#if last_point == null:
+				climb_target = ray_to_target.get_collision_point()
+	#			else:
+	#				climb_target = last_point
+				
+				climb_progress = 0
+				return true
 		
-		last_point = ray.get_collision_point()
+		last_point = ray_to_target.get_collision_point()
 	
-	ray.queue_free()
+	ray_to_target.queue_free()
+	ray_to_self.queue_free()
 	
 	return false
 
