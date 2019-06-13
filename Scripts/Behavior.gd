@@ -57,7 +57,7 @@ func _start_interaction(_name, override=true):
 		return
 	
 	var next = get_node(_name)
-	var last = get_node(interaction)
+	var last = get_node(interaction) if has_node(interaction) else null
 	var has_priority = false
 	
 	if override:

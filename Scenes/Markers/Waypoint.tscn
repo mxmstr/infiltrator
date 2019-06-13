@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/Waypoint.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Marker.Waypoint.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Markers/Waypoint.tres" type="PrismMesh" id=2]
+
 
 [node name="Waypoint" type="Spatial" index="0"]
 

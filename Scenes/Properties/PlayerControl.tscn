@@ -3,8 +3,11 @@
 [ext_resource path="res://Scripts/Prop.PlayerControl.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Prop.PlayerControl.Viewport.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Prop.PlayerControl.Viewport.Camera.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Actor.Human.Player.Camera.RayCast.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Prop.PlayerControl.Camera.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Prop.PlayerControl.RayCast.gd" type="Script" id=5]
+
+
+
 
 [node name="PlayerControl" type="ViewportContainer"]
 anchor_right = 1.0
