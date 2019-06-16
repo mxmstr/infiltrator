@@ -14,12 +14,12 @@ script = ExtResource( 2 )
 [node name="Interaction" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Interaction"
-on_just_pressed = [ [ "../../../Behavior", "_start_interaction", "Interact" ] ]
+on_just_pressed = [ [ "Behavior", "_start_interaction", "Interact" ] ]
 
 [node name="Jump" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Jump"
-on_just_pressed = [ [ "../../../Behavior", "_start_interaction", "Climb" ] ]
+on_just_pressed = [ [ "Behavior", "_start_interaction", "Climb" ] ]
 
 [node name="Primary" type="Node" parent="Default"]
 script = ExtResource( 3 )
@@ -35,7 +35,7 @@ script = ExtResource( 2 )
 [node name="Cancel" type="Node" parent="Climb"]
 script = ExtResource( 3 )
 action_name = "Jump"
-on_just_released = [ [ "../../../Behavior", "_reset_interaction" ] ]
+on_just_released = [ [ "Behavior", "_reset_interaction" ] ]
 
 [node name="Interaction" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -43,17 +43,17 @@ script = ExtResource( 2 )
 [node name="Up" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "ScrollUp"
-on_just_pressed = [ [ "../../../Behavior", "_start_interaction", "InteractUp" ] ]
+on_just_pressed = [ [ "Behavior", "_start_interaction", "InteractUp" ] ]
 
 [node name="Down" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "ScrollDown"
-on_just_pressed = [ [ "../../../Behavior", "_start_interaction", "InteractDown" ] ]
+on_just_pressed = [ [ "Behavior", "_start_interaction", "InteractDown" ] ]
 
 [node name="Select" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "Interaction"
-on_just_released = [ [ "../../../Behavior", "_start_interaction", "InteractSelect" ] ]
+on_just_released = [ [ "Behavior", "_start_interaction", "InteractSelect" ] ]
 
 [node name="Cancel" type="Node" parent="Interaction"]
 script = ExtResource( 3 )

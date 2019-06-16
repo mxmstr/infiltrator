@@ -2,16 +2,25 @@ extends Node
 
 enum state {
 	DEFAULT,
-	CLIMBING
+	CLIMBING,
+	CROUCHING,
+	RUNNING,
+	CRAWLING
 }
 
 export(state) var current_state
+
 export var gravity = -9.8
-export var max_speed = 5
+export var max_speed = 4.5
+export var walk_mult = 0.4
+export var crouch_mult = 0.3
+export var crawl_mult = 0.1
+
 export var jump_speed = 7
 export var accel = 2
 export var deaccel = 4
 export var max_slope_angle = 30
+
 export var climb_speed = 100.0
 export var climb_height_mult = 2
 export var climb_range = 1.0
@@ -21,6 +30,14 @@ var velocity = Vector3()
 var climb_steps = 50
 var climb_target = Vector3()
 var climb_progress = 0
+
+onready var collision = $'../CollisionShape'
+onready var camera = $'../PlayerControl/Viewport/Camera'
+
+
+func _ready():
+	
+	pass
 
 
 func _set_state(new_state):
@@ -36,7 +53,7 @@ func _get_climb_target():
 	
 	
 	var in_range = false
-	var height = get_parent().get_node('CollisionShape').shape.height
+	var height = $'../CollisionShape'.shape.height
 	
 	var ray_to_target = RayCast.new()
 	ray_to_target.add_exception(get_parent())
@@ -107,17 +124,42 @@ func _physics_process(delta):
 		
 		state.DEFAULT:
 			
-			target = direction * max_speed
+			$'../CollisionShape'.shape.height = 1
+			camera.offset = Vector3(0, 1.75, 0)
+			
+			target = direction * max_speed * walk_mult
 		
 		state.CLIMBING:
 			
-			#climb_target.x = current_pos.x
-			#climb_target.z = current_pos.z
+			$'../CollisionShape'.shape.height = 1
+			camera.offset = Vector3(0, 1.75, 0)
 			
-			get_parent().global_transform.origin = current_pos.linear_interpolate(climb_target, climb_progress)# * climb_speed
+			get_parent().global_transform.origin = current_pos.linear_interpolate(climb_target, climb_progress)
 			
 			velocity.x = 0
 			velocity.z = 0
+		
+		state.CROUCHING:
+			
+			$'../CollisionShape'.shape.height = 0.5
+			camera.offset = Vector3(0, 0.75, 0)
+			
+			target = direction * max_speed * crouch_mult
+		
+		state.RUNNING:
+			
+			$'../CollisionShape'.shape.height = 1
+			camera.offset = Vector3(0, 1.75, 0)
+			
+			target = direction * max_speed
+		
+		state.CRAWLING:
+			
+			$'../CollisionShape'.shape.height = 0.2
+			camera.offset = Vector3(0, 0.2, 0)
+			
+			target = direction * max_speed * crawl_mult
+	
 	
 	var factor
 	

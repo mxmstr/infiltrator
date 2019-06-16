@@ -5,11 +5,15 @@ onready var parent = $'../../../'
 
 func enable():
 	
+	set_process(true)
+	set_physics_process(true)
 	set_process_input(true)
 
 
 func disable():
 	
+	set_process(false)
+	set_physics_process(false)
 	set_process_input(false)
 
 

@@ -6,9 +6,6 @@
 [ext_resource path="res://Scripts/Prop.PlayerControl.Camera.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Prop.PlayerControl.RayCast.gd" type="Script" id=5]
 
-
-
-
 [node name="PlayerControl" type="ViewportContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
