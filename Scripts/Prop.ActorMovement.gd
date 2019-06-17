@@ -13,7 +13,7 @@ export(state) var current_state
 export var gravity = -9.8
 export var max_speed = 4.5
 export var walk_mult = 0.4
-export var crouch_mult = 0.3
+export var crouch_mult = 0.2
 export var crawl_mult = 0.1
 
 export var jump_speed = 7
@@ -53,7 +53,7 @@ func _get_climb_target():
 	
 	
 	var in_range = false
-	var height = $'../CollisionShape'.shape.height
+	var height = $'../CollisionShape'.shape.extents.y
 	
 	var ray_to_target = RayCast.new()
 	ray_to_target.add_exception(get_parent())
@@ -92,7 +92,7 @@ func _get_climb_target():
 				in_range = true
 			elif in_range:
 				#if last_point == null:
-				climb_target = ray_to_target.get_collision_point()
+				climb_target = ray_to_target.get_collision_point() + Vector3(0, 0.1, 0)
 	#			else:
 	#				climb_target = last_point
 				
@@ -124,14 +124,16 @@ func _physics_process(delta):
 		
 		state.DEFAULT:
 			
-			$'../CollisionShape'.shape.height = 1
+			$'../CollisionShape'.translation = Vector3(0, 0.75, 0)
+			$'../CollisionShape'.shape.extents.y = 0.75
 			camera.offset = Vector3(0, 1.75, 0)
 			
 			target = direction * max_speed * walk_mult
 		
 		state.CLIMBING:
 			
-			$'../CollisionShape'.shape.height = 1
+			$'../CollisionShape'.translation = Vector3(0, 0.75, 0)
+			$'../CollisionShape'.shape.extents.y = 0.75
 			camera.offset = Vector3(0, 1.75, 0)
 			
 			get_parent().global_transform.origin = current_pos.linear_interpolate(climb_target, climb_progress)
@@ -141,21 +143,24 @@ func _physics_process(delta):
 		
 		state.CROUCHING:
 			
-			$'../CollisionShape'.shape.height = 0.5
+			$'../CollisionShape'.translation = Vector3(0, 0.3, 0)
+			$'../CollisionShape'.shape.extents.y = 0.3
 			camera.offset = Vector3(0, 0.75, 0)
 			
 			target = direction * max_speed * crouch_mult
 		
 		state.RUNNING:
 			
-			$'../CollisionShape'.shape.height = 1
+			$'../CollisionShape'.translation = Vector3(0, 0.75, 0)
+			$'../CollisionShape'.shape.extents.y = 0.75
 			camera.offset = Vector3(0, 1.75, 0)
 			
 			target = direction * max_speed
 		
 		state.CRAWLING:
 			
-			$'../CollisionShape'.shape.height = 0.2
+			$'../CollisionShape'.translation = Vector3(0, 0.1, 0)
+			$'../CollisionShape'.shape.extents.y = 0.1
 			camera.offset = Vector3(0, 0.2, 0)
 			
 			target = direction * max_speed * crawl_mult

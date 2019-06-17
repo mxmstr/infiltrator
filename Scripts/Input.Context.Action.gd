@@ -1,6 +1,7 @@
 extends Node
 
 export(String) var action_name
+export(float) var release_delay
 export(Array, Array, String) var on_just_pressed
 export(Array, Array, String) var on_pressed
 export(Array, Array, String) var on_just_released
@@ -19,8 +20,13 @@ func enable():
 	set_process(true)
 	set_process_input(true)
 	
+	_enable_children()
+
+
+func _enable_children():
+	
 	for child in get_children():
-		child.enable()
+		child.enable() if child.has_method('enable') else null
 
 
 func disable():
@@ -28,8 +34,14 @@ func disable():
 	set_process(false)
 	set_process_input(false)
 	
+	$Timer.queue_free() if has_node('Timer') else null
+	_disable_children()
+
+
+func _disable_children():
+	
 	for child in get_children():
-		child.disable()
+		child.disable() if child.has_method('disable') else null
 
 
 func _connect_signals(action):
@@ -51,6 +63,23 @@ func _connect_signals(action):
 		connect(action, target, method, args)
 
 
+func _on_timeout():
+	
+	_enable_children()
+	
+	$Timer.queue_free()
+
+
+func _start_timer():
+	
+	var timer = Timer.new()
+	timer.name = 'Timer'
+	timer.autostart = true
+	timer.wait_time = release_delay
+	timer.connect('timeout', self, '_on_timeout')
+	add_child(timer)
+
+
 func _ready():
 	
 	for action in ['on_just_pressed', 'on_pressed', 'on_just_released']:
@@ -69,13 +98,11 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed(action_name):
 		emit_signal('on_just_pressed')
-		for child in get_children():
-			child.disable()
+		_disable_children()
 	elif Input.is_action_pressed(action_name):
 		emit_signal('on_pressed')
 	elif Input.is_action_just_released(action_name):
 		emit_signal('on_just_released')
+		_enable_children() if release_delay == 0 else _start_timer()
 	else:
 		emit_signal('on_released')
-		for child in get_children():
-			child.enable()

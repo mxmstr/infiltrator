@@ -51,9 +51,12 @@ func replace_collision():
 		
 		var root = collision.instance()
 		var shape = root.get_node('CollisionShape').duplicate()
+		
 		add_child(shape)
 		
-		shape_owner_add_shape(create_shape_owner(shape), shape.shape)
+		#shape_owner_add_shape(create_shape_owner(shape), shape.shape)
+		
+		
 		
 		root.queue_free()
 #		var c_old = $CollisionShape

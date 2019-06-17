@@ -18,6 +18,7 @@ script = ExtResource( 3 )
 [node name="Crawl" type="Node" parent="Default"]
 script = ExtResource( 4 )
 action_name = "Crawl"
+release_delay = 1.0
 on_just_pressed = [ [ "ActorMovement", "_set_state", "CRAWLING" ] ]
 
 [node name="Run" type="Node" parent="Default/Crawl"]
