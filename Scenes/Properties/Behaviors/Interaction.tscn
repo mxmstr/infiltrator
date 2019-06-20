@@ -1,9 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Behavior.Interaction.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Behaviors/Interaction.Property.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Properties/Behaviors/Interaction.Property.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/panel.png" type="Texture" id=3]
 [ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 20

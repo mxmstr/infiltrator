@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Behavior.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Behaviors/Interaction.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Properties/Behaviors/Interaction.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Behavior.Interaction.Trigger.gd" type="Script" id=3]
 
 [node name="Behavior" type="Node"]
@@ -33,11 +33,10 @@ target = "../../../PlayerControl/Viewport/Camera/RayCast"
 method = "_has_selection"
 
 [node name="Climb" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
 margin_left = 456.265
 margin_top = 427.984
 margin_right = 756.265
-margin_bottom = 63.9839
+margin_bottom = 63.984
 type = 2
 priority = 50
 animation = "Climb"
@@ -45,7 +44,7 @@ input_context = "Climb"
 
 [node name="HasClimbTarget" type="Node" parent="Climb"]
 script = ExtResource( 3 )
-target = "../../../ActorMovement"
+target = "../../../HumanMovement"
 method = "_get_climb_target"
 
 [node name="InteractSelect" parent="." instance=ExtResource( 2 )]

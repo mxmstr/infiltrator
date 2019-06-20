@@ -33,4 +33,4 @@ func _physics_process(delta):
 		direction += cam_xform.basis.x
 	
 	direction.y = 0
-	parent.get_node('ActorMovement').direction = direction.normalized()
+	parent.get_node('HumanMovement').direction = direction.normalized()

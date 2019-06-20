@@ -3,8 +3,6 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.15, 0.75, 0.15 )
 
-[node name="Collision" type="Spatial"]
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="Collision" type="CollisionShape"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0 )
 shape = SubResource( 1 )

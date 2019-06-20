@@ -31,7 +31,7 @@ var climb_steps = 50
 var climb_target = Vector3()
 var climb_progress = 0
 
-onready var collision = $'../CollisionShape'
+onready var collision = $'../Collision'
 onready var camera = $'../PlayerControl/Viewport/Camera'
 
 
@@ -53,7 +53,7 @@ func _get_climb_target():
 	
 	
 	var in_range = false
-	var height = $'../CollisionShape'.shape.extents.y
+	var height = collision.shape.extents.y
 	
 	var ray_to_target = RayCast.new()
 	ray_to_target.add_exception(get_parent())
@@ -124,16 +124,16 @@ func _physics_process(delta):
 		
 		state.DEFAULT:
 			
-			$'../CollisionShape'.translation = Vector3(0, 0.75, 0)
-			$'../CollisionShape'.shape.extents.y = 0.75
+			collision.translation = Vector3(0, 0.75, 0)
+			collision.shape.extents.y = 0.75
 			camera.offset = Vector3(0, 1.75, 0)
 			
 			target = direction * max_speed * walk_mult
 		
 		state.CLIMBING:
 			
-			$'../CollisionShape'.translation = Vector3(0, 0.75, 0)
-			$'../CollisionShape'.shape.extents.y = 0.75
+			collision.translation = Vector3(0, 0.75, 0)
+			collision.shape.extents.y = 0.75
 			camera.offset = Vector3(0, 1.75, 0)
 			
 			get_parent().global_transform.origin = current_pos.linear_interpolate(climb_target, climb_progress)
@@ -143,24 +143,24 @@ func _physics_process(delta):
 		
 		state.CROUCHING:
 			
-			$'../CollisionShape'.translation = Vector3(0, 0.3, 0)
-			$'../CollisionShape'.shape.extents.y = 0.3
+			collision.translation = Vector3(0, 0.3, 0)
+			collision.shape.extents.y = 0.3
 			camera.offset = Vector3(0, 0.75, 0)
 			
 			target = direction * max_speed * crouch_mult
 		
 		state.RUNNING:
 			
-			$'../CollisionShape'.translation = Vector3(0, 0.75, 0)
-			$'../CollisionShape'.shape.extents.y = 0.75
+			collision.translation = Vector3(0, 0.75, 0)
+			collision.shape.extents.y = 0.75
 			camera.offset = Vector3(0, 1.75, 0)
 			
 			target = direction * max_speed
 		
 		state.CRAWLING:
 			
-			$'../CollisionShape'.translation = Vector3(0, 0.1, 0)
-			$'../CollisionShape'.shape.extents.y = 0.1
+			collision.translation = Vector3(0, 0.1, 0)
+			collision.shape.extents.y = 0.1
 			camera.offset = Vector3(0, 0.2, 0)
 			
 			target = direction * max_speed * crawl_mult

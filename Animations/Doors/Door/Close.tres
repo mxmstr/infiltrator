@@ -13,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "Closed" ],
+"args": [ "Door.Closed" ],
 "method": "_set_behavior"
 } ]
 }

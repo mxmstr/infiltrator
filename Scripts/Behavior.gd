@@ -1,5 +1,7 @@
 extends Node
 
+const directory = 'res://Scenes/Properties/Behaviors/'
+
 export(String) var interaction
 
 """ Signal is pre-connected in Actor.Static prefab """
@@ -10,7 +12,7 @@ signal animation_changed
 
 func _set_behavior(new_behavior):
 	
-	var path = owner.behaviors_root + owner.behaviors + '/' + new_behavior + '.tscn'
+	var path = directory + new_behavior + '.tscn'#owner.behaviors_root + owner.behaviors + '/' + new_behavior + '.tscn'
 	var behavior_source = load(path).instance()
 	
 	for child in get_children():
