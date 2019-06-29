@@ -14,28 +14,50 @@ script = ExtResource( 2 )
 [node name="Interaction" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Interaction"
-on_just_pressed = [ [ "Behavior", "_start_interaction", "Interact" ] ]
+on_just_pressed = {
+"args": [ "Interact" ],
+"method": "_start_interaction",
+"target": "Behavior"
+}
 
 [node name="Jump" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Jump"
-on_just_pressed = [ [ "Behavior", "_start_interaction", "Climb" ] ]
+on_just_pressed = {
+"args": [ "Climb" ],
+"method": "_start_interaction",
+"target": "Behavior"
+}
 
 [node name="Primary" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Primary"
+on_just_pressed = {
+"args": [ "Default" ],
+"method": "_start_interaction",
+"target": "Behavior"
+}
+
+[node name="Drop" type="Node" parent="Default"]
+script = ExtResource( 3 )
+action_name = "Secondary"
+on_just_pressed = {
+"args": [ "Drop" ],
+"method": "_start_interaction",
+"target": "Behavior"
+}
 
 [node name="Secondary" type="Node" parent="Default"]
 script = ExtResource( 3 )
 action_name = "Secondary"
+on_just_pressed = {
+"args": [ "Grab" ],
+"method": "_start_interaction",
+"target": "Behavior"
+}
 
 [node name="Climb" type="Node" parent="."]
 script = ExtResource( 2 )
-
-[node name="Cancel" type="Node" parent="Climb"]
-script = ExtResource( 3 )
-action_name = "Jump"
-on_just_released = [ [ "Behavior", "_reset_interaction" ] ]
 
 [node name="Interaction" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -43,17 +65,34 @@ script = ExtResource( 2 )
 [node name="Up" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "ScrollUp"
-on_just_pressed = [ [ "Behavior", "_start_interaction", "InteractUp" ] ]
+on_just_pressed = {
+"args": [ "InteractUp" ],
+"method": "_start_interaction",
+"target": "Behavior"
+}
 
 [node name="Down" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "ScrollDown"
-on_just_pressed = [ [ "Behavior", "_start_interaction", "InteractDown" ] ]
+on_just_pressed = {
+"args": [ "InteractDown" ],
+"method": "_start_interaction",
+"target": "Behavior"
+}
 
 [node name="Select" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
 action_name = "Interaction"
-on_just_released = [ [ "Behavior", "_start_interaction", "InteractSelect" ] ]
+on_just_released = {
+"args": [ "InteractSelect" ],
+"method": "_start_interaction",
+"target": "Behavior"
+}
 
 [node name="Cancel" type="Node" parent="Interaction"]
 script = ExtResource( 3 )
+on_just_pressed = {
+"args": [ "InteractCancel" ],
+"method": "_start_interaction",
+"target": "Behavior"
+}

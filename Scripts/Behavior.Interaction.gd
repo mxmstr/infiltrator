@@ -88,7 +88,7 @@ func on_script_changed():
 func _can_start():
 	
 	for child in get_children():
-		if child.has_method('_evaluate') and not child._evaluate():
+		if child.has_method('_evaluate') and not child._evaluate(true):
 			return false
 	
 	return true

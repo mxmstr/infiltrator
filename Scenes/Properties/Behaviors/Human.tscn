@@ -16,10 +16,46 @@ margin_bottom = -264.0
 type = 2
 priority = -1
 
-[node name="Interact" parent="." instance=ExtResource( 2 )]
+[node name="Grab" parent="." instance=ExtResource( 2 )]
 margin_left = -12.0
 margin_top = 100.0
 margin_right = 288.0
+margin_bottom = -264.0
+type = 2
+priority = 50
+animation = "Grab"
+
+[node name="RayCastHasSelection" type="Node" parent="Grab"]
+script = ExtResource( 3 )
+target = "../../../PlayerControl/Viewport/Camera/RayCast"
+method = "_has_selection"
+
+[node name="RightHandEmpty" type="Node" parent="Grab"]
+script = ExtResource( 3 )
+enter_only = true
+target = "../../../RightHand"
+method = "_is_empty"
+
+[node name="Drop" parent="." instance=ExtResource( 2 )]
+margin_left = -12.0
+margin_top = 100.0
+margin_right = 288.0
+margin_bottom = -264.0
+type = 2
+priority = 50
+animation = "Drop"
+
+[node name="RightHandNotEmpty" type="Node" parent="Drop"]
+script = ExtResource( 3 )
+enter_only = true
+eval_false = true
+target = "../../../RightHand"
+method = "_is_empty"
+
+[node name="Interact" parent="." instance=ExtResource( 2 )]
+margin_left = 355.319
+margin_top = 100.0
+margin_right = 655.319
 margin_bottom = -264.0
 type = 2
 priority = 50

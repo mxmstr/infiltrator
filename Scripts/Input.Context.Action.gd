@@ -2,10 +2,10 @@ extends Node
 
 export(String) var action_name
 export(float) var release_delay
-export(Array, Array, String) var on_just_pressed
-export(Array, Array, String) var on_pressed
-export(Array, Array, String) var on_just_released
-export(Array, Array, String) var on_released
+export(Dictionary) var on_just_pressed = {'target': '', 'method': '', 'args': []}
+export(Dictionary) var on_pressed = {'target': '', 'method': '', 'args': []}
+export(Dictionary) var on_just_released = {'target': '', 'method': '', 'args': []}
+export(Dictionary) var on_released = {'target': '', 'method': '', 'args': []}
 
 signal on_just_pressed
 signal on_pressed
@@ -46,21 +46,14 @@ func _disable_children():
 
 func _connect_signals(action):
 	
-	var signals = get(action).duplicate(true)
+	var signal_params = get(action).duplicate(true)
 	
-	for sig_params in signals:
-		
-		if len(sig_params) < 2:
-			continue
-		
-		var target = actor.get_node(sig_params[0])
-		var method = sig_params[1]
+	if '' in [signal_params['target'], signal_params['method']]:
+		return
+	
+	var target = actor.get_node(signal_params['target'])
 
-		sig_params.pop_front()
-		sig_params.pop_front()
-		var args = sig_params
-
-		connect(action, target, method, args)
+	connect(action, target, signal_params['method'], signal_params['args'])
 
 
 func _on_timeout():

@@ -13,6 +13,18 @@ func _has_selection():
 	return selection != null and selection.has_node('Behavior')
 
 
+func _contain_selection():
+	
+	if _has_selection():
+	
+		var data = {
+			'from': parent.get_path(),
+			'to': selection.get_path()
+			}
+		
+		$'/root/Game/Links'._establish_link('Contains', data)
+
+
 func _ready():
 	
 	add_exception(parent)
