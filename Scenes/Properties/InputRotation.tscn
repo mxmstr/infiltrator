@@ -6,7 +6,6 @@
 
 [node name="InputRotation" type="Node"]
 script = ExtResource( 1 )
-context = "Default"
 
 [node name="Default" type="Node" parent="."]
 script = ExtResource( 2 )

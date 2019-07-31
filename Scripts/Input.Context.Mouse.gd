@@ -47,6 +47,7 @@ func mouse(event):
 func _input(event):
 	
 	if event is InputEventMouseMotion:
+		print(event.device)
 		return mouse(event)
 
 

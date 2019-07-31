@@ -28,7 +28,7 @@ func _add_animations():
 			var file = dir.get_next()
 			if file == '':
 				break
-			elif not file.begins_with('.'):
+			elif not file.begins_with('.') and file.ends_with('.anim') and file.ends_with('.tres'):
 				var anim_name = file.replace('.anim', '').replace('.tres', '')
 				var anim_source = load(animations_root + animations + '/' + file)
 				$AnimationPlayer.add_animation(anim_name, anim_source)
