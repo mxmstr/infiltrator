@@ -16,27 +16,39 @@ func _contain(item):
 	item.get_parent().remove_child(item)
 	add_child(item)
 	
-	item.global_transform = global_transform
+	item.global_transform.origin = global_transform.origin
+	item.rotation = rotation
 	item.visible = not invisible
 	item.get_node('Collision').disabled = true
-
-#	if item.get('gravity_scale') != null:
-#		item.gravity_scale = 0
-#	if item.get('mode') != null:
-#		item.mode = 1
+	
 
 
 func _release():
 	
 	for child in get_children():
+		
+		var last_transform = child.global_transform.origin
+		var last_rotation = child.rotation
+		
 		child.visible = true
 		child.get_node('Collision').disabled = false
-		var last_transform = child.global_transform
 		
-		child.get_parent().remove_child(child)
-		$'/root/Game/Actors'.add_child(child)
 		
-		child.global_transform = last_transform
+		if child is RigidBody:
+			
+			var new_child = load(child.filename).instance()
+			$'/root/Game/Actors'.add_child(new_child)
+			new_child.global_transform.origin = last_transform
+			new_child.rotation = last_rotation
+			
+			child.queue_free()
+		
+		else:
+			
+			child.get_parent().remove_child(child)
+			$'/root/Game/Actors'.add_child(child)
+			child.global_transform.origin = last_transform
+			child.rotation = last_rotation
 
 
 func _add_item(item):

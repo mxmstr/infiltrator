@@ -21,6 +21,11 @@ func _has_interactions():
 	return len(get_children()) > 0
 
 
+func _selection_is_freed():
+	
+	return selection != null and !weakref(selection).get_ref()
+
+
 func _selection_is_actor():
 	
 	return selection != null and selection.has_node('Behavior')
@@ -96,6 +101,10 @@ func _refresh_children():
 
 
 func _update_interactions():
+	
+	if _selection_is_freed():
+		selection = null
+		return
 	
 	if _selection_is_actor():
 	

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Properties/Behaviors/Button.tscn" type="PackedScene" id=1]
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="SphereShape" id=2]
+
+[node name="Item" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.20855, 1.07966 )
+collision_layer = 4
+collision_mask = 1028
+
+[node name="Model" type="Spatial" parent="."]
+editor/display_folded = true
+
+[node name="MeshInstance" type="MeshInstance" parent="Model"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Collision" type="CollisionShape" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Behavior" parent="." instance=ExtResource( 1 )]

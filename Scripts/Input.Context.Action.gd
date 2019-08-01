@@ -65,6 +65,11 @@ func _on_timeout():
 
 func _start_timer():
 	
+	if has_node('Timer'):
+		var old_timer = $Timer
+		old_timer.name = '_'
+		old_timer.queue_free()
+	
 	var timer = Timer.new()
 	timer.name = 'Timer'
 	timer.autostart = true
