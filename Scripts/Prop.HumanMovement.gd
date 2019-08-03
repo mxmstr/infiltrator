@@ -23,13 +23,16 @@ export var max_slope_angle = 30
 
 export var climb_speed = 100.0
 export var climb_height_mult = 2
-export var climb_range = 1.0
+export var climb_range = 0.5
+export var climb_horizontal_distance = 0.25
 
 var direction = Vector3()
 var velocity = Vector3()
+var climb_collision_mask = 1024
 var climb_steps = 50
 var climb_target = Vector3()
-var climb_progress = 0
+var climb_x_progress = 0
+var climb_y_progress = 0
 
 onready var collision = $'../Collision'
 onready var camera = $'../PlayerControl/Viewport/Camera'
@@ -56,10 +59,12 @@ func _get_climb_target():
 	var height = collision.shape.extents.y
 	
 	var ray_to_target = RayCast.new()
+	ray_to_target.collision_mask = climb_collision_mask
 	ray_to_target.add_exception(get_parent())
 	add_child(ray_to_target)
 	
 	var ray_to_self = RayCast.new()
+	ray_to_target.collision_mask = climb_collision_mask
 	ray_to_self.add_exception(get_parent())
 	add_child(ray_to_self)
 	
@@ -79,7 +84,7 @@ func _get_climb_target():
 		ray_to_target.force_raycast_update()
 		
 		ray_to_self.global_transform.origin = origin
-		ray_to_self.cast_to = origin.direction_to(get_parent().global_transform.origin + Vector3(0, 0.0, 0))
+		ray_to_self.cast_to = origin.direction_to(get_parent().global_transform.origin)
 		ray_to_self.force_raycast_update()
 		
 		
@@ -90,13 +95,12 @@ func _get_climb_target():
 			
 			if wall_found:
 				in_range = true
-			elif in_range:
-				#if last_point == null:
-				climb_target = ray_to_target.get_collision_point() + Vector3(0, 0.1, 0)
-	#			else:
-	#				climb_target = last_point
 				
-				climb_progress = 0
+			elif in_range:
+				climb_target = ray_to_target.get_collision_point()
+				climb_target += origin.direction_to(climb_target) * climb_horizontal_distance
+				climb_x_progress = 0
+				climb_y_progress = 0
 				return true
 		
 		last_point = ray_to_target.get_collision_point()
@@ -136,7 +140,12 @@ func _physics_process(delta):
 			collision.shape.extents.y = 0.75
 			camera.offset = Vector3(0, 1.75, 0)
 			
-			get_parent().global_transform.origin = current_pos.linear_interpolate(climb_target, climb_progress)
+			var new_x_pos = current_pos.linear_interpolate(climb_target, climb_x_progress)
+			var new_y_pos = current_pos.linear_interpolate(climb_target, climb_y_progress)
+			
+			get_parent().global_transform.origin.x = new_x_pos.x
+			get_parent().global_transform.origin.y = new_y_pos.y
+			get_parent().global_transform.origin.z = new_x_pos.z
 			
 			velocity.x = 0
 			velocity.z = 0

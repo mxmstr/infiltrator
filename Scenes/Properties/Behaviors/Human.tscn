@@ -76,6 +76,7 @@ margin_bottom = 63.984
 type = 2
 priority = 50
 animation = "Climb"
+speed = 1.5
 input_context = "Climb"
 
 [node name="HasClimbTarget" type="Node" parent="Climb"]
