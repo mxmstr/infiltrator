@@ -12,5 +12,5 @@ func _ready():
 
 func _process(delta):
 	
-	rotation.y = parent.rotation.y
+	rotation_degrees.y = parent.rotation_degrees.y + 180
 	global_transform.origin = parent.global_transform.origin + offset

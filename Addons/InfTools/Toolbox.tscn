@@ -1,0 +1,31 @@
+[gd_scene format=2]
+
+[node name="ConverterTool" type="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Floor" type="Button" parent="."]
+margin_right = 119.0
+margin_bottom = 20.0
+text = "Floor"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Convert" type="Button" parent="."]
+margin_top = 24.0
+margin_right = 119.0
+margin_bottom = 44.0
+text = "Convert"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LoadAnim" type="Button" parent="."]
+margin_top = 48.0
+margin_right = 119.0
+margin_bottom = 68.0
+text = "Load Animations"
+__meta__ = {
+"_edit_group_": true
+}

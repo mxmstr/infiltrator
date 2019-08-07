@@ -22,7 +22,7 @@ script = ExtResource( 2 )
 [node name="HUD" parent="Viewport" instance=ExtResource( 3 )]
 
 [node name="Camera" type="Camera" parent="Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 0 )
 current = true
 script = ExtResource( 4 )
 offset = Vector3( 0, 1.75, 0 )

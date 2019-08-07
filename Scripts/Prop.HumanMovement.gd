@@ -80,7 +80,7 @@ func _get_climb_target():
 		var origin = get_parent().global_transform.origin + offset
 		
 		ray_to_target.global_transform.origin = origin
-		ray_to_target.cast_to = Vector3(0, 0, -climb_range)
+		ray_to_target.cast_to = Vector3(0, 0, climb_range)
 		ray_to_target.force_raycast_update()
 		
 		ray_to_self.global_transform.origin = origin
@@ -130,7 +130,7 @@ func _physics_process(delta):
 			
 			collision.translation = Vector3(0, 0.75, 0)
 			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.75, 0)
+			camera.offset = Vector3(0, 1.70, 0)
 			
 			target = direction * max_speed * walk_mult
 		
@@ -138,7 +138,7 @@ func _physics_process(delta):
 			
 			collision.translation = Vector3(0, 0.75, 0)
 			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.75, 0)
+			camera.offset = Vector3(0, 1.70, 0)
 			
 			var new_x_pos = current_pos.linear_interpolate(climb_target, climb_x_progress)
 			var new_y_pos = current_pos.linear_interpolate(climb_target, climb_y_progress)
@@ -154,7 +154,7 @@ func _physics_process(delta):
 			
 			collision.translation = Vector3(0, 0.3, 0)
 			collision.shape.extents.y = 0.3
-			camera.offset = Vector3(0, 0.75, 0)
+			camera.offset = Vector3(0, 0.70, 0)
 			
 			target = direction * max_speed * crouch_mult
 		
@@ -162,7 +162,7 @@ func _physics_process(delta):
 			
 			collision.translation = Vector3(0, 0.75, 0)
 			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.75, 0)
+			camera.offset = Vector3(0, 1.70, 0)
 			
 			target = direction * max_speed
 		

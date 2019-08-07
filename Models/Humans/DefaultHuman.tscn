@@ -1,15 +1,16 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Animations/Human/Climb.tres" type="Animation" id=1]
-[ext_resource path="res://Animations/Human/Climb.Exit.tres" type="Animation" id=2]
-[ext_resource path="res://Animations/Human/Drop.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Human/Grab.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/Interact.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Human/Interact.Exit.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/InteractCancel.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/InteractDown.tres" type="Animation" id=8]
-[ext_resource path="res://Animations/Human/InteractSelect.tres" type="Animation" id=9]
-[ext_resource path="res://Animations/Human/InteractUp.tres" type="Animation" id=10]
+[ext_resource path="res://Animations/Player/Climb.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Player/Climb.Exit.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Player/Drop.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Player/Grab.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Player/Interact.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Player/Interact.Exit.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Player/InteractCancel.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Player/InteractDown.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Player/InteractSelect.tres" type="Animation" id=9]
+[ext_resource path="res://Animations/Player/InteractUp.tres" type="Animation" id=10]
+
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.15
