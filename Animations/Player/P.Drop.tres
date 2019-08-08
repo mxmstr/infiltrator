@@ -16,17 +16,3 @@ tracks/0/keys = {
 "method": "_release"
 } ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("../Behavior")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_reset_interaction"
-} ]
-}

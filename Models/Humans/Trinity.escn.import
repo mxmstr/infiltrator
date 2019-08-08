@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Cop.dae-4d1a5c7cfbbe001b98afe64e1dfa7fb0.scn"
+path="res://.import/Trinity.escn-e47269527ca8e02cfcfc5e3dff0e3c6f.scn"
 
 [deps]
 
-source_file="res://Models/Humans/Cop.dae"
-dest_files=[ "res://.import/Cop.dae-4d1a5c7cfbbe001b98afe64e1dfa7fb0.scn" ]
+source_file="res://Models/Humans/Trinity.escn"
+dest_files=[ "res://.import/Trinity.escn-e47269527ca8e02cfcfc5e3dff0e3c6f.scn" ]
 
 [params]
 

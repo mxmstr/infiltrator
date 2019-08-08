@@ -1,43 +1,56 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Models/Humans/Trinity.dae" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Prop.Model.gd" type="Script" id=2]
-[ext_resource path="res://Models/Humans/DefaultHuman.Collision.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Properties/Behaviors/Human_.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Properties/HumanMovement.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Properties/PlayerControl.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Properties/Container.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Properties/InputAbilities.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Properties/InputMovement.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Properties/InputRotation.tscn" type="PackedScene" id=10]
-
+[ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
+[ext_resource path="res://Models/Humans/DefaultHuman.Collision.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Properties/Behaviors/Human.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Properties/HumanMovement.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Properties/PlayerControl.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Properties/Container.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Properties/InputAbilities.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Properties/InputMovement.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Properties/InputRotation.tscn" type="PackedScene" id=9]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.15, 0.75, 0.15 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
 [node name="Player" type="KinematicBody"]
 collision_mask = 1025
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
-script = ExtResource( 2 )
-animations = "Human"
+editor/display_folded = true
 
-[node name="Collision" parent="." instance=ExtResource( 3 )]
+[node name="neo_reference_skeleton" parent="Model" index="0"]
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+
+[node name="Collision" parent="." instance=ExtResource( 2 )]
 shape = SubResource( 1 )
 
-[node name="Behavior" parent="." instance=ExtResource( 4 )]
+[node name="Behavior" parent="." instance=ExtResource( 3 )]
+parameters/playback = SubResource( 2 )
+parameters/Default/playback = SubResource( 3 )
 
-[node name="HumanMovement" parent="." instance=ExtResource( 5 )]
+[node name="AnimationPlayer" parent="Behavior" index="0"]
+root_node = NodePath("../../Model/neo_reference_skeleton")
 
-[node name="PlayerControl" parent="." instance=ExtResource( 6 )]
+[node name="HumanMovement" parent="." instance=ExtResource( 4 )]
 
-[node name="RightHand" parent="." instance=ExtResource( 7 )]
+[node name="PlayerControl" parent="." instance=ExtResource( 5 )]
+
+[node name="RightHand" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34606, -0.583308 )
 max_quantity = 1
 
-[node name="InputAbilities" parent="." instance=ExtResource( 8 )]
+[node name="InputAbilities" parent="." instance=ExtResource( 7 )]
 
-[node name="InputMovement" parent="." instance=ExtResource( 9 )]
+[node name="InputMovement" parent="." instance=ExtResource( 8 )]
 
-[node name="InputRotation" parent="." instance=ExtResource( 10 )]
+[node name="InputRotation" parent="." instance=ExtResource( 9 )]
 context = "Default"
+
+[editable path="Model"]
+
+[editable path="Behavior"]

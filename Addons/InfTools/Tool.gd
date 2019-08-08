@@ -1,10 +1,6 @@
 tool
 extends EditorPlugin
 
-const convert_input = 'res://Raw/kungfu/'
-const convert_output = 'res://Animations/Human/Kungfu/'
-const loadanim_input = 'res://Animations/Player/'
-
 var dock
 var selection
 
@@ -48,7 +44,7 @@ func on_convert_pressed():
 	
 	var files = []
 	var dir = Directory.new()
-	dir.open(convert_input)
+	dir.open(dock.get_node('ConvertInput').text)
 	dir.list_dir_begin()
 	
 	while true:
@@ -58,11 +54,14 @@ func on_convert_pressed():
 		if file == '':
 			break
 			
-		elif not file.begins_with('.') and file.ends_with('.dae'):
+		elif not file.begins_with('.') and file.ends_with('.escn'):
 			
-			var anim_source = load(convert_input + file).instance().get_node('AnimationPlayer').get_animation('default')
-			file = file.replace('.dae', '')
-			ResourceSaver.save(convert_output + file + '.tres', anim_source)
+			var anim_player = load(dock.get_node('ConvertInput').text + file).instance().find_node('AnimationPlayer')
+			
+			var anim_source = anim_player.get_animation(anim_player.get_animation_list()[0])
+			
+			file = file.replace('.escn', '')
+			ResourceSaver.save(dock.get_node('ConvertOutput').text + file + '.tres', anim_source)
 				
 	dir.list_dir_end()
 
@@ -77,7 +76,7 @@ func on_loadanim_pressed():
 			
 			var files = []
 			var dir = Directory.new()
-			dir.open(loadanim_input)
+			dir.open(dock.get_node('LoadAnim').text)
 			dir.list_dir_begin()
 			
 			while true:
@@ -89,7 +88,7 @@ func on_loadanim_pressed():
 					
 				elif not file.begins_with('.') and file.ends_with('.tres'):
 					
-					var anim_source = load(loadanim_input + file)
+					var anim_source = load(dock.get_node('LoadAnim').text + file)
 					file = file.replace('.tres', '')
 					selected.add_animation(file, anim_source)
 						

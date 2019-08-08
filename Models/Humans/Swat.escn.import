@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Agent.dae-5d6dbeae9c31d4886f59f443f993bfd0.scn"
+path="res://.import/Swat.escn-ac8a774d4dbb7a7f2b1554366934346a.scn"
 
 [deps]
 
-source_file="res://Models/Humans/Agent.dae"
-dest_files=[ "res://.import/Agent.dae-5d6dbeae9c31d4886f59f443f993bfd0.scn" ]
+source_file="res://Models/Humans/Swat.escn"
+dest_files=[ "res://.import/Swat.escn-ac8a774d4dbb7a7f2b1554366934346a.scn" ]
 
 [params]
 

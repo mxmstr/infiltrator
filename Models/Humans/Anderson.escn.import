@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Scientist.dae-48368632e8ab54a72845313db9b27990.scn"
+path="res://.import/Anderson.escn-f6d1810c3865834d7246f1c4491dac9f.scn"
 
 [deps]
 
-source_file="res://Models/Humans/Scientist.dae"
-dest_files=[ "res://.import/Scientist.dae-48368632e8ab54a72845313db9b27990.scn" ]
+source_file="res://Models/Humans/Anderson.escn"
+dest_files=[ "res://.import/Anderson.escn-f6d1810c3865834d7246f1c4491dac9f.scn" ]
 
 [params]
 

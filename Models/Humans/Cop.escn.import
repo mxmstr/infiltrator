@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/YoungMax.dae-da3eac5d91a757dadc3aa2bfee9722a5.scn"
+path="res://.import/Cop.escn-b7267584a4468781c36207760b84219c.scn"
 
 [deps]
 
-source_file="res://Models/Humans/YoungMax.dae"
-dest_files=[ "res://.import/YoungMax.dae-da3eac5d91a757dadc3aa2bfee9722a5.scn" ]
+source_file="res://Models/Humans/Cop.escn"
+dest_files=[ "res://.import/Cop.escn-b7267584a4468781c36207760b84219c.scn" ]
 
 [params]
 
