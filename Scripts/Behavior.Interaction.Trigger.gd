@@ -11,8 +11,8 @@ func _evaluate(is_entering=false):
 	
 	var condition = get_node(target).call(method)
 	
-	return (
-		(enter_only and not is_entering) or \
-		(eval_false and not condition) or \
-		condition
-		) 
+#	return (
+#		(enter_only and not is_entering) or \
+#		(eval_false and not condition) or \
+#		condition
+#		) 

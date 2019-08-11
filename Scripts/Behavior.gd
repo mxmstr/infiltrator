@@ -2,11 +2,11 @@ extends AnimationTree
 
 const directory = 'res://Scenes/Properties/Behaviors/'
 
-export(String) var interaction
+export var interaction = 'Default'
 
-""" Signal is pre-connected in Actor.Static prefab """
 signal interaction_started
 signal animation_changed
+signal tree_update
 
 
 
@@ -58,7 +58,11 @@ func _reset_interaction():
 func _start_interaction(_name, override=true):
 	
 	var playback = get('parameters/playback')
+	var current = playback.get_current_node()
+	
 	playback.travel(_name)
+	
+	print('travel')
 	
 #	if not _has_interaction(_name) or not get_node(_name)._can_start():
 #		return
@@ -86,7 +90,24 @@ func _start_interaction(_name, override=true):
 #		emit_signal('interaction_started', next)
 
 
+func _init_transitions():
+	
+	for idx in range(tree_root.get_transition_count()):
+		
+		var node = tree_root.get_transition(idx)
+		
+		if node.has_method('init'):
+			node.init(self)
+#			connect('tree_update', node, 'init')
+
+
 func _ready():
 	
-	#$AnimationPlayer.root_node = $'../Model'.get_child(0) if has_node('../Model') else $AnimationPlayer.root_node
-	tree_root.set_start_node('Default')
+	tree_root.set_start_node(interaction)
+	
+	_init_transitions()
+
+
+func _process(delta):
+	
+	emit_signal('tree_update', self)

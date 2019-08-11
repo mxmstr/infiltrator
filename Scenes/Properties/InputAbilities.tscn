@@ -24,7 +24,7 @@ on_just_pressed = {
 script = ExtResource( 3 )
 action_name = "Jump"
 on_just_pressed = {
-"args": [ "Climb" ],
+"args": [ "ClimbEnter" ],
 "method": "_start_interaction",
 "target": "Behavior"
 }

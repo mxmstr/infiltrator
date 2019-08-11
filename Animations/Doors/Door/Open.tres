@@ -4,26 +4,12 @@
 resource_name = "Open"
 length = 0.25
 tracks/0/type = "method"
-tracks/0/path = NodePath("../Behavior")
+tracks/0/path = NodePath("../DoorMovement")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Door.Opened" ],
-"method": "_set_behavior"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("../DoorMovement")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {

@@ -30,12 +30,14 @@ var direction = Vector3()
 var velocity = Vector3()
 var climb_collision_mask = 1024
 var climb_steps = 50
-var climb_target = Vector3()
+var climb_target = null
 var climb_x_progress = 0
 var climb_y_progress = 0
 
 onready var collision = $'../Collision'
 onready var camera = $'../PlayerControl/Viewport/Camera'
+
+signal climb_target_changed
 
 
 func _ready():
@@ -49,7 +51,12 @@ func _set_state(new_state):
 	current_state = state[new_state]
 
 
-func _get_climb_target():
+func _has_climb_target():
+	
+	return climb_target != null
+
+
+func _find_climb_target():
 	
 	if current_state == state.CLIMBING:
 		return true
@@ -101,14 +108,20 @@ func _get_climb_target():
 				climb_target += origin.direction_to(climb_target) * climb_horizontal_distance
 				climb_x_progress = 0
 				climb_y_progress = 0
-				return true
+				print('found target')
+				
+				emit_signal('climb_target_changed', climb_target)
+				return
 		
 		last_point = ray_to_target.get_collision_point()
 	
 	ray_to_target.queue_free()
 	ray_to_self.queue_free()
 	
-	return false
+	print('not found target')
+	climb_target = null
+	
+	emit_signal('climb_target_changed', climb_target)
 
 
 func _physics_process(delta):

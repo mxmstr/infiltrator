@@ -3,7 +3,7 @@
 [resource]
 resource_name = "InteractSelect"
 tracks/0/type = "method"
-tracks/0/path = NodePath("../PlayerControl/Viewport/HUD/CenterMenu/MarginContainer/ListContainer")
+tracks/0/path = NodePath("../../PlayerControl/Viewport/HUD/CenterMenu/MarginContainer/ListContainer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -17,7 +17,7 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../PlayerControl/Viewport/HUD/CenterMenu")
+tracks/1/path = NodePath("../../PlayerControl/Viewport/HUD/CenterMenu")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false

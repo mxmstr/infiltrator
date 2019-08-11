@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Models/Devices/Button/Button.dae" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Prop.Model.gd" type="Script" id=2]
 [ext_resource path="res://Models/Devices/Button/Button.Collision.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Properties/Behaviors/Button.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 0.260087, 1 )
@@ -14,14 +12,9 @@ transform = Transform( -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0, 0.1, -
 collision_layer = 2
 collision_mask = 0
 
-[node name="Model" type="Spatial" parent="." instance=ExtResource( 1 )]
+[node name="Model" parent="." instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 animations = "Devices/Button"
 
-[node name="Collision" type="CollisionShape" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
+[node name="Collision" parent="." instance=ExtResource( 3 )]
 shape = SubResource( 1 )
-
-[node name="Behavior" type="Node" parent="." instance=ExtResource( 4 )]
-script = ExtResource( 5 )
-interaction = "Default"

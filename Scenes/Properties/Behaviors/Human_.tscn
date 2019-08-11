@@ -6,7 +6,6 @@
 
 [node name="Behavior" type="Node"]
 script = ExtResource( 1 )
-interaction = "Default"
 
 [node name="Default" parent="." instance=ExtResource( 2 )]
 margin_left = -402.0
