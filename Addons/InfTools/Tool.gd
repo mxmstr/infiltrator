@@ -76,7 +76,7 @@ func on_loadanim_pressed():
 			
 			var files = []
 			var dir = Directory.new()
-			dir.open(dock.get_node('LoadAnim').text)
+			dir.open(dock.get_node('LoadAnimInput').text)
 			dir.list_dir_begin()
 			
 			while true:
@@ -88,7 +88,7 @@ func on_loadanim_pressed():
 					
 				elif not file.begins_with('.') and file.ends_with('.tres'):
 					
-					var anim_source = load(dock.get_node('LoadAnim').text + file)
+					var anim_source = load(dock.get_node('LoadAnimInput').text + file)
 					file = file.replace('.tres', '')
 					selected.add_animation(file, anim_source)
 						

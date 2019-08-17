@@ -19,16 +19,14 @@ extents = Vector3( 0.15, 0.75, 0.15 )
 collision_mask = 1025
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-014, 8.74228e-008, 2.11758e-021, 1, -1.50996e-007, 8.74228e-008, 1.50996e-007, 1, 0, 0, 0 )
 
 [node name="Collision" parent="." instance=ExtResource( 2 )]
 shape = SubResource( 1 )
 
 [node name="Behavior" parent="." instance=ExtResource( 3 )]
-editor/display_folded = true
 parameters/playback = SubResource( 2 )
 
 [node name="AnimationPlayer" parent="Behavior" index="0"]

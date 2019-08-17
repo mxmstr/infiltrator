@@ -92,13 +92,33 @@ func _start_interaction(_name, override=true):
 
 func _init_transitions():
 	
+	var anim_names = []
+	
 	for idx in range(tree_root.get_transition_count()):
 		
-		var node = tree_root.get_transition(idx)
+		var transition = tree_root.get_transition(idx)
+		var anim_name = tree_root.get_transition_from(idx)
 		
-		if node.has_method('init'):
-			node.init(self)
-#			connect('tree_update', node, 'init')
+		if not anim_name in anim_names:
+			var animation = tree_root.get_node(anim_name)
+			
+			if animation.has_method('init'):
+				animation.init(anim_name, self)
+			
+			anim_names.append(anim_name)
+		
+		if transition.has_method('init'):
+			transition.init(self)
+
+
+#func _init_anim_nodes(node):
+#
+#	for idx in range(tree_root.get_transition_count()):
+#
+#		var node = tree_root.get_transition(idx)
+#
+#		if node.has_method('init'):
+#			node.init(self)
 
 
 func _ready():
@@ -106,6 +126,10 @@ func _ready():
 	tree_root.set_start_node(interaction)
 	
 	_init_transitions()
+	#_init_anim_nodes(tree_root(get_node))
+	
+	anim_player = NodePath('AnimationPlayer')
+	active = true
 
 
 func _process(delta):
