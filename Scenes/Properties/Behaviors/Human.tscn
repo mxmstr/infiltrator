@@ -1142,36 +1142,80 @@ distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "P.Climb.Enter"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "P.Climb.Exit"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "P.Drop"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "P.Grab"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=7]
 animation = "P.Interact"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "P.InteractCancel"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=9]
 animation = "P.InteractDown"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=10]
 animation = "P.Interact.Exit"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=11]
 animation = "P.InteractSelect"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "P.InteractUp"
+script = ExtResource( 1 )
+type = 0
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
@@ -1241,7 +1285,7 @@ signal_name = "climb_target_changed"
 
 [sub_resource type="AnimationNodeStateMachine" id=33]
 states/Climb/node = SubResource( 1 )
-states/Climb/position = Vector2( 598, -85.206 )
+states/Climb/position = Vector2( 599, -85.206 )
 states/ClimbEnter/node = SubResource( 2 )
 states/ClimbEnter/position = Vector2( 438, -85.206 )
 states/ClimbExit/node = SubResource( 3 )
@@ -1257,7 +1301,7 @@ states/Interact/position = Vector2( 438, 444 )
 states/InteractCancel/node = SubResource( 8 )
 states/InteractCancel/position = Vector2( 640, 390 )
 states/InteractDown/node = SubResource( 9 )
-states/InteractDown/position = Vector2( 640, 594 )
+states/InteractDown/position = Vector2( 640, 595 )
 states/InteractExit/node = SubResource( 10 )
 states/InteractExit/position = Vector2( 844, 444 )
 states/InteractSelect/node = SubResource( 11 )
@@ -1265,7 +1309,7 @@ states/InteractSelect/position = Vector2( 640, 310 )
 states/InteractUp/node = SubResource( 12 )
 states/InteractUp/position = Vector2( 640, 510 )
 transitions = [ "Interact", "InteractExit", SubResource( 13 ), "Climb", "ClimbExit", SubResource( 14 ), "Interact", "InteractSelect", SubResource( 15 ), "Interact", "InteractCancel", SubResource( 16 ), "Interact", "InteractUp", SubResource( 17 ), "Interact", "InteractDown", SubResource( 18 ), "Default", "Interact", SubResource( 19 ), "InteractUp", "Interact", SubResource( 20 ), "InteractDown", "Interact", SubResource( 21 ), "InteractSelect", "InteractExit", SubResource( 22 ), "InteractCancel", "InteractExit", SubResource( 23 ), "InteractExit", "Default", SubResource( 24 ), "Default", "Drop", SubResource( 25 ), "Default", "Grab", SubResource( 26 ), "Grab", "Default", SubResource( 27 ), "Drop", "Default", SubResource( 28 ), "ClimbExit", "Default", SubResource( 29 ), "ClimbEnter", "Default", SubResource( 30 ), "ClimbEnter", "Climb", SubResource( 31 ), "Default", "ClimbEnter", SubResource( 32 ) ]
-graph_offset = Vector2( 26.7029, -139.059 )
+graph_offset = Vector2( -36.2971, -148.059 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 

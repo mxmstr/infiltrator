@@ -4,6 +4,8 @@ const directory = 'res://Scenes/Properties/Behaviors/'
 
 export var interaction = 'Default'
 
+var current_node
+
 signal interaction_started
 signal animation_changed
 signal tree_update
@@ -61,8 +63,6 @@ func _start_interaction(_name, override=true):
 	var current = playback.get_current_node()
 	
 	playback.travel(_name)
-	
-	print('travel')
 	
 #	if not _has_interaction(_name) or not get_node(_name)._can_start():
 #		return
@@ -126,7 +126,8 @@ func _ready():
 	tree_root.set_start_node(interaction)
 	
 	_init_transitions()
-	#_init_anim_nodes(tree_root(get_node))
+	
+	current_node = get('parameters/playback').get_current_node()
 	
 	anim_player = NodePath('AnimationPlayer')
 	active = true
@@ -134,4 +135,9 @@ func _ready():
 
 func _process(delta):
 	
-	emit_signal('tree_update', self)
+	var playback = get('parameters/playback')
+	
+	if current_node != playback.get_current_node():
+		emit_signal('animation_changed', playback.get_current_node())
+	
+	current_node = playback.get_current_node()

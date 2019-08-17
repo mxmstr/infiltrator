@@ -108,7 +108,6 @@ func _find_climb_target():
 				climb_target += origin.direction_to(climb_target) * climb_horizontal_distance
 				climb_x_progress = 0
 				climb_y_progress = 0
-				print('found target')
 				
 				emit_signal('climb_target_changed', climb_target)
 				return
@@ -118,7 +117,6 @@ func _find_climb_target():
 	ray_to_target.queue_free()
 	ray_to_self.queue_free()
 	
-	print('not found target')
 	climb_target = null
 	
 	emit_signal('climb_target_changed', climb_target)

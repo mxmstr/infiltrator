@@ -7,7 +7,6 @@ export(String) var signal_name
 
 func on_target_signal(value):
 	
-	print('signal ', value)
 	match assertion:
 		
 		'True':

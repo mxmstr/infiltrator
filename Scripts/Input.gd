@@ -25,4 +25,4 @@ func _ready():
 	
 	set_context(context)
 	
-	$'../Behavior'.connect('interaction_started', self, '_on_interaction_started')
+	#$'../Behavior'.connect('interaction_started', self, '_on_interaction_started')
