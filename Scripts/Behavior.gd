@@ -5,6 +5,7 @@ const directory = 'res://Scenes/Properties/Behaviors/'
 export var interaction = 'Default'
 
 var current_node
+var angle = 0.0
 
 signal interaction_started
 signal animation_changed
@@ -129,7 +130,7 @@ func _ready():
 	
 	current_node = get('parameters/playback').get_current_node()
 	
-	anim_player = NodePath('AnimationPlayer')
+	#anim_player = NodePath('AnimationPlayer')
 	active = true
 
 
@@ -141,3 +142,19 @@ func _process(delta):
 		emit_signal('animation_changed', playback.get_current_node())
 	
 	current_node = playback.get_current_node()
+	
+	
+	
+	#set_bone_y_rotation('UpArm-R', angle)
+	
+#	var s_action = $AnimationPlayer.get_node($AnimationPlayer.root_node)
+#
+#	for bone_name in $Movement.bones:
+#		var bone = s_action.find_bone(bone_name)
+#		var bone_transform = s_action.get_bone_global_pose(bone)
+#		bone_transform.origin = Vector3(0, 0, 0)
+#
+#		s_action.set_bone_global_pose(bone, bone_transform)
+	
+	angle += delta
+	

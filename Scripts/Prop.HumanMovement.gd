@@ -141,7 +141,7 @@ func _physics_process(delta):
 			
 			collision.translation = Vector3(0, 0.75, 0)
 			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.70, 0)
+			camera.offset = Vector3(0, 1.70, -3)
 			
 			target = direction * max_speed * walk_mult
 		

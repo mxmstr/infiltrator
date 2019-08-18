@@ -6,7 +6,13 @@ enum visibility {
 	REMOTE
 }
 
+enum blend {
+	ACTION,
+	LAYERED
+}
+
 export(visibility) var type
+export(blend) var blend_mode
 export var speed = 1.0
 export var distance = 0.0
 

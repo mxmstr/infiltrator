@@ -1,4 +1,4 @@
-[gd_scene load_steps=1167 format=2]
+[gd_scene load_steps=1170 format=2]
 
 [ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Behavior.Transition.gd" type="Script" id=2]
@@ -1137,6 +1137,7 @@
 animation = "P.Climb"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1144,6 +1145,7 @@ distance = 0.0
 animation = "P.Climb.Enter"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1151,13 +1153,15 @@ distance = 0.0
 animation = "P.Climb.Exit"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=4]
-animation = "DefaultAnim"
+animation = "H.ShootIngram"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1165,6 +1169,7 @@ distance = 0.0
 animation = "P.Drop"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1172,6 +1177,7 @@ distance = 0.0
 animation = "P.Grab"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1179,6 +1185,7 @@ distance = 0.0
 animation = "P.Interact"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1186,6 +1193,7 @@ distance = 0.0
 animation = "P.InteractCancel"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1193,6 +1201,7 @@ distance = 0.0
 animation = "P.InteractDown"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1200,6 +1209,7 @@ distance = 0.0
 animation = "P.Interact.Exit"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1207,6 +1217,7 @@ distance = 0.0
 animation = "P.InteractSelect"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1214,6 +1225,7 @@ distance = 0.0
 animation = "P.InteractUp"
 script = ExtResource( 1 )
 type = 0
+blend_mode = 0
 speed = 1.0
 distance = 0.0
 
@@ -1309,12 +1321,22 @@ states/InteractSelect/position = Vector2( 640, 310 )
 states/InteractUp/node = SubResource( 12 )
 states/InteractUp/position = Vector2( 640, 510 )
 transitions = [ "Interact", "InteractExit", SubResource( 13 ), "Climb", "ClimbExit", SubResource( 14 ), "Interact", "InteractSelect", SubResource( 15 ), "Interact", "InteractCancel", SubResource( 16 ), "Interact", "InteractUp", SubResource( 17 ), "Interact", "InteractDown", SubResource( 18 ), "Default", "Interact", SubResource( 19 ), "InteractUp", "Interact", SubResource( 20 ), "InteractDown", "Interact", SubResource( 21 ), "InteractSelect", "InteractExit", SubResource( 22 ), "InteractCancel", "InteractExit", SubResource( 23 ), "InteractExit", "Default", SubResource( 24 ), "Default", "Drop", SubResource( 25 ), "Default", "Grab", SubResource( 26 ), "Grab", "Default", SubResource( 27 ), "Drop", "Default", SubResource( 28 ), "ClimbExit", "Default", SubResource( 29 ), "ClimbEnter", "Default", SubResource( 30 ), "ClimbEnter", "Climb", SubResource( 31 ), "Default", "ClimbEnter", SubResource( 32 ) ]
-graph_offset = Vector2( -36.2971, -148.059 )
+graph_offset = Vector2( -211.297, 218.941 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "H.Run"
+
+[sub_resource type="AnimationNodeStateMachine" id=36]
+states/Run/node = SubResource( 35 )
+states/Run/position = Vector2( 616, 109 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+
 [node name="Behavior" type="AnimationTree"]
 tree_root = SubResource( 33 )
+anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 34 )
 script = ExtResource( 3 )
 
@@ -2450,7 +2472,12 @@ anims/P.InteractSelect = ExtResource( 1130 )
 anims/P.InteractUp = ExtResource( 1131 )
 
 [node name="Movement" type="AnimationTree" parent="."]
+tree_root = SubResource( 36 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 37 )
 script = ExtResource( 1132 )
+root_bone = "Pelvis"
+bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-R", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Movement"]
 root_node = NodePath("")
