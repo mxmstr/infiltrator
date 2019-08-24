@@ -19,6 +19,15 @@ config/name="Infiltrator"
 run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Infiltrator="*res://Scripts/Infiltrator.gd"
+
+[display]
+
+window/size/test_width=720
+window/size/test_height=480
+
 [editor_plugins]
 
 enabled=PoolStringArray( "InfTools" )

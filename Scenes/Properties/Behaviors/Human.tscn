@@ -1145,7 +1145,7 @@ distance = 0.0
 animation = "P.Climb.Enter"
 script = ExtResource( 1 )
 type = 0
-blend_mode = 0
+blend_mode = 1
 speed = 1.0
 distance = 0.0
 
@@ -1158,10 +1158,10 @@ speed = 1.0
 distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=4]
-animation = "H.ShootIngram"
+animation = "H.ShootBeretta"
 script = ExtResource( 1 )
 type = 0
-blend_mode = 0
+blend_mode = 1
 speed = 1.0
 distance = 0.0
 
@@ -1321,7 +1321,7 @@ states/InteractSelect/position = Vector2( 640, 310 )
 states/InteractUp/node = SubResource( 12 )
 states/InteractUp/position = Vector2( 640, 510 )
 transitions = [ "Interact", "InteractExit", SubResource( 13 ), "Climb", "ClimbExit", SubResource( 14 ), "Interact", "InteractSelect", SubResource( 15 ), "Interact", "InteractCancel", SubResource( 16 ), "Interact", "InteractUp", SubResource( 17 ), "Interact", "InteractDown", SubResource( 18 ), "Default", "Interact", SubResource( 19 ), "InteractUp", "Interact", SubResource( 20 ), "InteractDown", "Interact", SubResource( 21 ), "InteractSelect", "InteractExit", SubResource( 22 ), "InteractCancel", "InteractExit", SubResource( 23 ), "InteractExit", "Default", SubResource( 24 ), "Default", "Drop", SubResource( 25 ), "Default", "Grab", SubResource( 26 ), "Grab", "Default", SubResource( 27 ), "Drop", "Default", SubResource( 28 ), "ClimbExit", "Default", SubResource( 29 ), "ClimbEnter", "Default", SubResource( 30 ), "ClimbEnter", "Climb", SubResource( 31 ), "Default", "ClimbEnter", SubResource( 32 ) ]
-graph_offset = Vector2( -211.297, 218.941 )
+graph_offset = Vector2( -259.089, -167.907 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 
@@ -2477,10 +2477,11 @@ anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 37 )
 script = ExtResource( 1132 )
 root_bone = "Pelvis"
-bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-R", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
+movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
+fp_hidden_bones = [ "Head" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Movement"]
-root_node = NodePath("")
+root_node = NodePath("neo_reference_skeleton")
 anims/H.11 = ExtResource( 5 )
 anims/H.12 = ExtResource( 6 )
 anims/H.13 = ExtResource( 7 )

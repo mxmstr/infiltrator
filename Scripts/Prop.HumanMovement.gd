@@ -8,7 +8,7 @@ enum state {
 	CRAWLING
 }
 
-export(state) var current_state
+export(state) var current_state = state.DEFAULT
 
 export var gravity = -9.8
 export var max_speed = 4.5
@@ -47,7 +47,6 @@ func _ready():
 
 func _set_state(new_state):
 	
-	#print(new_state)
 	current_state = state[new_state]
 
 
@@ -141,7 +140,7 @@ func _physics_process(delta):
 			
 			collision.translation = Vector3(0, 0.75, 0)
 			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.70, -3)
+			camera.offset = Vector3(0, 1.70, -2)
 			
 			target = direction * max_speed * walk_mult
 		
