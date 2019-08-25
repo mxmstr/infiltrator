@@ -1,4 +1,4 @@
-[gd_scene load_steps=1170 format=2]
+[gd_scene load_steps=1207 format=2]
 
 [ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Behavior.Transition.gd" type="Script" id=2]
@@ -1326,13 +1326,193 @@ graph_offset = Vector2( -259.089, -167.907 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 
 [sub_resource type="AnimationNodeAnimation" id=35]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "H.T_STAND"
+
+[sub_resource type="AnimationNodeBlend2" id=37]
+filter_enabled = true
+filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
+
+[sub_resource type="AnimationNodeBlendTree" id=38]
+graph_offset = Vector2( 2.78333, 107.5 )
+nodes/Animation/node = SubResource( 36 )
+nodes/Animation/position = Vector2( 440, 340 )
+"nodes/Animation 2/node" = SubResource( 35 )
+"nodes/Animation 2/position" = Vector2( 440, 180 )
+nodes/Blend2/node = SubResource( 37 )
+nodes/Blend2/position = Vector2( 660, 180 )
+nodes/output/position = Vector2( 860, 260 )
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation 2", "Blend2", 1, "Animation" ]
+
+[sub_resource type="AnimationNodeStateMachine" id=39]
+states/BlendTree/node = SubResource( 38 )
+states/BlendTree/position = Vector2( 672, 104 )
+start_node = "BlendTree"
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "H.StrafeLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeBlend2" id=42]
+filter_enabled = true
+filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
+
+[sub_resource type="AnimationNodeBlendTree" id=43]
+graph_offset = Vector2( -328.433, 71.25 )
+nodes/Animation/node = SubResource( 41 )
+nodes/Animation/position = Vector2( -180, 60 )
+"nodes/Animation 2/node" = SubResource( 40 )
+"nodes/Animation 2/position" = Vector2( -180, 200 )
+nodes/Blend2/node = SubResource( 42 )
+nodes/Blend2/position = Vector2( 60, 80 )
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+
+[sub_resource type="AnimationNodeStateMachine" id=44]
+states/BlendTree/node = SubResource( 43 )
+states/BlendTree/position = Vector2( 566, 147 )
+start_node = "BlendTree"
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "H.StrafeRight"
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeBlend2" id=47]
+filter_enabled = true
+filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
+
+[sub_resource type="AnimationNodeBlendTree" id=48]
+graph_offset = Vector2( -389.667, 0 )
+nodes/Animation/node = SubResource( 46 )
+nodes/Animation/position = Vector2( -180, 40 )
+"nodes/Animation 2/node" = SubResource( 45 )
+"nodes/Animation 2/position" = Vector2( -180, 180 )
+nodes/Blend2/node = SubResource( 47 )
+nodes/Blend2/position = Vector2( 80, 60 )
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+
+[sub_resource type="AnimationNodeStateMachine" id=49]
+states/BlendTree/node = SubResource( 48 )
+states/BlendTree/position = Vector2( 564, 181 )
+start_node = "BlendTree"
+
+[sub_resource type="AnimationNodeAnimation" id=50]
 animation = "H.Run"
 
-[sub_resource type="AnimationNodeStateMachine" id=36]
-states/Run/node = SubResource( 35 )
-states/Run/position = Vector2( 616, 109 )
+[sub_resource type="AnimationNodeAnimation" id=51]
+animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+[sub_resource type="AnimationNodeBlend2" id=52]
+filter_enabled = true
+filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
+
+[sub_resource type="AnimationNodeTimeScale" id=53]
+
+[sub_resource type="AnimationNodeBlendTree" id=54]
+graph_offset = Vector2( -253.283, 58.25 )
+nodes/Animation/node = SubResource( 51 )
+nodes/Animation/position = Vector2( -20, 80 )
+"nodes/Animation 2/node" = SubResource( 50 )
+"nodes/Animation 2/position" = Vector2( 0, 200 )
+nodes/Blend2/node = SubResource( 52 )
+nodes/Blend2/position = Vector2( 260, 100 )
+nodes/TimeScale/node = SubResource( 53 )
+nodes/TimeScale/position = Vector2( 460, 120 )
+nodes/output/position = Vector2( 620, 160 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation 2" ]
+
+[sub_resource type="AnimationNodeStateMachine" id=55]
+states/BlendTree/node = SubResource( 54 )
+states/BlendTree/position = Vector2( 676, 145 )
+start_node = "BlendTree"
+
+[sub_resource type="AnimationNodeAnimation" id=56]
+animation = "H.WalkBackward"
+
+[sub_resource type="AnimationNodeAnimation" id=57]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeBlend2" id=58]
+filter_enabled = true
+filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
+
+[sub_resource type="AnimationNodeBlendTree" id=59]
+graph_offset = Vector2( -434.2, 0 )
+nodes/Animation/node = SubResource( 57 )
+nodes/Animation/position = Vector2( -120, 60 )
+"nodes/Animation 2/node" = SubResource( 56 )
+"nodes/Animation 2/position" = Vector2( -120, 200 )
+nodes/Blend2/node = SubResource( 58 )
+nodes/Blend2/position = Vector2( 100, 100 )
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+
+[sub_resource type="AnimationNodeStateMachine" id=60]
+states/BlendTree/node = SubResource( 59 )
+states/BlendTree/position = Vector2( 609, 186 )
+start_node = "BlendTree"
+
+[sub_resource type="AnimationNodeAnimation" id=61]
+animation = "H.Walk"
+
+[sub_resource type="AnimationNodeAnimation" id=62]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeBlend2" id=63]
+filter_enabled = true
+filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
+
+[sub_resource type="AnimationNodeBlendTree" id=64]
+graph_offset = Vector2( -537.183, 0 )
+nodes/Animation/node = SubResource( 62 )
+nodes/Animation/position = Vector2( -80, 60 )
+"nodes/Animation 2/node" = SubResource( 61 )
+"nodes/Animation 2/position" = Vector2( -80, 200 )
+nodes/Blend2/node = SubResource( 63 )
+nodes/Blend2/position = Vector2( 120, 80 )
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+
+[sub_resource type="AnimationNodeStateMachine" id=65]
+states/BlendTree/node = SubResource( 64 )
+states/BlendTree/position = Vector2( 636, 167 )
+start_node = "BlendTree"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=66]
+blend_point_0/node = SubResource( 39 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 44 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 49 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 55 )
+blend_point_3/pos = Vector2( 0, 1 )
+blend_point_4/node = SubResource( 60 )
+blend_point_4/pos = Vector2( 0, -0.4 )
+blend_point_5/node = SubResource( 65 )
+blend_point_5/pos = Vector2( 0, 0.4 )
+
+[sub_resource type="AnimationNodeStateMachine" id=67]
+states/Grounded/node = SubResource( 66 )
+states/Grounded/position = Vector2( 655, 95 )
+start_node = "Grounded"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=68]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=69]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=70]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=71]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=72]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=73]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=74]
 
 [node name="Behavior" type="AnimationTree"]
 tree_root = SubResource( 33 )
@@ -2472,16 +2652,31 @@ anims/P.InteractSelect = ExtResource( 1130 )
 anims/P.InteractUp = ExtResource( 1131 )
 
 [node name="Movement" type="AnimationTree" parent="."]
-tree_root = SubResource( 36 )
+tree_root = SubResource( 67 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 37 )
+parameters/playback = SubResource( 68 )
+parameters/Grounded/blend_position = Vector2( 0.00160253, 0.953757 )
+parameters/Grounded/0/playback = SubResource( 69 )
+parameters/Grounded/0/BlendTree/Blend2/blend_amount = 1.0
+parameters/Grounded/1/playback = SubResource( 70 )
+parameters/Grounded/1/BlendTree/Blend2/blend_amount = 1.0
+parameters/Grounded/2/playback = SubResource( 71 )
+parameters/Grounded/2/BlendTree/Blend2/blend_amount = 1.0
+parameters/Grounded/3/playback = SubResource( 72 )
+parameters/Grounded/3/BlendTree/Blend2/blend_amount = 1.0
+parameters/Grounded/3/BlendTree/TimeScale/scale = 1.5
+parameters/Grounded/4/playback = SubResource( 73 )
+parameters/Grounded/4/BlendTree/Blend2/blend_amount = 1.0
+parameters/Grounded/5/playback = SubResource( 74 )
+parameters/Grounded/5/BlendTree/Blend2/blend_amount = 1.0
 script = ExtResource( 1132 )
 root_bone = "Pelvis"
 movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
 fp_hidden_bones = [ "Head" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Movement"]
-root_node = NodePath("neo_reference_skeleton")
+root_node = NodePath("")
+anims/DefaultAnim = ExtResource( 4 )
 anims/H.11 = ExtResource( 5 )
 anims/H.12 = ExtResource( 6 )
 anims/H.13 = ExtResource( 7 )

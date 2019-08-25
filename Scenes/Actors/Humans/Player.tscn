@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Humans/DefaultHuman.Collision.tscn" type="PackedScene" id=2]
@@ -17,13 +17,25 @@ extents = Vector3( 0.15, 0.75, 0.15 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+
 [node name="Player" type="KinematicBody"]
 collision_mask = 1025
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -1, 1.32005e-014, 8.74228e-008, 3.38813e-021, 1, -1.50996e-007, 8.74228e-008, 1.50996e-007, 1, 0, 0, 0 )
+transform = Transform( -0.944666, 1.247e-014, 8.25853e-008, 2.00041e-021, 0.944666, -1.42641e-007, 8.25853e-008, 1.42641e-007, 0.944666, 0, 0, 0 )
 
 [node name="Collision" parent="." instance=ExtResource( 2 )]
 shape = SubResource( 1 )
@@ -36,6 +48,13 @@ root_node = NodePath("../../Model/neo_reference_skeleton")
 
 [node name="Movement" parent="Behavior" index="1"]
 parameters/playback = SubResource( 3 )
+parameters/Grounded/blend_position = Vector2( -0.00160259, 0.982759 )
+parameters/Grounded/0/playback = SubResource( 4 )
+parameters/Grounded/1/playback = SubResource( 5 )
+parameters/Grounded/2/playback = SubResource( 6 )
+parameters/Grounded/3/playback = SubResource( 7 )
+parameters/Grounded/4/playback = SubResource( 8 )
+parameters/Grounded/5/playback = SubResource( 9 )
 
 [node name="AnimationPlayer" parent="Behavior/Movement" index="0"]
 root_node = NodePath("../../../Model/neo_reference_skeleton")
