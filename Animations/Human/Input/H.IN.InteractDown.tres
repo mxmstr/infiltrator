@@ -1,9 +1,9 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "Interact"
+resource_name = "InteractDown"
 tracks/0/type = "method"
-tracks/0/path = NodePath("../../PlayerControl/Viewport/HUD/CenterMenu")
+tracks/0/path = NodePath("PlayerControl/Viewport/HUD/CenterMenu/MarginContainer/ListContainer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -13,6 +13,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "_show"
+"method": "_scroll_down"
 } ]
 }

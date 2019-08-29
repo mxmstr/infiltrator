@@ -1,0 +1,110 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Input.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/Input/H.IN.Interact.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/Input/H.IN.Interact.Exit.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractCancel.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractDown.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractSelect.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractUp.tres" type="Animation" id=9]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "H.IN.Interact"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "H.IN.InteractCancel"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "H.IN.InteractDown"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "H.IN.Interact.Exit"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "H.IN.InteractSelect"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "H.IN.InteractUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+auto_advance = true
+disabled = true
+script = ExtResource( 1 )
+state = "just_pressed"
+assertion = "NotNull"
+target = "../PlayerControl/Viewport/Camera/RayCast"
+signal_name = "changed_selection"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+disabled = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+disabled = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+disabled = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+disabled = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/Default/node = SubResource( 1 )
+states/Default/position = Vector2( 267, -103 )
+states/Interact/node = SubResource( 3 )
+states/Interact/position = Vector2( 623, 114 )
+states/InteractCancel/node = SubResource( 4 )
+states/InteractCancel/position = Vector2( 776, 12.5294 )
+states/InteractDown/node = SubResource( 5 )
+states/InteractDown/position = Vector2( 781, 275.529 )
+states/InteractExit/node = SubResource( 2 )
+states/InteractExit/position = Vector2( 939, 114 )
+states/InteractSelect/node = SubResource( 6 )
+states/InteractSelect/position = Vector2( 776, -62.4706 )
+states/InteractUp/node = SubResource( 7 )
+states/InteractUp/position = Vector2( 781, 198.529 )
+transitions = [ "Default", "Interact", SubResource( 8 ), "InteractExit", "Default", SubResource( 10 ), "Interact", "InteractCancel", SubResource( 11 ), "Interact", "InteractSelect", SubResource( 12 ), "InteractSelect", "InteractExit", SubResource( 13 ), "InteractCancel", "InteractExit", SubResource( 14 ), "Interact", "InteractUp", SubResource( 15 ), "Interact", "InteractDown", SubResource( 16 ), "InteractUp", "Interact", SubResource( 17 ), "InteractDown", "Interact", SubResource( 18 ) ]
+start_node = "Default"
+graph_offset = Vector2( 0, -161.201 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+
+[node name="InputAbilities" type="AnimationTree"]
+tree_root = SubResource( 19 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 20 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
+anims/DefaultAnim = ExtResource( 3 )
+anims/H.IN.Interact = ExtResource( 4 )
+anims/H.IN.Interact.Exit = ExtResource( 5 )
+anims/H.IN.InteractCancel = ExtResource( 6 )
+anims/H.IN.InteractDown = ExtResource( 7 )
+anims/H.IN.InteractSelect = ExtResource( 8 )
+anims/H.IN.InteractUp = ExtResource( 9 )

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Input.Context.Mouse.gd" type="Script" id=1]
+
+[node name="InputRotation" type="Node"]
+script = ExtResource( 1 )

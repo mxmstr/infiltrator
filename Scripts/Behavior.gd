@@ -2,8 +2,6 @@ extends AnimationTree
 
 const directory = 'res://Scenes/Properties/Behaviors/'
 
-export var interaction = 'Default'
-
 var current_node
 var blend_mode = Infiltrator.blend.ACTION
 
@@ -99,14 +97,17 @@ func _init_transitions():
 		
 		var transition = tree_root.get_transition(idx)
 		var anim_name = tree_root.get_transition_from(idx)
+		var animation = tree_root.get_node(anim_name)
 		
 		if not anim_name in anim_names:
-			var animation = tree_root.get_node(anim_name)
 			
-			if animation.has_method('init'):
-				animation.init(anim_name, self)
+			animation.init(anim_name, self)
+			animation.transitions.append(transition)
 			
 			anim_names.append(anim_name)
+			
+		else:
+			animation.transitions.append(transition)
 		
 		if transition.has_method('init'):
 			transition.init(self)
@@ -123,8 +124,6 @@ func _init_transitions():
 
 
 func _ready():
-	
-	tree_root.set_start_node(interaction)
 	
 	_init_transitions()
 	

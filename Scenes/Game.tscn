@@ -1,20 +1,21 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Actors/Devices/Button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Doors/Door.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Actors/Humans/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Actors/Items/Item.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Rooms/Room.Default.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=7]
-[ext_resource path="res://Scenes/Markers/Waypoint.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/LinkHub.gd" type="Script" id=9]
-[ext_resource path="res://Scenes/Links/LocalCoopPartner.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Maps/Lab.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Properties/DoorMovement.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Actors/Humans/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Actors/Items/Item.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Rooms/Room.Default.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=8]
+[ext_resource path="res://Scenes/Markers/Waypoint.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/LinkHub.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Links/LocalCoopPartner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Maps/Lab.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CubeMesh" id=1]
-material = ExtResource( 7 )
+material = ExtResource( 8 )
 
 [node name="Game" type="Spatial"]
 
@@ -24,13 +25,22 @@ __meta__ = {
 }
 
 [node name="Button" parent="Actors" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-009, -0.1, 0, 0.1, -4.37114e-009, 0, 0, 0, 0.1, -3.79638, 1.45508, 2.14302 )
 
 [node name="Door" parent="Actors" instance=ExtResource( 2 )]
+transform = Transform( -5.85737e-008, 0, 1, 0, 1.19065, 0, -1.34001, 0, -4.37114e-008, -3.73135, 0.164403, 1.24511 )
 
-[node name="Player" parent="Actors" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.326623, 1.27415, -4.22599 )
+[node name="DoorMovement" parent="Actors/Door" instance=ExtResource( 3 )]
+current_status = 1
+closed_position = Vector3( -3.731, 0.164, 1.245 )
+open_position = Vector3( -3.731, 0.164, -0.059 )
+closed_angle = Vector3( 0, 90, 0 )
+open_angle = Vector3( 0, 90, 0 )
 
-[node name="Item" parent="Actors" instance=ExtResource( 4 )]
+[node name="Player" parent="Actors" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.42331, 0.175687, -0.107554 )
+
+[node name="Item" parent="Actors" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538539, 2.62026, -0.504289 )
 
 [node name="Rooms" type="Spatial" parent="."]
@@ -39,20 +49,20 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RoomDefault" parent="Rooms" instance=ExtResource( 5 )]
+[node name="RoomDefault" parent="Rooms" instance=ExtResource( 6 )]
 transform = Transform( 3.96034, 0, 0, 0, 1.92944, 0, 0, 0, 5.33637, 0.0433272, 1.19629, -2.03905 )
 
-[node name="RoomHallwayLarge" parent="Rooms" instance=ExtResource( 6 )]
+[node name="RoomHallwayLarge" parent="Rooms" instance=ExtResource( 7 )]
 transform = Transform( 4.82482, 0, 0, 0, 1.35264, 0, 0, 0, 6.50121, -8.73931, 1.44925, -3.05406 )
 mesh = SubResource( 1 )
 
-[node name="RoomHallwayLarge2" parent="Rooms" instance=ExtResource( 6 )]
+[node name="RoomHallwayLarge2" parent="Rooms" instance=ExtResource( 7 )]
 transform = Transform( 11.7907, 0, 0, 0, 1.2947, 0, 0, 0, 5.16032, -2.13926, 1.59451, 8.42728 )
 
-[node name="RoomHallwayLarge3" parent="Rooms" instance=ExtResource( 6 )]
+[node name="RoomHallwayLarge3" parent="Rooms" instance=ExtResource( 7 )]
 transform = Transform( -2.76438, 0, 0, 0, 1.27882, 0, 0, 0, 6.50173, 6.65176, 1.45852, -2.91559 )
 
-[node name="RoomHallwayLarge4" parent="Rooms" instance=ExtResource( 6 )]
+[node name="RoomHallwayLarge4" parent="Rooms" instance=ExtResource( 7 )]
 transform = Transform( -4.06241, 0, 0, 0, 1.32636, 0, 0, 0, -1.02, -0.0186815, 1.39212, -8.37323 )
 
 [node name="Markers" type="Spatial" parent="."]
@@ -60,31 +70,31 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Waypoint" parent="Markers" instance=ExtResource( 8 )]
+[node name="Waypoint" parent="Markers" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01449, 0.1843, 4.43018 )
 next = NodePath("../Waypoint2")
 
-[node name="Waypoint2" parent="Markers" instance=ExtResource( 8 )]
+[node name="Waypoint2" parent="Markers" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14671, 0.098032, -5.52101 )
 next = NodePath("../Waypoint3")
 
-[node name="Waypoint3" parent="Markers" instance=ExtResource( 8 )]
+[node name="Waypoint3" parent="Markers" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2646, 0.1843, -0.170586 )
 next = NodePath("../Waypoint")
 
 [node name="Links" type="Node" parent="."]
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
-[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 10 )]
+[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 11 )]
 enabled = false
 
-[node name="ControlDevice" parent="Links" instance=ExtResource( 11 )]
+[node name="ControlDevice" parent="Links" instance=ExtResource( 12 )]
 from = NodePath("../../Actors/Button")
 to = NodePath("../../Actors/Door")
 from_interaction = "Push"
 to_interaction = "Open"
 
-[node name="ControlDevice2" parent="Links" instance=ExtResource( 11 )]
+[node name="ControlDevice2" parent="Links" instance=ExtResource( 12 )]
 from = NodePath("../../Actors/Button")
 to = NodePath("../../Actors/Door")
 from_interaction = "Push"
@@ -100,4 +110,4 @@ transform = Transform( 0.707107, -0.578505, 0.40661, 0, 0.575033, 0.81813, -0.70
 light_specular = 0.0
 shadow_enabled = true
 
-[node name="Map" parent="Static" instance=ExtResource( 12 )]
+[node name="Map" parent="Static" instance=ExtResource( 13 )]

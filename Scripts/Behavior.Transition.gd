@@ -10,25 +10,15 @@ func on_target_signal(value):
 	match assertion:
 		
 		'True':
-			auto_advance = value
+			disabled = not value
 		'False':
-			auto_advance = not value
+			disabled = value
 		'Null':
-			auto_advance = value == null
+			disabled = value != null
 		'NotNull':
-			auto_advance = value != null
+			disabled = value == null
 
 
 func init(parent):
 	
 	parent.get_node(target).connect(signal_name, self, 'on_target_signal')
-
-
-#func process(behavior):
-#
-#	var condition = behavior.get_node(target).call(method)
-#
-#	auto_advance = (
-#		(eval_false and not condition) or \
-#		condition
-#		)

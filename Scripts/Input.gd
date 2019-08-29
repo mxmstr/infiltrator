@@ -1,28 +1,42 @@
-extends Node
+extends AnimationTree
 
 export(int) var device
 export(String) var context
 
-
-func _on_interaction_started(interaction):
-	
-	set_context(interaction.input_context)
+signal on_process
 
 
-func set_context(_context):
+func _init_transitions():
 	
-	get_node(context).disable()
+	var anim_names = []
 	
-	context = _context
-	
-	get_node(context).enable()
+	for idx in range(tree_root.get_transition_count()):
+		
+		var transition = tree_root.get_transition(idx)
+		var anim_name = tree_root.get_transition_to(idx)
+		var animation = tree_root.get_node(anim_name)
+		
+		if not anim_name in anim_names:
+			
+			#animation.init(anim_name, self)
+			#animation.transitions.append(transition)
+			
+			anim_names.append(anim_name)
+			
+#		else:
+#			animation.transitions.append(transition)
+		
+		if transition.has_method('init'):
+			transition.init(self, anim_name)
 
 
 func _ready():
 	
-	for child in get_children():
-		child.disable()
+	_init_transitions()
 	
-	set_context(context)
+	active = true
+
+
+func _process(delta):
 	
-	#$'../Behavior'.connect('interaction_started', self, '_on_interaction_started')
+	emit_signal('on_process')

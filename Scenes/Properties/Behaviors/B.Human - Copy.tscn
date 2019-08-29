@@ -9,9 +9,9 @@
 [ext_resource path="res://Animations/Human/H.13.tres" type="Animation" id=7]
 [ext_resource path="res://Animations/Human/H.2_1.tres" type="Animation" id=8]
 [ext_resource path="res://Animations/Human/H.2_1b.tres" type="Animation" id=9]
-[ext_resource path="res://Animations/Human/H.2_BackwardLeft.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/Human/H.2_BackwardRight.tres" type="Animation" id=11]
-[ext_resource path="res://Animations/Human/H.2_Crouch.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/Human/Movement/H.2_BackwardLeft.tres" type="Animation" id=10]
+[ext_resource path="res://Animations/Human/Movement/H.2_BackwardRight.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/Human/Movement/H.2_Crouch.tres" type="Animation" id=12]
 [ext_resource path="res://Animations/Human/H.2_DodgeBackward.tres" type="Animation" id=13]
 [ext_resource path="res://Animations/Human/H.2_DodgeBackwardLeft.tres" type="Animation" id=14]
 [ext_resource path="res://Animations/Human/H.2_DodgeBackwardRight.tres" type="Animation" id=15]
@@ -19,9 +19,9 @@
 [ext_resource path="res://Animations/Human/H.2_DodgeLeft_enemy.tres" type="Animation" id=17]
 [ext_resource path="res://Animations/Human/H.2_DodgeRight.tres" type="Animation" id=18]
 [ext_resource path="res://Animations/Human/H.2_DodgeRight_enemy.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/H.2_Fall.tres" type="Animation" id=20]
-[ext_resource path="res://Animations/Human/H.2_ForwardLeft.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/H.2_ForwardRight.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/Movement/H.2_Fall.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Human/Movement/H.2_ForwardLeft.tres" type="Animation" id=21]
+[ext_resource path="res://Animations/Human/Movement/H.2_ForwardRight.tres" type="Animation" id=22]
 [ext_resource path="res://Animations/Human/H.2_GetDamage.tres" type="Animation" id=23]
 [ext_resource path="res://Animations/Human/H.2_GetHit_0200ms.tres" type="Animation" id=24]
 [ext_resource path="res://Animations/Human/H.2_GetHit_0250ms.tres" type="Animation" id=25]
@@ -41,9 +41,9 @@
 [ext_resource path="res://Animations/Human/H.2_JumpForwardRight.tres" type="Animation" id=39]
 [ext_resource path="res://Animations/Human/H.2_JumpUp.tres" type="Animation" id=40]
 [ext_resource path="res://Animations/Human/H.2_Land.tres" type="Animation" id=41]
-[ext_resource path="res://Animations/Human/H.2_PeekLeft.tres" type="Animation" id=42]
-[ext_resource path="res://Animations/Human/H.2_PeekRight.tres" type="Animation" id=43]
-[ext_resource path="res://Animations/Human/H.2_Run.tres" type="Animation" id=44]
+[ext_resource path="res://Animations/Human/Movement/H.2_PeekLeft.tres" type="Animation" id=42]
+[ext_resource path="res://Animations/Human/Movement/H.2_PeekRight.tres" type="Animation" id=43]
+[ext_resource path="res://Animations/Human/Movement/H.2_Run.tres" type="Animation" id=44]
 [ext_resource path="res://Animations/Human/H.2_ShootDodgeBackward.tres" type="Animation" id=45]
 [ext_resource path="res://Animations/Human/H.2_ShootDodgeBackwardLeft.tres" type="Animation" id=46]
 [ext_resource path="res://Animations/Human/H.2_ShootDodgeBackwardRight.tres" type="Animation" id=47]
@@ -56,13 +56,13 @@
 [ext_resource path="res://Animations/Human/H.2_ShootDodgeLeft_Getup.tres" type="Animation" id=54]
 [ext_resource path="res://Animations/Human/H.2_ShootDodgeRight.tres" type="Animation" id=55]
 [ext_resource path="res://Animations/Human/H.2_ShootDodgeRight_Getup.tres" type="Animation" id=56]
-[ext_resource path="res://Animations/Human/H.2_Stand.tres" type="Animation" id=57]
-[ext_resource path="res://Animations/Human/H.2_StrafeLeft.tres" type="Animation" id=58]
-[ext_resource path="res://Animations/Human/H.2_StrafeRight.tres" type="Animation" id=59]
-[ext_resource path="res://Animations/Human/H.2_TurnLeft.tres" type="Animation" id=60]
-[ext_resource path="res://Animations/Human/H.2_TurnRight.tres" type="Animation" id=61]
-[ext_resource path="res://Animations/Human/H.2_Walk.tres" type="Animation" id=62]
-[ext_resource path="res://Animations/Human/H.2_WalkBackward.tres" type="Animation" id=63]
+[ext_resource path="res://Animations/Human/Movement/H.2_Stand.tres" type="Animation" id=57]
+[ext_resource path="res://Animations/Human/Movement/H.2_StrafeLeft.tres" type="Animation" id=58]
+[ext_resource path="res://Animations/Human/Movement/H.2_StrafeRight.tres" type="Animation" id=59]
+[ext_resource path="res://Animations/Human/Movement/H.2_TurnLeft.tres" type="Animation" id=60]
+[ext_resource path="res://Animations/Human/Movement/H.2_TurnRight.tres" type="Animation" id=61]
+[ext_resource path="res://Animations/Human/Movement/H.2_Walk.tres" type="Animation" id=62]
+[ext_resource path="res://Animations/Human/Movement/H.2_WalkBackward.tres" type="Animation" id=63]
 [ext_resource path="res://Animations/Human/H.2_air_shootdodgebackward.tres" type="Animation" id=64]
 [ext_resource path="res://Animations/Human/H.2_air_shootdodgebackwardleft.tres" type="Animation" id=65]
 [ext_resource path="res://Animations/Human/H.2_air_shootdodgebackwardright.tres" type="Animation" id=66]
@@ -92,12 +92,12 @@
 [ext_resource path="res://Animations/Human/H.2_longjump.tres" type="Animation" id=90]
 [ext_resource path="res://Animations/Human/H.2_longjumpleft.tres" type="Animation" id=91]
 [ext_resource path="res://Animations/Human/H.2_longjumpright.tres" type="Animation" id=92]
-[ext_resource path="res://Animations/Human/H.2_w_Run.tres" type="Animation" id=93]
-[ext_resource path="res://Animations/Human/H.2_w_Stand.tres" type="Animation" id=94]
-[ext_resource path="res://Animations/Human/H.2_w_StrafeLeft.tres" type="Animation" id=95]
-[ext_resource path="res://Animations/Human/H.2_w_StrafeRight.tres" type="Animation" id=96]
-[ext_resource path="res://Animations/Human/H.2_w_Walk.tres" type="Animation" id=97]
-[ext_resource path="res://Animations/Human/H.2_w_WalkBackward.tres" type="Animation" id=98]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_Run.tres" type="Animation" id=93]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_Stand.tres" type="Animation" id=94]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeLeft.tres" type="Animation" id=95]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeRight.tres" type="Animation" id=96]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_Walk.tres" type="Animation" id=97]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_WalkBackward.tres" type="Animation" id=98]
 [ext_resource path="res://Animations/Human/H.2strike.tres" type="Animation" id=99]
 [ext_resource path="res://Animations/Human/H.360_strike.tres" type="Animation" id=100]
 [ext_resource path="res://Animations/Human/H.6THSENSE.tres" type="Animation" id=101]
@@ -112,12 +112,12 @@
 [ext_resource path="res://Animations/Human/H.BL.tres" type="Animation" id=110]
 [ext_resource path="res://Animations/Human/H.BOUNCE.tres" type="Animation" id=111]
 [ext_resource path="res://Animations/Human/H.BR.tres" type="Animation" id=112]
-[ext_resource path="res://Animations/Human/H.BackwardLeft.tres" type="Animation" id=113]
-[ext_resource path="res://Animations/Human/H.BackwardRight.tres" type="Animation" id=114]
+[ext_resource path="res://Animations/Human/Movement/H.BackwardLeft.tres" type="Animation" id=113]
+[ext_resource path="res://Animations/Human/Movement/H.BackwardRight.tres" type="Animation" id=114]
 [ext_resource path="res://Animations/Human/H.CARTLEFT.tres" type="Animation" id=115]
 [ext_resource path="res://Animations/Human/H.COMBO.tres" type="Animation" id=116]
 [ext_resource path="res://Animations/Human/H.Climb.tres" type="Animation" id=117]
-[ext_resource path="res://Animations/Human/H.Crouch.tres" type="Animation" id=118]
+[ext_resource path="res://Animations/Human/Movement/H.Crouch.tres" type="Animation" id=118]
 [ext_resource path="res://Animations/Human/H.Custom_CopKat_Wall.tres" type="Animation" id=119]
 [ext_resource path="res://Animations/Human/H.Custom_CopKat_wall_die.tres" type="Animation" id=120]
 [ext_resource path="res://Animations/Human/H.Custom_TransitCop_get_down.tres" type="Animation" id=121]
@@ -160,11 +160,11 @@
 [ext_resource path="res://Animations/Human/H.FLYBACK.tres" type="Animation" id=158]
 [ext_resource path="res://Animations/Human/H.FLYKICK.tres" type="Animation" id=159]
 [ext_resource path="res://Animations/Human/H.FR.tres" type="Animation" id=160]
-[ext_resource path="res://Animations/Human/H.Fall.tres" type="Animation" id=161]
+[ext_resource path="res://Animations/Human/Movement/H.Fall.tres" type="Animation" id=161]
 [ext_resource path="res://Animations/Human/H.Flur_L.tres" type="Animation" id=162]
 [ext_resource path="res://Animations/Human/H.Fly_fwd.tres" type="Animation" id=163]
-[ext_resource path="res://Animations/Human/H.ForwardLeft.tres" type="Animation" id=164]
-[ext_resource path="res://Animations/Human/H.ForwardRight.tres" type="Animation" id=165]
+[ext_resource path="res://Animations/Human/Movement/H.ForwardLeft.tres" type="Animation" id=164]
+[ext_resource path="res://Animations/Human/Movement/H.ForwardRight.tres" type="Animation" id=165]
 [ext_resource path="res://Animations/Human/H.Front_hardkick.tres" type="Animation" id=166]
 [ext_resource path="res://Animations/Human/H.Gangsta_ShootBeretta.tres" type="Animation" id=167]
 [ext_resource path="res://Animations/Human/H.Gangsta_ShootBerettaDual.tres" type="Animation" id=168]
@@ -275,8 +275,8 @@
 [ext_resource path="res://Animations/Human/H.POLEARM.tres" type="Animation" id=273]
 [ext_resource path="res://Animations/Human/H.PUNCH.tres" type="Animation" id=274]
 [ext_resource path="res://Animations/Human/H.PUNT.tres" type="Animation" id=275]
-[ext_resource path="res://Animations/Human/H.PeekLeft.tres" type="Animation" id=276]
-[ext_resource path="res://Animations/Human/H.PeekRight.tres" type="Animation" id=277]
+[ext_resource path="res://Animations/Human/Movement/H.PeekLeft.tres" type="Animation" id=276]
+[ext_resource path="res://Animations/Human/Movement/H.PeekRight.tres" type="Animation" id=277]
 [ext_resource path="res://Animations/Human/H.Phone_Talk.tres" type="Animation" id=278]
 [ext_resource path="res://Animations/Human/H.R.tres" type="Animation" id=279]
 [ext_resource path="res://Animations/Human/H.RELOADED.tres" type="Animation" id=280]
@@ -291,7 +291,7 @@
 [ext_resource path="res://Animations/Human/H.ReloadPumpShotgun.tres" type="Animation" id=289]
 [ext_resource path="res://Animations/Human/H.ReloadSawedShotgun.tres" type="Animation" id=290]
 [ext_resource path="res://Animations/Human/H.Rising_uppercut.tres" type="Animation" id=291]
-[ext_resource path="res://Animations/Human/H.Run.tres" type="Animation" id=292]
+[ext_resource path="res://Animations/Human/Movement/H.Run.tres" type="Animation" id=292]
 [ext_resource path="res://Animations/Human/H.SIDEKICK.tres" type="Animation" id=293]
 [ext_resource path="res://Animations/Human/H.SNAPKICK.tres" type="Animation" id=294]
 [ext_resource path="res://Animations/Human/H.ShootBaseballBat.tres" type="Animation" id=295]
@@ -355,9 +355,9 @@
 [ext_resource path="res://Animations/Human/H.ShootSniper.tres" type="Animation" id=353]
 [ext_resource path="res://Animations/Human/H.ShootSniper_Down.tres" type="Animation" id=354]
 [ext_resource path="res://Animations/Human/H.ShootSniper_Up.tres" type="Animation" id=355]
-[ext_resource path="res://Animations/Human/H.Stand.tres" type="Animation" id=356]
-[ext_resource path="res://Animations/Human/H.Stand_Idle_Smoking.tres" type="Animation" id=357]
-[ext_resource path="res://Animations/Human/H.Stand_combatstance.tres" type="Animation" id=358]
+[ext_resource path="res://Animations/Human/Movement/H.Stand.tres" type="Animation" id=356]
+[ext_resource path="res://Animations/Human/Movement/H.Stand_Idle_Smoking.tres" type="Animation" id=357]
+[ext_resource path="res://Animations/Human/Movement/H.Stand_combatstance.tres" type="Animation" id=358]
 [ext_resource path="res://Animations/Human/H.StrafeLeft.tres" type="Animation" id=359]
 [ext_resource path="res://Animations/Human/H.StrafeRight.tres" type="Animation" id=360]
 [ext_resource path="res://Animations/Human/H.TAUNT01.tres" type="Animation" id=361]
@@ -375,17 +375,17 @@
 [ext_resource path="res://Animations/Human/H.TRIP02.tres" type="Animation" id=373]
 [ext_resource path="res://Animations/Human/H.TRIP03.tres" type="Animation" id=374]
 [ext_resource path="res://Animations/Human/H.TRIP04.tres" type="Animation" id=375]
-[ext_resource path="res://Animations/Human/H.T_JOG.tres" type="Animation" id=376]
-[ext_resource path="res://Animations/Human/H.T_RUN.tres" type="Animation" id=377]
-[ext_resource path="res://Animations/Human/H.T_STAND.tres" type="Animation" id=378]
-[ext_resource path="res://Animations/Human/H.T_WALK.tres" type="Animation" id=379]
+[ext_resource path="res://Animations/Human/Movement/H.T_JOG.tres" type="Animation" id=376]
+[ext_resource path="res://Animations/Human/Movement/H.T_RUN.tres" type="Animation" id=377]
+[ext_resource path="res://Animations/Human/Movement/H.T_STAND.tres" type="Animation" id=378]
+[ext_resource path="res://Animations/Human/Movement/H.T_WALK.tres" type="Animation" id=379]
 [ext_resource path="res://Animations/Human/H.T_longjump.tres" type="Animation" id=380]
 [ext_resource path="res://Animations/Human/H.T_run_dodge.tres" type="Animation" id=381]
 [ext_resource path="res://Animations/Human/H.T_run_dodge2.tres" type="Animation" id=382]
-[ext_resource path="res://Animations/Human/H.T_sprint.tres" type="Animation" id=383]
+[ext_resource path="res://Animations/Human/Movement/H.T_sprint.tres" type="Animation" id=383]
 [ext_resource path="res://Animations/Human/H.Takeoff.tres" type="Animation" id=384]
-[ext_resource path="res://Animations/Human/H.TurnLeft.tres" type="Animation" id=385]
-[ext_resource path="res://Animations/Human/H.TurnRight.tres" type="Animation" id=386]
+[ext_resource path="res://Animations/Human/Movement/H.TurnLeft.tres" type="Animation" id=385]
+[ext_resource path="res://Animations/Human/Movement/H.TurnRight.tres" type="Animation" id=386]
 [ext_resource path="res://Animations/Human/H.Use.tres" type="Animation" id=387]
 [ext_resource path="res://Animations/Human/H.V_JUMP.tres" type="Animation" id=388]
 [ext_resource path="res://Animations/Human/H.Vheadbutt.tres" type="Animation" id=389]
@@ -393,8 +393,8 @@
 [ext_resource path="res://Animations/Human/H.WALLHUG.tres" type="Animation" id=391]
 [ext_resource path="res://Animations/Human/H.WALLRUNL.tres" type="Animation" id=392]
 [ext_resource path="res://Animations/Human/H.WALLRUNR.tres" type="Animation" id=393]
-[ext_resource path="res://Animations/Human/H.Walk.tres" type="Animation" id=394]
-[ext_resource path="res://Animations/Human/H.WalkBackward.tres" type="Animation" id=395]
+[ext_resource path="res://Animations/Human/Movement/H.Walk.tres" type="Animation" id=394]
+[ext_resource path="res://Animations/Human/Movement/H.WalkBackward.tres" type="Animation" id=395]
 [ext_resource path="res://Animations/Human/H.Widepose.tres" type="Animation" id=396]
 [ext_resource path="res://Animations/Human/H.Winded.tres" type="Animation" id=397]
 [ext_resource path="res://Animations/Human/H.a_morph_1.tres" type="Animation" id=398]
@@ -937,27 +937,27 @@
 [ext_resource path="res://Animations/Human/H.stabbered.tres" type="Animation" id=935]
 [ext_resource path="res://Animations/Human/H.stalk.tres" type="Animation" id=936]
 [ext_resource path="res://Animations/Human/H.stalk2.tres" type="Animation" id=937]
-[ext_resource path="res://Animations/Human/H.stand_MorphD.tres" type="Animation" id=938]
-[ext_resource path="res://Animations/Human/H.stand_TKD.tres" type="Animation" id=939]
-[ext_resource path="res://Animations/Human/H.stand_agent.tres" type="Animation" id=940]
-[ext_resource path="res://Animations/Human/H.stand_agr.tres" type="Animation" id=941]
-[ext_resource path="res://Animations/Human/H.stand_bushido.tres" type="Animation" id=942]
-[ext_resource path="res://Animations/Human/H.stand_giant.tres" type="Animation" id=943]
-[ext_resource path="res://Animations/Human/H.stand_kat.tres" type="Animation" id=944]
-[ext_resource path="res://Animations/Human/H.stand_kat_old.tres" type="Animation" id=945]
-[ext_resource path="res://Animations/Human/H.stand_kfstanceB.tres" type="Animation" id=946]
-[ext_resource path="res://Animations/Human/H.stand_merovingian.tres" type="Animation" id=947]
-[ext_resource path="res://Animations/Human/H.stand_morph_combat.tres" type="Animation" id=948]
-[ext_resource path="res://Animations/Human/H.stand_morpheus.tres" type="Animation" id=949]
-[ext_resource path="res://Animations/Human/H.stand_neo_dojo.tres" type="Animation" id=950]
-[ext_resource path="res://Animations/Human/H.stand_neo_rifle.tres" type="Animation" id=951]
-[ext_resource path="res://Animations/Human/H.stand_neo_trench.tres" type="Animation" id=952]
-[ext_resource path="res://Animations/Human/H.stand_ninja.tres" type="Animation" id=953]
-[ext_resource path="res://Animations/Human/H.stand_one.tres" type="Animation" id=954]
-[ext_resource path="res://Animations/Human/H.stand_one_b.tres" type="Animation" id=955]
-[ext_resource path="res://Animations/Human/H.stand_one_c.tres" type="Animation" id=956]
-[ext_resource path="res://Animations/Human/H.stand_seraph_combat.tres" type="Animation" id=957]
-[ext_resource path="res://Animations/Human/H.stand_trinity.tres" type="Animation" id=958]
+[ext_resource path="res://Animations/Human/Movement/H.stand_MorphD.tres" type="Animation" id=938]
+[ext_resource path="res://Animations/Human/Movement/H.stand_TKD.tres" type="Animation" id=939]
+[ext_resource path="res://Animations/Human/Movement/H.stand_agent.tres" type="Animation" id=940]
+[ext_resource path="res://Animations/Human/Movement/H.stand_agr.tres" type="Animation" id=941]
+[ext_resource path="res://Animations/Human/Movement/H.stand_bushido.tres" type="Animation" id=942]
+[ext_resource path="res://Animations/Human/Movement/H.stand_giant.tres" type="Animation" id=943]
+[ext_resource path="res://Animations/Human/Movement/H.stand_kat.tres" type="Animation" id=944]
+[ext_resource path="res://Animations/Human/Movement/H.stand_kat_old.tres" type="Animation" id=945]
+[ext_resource path="res://Animations/Human/Movement/H.stand_kfstanceB.tres" type="Animation" id=946]
+[ext_resource path="res://Animations/Human/Movement/H.stand_merovingian.tres" type="Animation" id=947]
+[ext_resource path="res://Animations/Human/Movement/H.stand_morph_combat.tres" type="Animation" id=948]
+[ext_resource path="res://Animations/Human/Movement/H.stand_morpheus.tres" type="Animation" id=949]
+[ext_resource path="res://Animations/Human/Movement/H.stand_neo_dojo.tres" type="Animation" id=950]
+[ext_resource path="res://Animations/Human/Movement/H.stand_neo_rifle.tres" type="Animation" id=951]
+[ext_resource path="res://Animations/Human/Movement/H.stand_neo_trench.tres" type="Animation" id=952]
+[ext_resource path="res://Animations/Human/Movement/H.stand_ninja.tres" type="Animation" id=953]
+[ext_resource path="res://Animations/Human/Movement/H.stand_one.tres" type="Animation" id=954]
+[ext_resource path="res://Animations/Human/Movement/H.stand_one_b.tres" type="Animation" id=955]
+[ext_resource path="res://Animations/Human/Movement/H.stand_one_c.tres" type="Animation" id=956]
+[ext_resource path="res://Animations/Human/Movement/H.stand_seraph_combat.tres" type="Animation" id=957]
+[ext_resource path="res://Animations/Human/Movement/H.stand_trinity.tres" type="Animation" id=958]
 [ext_resource path="res://Animations/Human/H.standdodge_b.tres" type="Animation" id=959]
 [ext_resource path="res://Animations/Human/H.standdodge_f.tres" type="Animation" id=960]
 [ext_resource path="res://Animations/Human/H.standdodge_fl.tres" type="Animation" id=961]
@@ -1013,8 +1013,8 @@
 [ext_resource path="res://Animations/Human/H.sweepkickcounter2.tres" type="Animation" id=1011]
 [ext_resource path="res://Animations/Human/H.sweepkickcounterT.tres" type="Animation" id=1012]
 [ext_resource path="res://Animations/Human/H.t_backkick.tres" type="Animation" id=1013]
-[ext_resource path="res://Animations/Human/H.t_forwardleft.tres" type="Animation" id=1014]
-[ext_resource path="res://Animations/Human/H.t_forwardright.tres" type="Animation" id=1015]
+[ext_resource path="res://Animations/Human/Movement/H.t_forwardleft.tres" type="Animation" id=1014]
+[ext_resource path="res://Animations/Human/Movement/H.t_forwardright.tres" type="Animation" id=1015]
 [ext_resource path="res://Animations/Human/H.t_scorp.tres" type="Animation" id=1016]
 [ext_resource path="res://Animations/Human/H.takeoff1.tres" type="Animation" id=1017]
 [ext_resource path="res://Animations/Human/H.takeoff1b.tres" type="Animation" id=1018]
@@ -1062,14 +1062,14 @@
 [ext_resource path="res://Animations/Human/H.vox-knockback1.tres" type="Animation" id=1060]
 [ext_resource path="res://Animations/Human/H.vox-knockback2.tres" type="Animation" id=1061]
 [ext_resource path="res://Animations/Human/H.vox-knockback3.tres" type="Animation" id=1062]
-[ext_resource path="res://Animations/Human/H.w_Run.tres" type="Animation" id=1063]
-[ext_resource path="res://Animations/Human/H.w_Stand.tres" type="Animation" id=1064]
-[ext_resource path="res://Animations/Human/H.w_StrafeLeft.tres" type="Animation" id=1065]
-[ext_resource path="res://Animations/Human/H.w_StrafeRight.tres" type="Animation" id=1066]
-[ext_resource path="res://Animations/Human/H.w_TurnLeft.tres" type="Animation" id=1067]
-[ext_resource path="res://Animations/Human/H.w_TurnRight.tres" type="Animation" id=1068]
-[ext_resource path="res://Animations/Human/H.w_Walk.tres" type="Animation" id=1069]
-[ext_resource path="res://Animations/Human/H.w_WalkBackward.tres" type="Animation" id=1070]
+[ext_resource path="res://Animations/Human/Movement/H.w_Run.tres" type="Animation" id=1063]
+[ext_resource path="res://Animations/Human/Movement/H.w_Stand.tres" type="Animation" id=1064]
+[ext_resource path="res://Animations/Human/Movement/H.w_StrafeLeft.tres" type="Animation" id=1065]
+[ext_resource path="res://Animations/Human/Movement/H.w_StrafeRight.tres" type="Animation" id=1066]
+[ext_resource path="res://Animations/Human/Movement/H.w_TurnLeft.tres" type="Animation" id=1067]
+[ext_resource path="res://Animations/Human/Movement/H.w_TurnRight.tres" type="Animation" id=1068]
+[ext_resource path="res://Animations/Human/Movement/H.w_Walk.tres" type="Animation" id=1069]
+[ext_resource path="res://Animations/Human/Movement/H.w_WalkBackward.tres" type="Animation" id=1070]
 [ext_resource path="res://Animations/Human/H.wake_up_neo.tres" type="Animation" id=1071]
 [ext_resource path="res://Animations/Human/H.walk_morpheus.tres" type="Animation" id=1072]
 [ext_resource path="res://Animations/Human/H.walk_trinity.tres" type="Animation" id=1073]
@@ -1120,24 +1120,45 @@
 [ext_resource path="res://Animations/Human/H.z_windmill.tres" type="Animation" id=1118]
 [ext_resource path="res://Animations/Human/H.zerhan-bushido.tres" type="Animation" id=1119]
 [ext_resource path="res://Animations/Human/H.zerhan-bushido-follow.tres" type="Animation" id=1120]
-[ext_resource path="res://Animations/Player/P.Climb.tres" type="Animation" id=1121]
-[ext_resource path="res://Animations/Player/P.Climb.Enter.tres" type="Animation" id=1122]
-[ext_resource path="res://Animations/Player/P.Climb.Exit.tres" type="Animation" id=1123]
-[ext_resource path="res://Animations/Player/P.Drop.tres" type="Animation" id=1124]
-[ext_resource path="res://Animations/Player/P.Grab.tres" type="Animation" id=1125]
-[ext_resource path="res://Animations/Player/P.Interact.tres" type="Animation" id=1126]
-[ext_resource path="res://Animations/Player/P.Interact.Exit.tres" type="Animation" id=1127]
-[ext_resource path="res://Animations/Player/P.InteractCancel.tres" type="Animation" id=1128]
-[ext_resource path="res://Animations/Player/P.InteractDown.tres" type="Animation" id=1129]
-[ext_resource path="res://Animations/Player/P.InteractSelect.tres" type="Animation" id=1130]
-[ext_resource path="res://Animations/Player/P.InteractUp.tres" type="Animation" id=1131]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.tres" type="Animation" id=1121]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Enter.tres" type="Animation" id=1122]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Exit.tres" type="Animation" id=1123]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Drop.tres" type="Animation" id=1124]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Grab.tres" type="Animation" id=1125]
+[ext_resource path="res://Animations/Human/Input/H.IN.Interact.tres" type="Animation" id=1126]
+[ext_resource path="res://Animations/Human/Input/H.IN.Interact.Exit.tres" type="Animation" id=1127]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractCancel.tres" type="Animation" id=1128]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractDown.tres" type="Animation" id=1129]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractSelect.tres" type="Animation" id=1130]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractUp.tres" type="Animation" id=1131]
 [ext_resource path="res://Scripts/Behavior.Movement.gd" type="Script" id=1132]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "P.Climb"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1146,6 +1167,7 @@ animation = "P.Climb.Enter"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 1
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1154,6 +1176,7 @@ animation = "P.Climb.Exit"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1162,6 +1185,7 @@ animation = "H.ShootBeretta"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 1
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1170,6 +1194,7 @@ animation = "P.Drop"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1178,6 +1203,7 @@ animation = "P.Grab"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1186,6 +1212,7 @@ animation = "P.Interact"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = true
 speed = 1.0
 distance = 0.0
 
@@ -1194,6 +1221,7 @@ animation = "P.InteractCancel"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1202,6 +1230,7 @@ animation = "P.InteractDown"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1210,6 +1239,7 @@ animation = "P.Interact.Exit"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1218,6 +1248,7 @@ animation = "P.InteractSelect"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1226,6 +1257,7 @@ animation = "P.InteractUp"
 script = ExtResource( 1 )
 type = 0
 blend_mode = 0
+blocks_travel = false
 speed = 1.0
 distance = 0.0
 
@@ -1244,6 +1276,10 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
+script = ExtResource( 2 )
+assertion = "NotNull"
+target = "../PlayerControl/Viewport/Camera/RayCast"
+signal_name = "changed_selection"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
 switch_mode = 2
@@ -1288,6 +1324,7 @@ priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 switch_mode = 2
+auto_advance = true
 script = ExtResource( 2 )
 assertion = "NotNull"
 target = "../HumanMovement"
@@ -1313,7 +1350,7 @@ states/Interact/position = Vector2( 438, 444 )
 states/InteractCancel/node = SubResource( 8 )
 states/InteractCancel/position = Vector2( 640, 390 )
 states/InteractDown/node = SubResource( 9 )
-states/InteractDown/position = Vector2( 640, 595 )
+states/InteractDown/position = Vector2( 640, 596 )
 states/InteractExit/node = SubResource( 10 )
 states/InteractExit/position = Vector2( 844, 444 )
 states/InteractSelect/node = SubResource( 11 )
@@ -1321,7 +1358,8 @@ states/InteractSelect/position = Vector2( 640, 310 )
 states/InteractUp/node = SubResource( 12 )
 states/InteractUp/position = Vector2( 640, 510 )
 transitions = [ "Interact", "InteractExit", SubResource( 13 ), "Climb", "ClimbExit", SubResource( 14 ), "Interact", "InteractSelect", SubResource( 15 ), "Interact", "InteractCancel", SubResource( 16 ), "Interact", "InteractUp", SubResource( 17 ), "Interact", "InteractDown", SubResource( 18 ), "Default", "Interact", SubResource( 19 ), "InteractUp", "Interact", SubResource( 20 ), "InteractDown", "Interact", SubResource( 21 ), "InteractSelect", "InteractExit", SubResource( 22 ), "InteractCancel", "InteractExit", SubResource( 23 ), "InteractExit", "Default", SubResource( 24 ), "Default", "Drop", SubResource( 25 ), "Default", "Grab", SubResource( 26 ), "Grab", "Default", SubResource( 27 ), "Drop", "Default", SubResource( 28 ), "ClimbExit", "Default", SubResource( 29 ), "ClimbEnter", "Default", SubResource( 30 ), "ClimbEnter", "Climb", SubResource( 31 ), "Default", "ClimbEnter", SubResource( 32 ) ]
-graph_offset = Vector2( -259.089, -167.907 )
+start_node = "Default"
+graph_offset = Vector2( -194.971, 240.569 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 

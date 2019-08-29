@@ -1,6 +1,6 @@
 extends Node
 
-onready var parent = $'../../../'
+onready var parent = $'../'
 
 export var sensitivity = 0.002
 

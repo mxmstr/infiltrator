@@ -1,9 +1,10 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "InteractCancel"
+resource_name = "H.IN.Run"
+length = 0.1
 tracks/0/type = "method"
-tracks/0/path = NodePath("../../PlayerControl/Viewport/HUD/CenterMenu")
+tracks/0/path = NodePath("HumanMovement")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -12,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "_hide"
+"args": [ "RUNNING" ],
+"method": "_set_state"
 } ]
 }

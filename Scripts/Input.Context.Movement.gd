@@ -1,6 +1,6 @@
 extends Node
 
-onready var parent = $'../../../'
+onready var parent = $'../../'
 
 
 func enable():
@@ -20,7 +20,6 @@ func disable():
 func _physics_process(delta):
 	
 	var direction = Vector3()
-	
 	var cam_xform = parent.global_transform
 	
 	if Input.is_action_pressed('Forward'):
