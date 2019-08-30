@@ -1,5 +1,6 @@
 extends AnimationNodeStateMachineTransition
 
+export(String) var action
 export(String, 'just_pressed', 'pressed', 'just_released', 'released') var state = 'just_pressed'
 export(String, 'None', 'True', 'False', 'Null', 'NotNull') var assertion = 'None'
 export(String) var target
@@ -39,9 +40,9 @@ func process():
 	
 	if state == 'released':
 		for s in ['just_pressed', 'pressed', 'just_released']:
-			if Input.call('is_action_' + s, anim_name):
+			if Input.call('is_action_' + s, action):
 				pressed = false
 	else:
-		pressed = Input.call('is_action_' + state, anim_name)
+		pressed = Input.call('is_action_' + state, action)
 	
 	disabled = not trigger or not pressed

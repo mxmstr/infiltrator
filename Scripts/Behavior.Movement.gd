@@ -43,6 +43,8 @@ func _sync_blend_spaces():
 	local_velocity = local_velocity / $'../../HumanMovement'.max_speed
 	
 	set('parameters/Grounded/blend_position', Vector2(-local_velocity.x, local_velocity.z))
+	set('parameters/BlendTree/BlendSpace1D/blend_position', -local_velocity.x)
+	set('parameters/BlendTree/BlendSpace1D/0/blend_position', local_velocity.z)
 
 
 func _blend_skeletons():

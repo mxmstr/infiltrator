@@ -35,6 +35,7 @@ animation = "H.IN.InteractUp"
 auto_advance = true
 disabled = true
 script = ExtResource( 1 )
+action = ""
 state = "just_pressed"
 assertion = "NotNull"
 target = "../PlayerControl/Viewport/Camera/RayCast"
@@ -89,7 +90,7 @@ states/InteractUp/node = SubResource( 7 )
 states/InteractUp/position = Vector2( 781, 198.529 )
 transitions = [ "Default", "Interact", SubResource( 8 ), "InteractExit", "Default", SubResource( 10 ), "Interact", "InteractCancel", SubResource( 11 ), "Interact", "InteractSelect", SubResource( 12 ), "InteractSelect", "InteractExit", SubResource( 13 ), "InteractCancel", "InteractExit", SubResource( 14 ), "Interact", "InteractUp", SubResource( 15 ), "Interact", "InteractDown", SubResource( 16 ), "InteractUp", "Interact", SubResource( 17 ), "InteractDown", "Interact", SubResource( 18 ) ]
 start_node = "Default"
-graph_offset = Vector2( 0, -161.201 )
+graph_offset = Vector2( 3.29207, -171.201 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 

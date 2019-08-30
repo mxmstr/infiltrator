@@ -3,6 +3,7 @@
 [resource]
 resource_name = "neo_reference_skeleton|neo_reference_skeleton|ForwardLeftkf2|n"
 length = 1.66667
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".:Torso")
 tracks/0/interp = 1

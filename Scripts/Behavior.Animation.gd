@@ -13,6 +13,11 @@ var transitions = []
 signal on_enter
 
 
+func is_visible():
+	
+	return type != Infiltrator.visibility.INVISIBLE
+
+
 func _on_animation_changed(new_name):
 	
 	if name == new_name:

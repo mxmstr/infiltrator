@@ -4,6 +4,7 @@ const directory = 'res://Scenes/Properties/Behaviors/'
 
 var current_node
 var blend_mode = Infiltrator.blend.ACTION
+var children = []
 
 signal interaction_started
 signal animation_changed
@@ -38,7 +39,7 @@ func _get_visible_interactions():
 	
 	#var dist = sender.global_transform.origin.distance_to(owner.global_transform.origin)
 	
-	for child in get_children():
+	for child in children:
 		if child.is_visible(): #and (child.dist == 0 or child.dist > dist):
 			interactions.append(child.name)
 	
@@ -104,6 +105,7 @@ func _init_transitions():
 			animation.init(anim_name, self)
 			animation.transitions.append(transition)
 			
+			children.append(animation)
 			anim_names.append(anim_name)
 			
 		else:
