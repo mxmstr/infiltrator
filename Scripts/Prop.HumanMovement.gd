@@ -11,7 +11,7 @@ enum state {
 export(state) var current_state = state.DEFAULT
 
 export var gravity = -9.8
-export var max_speed = 2.5
+export var max_speed = 2.75
 export var walk_mult = 0.3
 export var crouch_mult = 0.2
 export var crawl_mult = 0.1
@@ -140,7 +140,7 @@ func _physics_process(delta):
 			
 			collision.translation = Vector3(0, 0.75, 0)
 			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.70, -3)
+			camera.offset = Vector3(0, 1.70, 0)
 			
 			target = direction * max_speed * walk_mult
 		
@@ -172,7 +172,7 @@ func _physics_process(delta):
 			
 			collision.translation = Vector3(0, 0.75, 0)
 			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.70, -3)
+			camera.offset = Vector3(0, 1.70, 0)
 			
 			target = direction * max_speed
 		

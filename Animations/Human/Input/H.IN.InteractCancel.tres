@@ -2,6 +2,7 @@
 
 [resource]
 resource_name = "InteractCancel"
+length = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath("PlayerControl/Viewport/HUD/CenterMenu")
 tracks/0/interp = 1

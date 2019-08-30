@@ -1,4 +1,4 @@
-[gd_scene load_steps=206 format=2]
+[gd_scene load_steps=208 format=2]
 
 [ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Behavior.Transition.gd" type="Script" id=2]
@@ -191,7 +191,7 @@ states/Grab/node = SubResource( 6 )
 states/Grab/position = Vector2( 438, 174 )
 transitions = [ "Climb", "ClimbExit", SubResource( 7 ), "Default", "Drop", SubResource( 8 ), "Default", "Grab", SubResource( 9 ), "Grab", "Default", SubResource( 10 ), "Drop", "Default", SubResource( 11 ), "ClimbExit", "Default", SubResource( 12 ), "ClimbEnter", "Default", SubResource( 13 ), "ClimbEnter", "Climb", SubResource( 14 ), "Default", "ClimbEnter", SubResource( 15 ) ]
 start_node = "Default"
-graph_offset = Vector2( -194.971, 123.028 )
+graph_offset = Vector2( -194.971, -2.48488 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
@@ -375,9 +375,19 @@ blend_point_2/pos = 0.3
 blend_point_3/node = SubResource( 116 )
 blend_point_3/pos = -0.3
 
+[sub_resource type="AnimationNodeAnimation" id=120]
+animation = "H.StrafeRight"
+
+[sub_resource type="AnimationNodeAnimation" id=121]
+animation = "H.StrafeLeft"
+
 [sub_resource type="AnimationNodeBlendSpace1D" id=118]
 blend_point_0/node = SubResource( 117 )
 blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 120 )
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource( 121 )
+blend_point_2/pos = -1.0
 
 [sub_resource type="AnimationNodeBlendTree" id=119]
 nodes/Animation/node = SubResource( 111 )
