@@ -2,7 +2,6 @@
 
 [resource]
 resource_name = "H.IN.Run"
-length = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../InputMovement")
 tracks/0/interp = 1
@@ -30,4 +29,28 @@ tracks/1/keys = {
 "args": [ "CLIMBING" ],
 "method": "_set_state"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../HumanMovement:climb_x_progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../../HumanMovement:climb_y_progress")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
 }

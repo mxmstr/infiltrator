@@ -39,4 +39,7 @@ func _ready():
 
 func _process(delta):
 	
+#	if name == 'InputAbilities':
+#		print(get('parameters/playback').get_current_node())
+	
 	emit_signal('on_process')

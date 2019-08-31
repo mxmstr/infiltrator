@@ -9,10 +9,13 @@ func _find_free_container(node):
 		
 		if script_name == 'Prop.Container.gd' and \
 			node._add_item(get_node(to)):
-			return
+			return true
 	
 	for child in node.get_children():
-		_find_free_container(child)
+		if _find_free_container(child):
+			return true
+	
+	return false
 
 
 func _on_enter():
