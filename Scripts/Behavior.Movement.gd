@@ -25,11 +25,10 @@ func _ready():
 
 	for child in skeleton.get_children():
 		child.queue_free()
-
-	$AnimationPlayer.add_child(skeleton)
-	$AnimationPlayer.root_node = NodePath(skeleton.name)
 	
-	#anim_player = NodePath('AnimationPlayer')
+	
+	get_parent().call_deferred('add_child', skeleton)
+	$AnimationPlayer.root_node = NodePath('../../' + skeleton.name)
 	
 	active = true
 

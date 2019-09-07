@@ -1,14 +1,15 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Properties/Container.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Models/Humans/DefaultHuman.Collision.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Properties/Behaviors/B.Human.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Properties/HumanMovement.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Properties/PlayerControl.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Properties/P.InputAbilities.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Properties/P.InputMovement.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Properties/P.InputRotation.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Properties/AT.Human.Feet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Properties/HumanMovement.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Properties/PlayerControl.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Properties/P.InputAbilities.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Properties/P.InputMovement.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Properties/P.InputRotation.tscn" type="PackedScene" id=10]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.15, 0.75, 0.15 )
@@ -37,9 +38,11 @@ extents = Vector3( 0.15, 0.75, 0.15 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 
 [node name="Player" type="KinematicBody"]
 collision_mask = 1025
@@ -50,7 +53,7 @@ collision_mask = 1025
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="RightHand" parent="Model/neo_reference_skeleton" index="1" instance=ExtResource( 2 )]
-transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
+transform = Transform( 0.484255, -0.86498, -0.131557, 0.0882472, 0.197885, -0.976245, 0.870465, 0.461142, 0.172158, 0.0193259, 1.20674, 0.368146 )
 bone_name = "Gun"
 max_quantity = 1
 
@@ -64,11 +67,9 @@ parameters/playback = SubResource( 2 )
 root_node = NodePath("../../Model/neo_reference_skeleton")
 
 [node name="Movement" parent="Behavior" index="1"]
-editor/display_folded = true
 parameters/playback = SubResource( 3 )
 parameters/BlendSpace1D/blend_position = -0.0163934
-parameters/BlendTree/BlendSpace1D/blend_position = -0.00234193
-parameters/BlendTree/BlendSpace1D/0/blend_position = -0.369243
+parameters/BlendTree/BlendSpace1D/blend_position = 0.0
 parameters/Grounded/0/playback = SubResource( 4 )
 parameters/Grounded/1/playback = SubResource( 5 )
 parameters/Grounded/2/playback = SubResource( 6 )
@@ -83,25 +84,28 @@ parameters/Grounded/9/playback = SubResource( 13 )
 [node name="AnimationPlayer" parent="Behavior/Movement" index="0"]
 root_node = NodePath("../../../Model/neo_reference_skeleton")
 
-[node name="HumanMovement" parent="." instance=ExtResource( 5 )]
+[node name="FeetAudio" parent="." instance=ExtResource( 5 )]
+parameters/playback = SubResource( 17 )
 
-[node name="PlayerControl" parent="." instance=ExtResource( 6 )]
+[node name="HumanMovement" parent="." instance=ExtResource( 6 )]
 
-[node name="InputAbilities" parent="." instance=ExtResource( 7 )]
+[node name="PlayerControl" parent="." instance=ExtResource( 7 )]
+
+[node name="InputAbilities" parent="." instance=ExtResource( 8 )]
 editor/display_folded = true
-parameters/playback = SubResource( 14 )
+parameters/playback = SubResource( 15 )
 
 [node name="AnimationPlayer" parent="InputAbilities" index="0"]
 root_node = NodePath("../..")
 
-[node name="InputMovement" parent="." instance=ExtResource( 8 )]
+[node name="InputMovement" parent="." instance=ExtResource( 9 )]
 editor/display_folded = true
-parameters/playback = SubResource( 15 )
+parameters/playback = SubResource( 16 )
 
 [node name="AnimationPlayer" parent="InputMovement" index="0"]
 root_node = NodePath("../..")
 
-[node name="InputRotation" parent="." instance=ExtResource( 9 )]
+[node name="InputRotation" parent="." instance=ExtResource( 10 )]
 
 [editable path="Model"]
 

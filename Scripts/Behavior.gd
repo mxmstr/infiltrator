@@ -137,8 +137,6 @@ func _ready():
 
 func _process(delta):
 	
-	print(get('parameters/playback').get_current_node())
-	
 	var playback = get('parameters/playback')
 	
 	if current_node != playback.get_current_node():

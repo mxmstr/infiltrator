@@ -350,8 +350,7 @@ blend_point_2/pos = 1.0
 animation = "DefaultAnim"
 
 [sub_resource type="AnimationNodeBlend2" id=47]
-filter_enabled = true
-filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
+filters = [ "../../Feet", ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
 [sub_resource type="AnimationNodeAnimation" id=48]
 animation = "H.T_STAND"
@@ -390,6 +389,7 @@ blend_point_2/node = SubResource( 54 )
 blend_point_2/pos = -1.0
 
 [sub_resource type="AnimationNodeBlendTree" id=56]
+graph_offset = Vector2( 145.042, 21.5 )
 nodes/Animation/node = SubResource( 46 )
 nodes/Animation/position = Vector2( 360, 20 )
 nodes/Blend2/node = SubResource( 47 )
@@ -397,7 +397,7 @@ nodes/Blend2/position = Vector2( 600, 40 )
 nodes/BlendSpace1D/node = SubResource( 55 )
 nodes/BlendSpace1D/position = Vector2( 360, 200 )
 nodes/output/position = Vector2( 880, 100 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "BlendSpace1D" ]
+node_connections = [ "output", 0, "BlendSpace1D", "Blend2", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=57]
 animation = "DefaultAnim"
@@ -743,7 +743,7 @@ parameters/BlendSpace1D/1/0/Blend2/blend_amount = 1.0
 parameters/BlendSpace1D/2/blend_position = 0
 parameters/BlendSpace1D/2/0/Blend2/blend_amount = 1.0
 parameters/BlendTree/Blend2/blend_amount = 1.0
-parameters/BlendTree/BlendSpace1D/blend_position = 0.00234187
+parameters/BlendTree/BlendSpace1D/blend_position = -0.00170648
 parameters/BlendTree/BlendSpace1D/0/blend_position = 0
 parameters/Grounded/blend_position = Vector2( 0.0757701, 0.199341 )
 parameters/Grounded/0/playback = SubResource( 112 )

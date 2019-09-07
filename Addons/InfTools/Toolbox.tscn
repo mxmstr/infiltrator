@@ -50,3 +50,26 @@ text = "Load Animations"
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="LoadAudioInput" type="TextEdit" parent="."]
+margin_top = 174.0
+margin_right = 119.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 0, 30 )
+text = "res://Sounds/"
+
+[node name="LoadAudioOutput" type="TextEdit" parent="."]
+margin_top = 208.0
+margin_right = 119.0
+margin_bottom = 238.0
+rect_min_size = Vector2( 0, 30 )
+text = "res://Animations/Audio/"
+
+[node name="LoadAudio" type="Button" parent="."]
+margin_top = 242.0
+margin_right = 119.0
+margin_bottom = 262.0
+text = "Load Audio"
+__meta__ = {
+"_edit_group_": true
+}

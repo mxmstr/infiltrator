@@ -95,6 +95,47 @@ func on_loadanim_pressed():
 			dir.list_dir_end()
 
 
+func on_loadaudio_pressed():
+	
+	if not selection.get_selected_nodes().empty():
+		
+		var selected = selection.get_selected_nodes()[0]
+		
+		if selected is AnimationPlayer:
+			
+			var files = []
+			var dir = Directory.new()
+			dir.open(dock.get_node('LoadAudioInput').text)
+			dir.list_dir_begin()
+			
+			while true:
+				
+				var file = dir.get_next()
+				
+				if file == '':
+					break
+					
+				elif not file.begins_with('.') and file.ends_with('.wav'):
+					
+					var stream = load(dock.get_node('LoadAudioInput').text + file)
+					file = file.replace('.wav', '')
+					
+					var anim = Animation.new()
+					#anim_data.resource_name = file
+					var track = anim.add_track(Animation.TYPE_AUDIO)
+					anim.length = stream.get_length()
+					anim.track_set_path(track, NodePath('AudioStreamPlayer3D'))
+					anim.audio_track_insert_key(track, 0, stream)
+					
+					#selected.add_animation(file, anim)
+					ResourceSaver.save(
+						dock.get_node('LoadAudioOutput').text + file + '.tres', 
+						anim#selected.get_animation(file)
+						)
+
+			dir.list_dir_end()
+
+
 func _ready():
 	
 	pass
@@ -106,6 +147,7 @@ func _enter_tree():
 	dock.get_node('Floor').connect('button_down', self, 'on_floor_pressed')
 	dock.get_node('Convert').connect('button_down', self, 'on_convert_pressed')
 	dock.get_node('LoadAnim').connect('button_down', self, 'on_loadanim_pressed')
+	dock.get_node('LoadAudio').connect('button_down', self, 'on_loadaudio_pressed')
 	
 	selection = EditorPlugin.new().get_editor_interface().get_selection()
 	selection.connect('selection_changed', self, 'on_selection_changed')

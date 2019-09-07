@@ -15,9 +15,6 @@ func _has_selection():
 
 func _contain_selection():
 	
-	
-	print('AAAAAAAAAAAAAAAAAAAAAAAAAAA')
-	
 	if _has_selection():
 	
 		var data = {
