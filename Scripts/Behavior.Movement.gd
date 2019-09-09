@@ -79,7 +79,7 @@ func _filter_anim_events(nodes, blend_position, filter_all=false):
 			if node == closest:
 
 				for track in node.animation.get_track_count():
-					node.animation.track_set_enabled(track, node.animation.track_is_imported(track))
+					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2)
 
 			else:
 
