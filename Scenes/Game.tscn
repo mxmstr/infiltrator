@@ -28,6 +28,7 @@ __meta__ = {
 transform = Transform( -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0, 0.1, -3.79638, 1.45508, 2.14302 )
 
 [node name="Door" parent="Actors" instance=ExtResource( 2 )]
+editor/display_folded = true
 transform = Transform( -5.85737e-08, 0, 1, 0, 1.19065, 0, -1.34001, 0, -4.37114e-08, -3.73135, 0.164403, 1.24511 )
 
 [node name="DoorMovement" parent="Actors/Door" instance=ExtResource( 3 )]

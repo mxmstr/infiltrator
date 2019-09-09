@@ -5,6 +5,7 @@ export(Array, String) var movement_bones
 export(Array, String) var fp_hidden_bones
 
 var cached_pose = []
+var anim_nodes = []
 
 
 func _set_bone_y_rotation(bone_name, y_rot, root=false):
@@ -19,10 +20,30 @@ func _set_bone_y_rotation(bone_name, y_rot, root=false):
 	s_action.set_bone_global_pose(bone, bone_transform)
 
 
+func _add_anim_nodes(blendspace, path):
+	
+	var array = []
+	
+	for point in blendspace.get_blend_point_count():
+		
+		var node = blendspace.get_blend_point_node(point)
+		var position = blendspace.get_blend_point_position(point)
+		
+		array.append({
+			'path': path,
+			'animation': $AnimationPlayer.get_animation(node.get_node('Animation').animation) if node is AnimationNodeBlendTree else null,
+			'blendspace': node if node is AnimationNodeBlendSpace1D else null,
+			'children': _add_anim_nodes(node, path + str(point) + '/') if node is AnimationNodeBlendSpace1D else null,
+			'position': position
+			})
+	
+	return array
+
+
 func _ready():
-
+	
 	var skeleton = $'../../Model'.get_children()[0].duplicate()
-
+	
 	for child in skeleton.get_children():
 		child.queue_free()
 	
@@ -30,7 +51,87 @@ func _ready():
 	get_parent().call_deferred('add_child', skeleton)
 	$AnimationPlayer.root_node = NodePath('../../' + skeleton.name)
 	
+	
+	var blendspace = tree_root.get_node('BlendTree').get_node('BlendSpace1D')
+	anim_nodes = _add_anim_nodes(blendspace, 'parameters/BlendTree/BlendSpace1D/')
+	
 	active = true
+
+
+func _filter_anim_events(nodes, blend_position, filter_all=false):
+	
+	var closest = null
+	var min_dist = 2.0
+	
+	for node in nodes:
+		
+		var dist = abs(blend_position - node.position)
+		
+		if dist < min_dist:
+			min_dist = dist
+			closest = node
+	
+	
+	for node in nodes:
+		
+		if node.animation != null:
+			
+			if node == closest:
+
+				for track in node.animation.get_track_count():
+					node.animation.track_set_enabled(track, node.animation.track_is_imported(track))
+
+			else:
+
+				for track in node.animation.get_track_count():
+					node.animation.track_set_enabled(track, true)
+		
+		if node.blendspace != null:
+			
+			var position = get(node.path + 'blend_position')
+			
+			_filter_anim_events(node.children, position, filter_all) if node == closest else _filter_anim_events(node, position, true)
+
+
+#func _filter_anim_events(blendspace, disable_all=false):
+#
+#	var blend_position = blendspace.get('blend_position')
+#	var closest = null
+#	var min_dist = 2.0
+	
+#	for point in blendspace.get_blend_point_count():
+#
+#		var node = blendspace.get_blend_point_node(point)
+#		var position = blendspace.get_blend_point_position(point)
+#
+#		var dist = abs(blend_position - position)
+#
+#		if dist < min_dist:
+#			min_dist = dist
+#			closest = node
+	
+	
+#	for point in blendspace.get_blend_point_count():
+#
+#		var node = blendspace.get_blend_point_node(point)
+#
+#		if node is AnimationNodeBlendSpace1D:
+#
+#			_filter_anim_events(node, disable_all) if node == closest else _filter_anim_events(node, true)
+#
+#		else:
+#
+#			var animation = $AnimationPlayer.get_animation(node.get_node('Animation').animation)
+#
+#			if node == closest:
+#
+#				for track in animation.get_track_count():
+#					animation.track_set_enabled(track, animation.track_is_imported(track))
+#
+#			else:
+#
+#				for track in animation.get_track_count():
+#					animation.track_set_enabled(track, true)
 
 
 func _sync_blend_spaces():
@@ -41,7 +142,6 @@ func _sync_blend_spaces():
 	var local_velocity = $'../../'.global_transform.basis.xform_inv(velocity)
 	local_velocity = local_velocity / $'../../HumanMovement'.max_speed
 	
-	set('parameters/Grounded/blend_position', Vector2(-local_velocity.x, local_velocity.z))
 	set('parameters/BlendTree/BlendSpace1D/blend_position', -local_velocity.x)
 	set('parameters/BlendTree/BlendSpace1D/0/blend_position', local_velocity.z)
 
@@ -87,5 +187,8 @@ func _blend_skeletons():
 func _process(delta):
 	
 	_sync_blend_spaces()
+	
+	_filter_anim_events(anim_nodes, get('parameters/BlendTree/BlendSpace1D/blend_position'))
+	
 	_blend_skeletons()
 	

@@ -1,8 +1,6 @@
 extends AnimationNodeStateMachineTransition
 
-export(String) var tags
-export(String) var property
-export(String) var target
+export(int) var range_max
 
 var parent
 
@@ -16,4 +14,5 @@ func init(_parent):
 
 func process():
 	
+	print('asdf')
 	pass#disabled = false#not trigger
