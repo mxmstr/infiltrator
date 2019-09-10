@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=2]
+[gd_scene load_steps=161 format=2]
 
 [ext_resource path="res://Scripts/AudioTree.Randomizer.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AudioTree.gd" type="Script" id=2]
@@ -137,10 +137,13 @@
 [ext_resource path="res://Animations/Audio/ftsnow2.tres" type="Animation" id=135]
 [ext_resource path="res://Animations/Audio/ftsnow3.tres" type="Animation" id=136]
 [ext_resource path="res://Animations/Audio/ftsnow4.tres" type="Animation" id=137]
-[ext_resource path="res://Sounds/Thief/Feet/FTROC_A1.wav" type="AudioStream" id=138]
+[ext_resource path="res://Sounds/Thief/Feet/FTROC_P2.wav" type="AudioStream" id=138]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "FTROC_J"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "FTROC_P1"
@@ -154,11 +157,10 @@ animation = "FTROC_P3"
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "FTROC_P4"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "DefaultAnim"
-script = ExtResource( 1 )
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 
@@ -168,35 +170,39 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-auto_advance = true
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
-switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
-switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
-switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
-switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=18]
 states/Default/node = SubResource( 1 )
 states/Default/position = Vector2( 141, 405 )
+states/FTROC_J/node = SubResource( 20 )
+states/FTROC_J/position = Vector2( 703, 463.933 )
 states/FTROC_P1/node = SubResource( 2 )
 states/FTROC_P1/position = Vector2( 703, -14.8617 )
 states/FTROC_P2/node = SubResource( 3 )
@@ -205,13 +211,13 @@ states/FTROC_P3/node = SubResource( 4 )
 states/FTROC_P3/position = Vector2( 703, 110.138 )
 states/FTROC_P4/node = SubResource( 5 )
 states/FTROC_P4/position = Vector2( 703, 173.138 )
-states/FootLeft/node = SubResource( 6 )
-states/FootLeft/position = Vector2( 465, 35.1383 )
-states/FootRight/node = SubResource( 7 )
-states/FootRight/position = Vector2( 465, 133 )
-transitions = [ "FootLeft", "FTROC_P1", SubResource( 8 ), "FootLeft", "FTROC_P2", SubResource( 9 ), "FootRight", "FTROC_P3", SubResource( 10 ), "FootRight", "FTROC_P4", SubResource( 11 ), "FTROC_P4", "Default", SubResource( 12 ), "FTROC_P3", "Default", SubResource( 13 ), "FTROC_P2", "Default", SubResource( 14 ), "FTROC_P1", "Default", SubResource( 15 ), "Default", "FootLeft", SubResource( 16 ), "Default", "FootRight", SubResource( 17 ) ]
+states/Land/node = SubResource( 21 )
+states/Land/position = Vector2( 467, 463.933 )
+states/Step/node = SubResource( 6 )
+states/Step/position = Vector2( 467, 80.1383 )
+transitions = [ "Step", "FTROC_P1", SubResource( 8 ), "Step", "FTROC_P2", SubResource( 9 ), "FTROC_P4", "Default", SubResource( 12 ), "FTROC_P3", "Default", SubResource( 13 ), "FTROC_P2", "Default", SubResource( 14 ), "FTROC_P1", "Default", SubResource( 15 ), "Default", "Step", SubResource( 16 ), "Step", "FTROC_P3", SubResource( 22 ), "Step", "FTROC_P4", SubResource( 23 ), "Default", "Land", SubResource( 24 ), "Land", "FTROC_J", SubResource( 25 ), "FTROC_J", "Default", SubResource( 26 ) ]
 start_node = "Default"
-graph_offset = Vector2( -13, -74.0324 )
+graph_offset = Vector2( -13, -103.067 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 

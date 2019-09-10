@@ -20,20 +20,23 @@ func _set_bone_y_rotation(bone_name, y_rot, root=false):
 	s_action.set_bone_global_pose(bone, bone_transform)
 
 
-func _add_anim_nodes(blendspace, path):
+func _add_anim_nodes(root, path):
 	
 	var array = []
 	
-	for point in blendspace.get_blend_point_count():
+	for point in root.get_blend_point_count():
 		
-		var node = blendspace.get_blend_point_node(point)
-		var position = blendspace.get_blend_point_position(point)
+		var node = root.get_blend_point_node(point)
+		var position = root.get_blend_point_position(point)
+		var animation = $AnimationPlayer.get_animation(node.get_node('Animation').animation) if node is AnimationNodeBlendTree else null
+		var blendspace = node if node is AnimationNodeBlendSpace1D else null
+		var children = _add_anim_nodes(node, path + str(point) + '/') if node is AnimationNodeBlendSpace1D else null
 		
 		array.append({
-			'path': path,
-			'animation': $AnimationPlayer.get_animation(node.get_node('Animation').animation) if node is AnimationNodeBlendTree else null,
-			'blendspace': node if node is AnimationNodeBlendSpace1D else null,
-			'children': _add_anim_nodes(node, path + str(point) + '/') if node is AnimationNodeBlendSpace1D else null,
+			'path': path + str(point) + '/',
+			'animation': animation,
+			'blendspace': blendspace,
+			'children': children,
 			'position': position
 			})
 	
@@ -71,67 +74,28 @@ func _filter_anim_events(nodes, blend_position, filter_all=false):
 			min_dist = dist
 			closest = node
 	
-	
 	for node in nodes:
 		
 		if node.animation != null:
 			
-			if node == closest:
+			if node.position == closest.position:
 
 				for track in node.animation.get_track_count():
-					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2)
+					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2 if filter_all else true)
 
 			else:
 
 				for track in node.animation.get_track_count():
-					node.animation.track_set_enabled(track, true)
+					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2)
 		
 		if node.blendspace != null:
 			
 			var position = get(node.path + 'blend_position')
 			
-			_filter_anim_events(node.children, position, filter_all) if node == closest else _filter_anim_events(node, position, true)
-
-
-#func _filter_anim_events(blendspace, disable_all=false):
-#
-#	var blend_position = blendspace.get('blend_position')
-#	var closest = null
-#	var min_dist = 2.0
-	
-#	for point in blendspace.get_blend_point_count():
-#
-#		var node = blendspace.get_blend_point_node(point)
-#		var position = blendspace.get_blend_point_position(point)
-#
-#		var dist = abs(blend_position - position)
-#
-#		if dist < min_dist:
-#			min_dist = dist
-#			closest = node
-	
-	
-#	for point in blendspace.get_blend_point_count():
-#
-#		var node = blendspace.get_blend_point_node(point)
-#
-#		if node is AnimationNodeBlendSpace1D:
-#
-#			_filter_anim_events(node, disable_all) if node == closest else _filter_anim_events(node, true)
-#
-#		else:
-#
-#			var animation = $AnimationPlayer.get_animation(node.get_node('Animation').animation)
-#
-#			if node == closest:
-#
-#				for track in animation.get_track_count():
-#					animation.track_set_enabled(track, animation.track_is_imported(track))
-#
-#			else:
-#
-#				for track in animation.get_track_count():
-#					animation.track_set_enabled(track, true)
+			if node.position == closest.position:
+				_filter_anim_events(node.children, position, filter_all)
+			else:
+				_filter_anim_events(node.children, position, true)
 
 
 func _sync_blend_spaces():
