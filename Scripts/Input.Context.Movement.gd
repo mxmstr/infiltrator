@@ -22,14 +22,22 @@ func _physics_process(delta):
 	var direction = Vector3()
 	var cam_xform = parent.global_transform
 	
-	if Input.is_action_pressed('Forward'):
-		direction += cam_xform.basis.z
-	if Input.is_action_pressed('Backward'):
-		direction += -cam_xform.basis.z
-	if Input.is_action_pressed('Left'):
-		direction += cam_xform.basis.x
-	if Input.is_action_pressed('Right'):
-		direction += -cam_xform.basis.x
+	var directions = { 
+		'Forward':  cam_xform.basis.z, 
+		'Backward': -cam_xform.basis.z, 
+		'Left': cam_xform.basis.x, 
+		'Right': -cam_xform.basis.x 
+		}
+	
+	
+	for action in directions:
+		
+		var status = Inf._get_rawinput_status(action, get_parent().mouse_device, get_parent().keyboard_device)
+		
+		if status == 1:
+			direction += directions[action]
+			break
+	
 	
 	direction.y = 0
 	parent.get_node('HumanMovement').direction = direction.normalized()

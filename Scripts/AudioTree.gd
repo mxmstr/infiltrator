@@ -10,7 +10,6 @@ func _play_schema(_name):
 	
 	emit_signal('animation_changed')
 	
-	print(_name)
 	playback.travel(_name)
 
 

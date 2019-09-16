@@ -3,3 +3,17 @@
 [resource]
 resource_name = "Open"
 length = 0.25
+tracks/0/type = "method"
+tracks/0/path = NodePath("../../DoorMovement")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "OPENING" ],
+"method": "_set_status"
+} ]
+}

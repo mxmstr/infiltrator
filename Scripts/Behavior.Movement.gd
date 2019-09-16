@@ -114,9 +114,9 @@ func _blend_skeletons():
 	
 	var s_movement = $AnimationPlayer.get_node($AnimationPlayer.root_node)
 	var s_action = $'../AnimationPlayer'.get_node($'../AnimationPlayer'.root_node)
-	var layered = get_parent().blend_mode == Infiltrator.blend.LAYERED
-	var action_only = get_parent().blend_mode == Infiltrator.blend.ACTION
-	var movement_only = get_parent().blend_mode == Infiltrator.blend.MOVEMENT
+	var layered = get_parent().blend_mode == Inf.blend.LAYERED
+	var action_only = get_parent().blend_mode == Inf.blend.ACTION
+	var movement_only = get_parent().blend_mode == Inf.blend.MOVEMENT
 	
 	for idx in range(s_action.get_bone_count()):
 		cached_pose.append(s_action.get_bone_global_pose(idx))

@@ -1,7 +1,7 @@
 extends AnimationTree
 
-export(int) var device
-export(String) var context
+export(int) var mouse_device
+export(int) var keyboard_device
 
 signal on_process
 
@@ -17,14 +17,7 @@ func _init_transitions():
 		var animation = tree_root.get_node(anim_name)
 		
 		if not anim_name in anim_names:
-			
-			#animation.init(anim_name, self)
-			#animation.transitions.append(transition)
-			
 			anim_names.append(anim_name)
-			
-#		else:
-#			animation.transitions.append(transition)
 		
 		if transition.has_method('init'):
 			transition.init(self, anim_name)
@@ -38,8 +31,5 @@ func _ready():
 
 
 func _process(delta):
-	
-#	if name == 'InputAbilities':
-#		print(get('parameters/playback').get_current_node())
 	
 	emit_signal('on_process')

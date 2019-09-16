@@ -1,7 +1,14 @@
 extends AnimationNodeStateMachineTransition
 
+enum Status {
+	RELEASED,
+	PRESSED,
+	JUST_RELEASED,
+	JUST_PRESSED
+}
+
 export(String) var action
-export(String, 'just_pressed', 'pressed', 'just_released', 'released') var state = 'just_pressed'
+export(Status) var state
 export(String, 'None', 'True', 'False', 'Null', 'NotNull') var assertion = 'None'
 export(String) var target
 export(String) var method
@@ -9,9 +16,11 @@ export(String) var method
 var anim_name
 var parent
 var trigger = true
+var events
+var last_status = -1
 
 
-func on_target_signal(value):
+func _on_target_signal(value):
 	
 	match assertion:
 		
@@ -31,22 +40,27 @@ func init(_parent, _anim_name):
 	parent = _parent
 	
 	parent.connect('on_process', self, 'process')
+	
+	
+	events = InputMap.get_action_list(action)
 
 
 func process():
 	
 	if assertion != 'None':
-		on_target_signal(parent.get_parent().get_node(target).call(method))
+		_on_target_signal(parent.get_parent().get_node(target).call(method))
 	
 	
 	var pressed = true
-	
-	if state == 'released':
-		for s in ['just_pressed', 'pressed', 'just_released']:
-			if Input.call('is_action_' + s, action):
-				pressed = false
-	else:
-		pressed = Input.call('is_action_' + state, action)
+	var status = Inf._get_rawinput_status(action, parent.mouse_device, parent.keyboard_device)
 	
 	
-	disabled = not trigger or not pressed
+	#print(status, ' ', state) if action == 'Run' else null
+	
+	disabled = not trigger \
+		or not (
+			status == state \
+			or (last_status != status and status + 2 == state)
+			)
+	
+	last_status = status

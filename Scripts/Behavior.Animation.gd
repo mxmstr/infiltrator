@@ -1,7 +1,7 @@
 extends AnimationNodeAnimation
 
-export(Infiltrator.visibility) var type
-export(Infiltrator.blend) var blend_mode
+export(Inf.visibility) var type
+export(Inf.blend) var blend_mode
 export var blocks_travel = false
 export var speed = 1.0
 export var distance = 0.0
@@ -15,7 +15,7 @@ signal on_enter
 
 func is_visible():
 	
-	return type != Infiltrator.visibility.INVISIBLE
+	return type != Inf.visibility.INVISIBLE
 
 
 func _on_animation_changed(new_name):

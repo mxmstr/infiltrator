@@ -9,76 +9,76 @@
 [ext_resource path="res://Animations/Human/Input/H.IN.Walk.tres" type="Animation" id=7]
 [ext_resource path="res://Scripts/Input.Context.Movement.gd" type="Script" id=8]
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "H.IN.Crouch"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "H.IN.Walk"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "H.IN.Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 1 )
+action = "Run"
+state = 1
+assertion = "None"
+target = ""
+method = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 1 )
+action = "Crouch"
+state = 1
+assertion = "None"
+target = ""
+method = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 1 )
+action = "Run"
+state = 0
+assertion = "None"
+target = ""
+method = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
 switch_mode = 2
 auto_advance = true
 disabled = true
 script = ExtResource( 1 )
-action = "Run"
-state = "pressed"
-assertion = "None"
-target = ""
-signal_name = ""
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-switch_mode = 2
-auto_advance = true
-disabled = true
-script = ExtResource( 1 )
 action = "Crouch"
-state = "pressed"
+state = 0
 assertion = "None"
 target = ""
-signal_name = ""
+method = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-switch_mode = 2
-auto_advance = true
-disabled = true
-script = ExtResource( 1 )
-action = "Run"
-state = "released"
-assertion = "None"
-target = ""
-signal_name = ""
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-switch_mode = 2
-auto_advance = true
-disabled = true
-script = ExtResource( 1 )
-action = "Crouch"
-state = "released"
-assertion = "None"
-target = ""
-signal_name = ""
-
-[sub_resource type="AnimationNodeStateMachine" id=2]
-states/Crouch/node = SubResource( 4 )
+[sub_resource type="AnimationNodeStateMachine" id=8]
+states/Crouch/node = SubResource( 1 )
 states/Crouch/position = Vector2( 612, 234 )
-states/Default/node = SubResource( 5 )
+states/Default/node = SubResource( 2 )
 states/Default/position = Vector2( 372, 164 )
-states/Run/node = SubResource( 6 )
+states/Run/node = SubResource( 3 )
 states/Run/position = Vector2( 612, 90 )
-transitions = [ "Default", "Run", SubResource( 7 ), "Default", "Crouch", SubResource( 8 ), "Run", "Default", SubResource( 9 ), "Crouch", "Default", SubResource( 10 ) ]
+transitions = [ "Default", "Run", SubResource( 4 ), "Default", "Crouch", SubResource( 5 ), "Run", "Default", SubResource( 6 ), "Crouch", "Default", SubResource( 7 ) ]
 start_node = "Default"
-graph_offset = Vector2( 0, 31.2408 )
+graph_offset = Vector2( 0, 55.5392 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 
 [node name="InputMovement" type="AnimationTree"]
-tree_root = SubResource( 2 )
+tree_root = SubResource( 8 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 9 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

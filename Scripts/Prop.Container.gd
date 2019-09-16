@@ -25,8 +25,6 @@ func _contain(item):
 
 func _release():
 	
-	print('release')
-	
 	for child in get_children():
 		
 		var last_transform = child.global_transform.origin

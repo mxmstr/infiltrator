@@ -36,6 +36,7 @@ var climb_y_progress = 0
 
 onready var collision = $'../Collision'
 onready var camera = $'../PlayerControl/Viewport/Camera'
+onready var ik_righthand = $'../Model'.get_child(0).get_node('RightHandIK/Target')
 
 signal climb_target_changed
 
@@ -105,6 +106,9 @@ func _find_climb_target():
 			elif in_range:
 				climb_target = ray_to_target.get_collision_point()
 				climb_target += origin.direction_to(climb_target) * climb_horizontal_distance
+				
+				ik_righthand.global_transform.origin = climb_target
+				
 				climb_x_progress = 0
 				climb_y_progress = 0
 				
