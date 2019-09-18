@@ -2,7 +2,7 @@ extends Node
 
 onready var parent = $'../'
 
-export var sensitivity = 0.002
+export var sensitivity = 0.01
 
 
 func _enter_tree():
@@ -38,18 +38,22 @@ func look_leftright_rotation(rotation=0):
 	return parent.rotation + Vector3(0, rotation, 0)
 
 
-func mouse(event):
+func mouse(offset):
 	
-	parent.get_node('PlayerControl/Viewport/Camera').set_rotation(look_updown_rotation(event.relative.y * -sensitivity))
-	parent.set_rotation(look_leftright_rotation(event.relative.x * -sensitivity))
+	parent.get_node('PlayerControl/Viewport/Camera').set_rotation(look_updown_rotation(offset.y * -sensitivity))
+	parent.set_rotation(look_leftright_rotation(offset.x * -sensitivity))
 
 
 func _input(event):
 	
-	if event is InputEventMouseMotion:
-		return mouse(event)
+	pass
+#	if event is InputEventMouseMotion:
+#		return mouse(event)
 
 
 func _process(delta):
 	
-	Input.warp_mouse_position(Vector2(0.5, 0.5))
+	var device = $'../PlayerControl'.mouse_device
+	
+	mouse(Inf._get_rawinput_mousemotion(device))
+	#Input.warp_mouse_position(Vector2(0.5, 0.5))

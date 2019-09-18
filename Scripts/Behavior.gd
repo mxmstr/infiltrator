@@ -38,7 +38,7 @@ func _get_visible_interactions():
 	var interactions = []
 	
 	for child in children:
-		if child.is_visible() and tree_root.can_travel(child.name):
+		if child.is_visible():# and tree_root.can_travel(child.name):
 			interactions.append(child.name)
 	
 	return interactions

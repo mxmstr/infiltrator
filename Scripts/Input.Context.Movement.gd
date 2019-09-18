@@ -19,6 +19,9 @@ func disable():
 
 func _physics_process(delta):
 	
+	var mouse_device = $'../../PlayerControl'.mouse_device
+	var keyboard_device = $'../../PlayerControl'.keyboard_device
+	
 	var direction = Vector3()
 	var cam_xform = parent.global_transform
 	
@@ -32,12 +35,12 @@ func _physics_process(delta):
 	
 	for action in directions:
 		
-		var status = Inf._get_rawinput_status(action, get_parent().mouse_device, get_parent().keyboard_device)
+		var status = Inf._get_rawinput_status(action, mouse_device, keyboard_device)
 		
 		if status == 1:
 			direction += directions[action]
-			break
-	
 	
 	direction.y = 0
+	
+	
 	parent.get_node('HumanMovement').direction = direction.normalized()

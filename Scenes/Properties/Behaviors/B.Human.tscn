@@ -1,91 +1,92 @@
-[gd_scene load_steps=220 format=2]
+[gd_scene load_steps=223 format=2]
 
 [ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Behavior.Transition.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=3]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Enter.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Exit.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Drop.tres" type="Animation" id=8]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Grab.tres" type="Animation" id=9]
-[ext_resource path="res://Scripts/Behavior.Movement.gd" type="Script" id=10]
-[ext_resource path="res://Animations/Human/Movement/H.2_BackwardLeft.tres" type="Animation" id=11]
-[ext_resource path="res://Animations/Human/Movement/H.2_BackwardRight.tres" type="Animation" id=12]
-[ext_resource path="res://Animations/Human/Movement/H.2_Crouch.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/Movement/H.2_Fall.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/Movement/H.2_ForwardLeft.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/Movement/H.2_ForwardRight.tres" type="Animation" id=16]
-[ext_resource path="res://Animations/Human/Movement/H.2_PeekLeft.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/Movement/H.2_PeekRight.tres" type="Animation" id=18]
-[ext_resource path="res://Animations/Human/Movement/H.2_Run.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/Movement/H.2_Stand.tres" type="Animation" id=20]
-[ext_resource path="res://Animations/Human/Movement/H.2_StrafeLeft.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/Movement/H.2_StrafeRight.tres" type="Animation" id=22]
-[ext_resource path="res://Animations/Human/Movement/H.2_TurnLeft.tres" type="Animation" id=23]
-[ext_resource path="res://Animations/Human/Movement/H.2_TurnRight.tres" type="Animation" id=24]
-[ext_resource path="res://Animations/Human/Movement/H.2_Walk.tres" type="Animation" id=25]
-[ext_resource path="res://Animations/Human/Movement/H.2_WalkBackward.tres" type="Animation" id=26]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_Run.tres" type="Animation" id=27]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_Stand.tres" type="Animation" id=28]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeLeft.tres" type="Animation" id=29]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeRight.tres" type="Animation" id=30]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_Walk.tres" type="Animation" id=31]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_WalkBackward.tres" type="Animation" id=32]
-[ext_resource path="res://Animations/Human/Movement/H.BackwardLeft.tres" type="Animation" id=33]
-[ext_resource path="res://Animations/Human/Movement/H.BackwardRight.tres" type="Animation" id=34]
-[ext_resource path="res://Animations/Human/Movement/H.Crouch.tres" type="Animation" id=35]
-[ext_resource path="res://Animations/Human/Movement/H.Fall.tres" type="Animation" id=36]
-[ext_resource path="res://Animations/Human/Movement/H.ForwardLeft.tres" type="Animation" id=37]
-[ext_resource path="res://Animations/Human/Movement/H.ForwardRight.tres" type="Animation" id=38]
-[ext_resource path="res://Animations/Human/Movement/H.PeekLeft.tres" type="Animation" id=39]
-[ext_resource path="res://Animations/Human/Movement/H.PeekRight.tres" type="Animation" id=40]
-[ext_resource path="res://Animations/Human/Movement/H.Run.tres" type="Animation" id=41]
-[ext_resource path="res://Animations/Human/Movement/H.Stand.tres" type="Animation" id=42]
-[ext_resource path="res://Animations/Human/Movement/H.Stand_Idle_Smoking.tres" type="Animation" id=43]
-[ext_resource path="res://Animations/Human/Movement/H.Stand_combatstance.tres" type="Animation" id=44]
-[ext_resource path="res://Animations/Human/Movement/H.StrafeLeft.tres" type="Animation" id=45]
-[ext_resource path="res://Animations/Human/Movement/H.StrafeRight.tres" type="Animation" id=46]
-[ext_resource path="res://Animations/Human/Movement/H.T_JOG.tres" type="Animation" id=47]
-[ext_resource path="res://Animations/Human/Movement/H.T_RUN.tres" type="Animation" id=48]
-[ext_resource path="res://Animations/Human/Movement/H.T_STAND.tres" type="Animation" id=49]
-[ext_resource path="res://Animations/Human/Movement/H.T_WALK.tres" type="Animation" id=50]
-[ext_resource path="res://Animations/Human/Movement/H.T_sprint.tres" type="Animation" id=51]
-[ext_resource path="res://Animations/Human/Movement/H.TurnLeft.tres" type="Animation" id=52]
-[ext_resource path="res://Animations/Human/Movement/H.TurnRight.tres" type="Animation" id=53]
-[ext_resource path="res://Animations/Human/Movement/H.Walk.tres" type="Animation" id=54]
-[ext_resource path="res://Animations/Human/Movement/H.WalkBackward.tres" type="Animation" id=55]
-[ext_resource path="res://Animations/Human/Movement/H.stand_MorphD.tres" type="Animation" id=56]
-[ext_resource path="res://Animations/Human/Movement/H.stand_TKD.tres" type="Animation" id=57]
-[ext_resource path="res://Animations/Human/Movement/H.stand_agent.tres" type="Animation" id=58]
-[ext_resource path="res://Animations/Human/Movement/H.stand_agr.tres" type="Animation" id=59]
-[ext_resource path="res://Animations/Human/Movement/H.stand_bushido.tres" type="Animation" id=60]
-[ext_resource path="res://Animations/Human/Movement/H.stand_giant.tres" type="Animation" id=61]
-[ext_resource path="res://Animations/Human/Movement/H.stand_kat.tres" type="Animation" id=62]
-[ext_resource path="res://Animations/Human/Movement/H.stand_kat_old.tres" type="Animation" id=63]
-[ext_resource path="res://Animations/Human/Movement/H.stand_kfstanceB.tres" type="Animation" id=64]
-[ext_resource path="res://Animations/Human/Movement/H.stand_merovingian.tres" type="Animation" id=65]
-[ext_resource path="res://Animations/Human/Movement/H.stand_morph_combat.tres" type="Animation" id=66]
-[ext_resource path="res://Animations/Human/Movement/H.stand_morpheus.tres" type="Animation" id=67]
-[ext_resource path="res://Animations/Human/Movement/H.stand_neo_dojo.tres" type="Animation" id=68]
-[ext_resource path="res://Animations/Human/Movement/H.stand_neo_rifle.tres" type="Animation" id=69]
-[ext_resource path="res://Animations/Human/Movement/H.stand_neo_trench.tres" type="Animation" id=70]
-[ext_resource path="res://Animations/Human/Movement/H.stand_ninja.tres" type="Animation" id=71]
-[ext_resource path="res://Animations/Human/Movement/H.stand_one.tres" type="Animation" id=72]
-[ext_resource path="res://Animations/Human/Movement/H.stand_one_b.tres" type="Animation" id=73]
-[ext_resource path="res://Animations/Human/Movement/H.stand_one_c.tres" type="Animation" id=74]
-[ext_resource path="res://Animations/Human/Movement/H.stand_seraph_combat.tres" type="Animation" id=75]
-[ext_resource path="res://Animations/Human/Movement/H.stand_trinity.tres" type="Animation" id=76]
-[ext_resource path="res://Animations/Human/Movement/H.t_forwardleft.tres" type="Animation" id=77]
-[ext_resource path="res://Animations/Human/Movement/H.t_forwardright.tres" type="Animation" id=78]
-[ext_resource path="res://Animations/Human/Movement/H.w_Run.tres" type="Animation" id=79]
-[ext_resource path="res://Animations/Human/Movement/H.w_Stand.tres" type="Animation" id=80]
-[ext_resource path="res://Animations/Human/Movement/H.w_StrafeLeft.tres" type="Animation" id=81]
-[ext_resource path="res://Animations/Human/Movement/H.w_StrafeRight.tres" type="Animation" id=82]
-[ext_resource path="res://Animations/Human/Movement/H.w_TurnLeft.tres" type="Animation" id=83]
-[ext_resource path="res://Animations/Human/Movement/H.w_TurnRight.tres" type="Animation" id=84]
-[ext_resource path="res://Animations/Human/Movement/H.w_Walk.tres" type="Animation" id=85]
-[ext_resource path="res://Animations/Human/Movement/H.w_WalkBackward.tres" type="Animation" id=86]
+[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Enter.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Exit.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Drop.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Grab.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Jump.Exit.tres" type="Animation" id=9]
+[ext_resource path="res://Animations/Human/Action/H.ACT.JumpLong.tres" type="Animation" id=10]
+[ext_resource path="res://Scripts/Behavior.Movement.gd" type="Script" id=11]
+[ext_resource path="res://Animations/Human/Movement/H.2_BackwardLeft.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/Human/Movement/H.2_BackwardRight.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/Movement/H.2_Crouch.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/Movement/H.2_Fall.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/Movement/H.2_ForwardLeft.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/Movement/H.2_ForwardRight.tres" type="Animation" id=17]
+[ext_resource path="res://Animations/Human/Movement/H.2_PeekLeft.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Human/Movement/H.2_PeekRight.tres" type="Animation" id=19]
+[ext_resource path="res://Animations/Human/Movement/H.2_Run.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Human/Movement/H.2_Stand.tres" type="Animation" id=21]
+[ext_resource path="res://Animations/Human/Movement/H.2_StrafeLeft.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/Movement/H.2_StrafeRight.tres" type="Animation" id=23]
+[ext_resource path="res://Animations/Human/Movement/H.2_TurnLeft.tres" type="Animation" id=24]
+[ext_resource path="res://Animations/Human/Movement/H.2_TurnRight.tres" type="Animation" id=25]
+[ext_resource path="res://Animations/Human/Movement/H.2_Walk.tres" type="Animation" id=26]
+[ext_resource path="res://Animations/Human/Movement/H.2_WalkBackward.tres" type="Animation" id=27]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_Run.tres" type="Animation" id=28]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_Stand.tres" type="Animation" id=29]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeLeft.tres" type="Animation" id=30]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeRight.tres" type="Animation" id=31]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_Walk.tres" type="Animation" id=32]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_WalkBackward.tres" type="Animation" id=33]
+[ext_resource path="res://Animations/Human/Movement/H.BackwardLeft.tres" type="Animation" id=34]
+[ext_resource path="res://Animations/Human/Movement/H.BackwardRight.tres" type="Animation" id=35]
+[ext_resource path="res://Animations/Human/Movement/H.Crouch.tres" type="Animation" id=36]
+[ext_resource path="res://Animations/Human/Movement/H.Fall.tres" type="Animation" id=37]
+[ext_resource path="res://Animations/Human/Movement/H.ForwardLeft.tres" type="Animation" id=38]
+[ext_resource path="res://Animations/Human/Movement/H.ForwardRight.tres" type="Animation" id=39]
+[ext_resource path="res://Animations/Human/Movement/H.PeekLeft.tres" type="Animation" id=40]
+[ext_resource path="res://Animations/Human/Movement/H.PeekRight.tres" type="Animation" id=41]
+[ext_resource path="res://Animations/Human/Movement/H.Run.tres" type="Animation" id=42]
+[ext_resource path="res://Animations/Human/Movement/H.Stand.tres" type="Animation" id=43]
+[ext_resource path="res://Animations/Human/Movement/H.Stand_Idle_Smoking.tres" type="Animation" id=44]
+[ext_resource path="res://Animations/Human/Movement/H.Stand_combatstance.tres" type="Animation" id=45]
+[ext_resource path="res://Animations/Human/Movement/H.StrafeLeft.tres" type="Animation" id=46]
+[ext_resource path="res://Animations/Human/Movement/H.StrafeRight.tres" type="Animation" id=47]
+[ext_resource path="res://Animations/Human/Movement/H.T_JOG.tres" type="Animation" id=48]
+[ext_resource path="res://Animations/Human/Movement/H.T_RUN.tres" type="Animation" id=49]
+[ext_resource path="res://Animations/Human/Movement/H.T_STAND.tres" type="Animation" id=50]
+[ext_resource path="res://Animations/Human/Movement/H.T_WALK.tres" type="Animation" id=51]
+[ext_resource path="res://Animations/Human/Movement/H.T_sprint.tres" type="Animation" id=52]
+[ext_resource path="res://Animations/Human/Movement/H.TurnLeft.tres" type="Animation" id=53]
+[ext_resource path="res://Animations/Human/Movement/H.TurnRight.tres" type="Animation" id=54]
+[ext_resource path="res://Animations/Human/Movement/H.Walk.tres" type="Animation" id=55]
+[ext_resource path="res://Animations/Human/Movement/H.WalkBackward.tres" type="Animation" id=56]
+[ext_resource path="res://Animations/Human/Movement/H.stand_MorphD.tres" type="Animation" id=57]
+[ext_resource path="res://Animations/Human/Movement/H.stand_TKD.tres" type="Animation" id=58]
+[ext_resource path="res://Animations/Human/Movement/H.stand_agent.tres" type="Animation" id=59]
+[ext_resource path="res://Animations/Human/Movement/H.stand_agr.tres" type="Animation" id=60]
+[ext_resource path="res://Animations/Human/Movement/H.stand_bushido.tres" type="Animation" id=61]
+[ext_resource path="res://Animations/Human/Movement/H.stand_giant.tres" type="Animation" id=62]
+[ext_resource path="res://Animations/Human/Movement/H.stand_kat.tres" type="Animation" id=63]
+[ext_resource path="res://Animations/Human/Movement/H.stand_kat_old.tres" type="Animation" id=64]
+[ext_resource path="res://Animations/Human/Movement/H.stand_kfstanceB.tres" type="Animation" id=65]
+[ext_resource path="res://Animations/Human/Movement/H.stand_merovingian.tres" type="Animation" id=66]
+[ext_resource path="res://Animations/Human/Movement/H.stand_morph_combat.tres" type="Animation" id=67]
+[ext_resource path="res://Animations/Human/Movement/H.stand_morpheus.tres" type="Animation" id=68]
+[ext_resource path="res://Animations/Human/Movement/H.stand_neo_dojo.tres" type="Animation" id=69]
+[ext_resource path="res://Animations/Human/Movement/H.stand_neo_rifle.tres" type="Animation" id=70]
+[ext_resource path="res://Animations/Human/Movement/H.stand_neo_trench.tres" type="Animation" id=71]
+[ext_resource path="res://Animations/Human/Movement/H.stand_ninja.tres" type="Animation" id=72]
+[ext_resource path="res://Animations/Human/Movement/H.stand_one.tres" type="Animation" id=73]
+[ext_resource path="res://Animations/Human/Movement/H.stand_one_b.tres" type="Animation" id=74]
+[ext_resource path="res://Animations/Human/Movement/H.stand_one_c.tres" type="Animation" id=75]
+[ext_resource path="res://Animations/Human/Movement/H.stand_seraph_combat.tres" type="Animation" id=76]
+[ext_resource path="res://Animations/Human/Movement/H.stand_trinity.tres" type="Animation" id=77]
+[ext_resource path="res://Animations/Human/Movement/H.t_forwardleft.tres" type="Animation" id=78]
+[ext_resource path="res://Animations/Human/Movement/H.t_forwardright.tres" type="Animation" id=79]
+[ext_resource path="res://Animations/Human/Movement/H.w_Run.tres" type="Animation" id=80]
+[ext_resource path="res://Animations/Human/Movement/H.w_Stand.tres" type="Animation" id=81]
+[ext_resource path="res://Animations/Human/Movement/H.w_StrafeLeft.tres" type="Animation" id=82]
+[ext_resource path="res://Animations/Human/Movement/H.w_StrafeRight.tres" type="Animation" id=83]
+[ext_resource path="res://Animations/Human/Movement/H.w_TurnLeft.tres" type="Animation" id=84]
+[ext_resource path="res://Animations/Human/Movement/H.w_TurnRight.tres" type="Animation" id=85]
+[ext_resource path="res://Animations/Human/Movement/H.w_Walk.tres" type="Animation" id=86]
+[ext_resource path="res://Animations/Human/Movement/H.w_WalkBackward.tres" type="Animation" id=87]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "H.ACT.Climb"
@@ -97,15 +98,6 @@ speed = 1.0
 distance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "H.ACT.Climb.Enter"
-script = ExtResource( 1 )
-type = 0
-blend_mode = 1
-blocks_travel = false
-speed = 1.0
-distance = 0.0
-
-[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "H.ACT.Climb.Exit"
 script = ExtResource( 1 )
 type = 0
@@ -114,7 +106,7 @@ blocks_travel = false
 speed = 1.0
 distance = 0.0
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "H.ShootBeretta"
 script = ExtResource( 1 )
 type = 0
@@ -123,7 +115,7 @@ blocks_travel = false
 speed = 1.0
 distance = 0.0
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "H.ACT.Drop"
 script = ExtResource( 1 )
 type = 0
@@ -132,7 +124,7 @@ blocks_travel = false
 speed = 1.0
 distance = 0.0
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "H.ACT.Grab"
 script = ExtResource( 1 )
 type = 0
@@ -141,17 +133,31 @@ blocks_travel = false
 speed = 1.0
 distance = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
-switch_mode = 2
-auto_advance = true
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "H.ACT.JumpLong"
+script = ExtResource( 1 )
+type = 0
+blend_mode = 0
+blocks_travel = false
+speed = 1.0
+distance = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "H.ACT.Jump.Exit"
+script = ExtResource( 1 )
+type = 0
+blend_mode = 0
+blocks_travel = false
+speed = 1.0
+distance = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 switch_mode = 2
@@ -164,356 +170,332 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 switch_mode = 2
 auto_advance = true
-priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
-switch_mode = 2
-auto_advance = true
-script = ExtResource( 2 )
-assertion = "NotNull"
-target = "../HumanMovement"
-signal_name = "climb_target_changed"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 
-[sub_resource type="AnimationNodeStateMachine" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
 states/Climb/node = SubResource( 1 )
-states/Climb/position = Vector2( 599, -85.206 )
-states/ClimbEnter/node = SubResource( 2 )
-states/ClimbEnter/position = Vector2( 438, -85.206 )
-states/ClimbExit/node = SubResource( 3 )
-states/ClimbExit/position = Vector2( 755, -85.206 )
-states/Default/node = SubResource( 4 )
+states/Climb/position = Vector2( 438, -85.206 )
+states/ClimbExit/node = SubResource( 2 )
+states/ClimbExit/position = Vector2( 606, -85.206 )
+states/Default/node = SubResource( 3 )
 states/Default/position = Vector2( 131.37, 287 )
-states/Drop/node = SubResource( 5 )
+states/Drop/node = SubResource( 4 )
 states/Drop/position = Vector2( 438, 47 )
-states/Grab/node = SubResource( 6 )
+states/Grab/node = SubResource( 5 )
 states/Grab/position = Vector2( 438, 174 )
-transitions = [ "Climb", "ClimbExit", SubResource( 7 ), "Default", "Drop", SubResource( 8 ), "Default", "Grab", SubResource( 9 ), "Grab", "Default", SubResource( 10 ), "Drop", "Default", SubResource( 11 ), "ClimbExit", "Default", SubResource( 12 ), "ClimbEnter", "Default", SubResource( 13 ), "ClimbEnter", "Climb", SubResource( 14 ), "Default", "ClimbEnter", SubResource( 15 ) ]
+states/Jump/node = SubResource( 6 )
+states/Jump/position = Vector2( 438, -178.676 )
+states/JumpExit/node = SubResource( 7 )
+states/JumpExit/position = Vector2( 606, -178.676 )
+transitions = [ "Climb", "ClimbExit", SubResource( 8 ), "Default", "Drop", SubResource( 9 ), "Default", "Grab", SubResource( 10 ), "Grab", "Default", SubResource( 11 ), "Drop", "Default", SubResource( 12 ), "ClimbExit", "Default", SubResource( 13 ), "Default", "Climb", SubResource( 14 ), "Default", "Jump", SubResource( 15 ), "Jump", "JumpExit", SubResource( 16 ), "JumpExit", "Default", SubResource( 17 ) ]
 start_node = "Default"
-graph_offset = Vector2( -120.751, -133.578 )
+graph_offset = Vector2( -120.751, -257.676 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "H.T_STAND"
 
-[sub_resource type="AnimationNodeBlend2" id=20]
+[sub_resource type="AnimationNodeBlend2" id=22]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=21]
+[sub_resource type="AnimationNodeBlendTree" id=23]
 graph_offset = Vector2( 2.68542, 109 )
-nodes/Animation/node = SubResource( 19 )
+nodes/Animation/node = SubResource( 21 )
 nodes/Animation/position = Vector2( 420, 180 )
-"nodes/Animation 2/node" = SubResource( 18 )
+"nodes/Animation 2/node" = SubResource( 20 )
 "nodes/Animation 2/position" = Vector2( 420, 40 )
-nodes/Blend2/node = SubResource( 20 )
+nodes/Blend2/node = SubResource( 22 )
 nodes/Blend2/position = Vector2( 660, 60 )
 nodes/output/position = Vector2( 860, 120 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation 2", "Blend2", 1, "Animation" ]
+node_connections = [ "Blend2", 0, "Animation 2", "Blend2", 1, "Animation", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "H.Run"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=24]
+[sub_resource type="AnimationNodeBlend2" id=26]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=25]
+[sub_resource type="AnimationNodeBlendTree" id=27]
 graph_offset = Vector2( 85.9333, 118.5 )
-nodes/Animation/node = SubResource( 23 )
+nodes/Animation/node = SubResource( 25 )
 nodes/Animation/position = Vector2( 360, 40 )
-"nodes/Animation 2/node" = SubResource( 22 )
+"nodes/Animation 2/node" = SubResource( 24 )
 "nodes/Animation 2/position" = Vector2( 360, 180 )
-nodes/Blend2/node = SubResource( 24 )
+nodes/Blend2/node = SubResource( 26 )
 nodes/Blend2/position = Vector2( 640, 80 )
 nodes/output/position = Vector2( 900, 140 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=28]
 animation = "H.WalkBackward"
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=29]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=28]
+[sub_resource type="AnimationNodeBlend2" id=30]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=29]
-nodes/Animation/node = SubResource( 27 )
+[sub_resource type="AnimationNodeBlendTree" id=31]
+nodes/Animation/node = SubResource( 29 )
 nodes/Animation/position = Vector2( 280, 20 )
-"nodes/Animation 2/node" = SubResource( 26 )
+"nodes/Animation 2/node" = SubResource( 28 )
 "nodes/Animation 2/position" = Vector2( 280, 160 )
-nodes/Blend2/node = SubResource( 28 )
+nodes/Blend2/node = SubResource( 30 )
 nodes/Blend2/position = Vector2( 560, 60 )
 nodes/output/position = Vector2( 840, 140 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=32]
 animation = "H.Walk"
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=33]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=32]
+[sub_resource type="AnimationNodeBlend2" id=34]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=33]
+[sub_resource type="AnimationNodeBlendTree" id=35]
 graph_offset = Vector2( 0, 97.5 )
-nodes/Animation/node = SubResource( 31 )
+nodes/Animation/node = SubResource( 33 )
 nodes/Animation/position = Vector2( 340, 60 )
-"nodes/Animation 2/node" = SubResource( 30 )
+"nodes/Animation 2/node" = SubResource( 32 )
 "nodes/Animation 2/position" = Vector2( 340, 200 )
-nodes/Blend2/node = SubResource( 32 )
+nodes/Blend2/node = SubResource( 34 )
 nodes/Blend2/position = Vector2( 620, 100 )
 nodes/output/position = Vector2( 880, 180 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=34]
-blend_point_0/node = SubResource( 21 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=36]
+blend_point_0/node = SubResource( 23 )
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 25 )
+blend_point_1/node = SubResource( 27 )
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 29 )
+blend_point_2/node = SubResource( 31 )
 blend_point_2/pos = -0.3
-blend_point_3/node = SubResource( 33 )
+blend_point_3/node = SubResource( 35 )
 blend_point_3/pos = 0.3
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=37]
 animation = "H.StrafeLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=38]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=37]
+[sub_resource type="AnimationNodeBlend2" id=39]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=38]
+[sub_resource type="AnimationNodeBlendTree" id=40]
 graph_offset = Vector2( 5.37083, 107 )
-nodes/Animation/node = SubResource( 36 )
+nodes/Animation/node = SubResource( 38 )
 nodes/Animation/position = Vector2( 280, 60 )
-"nodes/Animation 2/node" = SubResource( 35 )
+"nodes/Animation 2/node" = SubResource( 37 )
 "nodes/Animation 2/position" = Vector2( 280, 200 )
-nodes/Blend2/node = SubResource( 37 )
+nodes/Blend2/node = SubResource( 39 )
 nodes/Blend2/position = Vector2( 580, 100 )
 nodes/output/position = Vector2( 900, 160 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=39]
-blend_point_0/node = SubResource( 38 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=41]
+blend_point_0/node = SubResource( 40 )
 blend_point_0/pos = 0.0
 
-[sub_resource type="AnimationNodeAnimation" id=40]
+[sub_resource type="AnimationNodeAnimation" id=42]
 animation = "H.StrafeRight"
 
-[sub_resource type="AnimationNodeAnimation" id=41]
+[sub_resource type="AnimationNodeAnimation" id=43]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=42]
+[sub_resource type="AnimationNodeBlend2" id=44]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=43]
+[sub_resource type="AnimationNodeBlendTree" id=45]
 graph_offset = Vector2( 0, 97.5 )
-nodes/Animation/node = SubResource( 41 )
+nodes/Animation/node = SubResource( 43 )
 nodes/Animation/position = Vector2( 280, 40 )
-"nodes/Animation 2/node" = SubResource( 40 )
+"nodes/Animation 2/node" = SubResource( 42 )
 "nodes/Animation 2/position" = Vector2( 280, 200 )
-nodes/Blend2/node = SubResource( 42 )
+nodes/Blend2/node = SubResource( 44 )
 nodes/Blend2/position = Vector2( 560, 80 )
 nodes/output/position = Vector2( 840, 160 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=44]
-blend_point_0/node = SubResource( 43 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=46]
+blend_point_0/node = SubResource( 45 )
 blend_point_0/pos = 0.0
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=45]
-blend_point_0/node = SubResource( 34 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=47]
+blend_point_0/node = SubResource( 36 )
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 39 )
+blend_point_1/node = SubResource( 41 )
 blend_point_1/pos = -1.0
-blend_point_2/node = SubResource( 44 )
+blend_point_2/node = SubResource( 46 )
 blend_point_2/pos = 1.0
 
-[sub_resource type="AnimationNodeAnimation" id=46]
+[sub_resource type="AnimationNodeAnimation" id=48]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=47]
+[sub_resource type="AnimationNodeBlend2" id=49]
 filters = [ "../../Feet", ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeAnimation" id=48]
+[sub_resource type="AnimationNodeAnimation" id=50]
 animation = "H.Run"
 
-[sub_resource type="AnimationNodeTimeScale" id=49]
+[sub_resource type="AnimationNodeTimeScale" id=51]
 
-[sub_resource type="AnimationNodeBlendTree" id=50]
+[sub_resource type="AnimationNodeBlendTree" id=52]
 graph_offset = Vector2( -408, 82.75 )
-nodes/Animation/node = SubResource( 48 )
+nodes/Animation/node = SubResource( 50 )
 nodes/Animation/position = Vector2( -60, 120 )
-nodes/TimeScale/node = SubResource( 49 )
+nodes/TimeScale/node = SubResource( 51 )
 nodes/TimeScale/position = Vector2( 120, 120 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
-[sub_resource type="AnimationNodeAnimation" id=51]
+[sub_resource type="AnimationNodeAnimation" id=53]
 animation = "H.Walk"
 
-[sub_resource type="AnimationNodeTimeScale" id=52]
+[sub_resource type="AnimationNodeTimeScale" id=54]
 
-[sub_resource type="AnimationNodeBlendTree" id=53]
+[sub_resource type="AnimationNodeBlendTree" id=55]
 graph_offset = Vector2( -547, 90.75 )
-nodes/Animation/node = SubResource( 51 )
+nodes/Animation/node = SubResource( 53 )
 nodes/Animation/position = Vector2( -160, 140 )
-nodes/TimeScale/node = SubResource( 52 )
+nodes/TimeScale/node = SubResource( 54 )
 nodes/TimeScale/position = Vector2( 60, 120 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
-[sub_resource type="AnimationNodeAnimation" id=54]
+[sub_resource type="AnimationNodeAnimation" id=56]
 animation = "H.T_STAND"
 
-[sub_resource type="AnimationNodeTimeScale" id=55]
+[sub_resource type="AnimationNodeTimeScale" id=57]
 
-[sub_resource type="AnimationNodeBlendTree" id=56]
-graph_offset = Vector2( -663, 86 )
-nodes/Animation/node = SubResource( 54 )
+[sub_resource type="AnimationNodeBlendTree" id=58]
+graph_offset = Vector2( -663, 100.404 )
+nodes/Animation/node = SubResource( 56 )
 nodes/Animation/position = Vector2( -366, 167 )
-nodes/TimeScale/node = SubResource( 55 )
+nodes/TimeScale/node = SubResource( 57 )
 nodes/TimeScale/position = Vector2( -20, 120 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
-[sub_resource type="AnimationNodeAnimation" id=57]
+[sub_resource type="AnimationNodeAnimation" id=59]
 animation = "H.WalkBackward"
 
-[sub_resource type="AnimationNodeTimeScale" id=58]
+[sub_resource type="AnimationNodeTimeScale" id=60]
 
-[sub_resource type="AnimationNodeBlendTree" id=59]
+[sub_resource type="AnimationNodeBlendTree" id=61]
 graph_offset = Vector2( -567, 101 )
-nodes/Animation/node = SubResource( 57 )
+nodes/Animation/node = SubResource( 59 )
 nodes/Animation/position = Vector2( -300, 160 )
-nodes/TimeScale/node = SubResource( 58 )
+nodes/TimeScale/node = SubResource( 60 )
 nodes/TimeScale/position = Vector2( 16, 157 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=60]
-blend_point_0/node = SubResource( 50 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=62]
+blend_point_0/node = SubResource( 52 )
 blend_point_0/pos = 1.0
-blend_point_1/node = SubResource( 53 )
+blend_point_1/node = SubResource( 55 )
 blend_point_1/pos = 0.3
-blend_point_2/node = SubResource( 56 )
+blend_point_2/node = SubResource( 58 )
 blend_point_2/pos = 0.0
-blend_point_3/node = SubResource( 59 )
+blend_point_3/node = SubResource( 61 )
 blend_point_3/pos = -0.3
 
-[sub_resource type="AnimationNodeAnimation" id=130]
+[sub_resource type="AnimationNodeAnimation" id=63]
 animation = "H.StrafeRight"
 
-[sub_resource type="AnimationNodeTimeScale" id=131]
+[sub_resource type="AnimationNodeTimeScale" id=64]
 
-[sub_resource type="AnimationNodeBlendTree" id=132]
+[sub_resource type="AnimationNodeBlendTree" id=65]
 graph_offset = Vector2( -499.042, 48.75 )
-nodes/Animation/node = SubResource( 130 )
+nodes/Animation/node = SubResource( 63 )
 nodes/Animation/position = Vector2( -160, 120 )
-nodes/TimeScale/node = SubResource( 131 )
+nodes/TimeScale/node = SubResource( 64 )
 nodes/TimeScale/position = Vector2( 80, 120 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
-
-[sub_resource type="AnimationNodeAnimation" id=133]
-animation = "H.StrafeLeft"
-
-[sub_resource type="AnimationNodeTimeScale" id=134]
-
-[sub_resource type="AnimationNodeBlendTree" id=135]
-graph_offset = Vector2( -363.833, 48.75 )
-nodes/Animation/node = SubResource( 133 )
-nodes/Animation/position = Vector2( -100, 120 )
-nodes/TimeScale/node = SubResource( 134 )
-nodes/TimeScale/position = Vector2( 120, 120 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=63]
-blend_point_0/node = SubResource( 60 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 132 )
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 135 )
-blend_point_2/pos = -1.0
-
-[sub_resource type="AnimationNodeBlendTree" id=64]
-graph_offset = Vector2( -2, 122.125 )
-nodes/Animation/node = SubResource( 46 )
-nodes/Animation/position = Vector2( 360, 20 )
-nodes/Blend2/node = SubResource( 47 )
-nodes/Blend2/position = Vector2( 600, 40 )
-nodes/BlendSpace1D/node = SubResource( 63 )
-nodes/BlendSpace1D/position = Vector2( 360, 200 )
-nodes/output/position = Vector2( 880, 100 )
-node_connections = [ "output", 0, "BlendSpace1D", "Blend2", 0, "Animation" ]
-
-[sub_resource type="AnimationNodeAnimation" id=65]
-animation = "DefaultAnim"
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
 [sub_resource type="AnimationNodeAnimation" id=66]
-animation = "H.T_STAND"
+animation = "H.StrafeLeft"
 
-[sub_resource type="AnimationNodeBlend2" id=67]
-filter_enabled = true
-filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
+[sub_resource type="AnimationNodeTimeScale" id=67]
 
 [sub_resource type="AnimationNodeBlendTree" id=68]
-graph_offset = Vector2( 34.0583, 225.25 )
+graph_offset = Vector2( -363.833, 48.75 )
 nodes/Animation/node = SubResource( 66 )
-nodes/Animation/position = Vector2( 440, 340 )
-"nodes/Animation 2/node" = SubResource( 65 )
-"nodes/Animation 2/position" = Vector2( 440, 180 )
-nodes/Blend2/node = SubResource( 67 )
-nodes/Blend2/position = Vector2( 660, 180 )
-nodes/output/position = Vector2( 860, 260 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation 2", "Blend2", 1, "Animation" ]
+nodes/Animation/position = Vector2( -100, 120 )
+nodes/TimeScale/node = SubResource( 67 )
+nodes/TimeScale/position = Vector2( 120, 120 )
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
-[sub_resource type="AnimationNodeStateMachine" id=69]
-states/BlendTree/node = SubResource( 68 )
-states/BlendTree/position = Vector2( 672, 104 )
-start_node = "BlendTree"
+[sub_resource type="AnimationNodeBlendSpace1D" id=69]
+blend_point_0/node = SubResource( 62 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 65 )
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource( 68 )
+blend_point_2/pos = -1.0
 
-[sub_resource type="AnimationNodeAnimation" id=70]
-animation = "H.StrafeLeft"
+[sub_resource type="AnimationNodeBlendTree" id=70]
+graph_offset = Vector2( 0, 119 )
+nodes/Animation/node = SubResource( 48 )
+nodes/Animation/position = Vector2( 360, 20 )
+nodes/Blend2/node = SubResource( 49 )
+nodes/Blend2/position = Vector2( 600, 40 )
+nodes/BlendSpace1D/node = SubResource( 69 )
+nodes/BlendSpace1D/position = Vector2( 360, 200 )
+nodes/output/position = Vector2( 880, 100 )
+node_connections = [ "Blend2", 0, "Animation", "output", 0, "BlendSpace1D" ]
 
 [sub_resource type="AnimationNodeAnimation" id=71]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=72]
+[sub_resource type="AnimationNodeAnimation" id=72]
+animation = "H.T_STAND"
+
+[sub_resource type="AnimationNodeBlend2" id=73]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=73]
-graph_offset = Vector2( -328.433, 71.25 )
-nodes/Animation/node = SubResource( 71 )
-nodes/Animation/position = Vector2( -180, 60 )
-"nodes/Animation 2/node" = SubResource( 70 )
-"nodes/Animation 2/position" = Vector2( -180, 200 )
-nodes/Blend2/node = SubResource( 72 )
-nodes/Blend2/position = Vector2( 60, 80 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+[sub_resource type="AnimationNodeBlendTree" id=74]
+graph_offset = Vector2( 34.0583, 225.25 )
+nodes/Animation/node = SubResource( 72 )
+nodes/Animation/position = Vector2( 440, 340 )
+"nodes/Animation 2/node" = SubResource( 71 )
+"nodes/Animation 2/position" = Vector2( 440, 180 )
+nodes/Blend2/node = SubResource( 73 )
+nodes/Blend2/position = Vector2( 660, 180 )
+nodes/output/position = Vector2( 860, 260 )
+node_connections = [ "Blend2", 0, "Animation 2", "Blend2", 1, "Animation", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeStateMachine" id=74]
-states/BlendTree/node = SubResource( 73 )
-states/BlendTree/position = Vector2( 566, 147 )
+[sub_resource type="AnimationNodeStateMachine" id=75]
+states/BlendTree/node = SubResource( 74 )
+states/BlendTree/position = Vector2( 672, 104 )
 start_node = "BlendTree"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=75]
-
 [sub_resource type="AnimationNodeAnimation" id=76]
-animation = "H.StrafeRight"
+animation = "H.StrafeLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=77]
 animation = "DefaultAnim"
@@ -523,52 +505,49 @@ filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
 [sub_resource type="AnimationNodeBlendTree" id=79]
-graph_offset = Vector2( -389.667, 48.75 )
+graph_offset = Vector2( -328.433, 71.25 )
 nodes/Animation/node = SubResource( 77 )
-nodes/Animation/position = Vector2( -180, 40 )
+nodes/Animation/position = Vector2( -180, 60 )
 "nodes/Animation 2/node" = SubResource( 76 )
-"nodes/Animation 2/position" = Vector2( -180, 180 )
+"nodes/Animation 2/position" = Vector2( -180, 200 )
 nodes/Blend2/node = SubResource( 78 )
-nodes/Blend2/position = Vector2( 80, 60 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+nodes/Blend2/position = Vector2( 60, 80 )
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=80]
 states/BlendTree/node = SubResource( 79 )
-states/BlendTree/position = Vector2( 564, 181 )
+states/BlendTree/position = Vector2( 566, 147 )
 start_node = "BlendTree"
 
-[sub_resource type="AnimationNodeAnimation" id=81]
-animation = "H.Run"
+[sub_resource type="AnimationNodeBlendSpace2D" id=81]
 
 [sub_resource type="AnimationNodeAnimation" id=82]
+animation = "H.StrafeRight"
+
+[sub_resource type="AnimationNodeAnimation" id=83]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=83]
+[sub_resource type="AnimationNodeBlend2" id=84]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeTimeScale" id=84]
-
 [sub_resource type="AnimationNodeBlendTree" id=85]
-graph_offset = Vector2( -354.45, 80 )
-nodes/Animation/node = SubResource( 82 )
-nodes/Animation/position = Vector2( -20, 80 )
-"nodes/Animation 2/node" = SubResource( 81 )
-"nodes/Animation 2/position" = Vector2( 0, 200 )
-nodes/Blend2/node = SubResource( 83 )
-nodes/Blend2/position = Vector2( 260, 100 )
-nodes/TimeScale/node = SubResource( 84 )
-nodes/TimeScale/position = Vector2( 460, 120 )
-nodes/output/position = Vector2( 620, 160 )
-node_connections = [ "output", 0, "TimeScale", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "TimeScale", 0, "Blend2" ]
+graph_offset = Vector2( -389.667, 48.75 )
+nodes/Animation/node = SubResource( 83 )
+nodes/Animation/position = Vector2( -180, 40 )
+"nodes/Animation 2/node" = SubResource( 82 )
+"nodes/Animation 2/position" = Vector2( -180, 180 )
+nodes/Blend2/node = SubResource( 84 )
+nodes/Blend2/position = Vector2( 80, 60 )
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=86]
 states/BlendTree/node = SubResource( 85 )
-states/BlendTree/position = Vector2( 676, 145 )
+states/BlendTree/position = Vector2( 564, 181 )
 start_node = "BlendTree"
 
 [sub_resource type="AnimationNodeAnimation" id=87]
-animation = "H.WalkBackward"
+animation = "H.Run"
 
 [sub_resource type="AnimationNodeAnimation" id=88]
 animation = "DefaultAnim"
@@ -577,191 +556,209 @@ animation = "DefaultAnim"
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=90]
-graph_offset = Vector2( -434.2, 97.5 )
-nodes/Animation/node = SubResource( 88 )
-nodes/Animation/position = Vector2( -120, 60 )
-"nodes/Animation 2/node" = SubResource( 87 )
-"nodes/Animation 2/position" = Vector2( -120, 200 )
-nodes/Blend2/node = SubResource( 89 )
-nodes/Blend2/position = Vector2( 100, 100 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+[sub_resource type="AnimationNodeTimeScale" id=90]
 
-[sub_resource type="AnimationNodeStateMachine" id=91]
-states/BlendTree/node = SubResource( 90 )
+[sub_resource type="AnimationNodeBlendTree" id=91]
+graph_offset = Vector2( -354.45, 80 )
+nodes/Animation/node = SubResource( 88 )
+nodes/Animation/position = Vector2( -20, 80 )
+"nodes/Animation 2/node" = SubResource( 87 )
+"nodes/Animation 2/position" = Vector2( 0, 200 )
+nodes/Blend2/node = SubResource( 89 )
+nodes/Blend2/position = Vector2( 260, 100 )
+nodes/TimeScale/node = SubResource( 90 )
+nodes/TimeScale/position = Vector2( 460, 120 )
+nodes/output/position = Vector2( 620, 160 )
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "TimeScale", 0, "Blend2", "output", 0, "TimeScale" ]
+
+[sub_resource type="AnimationNodeStateMachine" id=92]
+states/BlendTree/node = SubResource( 91 )
+states/BlendTree/position = Vector2( 676, 145 )
+start_node = "BlendTree"
+
+[sub_resource type="AnimationNodeAnimation" id=93]
+animation = "H.WalkBackward"
+
+[sub_resource type="AnimationNodeAnimation" id=94]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeBlend2" id=95]
+filter_enabled = true
+filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
+
+[sub_resource type="AnimationNodeBlendTree" id=96]
+graph_offset = Vector2( -434.2, 97.5 )
+nodes/Animation/node = SubResource( 94 )
+nodes/Animation/position = Vector2( -120, 60 )
+"nodes/Animation 2/node" = SubResource( 93 )
+"nodes/Animation 2/position" = Vector2( -120, 200 )
+nodes/Blend2/node = SubResource( 95 )
+nodes/Blend2/position = Vector2( 100, 100 )
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+
+[sub_resource type="AnimationNodeStateMachine" id=97]
+states/BlendTree/node = SubResource( 96 )
 states/BlendTree/position = Vector2( 609, 186 )
 start_node = "BlendTree"
 
-[sub_resource type="AnimationNodeAnimation" id=92]
+[sub_resource type="AnimationNodeAnimation" id=98]
 animation = "H.Walk"
 
-[sub_resource type="AnimationNodeAnimation" id=93]
+[sub_resource type="AnimationNodeAnimation" id=99]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=94]
+[sub_resource type="AnimationNodeBlend2" id=100]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=95]
+[sub_resource type="AnimationNodeBlendTree" id=101]
 graph_offset = Vector2( -537.183, 0 )
-nodes/Animation/node = SubResource( 93 )
+nodes/Animation/node = SubResource( 99 )
 nodes/Animation/position = Vector2( -80, 60 )
-"nodes/Animation 2/node" = SubResource( 92 )
+"nodes/Animation 2/node" = SubResource( 98 )
 "nodes/Animation 2/position" = Vector2( -80, 200 )
-nodes/Blend2/node = SubResource( 94 )
+nodes/Blend2/node = SubResource( 100 )
 nodes/Blend2/position = Vector2( 120, 80 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeStateMachine" id=96]
-states/BlendTree/node = SubResource( 95 )
+[sub_resource type="AnimationNodeStateMachine" id=102]
+states/BlendTree/node = SubResource( 101 )
 states/BlendTree/position = Vector2( 636, 167 )
 start_node = "BlendTree"
 
-[sub_resource type="AnimationNodeAnimation" id=97]
+[sub_resource type="AnimationNodeAnimation" id=103]
 animation = "H.ForwardRight"
 
-[sub_resource type="AnimationNodeAnimation" id=98]
+[sub_resource type="AnimationNodeAnimation" id=104]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=99]
+[sub_resource type="AnimationNodeBlend2" id=105]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=100]
+[sub_resource type="AnimationNodeBlendTree" id=106]
 graph_offset = Vector2( -159, -58 )
-nodes/Animation/node = SubResource( 98 )
+nodes/Animation/node = SubResource( 104 )
 nodes/Animation/position = Vector2( 200, 240 )
-"nodes/Animation 2/node" = SubResource( 97 )
+"nodes/Animation 2/node" = SubResource( 103 )
 "nodes/Animation 2/position" = Vector2( 200, 400 )
-nodes/Blend2/node = SubResource( 99 )
+nodes/Blend2/node = SubResource( 105 )
 nodes/Blend2/position = Vector2( 480, 280 )
 nodes/output/position = Vector2( 720, 340 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeStateMachine" id=101]
-states/BlendTree/node = SubResource( 100 )
+[sub_resource type="AnimationNodeStateMachine" id=107]
+states/BlendTree/node = SubResource( 106 )
 states/BlendTree/position = Vector2( 515, 389 )
 start_node = "BlendTree"
 
-[sub_resource type="AnimationNodeAnimation" id=102]
+[sub_resource type="AnimationNodeAnimation" id=108]
 animation = "H.ForwardLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=103]
+[sub_resource type="AnimationNodeAnimation" id=109]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=104]
+[sub_resource type="AnimationNodeBlend2" id=110]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=105]
+[sub_resource type="AnimationNodeBlendTree" id=111]
 graph_offset = Vector2( -457, -230 )
-nodes/Animation/node = SubResource( 103 )
+nodes/Animation/node = SubResource( 109 )
 nodes/Animation/position = Vector2( -120, 40 )
-"nodes/Animation 2/node" = SubResource( 102 )
+"nodes/Animation 2/node" = SubResource( 108 )
 "nodes/Animation 2/position" = Vector2( -120, 220 )
-nodes/Blend2/node = SubResource( 104 )
+nodes/Blend2/node = SubResource( 110 )
 nodes/Blend2/position = Vector2( 100, 100 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeStateMachine" id=106]
-states/BlendTree/node = SubResource( 105 )
+[sub_resource type="AnimationNodeStateMachine" id=112]
+states/BlendTree/node = SubResource( 111 )
 states/BlendTree/position = Vector2( 570, 302 )
 start_node = "BlendTree"
 
-[sub_resource type="AnimationNodeAnimation" id=107]
+[sub_resource type="AnimationNodeAnimation" id=113]
 animation = "H.BackwardRight"
 
-[sub_resource type="AnimationNodeAnimation" id=108]
+[sub_resource type="AnimationNodeAnimation" id=114]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=109]
+[sub_resource type="AnimationNodeBlend2" id=115]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=110]
+[sub_resource type="AnimationNodeBlendTree" id=116]
 graph_offset = Vector2( -537, -225 )
-nodes/Animation/node = SubResource( 108 )
+nodes/Animation/node = SubResource( 114 )
 nodes/Animation/position = Vector2( -160, 40 )
-"nodes/Animation 2/node" = SubResource( 107 )
+"nodes/Animation 2/node" = SubResource( 113 )
 "nodes/Animation 2/position" = Vector2( -160, 280 )
-nodes/Blend2/node = SubResource( 109 )
+nodes/Blend2/node = SubResource( 115 )
 nodes/Blend2/position = Vector2( 100, 100 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeStateMachine" id=111]
-states/BlendTree/node = SubResource( 110 )
+[sub_resource type="AnimationNodeStateMachine" id=117]
+states/BlendTree/node = SubResource( 116 )
 states/BlendTree/position = Vector2( 626, 355 )
 start_node = "BlendTree"
 
-[sub_resource type="AnimationNodeAnimation" id=112]
+[sub_resource type="AnimationNodeAnimation" id=118]
 animation = "H.BackwardLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=113]
+[sub_resource type="AnimationNodeAnimation" id=119]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend2" id=114]
+[sub_resource type="AnimationNodeBlend2" id=120]
 filter_enabled = true
 filters = [ ".:Belt", ".:Foot-L", ".:Foot-R", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:LoLeg-L", ".:LoLeg-R", ".:Neck", ".:Pelvis", ".:Toe-L", ".:Toe-R", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:UpLeg-L", ".:UpLeg-R", ".:shoulders" ]
 
-[sub_resource type="AnimationNodeBlendTree" id=115]
+[sub_resource type="AnimationNodeBlendTree" id=121]
 graph_offset = Vector2( -586, -234 )
-nodes/Animation/node = SubResource( 113 )
+nodes/Animation/node = SubResource( 119 )
 nodes/Animation/position = Vector2( -200, 60 )
-"nodes/Animation 2/node" = SubResource( 112 )
+"nodes/Animation 2/node" = SubResource( 118 )
 "nodes/Animation 2/position" = Vector2( -200, 200 )
-nodes/Blend2/node = SubResource( 114 )
+nodes/Blend2/node = SubResource( 120 )
 nodes/Blend2/position = Vector2( 80, 80 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
+node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
 
-[sub_resource type="AnimationNodeStateMachine" id=116]
-states/BlendTree/node = SubResource( 115 )
+[sub_resource type="AnimationNodeStateMachine" id=122]
+states/BlendTree/node = SubResource( 121 )
 states/BlendTree/position = Vector2( 524, 369 )
 start_node = "BlendTree"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=117]
-blend_point_0/node = SubResource( 69 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=123]
+blend_point_0/node = SubResource( 75 )
 blend_point_0/pos = Vector2( 0, 0 )
-blend_point_1/node = SubResource( 74 )
+blend_point_1/node = SubResource( 80 )
 blend_point_1/pos = Vector2( -1, 0 )
-blend_point_2/node = SubResource( 80 )
+blend_point_2/node = SubResource( 86 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 86 )
+blend_point_3/node = SubResource( 92 )
 blend_point_3/pos = Vector2( 0, 1 )
-blend_point_4/node = SubResource( 91 )
+blend_point_4/node = SubResource( 97 )
 blend_point_4/pos = Vector2( 0, -1 )
-blend_point_5/node = SubResource( 96 )
+blend_point_5/node = SubResource( 102 )
 blend_point_5/pos = Vector2( 0, 0.3 )
-blend_point_6/node = SubResource( 101 )
+blend_point_6/node = SubResource( 107 )
 blend_point_6/pos = Vector2( 0.5, 0.5 )
-blend_point_7/node = SubResource( 106 )
+blend_point_7/node = SubResource( 112 )
 blend_point_7/pos = Vector2( -0.5, 0.5 )
-blend_point_8/node = SubResource( 111 )
+blend_point_8/node = SubResource( 117 )
 blend_point_8/pos = Vector2( 0.5, -0.5 )
-blend_point_9/node = SubResource( 116 )
+blend_point_9/node = SubResource( 122 )
 blend_point_9/pos = Vector2( -0.5, -0.5 )
-blend_point_10/node = SubResource( 75 )
+blend_point_10/node = SubResource( 81 )
 blend_point_10/pos = Vector2( 0, 1 )
 
-[sub_resource type="AnimationNodeStateMachine" id=118]
-states/BlendSpace1D/node = SubResource( 45 )
+[sub_resource type="AnimationNodeStateMachine" id=124]
+states/BlendSpace1D/node = SubResource( 47 )
 states/BlendSpace1D/position = Vector2( 539, 110 )
-states/BlendTree/node = SubResource( 64 )
+states/BlendTree/node = SubResource( 70 )
 states/BlendTree/position = Vector2( 791, 110 )
-states/Grounded/node = SubResource( 117 )
+states/Grounded/node = SubResource( 123 )
 states/Grounded/position = Vector2( 272, 110 )
 start_node = "BlendTree"
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=119]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=120]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=121]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=122]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=123]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=124]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=125]
 
@@ -773,25 +770,39 @@ start_node = "BlendTree"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=129]
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=130]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=131]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=132]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=133]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=134]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=135]
+
 [node name="Behavior" type="AnimationTree"]
-tree_root = SubResource( 16 )
+tree_root = SubResource( 18 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 17 )
-script = ExtResource( 3 )
+parameters/playback = SubResource( 19 )
+script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("")
-anims/DefaultAnim = ExtResource( 4 )
-anims/H.ACT.Climb = ExtResource( 5 )
-anims/H.ACT.Climb.Enter = ExtResource( 6 )
-anims/H.ACT.Climb.Exit = ExtResource( 7 )
-anims/H.ACT.Drop = ExtResource( 8 )
-anims/H.ACT.Grab = ExtResource( 9 )
+anims/DefaultAnim = ExtResource( 3 )
+anims/H.ACT.Climb = ExtResource( 4 )
+anims/H.ACT.Climb.Enter = ExtResource( 5 )
+anims/H.ACT.Climb.Exit = ExtResource( 6 )
+anims/H.ACT.Drop = ExtResource( 7 )
+anims/H.ACT.Grab = ExtResource( 8 )
+anims/H.ACT.Jump.Exit = ExtResource( 9 )
+anims/H.ACT.JumpLong = ExtResource( 10 )
 
 [node name="Movement" type="AnimationTree" parent="."]
-tree_root = SubResource( 118 )
+tree_root = SubResource( 124 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 119 )
+parameters/playback = SubResource( 125 )
 parameters/BlendSpace1D/blend_position = -0.995316
 parameters/BlendSpace1D/0/blend_position = 0.298985
 parameters/BlendSpace1D/0/0/Blend2/blend_amount = 1.0
@@ -812,109 +823,109 @@ parameters/BlendTree/BlendSpace1D/0/3/TimeScale/scale = 1.0
 parameters/BlendTree/BlendSpace1D/1/TimeScale/scale = 1.0
 parameters/BlendTree/BlendSpace1D/2/TimeScale/scale = 1.0
 parameters/Grounded/blend_position = Vector2( 0.0757701, 0.199341 )
-parameters/Grounded/0/playback = SubResource( 120 )
+parameters/Grounded/0/playback = SubResource( 126 )
 parameters/Grounded/0/BlendTree/Blend2/blend_amount = 1.0
-parameters/Grounded/1/playback = SubResource( 121 )
+parameters/Grounded/1/playback = SubResource( 127 )
 parameters/Grounded/1/BlendTree/Blend2/blend_amount = 1.0
-parameters/Grounded/2/playback = SubResource( 122 )
+parameters/Grounded/2/playback = SubResource( 128 )
 parameters/Grounded/2/BlendTree/Blend2/blend_amount = 1.0
-parameters/Grounded/3/playback = SubResource( 123 )
+parameters/Grounded/3/playback = SubResource( 129 )
 parameters/Grounded/3/BlendTree/Blend2/blend_amount = 1.0
 parameters/Grounded/3/BlendTree/TimeScale/scale = 1.5
-parameters/Grounded/4/playback = SubResource( 124 )
+parameters/Grounded/4/playback = SubResource( 130 )
 parameters/Grounded/4/BlendTree/Blend2/blend_amount = 1.0
-parameters/Grounded/5/playback = SubResource( 125 )
+parameters/Grounded/5/playback = SubResource( 131 )
 parameters/Grounded/5/BlendTree/Blend2/blend_amount = 1.0
-parameters/Grounded/6/playback = SubResource( 126 )
+parameters/Grounded/6/playback = SubResource( 132 )
 parameters/Grounded/6/BlendTree/Blend2/blend_amount = 0
-parameters/Grounded/7/playback = SubResource( 127 )
+parameters/Grounded/7/playback = SubResource( 133 )
 parameters/Grounded/7/BlendTree/Blend2/blend_amount = 0
-parameters/Grounded/8/playback = SubResource( 128 )
+parameters/Grounded/8/playback = SubResource( 134 )
 parameters/Grounded/8/BlendTree/Blend2/blend_amount = 0
-parameters/Grounded/9/playback = SubResource( 129 )
+parameters/Grounded/9/playback = SubResource( 135 )
 parameters/Grounded/9/BlendTree/Blend2/blend_amount = 0
 parameters/Grounded/10/blend_position = Vector2( 0, 0 )
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 root_bone = "Pelvis"
 movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
 fp_hidden_bones = [ "Head", "Neck" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Movement"]
 root_node = NodePath("")
-anims/DefaultAnim = ExtResource( 4 )
-anims/H.2_BackwardLeft = ExtResource( 11 )
-anims/H.2_BackwardRight = ExtResource( 12 )
-anims/H.2_Crouch = ExtResource( 13 )
-anims/H.2_Fall = ExtResource( 14 )
-anims/H.2_ForwardLeft = ExtResource( 15 )
-anims/H.2_ForwardRight = ExtResource( 16 )
-anims/H.2_PeekLeft = ExtResource( 17 )
-anims/H.2_PeekRight = ExtResource( 18 )
-anims/H.2_Run = ExtResource( 19 )
-anims/H.2_Stand = ExtResource( 20 )
-anims/H.2_StrafeLeft = ExtResource( 21 )
-anims/H.2_StrafeRight = ExtResource( 22 )
-anims/H.2_TurnLeft = ExtResource( 23 )
-anims/H.2_TurnRight = ExtResource( 24 )
-anims/H.2_Walk = ExtResource( 25 )
-anims/H.2_WalkBackward = ExtResource( 26 )
-anims/H.2_w_Run = ExtResource( 27 )
-anims/H.2_w_Stand = ExtResource( 28 )
-anims/H.2_w_StrafeLeft = ExtResource( 29 )
-anims/H.2_w_StrafeRight = ExtResource( 30 )
-anims/H.2_w_Walk = ExtResource( 31 )
-anims/H.2_w_WalkBackward = ExtResource( 32 )
-anims/H.BackwardLeft = ExtResource( 33 )
-anims/H.BackwardRight = ExtResource( 34 )
-anims/H.Crouch = ExtResource( 35 )
-anims/H.Fall = ExtResource( 36 )
-anims/H.ForwardLeft = ExtResource( 37 )
-anims/H.ForwardRight = ExtResource( 38 )
-anims/H.PeekLeft = ExtResource( 39 )
-anims/H.PeekRight = ExtResource( 40 )
-anims/H.Run = ExtResource( 41 )
-anims/H.Stand = ExtResource( 42 )
-anims/H.Stand_Idle_Smoking = ExtResource( 43 )
-anims/H.Stand_combatstance = ExtResource( 44 )
-anims/H.StrafeLeft = ExtResource( 45 )
-anims/H.StrafeRight = ExtResource( 46 )
-anims/H.T_JOG = ExtResource( 47 )
-anims/H.T_RUN = ExtResource( 48 )
-anims/H.T_STAND = ExtResource( 49 )
-anims/H.T_WALK = ExtResource( 50 )
-anims/H.T_sprint = ExtResource( 51 )
-anims/H.TurnLeft = ExtResource( 52 )
-anims/H.TurnRight = ExtResource( 53 )
-anims/H.Walk = ExtResource( 54 )
-anims/H.WalkBackward = ExtResource( 55 )
-anims/H.stand_MorphD = ExtResource( 56 )
-anims/H.stand_TKD = ExtResource( 57 )
-anims/H.stand_agent = ExtResource( 58 )
-anims/H.stand_agr = ExtResource( 59 )
-anims/H.stand_bushido = ExtResource( 60 )
-anims/H.stand_giant = ExtResource( 61 )
-anims/H.stand_kat = ExtResource( 62 )
-anims/H.stand_kat_old = ExtResource( 63 )
-anims/H.stand_kfstanceB = ExtResource( 64 )
-anims/H.stand_merovingian = ExtResource( 65 )
-anims/H.stand_morph_combat = ExtResource( 66 )
-anims/H.stand_morpheus = ExtResource( 67 )
-anims/H.stand_neo_dojo = ExtResource( 68 )
-anims/H.stand_neo_rifle = ExtResource( 69 )
-anims/H.stand_neo_trench = ExtResource( 70 )
-anims/H.stand_ninja = ExtResource( 71 )
-anims/H.stand_one = ExtResource( 72 )
-anims/H.stand_one_b = ExtResource( 73 )
-anims/H.stand_one_c = ExtResource( 74 )
-anims/H.stand_seraph_combat = ExtResource( 75 )
-anims/H.stand_trinity = ExtResource( 76 )
-anims/H.t_forwardleft = ExtResource( 77 )
-anims/H.t_forwardright = ExtResource( 78 )
-anims/H.w_Run = ExtResource( 79 )
-anims/H.w_Stand = ExtResource( 80 )
-anims/H.w_StrafeLeft = ExtResource( 81 )
-anims/H.w_StrafeRight = ExtResource( 82 )
-anims/H.w_TurnLeft = ExtResource( 83 )
-anims/H.w_TurnRight = ExtResource( 84 )
-anims/H.w_Walk = ExtResource( 85 )
-anims/H.w_WalkBackward = ExtResource( 86 )
+anims/DefaultAnim = ExtResource( 3 )
+anims/H.2_BackwardLeft = ExtResource( 12 )
+anims/H.2_BackwardRight = ExtResource( 13 )
+anims/H.2_Crouch = ExtResource( 14 )
+anims/H.2_Fall = ExtResource( 15 )
+anims/H.2_ForwardLeft = ExtResource( 16 )
+anims/H.2_ForwardRight = ExtResource( 17 )
+anims/H.2_PeekLeft = ExtResource( 18 )
+anims/H.2_PeekRight = ExtResource( 19 )
+anims/H.2_Run = ExtResource( 20 )
+anims/H.2_Stand = ExtResource( 21 )
+anims/H.2_StrafeLeft = ExtResource( 22 )
+anims/H.2_StrafeRight = ExtResource( 23 )
+anims/H.2_TurnLeft = ExtResource( 24 )
+anims/H.2_TurnRight = ExtResource( 25 )
+anims/H.2_Walk = ExtResource( 26 )
+anims/H.2_WalkBackward = ExtResource( 27 )
+anims/H.2_w_Run = ExtResource( 28 )
+anims/H.2_w_Stand = ExtResource( 29 )
+anims/H.2_w_StrafeLeft = ExtResource( 30 )
+anims/H.2_w_StrafeRight = ExtResource( 31 )
+anims/H.2_w_Walk = ExtResource( 32 )
+anims/H.2_w_WalkBackward = ExtResource( 33 )
+anims/H.BackwardLeft = ExtResource( 34 )
+anims/H.BackwardRight = ExtResource( 35 )
+anims/H.Crouch = ExtResource( 36 )
+anims/H.Fall = ExtResource( 37 )
+anims/H.ForwardLeft = ExtResource( 38 )
+anims/H.ForwardRight = ExtResource( 39 )
+anims/H.PeekLeft = ExtResource( 40 )
+anims/H.PeekRight = ExtResource( 41 )
+anims/H.Run = ExtResource( 42 )
+anims/H.Stand = ExtResource( 43 )
+anims/H.Stand_Idle_Smoking = ExtResource( 44 )
+anims/H.Stand_combatstance = ExtResource( 45 )
+anims/H.StrafeLeft = ExtResource( 46 )
+anims/H.StrafeRight = ExtResource( 47 )
+anims/H.T_JOG = ExtResource( 48 )
+anims/H.T_RUN = ExtResource( 49 )
+anims/H.T_STAND = ExtResource( 50 )
+anims/H.T_WALK = ExtResource( 51 )
+anims/H.T_sprint = ExtResource( 52 )
+anims/H.TurnLeft = ExtResource( 53 )
+anims/H.TurnRight = ExtResource( 54 )
+anims/H.Walk = ExtResource( 55 )
+anims/H.WalkBackward = ExtResource( 56 )
+anims/H.stand_MorphD = ExtResource( 57 )
+anims/H.stand_TKD = ExtResource( 58 )
+anims/H.stand_agent = ExtResource( 59 )
+anims/H.stand_agr = ExtResource( 60 )
+anims/H.stand_bushido = ExtResource( 61 )
+anims/H.stand_giant = ExtResource( 62 )
+anims/H.stand_kat = ExtResource( 63 )
+anims/H.stand_kat_old = ExtResource( 64 )
+anims/H.stand_kfstanceB = ExtResource( 65 )
+anims/H.stand_merovingian = ExtResource( 66 )
+anims/H.stand_morph_combat = ExtResource( 67 )
+anims/H.stand_morpheus = ExtResource( 68 )
+anims/H.stand_neo_dojo = ExtResource( 69 )
+anims/H.stand_neo_rifle = ExtResource( 70 )
+anims/H.stand_neo_trench = ExtResource( 71 )
+anims/H.stand_ninja = ExtResource( 72 )
+anims/H.stand_one = ExtResource( 73 )
+anims/H.stand_one_b = ExtResource( 74 )
+anims/H.stand_one_c = ExtResource( 75 )
+anims/H.stand_seraph_combat = ExtResource( 76 )
+anims/H.stand_trinity = ExtResource( 77 )
+anims/H.t_forwardleft = ExtResource( 78 )
+anims/H.t_forwardright = ExtResource( 79 )
+anims/H.w_Run = ExtResource( 80 )
+anims/H.w_Stand = ExtResource( 81 )
+anims/H.w_StrafeLeft = ExtResource( 82 )
+anims/H.w_StrafeRight = ExtResource( 83 )
+anims/H.w_TurnLeft = ExtResource( 84 )
+anims/H.w_TurnRight = ExtResource( 85 )
+anims/H.w_Walk = ExtResource( 86 )
+anims/H.w_WalkBackward = ExtResource( 87 )

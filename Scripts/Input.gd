@@ -1,8 +1,5 @@
 extends AnimationTree
 
-export(int) var mouse_device
-export(int) var keyboard_device
-
 signal on_process
 
 

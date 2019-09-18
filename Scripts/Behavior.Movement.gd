@@ -8,18 +8,6 @@ var cached_pose = []
 var anim_nodes = []
 
 
-func _set_bone_y_rotation(bone_name, y_rot, root=false):
-	
-	var s_action = $AnimationPlayer.get_node($AnimationPlayer.root_node)
-	
-	
-	var bone = s_action.find_bone(bone_name)
-	var bone_transform = s_action.get_bone_rest(bone) if root else s_action.get_bone_global_pose(bone)
-	var rotate_amnt = y_rot - s_action.global_transform.basis.get_euler().y
-	bone_transform = bone_transform.rotated(Vector3(0, 1, 0), rotate_amnt)
-	s_action.set_bone_global_pose(bone, bone_transform)
-
-
 func _add_anim_nodes(root, path):
 	
 	var array = []
@@ -155,4 +143,3 @@ func _process(delta):
 	_filter_anim_events(anim_nodes, get('parameters/BlendTree/BlendSpace1D/blend_position'))
 	
 	_blend_skeletons()
-	

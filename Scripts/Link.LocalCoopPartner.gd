@@ -1,36 +1,41 @@
 extends 'res://Scripts/Link.gd'
 
+export(int) var p1_mouse
+export(int) var p1_keyboard
+export(int) var p2_mouse
+export(int) var p2_keyboard
 
-func _split_viewports(sender_control, receiver_control):
+
+func _split_viewports(p1_control, p2_control):
 	
 	var width = get_tree().root.size.x
 	var height = get_tree().root.size.y / 2
 	
-	sender_control.rect_position.y = 0
-	sender_control.rect_size.y = height
-	sender_control.get_node('Viewport').size.x = width
-	sender_control.get_node('Viewport').size.y = height
+	p1_control.rect_position.y = 0
+	p1_control.rect_size.y = height
+	p1_control.get_node('Viewport').size.x = width
+	p1_control.get_node('Viewport').size.y = height
+	p1_control.mouse_device = p1_mouse
+	p1_control.keyboard_device = p1_keyboard
 	
-	receiver_control.rect_position.y = height
-	receiver_control.rect_size.y = height
-	receiver_control.get_node('Viewport').size.x = width
-	receiver_control.get_node('Viewport').size.y = height
+	p2_control.rect_position.y = height
+	p2_control.rect_size.y = height
+	p2_control.get_node('Viewport').size.x = width
+	p2_control.get_node('Viewport').size.y = height
+	p2_control.mouse_device = p2_mouse
+	p2_control.keyboard_device = p2_keyboard
 
 
 func _on_enter():
 	
-	for sender in from:
+	if get_node(from).has_node('PlayerControl') if has_node(from) else false:
 		
-		if has_node(sender) and get_node(sender).has_node('PlayerControl'):
+		var p1_control = get_node(from).get_node('PlayerControl')
+		
+		if get_node(to).has_node('PlayerControl') if has_node(to) else false:
 			
-			var sender_control = get_node(sender).get_node('PlayerControl')
-			
-			for receiver in to:
-				
-				if has_node(sender) and get_node(sender).has_node('PlayerControl'):
-					
-					var receiver_control = get_node(receiver).get_node('PlayerControl')
-					_split_viewports(sender_control, receiver_control)
+			var p2_control = get_node(to).get_node('PlayerControl')
+			_split_viewports(p1_control, p2_control)
 
 
 func _on_execute():

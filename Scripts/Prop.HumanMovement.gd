@@ -2,13 +2,14 @@ extends Node
 
 enum state {
 	DEFAULT,
+	WALKING,
 	CLIMBING,
 	CROUCHING,
 	RUNNING,
 	CRAWLING
 }
 
-export(state) var current_state = state.DEFAULT
+export(state) var current_state = state.WALKING
 
 export var gravity = -9.8
 export var max_speed = 2.75
@@ -36,7 +37,7 @@ var climb_y_progress = 0
 
 onready var collision = $'../Collision'
 onready var camera = $'../PlayerControl/Viewport/Camera'
-onready var ik_righthand = $'../Model'.get_child(0).get_node('RightHandIK/Target')
+#onready var ik_righthand = $'../Model'.get_child(0).get_node('RightHandIK/Target')
 
 signal climb_target_changed
 
@@ -49,6 +50,19 @@ func _ready():
 func _set_state(new_state):
 	
 	current_state = state[new_state]
+
+
+func _set_direction_local(new_direction):
+	
+	var forward = get_parent().global_transform.basis.z
+	forward.y = 0
+	
+	direction = new_direction * forward
+
+
+func _set_velocity(new_velocity):
+	
+	velocity = get_parent().move_and_slide(new_velocity, Vector3(0, 1, 0))
 
 
 func _has_climb_target():
@@ -107,7 +121,7 @@ func _find_climb_target():
 				climb_target = ray_to_target.get_collision_point()
 				climb_target += origin.direction_to(climb_target) * climb_horizontal_distance
 				
-				ik_righthand.global_transform.origin = climb_target
+				#ik_righthand.global_transform.origin = climb_target
 				
 				climb_x_progress = 0
 				climb_y_progress = 0
@@ -128,19 +142,13 @@ func _find_climb_target():
 func _physics_process(delta):
 	
 	var current_pos = get_parent().global_transform.origin
-	
-	
-	velocity.y += delta * gravity
-	
-	var hvelocity = velocity
-	hvelocity.y = 0
-	
-	
+	var vertical = velocity.y + (delta * gravity)
+	var horizontal = Vector3(velocity.x, 0, velocity.z)
 	var target = Vector3()
 	
 	match current_state:
 		
-		state.DEFAULT:
+		state.WALKING:
 			
 			collision.translation = Vector3(0, 0.75, 0)
 			collision.shape.extents.y = 0.75
@@ -157,9 +165,7 @@ func _physics_process(delta):
 			var new_x_pos = current_pos.linear_interpolate(climb_target, climb_x_progress)
 			var new_y_pos = current_pos.linear_interpolate(climb_target, climb_y_progress)
 			
-			get_parent().global_transform.origin.x = new_x_pos.x
-			get_parent().global_transform.origin.y = new_y_pos.y
-			get_parent().global_transform.origin.z = new_x_pos.z
+			get_parent().global_transform.origin = Vector3(new_x_pos.x, new_y_pos.y, new_x_pos.z)
 			
 			velocity.x = 0
 			velocity.z = 0
@@ -191,15 +197,12 @@ func _physics_process(delta):
 	
 	var factor
 	
-	if direction.dot(hvelocity) > 0:
+	if direction.dot(horizontal) > 0:
 		factor = accel
 	else:
 		factor = deaccel
 	
-	hvelocity = hvelocity.linear_interpolate(target, factor * delta)
-	
-	velocity.x = hvelocity.x
-	#velocity.y = hvelocity.y
-	velocity.z = hvelocity.z
+	velocity = horizontal.linear_interpolate(target, factor * delta)
+	velocity.y = vertical
 	
 	velocity = get_parent().move_and_slide(velocity, Vector3(0, 1, 0))
