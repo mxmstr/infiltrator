@@ -41,6 +41,8 @@ func _init_transitions():
 
 func _ready():
 	
+	tree_root = tree_root.duplicate(true)
+	
 	_init_transitions()
 	
 	active = true

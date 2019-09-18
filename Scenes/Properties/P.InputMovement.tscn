@@ -82,7 +82,7 @@ parameters/playback = SubResource( 9 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("")
+root_node = NodePath(".")
 anims/DefaultAnim = ExtResource( 3 )
 anims/H.IN.Crawl = ExtResource( 4 )
 anims/H.IN.Crouch = ExtResource( 5 )

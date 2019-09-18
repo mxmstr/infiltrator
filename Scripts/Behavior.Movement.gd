@@ -33,6 +33,9 @@ func _add_anim_nodes(root, path):
 
 func _ready():
 	
+	tree_root = tree_root.duplicate(true)
+	
+	
 	var skeleton = $'../../Model'.get_children()[0].duplicate()
 	
 	for child in skeleton.get_children():
