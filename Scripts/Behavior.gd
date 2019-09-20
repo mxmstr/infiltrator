@@ -11,34 +11,12 @@ signal animation_changed
 signal tree_update
 
 
-
-func _set_behavior(new_behavior):
-	
-	pass
-#	var path = directory + new_behavior + '.tscn'#owner.behaviors_root + owner.behaviors + '/' + new_behavior + '.tscn'
-#	var behavior_source = load(path).instance()
-#
-#	for child in get_children():
-#		child.name = child.name + '_'
-#		child.queue_free()
-#
-#	for child in behavior_source.get_children():
-#		var child_name = child.name
-#		var new_child = child.duplicate()
-#		add_child(new_child)
-#		new_child.name = child_name
-#
-#	_start_interaction(behavior_source.interaction, true)
-#
-#	behavior_source.queue_free()
-
-
 func _get_visible_interactions():
 	
 	var interactions = []
 	
 	for child in children:
-		if child.is_visible():# and tree_root.can_travel(child.name):
+		if child.is_visible() and tree_root.can_travel(child.name):
 			interactions.append(child.name)
 	
 	return interactions
@@ -49,43 +27,12 @@ func _has_interaction(_name):
 	return has_node(_name)
 
 
-func _reset_interaction():
-	
-	pass
-	#_start_interaction(get_node(interaction).resets_to)
-
-
-func _start_interaction(_name, override=true):
+func _start_interaction(_name):
 	
 	var playback = get('parameters/playback')
 	var current = playback.get_current_node()
 	
 	playback.travel(_name)
-	
-#	if not _has_interaction(_name) or not get_node(_name)._can_start():
-#		return
-#
-#	var next = get_node(_name)
-#	var last = get_node(interaction) if has_node(interaction) else null
-#	var has_priority = false
-#
-#	if override:
-#		has_priority = true
-#	else:
-#		has_priority = next.priority == -1 or next.priority > last.priority
-#
-#	if has_priority:# and (next.dist == 0 or next.dist < next.distance_to):
-#
-#		if last != null:
-#			last.exit()
-#
-#		if not next.animation in [null, 'Null']:
-#			emit_signal('animation_changed', next.animation, next.blend, next.speed)
-#
-#		next.enter()
-#		interaction = next.name
-#
-#		emit_signal('interaction_started', next)
 
 
 func _init_transitions():
@@ -111,16 +58,6 @@ func _init_transitions():
 		
 		if transition.has_method('init'):
 			transition.init(self)
-
-
-#func _init_anim_nodes(node):
-#
-#	for idx in range(tree_root.get_transition_count()):
-#
-#		var node = tree_root.get_transition(idx)
-#
-#		if node.has_method('init'):
-#			node.init(self)
 
 
 func _ready():

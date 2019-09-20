@@ -15,15 +15,21 @@ func _split_viewports(p1_control, p2_control):
 	p1_control.rect_size.y = height
 	p1_control.get_node('Viewport').size.x = width
 	p1_control.get_node('Viewport').size.y = height
+	p1_control.player_index = 0
 	p1_control.mouse_device = p1_mouse
 	p1_control.keyboard_device = p1_keyboard
+	
+	p1_control._ready()
 	
 	p2_control.rect_position.y = height
 	p2_control.rect_size.y = height
 	p2_control.get_node('Viewport').size.x = width
 	p2_control.get_node('Viewport').size.y = height
+	p2_control.player_index = 1
 	p2_control.mouse_device = p2_mouse
 	p2_control.keyboard_device = p2_keyboard
+	
+	p2_control._ready()
 
 
 func _on_enter():
@@ -40,4 +46,4 @@ func _on_enter():
 
 func _on_execute():
 	
-	_on_enter()
+	pass#_on_enter()

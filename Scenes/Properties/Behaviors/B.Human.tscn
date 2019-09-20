@@ -200,7 +200,7 @@ states/JumpExit/node = SubResource( 7 )
 states/JumpExit/position = Vector2( 606, -178.676 )
 transitions = [ "Climb", "ClimbExit", SubResource( 8 ), "Default", "Drop", SubResource( 9 ), "Default", "Grab", SubResource( 10 ), "Grab", "Default", SubResource( 11 ), "Drop", "Default", SubResource( 12 ), "ClimbExit", "Default", SubResource( 13 ), "Default", "Climb", SubResource( 14 ), "Default", "Jump", SubResource( 15 ), "Jump", "JumpExit", SubResource( 16 ), "JumpExit", "Default", SubResource( 17 ) ]
 start_node = "Default"
-graph_offset = Vector2( -120.751, -243.241 )
+graph_offset = Vector2( -120.751, -228.807 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
