@@ -19,7 +19,7 @@ func _split_viewports(p1_control, p2_control):
 	p1_control.mouse_device = p1_mouse
 	p1_control.keyboard_device = p1_keyboard
 	
-	p1_control._ready()
+	p1_control._reset_viewport()
 	
 	p2_control.rect_position.y = height
 	p2_control.rect_size.y = height
@@ -29,10 +29,12 @@ func _split_viewports(p1_control, p2_control):
 	p2_control.mouse_device = p2_mouse
 	p2_control.keyboard_device = p2_keyboard
 	
-	p2_control._ready()
+	p2_control._reset_viewport()
 
 
 func _on_enter():
+	
+	yield(get_tree(), 'idle_frame')
 	
 	if get_node(from).has_node('PlayerControl') if has_node(from) else false:
 		

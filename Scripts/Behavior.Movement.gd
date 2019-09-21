@@ -2,9 +2,7 @@ extends AnimationTree
 
 export(String) var root_bone
 export(Array, String) var movement_bones
-export(Array, String) var fp_hidden_bones
 
-var is_first_person = false
 var cached_pose = []
 var anim_nodes = []
 
@@ -132,12 +130,6 @@ func _blend_skeletons():
 			else:
 				action_transform.basis = cached_pose[idx].basis
 				s_action.set_bone_global_pose(idx, action_transform)
-		
-		
-		if is_first_person and bone_name in fp_hidden_bones:
-			action_transform = s_action.get_bone_pose(idx)
-			action_transform.basis = action_transform.basis.scaled(Vector3(0.01, 0.01, 0.01))
-			s_action.set_bone_pose(idx, action_transform)
 
 
 func _process(delta):

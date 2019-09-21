@@ -51,6 +51,7 @@ collision_mask = 1025
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 1.27055e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+bones/16/bound_children = [ NodePath("RightHand") ]
 
 [node name="RightHand" parent="Model/neo_reference_skeleton" index="1" instance=ExtResource( 2 )]
 transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
