@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Properties/Behaviors/B.Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Components/Behaviors/B.Item.tscn" type="PackedScene" id=1]
+
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -9,14 +10,14 @@
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
 [node name="Item" type="RigidBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.20855, 1.07966 )
 collision_layer = 4
 collision_mask = 1028
 
 [node name="Model" type="Spatial" parent="."]
-editor/display_folded = true
 
-[node name="MeshInstance" type="MeshInstance" parent="Model"]
+[node name="Skeleton" type="Spatial" parent="Model"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Model/Skeleton"]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null

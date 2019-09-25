@@ -185,6 +185,7 @@ switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=30]
+resource_local_to_scene = true
 states/Climb/node = SubResource( 1 )
 states/Climb/position = Vector2( 829.173, -544.992 )
 states/ClimbEnter/node = SubResource( 2 )
@@ -209,7 +210,7 @@ states/Jump/node = SubResource( 11 )
 states/Jump/position = Vector2( 829.173, -469.543 )
 transitions = [ "Default", "Interact", SubResource( 12 ), "InteractExit", "Default", SubResource( 13 ), "Interact", "InteractSelect", SubResource( 14 ), "InteractSelect", "InteractExit", SubResource( 15 ), "Interact", "InteractUp", SubResource( 16 ), "Interact", "InteractDown", SubResource( 17 ), "InteractUp", "Interact", SubResource( 18 ), "InteractDown", "Interact", SubResource( 19 ), "Default", "Drop", SubResource( 20 ), "Default", "Grab", SubResource( 21 ), "Grab", "Default", SubResource( 22 ), "Drop", "Default", SubResource( 23 ), "Interact", "InteractExit", SubResource( 24 ), "Climb", "Default", SubResource( 25 ), "Default", "ClimbEnter", SubResource( 26 ), "ClimbEnter", "Jump", SubResource( 27 ), "ClimbEnter", "Climb", SubResource( 28 ), "Jump", "Default", SubResource( 29 ) ]
 start_node = "Default"
-graph_offset = Vector2( 117.173, -218.871 )
+graph_offset = Vector2( 117.173, -599.07 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 

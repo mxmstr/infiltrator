@@ -40,11 +40,10 @@ open_angle = Vector3( 0, 90, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538539, 2.62026, -0.504289 )
 
 [node name="Player" parent="Actors" instance=ExtResource( 4 )]
-editor/display_folded = true
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.99181, 0.230563, -2.60415 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.19122, 0.265068, -7.45604 )
 
 [node name="Player2" parent="Actors" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -6.77009, 0.298113, -7.63264 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.19122, 0.265068, -3.48623 )
 
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {
@@ -67,10 +66,10 @@ next = NodePath("../Waypoint")
 script = ExtResource( 6 )
 
 [node name="LocalCoopPartner" parent="Links" instance=ExtResource( 7 )]
-from = NodePath("../../Actors/Player")
-to = NodePath("../../Actors/Player2")
+from = NodePath("../../Actors/Player2")
+to = NodePath("../../Actors/Player")
 p1_mouse = 3
-p2_mouse = 4
+p2_mouse = 1
 p2_keyboard = 2
 
 [node name="ControlDevice" parent="Links" instance=ExtResource( 8 )]

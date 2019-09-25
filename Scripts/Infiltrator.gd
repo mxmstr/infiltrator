@@ -39,9 +39,36 @@ enum RawInputScroll {
 	HORIZONTAL
 }
 
+var tree_count = 0
 var vkeys = []
-
 var RawInput = {}
+
+
+func _make_unique(old):
+	
+	var dir = Directory.new()
+	var new_name = old.name
+	var new_filename = 'res://duplicated' + str(tree_count) + '.tscn'
+	
+	
+	var new = load(old.filename)
+	ResourceSaver.save(new_filename, new)
+	
+	
+	new = load(new_filename).instance()
+	old.name = '_'
+	new.set_meta('unique', true)
+
+	
+	old.get_parent().call_deferred('add_child_below_node', old, new)
+	old.get_parent().call_deferred('remove_child', old)
+	old.queue_free()
+	
+	new.call_deferred('set_name', new_name)
+	
+	dir.remove(new_filename)
+	
+	tree_count += 1
 
 
 func _get_rawinput_status(action, mouse_device, keyboard_device):
@@ -137,7 +164,7 @@ func _process(delta):
 	
 	
 	for event in Input.poll_raw():
-
+		
 		if event.type == RawInputType.SCROLL:
 
 			var item

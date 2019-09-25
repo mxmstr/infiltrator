@@ -13,9 +13,7 @@ export(String, 'None', 'True', 'False', 'Null', 'NotNull') var assertion = 'None
 export(String) var target
 export(String) var method
 
-var anim_name
 var parent
-var events
 var last_status = -1
 
 
@@ -29,15 +27,11 @@ func _on_target_signal(value):
 		'NotNull': return value != null
 
 
-func init(_parent, _anim_name):
+func init(_parent):
 	
-	anim_name = _anim_name
 	parent = _parent
 	
 	parent.connect('on_process', self, 'process')
-	
-	
-	events = InputMap.get_action_list(action)
 
 
 func process():

@@ -14,5 +14,4 @@ func init(_parent):
 
 func process():
 	
-	print('asdf')
 	pass#disabled = false#not trigger

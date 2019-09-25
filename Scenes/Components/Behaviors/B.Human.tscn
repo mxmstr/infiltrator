@@ -1,92 +1,93 @@
-[gd_scene load_steps=223 format=2]
+[gd_scene load_steps=224 format=2]
 
 [ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=2]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Enter.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Exit.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Drop.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Grab.tres" type="Animation" id=8]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Jump.Exit.tres" type="Animation" id=9]
-[ext_resource path="res://Animations/Human/Action/H.ACT.JumpLong.tres" type="Animation" id=10]
-[ext_resource path="res://Scripts/Behavior.Movement.gd" type="Script" id=11]
-[ext_resource path="res://Animations/Human/Movement/H.2_BackwardLeft.tres" type="Animation" id=12]
-[ext_resource path="res://Animations/Human/Movement/H.2_BackwardRight.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/Movement/H.2_Crouch.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/Movement/H.2_Fall.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/Movement/H.2_ForwardLeft.tres" type="Animation" id=16]
-[ext_resource path="res://Animations/Human/Movement/H.2_ForwardRight.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/Movement/H.2_PeekLeft.tres" type="Animation" id=18]
-[ext_resource path="res://Animations/Human/Movement/H.2_PeekRight.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/Movement/H.2_Run.tres" type="Animation" id=20]
-[ext_resource path="res://Animations/Human/Movement/H.2_Stand.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/Movement/H.2_StrafeLeft.tres" type="Animation" id=22]
-[ext_resource path="res://Animations/Human/Movement/H.2_StrafeRight.tres" type="Animation" id=23]
-[ext_resource path="res://Animations/Human/Movement/H.2_TurnLeft.tres" type="Animation" id=24]
-[ext_resource path="res://Animations/Human/Movement/H.2_TurnRight.tres" type="Animation" id=25]
-[ext_resource path="res://Animations/Human/Movement/H.2_Walk.tres" type="Animation" id=26]
-[ext_resource path="res://Animations/Human/Movement/H.2_WalkBackward.tres" type="Animation" id=27]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_Run.tres" type="Animation" id=28]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_Stand.tres" type="Animation" id=29]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeLeft.tres" type="Animation" id=30]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeRight.tres" type="Animation" id=31]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_Walk.tres" type="Animation" id=32]
-[ext_resource path="res://Animations/Human/Movement/H.2_w_WalkBackward.tres" type="Animation" id=33]
-[ext_resource path="res://Animations/Human/Movement/H.BackwardLeft.tres" type="Animation" id=34]
-[ext_resource path="res://Animations/Human/Movement/H.BackwardRight.tres" type="Animation" id=35]
-[ext_resource path="res://Animations/Human/Movement/H.Crouch.tres" type="Animation" id=36]
-[ext_resource path="res://Animations/Human/Movement/H.Fall.tres" type="Animation" id=37]
-[ext_resource path="res://Animations/Human/Movement/H.ForwardLeft.tres" type="Animation" id=38]
-[ext_resource path="res://Animations/Human/Movement/H.ForwardRight.tres" type="Animation" id=39]
-[ext_resource path="res://Animations/Human/Movement/H.PeekLeft.tres" type="Animation" id=40]
-[ext_resource path="res://Animations/Human/Movement/H.PeekRight.tres" type="Animation" id=41]
-[ext_resource path="res://Animations/Human/Movement/H.Run.tres" type="Animation" id=42]
-[ext_resource path="res://Animations/Human/Movement/H.Stand.tres" type="Animation" id=43]
-[ext_resource path="res://Animations/Human/Movement/H.Stand_Idle_Smoking.tres" type="Animation" id=44]
-[ext_resource path="res://Animations/Human/Movement/H.Stand_combatstance.tres" type="Animation" id=45]
-[ext_resource path="res://Animations/Human/Movement/H.StrafeLeft.tres" type="Animation" id=46]
-[ext_resource path="res://Animations/Human/Movement/H.StrafeRight.tres" type="Animation" id=47]
-[ext_resource path="res://Animations/Human/Movement/H.T_JOG.tres" type="Animation" id=48]
-[ext_resource path="res://Animations/Human/Movement/H.T_RUN.tres" type="Animation" id=49]
-[ext_resource path="res://Animations/Human/Movement/H.T_STAND.tres" type="Animation" id=50]
-[ext_resource path="res://Animations/Human/Movement/H.T_WALK.tres" type="Animation" id=51]
-[ext_resource path="res://Animations/Human/Movement/H.T_sprint.tres" type="Animation" id=52]
-[ext_resource path="res://Animations/Human/Movement/H.TurnLeft.tres" type="Animation" id=53]
-[ext_resource path="res://Animations/Human/Movement/H.TurnRight.tres" type="Animation" id=54]
-[ext_resource path="res://Animations/Human/Movement/H.Walk.tres" type="Animation" id=55]
-[ext_resource path="res://Animations/Human/Movement/H.WalkBackward.tres" type="Animation" id=56]
-[ext_resource path="res://Animations/Human/Movement/H.stand_MorphD.tres" type="Animation" id=57]
-[ext_resource path="res://Animations/Human/Movement/H.stand_TKD.tres" type="Animation" id=58]
-[ext_resource path="res://Animations/Human/Movement/H.stand_agent.tres" type="Animation" id=59]
-[ext_resource path="res://Animations/Human/Movement/H.stand_agr.tres" type="Animation" id=60]
-[ext_resource path="res://Animations/Human/Movement/H.stand_bushido.tres" type="Animation" id=61]
-[ext_resource path="res://Animations/Human/Movement/H.stand_giant.tres" type="Animation" id=62]
-[ext_resource path="res://Animations/Human/Movement/H.stand_kat.tres" type="Animation" id=63]
-[ext_resource path="res://Animations/Human/Movement/H.stand_kat_old.tres" type="Animation" id=64]
-[ext_resource path="res://Animations/Human/Movement/H.stand_kfstanceB.tres" type="Animation" id=65]
-[ext_resource path="res://Animations/Human/Movement/H.stand_merovingian.tres" type="Animation" id=66]
-[ext_resource path="res://Animations/Human/Movement/H.stand_morph_combat.tres" type="Animation" id=67]
-[ext_resource path="res://Animations/Human/Movement/H.stand_morpheus.tres" type="Animation" id=68]
-[ext_resource path="res://Animations/Human/Movement/H.stand_neo_dojo.tres" type="Animation" id=69]
-[ext_resource path="res://Animations/Human/Movement/H.stand_neo_rifle.tres" type="Animation" id=70]
-[ext_resource path="res://Animations/Human/Movement/H.stand_neo_trench.tres" type="Animation" id=71]
-[ext_resource path="res://Animations/Human/Movement/H.stand_ninja.tres" type="Animation" id=72]
-[ext_resource path="res://Animations/Human/Movement/H.stand_one.tres" type="Animation" id=73]
-[ext_resource path="res://Animations/Human/Movement/H.stand_one_b.tres" type="Animation" id=74]
-[ext_resource path="res://Animations/Human/Movement/H.stand_one_c.tres" type="Animation" id=75]
-[ext_resource path="res://Animations/Human/Movement/H.stand_seraph_combat.tres" type="Animation" id=76]
-[ext_resource path="res://Animations/Human/Movement/H.stand_trinity.tres" type="Animation" id=77]
-[ext_resource path="res://Animations/Human/Movement/H.t_forwardleft.tres" type="Animation" id=78]
-[ext_resource path="res://Animations/Human/Movement/H.t_forwardright.tres" type="Animation" id=79]
-[ext_resource path="res://Animations/Human/Movement/H.w_Run.tres" type="Animation" id=80]
-[ext_resource path="res://Animations/Human/Movement/H.w_Stand.tres" type="Animation" id=81]
-[ext_resource path="res://Animations/Human/Movement/H.w_StrafeLeft.tres" type="Animation" id=82]
-[ext_resource path="res://Animations/Human/Movement/H.w_StrafeRight.tres" type="Animation" id=83]
-[ext_resource path="res://Animations/Human/Movement/H.w_TurnLeft.tres" type="Animation" id=84]
-[ext_resource path="res://Animations/Human/Movement/H.w_TurnRight.tres" type="Animation" id=85]
-[ext_resource path="res://Animations/Human/Movement/H.w_Walk.tres" type="Animation" id=86]
-[ext_resource path="res://Animations/Human/Movement/H.w_WalkBackward.tres" type="Animation" id=87]
+[ext_resource path="res://Scripts/Behavior.Transition.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Enter.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Climb.Exit.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Drop.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Grab.tres" type="Animation" id=9]
+[ext_resource path="res://Animations/Human/Action/H.ACT.Jump.Exit.tres" type="Animation" id=10]
+[ext_resource path="res://Animations/Human/Action/H.ACT.JumpLong.tres" type="Animation" id=11]
+[ext_resource path="res://Scripts/Behavior.Movement.gd" type="Script" id=12]
+[ext_resource path="res://Animations/Human/Movement/H.2_BackwardLeft.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/Movement/H.2_BackwardRight.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/Movement/H.2_Crouch.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/Movement/H.2_Fall.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/Movement/H.2_ForwardLeft.tres" type="Animation" id=17]
+[ext_resource path="res://Animations/Human/Movement/H.2_ForwardRight.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Human/Movement/H.2_PeekLeft.tres" type="Animation" id=19]
+[ext_resource path="res://Animations/Human/Movement/H.2_PeekRight.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Human/Movement/H.2_Run.tres" type="Animation" id=21]
+[ext_resource path="res://Animations/Human/Movement/H.2_Stand.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/Movement/H.2_StrafeLeft.tres" type="Animation" id=23]
+[ext_resource path="res://Animations/Human/Movement/H.2_StrafeRight.tres" type="Animation" id=24]
+[ext_resource path="res://Animations/Human/Movement/H.2_TurnLeft.tres" type="Animation" id=25]
+[ext_resource path="res://Animations/Human/Movement/H.2_TurnRight.tres" type="Animation" id=26]
+[ext_resource path="res://Animations/Human/Movement/H.2_Walk.tres" type="Animation" id=27]
+[ext_resource path="res://Animations/Human/Movement/H.2_WalkBackward.tres" type="Animation" id=28]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_Run.tres" type="Animation" id=29]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_Stand.tres" type="Animation" id=30]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeLeft.tres" type="Animation" id=31]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_StrafeRight.tres" type="Animation" id=32]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_Walk.tres" type="Animation" id=33]
+[ext_resource path="res://Animations/Human/Movement/H.2_w_WalkBackward.tres" type="Animation" id=34]
+[ext_resource path="res://Animations/Human/Movement/H.BackwardLeft.tres" type="Animation" id=35]
+[ext_resource path="res://Animations/Human/Movement/H.BackwardRight.tres" type="Animation" id=36]
+[ext_resource path="res://Animations/Human/Movement/H.Crouch.tres" type="Animation" id=37]
+[ext_resource path="res://Animations/Human/Movement/H.Fall.tres" type="Animation" id=38]
+[ext_resource path="res://Animations/Human/Movement/H.ForwardLeft.tres" type="Animation" id=39]
+[ext_resource path="res://Animations/Human/Movement/H.ForwardRight.tres" type="Animation" id=40]
+[ext_resource path="res://Animations/Human/Movement/H.PeekLeft.tres" type="Animation" id=41]
+[ext_resource path="res://Animations/Human/Movement/H.PeekRight.tres" type="Animation" id=42]
+[ext_resource path="res://Animations/Human/Movement/H.Run.tres" type="Animation" id=43]
+[ext_resource path="res://Animations/Human/Movement/H.Stand.tres" type="Animation" id=44]
+[ext_resource path="res://Animations/Human/Movement/H.Stand_Idle_Smoking.tres" type="Animation" id=45]
+[ext_resource path="res://Animations/Human/Movement/H.Stand_combatstance.tres" type="Animation" id=46]
+[ext_resource path="res://Animations/Human/Movement/H.StrafeLeft.tres" type="Animation" id=47]
+[ext_resource path="res://Animations/Human/Movement/H.StrafeRight.tres" type="Animation" id=48]
+[ext_resource path="res://Animations/Human/Movement/H.T_JOG.tres" type="Animation" id=49]
+[ext_resource path="res://Animations/Human/Movement/H.T_RUN.tres" type="Animation" id=50]
+[ext_resource path="res://Animations/Human/Movement/H.T_STAND.tres" type="Animation" id=51]
+[ext_resource path="res://Animations/Human/Movement/H.T_WALK.tres" type="Animation" id=52]
+[ext_resource path="res://Animations/Human/Movement/H.T_sprint.tres" type="Animation" id=53]
+[ext_resource path="res://Animations/Human/Movement/H.TurnLeft.tres" type="Animation" id=54]
+[ext_resource path="res://Animations/Human/Movement/H.TurnRight.tres" type="Animation" id=55]
+[ext_resource path="res://Animations/Human/Movement/H.Walk.tres" type="Animation" id=56]
+[ext_resource path="res://Animations/Human/Movement/H.WalkBackward.tres" type="Animation" id=57]
+[ext_resource path="res://Animations/Human/Movement/H.stand_MorphD.tres" type="Animation" id=58]
+[ext_resource path="res://Animations/Human/Movement/H.stand_TKD.tres" type="Animation" id=59]
+[ext_resource path="res://Animations/Human/Movement/H.stand_agent.tres" type="Animation" id=60]
+[ext_resource path="res://Animations/Human/Movement/H.stand_agr.tres" type="Animation" id=61]
+[ext_resource path="res://Animations/Human/Movement/H.stand_bushido.tres" type="Animation" id=62]
+[ext_resource path="res://Animations/Human/Movement/H.stand_giant.tres" type="Animation" id=63]
+[ext_resource path="res://Animations/Human/Movement/H.stand_kat.tres" type="Animation" id=64]
+[ext_resource path="res://Animations/Human/Movement/H.stand_kat_old.tres" type="Animation" id=65]
+[ext_resource path="res://Animations/Human/Movement/H.stand_kfstanceB.tres" type="Animation" id=66]
+[ext_resource path="res://Animations/Human/Movement/H.stand_merovingian.tres" type="Animation" id=67]
+[ext_resource path="res://Animations/Human/Movement/H.stand_morph_combat.tres" type="Animation" id=68]
+[ext_resource path="res://Animations/Human/Movement/H.stand_morpheus.tres" type="Animation" id=69]
+[ext_resource path="res://Animations/Human/Movement/H.stand_neo_dojo.tres" type="Animation" id=70]
+[ext_resource path="res://Animations/Human/Movement/H.stand_neo_rifle.tres" type="Animation" id=71]
+[ext_resource path="res://Animations/Human/Movement/H.stand_neo_trench.tres" type="Animation" id=72]
+[ext_resource path="res://Animations/Human/Movement/H.stand_ninja.tres" type="Animation" id=73]
+[ext_resource path="res://Animations/Human/Movement/H.stand_one.tres" type="Animation" id=74]
+[ext_resource path="res://Animations/Human/Movement/H.stand_one_b.tres" type="Animation" id=75]
+[ext_resource path="res://Animations/Human/Movement/H.stand_one_c.tres" type="Animation" id=76]
+[ext_resource path="res://Animations/Human/Movement/H.stand_seraph_combat.tres" type="Animation" id=77]
+[ext_resource path="res://Animations/Human/Movement/H.stand_trinity.tres" type="Animation" id=78]
+[ext_resource path="res://Animations/Human/Movement/H.t_forwardleft.tres" type="Animation" id=79]
+[ext_resource path="res://Animations/Human/Movement/H.t_forwardright.tres" type="Animation" id=80]
+[ext_resource path="res://Animations/Human/Movement/H.w_Run.tres" type="Animation" id=81]
+[ext_resource path="res://Animations/Human/Movement/H.w_Stand.tres" type="Animation" id=82]
+[ext_resource path="res://Animations/Human/Movement/H.w_StrafeLeft.tres" type="Animation" id=83]
+[ext_resource path="res://Animations/Human/Movement/H.w_StrafeRight.tres" type="Animation" id=84]
+[ext_resource path="res://Animations/Human/Movement/H.w_TurnLeft.tres" type="Animation" id=85]
+[ext_resource path="res://Animations/Human/Movement/H.w_TurnRight.tres" type="Animation" id=86]
+[ext_resource path="res://Animations/Human/Movement/H.w_Walk.tres" type="Animation" id=87]
+[ext_resource path="res://Animations/Human/Movement/H.w_WalkBackward.tres" type="Animation" id=88]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "H.ACT.Climb"
@@ -178,6 +179,10 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
 auto_advance = true
+script = ExtResource( 2 )
+assertion = ""
+target = ""
+signal_name = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 switch_mode = 2
@@ -200,7 +205,7 @@ states/JumpExit/node = SubResource( 7 )
 states/JumpExit/position = Vector2( 606, -178.676 )
 transitions = [ "Climb", "ClimbExit", SubResource( 8 ), "Default", "Drop", SubResource( 9 ), "Default", "Grab", SubResource( 10 ), "Grab", "Default", SubResource( 11 ), "Drop", "Default", SubResource( 12 ), "ClimbExit", "Default", SubResource( 13 ), "Default", "Climb", SubResource( 14 ), "Default", "Jump", SubResource( 15 ), "Jump", "JumpExit", SubResource( 16 ), "JumpExit", "Default", SubResource( 17 ) ]
 start_node = "Default"
-graph_offset = Vector2( -120.751, -228.807 )
+graph_offset = Vector2( -120.751, -205.919 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
@@ -223,7 +228,7 @@ nodes/Animation/position = Vector2( 420, 180 )
 nodes/Blend2/node = SubResource( 22 )
 nodes/Blend2/position = Vector2( 660, 60 )
 nodes/output/position = Vector2( 860, 120 )
-node_connections = [ "Blend2", 0, "Animation 2", "Blend2", 1, "Animation", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation 2", "Blend2", 1, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=24]
 animation = "H.Run"
@@ -244,7 +249,7 @@ nodes/Animation/position = Vector2( 360, 40 )
 nodes/Blend2/node = SubResource( 26 )
 nodes/Blend2/position = Vector2( 640, 80 )
 nodes/output/position = Vector2( 900, 140 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeAnimation" id=28]
 animation = "H.WalkBackward"
@@ -264,7 +269,7 @@ nodes/Animation/position = Vector2( 280, 20 )
 nodes/Blend2/node = SubResource( 30 )
 nodes/Blend2/position = Vector2( 560, 60 )
 nodes/output/position = Vector2( 840, 140 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeAnimation" id=32]
 animation = "H.Walk"
@@ -285,7 +290,7 @@ nodes/Animation/position = Vector2( 340, 60 )
 nodes/Blend2/node = SubResource( 34 )
 nodes/Blend2/position = Vector2( 620, 100 )
 nodes/output/position = Vector2( 880, 180 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=36]
 blend_point_0/node = SubResource( 23 )
@@ -316,7 +321,7 @@ nodes/Animation/position = Vector2( 280, 60 )
 nodes/Blend2/node = SubResource( 39 )
 nodes/Blend2/position = Vector2( 580, 100 )
 nodes/output/position = Vector2( 900, 160 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=41]
 blend_point_0/node = SubResource( 40 )
@@ -341,7 +346,7 @@ nodes/Animation/position = Vector2( 280, 40 )
 nodes/Blend2/node = SubResource( 44 )
 nodes/Blend2/position = Vector2( 560, 80 )
 nodes/output/position = Vector2( 840, 160 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=46]
 blend_point_0/node = SubResource( 45 )
@@ -372,7 +377,7 @@ nodes/Animation/node = SubResource( 50 )
 nodes/Animation/position = Vector2( -60, 120 )
 nodes/TimeScale/node = SubResource( 51 )
 nodes/TimeScale/position = Vector2( 120, 120 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=53]
 animation = "H.Walk"
@@ -385,7 +390,7 @@ nodes/Animation/node = SubResource( 53 )
 nodes/Animation/position = Vector2( -160, 140 )
 nodes/TimeScale/node = SubResource( 54 )
 nodes/TimeScale/position = Vector2( 60, 120 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=56]
 animation = "H.T_STAND"
@@ -398,7 +403,7 @@ nodes/Animation/node = SubResource( 56 )
 nodes/Animation/position = Vector2( -366, 167 )
 nodes/TimeScale/node = SubResource( 57 )
 nodes/TimeScale/position = Vector2( -20, 120 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=59]
 animation = "H.WalkBackward"
@@ -411,7 +416,7 @@ nodes/Animation/node = SubResource( 59 )
 nodes/Animation/position = Vector2( -300, 160 )
 nodes/TimeScale/node = SubResource( 60 )
 nodes/TimeScale/position = Vector2( 16, 157 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=62]
 blend_point_0/node = SubResource( 52 )
@@ -434,7 +439,7 @@ nodes/Animation/node = SubResource( 63 )
 nodes/Animation/position = Vector2( -160, 120 )
 nodes/TimeScale/node = SubResource( 64 )
 nodes/TimeScale/position = Vector2( 80, 120 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=66]
 animation = "H.StrafeLeft"
@@ -447,7 +452,7 @@ nodes/Animation/node = SubResource( 66 )
 nodes/Animation/position = Vector2( -100, 120 )
 nodes/TimeScale/node = SubResource( 67 )
 nodes/TimeScale/position = Vector2( 120, 120 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=69]
 blend_point_0/node = SubResource( 62 )
@@ -458,7 +463,7 @@ blend_point_2/node = SubResource( 68 )
 blend_point_2/pos = -1.0
 
 [sub_resource type="AnimationNodeBlendTree" id=70]
-graph_offset = Vector2( 0, 150.033 )
+graph_offset = Vector2( 0, 146.25 )
 nodes/Animation/node = SubResource( 48 )
 nodes/Animation/position = Vector2( 360, 20 )
 nodes/Blend2/node = SubResource( 49 )
@@ -466,7 +471,7 @@ nodes/Blend2/position = Vector2( 600, 40 )
 nodes/BlendSpace1D/node = SubResource( 69 )
 nodes/BlendSpace1D/position = Vector2( 360, 200 )
 nodes/output/position = Vector2( 880, 100 )
-node_connections = [ "Blend2", 0, "Animation", "output", 0, "BlendSpace1D" ]
+node_connections = [ "output", 0, "BlendSpace1D", "Blend2", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=71]
 animation = "DefaultAnim"
@@ -487,7 +492,7 @@ nodes/Animation/position = Vector2( 440, 340 )
 nodes/Blend2/node = SubResource( 73 )
 nodes/Blend2/position = Vector2( 660, 180 )
 nodes/output/position = Vector2( 860, 260 )
-node_connections = [ "Blend2", 0, "Animation 2", "Blend2", 1, "Animation", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation 2", "Blend2", 1, "Animation" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=75]
 states/BlendTree/node = SubResource( 74 )
@@ -512,7 +517,7 @@ nodes/Animation/position = Vector2( -180, 60 )
 "nodes/Animation 2/position" = Vector2( -180, 200 )
 nodes/Blend2/node = SubResource( 78 )
 nodes/Blend2/position = Vector2( 60, 80 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=80]
 states/BlendTree/node = SubResource( 79 )
@@ -539,7 +544,7 @@ nodes/Animation/position = Vector2( -180, 40 )
 "nodes/Animation 2/position" = Vector2( -180, 180 )
 nodes/Blend2/node = SubResource( 84 )
 nodes/Blend2/position = Vector2( 80, 60 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=86]
 states/BlendTree/node = SubResource( 85 )
@@ -569,7 +574,7 @@ nodes/Blend2/position = Vector2( 260, 100 )
 nodes/TimeScale/node = SubResource( 90 )
 nodes/TimeScale/position = Vector2( 460, 120 )
 nodes/output/position = Vector2( 620, 160 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "TimeScale", 0, "Blend2", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "TimeScale", 0, "Blend2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=92]
 states/BlendTree/node = SubResource( 91 )
@@ -594,7 +599,7 @@ nodes/Animation/position = Vector2( -120, 60 )
 "nodes/Animation 2/position" = Vector2( -120, 200 )
 nodes/Blend2/node = SubResource( 95 )
 nodes/Blend2/position = Vector2( 100, 100 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=97]
 states/BlendTree/node = SubResource( 96 )
@@ -619,7 +624,7 @@ nodes/Animation/position = Vector2( -80, 60 )
 "nodes/Animation 2/position" = Vector2( -80, 200 )
 nodes/Blend2/node = SubResource( 100 )
 nodes/Blend2/position = Vector2( 120, 80 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=102]
 states/BlendTree/node = SubResource( 101 )
@@ -645,7 +650,7 @@ nodes/Animation/position = Vector2( 200, 240 )
 nodes/Blend2/node = SubResource( 105 )
 nodes/Blend2/position = Vector2( 480, 280 )
 nodes/output/position = Vector2( 720, 340 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=107]
 states/BlendTree/node = SubResource( 106 )
@@ -670,7 +675,7 @@ nodes/Animation/position = Vector2( -120, 40 )
 "nodes/Animation 2/position" = Vector2( -120, 220 )
 nodes/Blend2/node = SubResource( 110 )
 nodes/Blend2/position = Vector2( 100, 100 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=112]
 states/BlendTree/node = SubResource( 111 )
@@ -695,7 +700,7 @@ nodes/Animation/position = Vector2( -160, 40 )
 "nodes/Animation 2/position" = Vector2( -160, 280 )
 nodes/Blend2/node = SubResource( 115 )
 nodes/Blend2/position = Vector2( 100, 100 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=117]
 states/BlendTree/node = SubResource( 116 )
@@ -720,7 +725,7 @@ nodes/Animation/position = Vector2( -200, 60 )
 "nodes/Animation 2/position" = Vector2( -200, 200 )
 nodes/Blend2/node = SubResource( 120 )
 nodes/Blend2/position = Vector2( 80, 80 )
-node_connections = [ "Blend2", 0, "Animation", "Blend2", 1, "Animation 2", "output", 0, "Blend2" ]
+node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Animation", "Blend2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeStateMachine" id=122]
 states/BlendTree/node = SubResource( 121 )
@@ -786,18 +791,18 @@ start_node = "BlendTree"
 tree_root = SubResource( 18 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 19 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("")
-anims/DefaultAnim = ExtResource( 3 )
-anims/H.ACT.Climb = ExtResource( 4 )
-anims/H.ACT.Climb.Enter = ExtResource( 5 )
-anims/H.ACT.Climb.Exit = ExtResource( 6 )
-anims/H.ACT.Drop = ExtResource( 7 )
-anims/H.ACT.Grab = ExtResource( 8 )
-anims/H.ACT.Jump.Exit = ExtResource( 9 )
-anims/H.ACT.JumpLong = ExtResource( 10 )
+anims/DefaultAnim = ExtResource( 4 )
+anims/H.ACT.Climb = ExtResource( 5 )
+anims/H.ACT.Climb.Enter = ExtResource( 6 )
+anims/H.ACT.Climb.Exit = ExtResource( 7 )
+anims/H.ACT.Drop = ExtResource( 8 )
+anims/H.ACT.Grab = ExtResource( 9 )
+anims/H.ACT.Jump.Exit = ExtResource( 10 )
+anims/H.ACT.JumpLong = ExtResource( 11 )
 
 [node name="Movement" type="AnimationTree" parent="."]
 tree_root = SubResource( 124 )
@@ -845,87 +850,86 @@ parameters/Grounded/8/BlendTree/Blend2/blend_amount = 0
 parameters/Grounded/9/playback = SubResource( 135 )
 parameters/Grounded/9/BlendTree/Blend2/blend_amount = 0
 parameters/Grounded/10/blend_position = Vector2( 0, 0 )
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 root_bone = "Pelvis"
 movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
-fp_hidden_bones = [ "Head", "Neck" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Movement"]
 root_node = NodePath("")
-anims/DefaultAnim = ExtResource( 3 )
-anims/H.2_BackwardLeft = ExtResource( 12 )
-anims/H.2_BackwardRight = ExtResource( 13 )
-anims/H.2_Crouch = ExtResource( 14 )
-anims/H.2_Fall = ExtResource( 15 )
-anims/H.2_ForwardLeft = ExtResource( 16 )
-anims/H.2_ForwardRight = ExtResource( 17 )
-anims/H.2_PeekLeft = ExtResource( 18 )
-anims/H.2_PeekRight = ExtResource( 19 )
-anims/H.2_Run = ExtResource( 20 )
-anims/H.2_Stand = ExtResource( 21 )
-anims/H.2_StrafeLeft = ExtResource( 22 )
-anims/H.2_StrafeRight = ExtResource( 23 )
-anims/H.2_TurnLeft = ExtResource( 24 )
-anims/H.2_TurnRight = ExtResource( 25 )
-anims/H.2_Walk = ExtResource( 26 )
-anims/H.2_WalkBackward = ExtResource( 27 )
-anims/H.2_w_Run = ExtResource( 28 )
-anims/H.2_w_Stand = ExtResource( 29 )
-anims/H.2_w_StrafeLeft = ExtResource( 30 )
-anims/H.2_w_StrafeRight = ExtResource( 31 )
-anims/H.2_w_Walk = ExtResource( 32 )
-anims/H.2_w_WalkBackward = ExtResource( 33 )
-anims/H.BackwardLeft = ExtResource( 34 )
-anims/H.BackwardRight = ExtResource( 35 )
-anims/H.Crouch = ExtResource( 36 )
-anims/H.Fall = ExtResource( 37 )
-anims/H.ForwardLeft = ExtResource( 38 )
-anims/H.ForwardRight = ExtResource( 39 )
-anims/H.PeekLeft = ExtResource( 40 )
-anims/H.PeekRight = ExtResource( 41 )
-anims/H.Run = ExtResource( 42 )
-anims/H.Stand = ExtResource( 43 )
-anims/H.Stand_Idle_Smoking = ExtResource( 44 )
-anims/H.Stand_combatstance = ExtResource( 45 )
-anims/H.StrafeLeft = ExtResource( 46 )
-anims/H.StrafeRight = ExtResource( 47 )
-anims/H.T_JOG = ExtResource( 48 )
-anims/H.T_RUN = ExtResource( 49 )
-anims/H.T_STAND = ExtResource( 50 )
-anims/H.T_WALK = ExtResource( 51 )
-anims/H.T_sprint = ExtResource( 52 )
-anims/H.TurnLeft = ExtResource( 53 )
-anims/H.TurnRight = ExtResource( 54 )
-anims/H.Walk = ExtResource( 55 )
-anims/H.WalkBackward = ExtResource( 56 )
-anims/H.stand_MorphD = ExtResource( 57 )
-anims/H.stand_TKD = ExtResource( 58 )
-anims/H.stand_agent = ExtResource( 59 )
-anims/H.stand_agr = ExtResource( 60 )
-anims/H.stand_bushido = ExtResource( 61 )
-anims/H.stand_giant = ExtResource( 62 )
-anims/H.stand_kat = ExtResource( 63 )
-anims/H.stand_kat_old = ExtResource( 64 )
-anims/H.stand_kfstanceB = ExtResource( 65 )
-anims/H.stand_merovingian = ExtResource( 66 )
-anims/H.stand_morph_combat = ExtResource( 67 )
-anims/H.stand_morpheus = ExtResource( 68 )
-anims/H.stand_neo_dojo = ExtResource( 69 )
-anims/H.stand_neo_rifle = ExtResource( 70 )
-anims/H.stand_neo_trench = ExtResource( 71 )
-anims/H.stand_ninja = ExtResource( 72 )
-anims/H.stand_one = ExtResource( 73 )
-anims/H.stand_one_b = ExtResource( 74 )
-anims/H.stand_one_c = ExtResource( 75 )
-anims/H.stand_seraph_combat = ExtResource( 76 )
-anims/H.stand_trinity = ExtResource( 77 )
-anims/H.t_forwardleft = ExtResource( 78 )
-anims/H.t_forwardright = ExtResource( 79 )
-anims/H.w_Run = ExtResource( 80 )
-anims/H.w_Stand = ExtResource( 81 )
-anims/H.w_StrafeLeft = ExtResource( 82 )
-anims/H.w_StrafeRight = ExtResource( 83 )
-anims/H.w_TurnLeft = ExtResource( 84 )
-anims/H.w_TurnRight = ExtResource( 85 )
-anims/H.w_Walk = ExtResource( 86 )
-anims/H.w_WalkBackward = ExtResource( 87 )
+anims/DefaultAnim = ExtResource( 4 )
+anims/H.2_BackwardLeft = ExtResource( 13 )
+anims/H.2_BackwardRight = ExtResource( 14 )
+anims/H.2_Crouch = ExtResource( 15 )
+anims/H.2_Fall = ExtResource( 16 )
+anims/H.2_ForwardLeft = ExtResource( 17 )
+anims/H.2_ForwardRight = ExtResource( 18 )
+anims/H.2_PeekLeft = ExtResource( 19 )
+anims/H.2_PeekRight = ExtResource( 20 )
+anims/H.2_Run = ExtResource( 21 )
+anims/H.2_Stand = ExtResource( 22 )
+anims/H.2_StrafeLeft = ExtResource( 23 )
+anims/H.2_StrafeRight = ExtResource( 24 )
+anims/H.2_TurnLeft = ExtResource( 25 )
+anims/H.2_TurnRight = ExtResource( 26 )
+anims/H.2_Walk = ExtResource( 27 )
+anims/H.2_WalkBackward = ExtResource( 28 )
+anims/H.2_w_Run = ExtResource( 29 )
+anims/H.2_w_Stand = ExtResource( 30 )
+anims/H.2_w_StrafeLeft = ExtResource( 31 )
+anims/H.2_w_StrafeRight = ExtResource( 32 )
+anims/H.2_w_Walk = ExtResource( 33 )
+anims/H.2_w_WalkBackward = ExtResource( 34 )
+anims/H.BackwardLeft = ExtResource( 35 )
+anims/H.BackwardRight = ExtResource( 36 )
+anims/H.Crouch = ExtResource( 37 )
+anims/H.Fall = ExtResource( 38 )
+anims/H.ForwardLeft = ExtResource( 39 )
+anims/H.ForwardRight = ExtResource( 40 )
+anims/H.PeekLeft = ExtResource( 41 )
+anims/H.PeekRight = ExtResource( 42 )
+anims/H.Run = ExtResource( 43 )
+anims/H.Stand = ExtResource( 44 )
+anims/H.Stand_Idle_Smoking = ExtResource( 45 )
+anims/H.Stand_combatstance = ExtResource( 46 )
+anims/H.StrafeLeft = ExtResource( 47 )
+anims/H.StrafeRight = ExtResource( 48 )
+anims/H.T_JOG = ExtResource( 49 )
+anims/H.T_RUN = ExtResource( 50 )
+anims/H.T_STAND = ExtResource( 51 )
+anims/H.T_WALK = ExtResource( 52 )
+anims/H.T_sprint = ExtResource( 53 )
+anims/H.TurnLeft = ExtResource( 54 )
+anims/H.TurnRight = ExtResource( 55 )
+anims/H.Walk = ExtResource( 56 )
+anims/H.WalkBackward = ExtResource( 57 )
+anims/H.stand_MorphD = ExtResource( 58 )
+anims/H.stand_TKD = ExtResource( 59 )
+anims/H.stand_agent = ExtResource( 60 )
+anims/H.stand_agr = ExtResource( 61 )
+anims/H.stand_bushido = ExtResource( 62 )
+anims/H.stand_giant = ExtResource( 63 )
+anims/H.stand_kat = ExtResource( 64 )
+anims/H.stand_kat_old = ExtResource( 65 )
+anims/H.stand_kfstanceB = ExtResource( 66 )
+anims/H.stand_merovingian = ExtResource( 67 )
+anims/H.stand_morph_combat = ExtResource( 68 )
+anims/H.stand_morpheus = ExtResource( 69 )
+anims/H.stand_neo_dojo = ExtResource( 70 )
+anims/H.stand_neo_rifle = ExtResource( 71 )
+anims/H.stand_neo_trench = ExtResource( 72 )
+anims/H.stand_ninja = ExtResource( 73 )
+anims/H.stand_one = ExtResource( 74 )
+anims/H.stand_one_b = ExtResource( 75 )
+anims/H.stand_one_c = ExtResource( 76 )
+anims/H.stand_seraph_combat = ExtResource( 77 )
+anims/H.stand_trinity = ExtResource( 78 )
+anims/H.t_forwardleft = ExtResource( 79 )
+anims/H.t_forwardright = ExtResource( 80 )
+anims/H.w_Run = ExtResource( 81 )
+anims/H.w_Stand = ExtResource( 82 )
+anims/H.w_StrafeLeft = ExtResource( 83 )
+anims/H.w_StrafeRight = ExtResource( 84 )
+anims/H.w_TurnLeft = ExtResource( 85 )
+anims/H.w_TurnRight = ExtResource( 86 )
+anims/H.w_Walk = ExtResource( 87 )
+anims/H.w_WalkBackward = ExtResource( 88 )

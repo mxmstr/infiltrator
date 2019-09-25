@@ -48,6 +48,10 @@ func _ready():
 	var blendspace = tree_root.get_node('BlendTree').get_node('BlendSpace1D')
 	anim_nodes = _add_anim_nodes(blendspace, 'parameters/BlendTree/BlendSpace1D/')
 	
+	
+	connect('pre_process', self, '_on_pre_process')
+	connect('post_process', self, '_on_post_process')
+	
 	active = true
 
 
@@ -86,6 +90,20 @@ func _filter_anim_events(nodes, blend_position, filter_all=false):
 				_filter_anim_events(node.children, position, filter_all)
 			else:
 				_filter_anim_events(node.children, position, true)
+
+
+func _unfilter_anim_events(nodes):
+	
+	for node in nodes:
+		
+		if node.animation != null:
+			
+			for track in node.animation.get_track_count():
+				node.animation.track_set_enabled(track, true)
+		
+		if node.blendspace != null:
+			
+			_unfilter_anim_events(node.children)
 
 
 func _sync_blend_spaces():
@@ -132,10 +150,20 @@ func _blend_skeletons():
 				s_action.set_bone_global_pose(idx, action_transform)
 
 
+func _on_pre_process():
+	
+	_filter_anim_events(anim_nodes, get('parameters/BlendTree/BlendSpace1D/blend_position'))
+
+
+func _on_post_process():
+	
+	_unfilter_anim_events(anim_nodes)
+
+
 func _process(delta):
 	
 	_sync_blend_spaces()
 	
-	_filter_anim_events(anim_nodes, get('parameters/BlendTree/BlendSpace1D/blend_position'))
+	#_filter_anim_events(anim_nodes, get('parameters/BlendTree/BlendSpace1D/blend_position'))
 	
 	_blend_skeletons()

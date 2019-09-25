@@ -8,7 +8,7 @@ var children = []
 
 signal interaction_started
 signal animation_changed
-signal tree_update
+signal on_process
 
 
 func _get_visible_interactions():
@@ -60,15 +60,21 @@ func _init_transitions():
 			transition.init(self)
 
 
+func _set_skeleton():
+	
+	var skeleton = $'../Model'.get_child(0)
+	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(skeleton)
+
+
 func _ready():
 	
-	tree_root = tree_root.duplicate(true)
+	if not has_meta('unique'):
+		Inf._make_unique(self)
+		return
 	
 	_init_transitions()
+	_set_skeleton()
 	
-	current_node = get('parameters/playback').get_current_node()
-	
-	#anim_player = NodePath('AnimationPlayer')
 	active = true
 
 
@@ -80,3 +86,5 @@ func _process(delta):
 		emit_signal('animation_changed', playback.get_current_node())
 	
 	current_node = playback.get_current_node()
+	
+	emit_signal('on_process')
