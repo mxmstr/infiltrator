@@ -1,15 +1,21 @@
 extends Node
 
-enum visibility {
+enum Visibility {
 	INVISIBLE,
 	PHYSICAL, 
 	REMOTE
 }
 
-enum blend {
+enum Blend {
 	ACTION,
 	MOVEMENT,
 	LAYERED
+}
+
+enum Priority {
+	LOW,
+	HIGH,
+	VERYHIGH
 }
 
 enum RawInputType {

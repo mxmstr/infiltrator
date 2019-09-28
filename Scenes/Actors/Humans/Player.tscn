@@ -1,19 +1,22 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Models/Humans/DefaultHuman.Collision.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Behaviors/B.Human.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/AudioSchemas/AS.Human.Feet.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Components/Properties/P.HumanMovement.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Components/Properties/P.PlayerControl.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Properties/P.InputAbilities.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=9]
-[ext_resource path="res://Scenes/Components/Properties/P.InputMovement.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Components/Properties/P.InputRotation.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Components/Stimulus/S.Human.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Behaviors/B.Human.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/AudioSchemas/AS.Human.Feet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Properties/P.HumanMovement.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Properties/P.PlayerControl.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Properties/P.InputAbilities.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Components/Properties/P.InputMovement.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Components/Properties/P.InputRotation.tscn" type="PackedScene" id=12]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.15, 0.75, 0.15 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=55]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
@@ -77,7 +80,7 @@ animation = "H.IN.Jump"
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Interact"
 state = 1
 assertion = "True"
@@ -92,7 +95,7 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Interact"
 state = 0
 assertion = "None"
@@ -107,7 +110,7 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "ScrollUp"
 state = 3
 assertion = "None"
@@ -118,7 +121,7 @@ method = ""
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "ScrollDown"
 state = 3
 assertion = "None"
@@ -136,7 +139,7 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Secondary"
 state = 1
 assertion = "False"
@@ -146,7 +149,7 @@ method = "_is_empty"
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Secondary"
 state = 1
 assertion = "True"
@@ -165,7 +168,7 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Interact"
 state = 1
 assertion = "False"
@@ -179,7 +182,7 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Jump"
 state = 3
 assertion = "None"
@@ -195,7 +198,7 @@ switch_mode = 2
 auto_advance = true
 priority = 2
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Jump"
 state = 1
 assertion = "True"
@@ -249,7 +252,7 @@ resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Run"
 state = 1
 assertion = "None"
@@ -260,7 +263,7 @@ method = ""
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Crouch"
 state = 1
 assertion = "None"
@@ -272,7 +275,7 @@ resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Run"
 state = 0
 assertion = "None"
@@ -283,7 +286,7 @@ method = ""
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 action = "Crouch"
 state = 0
 assertion = "None"
@@ -310,7 +313,7 @@ collision_mask = 1025
 editor/display_folded = true
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 1.27055e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="RightHand" parent="Model/neo_reference_skeleton" index="1" instance=ExtResource( 2 )]
 transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
@@ -320,8 +323,10 @@ max_quantity = 1
 [node name="Collision" parent="." instance=ExtResource( 3 )]
 shape = SubResource( 1 )
 
-[node name="Behavior" parent="." instance=ExtResource( 4 )]
-editor/display_folded = true
+[node name="Stimulus" parent="." instance=ExtResource( 4 )]
+parameters/playback = SubResource( 55 )
+
+[node name="Behavior" parent="." instance=ExtResource( 5 )]
 parameters/playback = SubResource( 2 )
 
 [node name="AnimationPlayer" parent="Behavior" index="0"]
@@ -345,26 +350,28 @@ parameters/Grounded/9/playback = SubResource( 13 )
 [node name="AnimationPlayer" parent="Behavior/Movement" index="0"]
 root_node = NodePath("../../../Model/neo_reference_skeleton")
 
-[node name="FeetAudio" parent="." instance=ExtResource( 5 )]
+[node name="FeetAudio" parent="." instance=ExtResource( 6 )]
 parameters/playback = SubResource( 14 )
 
-[node name="HumanMovement" parent="." instance=ExtResource( 6 )]
+[node name="HumanMovement" parent="." instance=ExtResource( 7 )]
 
-[node name="PlayerControl" parent="." instance=ExtResource( 7 )]
+[node name="PlayerControl" parent="." instance=ExtResource( 8 )]
 
-[node name="InputAbilities" parent="." instance=ExtResource( 8 )]
+[node name="InputAbilities" parent="." instance=ExtResource( 9 )]
 editor/display_folded = true
 tree_root = SubResource( 44 )
 parameters/playback = SubResource( 45 )
 
-[node name="InputMovement" parent="." instance=ExtResource( 10 )]
+[node name="InputMovement" parent="." instance=ExtResource( 11 )]
 editor/display_folded = true
 tree_root = SubResource( 53 )
 parameters/playback = SubResource( 54 )
 
-[node name="InputRotation" parent="." instance=ExtResource( 11 )]
+[node name="InputRotation" parent="." instance=ExtResource( 12 )]
 
 [editable path="Model"]
+
+[editable path="Stimulus"]
 
 [editable path="Behavior"]
 

@@ -8,7 +8,7 @@ func _play_schema(_name):
 	var playback = get('parameters/playback')
 	var current = playback.get_current_node()
 	
-	emit_signal('animation_changed')
+	emit_signal('animation_changed', _name)
 	
 	playback.travel(_name)
 
@@ -26,7 +26,7 @@ func _init_transitions():
 		if not anim_name in anim_names:
 			
 			if animation.has_method('init'):
-				animation.init(self)
+				animation.init(self, anim_name)
 				animation.transitions.append(transition)
 			
 			anim_names.append(anim_name)

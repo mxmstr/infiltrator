@@ -54,15 +54,14 @@ func _set_state(new_state):
 
 func _set_direction_local(new_direction):
 	
-	var forward = get_parent().global_transform.basis.z
-	forward.y = 0
+	new_direction = get_parent().global_transform.basis.xform(new_direction)
 	
-	direction = new_direction * forward
+	direction = new_direction
 
 
-func _set_velocity(new_velocity):
+func _set_y_velocity(new_velocity):
 	
-	velocity = get_parent().move_and_slide(new_velocity, Vector3(0, 1, 0))
+	velocity.y = new_velocity
 
 
 func _has_climb_target():
@@ -147,6 +146,14 @@ func _physics_process(delta):
 	var target = Vector3()
 	
 	match current_state:
+		
+		state.DEFAULT:
+			
+			collision.translation = Vector3(0, 0.75, 0)
+			collision.shape.extents.y = 0.75
+			camera.offset = Vector3(0, 1.70, 0)
+			
+			target = direction
 		
 		state.WALKING:
 			

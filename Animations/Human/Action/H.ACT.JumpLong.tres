@@ -244,7 +244,21 @@ tracks/31/keys = {
 "times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ Vector3( 0, 0, 1 ) ],
+"args": [ Vector3( 0, 0, 2.75 ) ],
 "method": "_set_direction_local"
+} ]
+}
+tracks/32/type = "method"
+tracks/32/path = NodePath("../../HumanMovement")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 2.25 ],
+"method": "_set_y_velocity"
 } ]
 }

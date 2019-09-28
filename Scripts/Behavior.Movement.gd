@@ -62,9 +62,9 @@ func _filter_anim_events(nodes, blend_position, filter_all=false):
 	
 	for node in nodes:
 		
-		var dist = abs(blend_position - node.position)
+		var dist = abs(clamp(blend_position - node.position, -2, 2))
 		
-		if dist < min_dist:
+		if dist <= min_dist:
 			min_dist = dist
 			closest = node
 	
@@ -122,9 +122,9 @@ func _blend_skeletons():
 	
 	var s_movement = $AnimationPlayer.get_node($AnimationPlayer.root_node)
 	var s_action = $'../AnimationPlayer'.get_node($'../AnimationPlayer'.root_node)
-	var layered = get_parent().blend_mode == Inf.blend.LAYERED
-	var action_only = get_parent().blend_mode == Inf.blend.ACTION
-	var movement_only = get_parent().blend_mode == Inf.blend.MOVEMENT
+	var layered = get_parent().blend_mode == Inf.Blend.LAYERED
+	var action_only = get_parent().blend_mode == Inf.Blend.ACTION
+	var movement_only = get_parent().blend_mode == Inf.Blend.MOVEMENT
 	
 	for idx in range(s_action.get_bone_count()):
 		cached_pose.append(s_action.get_bone_global_pose(idx))
@@ -152,7 +152,11 @@ func _blend_skeletons():
 
 func _on_pre_process():
 	
-	_filter_anim_events(anim_nodes, get('parameters/BlendTree/BlendSpace1D/blend_position'))
+	_filter_anim_events(
+		anim_nodes, 
+		get('parameters/BlendTree/BlendSpace1D/blend_position'),
+		true if get_parent().blend_mode == Inf.Blend.ACTION else false
+		)
 
 
 func _on_post_process():

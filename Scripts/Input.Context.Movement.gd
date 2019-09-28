@@ -1,29 +1,16 @@
 extends Node
 
-onready var parent = $'../../'
-
-
-func enable():
-	
-	set_process(true)
-	set_physics_process(true)
-	set_process_input(true)
-
-
-func disable():
-	
-	set_process(false)
-	set_physics_process(false)
-	set_process_input(false)
-
 
 func _physics_process(delta):
+	
+	if not get_parent().active:
+		return
 	
 	var mouse_device = $'../../PlayerControl'.mouse_device
 	var keyboard_device = $'../../PlayerControl'.keyboard_device
 	
 	var direction = Vector3()
-	var cam_xform = parent.global_transform
+	var cam_xform = $'../../'.global_transform
 	
 	var directions = { 
 		'Forward':  cam_xform.basis.z, 
@@ -43,4 +30,4 @@ func _physics_process(delta):
 	direction.y = 0
 	
 	
-	parent.get_node('HumanMovement').direction = direction.normalized()
+	$'../../'.get_node('HumanMovement').direction = direction.normalized()

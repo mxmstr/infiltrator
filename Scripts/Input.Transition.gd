@@ -43,7 +43,7 @@ func process():
 	var trigger = true
 	
 	if assertion != 'None':
-		_on_target_signal(parent.get_parent().get_node(target).call(method))
+		trigger = _on_target_signal(parent.get_parent().get_node(target).call(method))
 	
 	
 	var pressed = true
