@@ -2,10 +2,10 @@ extends AnimationTree
 
 var nodes = []
 var current_node
-var blend_mode = Inf.Blend.ACTION
+var last_node
+var last_time
 
 signal travel_starting
-signal interaction_started
 signal animation_changed
 signal on_process
 
@@ -33,6 +33,9 @@ func _start_interaction(_name):
 	
 	if not tree_root.has_node(_name):
 		return
+	
+	last_node = current
+	last_time = playback.get_current_play_pos()
 	
 	
 	emit_signal('travel_starting', tree_root.get_node(_name))

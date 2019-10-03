@@ -241,10 +241,10 @@ tracks/31/loop_wrap = true
 tracks/31/imported = false
 tracks/31/enabled = true
 tracks/31/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ Vector3( 0, 0, 2.75 ) ],
+"args": [ Vector3( 0, 0, 5 ) ],
 "method": "_set_direction_local"
 } ]
 }
@@ -255,10 +255,10 @@ tracks/32/loop_wrap = true
 tracks/32/imported = false
 tracks/32/enabled = true
 tracks/32/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ 2.25 ],
+"args": [ 2.5 ],
 "method": "_set_y_velocity"
 } ]
 }

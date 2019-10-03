@@ -23,7 +23,6 @@ func _on_animation_changed(new_name):
 	if name == new_name:
 		
 		parent.get_node('AnimationPlayer').playback_speed = speed
-		parent.blend_mode = blend_mode
 		
 		emit_signal('on_enter')
 

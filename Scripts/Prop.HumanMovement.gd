@@ -39,8 +39,6 @@ onready var collision = $'../Collision'
 onready var camera = $'../PlayerControl/Viewport/Camera'
 #onready var ik_righthand = $'../Model'.get_child(0).get_node('RightHandIK/Target')
 
-signal climb_target_changed
-
 
 func _ready():
 	
@@ -125,7 +123,6 @@ func _find_climb_target():
 				climb_x_progress = 0
 				climb_y_progress = 0
 				
-				emit_signal('climb_target_changed', climb_target)
 				return
 		
 		last_point = ray_to_target.get_collision_point()
@@ -134,8 +131,6 @@ func _find_climb_target():
 	ray_to_self.queue_free()
 	
 	climb_target = null
-	
-	emit_signal('climb_target_changed', climb_target)
 
 
 func _physics_process(delta):

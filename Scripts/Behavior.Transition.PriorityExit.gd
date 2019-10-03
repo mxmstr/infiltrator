@@ -9,8 +9,6 @@ var default_mode
 
 func _on_travel_started(target_node):
 	
-	print(target_node)
-	
 	if target_node.priority > from.priority:
 		switch_mode = SWITCH_MODE_IMMEDIATE
 	else:

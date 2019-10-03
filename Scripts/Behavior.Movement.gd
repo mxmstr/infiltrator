@@ -3,7 +3,21 @@ extends AnimationTree
 export(String) var root_bone
 export(Array, String) var movement_bones
 
-var cached_pose = []
+var blend_mode = Inf.Blend.ACTION
+
+var model_skeleton
+var action_skeleton
+var move_skeleton
+
+var cached_action_pose = []
+var cached_model_pose = []
+
+var action_blend_amount = 0.0
+var action_blend_speed = 0.1
+
+var model_blend_amount = 0.0
+var model_blend_speed = 0.5
+
 var anim_nodes = []
 
 
@@ -30,29 +44,73 @@ func _add_anim_nodes(root, path):
 	return array
 
 
-func _ready():
+func _cache_action_pose():
 	
-	tree_root = tree_root.duplicate(true)
+	action_blend_amount = 1.0
+	cached_action_pose = []
 	
+	for idx in range(action_skeleton.get_bone_count()):
+		cached_action_pose.append(action_skeleton.get_bone_global_pose(idx))
+
+
+func _cache_move_pose():
 	
-	var skeleton = $'../../Model'.get_children()[0].duplicate()
+	model_blend_amount = 1.0
+	cached_model_pose = []
 	
-	for child in skeleton.get_children():
+	for idx in range(model_skeleton.get_bone_count()):
+		cached_model_pose.append(model_skeleton.get_bone_global_pose(idx))
+
+
+func _on_state_starting(_name):
+	
+	var node = get_parent().tree_root.get_node(_name)
+	
+	if blend_mode != node.blend_mode:
+		_cache_move_pose()
+	
+	_cache_action_pose()
+	
+	blend_mode = node.blend_mode
+
+
+func _set_skeleton():
+	
+	model_skeleton = $'../../Model'.get_child(0)
+	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(model_skeleton)
+	
+	action_skeleton = model_skeleton.duplicate()
+	move_skeleton = model_skeleton.duplicate()
+	
+	for child in action_skeleton.get_children() + move_skeleton.get_children():
 		child.queue_free()
 	
 	
-	get_parent().call_deferred('add_child', skeleton)
-	$AnimationPlayer.root_node = NodePath('../../' + skeleton.name)
+	$'../../Model'.add_child(action_skeleton)
+	$'../../Model'.add_child(move_skeleton)
+	
+	$'../AnimationPlayer'.root_node = NodePath('../../Model/' + action_skeleton.name)
+	$AnimationPlayer.root_node = NodePath('../../../Model/' + move_skeleton.name)
+	
+	
+	active = true
+
+
+func _ready():
+	
+	call_deferred('_set_skeleton')
 	
 	
 	var blendspace = tree_root.get_node('BlendTree').get_node('BlendSpace1D')
 	anim_nodes = _add_anim_nodes(blendspace, 'parameters/BlendTree/BlendSpace1D/')
 	
 	
+	var playback = get_parent().get('parameters/playback')
+	playback.connect('state_starting', self, '_on_state_starting')
+	
 	connect('pre_process', self, '_on_pre_process')
 	connect('post_process', self, '_on_post_process')
 	
-	active = true
 
 
 func _filter_anim_events(nodes, blend_position, filter_all=false):
@@ -68,6 +126,7 @@ func _filter_anim_events(nodes, blend_position, filter_all=false):
 			min_dist = dist
 			closest = node
 	
+	
 	for node in nodes:
 		
 		if node.animation != null:
@@ -81,6 +140,7 @@ func _filter_anim_events(nodes, blend_position, filter_all=false):
 
 				for track in node.animation.get_track_count():
 					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2)
+		
 		
 		if node.blendspace != null:
 			
@@ -118,36 +178,60 @@ func _sync_blend_spaces():
 	set('parameters/BlendTree/BlendSpace1D/0/blend_position', local_velocity.z)
 
 
-func _blend_skeletons():
+func _blend_skeletons(delta):
 	
-	var s_movement = $AnimationPlayer.get_node($AnimationPlayer.root_node)
-	var s_action = $'../AnimationPlayer'.get_node($'../AnimationPlayer'.root_node)
-	var layered = get_parent().blend_mode == Inf.Blend.LAYERED
-	var action_only = get_parent().blend_mode == Inf.Blend.ACTION
-	var movement_only = get_parent().blend_mode == Inf.Blend.MOVEMENT
+	var bones = range(model_skeleton.get_bone_count())
 	
-	for idx in range(s_action.get_bone_count()):
-		cached_pose.append(s_action.get_bone_global_pose(idx))
+	var layered = blend_mode == Inf.Blend.LAYERED
+	var action_only = blend_mode == Inf.Blend.ACTION
+	var movement_only = blend_mode == Inf.Blend.MOVEMENT
 	
 	
-	for idx in range(s_action.get_bone_count()):
-		var bone_name = s_action.get_bone_name(idx)
-		var move_transform = s_movement.get_bone_global_pose(idx)
-		var action_transform = s_action.get_bone_global_pose(idx)
+	for idx in bones:
+		
+		var bone_name = model_skeleton.get_bone_name(idx)
+		var model_transform = model_skeleton.get_bone_global_pose(idx)
+		var move_transform = move_skeleton.get_bone_global_pose(idx)
+		var action_transform = action_skeleton.get_bone_global_pose(idx)
 		
 		
-		if not action_only:
-		
-			if movement_only or bone_name in movement_bones:
-				if bone_name == root_bone:
-					action_transform = move_transform
-				else:
-					action_transform.basis = move_transform.basis
-				s_action.set_bone_global_pose(idx, action_transform)
-				
+		if movement_only or (layered and bone_name in movement_bones):
+			
+			if bone_name == root_bone:
+				model_transform = move_transform
 			else:
-				action_transform.basis = cached_pose[idx].basis
-				s_action.set_bone_global_pose(idx, action_transform)
+				model_transform.basis = move_transform.basis
+				
+		else:
+			
+			if action_blend_amount > 0:
+
+				action_transform = action_transform.interpolate_with(cached_action_pose[idx], action_blend_amount)
+
+				action_blend_amount -= delta * action_blend_speed
+				action_blend_amount = max(action_blend_amount, 0)
+			
+			
+			if bone_name == root_bone:
+				model_transform = action_transform
+			else:
+				model_transform.basis = action_transform.basis
+		
+		
+		if model_blend_amount > 0:
+
+			var blended_transform = model_transform.interpolate_with(cached_model_pose[idx], model_blend_amount)
+
+			if bone_name == root_bone:
+				model_transform = blended_transform
+			else:
+				model_transform.basis = blended_transform.basis
+
+			model_blend_amount -= delta * model_blend_speed
+			model_blend_amount = max(model_blend_amount, 0)
+		
+		
+		model_skeleton.set_bone_global_pose(idx, model_transform)
 
 
 func _on_pre_process():
@@ -155,7 +239,7 @@ func _on_pre_process():
 	_filter_anim_events(
 		anim_nodes, 
 		get('parameters/BlendTree/BlendSpace1D/blend_position'),
-		true if get_parent().blend_mode == Inf.Blend.ACTION else false
+		blend_mode == Inf.Blend.ACTION
 		)
 
 
@@ -168,6 +252,4 @@ func _process(delta):
 	
 	_sync_blend_spaces()
 	
-	#_filter_anim_events(anim_nodes, get('parameters/BlendTree/BlendSpace1D/blend_position'))
-	
-	_blend_skeletons()
+	_blend_skeletons(delta)

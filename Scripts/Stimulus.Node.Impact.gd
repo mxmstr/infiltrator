@@ -36,7 +36,6 @@ func _physics_process(delta):
 			and new_collision.travel.length() > min_speed \
 			and new_collision.travel.length() < max_speed:
 			
-			print(new_collision.collider, new_collision.travel.length())
 			collision = new_collision
 		
 		new_collisions.append(new_collision)
