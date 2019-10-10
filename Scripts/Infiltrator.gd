@@ -15,7 +15,7 @@ enum Blend {
 enum Priority {
 	LOW,
 	HIGH,
-	VERYHIGH
+	VERY_HIGH
 }
 
 enum RawInputType {

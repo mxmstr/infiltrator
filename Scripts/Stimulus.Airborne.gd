@@ -1,6 +1,7 @@
 extends AnimationNodeStateMachineTransition
 
-export var delay = 0.0
+export var delay = 1.0
+export var min_velocity = 1.0
 
 var parent
 var timer
@@ -23,6 +24,8 @@ func _on_timeout():
 
 func _physics_process(delta):
 	
+	var velocity = parent.get_node('../HumanMovement').velocity
+	
 	if parent.get_parent().is_on_floor():
 		
 		disabled = true
@@ -32,7 +35,7 @@ func _physics_process(delta):
 			timer = null
 	
 	
-	elif timer == null:
+	elif velocity.y < -min_velocity and timer == null:
 		
 		timer = Timer.new()
 		timer.autostart = true

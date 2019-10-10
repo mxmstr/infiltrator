@@ -3,6 +3,7 @@ extends AnimationNodeStateMachineTransition
 export(String, 'None', 'True', 'False', 'Null', 'NotNull') var assertion = 'None'
 export(String) var target
 export(String) var method
+export(float) var wait_for_frame
 
 var parent
 var from
@@ -12,6 +13,11 @@ var default_mode
 
 
 func _on_target_signal(value):
+	
+	var playback = parent.get('parameters/playback')
+	
+	if playback.get_current_play_pos() < wait_for_frame:
+		return false
 	
 	match assertion:
 		

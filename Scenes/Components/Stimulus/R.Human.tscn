@@ -1,0 +1,68 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Stimulus/R.H.Land.tres" type="Animation" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "R.H.Land"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 1 )
+min_intensity = 0.02
+max_intensity = 100.0
+direction = Vector3( 0, 1, 0 )
+max_direction_angle = 25.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachine" id=1]
+states/Airborne/node = SubResource( 4 )
+states/Airborne/position = Vector2( 689, 125 )
+states/Default/node = SubResource( 3 )
+states/Default/position = Vector2( 455, 125 )
+states/Land/node = SubResource( 5 )
+states/Land/position = Vector2( 360, -246 )
+states/Touch/node = SubResource( 6 )
+states/Touch/position = Vector2( 455, -102 )
+transitions = [ "Default", "Touch", SubResource( 7 ), "Default", "Airborne", SubResource( 8 ), "Touch", "Land", SubResource( 9 ), "Touch", "Default", SubResource( 10 ), "Airborne", "Default", SubResource( 11 ), "Land", "Default", SubResource( 12 ) ]
+start_node = "Default"
+graph_offset = Vector2( 0, -273.66 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
+[node name="Receptor" type="AnimationTree"]
+tree_root = SubResource( 1 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 2 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 3 )
+anims/R.H.Land = ExtResource( 4 )
