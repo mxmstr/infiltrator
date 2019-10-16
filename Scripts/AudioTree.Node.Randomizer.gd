@@ -1,22 +1,14 @@
 extends AnimationNodeAnimation
 
 var parent
-var anim_name
+var node_name
 var transitions = []
 var last = -1
 
 
-func init(_parent, _anim_name):
+func _on_travel_starting(new_anim):
 	
-	parent = _parent
-	anim_name = _anim_name
-	
-	parent.connect('animation_changed', self, '_on_animation_changed')
-
-
-func _on_animation_changed(new_anim):
-	
-	if anim_name == new_anim:
+	if node_name == new_anim:
 		
 		var enabled_idx = last
 		
@@ -27,3 +19,11 @@ func _on_animation_changed(new_anim):
 			transitions[idx].disabled = idx != enabled_idx
 		
 		last = enabled_idx
+
+
+func _init(_parent, _node_name):
+	
+	parent = _parent
+	node_name = _node_name
+	
+	parent.connect('travel_starting', self, '_on_travel_starting')

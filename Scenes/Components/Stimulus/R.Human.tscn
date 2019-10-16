@@ -5,23 +5,23 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 [ext_resource path="res://Animations/Stimulus/R.H.Land.tres" type="Animation" id=4]
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "R.H.Land"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 switch_mode = 2
 auto_advance = true
 disabled = true
@@ -31,36 +31,36 @@ max_intensity = 100.0
 direction = Vector3( 0, 1, 0 )
 max_direction_angle = 25.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
 auto_advance = true
 priority = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
-[sub_resource type="AnimationNodeStateMachine" id=1]
-states/Airborne/node = SubResource( 4 )
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Airborne/node = SubResource( 1 )
 states/Airborne/position = Vector2( 689, 125 )
-states/Default/node = SubResource( 3 )
+states/Default/node = SubResource( 2 )
 states/Default/position = Vector2( 455, 125 )
-states/Land/node = SubResource( 5 )
+states/Land/node = SubResource( 3 )
 states/Land/position = Vector2( 360, -246 )
-states/Touch/node = SubResource( 6 )
+states/Touch/node = SubResource( 4 )
 states/Touch/position = Vector2( 455, -102 )
-transitions = [ "Default", "Touch", SubResource( 7 ), "Default", "Airborne", SubResource( 8 ), "Touch", "Land", SubResource( 9 ), "Touch", "Default", SubResource( 10 ), "Airborne", "Default", SubResource( 11 ), "Land", "Default", SubResource( 12 ) ]
+transitions = [ "Default", "Touch", SubResource( 5 ), "Default", "Airborne", SubResource( 6 ), "Touch", "Land", SubResource( 7 ), "Touch", "Default", SubResource( 8 ), "Airborne", "Default", SubResource( 9 ), "Land", "Default", SubResource( 10 ) ]
 start_node = "Default"
-graph_offset = Vector2( 0, -273.66 )
+graph_offset = Vector2( 0, -328.186 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
 [node name="Receptor" type="AnimationTree"]
-tree_root = SubResource( 1 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 2 )
+parameters/playback = SubResource( 12 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

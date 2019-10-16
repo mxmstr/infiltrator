@@ -29,22 +29,26 @@ func _physics_process(delta):
 		if continuous or not collision.collider in colliders:
 			
 			if collision.collider.has_node('Receptor'):
-				collision.collider.get_node('Receptor')._stimulate(
-					stim_type, 
-					self, 
-					collision.position,
-					collision.normal,
-					collision.travel
-					)
+				
+				var data = {
+					'collider': self, 
+					'position': collision.position,
+					'normal': collision.normal,
+					'travel': collision.travel
+					}
+				
+				collision.collider.get_node('Receptor')._start_state(stim_type, data)
 			
 			if send_to_self and get_parent().has_node('Receptor'):
-				get_parent().get_node('Receptor')._stimulate(
-					stim_type, 
-					collision.collider,
-					collision.position,
-					collision.normal * -1,
-					collision.travel * -1
-					)
+				
+				var data = {
+					'collider': collision.collider,
+					'position': collision.position,
+					'normal': collision.normal * -1,
+					'travel': collision.travel * -1
+					}
+				
+				get_parent().get_node('Receptor')._start_state(stim_type, data)
 		
 		new_collisions.append(collision)
 	

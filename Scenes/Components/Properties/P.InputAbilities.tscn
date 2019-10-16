@@ -1,23 +1,24 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Input.gd" type="Script" id=2]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Human/Input/H.IN.Climb.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/Input/H.IN.Climb.Enter.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Human/Input/H.IN.Crawl.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/Input/H.IN.Crouch.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/Input/H.IN.Drop.tres" type="Animation" id=8]
-[ext_resource path="res://Animations/Human/Input/H.IN.Grab.tres" type="Animation" id=9]
-[ext_resource path="res://Animations/Human/Input/H.IN.Interact.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/Human/Input/H.IN.Interact.Exit.tres" type="Animation" id=11]
-[ext_resource path="res://Animations/Human/Input/H.IN.InteractCancel.tres" type="Animation" id=12]
-[ext_resource path="res://Animations/Human/Input/H.IN.InteractDown.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/Input/H.IN.InteractSelect.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/Input/H.IN.InteractUp.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/Input/H.IN.Jump.tres" type="Animation" id=16]
-[ext_resource path="res://Animations/Human/Input/H.IN.Run.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/Input/H.IN.Walk.tres" type="Animation" id=18]
+[ext_resource path="res://Scripts/StateMachine.Transition.Boolean.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Input.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/Input/H.IN.Climb.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Input/H.IN.Climb.Enter.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/Input/H.IN.Crawl.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/Input/H.IN.Crouch.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Human/Input/H.IN.Drop.tres" type="Animation" id=9]
+[ext_resource path="res://Animations/Human/Input/H.IN.Grab.tres" type="Animation" id=10]
+[ext_resource path="res://Animations/Human/Input/H.IN.Interact.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/Human/Input/H.IN.Interact.Exit.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractCancel.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractDown.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractSelect.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/Input/H.IN.InteractUp.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/Input/H.IN.Jump.tres" type="Animation" id=17]
+[ext_resource path="res://Animations/Human/Input/H.IN.Run.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Human/Input/H.IN.Walk.tres" type="Animation" id=19]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "H.IN.Climb"
@@ -58,9 +59,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "Interact"
 state = 1
-assertion = "True"
-target = "PlayerControl/Viewport/Camera/RayCast"
-method = "_has_selection"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 switch_mode = 2
@@ -73,9 +71,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "Interact"
 state = 0
-assertion = "None"
-target = ""
-method = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
@@ -88,9 +83,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "ScrollUp"
 state = 3
-assertion = "None"
-target = ""
-method = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 switch_mode = 2
@@ -99,9 +91,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "ScrollDown"
 state = 3
-assertion = "None"
-target = ""
-method = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
@@ -117,9 +106,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "Secondary"
 state = 1
-assertion = "False"
-target = "Model/neo_reference_skeleton/RightHand"
-method = "_is_empty"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 auto_advance = true
@@ -127,9 +113,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "Secondary"
 state = 1
-assertion = "True"
-target = "Model/neo_reference_skeleton/RightHand"
-method = "_is_empty"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 2
@@ -143,12 +126,11 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 1 )
-action = "Interact"
-state = 1
+script = ExtResource( 2 )
 assertion = "False"
 target = "PlayerControl/Viewport/Camera/RayCast"
 method = "_has_selection"
+wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 switch_mode = 2
@@ -160,26 +142,22 @@ disabled = true
 script = ExtResource( 1 )
 action = "Jump"
 state = 3
-assertion = "None"
-target = ""
-method = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
+assertion = "True"
+target = "HumanMovement"
+method = "_has_climb_target"
+wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 switch_mode = 2
 auto_advance = true
-disabled = true
-script = ExtResource( 1 )
-action = "Jump"
-state = 1
-assertion = "True"
-target = "HumanMovement"
-method = "_has_climb_target"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -208,9 +186,9 @@ states/InteractUp/node = SubResource( 10 )
 states/InteractUp/position = Vector2( 781, 198.529 )
 states/Jump/node = SubResource( 11 )
 states/Jump/position = Vector2( 829.173, -469.543 )
-transitions = [ "Default", "Interact", SubResource( 12 ), "InteractExit", "Default", SubResource( 13 ), "Interact", "InteractSelect", SubResource( 14 ), "InteractSelect", "InteractExit", SubResource( 15 ), "Interact", "InteractUp", SubResource( 16 ), "Interact", "InteractDown", SubResource( 17 ), "InteractUp", "Interact", SubResource( 18 ), "InteractDown", "Interact", SubResource( 19 ), "Default", "Drop", SubResource( 20 ), "Default", "Grab", SubResource( 21 ), "Grab", "Default", SubResource( 22 ), "Drop", "Default", SubResource( 23 ), "Interact", "InteractExit", SubResource( 24 ), "Climb", "Default", SubResource( 25 ), "Default", "ClimbEnter", SubResource( 26 ), "ClimbEnter", "Climb", SubResource( 28 ), "Jump", "Default", SubResource( 29 ), "ClimbEnter", "Jump", SubResource( 32 ) ]
+transitions = [ "Default", "Interact", SubResource( 12 ), "InteractExit", "Default", SubResource( 13 ), "Interact", "InteractSelect", SubResource( 14 ), "InteractSelect", "InteractExit", SubResource( 15 ), "Interact", "InteractUp", SubResource( 16 ), "Interact", "InteractDown", SubResource( 17 ), "InteractUp", "Interact", SubResource( 18 ), "InteractDown", "Interact", SubResource( 19 ), "Default", "Drop", SubResource( 20 ), "Default", "Grab", SubResource( 21 ), "Grab", "Default", SubResource( 22 ), "Drop", "Default", SubResource( 23 ), "Interact", "InteractExit", SubResource( 24 ), "Climb", "Default", SubResource( 25 ), "Default", "ClimbEnter", SubResource( 26 ), "ClimbEnter", "Climb", SubResource( 27 ), "Jump", "Default", SubResource( 28 ), "ClimbEnter", "Jump", SubResource( 29 ) ]
 start_node = "Default"
-graph_offset = Vector2( 90.855, -592.425 )
+graph_offset = Vector2( 90.855, -621.425 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 
@@ -218,23 +196,23 @@ graph_offset = Vector2( 90.855, -592.425 )
 tree_root = SubResource( 30 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 31 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath(".")
-anims/DefaultAnim = ExtResource( 3 )
-anims/H.IN.Climb = ExtResource( 4 )
-anims/H.IN.Climb.Enter = ExtResource( 5 )
-anims/H.IN.Crawl = ExtResource( 6 )
-anims/H.IN.Crouch = ExtResource( 7 )
-anims/H.IN.Drop = ExtResource( 8 )
-anims/H.IN.Grab = ExtResource( 9 )
-anims/H.IN.Interact = ExtResource( 10 )
-anims/H.IN.Interact.Exit = ExtResource( 11 )
-anims/H.IN.InteractCancel = ExtResource( 12 )
-anims/H.IN.InteractDown = ExtResource( 13 )
-anims/H.IN.InteractSelect = ExtResource( 14 )
-anims/H.IN.InteractUp = ExtResource( 15 )
-anims/H.IN.Jump = ExtResource( 16 )
-anims/H.IN.Run = ExtResource( 17 )
-anims/H.IN.Walk = ExtResource( 18 )
+anims/DefaultAnim = ExtResource( 4 )
+anims/H.IN.Climb = ExtResource( 5 )
+anims/H.IN.Climb.Enter = ExtResource( 6 )
+anims/H.IN.Crawl = ExtResource( 7 )
+anims/H.IN.Crouch = ExtResource( 8 )
+anims/H.IN.Drop = ExtResource( 9 )
+anims/H.IN.Grab = ExtResource( 10 )
+anims/H.IN.Interact = ExtResource( 11 )
+anims/H.IN.Interact.Exit = ExtResource( 12 )
+anims/H.IN.InteractCancel = ExtResource( 13 )
+anims/H.IN.InteractDown = ExtResource( 14 )
+anims/H.IN.InteractSelect = ExtResource( 15 )
+anims/H.IN.InteractUp = ExtResource( 16 )
+anims/H.IN.Jump = ExtResource( 17 )
+anims/H.IN.Run = ExtResource( 18 )
+anims/H.IN.Walk = ExtResource( 19 )

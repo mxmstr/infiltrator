@@ -7,7 +7,7 @@
 [ext_resource path="res://Animations/Human/Input/H.IN.Crouch.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/Human/Input/H.IN.Run.tres" type="Animation" id=6]
 [ext_resource path="res://Animations/Human/Input/H.IN.Walk.tres" type="Animation" id=7]
-[ext_resource path="res://Scripts/Input.Context.Movement.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Input.Movement.gd" type="Script" id=8]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "H.IN.Crouch"
@@ -25,9 +25,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "Run"
 state = 1
-assertion = "None"
-target = ""
-method = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
 switch_mode = 2
@@ -36,9 +33,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "Crouch"
 state = 1
-assertion = "None"
-target = ""
-method = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
 switch_mode = 2
@@ -47,9 +41,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "Run"
 state = 0
-assertion = "None"
-target = ""
-method = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
 switch_mode = 2
@@ -58,9 +49,6 @@ disabled = true
 script = ExtResource( 1 )
 action = "Crouch"
 state = 0
-assertion = "None"
-target = ""
-method = ""
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/Crouch/node = SubResource( 1 )
@@ -71,7 +59,7 @@ states/Run/node = SubResource( 3 )
 states/Run/position = Vector2( 612, 90 )
 transitions = [ "Default", "Run", SubResource( 4 ), "Default", "Crouch", SubResource( 5 ), "Run", "Default", SubResource( 6 ), "Crouch", "Default", SubResource( 7 ) ]
 start_node = "Default"
-graph_offset = Vector2( -94.2871, 55.5392 )
+graph_offset = Vector2( -94.2871, 69.424 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 

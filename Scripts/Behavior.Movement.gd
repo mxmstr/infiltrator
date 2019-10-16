@@ -62,110 +62,6 @@ func _cache_move_pose():
 		cached_model_pose.append(model_skeleton.get_bone_global_pose(idx))
 
 
-func _on_state_starting(_name):
-	
-	var node = get_parent().tree_root.get_node(_name)
-	
-	if blend_mode != node.blend_mode:
-		_cache_move_pose()
-	
-	_cache_action_pose()
-	
-	blend_mode = node.blend_mode
-
-
-func _set_skeleton():
-	
-	model_skeleton = $'../../Model'.get_child(0)
-	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(model_skeleton)
-	
-	action_skeleton = model_skeleton.duplicate()
-	move_skeleton = model_skeleton.duplicate()
-	
-	for child in action_skeleton.get_children() + move_skeleton.get_children():
-		child.queue_free()
-	
-	
-	$'../../Model'.add_child(action_skeleton)
-	$'../../Model'.add_child(move_skeleton)
-	
-	$'../AnimationPlayer'.root_node = NodePath('../../Model/' + action_skeleton.name)
-	$AnimationPlayer.root_node = NodePath('../../../Model/' + move_skeleton.name)
-	
-	
-	active = true
-
-
-func _ready():
-	
-	call_deferred('_set_skeleton')
-	
-	
-	var blendspace = tree_root.get_node('BlendTree').get_node('BlendSpace1D')
-	anim_nodes = _add_anim_nodes(blendspace, 'parameters/BlendTree/BlendSpace1D/')
-	
-	
-	var playback = get_parent().get('parameters/playback')
-	playback.connect('state_starting', self, '_on_state_starting')
-	
-	connect('pre_process', self, '_on_pre_process')
-	connect('post_process', self, '_on_post_process')
-	
-
-
-func _filter_anim_events(nodes, blend_position, filter_all=false):
-	
-	var closest = null
-	var min_dist = 2.0
-	
-	for node in nodes:
-		
-		var dist = abs(clamp(blend_position - node.position, -2, 2))
-		
-		if dist <= min_dist:
-			min_dist = dist
-			closest = node
-	
-	
-	for node in nodes:
-		
-		if node.animation != null:
-			
-			if node.position == closest.position:
-
-				for track in node.animation.get_track_count():
-					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2 if filter_all else true)
-
-			else:
-
-				for track in node.animation.get_track_count():
-					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2)
-		
-		
-		if node.blendspace != null:
-			
-			var position = get(node.path + 'blend_position')
-			
-			if node.position == closest.position:
-				_filter_anim_events(node.children, position, filter_all)
-			else:
-				_filter_anim_events(node.children, position, true)
-
-
-func _unfilter_anim_events(nodes):
-	
-	for node in nodes:
-		
-		if node.animation != null:
-			
-			for track in node.animation.get_track_count():
-				node.animation.track_set_enabled(track, true)
-		
-		if node.blendspace != null:
-			
-			_unfilter_anim_events(node.children)
-
-
 func _sync_blend_spaces():
 	
 	var velocity = $'../../HumanMovement'.velocity
@@ -234,6 +130,59 @@ func _blend_skeletons(delta):
 		model_skeleton.set_bone_global_pose(idx, model_transform)
 
 
+func _filter_anim_events(nodes, blend_position, filter_all=false):
+	
+	var closest = null
+	var min_dist = 2.0
+	
+	for node in nodes:
+		
+		var dist = abs(clamp(blend_position - node.position, -2, 2))
+		
+		if dist <= min_dist:
+			min_dist = dist
+			closest = node
+	
+	
+	for node in nodes:
+		
+		if node.animation != null:
+			
+			if node.position == closest.position:
+
+				for track in node.animation.get_track_count():
+					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2 if filter_all else true)
+
+			else:
+
+				for track in node.animation.get_track_count():
+					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2)
+		
+		
+		if node.blendspace != null:
+			
+			var position = get(node.path + 'blend_position')
+			
+			if node.position == closest.position:
+				_filter_anim_events(node.children, position, filter_all)
+			else:
+				_filter_anim_events(node.children, position, true)
+
+
+func _unfilter_anim_events(nodes):
+	
+	for node in nodes:
+		
+		if node.animation != null:
+			
+			for track in node.animation.get_track_count():
+				node.animation.track_set_enabled(track, true)
+		
+		if node.blendspace != null:
+			
+			_unfilter_anim_events(node.children)
+
+
 func _on_pre_process():
 	
 	_filter_anim_events(
@@ -246,6 +195,56 @@ func _on_pre_process():
 func _on_post_process():
 	
 	_unfilter_anim_events(anim_nodes)
+
+
+func _on_state_starting(_name):
+	
+	var node = get_parent().tree_root.get_node(_name)
+	
+	if blend_mode != node.blend_mode:
+		_cache_move_pose()
+	
+	_cache_action_pose()
+	
+	blend_mode = node.blend_mode
+
+
+func _set_skeleton():
+	
+	model_skeleton = $'../../Model'.get_child(0)
+	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(model_skeleton)
+	
+	action_skeleton = model_skeleton.duplicate()
+	move_skeleton = model_skeleton.duplicate()
+	
+	for child in action_skeleton.get_children() + move_skeleton.get_children():
+		child.queue_free()
+	
+	
+	$'../../Model'.add_child(action_skeleton)
+	$'../../Model'.add_child(move_skeleton)
+	
+	$'../AnimationPlayer'.root_node = NodePath('../../Model/' + action_skeleton.name)
+	$AnimationPlayer.root_node = NodePath('../../../Model/' + move_skeleton.name)
+	
+	
+	active = true
+
+
+func _ready():
+	
+	call_deferred('_set_skeleton')
+	
+	
+	var blendspace = tree_root.get_node('BlendTree').get_node('BlendSpace1D')
+	anim_nodes = _add_anim_nodes(blendspace, 'parameters/BlendTree/BlendSpace1D/')
+	
+	
+	var playback = get_parent().get('parameters/playback')
+	playback.connect('state_starting', self, '_on_state_starting')
+	
+	connect('pre_process', self, '_on_pre_process')
+	connect('post_process', self, '_on_post_process')
 
 
 func _process(delta):

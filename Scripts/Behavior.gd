@@ -1,13 +1,4 @@
-extends AnimationTree
-
-var nodes = []
-var current_node
-var last_node
-var last_time
-
-signal travel_starting
-signal animation_changed
-signal on_process
+extends 'res://Scripts/StateMachine.gd'
 
 
 func _get_visible_interactions():
@@ -26,48 +17,6 @@ func _has_interaction(_name):
 	return false#has_node(_name)
 
 
-func _start_interaction(_name):
-	
-	var playback = get('parameters/playback')
-	var current = playback.get_current_node()
-	
-	if not tree_root.has_node(_name):
-		return
-	
-	last_node = current
-	last_time = playback.get_current_play_pos()
-	
-	
-	emit_signal('travel_starting', tree_root.get_node(_name))
-	
-	playback.travel(_name)
-
-
-func _init_transitions():
-	
-	var anim_names = []
-	
-	for idx in range(tree_root.get_transition_count()):
-		
-		var transition = tree_root.get_transition(idx)
-		var from_name = tree_root.get_transition_from(idx)
-		var to_name = tree_root.get_transition_to(idx)
-		var from = tree_root.get_node(from_name)
-		var to = tree_root.get_node(to_name)
-		
-		if not from_name in anim_names:
-			
-			from._ready(self, from_name)
-			
-			anim_names.append(from_name)
-			nodes.append(from)
-		
-		from.transitions.append(transition)
-		
-		if transition.has_method('_ready'):
-			transition._ready(self, from, to)
-
-
 func _set_skeleton():
 	
 	var skeleton = $'../Model'.get_child(0)
@@ -76,23 +25,6 @@ func _set_skeleton():
 
 func _ready():
 	
-	if not has_meta('unique'):
-		Inf._make_unique(self)
-		return
-	
-	_init_transitions()
 	_set_skeleton()
 	
-	active = true
-
-
-func _process(delta):
-	
-	var playback = get('parameters/playback')
-	
-	if current_node != playback.get_current_node():
-		emit_signal('animation_changed', playback.get_current_node())
-	
-	current_node = playback.get_current_node()
-	
-	emit_signal('on_process')
+	._ready()

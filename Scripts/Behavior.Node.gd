@@ -6,11 +6,9 @@ export(Inf.Blend) var blend_mode
 export var speed = 1.0
 export var distance = 0.0
 
-var name
+var node_name
 var parent
 var transitions = []
-
-signal on_enter
 
 
 func _is_visible():
@@ -18,18 +16,16 @@ func _is_visible():
 	return type != Inf.Visibility.INVISIBLE
 
 
-func _on_animation_changed(new_name):
+func _on_state_starting(new_name):
 	
-	if name == new_name:
+	if node_name == new_name:
 		
 		parent.get_node('AnimationPlayer').playback_speed = speed
-		
-		emit_signal('on_enter')
 
 
-func _ready(_parent, _name):
+func _ready(_parent, _node_name):
 	
 	parent = _parent
-	name = _name
+	node_name = _node_name
 	
-	parent.connect('animation_changed', self, '_on_animation_changed')
+	parent.connect('state_starting', self, '_on_state_starting')

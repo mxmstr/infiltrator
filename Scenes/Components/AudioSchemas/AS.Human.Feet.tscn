@@ -1,6 +1,6 @@
 [gd_scene load_steps=161 format=2]
 
-[ext_resource path="res://Scripts/AudioTree.Randomizer.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AudioTree.Node.Randomizer.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AudioTree.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 [ext_resource path="res://Animations/Audio/FTCAR_A1.tres" type="Animation" id=4]
@@ -166,9 +166,11 @@ script = ExtResource( 1 )
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 auto_advance = true
+disabled = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
 auto_advance = true
+disabled = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 auto_advance = true
@@ -186,9 +188,11 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 auto_advance = true
+disabled = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 auto_advance = true
+disabled = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
