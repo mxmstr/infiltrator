@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine.Transition.Boolean.gd" type="Script" id=2]
@@ -20,7 +20,7 @@
 [ext_resource path="res://Animations/Human/Input/H.IN.Run.tres" type="Animation" id=18]
 [ext_resource path="res://Animations/Human/Input/H.IN.Walk.tres" type="Animation" id=19]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=46]
 animation = "H.IN.Climb"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
@@ -29,10 +29,10 @@ animation = "H.IN.Climb.Enter"
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=47]
 animation = "H.IN.Drop"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=48]
 animation = "H.IN.Grab"
 
 [sub_resource type="AnimationNodeAnimation" id=6]
@@ -162,17 +162,19 @@ switch_mode = 2
 auto_advance = true
 priority = 2
 
-[sub_resource type="AnimationNodeStateMachine" id=30]
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachine" id=31]
 resource_local_to_scene = true
-states/Climb/node = SubResource( 1 )
+states/Climb/node = SubResource( 46 )
 states/Climb/position = Vector2( 829.173, -543.992 )
 states/ClimbEnter/node = SubResource( 2 )
 states/ClimbEnter/position = Vector2( 623, -495.543 )
 states/Default/node = SubResource( 3 )
 states/Default/position = Vector2( 267, -103 )
-states/Drop/node = SubResource( 4 )
+states/Drop/node = SubResource( 47 )
 states/Drop/position = Vector2( 623, -166.66 )
-states/Grab/node = SubResource( 5 )
+states/Grab/node = SubResource( 48 )
 states/Grab/position = Vector2( 623, -264.66 )
 states/Interact/node = SubResource( 6 )
 states/Interact/position = Vector2( 623, 114 )
@@ -186,16 +188,16 @@ states/InteractUp/node = SubResource( 10 )
 states/InteractUp/position = Vector2( 781, 198.529 )
 states/Jump/node = SubResource( 11 )
 states/Jump/position = Vector2( 829.173, -469.543 )
-transitions = [ "Default", "Interact", SubResource( 12 ), "InteractExit", "Default", SubResource( 13 ), "Interact", "InteractSelect", SubResource( 14 ), "InteractSelect", "InteractExit", SubResource( 15 ), "Interact", "InteractUp", SubResource( 16 ), "Interact", "InteractDown", SubResource( 17 ), "InteractUp", "Interact", SubResource( 18 ), "InteractDown", "Interact", SubResource( 19 ), "Default", "Drop", SubResource( 20 ), "Default", "Grab", SubResource( 21 ), "Grab", "Default", SubResource( 22 ), "Drop", "Default", SubResource( 23 ), "Interact", "InteractExit", SubResource( 24 ), "Climb", "Default", SubResource( 25 ), "Default", "ClimbEnter", SubResource( 26 ), "ClimbEnter", "Climb", SubResource( 27 ), "Jump", "Default", SubResource( 28 ), "ClimbEnter", "Jump", SubResource( 29 ) ]
+transitions = [ "Default", "Interact", SubResource( 12 ), "InteractExit", "Default", SubResource( 13 ), "Interact", "InteractSelect", SubResource( 14 ), "InteractSelect", "InteractExit", SubResource( 15 ), "Interact", "InteractUp", SubResource( 16 ), "Interact", "InteractDown", SubResource( 17 ), "InteractUp", "Interact", SubResource( 18 ), "InteractDown", "Interact", SubResource( 19 ), "Default", "Drop", SubResource( 20 ), "Default", "Grab", SubResource( 21 ), "Grab", "Default", SubResource( 22 ), "Drop", "Default", SubResource( 23 ), "Interact", "InteractExit", SubResource( 24 ), "Climb", "Default", SubResource( 25 ), "Default", "ClimbEnter", SubResource( 26 ), "ClimbEnter", "Climb", SubResource( 27 ), "Jump", "Default", SubResource( 28 ), "ClimbEnter", "Jump", SubResource( 29 ), "ClimbEnter", "Jump", SubResource( 30 ) ]
 start_node = "Default"
-graph_offset = Vector2( 90.855, -621.425 )
+graph_offset = Vector2( 90.855, -593.2 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=32]
 
 [node name="InputAbilities" type="AnimationTree"]
-tree_root = SubResource( 30 )
+tree_root = SubResource( 31 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 31 )
+parameters/playback = SubResource( 32 )
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

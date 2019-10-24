@@ -201,6 +201,9 @@ func _on_state_starting(_name):
 	
 	var node = get_parent().tree_root.get_node(_name)
 	
+	if node.get('blend_mode') == null:
+		return
+	
 	if blend_mode != node.blend_mode:
 		_cache_move_pose()
 	

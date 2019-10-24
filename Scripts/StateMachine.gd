@@ -55,8 +55,11 @@ func _init_transitions():
 func _ready():
 	
 	if not has_meta('unique'):
+		#print([get_parent().name, name,  self])
 		Inf._make_unique(self)
 		return
+	
+	#print(['unique', get_parent().name, name,  self])
 	
 	_init_transitions()
 	

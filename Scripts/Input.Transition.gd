@@ -11,14 +11,20 @@ export(String) var action
 export(Status) var state
 
 var parent
+var from
+var to
+
 var last_status = -1
 
 
-func _init(_parent):
+func _ready(_parent, _from, _to):
 	
 	parent = _parent
+	from = _from
+	to = _to
 	
 	parent.connect('on_process', self, '_process')
+	parent.connect('travel_starting', self, '_on_travel_starting')
 
 
 func _process(delta):
@@ -27,9 +33,7 @@ func _process(delta):
 	var keyboard_device = parent.get_node('../PlayerControl').keyboard_device
 	
 	
-	var pressed = true
 	var status = Inf._get_rawinput_status(action, mouse_device, keyboard_device)
-	
 	
 	disabled = not (
 			status == state \

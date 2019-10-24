@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Infiltrator"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/Lab.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -25,7 +25,6 @@ Inf="*res://Scripts/Infiltrator.gd"
 
 [display]
 
-window/size/borderless=true
 window/size/test_width=720
 window/size/test_height=480
 

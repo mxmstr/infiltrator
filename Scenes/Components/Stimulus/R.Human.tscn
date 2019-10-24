@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Receptor.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Stimulus/R.H.Land.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Stimulus/R.H.Fall.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Stimulus/R.H.Land.tres" type="Animation" id=5]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "DefaultAnim"
+animation = "R.H.Fall"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
@@ -41,6 +42,8 @@ switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=11]
 states/Airborne/node = SubResource( 1 )
@@ -53,7 +56,7 @@ states/Touch/node = SubResource( 4 )
 states/Touch/position = Vector2( 455, -102 )
 transitions = [ "Default", "Touch", SubResource( 5 ), "Default", "Airborne", SubResource( 6 ), "Touch", "Land", SubResource( 7 ), "Touch", "Default", SubResource( 8 ), "Airborne", "Default", SubResource( 9 ), "Land", "Default", SubResource( 10 ) ]
 start_node = "Default"
-graph_offset = Vector2( 0, -328.186 )
+graph_offset = Vector2( 0, -42.38 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
@@ -65,4 +68,5 @@ script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 3 )
-anims/R.H.Land = ExtResource( 4 )
+anims/R.H.Fall = ExtResource( 4 )
+anims/R.H.Land = ExtResource( 5 )

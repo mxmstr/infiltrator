@@ -62,15 +62,17 @@ func _make_unique(old):
 	
 	
 	new = load(new_filename).instance()
-	old.name = '_'
+	new.name = old.name
 	new.set_meta('unique', true)
+	old.name += '_'
 
 	
 	old.get_parent().call_deferred('add_child_below_node', old, new)
 	old.get_parent().call_deferred('remove_child', old)
 	old.queue_free()
 	
-	new.call_deferred('set_name', new_name)
+	#new.call_deferred('set_name', new_name)
+	#new.call_deferred('set_meta', 'unique', true)
 	
 	dir.remove(new_filename)
 	

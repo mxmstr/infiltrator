@@ -59,7 +59,7 @@ states/Run/node = SubResource( 3 )
 states/Run/position = Vector2( 612, 90 )
 transitions = [ "Default", "Run", SubResource( 4 ), "Default", "Crouch", SubResource( 5 ), "Run", "Default", SubResource( 6 ), "Crouch", "Default", SubResource( 7 ) ]
 start_node = "Default"
-graph_offset = Vector2( -94.2871, 69.424 )
+graph_offset = Vector2( -94.2871, 42.9925 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 

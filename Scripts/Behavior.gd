@@ -6,7 +6,7 @@ func _get_visible_interactions():
 	var interactions = []
 	
 	for node in nodes:
-		if node._is_visible() and tree_root.can_travel(node.name):
+		if node.has_method('_is_visible') and node._is_visible() and tree_root.can_travel(node.name):
 			interactions.append(node.name)
 	
 	return interactions
@@ -24,7 +24,5 @@ func _set_skeleton():
 
 
 func _ready():
-	
+
 	_set_skeleton()
-	
-	._ready()

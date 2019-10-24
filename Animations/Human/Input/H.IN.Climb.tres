@@ -14,6 +14,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Climb" ],
-"method": "_start_interaction"
+"method": "_start_state"
 } ]
 }

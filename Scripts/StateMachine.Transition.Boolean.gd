@@ -32,7 +32,6 @@ func _ready(_parent, _from, _to):
 	to = _to
 	
 	parent.connect('on_process', self, '_process')
-	parent.connect('travel_starting', self, '_on_travel_starting')
 
 
 func _process(delta):

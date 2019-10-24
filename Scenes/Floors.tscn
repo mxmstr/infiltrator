@@ -8,7 +8,8 @@
 [ext_resource path="res://Scripts/LinkHub.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Links/LocalCoopPartner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Maps/Lab.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=9]
+
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -40,10 +41,10 @@ open_angle = Vector3( 0, 90, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538539, 2.62026, -0.504289 )
 
 [node name="Player" parent="Actors" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.19122, 5.43048, -7.45604 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3666, 8.34932, -7.98361 )
 
 [node name="Player2" parent="Actors" instance=ExtResource( 4 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.19122, 0.265068, -3.48623 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.89542, 0.317691, -4.4706 )
 
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {

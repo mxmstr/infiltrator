@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "R.H.Land"
-length = 0.1
+length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../Behavior")
 tracks/0/interp = 1
@@ -14,6 +14,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Land" ],
-"method": "_start_interaction"
+"method": "_start_state"
 } ]
 }
