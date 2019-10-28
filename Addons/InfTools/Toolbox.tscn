@@ -73,3 +73,19 @@ text = "Load Audio"
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="LoadMapInput" type="TextEdit" parent="."]
+margin_top = 266.0
+margin_right = 119.0
+margin_bottom = 296.0
+rect_min_size = Vector2( 0, 30 )
+text = "res://Models/Maps/"
+
+[node name="LoadMap" type="Button" parent="."]
+margin_top = 300.0
+margin_right = 119.0
+margin_bottom = 320.0
+text = "Load Map"
+__meta__ = {
+"_edit_group_": true
+}

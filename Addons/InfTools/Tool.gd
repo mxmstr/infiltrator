@@ -136,6 +136,37 @@ func on_loadaudio_pressed():
 			dir.list_dir_end()
 
 
+func on_loadmap_pressed():
+	
+	if not selection.get_selected_nodes().empty():
+		
+		var selected = selection.get_selected_nodes()[0]
+		var map = load(dock.get_node('LoadMapInput').text).instance()
+		
+		for child in map.get_children():
+			
+			if child is MeshInstance:
+				
+				var model = child.duplicate()
+				model.create_trimesh_collision()
+				
+				var body = model.get_child(0)
+				var collsion = body.get_node('CollisionShape')
+				model.remove_child(body)
+				selected.add_child(body)
+				body.add_child(model)
+				body.remove_child(collsion)
+				body.add_child(collsion)
+
+				body.name = model.name
+				model.name = 'Model'
+				collsion.name = 'Collision'
+				
+				body.owner = get_tree().get_edited_scene_root()
+				model.owner = get_tree().get_edited_scene_root()
+				collsion.owner = get_tree().get_edited_scene_root()
+
+
 func _ready():
 	
 	pass
@@ -148,6 +179,7 @@ func _enter_tree():
 	dock.get_node('Convert').connect('button_down', self, 'on_convert_pressed')
 	dock.get_node('LoadAnim').connect('button_down', self, 'on_loadanim_pressed')
 	dock.get_node('LoadAudio').connect('button_down', self, 'on_loadaudio_pressed')
+	dock.get_node('LoadMap').connect('button_down', self, 'on_loadmap_pressed')
 	
 	selection = EditorPlugin.new().get_editor_interface().get_selection()
 	selection.connect('selection_changed', self, 'on_selection_changed')
