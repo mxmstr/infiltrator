@@ -5,6 +5,9 @@ export(Inf.Visibility) var type
 export(Inf.Blend) var blend_mode
 export var speed = 1.0
 export var distance = 0.0
+export var abilities = true
+export var movement = true
+export var rotation = true
 
 var node_name
 var parent
@@ -21,6 +24,15 @@ func _on_state_starting(new_name):
 	if node_name == new_name:
 		
 		parent.get_node('AnimationPlayer').playback_speed = speed
+		
+		if parent.owner.has_node('InputAbilities'):
+			parent.owner.get_node('InputAbilities').active = abilities
+		
+		if parent.owner.has_node('InputMovement'):
+			parent.owner.get_node('InputMovement').active = movement
+		
+		if parent.owner.has_node('InputRotation'):
+			parent.owner.get_node('InputRotation').active = rotation
 
 
 func _ready(_parent, _node_name):

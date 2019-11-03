@@ -68,11 +68,10 @@ func _make_unique(old):
 
 	
 	old.get_parent().call_deferred('add_child_below_node', old, new)
+	new.call_deferred('set_owner', old.owner)
 	old.get_parent().call_deferred('remove_child', old)
 	old.queue_free()
 	
-	#new.call_deferred('set_name', new_name)
-	#new.call_deferred('set_meta', 'unique', true)
 	
 	dir.remove(new_filename)
 	

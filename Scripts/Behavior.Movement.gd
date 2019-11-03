@@ -227,8 +227,15 @@ func _set_skeleton():
 	$'../../Model'.add_child(action_skeleton)
 	$'../../Model'.add_child(move_skeleton)
 	
-	$'../AnimationPlayer'.root_node = NodePath('../../Model/' + action_skeleton.name)
-	$AnimationPlayer.root_node = NodePath('../../../Model/' + move_skeleton.name)
+#	print(action_skeleton.name)
+#	print(move_skeleton.name)
+	
+	$'../AnimationPlayer'.root_node = $'../AnimationPlayer'.get_path_to(action_skeleton)#NodePath('../../Model/' + action_skeleton.name)
+	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(move_skeleton)#NodePath('../../../Model/' + move_skeleton.name)
+	
+	
+#	var skeleton = $'../Model'.get_child(0)
+#	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(skeleton)
 	
 	
 	active = true

@@ -1,6 +1,6 @@
 [gd_scene format=2]
 
-[node name="ConverterTool" type="VBoxContainer"]
+[node name="Toolbox" type="VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
 

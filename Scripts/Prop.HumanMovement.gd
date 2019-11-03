@@ -36,7 +36,7 @@ var climb_x_progress = 0
 var climb_y_progress = 0
 
 onready var collision = $'../Collision'
-onready var camera = $'../PlayerControl/Viewport/Camera'
+onready var camera = $'../Perspective/Container/Viewport/CameraRig/Camera'
 #onready var ik_righthand = $'../Model'.get_child(0).get_node('RightHandIK/Target')
 
 
@@ -144,25 +144,25 @@ func _physics_process(delta):
 		
 		state.DEFAULT:
 			
-			collision.translation = Vector3(0, 0.75, 0)
-			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.70, 0)
+#			collision.translation = Vector3(0, 0.75, 0)
+#			collision.shape.extents.y = 0.75
+#			camera.offset = Vector3(0, 1.70, 0)
 			
 			target = direction
 		
 		state.WALKING:
 			
-			collision.translation = Vector3(0, 0.75, 0)
-			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.70, 0)
+#			collision.translation = Vector3(0, 0.75, 0)
+#			collision.shape.extents.y = 0.75
+#			camera.offset = Vector3(0, 1.70, 0)
 			
 			target = direction * max_speed * walk_mult
 		
 		state.CLIMBING:
 			
-			collision.translation = Vector3(0, 0.75, 0)
-			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.70, 0)
+#			collision.translation = Vector3(0, 0.75, 0)
+#			collision.shape.extents.y = 0.75
+#			camera.offset = Vector3(0, 1.70, 0)
 			
 			var new_x_pos = current_pos.linear_interpolate(climb_target, climb_x_progress)
 			var new_y_pos = current_pos.linear_interpolate(climb_target, climb_y_progress)
@@ -174,25 +174,25 @@ func _physics_process(delta):
 		
 		state.CROUCHING:
 			
-			collision.translation = Vector3(0, 0.3, 0)
-			collision.shape.extents.y = 0.3
-			camera.offset = Vector3(0, 0.70, 0)
+#			collision.translation = Vector3(0, 0.3, 0)
+#			collision.shape.extents.y = 0.3
+#			camera.offset = Vector3(0, 0.70, 0)
 			
 			target = direction * max_speed * crouch_mult
 		
 		state.RUNNING:
 			
-			collision.translation = Vector3(0, 0.75, 0)
-			collision.shape.extents.y = 0.75
-			camera.offset = Vector3(0, 1.70, 0)
+#			collision.translation = Vector3(0, 0.75, 0)
+#			collision.shape.extents.y = 0.75
+#			camera.offset = Vector3(0, 1.70, 0)
 			
 			target = direction * max_speed
 		
 		state.CRAWLING:
 			
-			collision.translation = Vector3(0, 0.1, 0)
-			collision.shape.extents.y = 0.1
-			camera.offset = Vector3(0, 0.2, 0)
+#			collision.translation = Vector3(0, 0.1, 0)
+#			collision.shape.extents.y = 0.1
+#			camera.offset = Vector3(0, 0.2, 0)
 			
 			target = direction * max_speed * crawl_mult
 	

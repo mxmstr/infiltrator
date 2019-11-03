@@ -6,8 +6,8 @@ func _physics_process(delta):
 	if not get_parent().active:
 		return
 	
-	var mouse_device = $'../../PlayerControl'.mouse_device
-	var keyboard_device = $'../../PlayerControl'.keyboard_device
+	var mouse_device = $'../../Perspective'.mouse_device
+	var keyboard_device = $'../../Perspective'.keyboard_device
 	
 	var direction = Vector3()
 	var cam_xform = $'../../'.global_transform
@@ -28,6 +28,5 @@ func _physics_process(delta):
 			direction += directions[action]
 	
 	direction.y = 0
-	
 	
 	$'../../'.get_node('HumanMovement').direction = direction.normalized()

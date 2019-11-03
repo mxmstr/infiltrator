@@ -1,17 +1,29 @@
-extends ViewportContainer
+extends AnimationTree
 
 export var mouse_device = -1
 export var keyboard_device = -1
 export(Array, String) var fp_hidden_bones
+export(Vector3) var offset
 
 var player_index = 0
 var viewmodel_offset = 5
 var worldmodel_offset = 15
 
+var camera_max_x = 0.0
+var camera_max_y = PI / 2
+
+var selection
+var last_selection
+
+onready var rig = $Container/Viewport/CameraRig
+onready var raycast = $Container/Viewport/CameraRig/Camera/RayCast
+
+signal changed_selection
+
 
 func _reset_viewport():
 	
-	var camera = $Viewport/Camera
+	var camera = $Container/Viewport/CameraRig/Camera
 	var mesh = $'../Model'.get_child(0).get_child(0)
 	var viewmesh = $'../ViewModel'.get_child(0).get_child(0)
 	
@@ -32,11 +44,31 @@ func _reset_viewport():
 	mesh.set_layer_mask_bit(worldmodel_offset + player_index, true)
 
 
-func _ready():
+func _init_camera():
+	
+	raycast.add_exception(owner)
+	selection = raycast.get_collider()
+
+
+func _init_viewport():
+	
+	$Container/Viewport.world = get_tree().root.world
+	$Container/Viewport.size = get_tree().root.size
+
+
+func _init_fp_skeleton():
 	
 	var viewmodel = $'../Model'.duplicate()
 	viewmodel.name = 'ViewModel'
-	get_parent().call_deferred('add_child_below_node', $'../Model', viewmodel)
+	
+	owner.call_deferred('add_child_below_node', $'../Model', viewmodel)
+
+
+func _ready():
+	
+	_init_camera()
+	_init_viewport()
+	_init_fp_skeleton()
 	
 	yield(get_tree(), 'idle_frame')
 	
@@ -50,6 +82,7 @@ func _blend_fp_skeleton():
 	
 	
 	for idx in range(s_world.get_bone_count()):
+		
 		var bone_name = s_world.get_bone_name(idx)
 		var p_world = s_world.get_bone_global_pose(idx)
 		
@@ -61,6 +94,40 @@ func _blend_fp_skeleton():
 			s_view.set_bone_pose(idx, p_world)
 
 
+func _camera_follow_target():
+	
+	rig.global_transform.basis *= owner.global_transform.basis #rig.global_transform.basis.xform(owner.global_transform.basis.z)
+	rig.global_transform.origin += owner.global_transform.origin
+
+
+func _has_selection():
+	
+	return selection != null and selection.has_node('Behavior')
+
+
+func _contain_selection():
+	
+	if _has_selection():
+	
+		var data = {
+			'from': owner.get_path(),
+			'to': selection.get_path()
+			}
+		
+		$'/root/Game/Links'._establish_link('Contains', data)
+
+
+func _update_raycast_selection():
+	
+	var collider = raycast.get_collider()
+	
+	if selection != collider:
+		selection = collider
+		emit_signal('changed_selection', selection)
+
+
 func _process(delta):
 	
 	_blend_fp_skeleton()
+	_camera_follow_target()
+	_update_raycast_selection()

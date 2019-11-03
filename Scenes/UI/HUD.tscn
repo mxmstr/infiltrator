@@ -4,7 +4,6 @@
 [ext_resource path="res://Textures/UI/Crosshair.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/UI/HUD.CenterMenu.tscn" type="PackedScene" id=3]
 
-
 [node name="HUD" type="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -15,11 +14,17 @@ margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
 script = ExtResource( 1 )
+__meta__ = {
+
+}
 
 [node name="Crosshair" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 alignment = 1
+__meta__ = {
+
+}
 
 [node name="TextureRect" type="TextureRect" parent="Crosshair"]
 margin_left = 505.0
@@ -28,6 +33,9 @@ margin_bottom = 600.0
 size_flags_stretch_ratio = 0.0
 texture = ExtResource( 2 )
 stretch_mode = 4
+__meta__ = {
+
+}
 
 [node name="CenterMenu" parent="." instance=ExtResource( 3 )]
 visible = false

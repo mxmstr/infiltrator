@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/UI.HUD.CenterMenu.gd" type="Script" id=1]
 [ext_resource path="res://Textures/panel.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/UI.HUD.CenterMenu.List.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/UI/HUD.CenterMenu.Item.tscn" type="PackedScene" id=4]
 
 [node name="CenterMenu" type="MarginContainer"]
 margin_left = 512.0
@@ -26,6 +24,9 @@ patch_margin_left = 25
 patch_margin_top = 25
 patch_margin_right = 25
 patch_margin_bottom = 40
+__meta__ = {
+
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 38.0
@@ -38,13 +39,15 @@ custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 30
+__meta__ = {
+
+}
 
 [node name="ListContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 10.0
 margin_bottom = 10.0
-script = ExtResource( 3 )
-color_select = Color( 0, 1, 0.554688, 1 )
-color_cancel = Color( 1, 0.4, 0.4, 1 )
-list_item = ExtResource( 4 )
+__meta__ = {
+
+}

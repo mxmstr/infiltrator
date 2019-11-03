@@ -29,8 +29,8 @@ func _ready(_parent, _from, _to):
 
 func _process(delta):
 	
-	var mouse_device = parent.get_node('../PlayerControl').mouse_device
-	var keyboard_device = parent.get_node('../PlayerControl').keyboard_device
+	var mouse_device = parent.get_node('../Perspective').mouse_device
+	var keyboard_device = parent.get_node('../Perspective').keyboard_device
 	
 	
 	var status = Inf._get_rawinput_status(action, mouse_device, keyboard_device)

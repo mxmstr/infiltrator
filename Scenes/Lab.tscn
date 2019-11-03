@@ -11,8 +11,14 @@
 [ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=9]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+__meta__ = {
+
+}
 
 [node name="Game" type="Spatial"]
+__meta__ = {
+
+}
 
 [node name="Actors" type="Spatial" parent="."]
 __meta__ = {
@@ -64,6 +70,9 @@ next = NodePath("../Waypoint")
 
 [node name="Links" type="Node" parent="."]
 script = ExtResource( 6 )
+__meta__ = {
+
+}
 
 [node name="LocalCoopPartner" parent="Links" instance=ExtResource( 7 )]
 from = NodePath("../../Actors/Player2")
@@ -98,6 +107,9 @@ shadow_contact = 0.1
 directional_shadow_normal_bias = 0.1
 directional_shadow_depth_range = 1
 directional_shadow_max_distance = 100.0
+__meta__ = {
+
+}
 
 [node name="Map" parent="Static" instance=ExtResource( 9 )]
 

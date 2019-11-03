@@ -1,6 +1,6 @@
 extends Node
 
-export(String, 'Touch') var stim_type = 'Touch'
+export(String) var stim_type
 export var continuous = false
 export var send_to_self = false
 

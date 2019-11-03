@@ -148,23 +148,29 @@ func on_loadmap_pressed():
 			if child is MeshInstance:
 				
 				var model = child.duplicate()
+				var scaling = model.scale
+				
 				model.create_trimesh_collision()
 				
 				var body = model.get_child(0)
-				var collsion = body.get_node('CollisionShape')
+				var collision = body.get_node('CollisionShape')
+				
 				model.remove_child(body)
 				selected.add_child(body)
 				body.add_child(model)
-				body.remove_child(collsion)
-				body.add_child(collsion)
+				body.remove_child(collision)
+				body.add_child(collision)
+
+				model.scale = Vector3(1, 1, 1)
+				body.scale = scaling
 
 				body.name = model.name
 				model.name = 'Model'
-				collsion.name = 'Collision'
+				collision.name = 'Collision'
 				
 				body.owner = get_tree().get_edited_scene_root()
 				model.owner = get_tree().get_edited_scene_root()
-				collsion.owner = get_tree().get_edited_scene_root()
+				collision.owner = get_tree().get_edited_scene_root()
 
 
 func _ready():

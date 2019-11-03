@@ -3,17 +3,3 @@
 [resource]
 resource_name = "H.ACT.Jump.Exit"
 length = 0.001
-tracks/0/type = "method"
-tracks/0/path = NodePath("../../InputMovement")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "set_active"
-} ]
-}
