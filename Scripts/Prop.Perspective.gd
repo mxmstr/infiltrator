@@ -3,19 +3,19 @@ extends AnimationTree
 export var mouse_device = -1
 export var keyboard_device = -1
 export(Array, String) var fp_hidden_bones
-export(Vector3) var offset
 
 var player_index = 0
 var viewmodel_offset = 5
 var worldmodel_offset = 15
 
-var camera_max_x = 0.0
-var camera_max_y = PI / 2
+var cam_max_x = 0.0
+var cam_max_y = PI / 2
 
 var selection
 var last_selection
 
 onready var rig = $Container/Viewport/CameraRig
+onready var camera = $Container/Viewport/CameraRig/Camera
 onready var raycast = $Container/Viewport/CameraRig/Camera/RayCast
 
 signal changed_selection
@@ -96,8 +96,11 @@ func _blend_fp_skeleton():
 
 func _camera_follow_target():
 	
-	rig.global_transform.basis *= owner.global_transform.basis #rig.global_transform.basis.xform(owner.global_transform.basis.z)
 	rig.global_transform.origin += owner.global_transform.origin
+	rig.global_transform.basis *= owner.global_transform.basis
+	
+	camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)
+	camera.rotation.y = clamp(camera.rotation.x, -cam_max_x, cam_max_x)
 
 
 func _has_selection():

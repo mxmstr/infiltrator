@@ -3,31 +3,31 @@
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine.Transition.Boolean.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=3]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/Input/H.IN.Climb.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Human/Input/H.IN.Climb.Enter.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/Input/H.IN.Crawl.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/Input/H.IN.Crouch.tres" type="Animation" id=8]
-[ext_resource path="res://Animations/Human/Input/H.IN.Drop.tres" type="Animation" id=9]
-[ext_resource path="res://Animations/Human/Input/H.IN.Grab.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/Human/Input/H.IN.Interact.tres" type="Animation" id=11]
-[ext_resource path="res://Animations/Human/Input/H.IN.Interact.Exit.tres" type="Animation" id=12]
-[ext_resource path="res://Animations/Human/Input/H.IN.InteractCancel.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/Input/H.IN.InteractDown.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/Input/H.IN.InteractSelect.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/Input/H.IN.InteractUp.tres" type="Animation" id=16]
-[ext_resource path="res://Animations/Human/Input/H.IN.Jump.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/Input/H.IN.Run.tres" type="Animation" id=18]
-[ext_resource path="res://Animations/Human/Input/H.IN.Walk.tres" type="Animation" id=19]
+[ext_resource path="res://Animations/Human/Input/Climb.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/Input/Climb.Enter.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Input/Crawl.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/Input/Crouch.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Human/Input/Drop.tres" type="Animation" id=9]
+[ext_resource path="res://Animations/Human/Input/Grab.tres" type="Animation" id=10]
+[ext_resource path="res://Animations/Human/Input/Interact.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/Human/Input/Interact.Exit.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/Human/Input/InteractCancel.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/Input/InteractDown.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/Input/InteractSelect.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/Input/InteractUp.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/Input/Jump.tres" type="Animation" id=17]
+[ext_resource path="res://Animations/Human/Input/Run.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Human/Input/Walk.tres" type="Animation" id=19]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "H.IN.Climb"
+animation = "Climb"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "H.IN.Climb.Enter"
+animation = "Climb.Enter"
 __meta__ = {
 
 }
@@ -39,49 +39,49 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=4]
-animation = "H.IN.Drop"
+animation = "Drop"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=5]
-animation = "H.IN.Grab"
+animation = "Grab"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=6]
-animation = "H.IN.Interact"
+animation = "Interact"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=7]
-animation = "H.IN.InteractDown"
+animation = "InteractDown"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=8]
-animation = "H.IN.Interact.Exit"
+animation = "Interact.Exit"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "H.IN.InteractSelect"
+animation = "InteractSelect"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=10]
-animation = "H.IN.InteractUp"
+animation = "InteractUp"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=11]
-animation = "H.IN.Jump"
+animation = "Jump"
 __meta__ = {
 
 }
@@ -301,22 +301,22 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath(".")
-anims/DefaultAnim = ExtResource( 4 )
-anims/H.IN.Climb = ExtResource( 5 )
-anims/H.IN.Climb.Enter = ExtResource( 6 )
-anims/H.IN.Crawl = ExtResource( 7 )
-anims/H.IN.Crouch = ExtResource( 8 )
-anims/H.IN.Drop = ExtResource( 9 )
-anims/H.IN.Grab = ExtResource( 10 )
-anims/H.IN.Interact = ExtResource( 11 )
-anims/H.IN.Interact.Exit = ExtResource( 12 )
-anims/H.IN.InteractCancel = ExtResource( 13 )
-anims/H.IN.InteractDown = ExtResource( 14 )
-anims/H.IN.InteractSelect = ExtResource( 15 )
-anims/H.IN.InteractUp = ExtResource( 16 )
-anims/H.IN.Jump = ExtResource( 17 )
-anims/H.IN.Run = ExtResource( 18 )
-anims/H.IN.Walk = ExtResource( 19 )
+anims/Climb = ExtResource( 4 )
+anims/Climb.Enter = ExtResource( 5 )
+anims/Crawl = ExtResource( 6 )
+anims/Crouch = ExtResource( 7 )
+anims/DefaultAnim = ExtResource( 8 )
+anims/Drop = ExtResource( 9 )
+anims/Grab = ExtResource( 10 )
+anims/Interact = ExtResource( 11 )
+anims/Interact.Exit = ExtResource( 12 )
+anims/InteractCancel = ExtResource( 13 )
+anims/InteractDown = ExtResource( 14 )
+anims/InteractSelect = ExtResource( 15 )
+anims/InteractUp = ExtResource( 16 )
+anims/Jump = ExtResource( 17 )
+anims/Run = ExtResource( 18 )
+anims/Walk = ExtResource( 19 )
 __meta__ = {
 
 }

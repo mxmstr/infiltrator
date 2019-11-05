@@ -2,27 +2,39 @@
 
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Input.gd" type="Script" id=2]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Human/Input/H.IN.Crawl.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/Input/H.IN.Crouch.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Human/Input/H.IN.Run.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/Input/H.IN.Walk.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/Input/Crawl.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/Input/Crouch.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Input/Run.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/Input/Walk.tres" type="Animation" id=7]
 [ext_resource path="res://Scripts/Input.Movement.gd" type="Script" id=8]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "H.IN.Crouch"
+animation = "Crouch"
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "H.IN.Walk"
+animation = "Walk"
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-animation = "H.IN.Run"
+animation = "Run"
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
 switch_mode = 2
 auto_advance = true
 disabled = true
 script = ExtResource( 1 )
+__meta__ = {
+
+}
 action = "Run"
 state = 1
 
@@ -31,6 +43,9 @@ switch_mode = 2
 auto_advance = true
 disabled = true
 script = ExtResource( 1 )
+__meta__ = {
+
+}
 action = "Crouch"
 state = 1
 
@@ -39,6 +54,9 @@ switch_mode = 2
 auto_advance = true
 disabled = true
 script = ExtResource( 1 )
+__meta__ = {
+
+}
 action = "Run"
 state = 0
 
@@ -47,6 +65,9 @@ switch_mode = 2
 auto_advance = true
 disabled = true
 script = ExtResource( 1 )
+__meta__ = {
+
+}
 action = "Crouch"
 state = 0
 
@@ -56,26 +77,41 @@ states/Crouch/position = Vector2( 612, 234 )
 states/Default/node = SubResource( 2 )
 states/Default/position = Vector2( 372, 164 )
 states/Run/node = SubResource( 3 )
-states/Run/position = Vector2( 612, 90 )
+states/Run/position = Vector2( 612, 91 )
 transitions = [ "Default", "Run", SubResource( 4 ), "Default", "Crouch", SubResource( 5 ), "Run", "Default", SubResource( 6 ), "Crouch", "Default", SubResource( 7 ) ]
 start_node = "Default"
 graph_offset = Vector2( -94.2871, 42.9925 )
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+__meta__ = {
+
+}
 
 [node name="InputMovement" type="AnimationTree"]
 tree_root = SubResource( 8 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 9 )
 script = ExtResource( 2 )
+__meta__ = {
+
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath(".")
-anims/DefaultAnim = ExtResource( 3 )
-anims/H.IN.Crawl = ExtResource( 4 )
-anims/H.IN.Crouch = ExtResource( 5 )
-anims/H.IN.Run = ExtResource( 6 )
-anims/H.IN.Walk = ExtResource( 7 )
+anims/Crawl = ExtResource( 3 )
+anims/Crouch = ExtResource( 4 )
+anims/DefaultAnim = ExtResource( 5 )
+anims/Run = ExtResource( 6 )
+anims/Walk = ExtResource( 7 )
+__meta__ = {
+
+}
 
 [node name="Move" type="Node" parent="."]
 script = ExtResource( 8 )
+__meta__ = {
+
+}

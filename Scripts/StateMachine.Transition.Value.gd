@@ -1,6 +1,6 @@
 extends AnimationNodeStateMachineTransition
 
-export(String, 'Equals', 'Greater Than', 'Less Than') var assertion = 'Equals'
+export(String, 'Equals', 'Not Equals', 'Greater Than', 'Less Than') var assertion = 'Equals'
 export(String) var target
 export(String) var method
 export(float) var value
@@ -21,6 +21,7 @@ func _evaluate(_value):
 	match assertion:
 		
 		'Equals': return value == _value
+		'Not Equals': return value != _value
 		'Greater Than': return value >= _value
 		'Less Than': return value <= _value
 
@@ -36,4 +37,5 @@ func _ready(_parent, _from, _to):
 
 func _process(delta):
 	
-	disabled = not _evaluate(parent.get_parent().get_node(target).call(method))
+	#print(parent.owner.get_node(target).call(method)) if assertion == 'Equals' else null
+	disabled = not _evaluate(parent.owner.get_node(target).call(method))

@@ -50,6 +50,11 @@ func _set_state(new_state):
 	current_state = state[new_state]
 
 
+func _get_state():
+	
+	return current_state
+
+
 func _set_direction_local(new_direction):
 	
 	new_direction = get_parent().global_transform.basis.xform(new_direction)
@@ -208,3 +213,5 @@ func _physics_process(delta):
 	velocity.y = vertical
 	
 	velocity = get_parent().move_and_slide(velocity, Vector3(0, 1, 0))
+	
+	#print(current_state)

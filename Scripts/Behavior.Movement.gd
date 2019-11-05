@@ -1,4 +1,4 @@
-extends AnimationTree
+extends 'res://Scripts/StateMachine.gd'
 
 export(String) var root_bone
 export(Array, String) var movement_bones
@@ -18,7 +18,8 @@ var action_blend_speed = 0.1
 var model_blend_amount = 0.0
 var model_blend_speed = 0.5
 
-var anim_nodes = []
+var stand_tree = []
+var crouch_tree = []
 
 
 func _add_anim_nodes(root, path):
@@ -64,14 +65,16 @@ func _cache_move_pose():
 
 func _sync_blend_spaces():
 	
-	var velocity = $'../../HumanMovement'.velocity
+	var velocity = $'../HumanMovement'.velocity
 	velocity.y = 0
 	
-	var local_velocity = $'../../'.global_transform.basis.xform_inv(velocity)
-	local_velocity = local_velocity / $'../../HumanMovement'.max_speed
+	var local_velocity = owner.global_transform.basis.xform_inv(velocity)
+	local_velocity = local_velocity / $'../HumanMovement'.max_speed
 	
-	set('parameters/BlendTree/BlendSpace1D/blend_position', -local_velocity.x)
-	set('parameters/BlendTree/BlendSpace1D/0/blend_position', local_velocity.z)
+	set('parameters/Standing/blend_position', -local_velocity.x)
+	set('parameters/Standing/0/blend_position', local_velocity.z)
+	set('parameters/Crouching/blend_position', -local_velocity.x)
+	set('parameters/Crouching/0/blend_position', local_velocity.z)
 
 
 func _blend_skeletons(delta):
@@ -186,20 +189,27 @@ func _unfilter_anim_events(nodes):
 func _on_pre_process():
 	
 	_filter_anim_events(
-		anim_nodes, 
-		get('parameters/BlendTree/BlendSpace1D/blend_position'),
+		stand_tree, 
+		get('parameters/Standing/blend_position'),
+		blend_mode == Inf.Blend.ACTION
+		)
+
+	_filter_anim_events(
+		crouch_tree, 
+		get('parameters/Crouching/blend_position'),
 		blend_mode == Inf.Blend.ACTION
 		)
 
 
 func _on_post_process():
 	
-	_unfilter_anim_events(anim_nodes)
+	_unfilter_anim_events(stand_tree)
+	_unfilter_anim_events(crouch_tree)
 
 
 func _on_state_starting(_name):
 	
-	var node = get_parent().tree_root.get_node(_name)
+	var node = $'../Behavior'.tree_root.get_node(_name)
 	
 	if node.get('blend_mode') == null:
 		return
@@ -214,7 +224,7 @@ func _on_state_starting(_name):
 
 func _set_skeleton():
 	
-	model_skeleton = $'../../Model'.get_child(0)
+	model_skeleton = $'../Model'.get_child(0)
 	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(model_skeleton)
 	
 	action_skeleton = model_skeleton.duplicate()
@@ -224,18 +234,11 @@ func _set_skeleton():
 		child.queue_free()
 	
 	
-	$'../../Model'.add_child(action_skeleton)
-	$'../../Model'.add_child(move_skeleton)
+	$'../Model'.add_child(action_skeleton)
+	$'../Model'.add_child(move_skeleton)
 	
-#	print(action_skeleton.name)
-#	print(move_skeleton.name)
-	
-	$'../AnimationPlayer'.root_node = $'../AnimationPlayer'.get_path_to(action_skeleton)#NodePath('../../Model/' + action_skeleton.name)
-	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(move_skeleton)#NodePath('../../../Model/' + move_skeleton.name)
-	
-	
-#	var skeleton = $'../Model'.get_child(0)
-#	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(skeleton)
+	$'../Behavior/AnimationPlayer'.root_node = $'../Behavior/AnimationPlayer'.get_path_to(action_skeleton)
+	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(move_skeleton)
 	
 	
 	active = true
@@ -243,18 +246,24 @@ func _set_skeleton():
 
 func _ready():
 	
-	call_deferred('_set_skeleton')
+	if not has_meta('unique'):
+		return
 	
 	
-	var blendspace = tree_root.get_node('BlendTree').get_node('BlendSpace1D')
-	anim_nodes = _add_anim_nodes(blendspace, 'parameters/BlendTree/BlendSpace1D/')
+	yield(get_tree(), 'idle_frame')
 	
+	stand_tree = _add_anim_nodes(tree_root.get_node('Standing'), 'parameters/Standing/')
+	crouch_tree = _add_anim_nodes(tree_root.get_node('Crouching'), 'parameters/Crouching/')
 	
-	var playback = get_parent().get('parameters/playback')
+	var playback = $'../Behavior'.get('parameters/playback')
 	playback.connect('state_starting', self, '_on_state_starting')
 	
 	connect('pre_process', self, '_on_pre_process')
 	connect('post_process', self, '_on_post_process')
+	
+	
+	_set_skeleton()
+	#call_deferred('_set_skeleton')
 
 
 func _process(delta):

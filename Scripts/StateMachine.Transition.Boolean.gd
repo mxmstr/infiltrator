@@ -36,4 +36,4 @@ func _ready(_parent, _from, _to):
 
 func _process(delta):
 	
-	disabled = not _evaluate(parent.get_parent().get_node(target).call(method))
+	disabled = not _evaluate(parent.owner.get_node(target).call(method))
