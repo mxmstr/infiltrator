@@ -18,7 +18,7 @@
 [ext_resource path="res://Scenes/Components/Properties/P.InputRotation.tscn" type="PackedScene" id=16]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.15, 0.75, 0.15 )
+extents = Vector3( 0.15, 0.3, 0.15 )
 __meta__ = {
 
 }
@@ -406,15 +406,16 @@ __meta__ = {
 editor/display_folded = true
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -0.982381, 1.29679e-14, 8.58825e-08, 2.08027e-21, 0.982381, -1.48335e-07, 8.58825e-08, 1.48335e-07, 0.982381, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 bones/16/bound_children = [ NodePath("RightHand") ]
 
 [node name="RightHand" parent="Model/neo_reference_skeleton" index="1" instance=ExtResource( 2 )]
-transform = Transform( 0.996888, 0.0261065, 0.0743847, 0.00497887, -0.962541, 0.271094, 0.0786756, -0.26988, -0.959675, 0.295244, 0.789736, -0.0132591 )
+transform = Transform( 0.98856, -0.0607139, 0.13807, 0.144928, 0.635903, -0.758039, -0.0417756, 0.769377, 0.637427, 0.257219, 1.007, 0.161513 )
 bone_name = "Gun"
 max_quantity = 1
 
 [node name="Collision" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
 shape = SubResource( 1 )
 
 [node name="HumanMovement" parent="." instance=ExtResource( 4 )]
@@ -430,7 +431,7 @@ parameters/playback = SubResource( 2 )
 fp_hidden_bones = [ "Head", "Neck" ]
 
 [node name="CameraRig" parent="Perspective/Container/Viewport" index="1"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.7, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.1, 0 )
 
 [node name="Behavior" parent="." instance=ExtResource( 8 )]
 parameters/playback = SubResource( 3 )
@@ -439,7 +440,6 @@ parameters/playback = SubResource( 3 )
 root_node = NodePath("../../Model/neo_reference_skeleton")
 
 [node name="Movement" parent="." instance=ExtResource( 9 )]
-active = true
 parameters/playback = SubResource( 46 )
 parameters/Standing/0/blend_position = 0.305112
 

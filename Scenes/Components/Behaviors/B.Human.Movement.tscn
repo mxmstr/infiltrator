@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://Scripts/StateMachine.Transition.Value.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Behavior.Movement.gd" type="Script" id=2]
@@ -84,7 +84,54 @@
 [ext_resource path="res://Animations/Human/Movement/w_Walk.tres" type="Animation" id=82]
 [ext_resource path="res://Animations/Human/Movement/w_WalkBackward.tres" type="Animation" id=83]
 
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "CStrafeLeft"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "CStrafeRight"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Crouch"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "CForward"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "CBackward"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=20]
+blend_point_0/node = SubResource( 17 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 18 )
+blend_point_1/pos = 0.3
+blend_point_2/node = SubResource( 19 )
+blend_point_2/pos = -0.3
+__meta__ = {
+
+}
+
 [sub_resource type="AnimationNodeBlendSpace1D" id=1]
+blend_point_0/node = SubResource( 15 )
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource( 16 )
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource( 20 )
+blend_point_2/pos = 0.0
 __meta__ = {
 
 }
@@ -162,12 +209,25 @@ method = "_get_state"
 value = 3.0
 wait_for_frame = 0.0
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+auto_advance = true
+disabled = true
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+assertion = "Not Equals"
+target = "HumanMovement"
+method = "_get_state"
+value = 3.0
+wait_for_frame = 0.0
+
 [sub_resource type="AnimationNodeStateMachine" id=12]
 states/Crouching/node = SubResource( 1 )
 states/Crouching/position = Vector2( 752, 124 )
 states/Standing/node = SubResource( 9 )
 states/Standing/position = Vector2( 501, 124 )
-transitions = [ "Standing", "Crouching", SubResource( 10 ) ]
+transitions = [ "Standing", "Crouching", SubResource( 10 ), "Crouching", "Standing", SubResource( 14 ) ]
 start_node = "Standing"
 graph_offset = Vector2( 0, 41.25 )
 __meta__ = {
@@ -183,7 +243,8 @@ __meta__ = {
 tree_root = SubResource( 12 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 13 )
-parameters/Crouching/blend_position = 0
+parameters/Crouching/blend_position = 0.0670927
+parameters/Crouching/2/blend_position = 0
 parameters/Standing/blend_position = -0.00159746
 parameters/Standing/0/blend_position = 0
 script = ExtResource( 2 )

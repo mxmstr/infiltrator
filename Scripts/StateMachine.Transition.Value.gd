@@ -37,5 +37,4 @@ func _ready(_parent, _from, _to):
 
 func _process(delta):
 	
-	#print(parent.owner.get_node(target).call(method)) if assertion == 'Equals' else null
 	disabled = not _evaluate(parent.owner.get_node(target).call(method))
