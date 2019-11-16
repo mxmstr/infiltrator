@@ -22,12 +22,11 @@ func mouse(offset):
 	camera.rotation.x += offset.y * -sensitivity
 	camera.rotation.y += offset.x * -sensitivity
 	
-	owner.rotation.y += offset.x * -sensitivity
+	if active:
+		owner.rotation.y += offset.x * -sensitivity
 
 
 func _process(delta):
-	
-	if not active: return
 	
 	var device = $'../Perspective'.mouse_device
 	

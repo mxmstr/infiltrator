@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Scripts/Behavior.Node.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StateMachine.Transition.Priority.gd" type="Script" id=2]
@@ -8,14 +8,15 @@
 [ext_resource path="res://Animations/Human/Action/Climb.tres" type="Animation" id=6]
 [ext_resource path="res://Animations/Human/Action/Climb.Enter.tres" type="Animation" id=7]
 [ext_resource path="res://Animations/Human/Action/Climb.Exit.tres" type="Animation" id=8]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=9]
-[ext_resource path="res://Animations/Human/Action/Drop.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/Human/Action/Fall.tres" type="Animation" id=11]
-[ext_resource path="res://Animations/Human/Action/Grab.tres" type="Animation" id=12]
-[ext_resource path="res://Animations/Human/Action/Jump.Exit.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/Action/JumpLong.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/Action/Land.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/Action/Land.Exit.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/Action/ClimbMedium.tres" type="Animation" id=9]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=10]
+[ext_resource path="res://Animations/Human/Action/Drop.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/Human/Action/Fall.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/Human/Action/Grab.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/Action/Jump.Exit.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/Action/JumpLong.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/Action/Land.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/Action/Land.Exit.tres" type="Animation" id=17]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Climb"
@@ -346,14 +347,15 @@ anims/2_Fall = ExtResource( 5 )
 anims/Climb = ExtResource( 6 )
 anims/Climb.Enter = ExtResource( 7 )
 anims/Climb.Exit = ExtResource( 8 )
-anims/DefaultAnim = ExtResource( 9 )
-anims/Drop = ExtResource( 10 )
-anims/Fall = ExtResource( 11 )
-anims/Grab = ExtResource( 12 )
-anims/Jump.Exit = ExtResource( 13 )
-anims/JumpLong = ExtResource( 14 )
-anims/Land = ExtResource( 15 )
-anims/Land.Exit = ExtResource( 16 )
+anims/ClimbMedium = ExtResource( 9 )
+anims/DefaultAnim = ExtResource( 10 )
+anims/Drop = ExtResource( 11 )
+anims/Fall = ExtResource( 12 )
+anims/Grab = ExtResource( 13 )
+anims/Jump.Exit = ExtResource( 14 )
+anims/JumpLong = ExtResource( 15 )
+anims/Land = ExtResource( 16 )
+anims/Land.Exit = ExtResource( 17 )
 __meta__ = {
 
 }
