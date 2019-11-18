@@ -27,6 +27,8 @@ export var climb_height_mult = 2
 export var climb_range = 0.5
 export var climb_horizontal_distance = 0.25
 
+export var collision_height_mult = 1.0
+
 var direction = Vector3()
 var velocity = Vector3()
 var climb_collision_mask = 1024
@@ -36,7 +38,6 @@ var climb_x_progress = 0
 var climb_y_progress = 0
 
 onready var collision = $'../Collision'
-onready var camera = $'../Perspective/Container/Viewport/CameraRig/Camera'
 #onready var ik_righthand = $'../Model'.get_child(0).get_node('RightHandIK/Target')
 
 
@@ -138,7 +139,16 @@ func _find_climb_target():
 	climb_target = null
 
 
+func _resize_collision():
+	
+	collision.shape.extents.y = collision_height_mult
+	collision.translation.y = collision_height_mult
+
+
 func _physics_process(delta):
+	
+	_resize_collision()
+	
 	
 	var current_pos = get_parent().global_transform.origin
 	var vertical = velocity.y + (delta * gravity)

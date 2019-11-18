@@ -96,7 +96,9 @@ func _blend_fp_skeleton():
 
 func _camera_follow_target():
 	
+	rig.global_transform.origin = owner.global_transform.basis.xform(rig.global_transform.origin)
 	rig.global_transform.origin += owner.global_transform.origin
+	
 	rig.global_transform.basis *= owner.global_transform.basis
 	
 	camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)

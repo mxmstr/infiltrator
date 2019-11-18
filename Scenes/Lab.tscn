@@ -78,7 +78,7 @@ __meta__ = {
 from = NodePath("../../Actors/Player2")
 to = NodePath("../../Actors/Player")
 p1_mouse = 3
-p2_mouse = 1
+p2_mouse = 4
 p2_keyboard = 2
 
 [node name="ControlDevice" parent="Links" instance=ExtResource( 8 )]

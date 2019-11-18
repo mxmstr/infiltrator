@@ -74,7 +74,7 @@ func _sync_blend_spaces():
 	set('parameters/Standing/blend_position', -local_velocity.x)
 	set('parameters/Standing/0/blend_position', local_velocity.z)
 	set('parameters/Crouching/blend_position', -local_velocity.x)
-	set('parameters/Crouching/0/blend_position', local_velocity.z)
+	set('parameters/Crouching/2/blend_position', local_velocity.z)
 
 
 func _blend_skeletons(delta):

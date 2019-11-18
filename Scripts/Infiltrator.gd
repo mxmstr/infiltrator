@@ -172,6 +172,8 @@ func _process(delta):
 	
 	for event in Input.poll_raw():
 		
+		#print(event)
+		
 		if event.type == RawInputType.SCROLL:
 
 			var item
