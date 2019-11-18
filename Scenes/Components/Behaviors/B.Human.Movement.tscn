@@ -236,7 +236,7 @@ states/Standing/node = SubResource( 15 )
 states/Standing/position = Vector2( 501, 124 )
 transitions = [ "Standing", "Crouching", SubResource( 16 ), "Crouching", "Standing", SubResource( 17 ) ]
 start_node = "Standing"
-graph_offset = Vector2( 0, 41.25 )
+graph_offset = Vector2( -4, -9.75 )
 __meta__ = {
 
 }

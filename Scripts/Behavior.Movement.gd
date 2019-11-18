@@ -30,7 +30,7 @@ func _add_anim_nodes(root, path):
 		
 		var node = root.get_blend_point_node(point)
 		var position = root.get_blend_point_position(point)
-		var animation = $AnimationPlayer.get_animation(node.get_node('Animation').animation) if node is AnimationNodeBlendTree else null
+		var animation = $AnimationPlayer.get_animation(node.animation) if node is AnimationNodeAnimation else null
 		var blendspace = node if node is AnimationNodeBlendSpace1D else null
 		var children = _add_anim_nodes(node, path + str(point) + '/') if node is AnimationNodeBlendSpace1D else null
 		

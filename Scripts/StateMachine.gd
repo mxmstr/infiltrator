@@ -20,7 +20,7 @@ func _start_state(_name, data={}):
 		return
 	
 	
-	emit_signal('travel_starting', tree_root.get_node(_name))
+	emit_signal('travel_starting', _name, tree_root.get_node(_name))
 	
 	playback.travel(_name)
 

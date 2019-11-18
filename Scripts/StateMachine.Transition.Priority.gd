@@ -5,9 +5,9 @@ var from
 var to
 
 
-func _on_travel_started(target_node):
+func _on_travel_starting(new_node_name, new_node):
 	
-	disabled = not target_node.priority > from.priority
+	disabled = not new_node.priority > from.priority
 
 
 func _ready(_parent, _from, _to):
@@ -16,4 +16,4 @@ func _ready(_parent, _from, _to):
 	from = _from
 	to = _to
 	
-	parent.connect('travel_starting', self, '_on_travel_started')
+	parent.connect('travel_starting', self, '_on_travel_starting')

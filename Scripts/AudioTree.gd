@@ -3,4 +3,4 @@ extends 'res://Scripts/StateMachine.gd'
 
 func _process(delta):
 	
-	$AudioStreamPlayer3D.global_transform.origin = get_parent().global_transform.origin
+	$AudioStreamPlayer3D.global_transform.origin = owner.global_transform.origin

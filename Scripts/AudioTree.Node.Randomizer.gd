@@ -6,9 +6,9 @@ var transitions = []
 var last = -1
 
 
-func _on_travel_starting(new_anim):
+func _on_travel_starting(new_node_name, new_node):
 	
-	if node_name == new_anim:
+	if node_name == new_node_name:
 		
 		var enabled_idx = last
 		
@@ -21,7 +21,7 @@ func _on_travel_starting(new_anim):
 		last = enabled_idx
 
 
-func _init(_parent, _node_name):
+func _ready(_parent, _node_name):
 	
 	parent = _parent
 	node_name = _node_name
