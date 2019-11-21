@@ -211,15 +211,15 @@ func _on_state_starting(_name):
 	
 	var node = $'../Behavior'.tree_root.get_node(_name)
 	
-	if node.get('blend_mode') == null:
+	if node.get('blend') == null:
 		return
 	
-	if blend_mode != node.blend_mode:
+	if blend_mode != node.blend:
 		_cache_move_pose()
 	
 	_cache_action_pose()
 	
-	blend_mode = node.blend_mode
+	blend_mode = node.blend
 
 
 func _set_skeleton():

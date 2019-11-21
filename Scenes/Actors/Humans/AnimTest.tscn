@@ -1,7 +1,136 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
-[ext_resource path="res://Animations/Human/Action/H.ACT.Fall.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/Movement/2_BackwardLeft.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/Movement/2_BackwardRight.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/Movement/2_Crouch.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/Movement/2_ForwardLeft.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Movement/2_ForwardRight.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/Movement/2_PeekLeft.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/Movement/2_PeekRight.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Human/Movement/2_Run.tres" type="Animation" id=9]
+[ext_resource path="res://Animations/Human/Movement/2_Stand.tres" type="Animation" id=10]
+[ext_resource path="res://Animations/Human/Movement/2_StrafeLeft.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/Human/Movement/2_StrafeRight.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/Human/Movement/2_TurnLeft.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/Movement/2_TurnRight.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/Movement/2_Walk.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/Movement/2_WalkBackward.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/Movement/2_w_Run.tres" type="Animation" id=17]
+[ext_resource path="res://Animations/Human/Movement/2_w_Stand.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Human/Movement/2_w_StrafeLeft.tres" type="Animation" id=19]
+[ext_resource path="res://Animations/Human/Movement/2_w_StrafeRight.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Human/Movement/2_w_Walk.tres" type="Animation" id=21]
+[ext_resource path="res://Animations/Human/Movement/2_w_WalkBackward.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/Movement/BackwardLeft.tres" type="Animation" id=23]
+[ext_resource path="res://Animations/Human/Movement/BackwardRight.tres" type="Animation" id=24]
+[ext_resource path="res://Animations/Human/Movement/Crouch.tres" type="Animation" id=25]
+[ext_resource path="res://Animations/Human/Movement/CrouchBackward.tres" type="Animation" id=26]
+[ext_resource path="res://Animations/Human/Movement/CrouchForward.tres" type="Animation" id=27]
+[ext_resource path="res://Animations/Human/Movement/CrouchIdle.tres" type="Animation" id=28]
+[ext_resource path="res://Animations/Human/Movement/CrouchLeanLeft.tres" type="Animation" id=29]
+[ext_resource path="res://Animations/Human/Movement/CrouchLeanRight.tres" type="Animation" id=30]
+[ext_resource path="res://Animations/Human/Movement/CrouchSidestepLeft.tres" type="Animation" id=31]
+[ext_resource path="res://Animations/Human/Movement/CrouchSidestepRight.tres" type="Animation" id=32]
+[ext_resource path="res://Animations/Human/Movement/ForwardLeft.tres" type="Animation" id=33]
+[ext_resource path="res://Animations/Human/Movement/ForwardRight.tres" type="Animation" id=34]
+[ext_resource path="res://Animations/Human/Movement/LeanLeft.tres" type="Animation" id=35]
+[ext_resource path="res://Animations/Human/Movement/LeanRight.tres" type="Animation" id=36]
+[ext_resource path="res://Animations/Human/Movement/PeekLeft.tres" type="Animation" id=37]
+[ext_resource path="res://Animations/Human/Movement/PeekRight.tres" type="Animation" id=38]
+[ext_resource path="res://Animations/Human/Movement/Run.tres" type="Animation" id=39]
+[ext_resource path="res://Animations/Human/Movement/Stand.tres" type="Animation" id=40]
+[ext_resource path="res://Animations/Human/Movement/Stand_Idle_Smoking.tres" type="Animation" id=41]
+[ext_resource path="res://Animations/Human/Movement/Stand_combatstance.tres" type="Animation" id=42]
+[ext_resource path="res://Animations/Human/Movement/StrafeLeft.tres" type="Animation" id=43]
+[ext_resource path="res://Animations/Human/Movement/StrafeRight.tres" type="Animation" id=44]
+[ext_resource path="res://Animations/Human/Movement/T_JOG.tres" type="Animation" id=45]
+[ext_resource path="res://Animations/Human/Movement/T_RUN.tres" type="Animation" id=46]
+[ext_resource path="res://Animations/Human/Movement/T_STAND.tres" type="Animation" id=47]
+[ext_resource path="res://Animations/Human/Movement/T_WALK.tres" type="Animation" id=48]
+[ext_resource path="res://Animations/Human/Movement/T_sprint.tres" type="Animation" id=49]
+[ext_resource path="res://Animations/Human/Movement/TurnLeft.tres" type="Animation" id=50]
+[ext_resource path="res://Animations/Human/Movement/TurnRight.tres" type="Animation" id=51]
+[ext_resource path="res://Animations/Human/Movement/Walk.tres" type="Animation" id=52]
+[ext_resource path="res://Animations/Human/Movement/WalkBackward.tres" type="Animation" id=53]
+[ext_resource path="res://Animations/Human/Movement/stand_MorphD.tres" type="Animation" id=54]
+[ext_resource path="res://Animations/Human/Movement/stand_TKD.tres" type="Animation" id=55]
+[ext_resource path="res://Animations/Human/Movement/stand_agent.tres" type="Animation" id=56]
+[ext_resource path="res://Animations/Human/Movement/stand_agr.tres" type="Animation" id=57]
+[ext_resource path="res://Animations/Human/Movement/stand_bushido.tres" type="Animation" id=58]
+[ext_resource path="res://Animations/Human/Movement/stand_giant.tres" type="Animation" id=59]
+[ext_resource path="res://Animations/Human/Movement/stand_kat.tres" type="Animation" id=60]
+[ext_resource path="res://Animations/Human/Movement/stand_kat_old.tres" type="Animation" id=61]
+[ext_resource path="res://Animations/Human/Movement/stand_kfstanceB.tres" type="Animation" id=62]
+[ext_resource path="res://Animations/Human/Movement/stand_merovingian.tres" type="Animation" id=63]
+[ext_resource path="res://Animations/Human/Movement/stand_morph_combat.tres" type="Animation" id=64]
+[ext_resource path="res://Animations/Human/Movement/stand_morpheus.tres" type="Animation" id=65]
+[ext_resource path="res://Animations/Human/Movement/stand_neo_dojo.tres" type="Animation" id=66]
+[ext_resource path="res://Animations/Human/Movement/stand_neo_rifle.tres" type="Animation" id=67]
+[ext_resource path="res://Animations/Human/Movement/stand_neo_trench.tres" type="Animation" id=68]
+[ext_resource path="res://Animations/Human/Movement/stand_ninja.tres" type="Animation" id=69]
+[ext_resource path="res://Animations/Human/Movement/stand_one.tres" type="Animation" id=70]
+[ext_resource path="res://Animations/Human/Movement/stand_one_b.tres" type="Animation" id=71]
+[ext_resource path="res://Animations/Human/Movement/stand_one_c.tres" type="Animation" id=72]
+[ext_resource path="res://Animations/Human/Movement/stand_seraph_combat.tres" type="Animation" id=73]
+[ext_resource path="res://Animations/Human/Movement/stand_trinity.tres" type="Animation" id=74]
+[ext_resource path="res://Animations/Human/Movement/t_forwardleft.tres" type="Animation" id=75]
+[ext_resource path="res://Animations/Human/Movement/t_forwardright.tres" type="Animation" id=76]
+[ext_resource path="res://Animations/Human/Movement/w_Run.tres" type="Animation" id=77]
+[ext_resource path="res://Animations/Human/Movement/w_Stand.tres" type="Animation" id=78]
+[ext_resource path="res://Animations/Human/Movement/w_StrafeLeft.tres" type="Animation" id=79]
+[ext_resource path="res://Animations/Human/Movement/w_StrafeRight.tres" type="Animation" id=80]
+[ext_resource path="res://Animations/Human/Movement/w_TurnLeft.tres" type="Animation" id=81]
+[ext_resource path="res://Animations/Human/Movement/w_TurnRight.tres" type="Animation" id=82]
+[ext_resource path="res://Animations/Human/Movement/w_Walk.tres" type="Animation" id=83]
+[ext_resource path="res://Animations/Human/Movement/w_WalkBackward.tres" type="Animation" id=84]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Stand"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Run"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Walk"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "StrafeRight"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "StrafeLeft"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+auto_triangles = false
+blend_point_0/node = SubResource( 1 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 2 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 3 )
+blend_point_2/pos = Vector2( 0, 0.5 )
+blend_point_3/node = SubResource( 4 )
+blend_point_3/pos = Vector2( 0.4, 0 )
+blend_point_4/node = SubResource( 5 )
+blend_point_4/pos = Vector2( -0.4, 0 )
+triangles = PoolIntArray( 0, 2, 3, 1, 2, 3, 0, 2, 4, 1, 2, 4 )
+__meta__ = {
+
+}
 
 [node name="AnimTest" type="KinematicBody"]
 __meta__ = {
@@ -11,11 +140,102 @@ __meta__ = {
 [node name="Model" parent="." instance=ExtResource( 1 )]
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -0.982559, 1.29703e-14, 8.58981e-08, 1.66452e-21, 0.982559, -1.48362e-07, 8.58981e-08, 1.48362e-07, 0.982559, 0, 0, 0 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Model/neo_reference_skeleton")
-anims/H = ExtResource( 2 )
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 6 )
+anim_player = NodePath("AnimationPlayer")
+active = true
+parameters/blend_position = Vector2( 0.000858426, 0.495601 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+root_node = NodePath("../../Model/neo_reference_skeleton")
+anims/2_BackwardLeft = ExtResource( 2 )
+anims/2_BackwardRight = ExtResource( 3 )
+anims/2_Crouch = ExtResource( 4 )
+anims/2_ForwardLeft = ExtResource( 5 )
+anims/2_ForwardRight = ExtResource( 6 )
+anims/2_PeekLeft = ExtResource( 7 )
+anims/2_PeekRight = ExtResource( 8 )
+anims/2_Run = ExtResource( 9 )
+anims/2_Stand = ExtResource( 10 )
+anims/2_StrafeLeft = ExtResource( 11 )
+anims/2_StrafeRight = ExtResource( 12 )
+anims/2_TurnLeft = ExtResource( 13 )
+anims/2_TurnRight = ExtResource( 14 )
+anims/2_Walk = ExtResource( 15 )
+anims/2_WalkBackward = ExtResource( 16 )
+anims/2_w_Run = ExtResource( 17 )
+anims/2_w_Stand = ExtResource( 18 )
+anims/2_w_StrafeLeft = ExtResource( 19 )
+anims/2_w_StrafeRight = ExtResource( 20 )
+anims/2_w_Walk = ExtResource( 21 )
+anims/2_w_WalkBackward = ExtResource( 22 )
+anims/BackwardLeft = ExtResource( 23 )
+anims/BackwardRight = ExtResource( 24 )
+anims/Crouch = ExtResource( 25 )
+anims/CrouchBackward = ExtResource( 26 )
+anims/CrouchForward = ExtResource( 27 )
+anims/CrouchIdle = ExtResource( 28 )
+anims/CrouchLeanLeft = ExtResource( 29 )
+anims/CrouchLeanRight = ExtResource( 30 )
+anims/CrouchSidestepLeft = ExtResource( 31 )
+anims/CrouchSidestepRight = ExtResource( 32 )
+anims/ForwardLeft = ExtResource( 33 )
+anims/ForwardRight = ExtResource( 34 )
+anims/LeanLeft = ExtResource( 35 )
+anims/LeanRight = ExtResource( 36 )
+anims/PeekLeft = ExtResource( 37 )
+anims/PeekRight = ExtResource( 38 )
+anims/Run = ExtResource( 39 )
+anims/Stand = ExtResource( 40 )
+anims/Stand_Idle_Smoking = ExtResource( 41 )
+anims/Stand_combatstance = ExtResource( 42 )
+anims/StrafeLeft = ExtResource( 43 )
+anims/StrafeRight = ExtResource( 44 )
+anims/T_JOG = ExtResource( 45 )
+anims/T_RUN = ExtResource( 46 )
+anims/T_STAND = ExtResource( 47 )
+anims/T_WALK = ExtResource( 48 )
+anims/T_sprint = ExtResource( 49 )
+anims/TurnLeft = ExtResource( 50 )
+anims/TurnRight = ExtResource( 51 )
+anims/Walk = ExtResource( 52 )
+anims/WalkBackward = ExtResource( 53 )
+anims/stand_MorphD = ExtResource( 54 )
+anims/stand_TKD = ExtResource( 55 )
+anims/stand_agent = ExtResource( 56 )
+anims/stand_agr = ExtResource( 57 )
+anims/stand_bushido = ExtResource( 58 )
+anims/stand_giant = ExtResource( 59 )
+anims/stand_kat = ExtResource( 60 )
+anims/stand_kat_old = ExtResource( 61 )
+anims/stand_kfstanceB = ExtResource( 62 )
+anims/stand_merovingian = ExtResource( 63 )
+anims/stand_morph_combat = ExtResource( 64 )
+anims/stand_morpheus = ExtResource( 65 )
+anims/stand_neo_dojo = ExtResource( 66 )
+anims/stand_neo_rifle = ExtResource( 67 )
+anims/stand_neo_trench = ExtResource( 68 )
+anims/stand_ninja = ExtResource( 69 )
+anims/stand_one = ExtResource( 70 )
+anims/stand_one_b = ExtResource( 71 )
+anims/stand_one_c = ExtResource( 72 )
+anims/stand_seraph_combat = ExtResource( 73 )
+anims/stand_trinity = ExtResource( 74 )
+anims/t_forwardleft = ExtResource( 75 )
+anims/t_forwardright = ExtResource( 76 )
+anims/w_Run = ExtResource( 77 )
+anims/w_Stand = ExtResource( 78 )
+anims/w_StrafeLeft = ExtResource( 79 )
+anims/w_StrafeRight = ExtResource( 80 )
+anims/w_TurnLeft = ExtResource( 81 )
+anims/w_TurnRight = ExtResource( 82 )
+anims/w_Walk = ExtResource( 83 )
+anims/w_WalkBackward = ExtResource( 84 )
 __meta__ = {
 
 }

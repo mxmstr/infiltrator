@@ -10,7 +10,7 @@ var selection = null
 var interactions = []
 var select_index = 0
 
-onready var raycast = owner.owner.get_node('Container/Viewport/CameraRig/Camera/RayCast')
+onready var perspective = owner.owner
 
 signal option_selected
 
@@ -131,7 +131,7 @@ func _update_interactions():
 
 func _ready():
 	
-	raycast.connect('changed_selection', self, '_on_selection_changed')
+	perspective.connect('changed_selection', self, '_on_selection_changed')
 
 
 func _process(delta):

@@ -1,4 +1,4 @@
-extends AnimationNodeAnimation
+extends "res://Scripts/StateMachine.BlendSpace.gd"
 
 export(Inf.Priority) var priority
 export(Inf.Visibility) var type
@@ -10,10 +10,6 @@ export var movement = true
 export var rotation = true
 export var cam_max_x = 0.0
 export var cam_max_y = PI / 2
-
-var node_name
-var parent
-var transitions = []
 
 
 func _is_visible():
@@ -39,11 +35,5 @@ func _on_state_starting(new_name):
 		if parent.owner.has_node('Perspective'):
 			parent.owner.get_node('Perspective').cam_max_x = cam_max_x
 			parent.owner.get_node('Perspective').cam_max_y = cam_max_y
-
-
-func _ready(_parent, _node_name):
 	
-	parent = _parent
-	node_name = _node_name
-	
-	parent.connect('state_starting', self, '_on_state_starting')
+	._on_state_starting(new_name)

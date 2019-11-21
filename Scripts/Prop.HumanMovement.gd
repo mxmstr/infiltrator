@@ -56,9 +56,19 @@ func _get_state():
 	return current_state
 
 
+func _get_forward_speed():
+	
+	return owner.global_transform.basis.xform_inv(velocity).z
+
+
+func _get_leftright_speed():
+	
+	return owner.global_transform.basis.xform_inv(velocity).x
+
+
 func _set_direction_local(new_direction):
 	
-	new_direction = get_parent().global_transform.basis.xform(new_direction)
+	new_direction = owner.global_transform.basis.xform(new_direction)
 	
 	direction = new_direction
 
