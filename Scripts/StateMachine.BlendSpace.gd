@@ -12,6 +12,7 @@ export(float) var y_min_value
 
 var node_name
 var parent
+var playback
 var transitions = []
 
 
@@ -28,9 +29,10 @@ func _on_state_starting(new_name):
 		parent.set('parameters/' + node_name + '/blend_position', Vector2(x_value, y_value))
 
 
-func _ready(_parent, _node_name):
+func _ready(_parent, _playback, _node_name):
 	
 	parent = _parent
+	playback = _playback
 	node_name = _node_name
 	
 	parent.connect('state_starting', self, '_on_state_starting')

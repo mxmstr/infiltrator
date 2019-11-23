@@ -6,28 +6,28 @@ export(String) var method
 export(float) var wait_for_frame
 
 var parent
+var playback
 var from
 var to
 
 
 func _evaluate(value):
 	
-	var playback = parent.get('parameters/playback')
-	
 	if playback.get_current_play_pos() < wait_for_frame:
 		return false
 	
 	match assertion:
-		
+
 		'True': return value
 		'False': return not value
 		'Null': return value == null
 		'NotNull': return value != null
 
 
-func _ready(_parent, _from, _to):
+func _ready(_parent, _playback, _from, _to):
 	
 	parent = _parent
+	playback = _playback
 	from = _from
 	to = _to
 	
@@ -36,5 +36,4 @@ func _ready(_parent, _from, _to):
 
 func _process(delta):
 	
-	print(parent.owner.get_node(target).call(method)) if method == 'is_on_floor' else null
 	disabled = not _evaluate(parent.owner.get_node(target).call(method))

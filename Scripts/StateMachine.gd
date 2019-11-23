@@ -25,31 +25,49 @@ func _start_state(_name, data={}):
 	playback.travel(_name)
 
 
-func _init_transitions():
+func _init_blendspace2d(root, playback):
+	
+	for point in root.get_blend_point_count():
+		
+		var node = root.get_blend_point_node(point)
+		
+		if node is AnimationNodeStateMachine:
+			
+			_init_statemachine(node, playback + '/' + str(point))
+
+
+func _init_statemachine(root, playback):
 	
 	var anim_names = []
 	
-	for idx in range(tree_root.get_transition_count()):
+	for idx in range(root.get_transition_count()):
 		
-		var transition = tree_root.get_transition(idx)
-		var from_name = tree_root.get_transition_from(idx)
-		var to_name = tree_root.get_transition_to(idx)
-		var from = tree_root.get_node(from_name)
-		var to = tree_root.get_node(to_name)
+		var transition = root.get_transition(idx)
+		var from_name = root.get_transition_from(idx)
+		var to_name = root.get_transition_to(idx)
+		var from = root.get_node(from_name)
+		var to = root.get_node(to_name)
+		
 		
 		if not from_name in anim_names:
 			
 			if from.has_method('_ready'):
-				from._ready(self, from_name)
+				from._ready(self, get(playback + '/playback'), from_name)
 			
 			anim_names.append(from_name)
 			nodes.append(from)
 		
+		
 		if from.has_method('_ready'):
+			
+			if from is AnimationNodeBlendSpace2D:
+				_init_blendspace2d(from, playback + '/' + from_name)
+			
 			from.transitions.append(transition)
 		
+		
 		if transition.has_method('_ready'):
-			transition._ready(self, from, to)
+			transition._ready(self, get(playback + '/playback'), from, to)
 
 
 func _ready():
@@ -58,7 +76,7 @@ func _ready():
 		Inf._make_unique(self)
 		return
 	
-	_init_transitions()
+	_init_statemachine(tree_root, 'parameters')
 	
 	active = true
 

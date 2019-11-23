@@ -11,15 +11,17 @@ export(String) var action
 export(Status) var state
 
 var parent
+var playback
 var from
 var to
 
 var last_status = -1
 
 
-func _ready(_parent, _from, _to):
+func _ready(_parent, _playback, _from, _to):
 	
 	parent = _parent
+	playback = _playback
 	from = _from
 	to = _to
 	

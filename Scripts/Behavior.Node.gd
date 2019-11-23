@@ -13,6 +13,7 @@ export var cam_max_y = PI / 2
 
 var node_name
 var parent
+var playback
 var transitions = []
 
 
@@ -41,9 +42,15 @@ func _on_state_starting(new_name):
 			parent.owner.get_node('Perspective').cam_max_y = cam_max_y
 
 
-func _ready(_parent, _node_name):
+#func _init():
+#
+#	print(get_local_scene().get_meta('unique') if get_local_scene() != null else null)
+
+
+func _ready(_parent, _playback, _node_name):
 	
 	parent = _parent
+	playback = _playback
 	node_name = _node_name
 	
 	parent.connect('state_starting', self, '_on_state_starting')

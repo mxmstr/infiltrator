@@ -7,6 +7,7 @@ export(float) var value
 export(float) var wait_for_frame
 
 var parent
+var playback
 var from
 var to
 
@@ -26,9 +27,10 @@ func _evaluate(_value):
 		'Less Than': return value <= _value
 
 
-func _ready(_parent, _from, _to):
+func _ready(_parent, _playback, _from, _to):
 	
 	parent = _parent
+	playback = _playback
 	from = _from
 	to = _to
 	

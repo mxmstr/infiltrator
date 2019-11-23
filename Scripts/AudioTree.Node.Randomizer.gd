@@ -1,6 +1,7 @@
 extends AnimationNodeAnimation
 
 var parent
+var playback
 var node_name
 var transitions = []
 var last = -1
@@ -21,9 +22,10 @@ func _on_travel_starting(new_node_name, new_node):
 		last = enabled_idx
 
 
-func _ready(_parent, _node_name):
+func _ready(_parent, _playback, _node_name):
 	
 	parent = _parent
+	playback = _playback
 	node_name = _node_name
 	
 	parent.connect('travel_starting', self, '_on_travel_starting')
