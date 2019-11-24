@@ -4,7 +4,7 @@ export var sensitivity = 0.01
 
 var active = true
 
-onready var camera = owner.get_node('Perspective/Container/Viewport/CameraRig/Camera')
+#onready var camera = owner.get_node('Perspective/Container/Viewport/CameraRig/Camera')
 
 
 func _enter_tree():
@@ -18,6 +18,8 @@ func _leave_tree():
 
 
 func mouse(offset):
+	
+	var camera = owner.get_node('Perspective/Container/Viewport/CameraRig/Camera')
 	
 	camera.rotation.x += offset.y * -sensitivity
 	camera.rotation.y += offset.x * -sensitivity

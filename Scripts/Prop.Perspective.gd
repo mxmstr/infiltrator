@@ -1,15 +1,15 @@
-extends AnimationTree
+extends 'res://Scripts/StateMachine.gd'
 
 export var mouse_device = -1
 export var keyboard_device = -1
 export(Array, String) var fp_hidden_bones
 
+export var cam_max_x = 0.0
+export var cam_max_y = PI / 2
+
 var player_index = 0
 var viewmodel_offset = 5
 var worldmodel_offset = 15
-
-var cam_max_x = 0.0
-var cam_max_y = PI / 2
 
 var selection
 var last_selection
@@ -61,10 +61,13 @@ func _init_fp_skeleton():
 	var viewmodel = $'../Model'.duplicate()
 	viewmodel.name = 'ViewModel'
 	
-	owner.call_deferred('add_child_below_node', $'../Model', viewmodel)
+	get_parent().call_deferred('add_child_below_node', $'../Model', viewmodel)
 
 
 func _ready():
+	
+	if not has_meta('unique'):
+		return
 	
 	_init_camera()
 	_init_viewport()
@@ -101,8 +104,9 @@ func _camera_follow_target():
 	
 	rig.global_transform.basis *= owner.global_transform.basis
 	
+	#print([camera.rotation.y, -cam_max_x])
 	camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)
-	camera.rotation.y = clamp(camera.rotation.x, -cam_max_x, cam_max_x)
+	camera.rotation.y = clamp(camera.rotation.y, -cam_max_x, cam_max_x)
 
 
 func _has_selection():

@@ -8,8 +8,7 @@ export var distance = 0.0
 export var abilities = true
 export var movement = true
 export var rotation = true
-export var cam_max_x = 0.0
-export var cam_max_y = PI / 2
+export var camera_mode = 'LockYaw'
 
 
 func _is_visible():
@@ -33,7 +32,6 @@ func _on_state_starting(new_name):
 			parent.owner.get_node('InputRotation').active = rotation
 		
 		if parent.owner.has_node('Perspective'):
-			parent.owner.get_node('Perspective').cam_max_x = cam_max_x
-			parent.owner.get_node('Perspective').cam_max_y = cam_max_y
+			parent.owner.get_node('Perspective')._start_state(camera_mode)
 	
 	._on_state_starting(new_name)

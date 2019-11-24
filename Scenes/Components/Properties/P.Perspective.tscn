@@ -1,32 +1,115 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Prop.Perspective.gd" type="Script" id=1]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=2]
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "DefaultAnim"
+animation = "HalfYaw"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=2]
-states/Default/node = SubResource( 1 )
-states/Default/position = Vector2( 536, 94 )
-start_node = "Default"
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "LockYaw"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+xfade_time = 0.1
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+xfade_time = 0.1
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/HalfYaw/node = SubResource( 1 )
+states/HalfYaw/position = Vector2( 616, 156 )
+states/LockYaw/node = SubResource( 2 )
+states/LockYaw/position = Vector2( 411, 156 )
+transitions = [ "LockYaw", "HalfYaw", SubResource( 3 ), "HalfYaw", "LockYaw", SubResource( 4 ) ]
+start_node = "LockYaw"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "HalfYaw"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:cam_max_x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.57 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:cam_max_y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.57 ]
+}
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "LockYaw"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:cam_max_x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:cam_max_y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.57 ]
+}
 __meta__ = {
 
 }
 
 [node name="Perspective" type="AnimationTree"]
-tree_root = SubResource( 2 )
+tree_root = SubResource( 5 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 6 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -34,6 +117,8 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 2 )
+anims/HalfYaw = SubResource( 8 )
+anims/LockYaw = SubResource( 7 )
 __meta__ = {
 
 }

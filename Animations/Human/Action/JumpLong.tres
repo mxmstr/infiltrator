@@ -10,11 +10,11 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ 2.5 ],
-"method": "_set_y_velocity"
+"args": [ 3.0 ],
+"method": "_set_vertical_velocity"
 } ]
 }
 tracks/1/type = "transform"

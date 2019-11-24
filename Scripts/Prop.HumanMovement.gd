@@ -66,16 +66,49 @@ func _get_leftright_speed():
 	return owner.global_transform.basis.xform_inv(velocity).x
 
 
-func _set_direction_local(new_direction):
+func _set_direction(local_direction):
 	
-	new_direction = owner.global_transform.basis.xform(new_direction)
+	var current_pos = owner.global_transform.origin
+	direction = owner.global_transform.basis.xform(local_direction)
 	
-	direction = new_direction
+	match current_state:
+		
+		state.WALKING:
+			
+			direction *= max_speed * walk_mult
+		
+		state.CLIMBING:
+			
+			var new_x_pos = current_pos.linear_interpolate(climb_target, climb_x_progress)
+			var new_y_pos = current_pos.linear_interpolate(climb_target, climb_y_progress)
+			
+			owner.global_transform.origin = Vector3(new_x_pos.x, new_y_pos.y, new_x_pos.z)
+			
+			velocity.x = 0
+			velocity.z = 0
+		
+		state.CROUCHING:
+			
+			direction *= max_speed * crouch_mult
+		
+		state.RUNNING:
+			
+			direction *= max_speed
+		
+		state.CRAWLING:
+			
+			direction *= max_speed * crawl_mult
 
 
-func _set_y_velocity(new_velocity):
+func _set_horizontal_velocity(horizontal):
 	
-	velocity.y = new_velocity
+	horizontal = owner.global_transform.basis.xform(horizontal)
+	velocity = Vector3(horizontal.x, velocity.y, horizontal.z)
+
+
+func _set_vertical_velocity(vertical):
+	
+	velocity.y = vertical
 
 
 func _has_climb_target():
@@ -160,42 +193,8 @@ func _physics_process(delta):
 	_resize_collision()
 	
 	
-	var current_pos = get_parent().global_transform.origin
 	var vertical = velocity.y + (delta * gravity)
 	var horizontal = Vector3(velocity.x, 0, velocity.z)
-	var target = Vector3()
-	
-	match current_state:
-		
-		state.DEFAULT:
-			
-			target = direction
-		
-		state.WALKING:
-			
-			target = direction * max_speed * walk_mult
-		
-		state.CLIMBING:
-			
-			var new_x_pos = current_pos.linear_interpolate(climb_target, climb_x_progress)
-			var new_y_pos = current_pos.linear_interpolate(climb_target, climb_y_progress)
-			
-			get_parent().global_transform.origin = Vector3(new_x_pos.x, new_y_pos.y, new_x_pos.z)
-			
-			velocity.x = 0
-			velocity.z = 0
-		
-		state.CROUCHING:
-			
-			target = direction * max_speed * crouch_mult
-		
-		state.RUNNING:
-			
-			target = direction * max_speed
-		
-		state.CRAWLING:
-			
-			target = direction * max_speed * crawl_mult
 	
 	
 	var factor
@@ -205,7 +204,8 @@ func _physics_process(delta):
 	else:
 		factor = deaccel
 	
-	velocity = horizontal.linear_interpolate(target, factor * delta)
+	
+	velocity = horizontal.linear_interpolate(direction, factor * delta)
 	velocity.y = vertical
 	
 	velocity = get_parent().move_and_slide(velocity, Vector3(0, 1, 0))
