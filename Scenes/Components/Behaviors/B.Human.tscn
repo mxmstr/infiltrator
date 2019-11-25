@@ -29,7 +29,7 @@
 [ext_resource path="res://Animations/Human/Action/sidestepright.tres" type="Animation" id=27]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "Climb"
+animation = "ClimbMedium"
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -39,7 +39,7 @@ type = 0
 blend = 0
 speed = 1.0
 distance = 0.0
-abilities = true
+abilities = false
 movement = false
 rotation = false
 camera_mode = "LockYaw"
@@ -454,7 +454,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachine" id=46]
 resource_local_to_scene = true
 states/Climb/node = SubResource( 1 )
-states/Climb/position = Vector2( 497, 328.794 )
+states/Climb/position = Vector2( 497, 330.794 )
 states/ClimbExit/node = SubResource( 2 )
 states/ClimbExit/position = Vector2( 497, 401.794 )
 states/Default/node = SubResource( 3 )
@@ -473,7 +473,7 @@ states/LandExit/node = SubResource( 27 )
 states/LandExit/position = Vector2( 497, 129.4 )
 transitions = [ "Climb", "ClimbExit", SubResource( 28 ), "Default", "Drop", SubResource( 29 ), "Default", "Grab", SubResource( 30 ), "Grab", "Default", SubResource( 31 ), "Drop", "Default", SubResource( 32 ), "ClimbExit", "Default", SubResource( 33 ), "Default", "Climb", SubResource( 34 ), "Default", "Land", SubResource( 35 ), "Land", "LandExit", SubResource( 36 ), "LandExit", "Default", SubResource( 37 ), "Default", "Fall", SubResource( 38 ), "Fall", "Default", SubResource( 39 ), "Fall", "Default", SubResource( 40 ), "Land", "LandExit", SubResource( 41 ), "Climb", "ClimbExit", SubResource( 42 ), "Default", "Jump", SubResource( 43 ), "Jump", "Default", SubResource( 44 ), "Jump", "Default", SubResource( 45 ) ]
 start_node = "Default"
-graph_offset = Vector2( -126.751, 5.2231 )
+graph_offset = Vector2( -126.751, 151.685 )
 __meta__ = {
 
 }

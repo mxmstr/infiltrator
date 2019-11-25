@@ -46,10 +46,10 @@ open_angle = Vector3( 0, 90, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538539, 2.62026, -0.504289 )
 
 [node name="Player" parent="Actors" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3666, 0.300207, -7.98361 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.551768, 0.300207, -6.20111 )
 
 [node name="Player2" parent="Actors" instance=ExtResource( 4 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.89542, 0.317691, -4.4706 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.71148, 0.317691, -1.74874 )
 
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {

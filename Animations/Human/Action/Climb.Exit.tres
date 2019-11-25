@@ -13,7 +13,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "DEFAULT" ],
+"args": [ "WALKING" ],
 "method": "_set_state"
 } ]
+}
+__meta__ = {
+
 }

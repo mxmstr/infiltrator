@@ -14,9 +14,9 @@ var to
 
 func _evaluate(_value):
 	
-	var playback = parent.get('parameters/playback')
+	var current_frame = 0 if not playback.is_playing() else playback.get_current_play_pos()
 	
-	if playback.get_current_play_pos() < wait_for_frame:
+	if current_frame < wait_for_frame:
 		return false
 	
 	match assertion:

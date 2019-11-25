@@ -33,7 +33,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-animation = "Climb"
+animation = "ClimbMedium"
 script = ExtResource( 9 )
 __meta__ = {
 
