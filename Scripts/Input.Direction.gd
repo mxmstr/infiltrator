@@ -1,7 +1,5 @@
 extends Node
 
-onready var perspective = $'../../Perspective'
-onready var human_movement = $'../../HumanMovement'
 
 
 func _physics_process(delta):
@@ -9,6 +7,8 @@ func _physics_process(delta):
 	if not owner.active:
 		return
 	
+	var perspective = $'../../Perspective'
+	var human_movement = $'../../HumanMovement'
 	
 	var mouse_device = perspective.mouse_device
 	var keyboard_device = perspective.keyboard_device

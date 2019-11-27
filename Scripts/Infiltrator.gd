@@ -52,6 +52,13 @@ var RawInput = {}
 
 func _make_unique(old):
 	
+	var export_props = {}
+	
+	for prop in old.get_property_list():
+		if prop.usage == 8199:
+			export_props[prop.name] = old.get(prop.name)
+	
+	
 	var dir = Directory.new()
 	var new_name = old.name
 	var new_filename = 'res://duplicated' + str(tree_count) + '.tscn'
@@ -65,7 +72,11 @@ func _make_unique(old):
 	new.name = old.name
 	new.set_meta('unique', true)
 	old.name += '_'
-
+	
+	
+	for prop in export_props:
+		new.set(prop, export_props[prop])
+	
 	
 	old.get_parent().call_deferred('add_child_below_node', old, new)
 	new.call_deferred('set_owner', old.owner)

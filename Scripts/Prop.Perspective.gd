@@ -46,7 +46,7 @@ func _reset_viewport():
 
 func _init_camera():
 	
-	raycast.add_exception(owner)
+	raycast.add_exception(get_parent())
 	selection = raycast.get_collider()
 
 
@@ -61,7 +61,7 @@ func _init_fp_skeleton():
 	var viewmodel = $'../Model'.duplicate()
 	viewmodel.name = 'ViewModel'
 	
-	get_parent().call_deferred('add_child_below_node', $'../Model', viewmodel)
+	get_parent().add_child_below_node($'../Model', viewmodel)
 
 
 func _ready():
@@ -71,11 +71,11 @@ func _ready():
 	
 	_init_camera()
 	_init_viewport()
-	_init_fp_skeleton()
 	
-	yield(get_tree(), 'idle_frame')
+	#yield(get_tree(), 'idle_frame')
 	
-	_reset_viewport()
+	call_deferred('_init_fp_skeleton')
+	call_deferred('_reset_viewport')
 
 
 func _blend_fp_skeleton():

@@ -22,10 +22,9 @@ export var accel = 2
 export var deaccel = 4
 export var max_slope_angle = 30
 
-export var climb_speed = 100.0
-export var climb_height_mult = 2
-export var climb_range = 0.5
-export var climb_horizontal_distance = 0.25
+export var climb_max_height_mult = 2
+export var climb_find_range = 0.5
+export var climb_forward_amount = 0.25
 
 export var collision_height_mult = 1.0
 
@@ -33,6 +32,7 @@ var direction = Vector3()
 var velocity = Vector3()
 var climb_collision_mask = 1024
 var climb_steps = 50
+var climb_start = null
 var climb_target = null
 var climb_x_progress = 0
 var climb_y_progress = 0
@@ -108,11 +108,12 @@ func _has_climb_target():
 func _find_climb_target():
 	
 	if current_state == state.CLIMBING:
-		return true
+		return
 	
 	
 	var in_range = false
 	var height = collision.shape.extents.y
+	var owner_origin = owner.global_transform.origin
 	
 	var ray_to_target = RayCast.new()
 	ray_to_target.collision_mask = climb_collision_mask
@@ -125,22 +126,22 @@ func _find_climb_target():
 	add_child(ray_to_self)
 	
 	
-	var last_point = owner.global_transform.origin + Vector3(0, height * climb_height_mult, 0)
+	var last_point = owner_origin + Vector3(0, height * climb_max_height_mult, 0)
 	var offsets = range(climb_steps)
 	offsets.invert()
 	
 	for i in offsets:
 		
-		var climb_height = height * climb_height_mult * ((i + 1) / float(climb_steps))
+		var climb_height = height * climb_max_height_mult * ((i + 1) / float(climb_steps))
 		var offset = Vector3(0, climb_height, 0)
-		var origin = owner.global_transform.origin + offset
+		var origin = owner_origin + offset
 		
 		ray_to_target.global_transform.origin = origin
-		ray_to_target.cast_to = Vector3(0, 0, climb_range)
+		ray_to_target.cast_to = Vector3(0, 0, climb_find_range)
 		ray_to_target.force_raycast_update()
 		
 		ray_to_self.global_transform.origin = origin
-		ray_to_self.cast_to = origin.direction_to(owner.global_transform.origin)
+		ray_to_self.cast_to = origin.direction_to(owner_origin)
 		ray_to_self.force_raycast_update()
 		
 		
@@ -154,8 +155,10 @@ func _find_climb_target():
 #
 #			elif in_range:
 			if wall_found:
+				climb_start = owner_origin
+				
 				climb_target = ray_to_target.get_collision_point()
-				climb_target += origin.direction_to(climb_target) * climb_horizontal_distance
+				climb_target += origin.direction_to(climb_target) * climb_forward_amount
 				climb_target.y = last_point.y
 				
 				#ik_righthand.global_transform.origin = climb_target
@@ -170,6 +173,7 @@ func _find_climb_target():
 	ray_to_target.queue_free()
 	ray_to_self.queue_free()
 	
+	climb_start = null
 	climb_target = null
 
 
@@ -191,8 +195,8 @@ func _physics_process(delta):
 	if current_state == state.CLIMBING:
 		
 		var current_pos = owner.global_transform.origin
-		var new_x_pos = current_pos.linear_interpolate(climb_target, climb_x_progress)
-		var new_y_pos = current_pos.linear_interpolate(climb_target, climb_y_progress)
+		var new_x_pos = climb_start.linear_interpolate(climb_target, climb_x_progress)
+		var new_y_pos = climb_start.linear_interpolate(climb_target, climb_y_progress)
 		
 		owner.global_transform.origin = Vector3(new_x_pos.x, new_y_pos.y, new_x_pos.z)
 		
