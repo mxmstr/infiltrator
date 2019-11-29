@@ -32,8 +32,10 @@ func _init_blendspace2d(root, playback):
 		var node = root.get_blend_point_node(point)
 		
 		if node is AnimationNodeStateMachine:
-			
 			_init_statemachine(node, playback + '/' + str(point))
+		
+		if node is AnimationNodeBlendSpace2D:
+			_init_blendspace2d(node, playback + '/' + str(point))
 
 
 func _init_statemachine(root, playback):
@@ -59,6 +61,9 @@ func _init_statemachine(root, playback):
 		
 		
 		if from.has_method('_ready'):
+			
+			if from is AnimationNodeStateMachine:
+				_init_statemachine(from, playback + '/' + from_name)
 			
 			if from is AnimationNodeBlendSpace2D:
 				_init_blendspace2d(from, playback + '/' + from_name)

@@ -9,7 +9,14 @@ enum state {
 	CRAWLING
 }
 
+enum lean {
+	DEFAULT,
+	LEFT,
+	RIGHT
+}
+
 export(state) var current_state = state.WALKING
+export(lean) var current_lean = lean.DEFAULT
 
 export var gravity = -9.8
 export var max_speed = 2.75

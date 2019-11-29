@@ -133,25 +133,13 @@ func _blend_skeletons(delta):
 		model_skeleton.set_bone_global_pose(idx, model_transform)
 
 
-func _filter_anim_events(nodes, blend_position, filter_all=false):
+func _filter_anim_events(children, closest_position, filter_all=false):
 	
-	var closest = null
-	var min_dist = 2.0
-	
-	for node in nodes:
-		
-		var dist = abs(clamp(blend_position - node.position, -2, 2))
-		
-		if dist <= min_dist:
-			min_dist = dist
-			closest = node
-	
-	
-	for node in nodes:
+	for node in children:
 		
 		if node.animation != null:
 			
-			if node.position == closest.position:
+			if node.position == closest_position:
 
 				for track in node.animation.get_track_count():
 					node.animation.track_set_enabled(track, node.animation.track_get_type(track) != 2 if filter_all else true)
@@ -165,11 +153,13 @@ func _filter_anim_events(nodes, blend_position, filter_all=false):
 		if node.blendspace != null:
 			
 			var position = get(node.path + 'blend_position')
+			var closest_child = node.blendspace.get_closest_node_to_position()
+			var new_closest_position = node.blendspace.get_blend_point_position(closest_child)
 			
-			if node.position == closest.position:
-				_filter_anim_events(node.children, position, filter_all)
+			if node.position == closest_position:
+				_filter_anim_events(node.children, new_closest_position, filter_all)
 			else:
-				_filter_anim_events(node.children, position, true)
+				_filter_anim_events(node.children, new_closest_position, true)
 
 
 func _unfilter_anim_events(nodes):
@@ -190,13 +180,13 @@ func _on_pre_process():
 	
 	_filter_anim_events(
 		stand_tree, 
-		get('parameters/Standing/blend_position'),
+		tree_root.get_node('Standing').get_closest_node_to_position(),
 		blend_mode == Inf.Blend.ACTION
 		)
 
 	_filter_anim_events(
 		crouch_tree, 
-		get('parameters/Crouching/blend_position'),
+		tree_root.get_node('Crouching').get_closest_node_to_position(),
 		blend_mode == Inf.Blend.ACTION
 		)
 

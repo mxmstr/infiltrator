@@ -109,6 +109,14 @@ func _camera_follow_target():
 	camera.rotation.y = clamp(camera.rotation.y, -cam_max_x, cam_max_x)
 
 
+func _align_player_to_camera():
+	
+	var target = owner.global_transform.origin - camera.global_transform.basis.z
+	owner.look_at(target, Vector3(0, 1, 0))
+	
+	camera.rotation.y = 0
+
+
 func _has_selection():
 	
 	return selection != null and selection.has_node('Behavior')

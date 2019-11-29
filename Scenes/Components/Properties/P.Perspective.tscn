@@ -1,8 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Prop.Perspective.gd" type="Script" id=1]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=2]
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "AlignPlayerToCamera"
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "HalfYaw"
@@ -22,24 +28,52 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=4]
-xfade_time = 0.1
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
+states/AlignPlayerToCamera/node = SubResource( 9 )
+states/AlignPlayerToCamera/position = Vector2( 640, 235 )
 states/HalfYaw/node = SubResource( 1 )
-states/HalfYaw/position = Vector2( 616, 156 )
+states/HalfYaw/position = Vector2( 880, 156 )
 states/LockYaw/node = SubResource( 2 )
 states/LockYaw/position = Vector2( 411, 156 )
-transitions = [ "LockYaw", "HalfYaw", SubResource( 3 ), "HalfYaw", "LockYaw", SubResource( 4 ) ]
+transitions = [ "LockYaw", "HalfYaw", SubResource( 3 ), "HalfYaw", "AlignPlayerToCamera", SubResource( 11 ), "AlignPlayerToCamera", "LockYaw", SubResource( 12 ) ]
 start_node = "LockYaw"
+graph_offset = Vector2( 0, 62.9344 )
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "AlignPlayerToCamera"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_align_player_to_camera"
+} ]
+}
 __meta__ = {
 
 }
@@ -115,6 +149,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AlignPlayerToCamera = SubResource( 10 )
 anims/DefaultAnim = ExtResource( 2 )
 anims/HalfYaw = SubResource( 7 )
 anims/LockYaw = SubResource( 8 )

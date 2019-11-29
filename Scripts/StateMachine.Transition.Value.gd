@@ -3,6 +3,7 @@ extends AnimationNodeStateMachineTransition
 export(String, 'Equals', 'Not Equals', 'Greater Than', 'Less Than') var assertion = 'Equals'
 export(String) var target
 export(String) var method
+export(Array) var args
 export(float) var value
 export(float) var wait_for_frame
 
@@ -39,4 +40,4 @@ func _ready(_parent, _playback, _from, _to):
 
 func _process(delta):
 	
-	disabled = not _evaluate(parent.owner.get_node(target).call(method))
+	disabled = not _evaluate(parent.owner.get_node(target).callv(method, args))
