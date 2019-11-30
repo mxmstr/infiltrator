@@ -902,7 +902,6 @@ __meta__ = {
 }
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
@@ -927,6 +926,8 @@ send_to_self = true
 
 [node name="Perspective" parent="." instance=ExtResource( 7 )]
 parameters/playback = SubResource( 2 )
+fp_root_bone = "Pelvis"
+fp_shoulder_bone = "shoulders"
 fp_hidden_bones = [ "Head", "Neck" ]
 
 [node name="CameraRig" parent="Perspective/Container/Viewport" index="1"]

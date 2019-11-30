@@ -1,4 +1,4 @@
-extends "res://Scripts/StateMachine.BlendSpace.gd"
+extends 'res://Scripts/StateMachine.BlendSpace.gd'
 
 export(Inf.Priority) var priority
 export(Inf.Visibility) var type

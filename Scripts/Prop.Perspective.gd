@@ -2,6 +2,8 @@ extends 'res://Scripts/StateMachine.gd'
 
 export var mouse_device = -1
 export var keyboard_device = -1
+export(String) var fp_root_bone
+export(String) var fp_shoulder_bone
 export(Array, String) var fp_hidden_bones
 
 export var cam_max_x = 0.0
@@ -10,6 +12,9 @@ export var cam_max_y = PI / 2
 var player_index = 0
 var viewmodel_offset = 5
 var worldmodel_offset = 15
+
+var root_id
+var shoulders_id
 
 var selection
 var last_selection
@@ -61,6 +66,16 @@ func _init_fp_skeleton():
 	var viewmodel = $'../Model'.duplicate()
 	viewmodel.name = 'ViewModel'
 	
+	for idx in range(viewmodel.get_child(0).get_bone_count()):
+		
+		var bone_name = viewmodel.get_child(0).get_bone_name(idx)
+		
+		if bone_name == fp_root_bone:
+			root_id = idx
+		
+		if bone_name == fp_shoulder_bone:
+			shoulders_id = idx
+	
 	get_parent().add_child_below_node($'../Model', viewmodel)
 
 
@@ -95,6 +110,13 @@ func _blend_fp_skeleton():
 			p_world = s_world.get_bone_pose(idx)
 			p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
 			s_view.set_bone_pose(idx, p_world)
+	
+	var p_root = s_view.get_bone_pose(root_id)
+	var p_shoulders = s_view.get_bone_pose(shoulders_id)
+	
+	p_root.origin += rig.transform.origin - p_shoulders.origin
+	
+	s_view.set_bone_pose(root_id, p_root)
 
 
 func _camera_follow_target():
