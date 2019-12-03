@@ -107,11 +107,6 @@ func _set_vertical_velocity(vertical):
 	velocity.y = vertical
 
 
-func _has_climb_target():
-	
-	return climb_target != null
-
-
 func _find_climb_target():
 	
 	if current_state == state.CLIMBING:

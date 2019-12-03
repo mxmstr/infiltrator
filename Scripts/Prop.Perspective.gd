@@ -111,12 +111,16 @@ func _blend_fp_skeleton():
 			p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
 			s_view.set_bone_pose(idx, p_world)
 	
-	var p_root = s_view.get_bone_pose(root_id)
-	var p_shoulders = s_view.get_bone_pose(shoulders_id)
 	
-	p_root.origin += rig.transform.origin - p_shoulders.origin
+	var pose_shoulders = s_view.get_bone_global_pose(shoulders_id).origin
+	var shoulders_transform = owner.global_transform.basis.xform(pose_shoulders)
+	var rig_transform = rig.global_transform.origin - owner.global_transform.origin
 	
-	s_view.set_bone_pose(root_id, p_root)
+	s_view.global_transform.origin = owner.global_transform.origin + rig_transform - shoulders_transform
+	
+	#p_root.origin += rig.transform.origin - p_shoulders.origin
+	
+	#s_view.set_bone_pose(root_id, p_root)
 
 
 func _camera_follow_target():
@@ -133,10 +137,11 @@ func _camera_follow_target():
 
 func _align_player_to_camera():
 	
-	var target = owner.global_transform.origin - camera.global_transform.basis.z
-	owner.look_at(target, Vector3(0, 1, 0))
+	var target = owner.global_transform.origin - camera.global_transform.basis.z.inverse()
+	target.y = owner.global_transform.origin.y
+	#owner.look_at(target, Vector3(0, 1, 0))
 	
-	camera.rotation.y = 0
+	#camera.rotation.y = 0
 
 
 func _has_selection():
@@ -167,6 +172,6 @@ func _update_raycast_selection():
 
 func _process(delta):
 	
-	_blend_fp_skeleton()
 	_camera_follow_target()
+	_blend_fp_skeleton()
 	_update_raycast_selection()

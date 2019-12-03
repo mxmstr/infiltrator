@@ -8,6 +8,10 @@ var to
 
 func _on_travel_starting(new_node_name, new_node):
 	
+	if new_node.get('priority') == null:
+		disabled = true
+		return
+	
 	disabled = not new_node.priority > from.priority
 
 

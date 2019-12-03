@@ -381,8 +381,8 @@ __meta__ = {
 }
 assertion = "Equals"
 target = "HumanMovement"
-method = "_get_state"
-args = [  ]
+method = "get"
+args = [ "current_state" ]
 value = 3.0
 wait_for_frame = 0.0
 
@@ -396,8 +396,8 @@ __meta__ = {
 }
 assertion = "Not Equals"
 target = "HumanMovement"
-method = "_get_state"
-args = [  ]
+method = "get"
+args = [ "current_state" ]
 value = 3.0
 wait_for_frame = 0.0
 
@@ -435,7 +435,7 @@ parameters/playback = SubResource( 33 )
 parameters/Crouching/blend_position = -0.998403
 parameters/Crouching/2/blend_position = 0
 parameters/Crouching/2/2/playback = SubResource( 34 )
-parameters/Standing/blend_position = 0.00562251
+parameters/Standing/blend_position = 0.0107527
 parameters/Standing/0/blend_position = 0
 parameters/Standing/0/3/playback = SubResource( 35 )
 script = ExtResource( 2 )
