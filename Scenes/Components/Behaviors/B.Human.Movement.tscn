@@ -133,7 +133,7 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 auto_advance = true
-xfade_time = 0.25
+xfade_time = 0.1
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -148,7 +148,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 auto_advance = true
-xfade_time = 0.25
+xfade_time = 0.1
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -163,7 +163,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
 auto_advance = true
-xfade_time = 0.25
+xfade_time = 0.1
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -178,7 +178,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 auto_advance = true
-xfade_time = 0.25
+xfade_time = 0.1
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -252,9 +252,6 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=19]
 animation = "LeanLeft"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "LeanRight"
@@ -264,7 +261,7 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 auto_advance = true
-xfade_time = 0.25
+xfade_time = 0.1
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -279,12 +276,9 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 auto_advance = true
-xfade_time = 0.25
+xfade_time = 0.1
 disabled = true
 script = ExtResource( 1 )
-__meta__ = {
-
-}
 assertion = "Equals"
 target = "HumanMovement"
 method = "get"
@@ -294,7 +288,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 auto_advance = true
-xfade_time = 0.25
+xfade_time = 0.1
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -309,7 +303,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
 auto_advance = true
-xfade_time = 0.25
+xfade_time = 0.1
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -439,9 +433,6 @@ parameters/Standing/blend_position = 0.0107527
 parameters/Standing/0/blend_position = 0
 parameters/Standing/0/3/playback = SubResource( 35 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 root_bone = "Pelvis"
 movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
 

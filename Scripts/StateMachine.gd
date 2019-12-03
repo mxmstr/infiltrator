@@ -34,11 +34,13 @@ func _init_blendspace2d(root, playback):
 		if node is AnimationNodeStateMachine:
 			_init_statemachine(node, playback + '/' + str(point))
 		
-		if node is AnimationNodeBlendSpace2D:
+		if node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
 			_init_blendspace2d(node, playback + '/' + str(point))
 
 
 func _init_statemachine(root, playback):
+	
+	print([name, playback])
 	
 	var anim_names = []
 	
@@ -56,18 +58,17 @@ func _init_statemachine(root, playback):
 			if from.has_method('_ready'):
 				from._ready(self, get(playback + '/playback'), from_name)
 			
+			if from is AnimationNodeStateMachine:
+				_init_statemachine(from, playback + '/' + from_name)
+			
+			if from is AnimationNodeBlendSpace1D or from is AnimationNodeBlendSpace2D:
+				_init_blendspace2d(from, playback + '/' + from_name)
+			
 			anim_names.append(from_name)
 			nodes.append(from)
 		
 		
 		if from.has_method('_ready'):
-			
-			if from is AnimationNodeStateMachine:
-				_init_statemachine(from, playback + '/' + from_name)
-			
-			if from is AnimationNodeBlendSpace2D:
-				_init_blendspace2d(from, playback + '/' + from_name)
-			
 			from.transitions.append(transition)
 		
 		

@@ -53,6 +53,11 @@ func _ready():
 	pass
 
 
+func _set_lean(new_lean):
+	
+	current_lean = lean[new_lean]
+
+
 func _set_state(new_state):
 	
 	current_state = state[new_state]
