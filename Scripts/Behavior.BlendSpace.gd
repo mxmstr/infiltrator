@@ -20,18 +20,20 @@ func _on_state_starting(new_name):
 	
 	if node_name == new_name:
 		
-		parent.get_node('AnimationPlayer').playback_speed = speed
-		
-		if parent.owner.has_node('InputAbilities'):
-			parent.owner.get_node('InputAbilities').active = abilities
-		
-		if parent.owner.has_node('InputMovement'):
-			parent.owner.get_node('InputMovement').active = movement
-		
-		if parent.owner.has_node('InputRotation'):
-			parent.owner.get_node('InputRotation').active = rotation
-		
-		if parent.owner.has_node('Perspective'):
-			parent.owner.get_node('Perspective')._start_state(camera_mode)
+		if len(playback.get_travel_path()) == 0:
+			
+			parent.get_node('AnimationPlayer').playback_speed = speed
+			
+			if parent.owner.has_node('InputAbilities'):
+				parent.owner.get_node('InputAbilities').active = abilities
+			
+			if parent.owner.has_node('InputMovement'):
+				parent.owner.get_node('InputMovement').active = movement
+			
+			if parent.owner.has_node('InputRotation'):
+				parent.owner.get_node('InputRotation').active = rotation
+			
+			if parent.owner.has_node('Perspective'):
+				parent.owner.get_node('Perspective')._start_state(camera_mode)
 	
 	._on_state_starting(new_name)

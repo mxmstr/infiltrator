@@ -2,6 +2,7 @@ extends 'res://Scripts/StateMachine.gd'
 
 export var mouse_device = -1
 export var keyboard_device = -1
+export var fp_offset = Vector3(0, 0, 0.1)
 export(String) var fp_root_bone
 export(String) var fp_shoulder_bone
 export(Array, String) var fp_hidden_bones
@@ -112,7 +113,7 @@ func _blend_fp_skeleton():
 			s_view.set_bone_pose(idx, p_world)
 	
 	
-	var pose_shoulders = s_view.get_bone_global_pose(shoulders_id).origin
+	var pose_shoulders = s_view.get_bone_global_pose(shoulders_id).origin + fp_offset
 	var shoulders_transform = owner.global_transform.basis.xform(pose_shoulders)
 	var rig_transform = rig.global_transform.origin - owner.global_transform.origin
 	
@@ -137,11 +138,9 @@ func _camera_follow_target():
 
 func _align_player_to_camera():
 	
-	var target = owner.global_transform.origin - camera.global_transform.basis.z.inverse()
+	var target = owner.global_transform.origin + camera.global_transform.basis.z#.inverse()
 	target.y = owner.global_transform.origin.y
-	#owner.look_at(target, Vector3(0, 1, 0))
-	
-	#camera.rotation.y = 0
+	owner.look_at(target, Vector3(0, 1, 0))
 
 
 func _has_selection():

@@ -124,7 +124,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=16]
-animation = "Walk"
+animation = "DefaultAnim"
 __meta__ = {
 
 }

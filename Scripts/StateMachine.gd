@@ -40,8 +40,6 @@ func _init_blendspace2d(root, playback):
 
 func _init_statemachine(root, playback):
 	
-	print([name, playback])
-	
 	var anim_names = []
 	
 	for idx in range(root.get_transition_count()):
