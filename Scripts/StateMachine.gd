@@ -80,7 +80,11 @@ func _ready():
 		Inf._make_unique(self)
 		return
 	
-	_init_statemachine(tree_root, 'parameters')
+	if tree_root is AnimationNodeStateMachine:
+		_init_statemachine(tree_root, 'parameters')
+	
+	if tree_root is AnimationNodeBlendSpace1D or tree_root is AnimationNodeBlendSpace2D:
+		_init_blendspace2d(tree_root, 'parameters')
 	
 	active = true
 

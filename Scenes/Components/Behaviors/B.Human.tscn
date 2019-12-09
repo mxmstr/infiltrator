@@ -28,7 +28,7 @@
 [ext_resource path="res://Animations/Human/Action/sidestepleft.tres" type="Animation" id=26]
 [ext_resource path="res://Animations/Human/Action/sidestepright.tres" type="Animation" id=27]
 
-[sub_resource type="AnimationNodeAnimation" id=49]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "ClimbMedium"
 script = ExtResource( 1 )
 __meta__ = {
@@ -44,7 +44,7 @@ movement = false
 rotation = false
 camera_mode = "LockYaw"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=50]
+[sub_resource type="AnimationNodeBlendSpace1D" id=2]
 __meta__ = {
 
 }
@@ -299,10 +299,12 @@ __meta__ = {
 }
 x_target = "HumanMovement"
 x_method = "_get_leftright_speed"
+x_args = [  ]
 x_max_value = -2.75
 x_min_value = 2.75
 y_target = "HumanMovement"
 y_method = "_get_forward_speed"
+y_args = [  ]
 y_max_value = 2.75
 y_min_value = -2.75
 priority = 0
@@ -483,11 +485,11 @@ method = "get"
 args = [ "climb_target" ]
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachine" id=54]
+[sub_resource type="AnimationNodeStateMachine" id=49]
 resource_local_to_scene = true
-states/Climb/node = SubResource( 49 )
+states/Climb/node = SubResource( 1 )
 states/Climb/position = Vector2( 497, 330.794 )
-states/Climb2/node = SubResource( 50 )
+states/Climb2/node = SubResource( 2 )
 states/Climb2/position = Vector2( 677.249, 361.984 )
 states/ClimbExit/node = SubResource( 3 )
 states/ClimbExit/position = Vector2( 497, 401.794 )
@@ -509,12 +511,12 @@ states/LandExit/node = SubResource( 29 )
 states/LandExit/position = Vector2( 497, 129.4 )
 transitions = [ "Climb", "ClimbExit", SubResource( 30 ), "Default", "Drop", SubResource( 31 ), "Default", "Grab", SubResource( 32 ), "Grab", "Default", SubResource( 33 ), "Drop", "Default", SubResource( 34 ), "ClimbExit", "Default", SubResource( 35 ), "Default", "Land", SubResource( 36 ), "Land", "LandExit", SubResource( 37 ), "LandExit", "Default", SubResource( 38 ), "Default", "Fall", SubResource( 39 ), "Fall", "Default", SubResource( 40 ), "Fall", "Default", SubResource( 41 ), "Land", "LandExit", SubResource( 42 ), "Climb", "ClimbExit", SubResource( 43 ), "Jump", "Default", SubResource( 44 ), "Jump", "Default", SubResource( 45 ), "Default", "FindClimbTarget", SubResource( 46 ), "FindClimbTarget", "Jump", SubResource( 47 ), "FindClimbTarget", "Climb", SubResource( 48 ) ]
 start_node = "Default"
-graph_offset = Vector2( -126.751, -27.6136 )
+graph_offset = Vector2( -126.751, 150.994 )
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=55]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=50]
 __meta__ = {
 
 }
@@ -535,9 +537,9 @@ __meta__ = {
 }
 
 [node name="Behavior" type="AnimationTree"]
-tree_root = SubResource( 54 )
+tree_root = SubResource( 49 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 55 )
+parameters/playback = SubResource( 50 )
 parameters/Climb2/blend_position = 0
 parameters/Jump/blend_position = Vector2( -0.0119048, 0.2 )
 parameters/Jump/3/playback = SubResource( 51 )
