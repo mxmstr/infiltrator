@@ -6,6 +6,8 @@ const CONFIG_FILE = 'user://input.cfg'
 var action
 var button
 
+onready var list = find_node('List')
+
 
 func load_config():
 	
@@ -66,7 +68,7 @@ func _input(event):
 		get_tree().set_input_as_handled()
 		set_process_input(false)
 		
-		get_node('contextual_help').text = 'Click a key binding to reassign it, or press the Cancel action.'
+		list.get_node('contextual_help').text = 'Click a key binding to reassign it, or press the Cancel action.'
 		
 		if not event.is_action('ui_cancel'):
 			
@@ -88,7 +90,7 @@ func _ready():
 		
 		var action = load('res://Scenes/UI/Menu.Bindings.Action.tscn').instance()
 		action.name = action_name
-		add_child(action)
+		list.add_child(action)
 		
 		var input_event = InputMap.get_action_list(action_name)[0]
 		var label = action.get_node('Label')
