@@ -3,8 +3,10 @@ extends Control
 const INPUT_ACTIONS = [ 'Forward', 'Backward', 'Left', 'Right', 'Jump' ]
 const CONFIG_FILE = 'user://input.cfg'
 
-var action
-var button
+var selected_action
+
+onready var list = find_node('ListContainer')
+onready var hint = find_node('Hint')
 
 
 func load_config():
@@ -52,10 +54,9 @@ func save_to_config(section, key, value):
 
 func wait_for_input(action_bind):
 	
-	action = action_bind
+	selected_action = list.get_node(action_bind)
+	hint.text = 'Press a key to assign to the "' + selected_action.name + '" action.'
 	
-	button = get_node(action).get_node('Button')
-	get_node('contextual_help').text = 'Press a key to assign to the "' + action + '" action.'
 	set_process_input(true)
 
 
@@ -66,18 +67,18 @@ func _input(event):
 		get_tree().set_input_as_handled()
 		set_process_input(false)
 		
-		get_node('contextual_help').text = 'Click a key binding to reassign it, or press the Cancel action.'
+		hint.text = 'Click a key binding to reassign it, or press the Cancel action.'
 		
 		if not event.is_action('ui_cancel'):
 			
 			var scancode = OS.get_scancode_string(event.scancode)
-			button.text = scancode
+			selected_action.get_node('Button').text = scancode
 			
-			for old_event in InputMap.get_action_list(action):
-				InputMap.action_erase_event(action, old_event)
+			for old_event in InputMap.get_action_list(selected_action.name):
+				InputMap.action_erase_event(selected_action.name, old_event)
 				
-			InputMap.action_add_event(action, event)
-			save_to_config('input', action, scancode)
+			InputMap.action_add_event(selected_action.name, event)
+			save_to_config('input', selected_action.name, scancode)
 
 
 func _ready():
@@ -88,7 +89,7 @@ func _ready():
 		
 		var action = load('res://Scenes/UI/Menu.Bindings.Action.tscn').instance()
 		action.name = action_name
-		add_child(action)
+		list.add_child(action)
 		
 		var input_event = InputMap.get_action_list(action_name)[0]
 		var label = action.get_node('Label')
