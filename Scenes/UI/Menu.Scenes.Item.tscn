@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+__meta__ = {
+
+}
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 1 )
+__meta__ = {
+
+}
+
+[node name="Item" type="HBoxContainer"]
+__meta__ = {
+
+}
+
+[node name="Button" type="Button" parent="."]
+margin_right = 71.0
+margin_bottom = 25.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_hover = Color( 0, 1, 0.552941, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Button"
+__meta__ = {
+
+}

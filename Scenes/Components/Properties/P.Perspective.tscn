@@ -4,60 +4,60 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=2]
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=3]
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "AlignPlayerToCamera"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "HalfYaw"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "LockYaw"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
 xfade_time = 0.1
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=5]
-states/AlignPlayerToCamera/node = SubResource( 9 )
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/AlignPlayerToCamera/node = SubResource( 1 )
 states/AlignPlayerToCamera/position = Vector2( 640, 235 )
-states/HalfYaw/node = SubResource( 1 )
+states/HalfYaw/node = SubResource( 2 )
 states/HalfYaw/position = Vector2( 880, 156 )
-states/LockYaw/node = SubResource( 2 )
+states/LockYaw/node = SubResource( 3 )
 states/LockYaw/position = Vector2( 411, 156 )
-transitions = [ "LockYaw", "HalfYaw", SubResource( 3 ), "HalfYaw", "AlignPlayerToCamera", SubResource( 11 ), "AlignPlayerToCamera", "LockYaw", SubResource( 12 ) ]
+transitions = [ "LockYaw", "HalfYaw", SubResource( 4 ), "HalfYaw", "AlignPlayerToCamera", SubResource( 5 ), "AlignPlayerToCamera", "LockYaw", SubResource( 6 ) ]
 start_node = "LockYaw"
 graph_offset = Vector2( 0, 62.9344 )
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 resource_name = "AlignPlayerToCamera"
 length = 0.001
 tracks/0/type = "method"
@@ -78,8 +78,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "HalfYaw"
+[sub_resource type="Animation" id=10]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:cam_max_x")
@@ -109,7 +108,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:cam_max_x")
@@ -140,19 +139,19 @@ __meta__ = {
 }
 
 [node name="Perspective" type="AnimationTree"]
-tree_root = SubResource( 5 )
+tree_root = SubResource( 7 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 6 )
+parameters/playback = SubResource( 8 )
 script = ExtResource( 1 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AlignPlayerToCamera = SubResource( 10 )
+anims/AlignPlayerToCamera = SubResource( 9 )
 anims/DefaultAnim = ExtResource( 2 )
-anims/HalfYaw = SubResource( 7 )
-anims/LockYaw = SubResource( 8 )
+anims/HalfYaw = SubResource( 10 )
+anims/LockYaw = SubResource( 11 )
 __meta__ = {
 
 }
