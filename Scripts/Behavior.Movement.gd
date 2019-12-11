@@ -20,8 +20,7 @@ var action_blend_speed = 0.1
 var model_blend_amount = 0.0
 var model_blend_speed = 0.5
 
-var stand_tree = []
-var crouch_tree = []
+var node_tree = []
 
 
 func _add_anim_nodes(root, path):
@@ -194,22 +193,15 @@ func _unfilter_anim_events(nodes):
 func _on_pre_process():
 	
 	_filter_anim_events(
-		stand_tree, 
-		tree_root.get_node('Standing').get_closest_node_to_position(),
-		blend_mode == Inf.Blend.ACTION
-		)
-
-	_filter_anim_events(
-		crouch_tree, 
-		tree_root.get_node('Crouching').get_closest_node_to_position(),
+		node_tree, 
+		tree_root.get_node('BlendSpace1D').get_closest_node_to_position(),
 		blend_mode == Inf.Blend.ACTION
 		)
 
 
 func _on_post_process():
 	
-	_unfilter_anim_events(stand_tree)
-	_unfilter_anim_events(crouch_tree)
+	_unfilter_anim_events(node_tree)
 
 
 func _on_state_starting(_name):
@@ -257,8 +249,7 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	stand_tree = _add_anim_nodes(tree_root.get_node('Standing'), 'parameters/Standing/')
-	crouch_tree = _add_anim_nodes(tree_root.get_node('Crouching'), 'parameters/Crouching/')
+	node_tree = _add_anim_nodes(tree_root.get_node('BlendSpace1D'), 'parameters/BlendSpace1D/')
 	
 	var playback = $'../Behavior'.get('parameters/playback')
 	playback.connect('state_starting', self, '_on_state_starting')
