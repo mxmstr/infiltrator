@@ -1,26 +1,31 @@
-extends Spatial
+extends Node
 
+export(NodePath) var path
+export(String) var bone_name
+export(Vector3) var position_offset
+export(Vector3) var rotation_degrees_offset
 export(int) var max_quantity
 export(int) var max_item_size
 export(bool) var invisible
 export(bool) var interactable
 
+var root
+
 
 func _is_empty():
 	
-	return len(get_children()) == 0
+	return len(root.get_children()) == 0
 
 
 func _contain(item):
 	
 	item.get_parent().remove_child(item)
-	add_child(item)
+	root.add_child(item)
 	
-	item.global_transform.origin = global_transform.origin
-	item.rotation = rotation
+	item.global_transform.origin = root.global_transform.origin
+	item.global_transform.basis = root.global_transform.basis
 	item.visible = not invisible
 	item.get_node('Collision').disabled = true
-	
 
 
 func _release():
@@ -53,9 +58,20 @@ func _release():
 
 func _add_item(item):
 	
-	if len(get_children()) < max_quantity and \
-		true:#max_item_size:
+	if len(get_children()) < max_quantity and true:#max_item_size:
 		_contain(item)
 		return true
 	
 	return false
+
+
+func _ready():
+	
+	root = BoneAttachment.new()
+	get_node(path).add_child(root)
+	
+	if bone_name != '':
+		root.bone_name = bone_name
+	
+	root.translation = position_offset
+	root.rotation_degrees = rotation_degrees_offset

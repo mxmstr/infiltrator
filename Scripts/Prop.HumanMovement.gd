@@ -1,12 +1,11 @@
 extends Node
 
 enum state {
-	DEFAULT,
-	WALKING,
-	CLIMBING,
+	CRAWLING,
 	CROUCHING,
+	WALKING,
 	RUNNING,
-	CRAWLING
+	CLIMBING
 }
 
 enum lean {
@@ -51,21 +50,6 @@ onready var collision = $'../Collision'
 func _ready():
 	
 	pass
-
-
-func _set_lean(new_lean):
-	
-	current_lean = lean[new_lean]
-
-
-func _set_state(new_state):
-	
-	current_state = state[new_state]
-
-
-func _get_state():
-	
-	return current_state
 
 
 func _get_forward_speed():
@@ -207,8 +191,8 @@ func _physics_process(delta):
 		
 		owner.global_transform.origin = Vector3(new_x_pos.x, new_y_pos.y, new_x_pos.z)
 		
-		velocity.x = 0
-		velocity.z = 0
+		horizontal = Vector3()
+		vertical = 0
 		direction = Vector3()
 	
 	

@@ -137,7 +137,7 @@
 [ext_resource path="res://Animations/Audio/ftsnow2.tres" type="Animation" id=135]
 [ext_resource path="res://Animations/Audio/ftsnow3.tres" type="Animation" id=136]
 [ext_resource path="res://Animations/Audio/ftsnow4.tres" type="Animation" id=137]
-[ext_resource path="res://Sounds/Thief/Feet/FTROC_J.wav" type="AudioStream" id=138]
+[ext_resource path="res://Sounds/Thief/Feet/ft_wb1m.wav" type="AudioStream" id=138]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
@@ -226,6 +226,13 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+auto_advance = true
+disabled = true
+__meta__ = {
+
+}
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 auto_advance = true
 disabled = true
@@ -234,13 +241,12 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
-auto_advance = true
-disabled = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
+auto_advance = true
 __meta__ = {
 
 }
@@ -252,12 +258,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 __meta__ = {
 
 }
@@ -279,9 +279,9 @@ states/Land/node = SubResource( 7 )
 states/Land/position = Vector2( 467, 463.933 )
 states/Step/node = SubResource( 8 )
 states/Step/position = Vector2( 467, 80.1383 )
-transitions = [ "Step", "FTROC_P1", SubResource( 9 ), "Step", "FTROC_P2", SubResource( 10 ), "FTROC_P4", "Default", SubResource( 11 ), "FTROC_P3", "Default", SubResource( 12 ), "FTROC_P2", "Default", SubResource( 13 ), "FTROC_P1", "Default", SubResource( 14 ), "Step", "FTROC_P3", SubResource( 16 ), "Step", "FTROC_P4", SubResource( 17 ), "Default", "Land", SubResource( 18 ), "Land", "FTROC_J", SubResource( 19 ), "FTROC_J", "Default", SubResource( 20 ), "Default", "Step", SubResource( 23 ) ]
+transitions = [ "Step", "FTROC_P1", SubResource( 9 ), "Step", "FTROC_P2", SubResource( 10 ), "FTROC_P4", "Default", SubResource( 11 ), "FTROC_P3", "Default", SubResource( 12 ), "FTROC_P2", "Default", SubResource( 13 ), "FTROC_P1", "Default", SubResource( 14 ), "Step", "FTROC_P3", SubResource( 15 ), "Step", "FTROC_P4", SubResource( 16 ), "Default", "Land", SubResource( 17 ), "Land", "FTROC_J", SubResource( 18 ), "FTROC_J", "Default", SubResource( 19 ), "Default", "Step", SubResource( 20 ) ]
 start_node = "Default"
-graph_offset = Vector2( -13, -47.6705 )
+graph_offset = Vector2( -13, 318.298 )
 __meta__ = {
 
 }
