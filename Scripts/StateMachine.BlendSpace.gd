@@ -27,7 +27,6 @@ func _update():
 		var x_value = parent.owner.get_node(x_target).callv(x_method, x_args)
 		x_value = (((x_value - x_min_value) / (x_max_value - x_min_value)) * (get('max_space') - get('min_space'))) + get('min_space')
 
-		print(x_value)
 		parent.set(parameters + '/' + node_name + '/blend_position', x_value)
 
 	if get_class() == 'AnimationNodeBlendSpace2D':

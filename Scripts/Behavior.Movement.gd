@@ -64,20 +64,6 @@ func _cache_move_pose():
 		cached_model_pose.append(model_skeleton.get_bone_global_pose(idx))
 
 
-func _sync_blend_spaces():
-	
-	var velocity = $'../HumanMovement'.velocity
-	velocity.y = 0
-	
-	var local_velocity = owner.global_transform.basis.xform_inv(velocity)
-	local_velocity = local_velocity / $'../HumanMovement'.max_speed
-	
-	set('parameters/Standing/blend_position', -local_velocity.x)
-	set('parameters/Standing/0/blend_position', local_velocity.z)
-	set('parameters/Crouching/blend_position', -local_velocity.x)
-	set('parameters/Crouching/2/blend_position', local_velocity.z)
-
-
 func _blend_camera(delta):
 	
 	pass
@@ -194,7 +180,7 @@ func _on_pre_process():
 	
 	_filter_anim_events(
 		node_tree, 
-		tree_root.get_node('BlendSpace1D').get_closest_node_to_position(),
+		tree_root.get_node(tree_root.get_start_node()).get_closest_node_to_position(),
 		blend_mode == Inf.Blend.ACTION
 		)
 
@@ -249,7 +235,7 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	node_tree = _add_anim_nodes(tree_root.get_node('BlendSpace1D'), 'parameters/BlendSpace1D/')
+	node_tree = _add_anim_nodes(tree_root.get_node(tree_root.get_start_node()), 'parameters/' + tree_root.get_start_node() + '/')
 	
 	var playback = $'../Behavior'.get('parameters/playback')
 	playback.connect('state_starting', self, '_on_state_starting')
@@ -263,8 +249,6 @@ func _ready():
 
 
 func _process(delta):
-	
-	_sync_blend_spaces()
 	
 	_blend_camera(delta)
 	_blend_skeletons(delta)

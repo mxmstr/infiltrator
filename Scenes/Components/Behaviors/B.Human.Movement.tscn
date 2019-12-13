@@ -212,9 +212,21 @@ blend_point_1/node = SubResource( 4 )
 blend_point_1/pos = -0.2
 blend_point_2/node = SubResource( 12 )
 blend_point_2/pos = 0.0
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+update_mode = "process"
+x_target = "HumanMovement"
+x_method = "_get_forward_speed"
+x_args = [  ]
+x_max_value = 2.75
+x_min_value = -2.75
+y_target = ""
+y_method = ""
+y_args = [  ]
+y_max_value = 0.0
+y_min_value = 0.0
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=14]
 blend_point_0/node = SubResource( 1 )
@@ -223,9 +235,21 @@ blend_point_1/node = SubResource( 2 )
 blend_point_1/pos = 0.2
 blend_point_2/node = SubResource( 13 )
 blend_point_2/pos = 0.0
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+update_mode = "process"
+x_target = "HumanMovement"
+x_method = "_get_leftright_speed"
+x_args = [  ]
+x_max_value = 2.75
+x_min_value = -2.75
+y_target = ""
+y_method = ""
+y_args = [  ]
+y_max_value = 0.0
+y_min_value = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=15]
 animation = "WalkBackward"
@@ -345,9 +369,21 @@ blend_point_2/node = SubResource( 17 )
 blend_point_2/pos = 1.0
 blend_point_3/node = SubResource( 25 )
 blend_point_3/pos = 0.0
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+update_mode = "process"
+x_target = "HumanMovement"
+x_method = "_get_forward_speed"
+x_args = [  ]
+x_max_value = 2.75
+x_min_value = -2.75
+y_target = ""
+y_method = ""
+y_args = [  ]
+y_max_value = 0.0
+y_min_value = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=27]
 animation = "StrafeLeft"
@@ -368,9 +404,21 @@ blend_point_1/node = SubResource( 27 )
 blend_point_1/pos = -1.0
 blend_point_2/node = SubResource( 28 )
 blend_point_2/pos = 1.0
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+update_mode = "process"
+x_target = "HumanMovement"
+x_method = "_get_leftright_speed"
+x_args = [  ]
+x_max_value = 2.75
+x_min_value = -2.75
+y_target = ""
+y_method = ""
+y_args = [  ]
+y_max_value = 0.0
+y_min_value = 0.0
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=30]
 blend_point_0/node = SubResource( 14 )
@@ -397,9 +445,9 @@ y_max_value = 0.0
 y_min_value = 0.0
 
 [sub_resource type="AnimationNodeStateMachine" id=31]
-states/BlendSpace1D/node = SubResource( 30 )
-states/BlendSpace1D/position = Vector2( 614, 96 )
-start_node = "BlendSpace1D"
+states/Stances/node = SubResource( 30 )
+states/Stances/position = Vector2( 614, 96 )
+start_node = "Stances"
 __meta__ = {
 
 }
@@ -423,13 +471,13 @@ __meta__ = {
 tree_root = SubResource( 31 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 32 )
-parameters/BlendSpace1D/blend_position = 0
-parameters/BlendSpace1D/0/blend_position = 0
-parameters/BlendSpace1D/0/2/blend_position = 0
-parameters/BlendSpace1D/0/2/2/playback = SubResource( 33 )
-parameters/BlendSpace1D/1/blend_position = 0
-parameters/BlendSpace1D/1/0/blend_position = 0
-parameters/BlendSpace1D/1/0/3/playback = SubResource( 34 )
+parameters/Stances/blend_position = 2.0
+parameters/Stances/0/blend_position = 0
+parameters/Stances/0/2/blend_position = 0
+parameters/Stances/0/2/2/playback = SubResource( 33 )
+parameters/Stances/1/blend_position = 0
+parameters/Stances/1/0/blend_position = 0
+parameters/Stances/1/0/3/playback = SubResource( 34 )
 script = ExtResource( 3 )
 __meta__ = {
 
