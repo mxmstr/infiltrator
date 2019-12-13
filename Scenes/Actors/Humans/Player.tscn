@@ -301,6 +301,7 @@ script = ExtResource( 11 )
 __meta__ = {
 
 }
+update_mode = "process"
 x_target = "HumanMovement"
 x_method = "_get_leftright_speed"
 x_args = [  ]
@@ -859,7 +860,6 @@ __meta__ = {
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="RightHand" parent="Model/neo_reference_skeleton" index="1" instance=ExtResource( 2 )]
-transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
 bone_name = "Gun"
 max_quantity = 1
 
@@ -880,9 +880,11 @@ parameters/playback = SubResource( 2 )
 fp_root_bone = "Pelvis"
 fp_shoulder_bone = "shoulders"
 fp_hidden_bones = [ "Head", "Neck" ]
+rig_translation = Vector3( 0, 1.1, 0.3 )
+rig_rotation_degrees = Vector3( 0, 180, 0 )
 
 [node name="CameraRig" parent="Perspective/Container/Viewport" index="1"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.1, 0.3 )
+transform = Transform( -0.999999, 0, -8.74228e-08, 0, 0.999999, 0, 8.74227e-08, 0, -1, 0, 1.1, 0.3 )
 
 [node name="Behavior" parent="." instance=ExtResource( 8 )]
 tree_root = SubResource( 51 )

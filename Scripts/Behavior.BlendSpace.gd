@@ -20,6 +20,8 @@ func _on_state_starting(new_name):
 	
 	if node_name == new_name:
 		
+		var playback = parent.get(parameters + '/playback')
+		
 		if len(playback.get_travel_path()) == 0:
 			
 			parent.get_node('AnimationPlayer').playback_speed = speed

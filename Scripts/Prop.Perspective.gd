@@ -1,3 +1,4 @@
+tool
 extends 'res://Scripts/StateMachine.gd'
 
 export var mouse_device = -1
@@ -7,6 +8,8 @@ export(String) var fp_root_bone
 export(String) var fp_shoulder_bone
 export(Array, String) var fp_hidden_bones
 
+export var rig_translation = Vector3()
+export var rig_rotation_degrees = Vector3()
 export var cam_max_x = 0.0
 export var cam_max_y = PI / 2
 
@@ -82,6 +85,9 @@ func _init_fp_skeleton():
 
 func _ready():
 	
+	if Engine.editor_hint: return
+	
+	
 	if not has_meta('unique'):
 		return
 	
@@ -124,14 +130,23 @@ func _blend_fp_skeleton():
 	#s_view.set_bone_pose(root_id, p_root)
 
 
+func _camera_follow_preview():
+	
+	var rig = $Container/Viewport/CameraRig
+	
+	rig.global_transform.origin = owner.global_transform.origin + owner.global_transform.basis.xform(rig_translation)
+	
+	rig.rotation_degrees = rig_rotation_degrees
+	rig.global_transform.basis *= owner.global_transform.basis
+
+
 func _camera_follow_target():
 	
-	rig.global_transform.origin = owner.global_transform.basis.xform(rig.global_transform.origin)
-	rig.global_transform.origin += owner.global_transform.origin
+	rig.global_transform.origin = owner.global_transform.origin + owner.global_transform.basis.xform(rig_translation)
 	
+	rig.rotation_degrees = rig_rotation_degrees
 	rig.global_transform.basis *= owner.global_transform.basis
 	
-	#print([camera.rotation.y, -cam_max_x])
 	camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)
 	camera.rotation.y = clamp(camera.rotation.y, -cam_max_x, cam_max_x)
 
@@ -170,6 +185,10 @@ func _update_raycast_selection():
 
 
 func _process(delta):
+	
+	if Engine.editor_hint: 
+		_camera_follow_preview()
+		return
 	
 	_camera_follow_target()
 	_blend_fp_skeleton()

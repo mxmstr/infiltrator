@@ -297,6 +297,7 @@ script = ExtResource( 3 )
 __meta__ = {
 
 }
+update_mode = "state_starting"
 x_target = "HumanMovement"
 x_method = "_get_leftright_speed"
 x_args = [  ]

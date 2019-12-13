@@ -7,12 +7,14 @@ export(Array) var args
 export(float) var wait_for_frame
 
 var parent
-var playback
+var parameters
 var from
 var to
 
 
 func _evaluate(value):
+	
+	var playback = parent.get(parameters + '/playback')
 	
 	var current_frame = 0 if not playback.is_playing() else playback.get_current_play_pos()
 	
@@ -27,10 +29,10 @@ func _evaluate(value):
 		'NotNull': return value != null
 
 
-func _ready(_parent, _playback, _from, _to):
+func _ready(_parent, _parameters, _from, _to):
 	
 	parent = _parent
-	playback = _playback
+	parameters = _parameters
 	from = _from
 	to = _to
 	

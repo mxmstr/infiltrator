@@ -12,7 +12,7 @@ export var camera_mode = 'LockYaw'
 
 var node_name
 var parent
-var playback
+var parameters
 var transitions = []
 
 
@@ -24,6 +24,8 @@ func _is_visible():
 func _on_state_starting(new_name):
 	
 	if node_name == new_name:
+		
+		var playback = parent.get(parameters + '/playback')
 		
 		if len(playback.get_travel_path()) == 0:
 		
@@ -42,10 +44,10 @@ func _on_state_starting(new_name):
 				parent.owner.get_node('Perspective')._start_state(camera_mode)
 
 
-func _ready(_parent, _playback, _node_name):
+func _ready(_parent, _parameters, _node_name):
 	
 	parent = _parent
-	playback = _playback
+	parameters = _parameters
 	node_name = _node_name
 	
 	parent.connect('state_starting', self, '_on_state_starting')

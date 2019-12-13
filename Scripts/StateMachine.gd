@@ -25,20 +25,39 @@ func _start_state(_name, data={}):
 	playback.travel(_name)
 
 
-func _init_blendspace2d(root, playback):
+func _init_blendspace2d(root, parameters):
 	
 	for point in root.get_blend_point_count():
 		
 		var node = root.get_blend_point_node(point)
 		
 		if node is AnimationNodeStateMachine:
-			_init_statemachine(node, playback + '/' + str(point))
+			_init_statemachine(node, parameters + '/' + str(point))
 		
 		if node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
-			_init_blendspace2d(node, playback + '/' + str(point))
+			_init_blendspace2d(node, parameters + '/' + str(point))
 
 
-func _init_statemachine(root, playback):
+func _init_statemachine(root, parameters):
+	
+	if root.get_transition_count() == 0:
+		
+		var start_name = root.get_start_node()
+		var start = root.get_node(start_name)
+		
+		if start.has_method('_ready'):
+			start._ready(self, parameters, start_name)
+		
+		if start is AnimationNodeStateMachine:
+			_init_statemachine(start, parameters + '/' + start_name)
+		
+		if start is AnimationNodeBlendSpace1D or start is AnimationNodeBlendSpace2D:
+			_init_blendspace2d(start, parameters + '/' + start_name)
+		
+		nodes.append(start)
+		
+		return
+	
 	
 	var anim_names = []
 	
@@ -54,13 +73,13 @@ func _init_statemachine(root, playback):
 		if not from_name in anim_names:
 			
 			if from.has_method('_ready'):
-				from._ready(self, get(playback + '/playback'), from_name)
+				from._ready(self, parameters, from_name)
 			
 			if from is AnimationNodeStateMachine:
-				_init_statemachine(from, playback + '/' + from_name)
+				_init_statemachine(from, parameters + '/' + from_name)
 			
 			if from is AnimationNodeBlendSpace1D or from is AnimationNodeBlendSpace2D:
-				_init_blendspace2d(from, playback + '/' + from_name)
+				_init_blendspace2d(from, parameters + '/' + from_name)
 			
 			anim_names.append(from_name)
 			nodes.append(from)
@@ -71,10 +90,13 @@ func _init_statemachine(root, playback):
 		
 		
 		if transition.has_method('_ready'):
-			transition._ready(self, get(playback + '/playback'), from, to)
+			transition._ready(self, parameters, from, to)
 
 
 func _ready():
+	
+	if Engine.editor_hint: return
+	
 	
 	if not has_meta('unique'):
 		Inf._make_unique(self)
@@ -95,6 +117,9 @@ func _physics_process(delta):
 
 
 func _process(delta):
+	
+	if Engine.editor_hint: return
+	
 	
 	var playback = get('parameters/playback')
 	

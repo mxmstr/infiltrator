@@ -4,12 +4,12 @@
 [ext_resource path="res://Scenes/UI/Menu.Scenes.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/UI/Menu.Bindings.tscn" type="PackedScene" id=3]
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id=1]
 __meta__ = {
 
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 20
 font_data = ExtResource( 1 )
 __meta__ = {
@@ -48,12 +48,12 @@ margin_right = 79.0
 margin_bottom = 25.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_hover = Color( 0, 1, 0.552941, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 text = "Scenes"
@@ -67,12 +67,12 @@ margin_right = 392.0
 margin_bottom = 25.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_hover = Color( 0, 1, 0.552941, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 text = "Bindings"
@@ -100,7 +100,7 @@ margin_left = 182.0
 margin_top = 289.0
 margin_right = 842.0
 margin_bottom = 449.0
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Bindings" method="set_visible" binds= [ false ]]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Scenes" method="set_visible" binds= [ true ]]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Bindings" to="VBoxContainer/Bindings" method="set_visible" binds= [ true ]]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Bindings" method="set_visible" binds= [ false ]]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Bindings" to="VBoxContainer/Scenes" method="set_visible" binds= [ false ]]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Bindings" to="VBoxContainer/Bindings" method="set_visible" binds= [ true ]]

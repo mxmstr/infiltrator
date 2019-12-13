@@ -1,7 +1,7 @@
 extends AnimationNodeStateMachineTransition
 
 var parent
-var playback
+var parameters
 var from
 var to
 
@@ -15,10 +15,10 @@ func _on_travel_starting(new_node_name, new_node):
 	disabled = not new_node.priority > from.priority
 
 
-func _ready(_parent, _playback, _from, _to):
+func _ready(_parent, _parameters, _from, _to):
 	
 	parent = _parent
-	playback = _playback
+	parameters = _parameters
 	from = _from
 	to = _to
 	

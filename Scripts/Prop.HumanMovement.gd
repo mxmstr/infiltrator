@@ -20,7 +20,7 @@ export(lean) var current_lean = lean.DEFAULT
 export var gravity = -9.8
 export var max_speed = 2.75
 export var walk_mult = 0.3
-export var crouch_mult = 0.2
+export var crouch_mult = 0.15
 export var crawl_mult = 0.1
 
 export var jump_speed = 7
@@ -141,10 +141,6 @@ func _find_climb_target():
 		
 		if climb_height < height or not climb_blocked:
 			
-#			if wall_found:
-#				in_range = true
-#
-#			elif in_range:
 			if wall_found:
 				climb_start = owner_origin
 				
