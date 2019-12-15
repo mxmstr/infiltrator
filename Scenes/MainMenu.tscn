@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/UI/Menu.Scenes.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/UI/Menu.Bindings.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI/Menu.Inputs.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 __meta__ = {
@@ -100,7 +100,7 @@ margin_left = 182.0
 margin_top = 289.0
 margin_right = 842.0
 margin_bottom = 449.0
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Scenes" method="set_visible" binds= [ true ]]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Bindings" method="set_visible" binds= [ false ]]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Bindings" to="VBoxContainer/Scenes" method="set_visible" binds= [ false ]]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Scenes" method="set_visible" binds= [ true ]]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Bindings" to="VBoxContainer/Bindings" method="set_visible" binds= [ true ]]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Bindings" to="VBoxContainer/Scenes" method="set_visible" binds= [ false ]]

@@ -35,7 +35,7 @@ func _process(delta):
 	var keyboard_device = parent.get_node('../Perspective').keyboard_device
 	
 	
-	var status = Inf._get_rawinput_status(action, mouse_device, keyboard_device)
+	var status = RawInput._get_status(action, mouse_device, keyboard_device)
 	
 	disabled = not (
 			status == state \

@@ -1,12 +1,18 @@
 extends Control
 
+const MICE = ['P1Mouse', 'P2Mouse']
+const KEYBOARDS = ['P1Keyboard', 'P2Keyboard']
 const INPUT_ACTIONS = [ 'Forward', 'Backward', 'Left', 'Right', 'Jump' ]
 const CONFIG_FILE = 'user://input.cfg'
 
+var selected_device
 var selected_action
+var awaiting_raw_type
 
-onready var list = find_node('ListContainer')
+onready var devices_list = find_node('DevicesList')
+onready var actions_list = find_node('ActionsList')
 onready var hint = find_node('Hint')
+
 
 
 func load_config():
@@ -54,13 +60,47 @@ func save_to_config(section, key, value):
 
 func wait_for_input(action_bind):
 	
-	selected_action = list.get_node(action_bind)
+	selected_action = actions_list.get_node(action_bind)
 	hint.text = 'Press a key to assign to the "' + selected_action.name + '" action.'
 	
 	set_process_input(true)
 
 
+func wait_for_rawinput(player_bind, is_keyboard=false):
+	
+	selected_device = player_bind
+	hint.text = 'Press a key to assign a keyboard to this player.' if is_keyboard else 'Press a mouse button to assign a mouse to this player.'
+	awaiting_raw_type = RawInput.Type.KEYBOARD if is_keyboard else RawInput.Type.BUTTON
+	
+	set_process_input(true)
+
+
 func _input(event):
+	
+	if awaiting_raw_type == RawInput.Type.BUTTON and event is InputEventMouseButton:
+		
+		for device in Input.get_device_count():
+			if RawInput.events[device][awaiting_raw_type][event.get_vbutton()][0] == 1:
+				get_node(selected_device + '/Button')
+		
+		get_tree().set_input_as_handled()
+		set_process_input(false)
+		awaiting_raw_type = null
+		
+		return
+	
+	if awaiting_raw_type == RawInput.Type.KEYBOARD and event is InputEventKey:
+		
+		for device in Input.get_device_count():
+			if RawInput.events[device][awaiting_raw_type][event.get_vkey()][0] == 1:
+				get_node(selected_device + '/Button')
+		
+		get_tree().set_input_as_handled()
+		set_process_input(false)
+		awaiting_raw_type = null
+		
+		return
+	
 	
 	if event is InputEventKey:
 		
@@ -78,18 +118,31 @@ func _input(event):
 				InputMap.action_erase_event(selected_action.name, old_event)
 				
 			InputMap.action_add_event(selected_action.name, event)
-			save_to_config('input', selected_action.name, scancode)
+			save_to_config('Actions', selected_action.name, scancode)
 
 
 func _ready():
 	
 	load_config()
 	
+	
+	for mouse in MICE:
+		
+		var button = get_node(mouse + '/Button')
+		button.connect('pressed', self, 'wait_for_rawinput', [mouse])
+	
+	
+	for keyboard in KEYBOARDS:
+		
+		var button = get_node(keyboard + '/Button')
+		button.connect('pressed', self, 'wait_for_rawinput', [keyboard, true])
+	
+	
 	for action_name in INPUT_ACTIONS:
 		
 		var action = load('res://Scenes/UI/Menu.Bindings.Action.tscn').instance()
 		action.name = action_name
-		list.add_child(action)
+		actions_list.add_child(action)
 		
 		var input_event = InputMap.get_action_list(action_name)[0]
 		var label = action.get_node('Label')

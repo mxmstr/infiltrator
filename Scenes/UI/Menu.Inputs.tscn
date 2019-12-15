@@ -1,0 +1,174 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Menu.Bindings.gd" type="Script" id=1]
+[ext_resource path="res://Textures/panel.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/UI/Menu.Inputs.Action.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 3 )
+__meta__ = {
+
+}
+
+[node name="Inputs" type="MarginContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -230.0
+margin_top = -84.5
+margin_right = 230.0
+margin_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+
+[node name="Background" type="NinePatchRect" parent="."]
+margin_right = 660.0
+margin_bottom = 350.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 512, 512 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 40
+__meta__ = {
+
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 660.0
+margin_bottom = 350.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+custom_constants/margin_right = 30
+custom_constants/margin_top = 30
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 50
+__meta__ = {
+
+}
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 630.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 600, 0 )
+custom_constants/separation = 25
+__meta__ = {
+
+}
+
+[node name="DevicesList" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_right = 600.0
+margin_bottom = 165.0
+rect_min_size = Vector2( 600, 0 )
+__meta__ = {
+
+}
+
+[node name="Hint" type="Label" parent="MarginContainer/HBoxContainer/DevicesList"]
+margin_right = 600.0
+margin_bottom = 25.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "Assign keyboard and mice to each player."
+autowrap = true
+max_lines_visible = 2
+__meta__ = {
+
+}
+
+[node name="P1Mouse" parent="MarginContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
+margin_top = 29.0
+margin_right = 600.0
+margin_bottom = 60.0
+
+[node name="Label" parent="MarginContainer/HBoxContainer/DevicesList/P1Mouse" index="0"]
+margin_right = 165.0
+text = "Player 1 Mouse"
+
+[node name="Button" parent="MarginContainer/HBoxContainer/DevicesList/P1Mouse" index="1"]
+margin_left = 565.0
+margin_right = 600.0
+text = "-1"
+
+[node name="P1Keyboard" parent="MarginContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
+margin_top = 64.0
+margin_right = 600.0
+margin_bottom = 95.0
+
+[node name="Label" parent="MarginContainer/HBoxContainer/DevicesList/P1Keyboard" index="0"]
+margin_right = 195.0
+text = "Player 1 Keyboard"
+
+[node name="Button" parent="MarginContainer/HBoxContainer/DevicesList/P1Keyboard" index="1"]
+margin_left = 565.0
+margin_right = 600.0
+text = "-1"
+
+[node name="P2Mouse" parent="MarginContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
+margin_top = 99.0
+margin_right = 600.0
+margin_bottom = 130.0
+
+[node name="Label" parent="MarginContainer/HBoxContainer/DevicesList/P2Mouse" index="0"]
+margin_right = 165.0
+text = "Player 2 Mouse"
+
+[node name="Button" parent="MarginContainer/HBoxContainer/DevicesList/P2Mouse" index="1"]
+margin_left = 565.0
+margin_right = 600.0
+text = "-1"
+
+[node name="P2Keyboard" parent="MarginContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
+margin_top = 134.0
+margin_right = 600.0
+margin_bottom = 165.0
+
+[node name="Label" parent="MarginContainer/HBoxContainer/DevicesList/P2Keyboard" index="0"]
+margin_right = 195.0
+text = "Player 2 Keyboard"
+
+[node name="Button" parent="MarginContainer/HBoxContainer/DevicesList/P2Keyboard" index="1"]
+margin_left = 565.0
+margin_right = 600.0
+text = "-1"
+
+[node name="ActionsList" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_top = 190.0
+margin_right = 600.0
+margin_bottom = 270.0
+rect_min_size = Vector2( 600, 0 )
+__meta__ = {
+
+}
+
+[node name="Hint" type="Label" parent="MarginContainer/HBoxContainer/ActionsList"]
+margin_right = 600.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "Click a key binding to reassign it, or press the Cancel action."
+autowrap = true
+max_lines_visible = 2
+__meta__ = {
+
+}
+
+[editable path="MarginContainer/HBoxContainer/DevicesList/P1Mouse"]
+
+[editable path="MarginContainer/HBoxContainer/DevicesList/P1Keyboard"]
+
+[editable path="MarginContainer/HBoxContainer/DevicesList/P2Mouse"]
+
+[editable path="MarginContainer/HBoxContainer/DevicesList/P2Keyboard"]

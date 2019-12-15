@@ -24,7 +24,7 @@ func _physics_process(delta):
 	
 	for action in directions:
 		
-		var status = Inf._get_rawinput_status(action, mouse_device, keyboard_device)
+		var status = RawInput._get_status(action, mouse_device, keyboard_device)
 		
 		if status == 1:
 			direction += directions[action]

@@ -32,6 +32,6 @@ func _process(delta):
 	
 	var device = $'../Perspective'.mouse_device
 	
-	mouse(Inf._get_rawinput_mousemotion(device))
+	mouse(RawInput._get_mousemotion(device))
 	
 	Input.warp_mouse_position(Vector2(0.5, 0.5))
