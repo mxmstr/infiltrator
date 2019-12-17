@@ -20,6 +20,11 @@ enum Priority {
 
 var tree_count = 0
 
+var p1_mouse = -1
+var p1_keyboard = -1
+var p2_mouse = -1
+var p2_keyboard = -1
+
 
 func _make_unique(old):
 	

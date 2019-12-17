@@ -1,7 +1,7 @@
 extends Control
 
-const MICE = ['P1Mouse', 'P2Mouse']
-const KEYBOARDS = ['P1Keyboard', 'P2Keyboard']
+const MICE = ['p1_mouse', 'p2_mouse']
+const KEYBOARDS = ['p1_keyboard', 'p2_keyboard']
 const INPUT_ACTIONS = [ 'Forward', 'Backward', 'Left', 'Right', 'Jump' ]
 const CONFIG_FILE = 'user://input.cfg'
 
@@ -22,20 +22,32 @@ func load_config():
 	
 	if err:
 		
+		for mouse in MICE:
+			
+			config.set_value('Devices', mouse, -1)
+		
+		for keyboard in KEYBOARDS:
+			
+			config.set_value('Devices', keyboard, -1)
+		
 		for action_name in INPUT_ACTIONS:
 			
 			var action_list = InputMap.get_action_list(action_name)
 			var scancode = OS.get_scancode_string(action_list[0].scancode)
 			
-			config.set_value('input', action_name, scancode)
+			config.set_value('Actions', action_name, scancode)
 			
 		config.save(CONFIG_FILE)
 	
 	else:
 		
-		for action_name in config.get_section_keys('input'):
+		for device in config.get_section_keys('Devices'):
 			
-			var scancode = OS.find_scancode_from_string(config.get_value('input', action_name))
+			Inf.set(device, config.get_value('Devices', device))
+		
+		for action_name in config.get_section_keys('Actions'):
+			
+			var scancode = OS.find_scancode_from_string(config.get_value('Actions', action_name))
 			var event = InputEventKey.new()
 			event.scancode = scancode
 			
@@ -75,39 +87,18 @@ func wait_for_rawinput(player_bind, is_keyboard=false):
 	set_process_input(true)
 
 
+func quit_wait_for_input():
+	
+	hint.text = ''
+	awaiting_raw_type = null
+	
+	get_tree().set_input_as_handled()
+	set_process_input(false)
+
+
 func _input(event):
 	
-	if awaiting_raw_type == RawInput.Type.BUTTON and event is InputEventMouseButton:
-		
-		for device in Input.get_device_count():
-			if RawInput.events[device][awaiting_raw_type][event.get_vbutton()][0] == 1:
-				get_node(selected_device + '/Button')
-		
-		get_tree().set_input_as_handled()
-		set_process_input(false)
-		awaiting_raw_type = null
-		
-		return
-	
-	if awaiting_raw_type == RawInput.Type.KEYBOARD and event is InputEventKey:
-		
-		for device in Input.get_device_count():
-			if RawInput.events[device][awaiting_raw_type][event.get_vkey()][0] == 1:
-				get_node(selected_device + '/Button')
-		
-		get_tree().set_input_as_handled()
-		set_process_input(false)
-		awaiting_raw_type = null
-		
-		return
-	
-	
 	if event is InputEventKey:
-		
-		get_tree().set_input_as_handled()
-		set_process_input(false)
-		
-		hint.text = 'Click a key binding to reassign it, or press the Cancel action.'
 		
 		if not event.is_action('ui_cancel'):
 			
@@ -119,6 +110,8 @@ func _input(event):
 				
 			InputMap.action_add_event(selected_action.name, event)
 			save_to_config('Actions', selected_action.name, scancode)
+		
+		quit_wait_for_input()
 
 
 func _ready():
@@ -128,19 +121,21 @@ func _ready():
 	
 	for mouse in MICE:
 		
-		var button = get_node(mouse + '/Button')
+		var button = devices_list.get_node(mouse + '/Button')
+		button.text = str(Inf.get(mouse))
 		button.connect('pressed', self, 'wait_for_rawinput', [mouse])
 	
 	
 	for keyboard in KEYBOARDS:
 		
-		var button = get_node(keyboard + '/Button')
+		var button = devices_list.get_node(keyboard + '/Button')
+		button.text = str(Inf.get(keyboard))
 		button.connect('pressed', self, 'wait_for_rawinput', [keyboard, true])
 	
 	
 	for action_name in INPUT_ACTIONS:
 		
-		var action = load('res://Scenes/UI/Menu.Bindings.Action.tscn').instance()
+		var action = load('res://Scenes/UI/Menu.Inputs.Action.tscn').instance()
 		action.name = action_name
 		actions_list.add_child(action)
 		
@@ -152,4 +147,47 @@ func _ready():
 		button.text = OS.get_scancode_string(input_event.scancode)
 		button.connect('pressed', self, 'wait_for_input', [action_name])
 	
+	
 	set_process_input(false)
+
+
+func _process(delta):
+	
+	if awaiting_raw_type == RawInput.Type.BUTTON:
+		
+		if not Input.is_action_pressed('ui_cancel'):
+		
+			for device_id in Input.get_device_count():
+				
+				print([device_id, RawInput.events[device_id][awaiting_raw_type][event.get_vbutton()][0]])
+				
+				if RawInput.events[device_id][awaiting_raw_type][event.get_vbutton()][0] == 1:
+					
+					devices_list.get_node(selected_device + '/Button').text = str(device_id)
+					Inf.set(selected_device, device_id)
+					
+					save_to_config('Devices', selected_device, device_id)
+					
+					break
+		
+		quit_wait_for_input()
+		
+		return
+	
+	
+	if awaiting_raw_type == RawInput.Type.KEYBOARD:
+		
+		if not event.is_action('ui_cancel'):
+		
+			for device_id in Input.get_device_count():
+				
+				if RawInput.events[device_id][awaiting_raw_type][event.get_vkey()][0] == 1:
+					
+					devices_list.get_node(selected_device + '/Button').text = str(device_id)
+					Inf.set(selected_device, device_id)
+					
+					save_to_config('Devices', selected_device, device_id)
+		
+		quit_wait_for_input()
+		
+		return
