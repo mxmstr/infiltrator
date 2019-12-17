@@ -61,9 +61,9 @@ __meta__ = {
 
 }
 
-[node name="Bindings" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Inputs" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 302.0
-margin_right = 392.0
+margin_right = 367.0
 margin_bottom = 25.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -75,7 +75,7 @@ custom_styles/normal = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_hover = Color( 0, 1, 0.552941, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-text = "Bindings"
+text = "Inputs"
 __meta__ = {
 
 }
@@ -90,7 +90,7 @@ margin_top = 262.0
 margin_right = 842.0
 margin_bottom = 367.0
 
-[node name="Bindings" parent="VBoxContainer" instance=ExtResource( 3 )]
+[node name="Inputs" parent="VBoxContainer" instance=ExtResource( 3 )]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -100,7 +100,7 @@ margin_left = 182.0
 margin_top = 289.0
 margin_right = 842.0
 margin_bottom = 449.0
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Bindings" method="set_visible" binds= [ false ]]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Inputs" method="set_visible" binds= [ false ]]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Scenes" method="set_visible" binds= [ true ]]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Bindings" to="VBoxContainer/Bindings" method="set_visible" binds= [ true ]]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Bindings" to="VBoxContainer/Scenes" method="set_visible" binds= [ false ]]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Inputs" method="set_visible" binds= [ true ]]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Scenes" method="set_visible" binds= [ false ]]
