@@ -30,6 +30,8 @@ enum Scroll {
 var vkeys = []
 var events = {}
 
+signal device_activated
+
 
 func _get_status(action, mouse_device, keyboard_device):
 	
@@ -127,7 +129,7 @@ func _process(delta):
 	
 	for event in Input.poll_raw():
 		
-		print(event)
+		#print(event)
 		
 		if event.type == Type.SCROLL:
 
@@ -141,9 +143,15 @@ func _process(delta):
 			event = { 'device': event.device, 'type': Type.BUTTON, 'item': item, 'value': 1, 'minval': 0, 'maxval': 0 }
 
 
-		if event.type in [Type.BUTTON, Type.KEYBOARD] \
-			and not event.item in vkeys:
-			return
+		if event.type in [Type.BUTTON, Type.KEYBOARD]:
+			
+			if not event.item in vkeys:
+				return
+			
+			print(event)
+			
+			if event.value == 1:
+				emit_signal('device_activated', event.device, event.type)
 
 
 		events[event.device][event.type][event.item] = [event.value, event.minval, event.maxval]
