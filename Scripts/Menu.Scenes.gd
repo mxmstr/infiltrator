@@ -4,6 +4,11 @@ onready var list = find_node('ListContainer')
 onready var hint = find_node('Hint')
 
 
+func _on_coop_toggled(pressed):
+	
+	Inf.coop = pressed
+
+
 func _ready():
 	
 	var files = []
@@ -27,4 +32,8 @@ func _ready():
 			var button = item.get_node('Button')
 			button.text = file.replace('.tres', '')
 			button.connect('pressed', get_tree(), 'change_scene', ['res://Scenes/' + file])
+	
+	
+	var coop = list.get_node('Coop/CheckBox')
+	coop.connect('toggled', self, '_on_coop_toggled')
 	

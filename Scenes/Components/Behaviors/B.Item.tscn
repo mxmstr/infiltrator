@@ -1,16 +1,39 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Behavior.gd" type="Script" id=1]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=2]
 
-[sub_resource type="AnimationNodeStateMachine" id=1]
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+states/DefaultAnim/node = SubResource( 1 )
+states/DefaultAnim/position = Vector2( 440.2, 84.6 )
+start_node = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+__meta__ = {
+
+}
 
 [node name="Behavior" type="AnimationTree"]
-tree_root = SubResource( 1 )
+tree_root = SubResource( 2 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 2 )
+parameters/playback = SubResource( 3 )
 script = ExtResource( 1 )
+__meta__ = {
+
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("")
+anims/DefaultAnim = ExtResource( 2 )
+__meta__ = {
+
+}

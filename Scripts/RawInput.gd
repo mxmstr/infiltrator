@@ -148,7 +148,7 @@ func _process(delta):
 			if not event.item in vkeys:
 				return
 			
-			print(event)
+			#print(event)
 			
 			if event.value == 1:
 				emit_signal('device_activated', event.device, event.type)
