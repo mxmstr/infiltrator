@@ -8,8 +8,8 @@ export(String) var fp_root_bone
 export(String) var fp_shoulder_bone
 export(Array, String) var fp_hidden_bones
 
-export var rig_translation = Vector3()
-export var rig_rotation_degrees = Vector3()
+export(Vector3) var rig_translation setget _set_rig_translation
+export(Vector3) var rig_rotation_degrees setget _set_rig_rotation_degrees
 export var cam_max_x = 0.0
 export var cam_max_y = PI / 2
 
@@ -22,12 +22,32 @@ var shoulders_id
 
 var selection
 var last_selection
+var rig_translated = false
+var rig_rotated = false
 
 onready var rig = $Container/Viewport/CameraRig
 onready var camera = $Container/Viewport/CameraRig/Camera
 onready var raycast = $Container/Viewport/CameraRig/Camera/RayCast
 
 signal changed_selection
+
+
+func _set_rig_translation(new_translation):
+	
+	if not Engine.editor_hint and rig_translated:
+		return
+	
+	rig_translation = new_translation
+	rig_translated = true
+
+
+func _set_rig_rotation_degrees(new_rotation):
+	
+	if not Engine.editor_hint and rig_rotated:
+		return
+	
+	rig_rotation_degrees = new_rotation
+	rig_rotated = true
 
 
 func _reset_viewport():
@@ -69,6 +89,7 @@ func _init_fp_skeleton():
 	
 	var viewmodel = $'../Model'.duplicate()
 	viewmodel.name = 'ViewModel'
+	viewmodel.get_child(0).get_child(0).cast_shadow = 0
 	
 	for idx in range(viewmodel.get_child(0).get_bone_count()):
 		
@@ -124,10 +145,6 @@ func _blend_fp_skeleton():
 	var rig_transform = rig.global_transform.origin - owner.global_transform.origin
 	
 	s_view.global_transform.origin = owner.global_transform.origin + rig_transform - shoulders_transform
-	
-	#p_root.origin += rig.transform.origin - p_shoulders.origin
-	
-	#s_view.set_bone_pose(root_id, p_root)
 
 
 func _camera_follow_preview():
@@ -136,19 +153,20 @@ func _camera_follow_preview():
 	
 	rig.global_transform.origin = owner.global_transform.origin + owner.global_transform.basis.xform(rig_translation)
 	
-	rig.rotation_degrees = rig_rotation_degrees
-	rig.global_transform.basis *= owner.global_transform.basis
+	rig.rotation_degrees = owner.rotation_degrees + rig_rotation_degrees
 
 
 func _camera_follow_target():
 	
 	rig.global_transform.origin = owner.global_transform.origin + owner.global_transform.basis.xform(rig_translation)
 	
-	rig.rotation_degrees = rig_rotation_degrees
-	rig.global_transform.basis *= owner.global_transform.basis
+	rig.rotation_degrees = owner.rotation_degrees + rig_rotation_degrees
 	
 	camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)
 	camera.rotation.y = clamp(camera.rotation.y, -cam_max_x, cam_max_x)
+	
+	rig_translated = false
+	rig_rotated = false
 
 
 func _align_player_to_camera():

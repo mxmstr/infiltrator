@@ -867,7 +867,6 @@ max_quantity = 1
 shape = SubResource( 1 )
 
 [node name="HumanMovement" parent="." instance=ExtResource( 4 )]
-collision_height_mult = 0.3
 
 [node name="ContactStim" parent="." instance=ExtResource( 5 )]
 stim_type = "Touch"
@@ -881,11 +880,11 @@ parameters/playback = SubResource( 2 )
 fp_root_bone = "Pelvis"
 fp_shoulder_bone = "shoulders"
 fp_hidden_bones = [ "Head", "Neck" ]
-rig_translation = Vector3( 0, 1.1, 0.3 )
+rig_translation = Vector3( 0, 1.6, 0.2 )
 rig_rotation_degrees = Vector3( 0, 180, 0 )
 
 [node name="CameraRig" parent="Perspective/Container/Viewport" index="1"]
-transform = Transform( -0.999999, 0, -8.74228e-08, 0, 0.999999, 0, 8.74227e-08, 0, -1, 0, 1.1, 0.3 )
+transform = Transform( -0.999999, 0, -8.74216e-08, 0, 0.999986, 0, 8.74227e-08, 0, -0.999986, 0, 1.6, 0.2 )
 
 [node name="Behavior" parent="." instance=ExtResource( 8 )]
 tree_root = SubResource( 51 )
