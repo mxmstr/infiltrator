@@ -516,7 +516,7 @@ states/LandExit/node = SubResource( 31 )
 states/LandExit/position = Vector2( 497, 129.4 )
 transitions = [ "Climb", "ClimbExit", SubResource( 32 ), "Default", "Drop", SubResource( 33 ), "Default", "Grab", SubResource( 34 ), "Grab", "Default", SubResource( 35 ), "Drop", "Default", SubResource( 36 ), "ClimbExit", "Default", SubResource( 37 ), "Default", "Land", SubResource( 38 ), "Land", "LandExit", SubResource( 39 ), "LandExit", "Default", SubResource( 40 ), "Default", "Fall", SubResource( 41 ), "Fall", "Default", SubResource( 42 ), "Fall", "Default", SubResource( 43 ), "Land", "LandExit", SubResource( 44 ), "Climb", "ClimbExit", SubResource( 45 ), "Jump", "Default", SubResource( 46 ), "Jump", "Default", SubResource( 47 ), "Default", "FindClimbTarget", SubResource( 48 ), "FindClimbTarget", "Jump", SubResource( 49 ), "FindClimbTarget", "Climb", SubResource( 50 ) ]
 start_node = "Default"
-graph_offset = Vector2( -126.751, 103.655 )
+graph_offset = Vector2( -126.751, 196.224 )
 __meta__ = {
 
 }
@@ -876,6 +876,7 @@ send_to_self = true
 [node name="AirborneStim" parent="." instance=ExtResource( 6 )]
 
 [node name="Perspective" parent="." instance=ExtResource( 7 )]
+editor/display_folded = true
 parameters/playback = SubResource( 2 )
 fp_root_bone = "Pelvis"
 fp_shoulder_bone = "shoulders"
@@ -898,8 +899,9 @@ root_node = NodePath("../../Model/neo_reference_skeleton")
 
 [node name="Movement" parent="." instance=ExtResource( 13 )]
 parameters/playback = SubResource( 56 )
-parameters/BlendSpace1D/0/2/2/playback = SubResource( 57 )
-parameters/BlendSpace1D/1/0/3/playback = SubResource( 58 )
+parameters/Stances/blend_position = 1.00084
+parameters/Stances/0/2/2/playback = SubResource( 57 )
+parameters/Stances/1/0/3/playback = SubResource( 58 )
 
 [node name="AnimationPlayer" parent="Movement" index="0"]
 root_node = NodePath("../../Model/neo_reference_skeleton")

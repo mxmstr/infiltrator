@@ -31,6 +31,9 @@ func _init_blendspace2d(root, parameters):
 		
 		var node = root.get_blend_point_node(point)
 		
+		if node.has_method('_ready'):
+			node._ready(self, parameters, str(point))
+		
 		if node is AnimationNodeStateMachine:
 			_init_statemachine(node, parameters + '/' + str(point))
 		

@@ -42,7 +42,7 @@ distance = 0.0
 abilities = false
 movement = false
 rotation = false
-camera_mode = "LockYaw"
+camera_mode = "HalfYaw"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=2]
 __meta__ = {
@@ -542,7 +542,7 @@ tree_root = SubResource( 49 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 50 )
 parameters/Climb2/blend_position = 0
-parameters/Jump/blend_position = Vector2( -0.0119048, 0.2 )
+parameters/Jump/blend_position = Vector2( 0.00947654, 0.0159817 )
 parameters/Jump/3/playback = SubResource( 51 )
 parameters/Jump/4/playback = SubResource( 52 )
 parameters/Jump/5/playback = SubResource( 53 )

@@ -31,7 +31,7 @@
 [ext_resource path="res://Animations/Human/Movement/CrouchLeanLeft.tres" type="Animation" id=29]
 [ext_resource path="res://Animations/Human/Movement/CrouchLeanRight.tres" type="Animation" id=30]
 [ext_resource path="res://Animations/Human/Movement/CrouchSidestepLeft.tres" type="Animation" id=31]
-[ext_resource path="res://Animations/Human/Movement/CrouchSidestepRight.tres" type="Animation" id=32]
+[ext_resource path="res://Animations/Human/Movement/CrouchSideStepRight.tres" type="Animation" id=32]
 [ext_resource path="res://Animations/Human/Movement/ForwardLeft.tres" type="Animation" id=33]
 [ext_resource path="res://Animations/Human/Movement/ForwardRight.tres" type="Animation" id=34]
 [ext_resource path="res://Animations/Human/Movement/LeanLeft.tres" type="Animation" id=35]
@@ -84,6 +84,7 @@
 [ext_resource path="res://Animations/Human/Movement/w_TurnRight.tres" type="Animation" id=82]
 [ext_resource path="res://Animations/Human/Movement/w_Walk.tres" type="Animation" id=83]
 [ext_resource path="res://Animations/Human/Movement/w_WalkBackward.tres" type="Animation" id=84]
+
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"

@@ -138,7 +138,7 @@ func _filter_anim_events(children, closest_position, filter_all=false):
 					var is_function_call = node.animation.track_get_type(track) == 2
 					var is_camera_overriden = blend_mode == Inf.Blend.ACTION and camera_rig_track_path in str(node.animation.track_get_path(track))
 					
-					node.animation.track_set_enabled(track, false if (is_function_call and filter_all) or is_camera_overriden else true)
+					node.animation.track_set_enabled(track, false if (is_function_call and filter_all) else true)# or is_camera_overriden else true)
 
 			else:
 
@@ -147,7 +147,7 @@ func _filter_anim_events(children, closest_position, filter_all=false):
 					var is_function_call = node.animation.track_get_type(track) == 2
 					var is_camera_overriden = blend_mode == Inf.Blend.ACTION and camera_rig_track_path in str(node.animation.track_get_path(track))
 					
-					node.animation.track_set_enabled(track, false if is_function_call or is_camera_overriden else true)
+					node.animation.track_set_enabled(track, false if is_function_call else true)# or is_camera_overriden else true)
 		
 		
 		if node.blendspace != null:

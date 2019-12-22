@@ -34,7 +34,7 @@
 [ext_resource path="res://Animations/Human/Movement/CrouchLeanRight.tres" type="Animation" id=32]
 [ext_resource path="res://Animations/Human/Movement/CrouchLeanLeft.tres" type="Animation" id=33]
 [ext_resource path="res://Animations/Human/Movement/CrouchSidestepLeft.tres" type="Animation" id=34]
-[ext_resource path="res://Animations/Human/Movement/CrouchSidestepRight.tres" type="Animation" id=35]
+[ext_resource path="res://Animations/Human/Movement/CrouchSideStepRight.tres" type="Animation" id=35]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=36]
 [ext_resource path="res://Animations/Human/Action/Fall.tres" type="Animation" id=37]
 [ext_resource path="res://Animations/Human/Movement/ForwardLeft.tres" type="Animation" id=38]
@@ -201,6 +201,7 @@ states/LeanRight/node = SubResource( 7 )
 states/LeanRight/position = Vector2( 868, 106 )
 transitions = [ "Default", "LeanRight", SubResource( 8 ), "LeanRight", "Default", SubResource( 9 ), "LeanLeft", "Default", SubResource( 10 ), "Default", "LeanLeft", SubResource( 11 ) ]
 start_node = "Default"
+graph_offset = Vector2( 143.62, 0 )
 __meta__ = {
 
 }
@@ -243,8 +244,8 @@ update_mode = "process"
 x_target = "HumanMovement"
 x_method = "_get_leftright_speed"
 x_args = [  ]
-x_max_value = 2.75
-x_min_value = -2.75
+x_max_value = -2.75
+x_min_value = 2.75
 y_target = ""
 y_method = ""
 y_args = [  ]
@@ -412,8 +413,8 @@ update_mode = "process"
 x_target = "HumanMovement"
 x_method = "_get_leftright_speed"
 x_args = [  ]
-x_max_value = 2.75
-x_min_value = -2.75
+x_max_value = -2.75
+x_min_value = 2.75
 y_target = ""
 y_method = ""
 y_args = [  ]
