@@ -165,13 +165,10 @@ tracks/20/loop_wrap = true
 tracks/20/imported = false
 tracks/20/enabled = true
 tracks/20/keys = {
-"times": PoolRealArray( 0, 1.41667 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "current_state", 4 ],
-"method": "set"
-}, {
-"args": [ "current_state", 1 ],
 "method": "set"
 } ]
 }

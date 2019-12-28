@@ -38,6 +38,7 @@ var direction = Vector3()
 var velocity = Vector3()
 var climb_collision_mask = 1024
 var climb_steps = 50
+var climb_height
 var climb_start = null
 var climb_target = null
 var climb_x_progress = 0
@@ -50,6 +51,11 @@ onready var collision = $'../Collision'
 func _ready():
 	
 	pass
+
+
+func _get_climb_height_mult():
+	
+	return climb_height / (collision.shape.extents.y * climb_max_height_mult)
 
 
 func _get_forward_speed():
@@ -123,7 +129,7 @@ func _find_climb_target():
 	
 	for i in offsets:
 		
-		var climb_height = height * climb_max_height_mult * ((i + 1) / float(climb_steps))
+		climb_height = height * climb_max_height_mult * ((i + 1) / float(climb_steps))
 		var offset = Vector3(0, climb_height, 0)
 		var origin = owner_origin + offset
 		
@@ -181,7 +187,8 @@ func _physics_process(delta):
 	
 	if current_state == state.CLIMBING:
 		
-		var current_pos = owner.global_transform.origin
+		print([climb_x_progress, climb_y_progress]) if owner.name == 'Player2' else null
+		
 		var new_x_pos = climb_start.linear_interpolate(climb_target, climb_x_progress)
 		var new_y_pos = climb_start.linear_interpolate(climb_target, climb_y_progress)
 		

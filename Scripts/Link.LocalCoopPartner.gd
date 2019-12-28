@@ -38,11 +38,11 @@ func _on_enter():
 	
 	if get_node(from).has_node('Perspective') if has_node(from) else false:
 		
-		var p1_control = get_node(from).get_node('Perspective')
+		var p2_control = get_node(from).get_node('Perspective')
 		
 		if get_node(to).has_node('Perspective') if has_node(to) else false:
 			
-			var p2_control = get_node(to).get_node('Perspective')
+			var p1_control = get_node(to).get_node('Perspective')
 			_split_viewports(p1_control, p2_control)
 
 

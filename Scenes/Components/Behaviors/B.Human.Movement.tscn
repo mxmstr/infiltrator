@@ -122,19 +122,21 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "CrouchLeanLeft"
+scale = 3.0
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=7]
 animation = "CrouchLeanRight"
+scale = 3.0
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 auto_advance = true
-xfade_time = 0.1
+xfade_time = 0.25
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -149,7 +151,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 auto_advance = true
-xfade_time = 0.1
+xfade_time = 0.25
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -164,7 +166,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
 auto_advance = true
-xfade_time = 0.1
+xfade_time = 0.25
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -179,7 +181,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 auto_advance = true
-xfade_time = 0.1
+xfade_time = 0.25
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -218,6 +220,7 @@ __meta__ = {
 
 }
 update_mode = "process"
+speed = 0.0
 x_target = "HumanMovement"
 x_method = "_get_forward_speed"
 x_args = [  ]
@@ -241,6 +244,7 @@ __meta__ = {
 
 }
 update_mode = "process"
+speed = 0.0
 x_target = "HumanMovement"
 x_method = "_get_leftright_speed"
 x_args = [  ]
@@ -278,19 +282,21 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=19]
 animation = "LeanLeft"
+scale = 3.0
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "LeanRight"
+scale = 3.0
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 auto_advance = true
-xfade_time = 0.1
+xfade_time = 0.25
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -305,7 +311,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 auto_advance = true
-xfade_time = 0.1
+xfade_time = 0.25
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -320,7 +326,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 auto_advance = true
-xfade_time = 0.1
+xfade_time = 0.25
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -335,7 +341,7 @@ wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
 auto_advance = true
-xfade_time = 0.1
+xfade_time = 0.25
 disabled = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -357,6 +363,7 @@ states/LeanRight/node = SubResource( 20 )
 states/LeanRight/position = Vector2( 885, 111 )
 transitions = [ "LeanLeft", "Default", SubResource( 21 ), "Default", "LeanLeft", SubResource( 22 ), "Default", "LeanRight", SubResource( 23 ), "LeanRight", "Default", SubResource( 24 ) ]
 start_node = "Default"
+graph_offset = Vector2( 190.573, 0 )
 __meta__ = {
 
 }
@@ -375,6 +382,7 @@ __meta__ = {
 
 }
 update_mode = "process"
+speed = 0.0
 x_target = "HumanMovement"
 x_method = "_get_forward_speed"
 x_args = [  ]
@@ -410,6 +418,7 @@ __meta__ = {
 
 }
 update_mode = "process"
+speed = 0.0
 x_target = "HumanMovement"
 x_method = "_get_leftright_speed"
 x_args = [  ]
@@ -434,6 +443,7 @@ __meta__ = {
 
 }
 update_mode = "process"
+speed = 8.0
 x_target = "HumanMovement"
 x_method = "get"
 x_args = [ "current_state" ]
@@ -472,7 +482,7 @@ __meta__ = {
 tree_root = SubResource( 31 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 32 )
-parameters/Stances/blend_position = 2.0
+parameters/Stances/blend_position = 1.99749
 parameters/Stances/0/blend_position = 0
 parameters/Stances/0/2/blend_position = 0
 parameters/Stances/0/2/2/playback = SubResource( 33 )

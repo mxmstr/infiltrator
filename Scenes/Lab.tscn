@@ -77,9 +77,6 @@ __meta__ = {
 [node name="LocalCoopPartner" parent="Links" instance=ExtResource( 7 )]
 from = NodePath("../../Actors/Player2")
 to = NodePath("../../Actors/Player")
-p1_mouse = 3
-p2_mouse = 4
-p2_keyboard = 2
 
 [node name="ControlDevice" parent="Links" instance=ExtResource( 8 )]
 from = NodePath("../../Actors/Button")

@@ -3,7 +3,6 @@ extends 'res://Scripts/StateMachine.BlendSpace.gd'
 export(Inf.Priority) var priority
 export(Inf.Visibility) var type
 export(Inf.Blend) var blend
-export var speed = 1.0
 export var distance = 0.0
 export var abilities = true
 export var movement = true
@@ -23,8 +22,6 @@ func _on_state_starting(new_name):
 		var playback = parent.get(parameters + '/playback')
 		
 		if len(playback.get_travel_path()) == 0:
-			
-			parent.get_node('AnimationPlayer').playback_speed = speed
 			
 			if parent.owner.has_node('InputAbilities'):
 				parent.owner.get_node('InputAbilities').active = abilities
