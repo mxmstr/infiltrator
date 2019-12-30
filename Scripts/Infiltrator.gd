@@ -64,3 +64,10 @@ func _make_unique(old):
 	dir.remove(new_filename)
 	
 	tree_count += 1
+
+
+func add_waypoint(position):
+
+	var waypoint = load('res://Scenes/Markers/Waypoint2.tscn').instance()
+	$'/root/Game/Actors'.add_child(waypoint)
+	waypoint.global_transform.origin = position

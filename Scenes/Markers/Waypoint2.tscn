@@ -1,14 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/Marker.Waypoint.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Markers/Waypoint.tres" type="PrismMesh" id=2]
+[ext_resource path="res://Scenes/Markers/Waypoint.tres" type="PrismMesh" id=1]
 
 [node name="Waypoint" type="Spatial"]
-script = ExtResource( 1 )
 __meta__ = {
 
 }
-next = null
 
 [node name="MeshPivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
@@ -17,8 +14,8 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="MeshPivot"]
-transform = Transform( -0.163805, 1.05745e-07, -0.472486, -1.50636e-08, -0.5, -1.06715e-07, -0.472486, -2.07195e-08, 0.163805, 0, 0, 0 )
-mesh = ExtResource( 2 )
+transform = Transform( 0.237027, 1.05745e-07, 0.440354, 3.18809e-08, -0.5, 1.02953e-07, 0.440354, -2.07195e-08, -0.237027, 0, 0, 0 )
+mesh = ExtResource( 1 )
 material/0 = null
 __meta__ = {
 

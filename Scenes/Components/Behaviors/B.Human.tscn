@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Behavior.Node.gd" type="Script" id=2]
@@ -30,12 +30,14 @@
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "ClimbMedium"
+scale = 1.5
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "ClimbHigh"
+scale = 0.5
 __meta__ = {
 
 }
@@ -87,13 +89,13 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=56]
-animation = "ClimbMedium"
+animation = "ClimbHigh"
 scale = 0.5
 script = ExtResource( 2 )
 __meta__ = {
 
 }
-priority = 2
+priority = 0
 type = 0
 blend = 0
 speed = 1.0
@@ -504,10 +506,18 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
 auto_advance = true
 disabled = true
 script = ExtResource( 4 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+switch_mode = 2
+auto_advance = true
+priority = 2
 __meta__ = {
 
 }
@@ -516,9 +526,16 @@ __meta__ = {
 switch_mode = 2
 auto_advance = true
 priority = 2
+disabled = true
+script = ExtResource( 3 )
 __meta__ = {
 
 }
+assertion = "NotNull"
+target = "HumanMovement"
+method = "get"
+args = [ "climb_target" ]
+wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 switch_mode = 2
@@ -537,7 +554,6 @@ wait_for_frame = 0.0
 [sub_resource type="AnimationNodeStateMachineTransition" id=58]
 switch_mode = 2
 auto_advance = true
-priority = 2
 __meta__ = {
 
 }
@@ -548,8 +564,8 @@ states/Climb/node = SubResource( 4 )
 states/Climb/position = Vector2( 496.57, 339.584 )
 states/ClimbExit/node = SubResource( 5 )
 states/ClimbExit/position = Vector2( 497, 401.794 )
-states/ClimbMedium/node = SubResource( 56 )
-states/ClimbMedium/position = Vector2( 677.273, 360.206 )
+states/ClimbHigh/node = SubResource( 56 )
+states/ClimbHigh/position = Vector2( 685.249, 350.253 )
 states/Default/node = SubResource( 6 )
 states/Default/position = Vector2( 131.37, 287 )
 states/Drop/node = SubResource( 7 )
@@ -566,9 +582,9 @@ states/Land/node = SubResource( 30 )
 states/Land/position = Vector2( 497, 61.4 )
 states/LandExit/node = SubResource( 31 )
 states/LandExit/position = Vector2( 497, 129.4 )
-transitions = [ "Default", "Drop", SubResource( 32 ), "Default", "Grab", SubResource( 33 ), "Grab", "Default", SubResource( 34 ), "Drop", "Default", SubResource( 35 ), "ClimbExit", "Default", SubResource( 36 ), "Default", "Land", SubResource( 37 ), "Land", "LandExit", SubResource( 38 ), "LandExit", "Default", SubResource( 39 ), "Default", "Fall", SubResource( 40 ), "Fall", "Default", SubResource( 41 ), "Fall", "Default", SubResource( 42 ), "Land", "LandExit", SubResource( 43 ), "Jump", "Default", SubResource( 44 ), "Jump", "Default", SubResource( 45 ), "Default", "FindClimbTarget", SubResource( 46 ), "FindClimbTarget", "Jump", SubResource( 47 ), "Climb", "ClimbExit", SubResource( 49 ), "Climb", "ClimbExit", SubResource( 50 ), "FindClimbTarget", "ClimbMedium", SubResource( 57 ), "ClimbMedium", "ClimbExit", SubResource( 58 ) ]
+transitions = [ "Default", "Drop", SubResource( 32 ), "Default", "Grab", SubResource( 33 ), "Grab", "Default", SubResource( 34 ), "Drop", "Default", SubResource( 35 ), "ClimbExit", "Default", SubResource( 36 ), "Default", "Land", SubResource( 37 ), "Land", "LandExit", SubResource( 38 ), "LandExit", "Default", SubResource( 39 ), "Default", "Fall", SubResource( 40 ), "Fall", "Default", SubResource( 41 ), "Fall", "Default", SubResource( 42 ), "Land", "LandExit", SubResource( 43 ), "Jump", "Default", SubResource( 44 ), "Jump", "Default", SubResource( 45 ), "Default", "FindClimbTarget", SubResource( 46 ), "FindClimbTarget", "Jump", SubResource( 47 ), "Climb", "ClimbExit", SubResource( 48 ), "Climb", "ClimbExit", SubResource( 49 ), "FindClimbTarget", "Climb", SubResource( 50 ), "FindClimbTarget", "ClimbHigh", SubResource( 57 ), "ClimbHigh", "ClimbExit", SubResource( 58 ) ]
 start_node = "Default"
-graph_offset = Vector2( -120.751, 261.253 )
+graph_offset = Vector2( -235.571, 212.981 )
 __meta__ = {
 
 }
@@ -597,7 +613,7 @@ __meta__ = {
 tree_root = SubResource( 51 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 52 )
-parameters/Climb/blend_position = 0
+parameters/Climb/blend_position = 0.500806
 parameters/Jump/blend_position = Vector2( 0.00947654, 0.0159817 )
 parameters/Jump/3/playback = SubResource( 53 )
 parameters/Jump/4/playback = SubResource( 54 )

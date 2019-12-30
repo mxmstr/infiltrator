@@ -102,6 +102,24 @@ func _set_vertical_velocity(vertical):
 	velocity.y = vertical
 
 
+func _test_for_wall(origin, cast_to):
+
+	var ray = RayCast.new()
+	ray.collision_mask = climb_collision_mask
+	ray.add_exception(owner)
+	add_child(ray)
+	
+	ray.global_transform.origin = origin
+	ray.cast_to = cast_to
+	ray.force_raycast_update()
+	
+	var point = ray.get_collision_point()
+	
+	ray.free()
+	
+	return point
+
+
 func _find_climb_target():
 	
 	if current_state == state.CLIMBING:
@@ -109,62 +127,61 @@ func _find_climb_target():
 	
 	
 	var in_range = false
-	var height = collision.shape.extents.y
-	var owner_origin = owner.global_transform.origin
-	
-	var ray_to_target = RayCast.new()
-	ray_to_target.collision_mask = climb_collision_mask
-	ray_to_target.add_exception(owner)
-	add_child(ray_to_target)
-	
-	var ray_to_self = RayCast.new()
-	ray_to_target.collision_mask = climb_collision_mask
-	ray_to_self.add_exception(owner)
-	add_child(ray_to_self)
+	var collision_width = collision.shape.extents.x
+	var collision_height = collision.shape.extents.y
+	var origin = owner.global_transform.origin
+	var basis = owner.global_transform.basis
 	
 	
-	var last_point = owner_origin + Vector3(0, height * climb_max_height_mult, 0)
+	var last_climb_height
 	var offsets = range(climb_steps)
 	offsets.invert()
 	
 	for i in offsets:
 		
-		climb_height = height * climb_max_height_mult * ((i + 1) / float(climb_steps))
-		var offset = Vector3(0, climb_height, 0)
-		var origin = owner_origin + offset
+		climb_height = collision_height * climb_max_height_mult * ((i + 1) / float(climb_steps))
 		
-		ray_to_target.global_transform.origin = origin
-		ray_to_target.cast_to = Vector3(0, 0, climb_find_range)
-		ray_to_target.force_raycast_update()
-		
-		ray_to_self.global_transform.origin = origin
-		ray_to_self.cast_to = origin.direction_to(owner_origin)
-		ray_to_self.force_raycast_update()
-		
-		
-		var wall_found = ray_to_target.get_collider() != null
-		var climb_blocked = ray_to_self.get_collider() != null
-		
-		if climb_height < height or not climb_blocked:
+		if last_climb_height != null:
 			
-			if wall_found:
-				climb_start = owner_origin
+			var height_offset = Vector3(0, climb_height, 0)
+			var last_height_offset = Vector3(0, last_climb_height, 0)
+			var climb_forward_offset = Vector3(0, 0, climb_forward_amount) * basis
+			
+			#Inf.add_waypoint(origin)
+			
+			if _test_for_wall(origin, Vector3(0, last_height_offset, 0)) != null:
+				break
+			
+			
+			var last_collision_point = _test_for_wall(origin + last_height_offset, Vector3(0, 0, climb_find_range))
+			var current_collision_point = _test_for_wall(origin + height_offset, Vector3(0, 0, climb_find_range))
+			var edge_found = last_collision_point == null and current_collision_point != null
+			
+			if edge_found:
 				
-				climb_target = ray_to_target.get_collision_point()
-				climb_target += origin.direction_to(climb_target) * climb_forward_amount
-				climb_target.y = last_point.y
+				current_collision_point.y = last_collision_point.y
+				var blocked = false
 				
-				#ik_righthand.global_transform.origin = climb_target
+				for point in [_test_for_wall(current_collision_point, Vector3(0, 0, climb_forward_amount)),
+					_test_for_wall(current_collision_point, Vector3(collision_width * 0.5, 0, climb_forward_amount)),
+					_test_for_wall(current_collision_point, Vector3(collision_width * -0.5, 0, climb_forward_amount)),
+					_test_for_wall(current_collision_point + climb_forward_offset, Vector3(0, collision_height, 0))]:
+					
+					if point != null:
+						blocked = true
+						break
 				
-				climb_x_progress = 0
-				climb_y_progress = 0
-				
-				return
+				if not blocked:
+					
+					climb_start = origin
+					climb_target = current_collision_point + climb_forward_offset
+					
+					climb_x_progress = 0
+					climb_y_progress = 0
+					
+					return
 		
-		last_point = origin#ray_to_target.get_collision_point()
-	
-	ray_to_target.queue_free()
-	ray_to_self.queue_free()
+		last_climb_height = climb_height
 	
 	climb_start = null
 	climb_target = null
