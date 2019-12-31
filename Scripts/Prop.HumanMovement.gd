@@ -28,9 +28,9 @@ export var accel = 2
 export var deaccel = 4
 export var max_slope_angle = 30
 
-export var climb_max_height_mult = 2
+export var climb_max_height_mult = 3
 export var climb_find_range = 0.5
-export var climb_forward_amount = 0.25
+export var climb_forward_amount = 0.4
 
 export var collision_height_mult = 1.0
 
@@ -113,11 +113,14 @@ func _test_for_wall(origin, cast_to):
 	ray.cast_to = cast_to
 	ray.force_raycast_update()
 	
+	var collider = ray.get_collider()
 	var point = ray.get_collision_point()
 	
 	ray.free()
 	
-	return point
+	#Inf.add_waypoint(point) if point != null else null
+	
+	return point if collider != null else null
 
 
 func _find_climb_target():
@@ -145,11 +148,9 @@ func _find_climb_target():
 			
 			var height_offset = Vector3(0, climb_height, 0)
 			var last_height_offset = Vector3(0, last_climb_height, 0)
-			var climb_forward_offset = Vector3(0, 0, climb_forward_amount) * basis
+			var climb_forward_offset = Vector3(0, 0, climb_forward_amount) * basis.z
 			
-			#Inf.add_waypoint(origin)
-			
-			if _test_for_wall(origin, Vector3(0, last_height_offset, 0)) != null:
+			if _test_for_wall(origin, last_height_offset) != null:
 				break
 			
 			
@@ -159,7 +160,8 @@ func _find_climb_target():
 			
 			if edge_found:
 				
-				current_collision_point.y = last_collision_point.y
+				current_collision_point.y = (origin + last_height_offset).y
+				
 				var blocked = false
 				
 				for point in [_test_for_wall(current_collision_point, Vector3(0, 0, climb_forward_amount)),

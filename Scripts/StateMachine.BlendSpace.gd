@@ -33,12 +33,17 @@ func _update():
 		target_pos = x_value
 
 	if get_class() == 'AnimationNodeBlendSpace2D':
-	
-		var x_value = parent.owner.get_node(x_target).callv(x_method, x_args)
-		x_value = (((x_value - x_min_value) / (x_max_value - x_min_value)) * (get('max_space').x - get('min_space').x)) + get('min_space').x
 		
-		var y_value = parent.owner.get_node(y_target).callv(y_method, y_args)
-		y_value = (((y_value - y_min_value) / (y_max_value - y_min_value)) * (get('max_space').y - get('min_space').y)) + get('min_space').y
+		var x_value = 0
+		var y_value = 0
+		
+		if len(x_target) > 0:
+			x_value = parent.owner.get_node(x_target).callv(x_method, x_args)
+			x_value = (((x_value - x_min_value) / (x_max_value - x_min_value)) * (get('max_space').x - get('min_space').x)) + get('min_space').x
+		
+		if len(y_target) > 0:
+			y_value = parent.owner.get_node(y_target).callv(y_method, y_args)
+			y_value = (((y_value - y_min_value) / (y_max_value - y_min_value)) * (get('max_space').y - get('min_space').y)) + get('min_space').y
 		
 		target_pos = Vector2(x_value, y_value)
 
