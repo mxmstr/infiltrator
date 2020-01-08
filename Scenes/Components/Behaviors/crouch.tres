@@ -1,6 +1,7 @@
 [gd_resource type="AnimationNodeBlendSpace1D" load_steps=15 format=2]
 
-[ext_resource path="res://Scripts/StateMachine.Transition.Value.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=1]
+
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "CrouchSideStepLeft"

@@ -1,24 +1,28 @@
 extends AnimationNodeAnimation
 
-export(String) var path
+export(float) var level
 
 var node_name
 var parent
+var parameters
 var transitions = []
 
-signal on_enter
 
-
-func _on_travel_starting(new_name):
+func _on_state_starting(new_name):
 	
 	if node_name == new_name:
 		
-		emit_signal('on_enter')
+		var playback = parent.get(parameters + '/playback')
+		
+		if len(playback.get_travel_path()) == 0:
+		
+			parent.get_node('AudioStreamPlayer3D').unit_db = level
 
 
-func init(_parent, _node_name):
+func _ready(_parent, _parameters, _node_name):
 	
 	parent = _parent
+	parameters = _parameters
 	node_name = _node_name
 	
-	parent.connect('travel_starting', self, '_on_travel_starting')
+	parent.connect('state_starting', self, '_on_state_starting')

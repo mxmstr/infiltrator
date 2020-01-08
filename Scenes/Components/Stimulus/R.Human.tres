@@ -1,11 +1,7 @@
-[gd_scene load_steps=19 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=3]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Stimulus/R.H.Fall.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Stimulus/R.H.Land.tres" type="Animation" id=6]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "R.H.Fall"
@@ -76,7 +72,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=11]
+[resource]
 states/Airborne/node = SubResource( 1 )
 states/Airborne/position = Vector2( 689, 125 )
 states/Default/node = SubResource( 2 )
@@ -89,28 +85,6 @@ transitions = [ "Default", "Touch", SubResource( 5 ), "Default", "Airborne", Sub
 start_node = "Default"
 graph_offset = Vector2( 0, -274.627 )
 script = ExtResource( 1 )
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
-__meta__ = {
-
-}
-
-[node name="Receptor" type="AnimationTree"]
-tree_root = SubResource( 11 )
-anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 12 )
-script = ExtResource( 3 )
-__meta__ = {
-
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 4 )
-anims/R.H.Fall = ExtResource( 5 )
-anims/R.H.Land = ExtResource( 6 )
 __meta__ = {
 
 }

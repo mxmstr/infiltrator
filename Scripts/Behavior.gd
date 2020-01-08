@@ -1,11 +1,11 @@
-extends 'res://Scripts/StateMachine.gd'
+extends 'res://Scripts/AnimationTree.gd'
 
 
 func _get_visible_interactions():
 	
 	var interactions = []
 	
-	for node in nodes:
+	for node in tree_root.nodes:
 		if node.has_method('_is_visible') and node._is_visible() and tree_root.can_travel(node.name):
 			interactions.append(node.name)
 	

@@ -1,4 +1,4 @@
-extends 'res://Scripts/StateMachine.gd'
+extends 'res://Scripts/AnimationTree.gd'
 
 export(String) var root_bone
 export(Array, String) var movement_bones
@@ -19,31 +19,6 @@ var action_blend_speed = 0.1
 
 var model_blend_amount = 0.0
 var model_blend_speed = 0.5
-
-var node_tree = []
-
-
-func _add_anim_nodes(root, path):
-	
-	var array = []
-	
-	for point in root.get_blend_point_count():
-		
-		var node = root.get_blend_point_node(point)
-		var position = root.get_blend_point_position(point)
-		var animation = $AnimationPlayer.get_animation(node.animation) if node is AnimationNodeAnimation else null
-		var blendspace = node if node is AnimationNodeBlendSpace1D else null
-		var children = _add_anim_nodes(node, path + str(point) + '/') if node is AnimationNodeBlendSpace1D else null
-		
-		array.append({
-			'path': path + str(point) + '/',
-			'animation': animation,
-			'blendspace': blendspace,
-			'children': children,
-			'position': position
-			})
-	
-	return array
 
 
 func _cache_action_pose():
@@ -125,69 +100,14 @@ func _blend_skeletons(delta):
 		model_skeleton.set_bone_global_pose(idx, model_transform)
 
 
-func _filter_anim_events(children, closest_position, filter_all=false):
-	
-	for node in children:
-		
-		if node.animation != null:
-			
-			if node.position == closest_position:
-
-				for track in node.animation.get_track_count():
-					
-					var is_function_call = node.animation.track_get_type(track) == 2
-					var is_camera_overriden = blend_mode == Inf.Blend.ACTION and camera_rig_track_path in str(node.animation.track_get_path(track))
-					
-					node.animation.track_set_enabled(track, false if (is_function_call and filter_all) or is_camera_overriden else true)
-
-			else:
-
-				for track in node.animation.get_track_count():
-					
-					var is_function_call = node.animation.track_get_type(track) == 2
-					var is_camera_overriden = blend_mode == Inf.Blend.ACTION and camera_rig_track_path in str(node.animation.track_get_path(track))
-					
-					node.animation.track_set_enabled(track, false if is_function_call or is_camera_overriden else true)
-		
-		
-		if node.blendspace != null:
-			
-			var position = get(node.path + 'blend_position')
-			var closest_child = node.blendspace.get_closest_node_to_position()
-			var new_closest_position = node.blendspace.get_blend_point_position(closest_child)
-			
-			if node.position == closest_position:
-				_filter_anim_events(node.children, new_closest_position, filter_all)
-			else:
-				_filter_anim_events(node.children, new_closest_position, true)
-
-
-func _unfilter_anim_events(nodes):
-	
-	for node in nodes:
-		
-		if node.animation != null:
-			
-			for track in node.animation.get_track_count():
-				node.animation.track_set_enabled(track, true)
-		
-		if node.blendspace != null:
-			
-			_unfilter_anim_events(node.children)
-
-
 func _on_pre_process():
 	
-	_filter_anim_events(
-		node_tree, 
-		tree_root.get_node(tree_root.get_start_node()).get_closest_node_to_position(),
-		blend_mode == Inf.Blend.ACTION
-		)
+	tree_root._filter_anim_events(blend_mode == Inf.Blend.ACTION)
 
 
 func _on_post_process():
 	
-	_unfilter_anim_events(node_tree)
+	tree_root._unfilter_anim_events()
 
 
 func _on_state_starting(_name):
@@ -235,8 +155,6 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	node_tree = _add_anim_nodes(tree_root.get_node(tree_root.get_start_node()), 'parameters/' + tree_root.get_start_node() + '/')
-	
 	var playback = $'../Behavior'.get('parameters/playback')
 	playback.connect('state_starting', self, '_on_state_starting')
 	
@@ -245,7 +163,6 @@ func _ready():
 	
 	
 	_set_skeleton()
-	#call_deferred('_set_skeleton')
 
 
 func _process(delta):

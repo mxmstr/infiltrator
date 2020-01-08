@@ -1,25 +1,8 @@
-[gd_scene load_steps=55 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Input.gd" type="Script" id=4]
-[ext_resource path="res://Animations/Human/Input/Climb.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Human/Input/Climb.Enter.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/Input/Crawl.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/Input/Crouch.tres" type="Animation" id=8]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=9]
-[ext_resource path="res://Animations/Human/Input/Drop.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/Human/Input/Grab.tres" type="Animation" id=11]
-[ext_resource path="res://Animations/Human/Input/Interact.tres" type="Animation" id=12]
-[ext_resource path="res://Animations/Human/Input/Interact.Exit.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/Input/InteractCancel.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/Input/InteractDown.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/Input/InteractSelect.tres" type="Animation" id=16]
-[ext_resource path="res://Animations/Human/Input/InteractUp.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/Input/Jump.tres" type="Animation" id=18]
-[ext_resource path="res://Animations/Human/Input/Run.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/Input/Walk.tres" type="Animation" id=20]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Climb"
@@ -265,7 +248,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=32]
+[resource]
 resource_local_to_scene = true
 states/Climb/node = SubResource( 1 )
 states/Climb/position = Vector2( 829.173, -543.992 )
@@ -295,62 +278,6 @@ transitions = [ "Default", "Interact", SubResource( 13 ), "InteractExit", "Defau
 start_node = "Default"
 graph_offset = Vector2( 90.855, -554.136 )
 script = ExtResource( 1 )
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
-__meta__ = {
-
-}
-
-[sub_resource type="Animation" id=34]
-tracks/0/type = "method"
-tracks/0/path = NodePath("../../Behavior")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "FindClimbTarget" ],
-"method": "_start_state"
-} ]
-}
-__meta__ = {
-
-}
-
-[node name="InputAbilities" type="AnimationTree"]
-tree_root = SubResource( 32 )
-anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 33 )
-script = ExtResource( 4 )
-__meta__ = {
-
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath(".")
-anims/Climb = ExtResource( 5 )
-anims/Climb.Enter = ExtResource( 6 )
-anims/Crawl = ExtResource( 7 )
-anims/Crouch = ExtResource( 8 )
-anims/DefaultAnim = ExtResource( 9 )
-anims/Drop = ExtResource( 10 )
-anims/FindClimbTarget = SubResource( 34 )
-anims/Grab = ExtResource( 11 )
-anims/Interact = ExtResource( 12 )
-anims/Interact.Exit = ExtResource( 13 )
-anims/InteractCancel = ExtResource( 14 )
-anims/InteractDown = ExtResource( 15 )
-anims/InteractSelect = ExtResource( 16 )
-anims/InteractUp = ExtResource( 17 )
-anims/Jump = ExtResource( 18 )
-anims/Run = ExtResource( 19 )
-anims/Walk = ExtResource( 20 )
 __meta__ = {
 
 }

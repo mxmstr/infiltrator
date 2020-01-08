@@ -1,5 +1,5 @@
 tool
-extends 'res://Scripts/StateMachine.gd'
+extends 'res://Scripts/AnimationTree.gd'
 
 export var mouse_device = -1
 export var keyboard_device = -1

@@ -1,4 +1,9 @@
-extends 'res://Scripts/StateMachine.gd'
+extends 'res://Scripts/AnimationTree.gd'
+
+
+func _start_state(_name, data={}):
+	
+	._start_state(_name, data)
 
 
 func _process(delta):

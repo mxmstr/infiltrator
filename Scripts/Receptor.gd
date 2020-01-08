@@ -1,4 +1,4 @@
-extends 'res://Scripts/StateMachine.gd'
+extends 'res://Scripts/AnimationTree.gd'
 
 signal on_stimulate
 
