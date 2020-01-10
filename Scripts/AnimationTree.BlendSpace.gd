@@ -121,12 +121,10 @@ func _ready(_parent, _parameters, _node_name):
 		
 		if node.has_method('_ready'):
 			
-			node._ready(parent, parameters + str(point) + '/', str(point))
-			
-#			if node is AnimationNodeStateMachine or node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
-#				node._ready(self, parameters + str(point) + '/', str(point))
-#			else:
-#				node._ready(self, parameters, str(point))
+			if node is AnimationNodeStateMachine or node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
+				node._ready(parent, parameters + str(point) + '/', str(point))
+			else:
+				node._ready(parent, parameters, str(point))
 		
 		nodes.append(node)
 

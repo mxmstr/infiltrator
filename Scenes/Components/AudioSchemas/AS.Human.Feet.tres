@@ -156,8 +156,9 @@ states/Step/node = SubResource( 8 )
 states/Step/position = Vector2( 467, 80.1383 )
 transitions = [ "Step", "FTROC_P1", SubResource( 9 ), "Step", "FTROC_P2", SubResource( 10 ), "FTROC_P4", "Default", SubResource( 11 ), "FTROC_P3", "Default", SubResource( 12 ), "FTROC_P2", "Default", SubResource( 13 ), "FTROC_P1", "Default", SubResource( 14 ), "Step", "FTROC_P3", SubResource( 15 ), "Step", "FTROC_P4", SubResource( 16 ), "Default", "Land", SubResource( 17 ), "Land", "FTROC_J", SubResource( 18 ), "FTROC_J", "Default", SubResource( 19 ), "Default", "Step", SubResource( 20 ) ]
 start_node = "Default"
-graph_offset = Vector2( -13, 332.841 )
+graph_offset = Vector2( -13, -40.4173 )
 script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""

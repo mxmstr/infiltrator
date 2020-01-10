@@ -10,6 +10,8 @@
 [ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=9]
 
+
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
 

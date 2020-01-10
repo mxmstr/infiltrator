@@ -45,8 +45,9 @@ states/LockYaw/node = SubResource( 3 )
 states/LockYaw/position = Vector2( 411, 156 )
 transitions = [ "LockYaw", "HalfYaw", SubResource( 4 ), "HalfYaw", "AlignPlayerToCamera", SubResource( 5 ), "AlignPlayerToCamera", "LockYaw", SubResource( 6 ) ]
 start_node = "LockYaw"
-graph_offset = Vector2( 0, 62.9344 )
+graph_offset = Vector2( 142.167, 83.7041 )
 script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""

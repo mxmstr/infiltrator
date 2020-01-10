@@ -24,6 +24,7 @@ func _on_travel_starting(new_node_name, new_node):
 
 func _ready(_parent, _playback, _node_name):
 	
+	print('randomizer')
 	parent = _parent
 	playback = _playback
 	node_name = _node_name

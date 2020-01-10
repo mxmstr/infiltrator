@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=2]
@@ -232,23 +232,37 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+[sub_resource type="AnimationNodeStateMachine" id=36]
+states/StateMachine/node = SubResource( 27 )
+states/StateMachine/position = Vector2( 479.4, 79 )
+start_node = "StateMachine"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=40]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=41]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../HumanMovement")
@@ -268,7 +282,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=34]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../HumanMovement")
@@ -288,7 +302,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=35]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../HumanMovement")
@@ -309,11 +323,12 @@ __meta__ = {
 }
 
 [node name="InputMovement" type="AnimationTree"]
-tree_root = SubResource( 27 )
+tree_root = SubResource( 36 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 28 )
-parameters/Lean/playback = SubResource( 29 )
-parameters/Stance/playback = SubResource( 30 )
+parameters/playback = SubResource( 37 )
+parameters/StateMachine/playback = SubResource( 38 )
+parameters/StateMachine/Lean/playback = SubResource( 39 )
+parameters/StateMachine/Stance/playback = SubResource( 40 )
 script = ExtResource( 3 )
 __meta__ = {
 
@@ -324,9 +339,9 @@ root_node = NodePath(".")
 anims/Crawl = ExtResource( 4 )
 anims/Crouch = ExtResource( 5 )
 anims/DefaultAnim = ExtResource( 6 )
-anims/LeanDefault = SubResource( 31 )
-anims/LeanLeft = SubResource( 32 )
-anims/LeanRight = SubResource( 33 )
+anims/LeanDefault = SubResource( 41 )
+anims/LeanLeft = SubResource( 34 )
+anims/LeanRight = SubResource( 35 )
 anims/Run = ExtResource( 7 )
 anims/Walk = ExtResource( 8 )
 __meta__ = {

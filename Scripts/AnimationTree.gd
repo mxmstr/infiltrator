@@ -2,6 +2,7 @@ extends AnimationTree
 
 signal on_physics_process
 signal on_process
+signal travel_starting
 
 
 func _start_state(_name, data={}):
@@ -28,8 +29,11 @@ func _ready():
 		return
 	
 	
-	if tree_root.has_method('_ready'):
-		tree_root._ready(self, 'parameters/', '')
+	var start_name = tree_root.get_start_node()
+	var start = tree_root.get_node(start_name)
+	
+	if start.has_method('_ready'):
+		start._ready(self, 'parameters/' + start_name + '/', start_name)
 	
 	active = true
 

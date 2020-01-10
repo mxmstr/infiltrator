@@ -281,3 +281,4 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""

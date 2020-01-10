@@ -102,12 +102,14 @@ func _blend_skeletons(delta):
 
 func _on_pre_process():
 	
-	tree_root._filter_anim_events(blend_mode == Inf.Blend.ACTION)
+	pass
+	#tree_root._filter_anim_events(blend_mode == Inf.Blend.ACTION)
 
 
 func _on_post_process():
 	
-	tree_root._unfilter_anim_events()
+	pass
+	#tree_root._unfilter_anim_events()
 
 
 func _on_state_starting(_name):

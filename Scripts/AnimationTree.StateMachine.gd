@@ -2,6 +2,8 @@ extends AnimationNodeStateMachine
 
 const camera_rig_track_path = '../../Perspective'
 
+export(String) var statemachine
+
 var node_name
 var parent
 var parameters
@@ -58,6 +60,8 @@ func _unfilter_anim_events():
 
 func _ready(_parent, _parameters, _node_name):
 	
+	print(_parent.name)
+	
 	parent = _parent
 	parameters = _parameters
 	node_name = _node_name
@@ -65,21 +69,22 @@ func _ready(_parent, _parameters, _node_name):
 	parent.connect('on_process', self, '_process')
 	
 	
+	print(get_transition_count())
+	
 	if get_transition_count() == 0:
-		
+
 		var start_name = get_start_node()
 		var start = get_node(start_name)
-		
+
 		if start.has_method('_ready'):
-		
-			start._ready(self, parameters + start_name, parameters)
-#			if start is AnimationNodeStateMachine or start is AnimationNodeBlendSpace1D or start is AnimationNodeBlendSpace2D:
-#				start._ready(self, parameters, parameters + start_name)
-#			else:
-#				start._ready(self, parameters, start_name)
-		
+
+			if start is AnimationNodeStateMachine or start is AnimationNodeBlendSpace1D or start is AnimationNodeBlendSpace2D:
+				start._ready(parent, parameters + start_name + '/', start_name)
+			else:
+				start._ready(parent, parameters, start_name)
+
 		nodes.append(start)
-		
+
 		return
 	
 	
@@ -93,17 +98,16 @@ func _ready(_parent, _parameters, _node_name):
 		var from = get_node(from_name)
 		var to = get_node(to_name)
 		
+		print(from_name)
 		
 		if not from_name in anim_names:
 			
 			if from.has_method('_ready'):
 				
-				from._ready(parent, parameters + from_name, parameters)
-				
-#				if from is AnimationNodeStateMachine or from is AnimationNodeBlendSpace1D or from is AnimationNodeBlendSpace2D:
-#					from._ready(self, parameters, parameters + from_name)
-#				else:
-#					from._ready(self, parameters, from_name)
+				if from is AnimationNodeStateMachine or from is AnimationNodeBlendSpace1D or from is AnimationNodeBlendSpace2D:
+					from._ready(parent, parameters + from_name + '/', from_name)
+				else:
+					from._ready(parent, parameters, from_name)
 			
 			anim_names.append(from_name)
 			nodes.append(from)
@@ -113,7 +117,7 @@ func _ready(_parent, _parameters, _node_name):
 			from.transitions.append(transition)
 		
 		if transition.has_method('_ready'):
-			transition._ready(self, parameters, from, to)
+			transition._ready(parent, parameters, from, to)
 
 
 func _process(delta):
