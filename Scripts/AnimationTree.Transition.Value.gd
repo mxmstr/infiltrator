@@ -7,6 +7,7 @@ export(Array) var args
 export(float) var value
 export(float) var wait_for_frame
 
+var owner
 var parent
 var parameters
 var from
@@ -15,7 +16,7 @@ var to
 
 func _evaluate(_value):
 	
-	var playback = parent.get(parameters + 'playback')
+	var playback = owner.get(parameters + 'playback')
 	
 	var current_frame = 0 if not playback.is_playing() else playback.get_current_play_pos()
 	
@@ -30,16 +31,17 @@ func _evaluate(_value):
 		'Less Than': return value <= _value
 
 
-func _ready(_parent, _parameters, _from, _to):
+func _ready(_owner, _parent, _parameters, _from, _to):
 	
+	owner = _owner
 	parent = _parent
 	parameters = _parameters
 	from = _from
 	to = _to
 	
-	parent.connect('on_process', self, '_process')
+	owner.connect('on_process', self, '_process')
 
 
 func _process(delta):
 	
-	disabled = not _evaluate(parent.owner.get_node(target).callv(method, args))
+	disabled = not _evaluate(owner.owner.get_node(target).callv(method, args))

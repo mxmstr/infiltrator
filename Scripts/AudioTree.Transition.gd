@@ -2,6 +2,7 @@ extends AnimationNodeStateMachineTransition
 
 export(int) var range_max
 
+var owner
 var parent
 
 

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Components/Stimulus/R.Human.tscn" type="PackedScene" id=1]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+__meta__ = {
+
+}
+
+[node name="Spatial" type="Spatial"]
+__meta__ = {
+
+}
+
+[node name="Receptor" parent="." instance=ExtResource( 1 )]
+parameters/playback = SubResource( 1 )
+parameters/StateMachine/playback = SubResource( 2 )

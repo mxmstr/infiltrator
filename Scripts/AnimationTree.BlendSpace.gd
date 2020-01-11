@@ -18,6 +18,7 @@ export(float) var y_max_value
 export(float) var y_min_value
 
 var node_name
+var owner
 var parent
 var parameters
 var transitions = []
@@ -29,7 +30,7 @@ var target_pos
 func _filter_anim_events(is_action, filter_all=false):
 	
 	var blend_position = parameters + 'blend_position'
-	var closest_point = call('get_closest_point', parent.get(blend_position))
+	var closest_point = call('get_closest_point', owner.get(blend_position))
 	
 	for point in call('get_blend_point_count'):
 		
@@ -38,7 +39,7 @@ func _filter_anim_events(is_action, filter_all=false):
 		
 		if node is AnimationNodeAnimation:
 			
-			var animation = parent.get_node('AnimationPlayer').get_animation(node.animation)
+			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
 			
 			for track in animation.get_track_count():
 				
@@ -56,7 +57,7 @@ func _filter_anim_events(is_action, filter_all=false):
 func _unfilter_anim_events():
 	
 	var blend_position = parameters + 'blend_position'
-	var closest_point = call('get_closest_point', parent.get(blend_position))
+	var closest_point = call('get_closest_point', owner.get(blend_position))
 	
 	for point in call('get_blend_point_count'):
 		
@@ -64,7 +65,7 @@ func _unfilter_anim_events():
 		
 		if node is AnimationNodeAnimation:
 			
-			var animation = parent.get_node('AnimationPlayer').get_animation(node.animation)
+			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
 			
 			for track in animation.get_track_count():
 				animation.track_set_enabled(track, true)
@@ -78,7 +79,7 @@ func _update():
 	
 	if get_class() == 'AnimationNodeBlendSpace1D':
 
-		var x_value = parent.owner.get_node(x_target).callv(x_method, x_args)
+		var x_value = owner.owner.get_node(x_target).callv(x_method, x_args)
 		x_value = (((x_value - x_min_value) / (x_max_value - x_min_value)) * (get('max_space') - get('min_space'))) + get('min_space')
 
 		target_pos = x_value
@@ -89,11 +90,11 @@ func _update():
 		var y_value = 0
 		
 		if len(x_target) > 0:
-			x_value = parent.owner.get_node(x_target).callv(x_method, x_args)
+			x_value = owner.owner.get_node(x_target).callv(x_method, x_args)
 			x_value = (((x_value - x_min_value) / (x_max_value - x_min_value)) * (get('max_space').x - get('min_space').x)) + get('min_space').x
 		
 		if len(y_target) > 0:
-			y_value = parent.owner.get_node(y_target).callv(y_method, y_args)
+			y_value = owner.owner.get_node(y_target).callv(y_method, y_args)
 			y_value = (((y_value - y_min_value) / (y_max_value - y_min_value)) * (get('max_space').y - get('min_space').y)) + get('min_space').y
 		
 		target_pos = Vector2(x_value, y_value)
@@ -105,14 +106,15 @@ func _on_state_starting(new_name):
 		_update()
 
 
-func _ready(_parent, _parameters, _node_name):
+func _ready(_owner, _parent, _parameters, _node_name):
 	
+	owner = _owner
 	parent = _parent
 	parameters = _parameters
 	node_name = _node_name
 	
-	parent.connect('state_starting', self, '_on_state_starting')
-	parent.connect('on_process', self, '_process')
+	parent.connect('state_starting', self, '_on_state_starting') if parent != null else null
+	owner.connect('on_process', self, '_process')
 	
 	
 	for point in range(call('get_blend_point_count')):
@@ -122,9 +124,9 @@ func _ready(_parent, _parameters, _node_name):
 		if node.has_method('_ready'):
 			
 			if node is AnimationNodeStateMachine or node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
-				node._ready(parent, parameters + str(point) + '/', str(point))
+				node._ready(owner, self, parameters + str(point) + '/', str(point))
 			else:
-				node._ready(parent, parameters, str(point))
+				node._ready(owner, self, parameters, str(point))
 		
 		nodes.append(node)
 
@@ -143,14 +145,14 @@ func _process(delta):
 		
 		if get_class() == 'AnimationNodeBlendSpace1D':
 			
-			var current_pos = parent.get(blend_position)
-			parent.set(blend_position, Vector2(current_pos, 0).linear_interpolate(Vector2(target_pos, 0), delta * speed).x)
+			var current_pos = owner.get(blend_position)
+			owner.set(blend_position, Vector2(current_pos, 0).linear_interpolate(Vector2(target_pos, 0), delta * speed).x)
 			
 		if get_class() == 'AnimationNodeBlendSpace2D':
 			
-			var current_pos = parent.get(blend_position)
-			parent.set(blend_position, current_pos.linear_interpolate(target_pos, delta * speed))
+			var current_pos = owner.get(blend_position)
+			owner.set(blend_position, current_pos.linear_interpolate(target_pos, delta * speed))
 			
 	else:
 		
-		parent.set(blend_position, target_pos)
+		owner.set(blend_position, target_pos)

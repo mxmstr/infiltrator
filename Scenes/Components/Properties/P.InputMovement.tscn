@@ -234,35 +234,35 @@ __meta__ = {
 }
 statemachine = ""
 
-[sub_resource type="AnimationNodeStateMachine" id=36]
+[sub_resource type="AnimationNodeStateMachine" id=28]
 states/StateMachine/node = SubResource( 27 )
-states/StateMachine/position = Vector2( 479.4, 79 )
+states/StateMachine/position = Vector2( 561.4, 92 )
 start_node = "StateMachine"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=40]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=32]
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=41]
+[sub_resource type="Animation" id=33]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../HumanMovement")
@@ -323,12 +323,12 @@ __meta__ = {
 }
 
 [node name="InputMovement" type="AnimationTree"]
-tree_root = SubResource( 36 )
+tree_root = SubResource( 28 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 37 )
-parameters/StateMachine/playback = SubResource( 38 )
-parameters/StateMachine/Lean/playback = SubResource( 39 )
-parameters/StateMachine/Stance/playback = SubResource( 40 )
+parameters/playback = SubResource( 29 )
+parameters/StateMachine/playback = SubResource( 30 )
+parameters/StateMachine/Lean/playback = SubResource( 31 )
+parameters/StateMachine/Stance/playback = SubResource( 32 )
 script = ExtResource( 3 )
 __meta__ = {
 
@@ -339,7 +339,7 @@ root_node = NodePath(".")
 anims/Crawl = ExtResource( 4 )
 anims/Crouch = ExtResource( 5 )
 anims/DefaultAnim = ExtResource( 6 )
-anims/LeanDefault = SubResource( 41 )
+anims/LeanDefault = SubResource( 33 )
 anims/LeanLeft = SubResource( 34 )
 anims/LeanRight = SubResource( 35 )
 anims/Run = ExtResource( 7 )

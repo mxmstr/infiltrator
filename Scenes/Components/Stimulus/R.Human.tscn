@@ -1,37 +1,38 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://new_script.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Components/Stimulus/R.Human.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 [ext_resource path="res://Animations/Stimulus/R.H.Fall.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/Stimulus/R.H.Land.tres" type="Animation" id=6]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "R.H.Fall"
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "DefaultAnim"
+animation = "R.H.Fall"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-animation = "R.H.Land"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "R.H.Land"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "DefaultAnim"
 __meta__ = {
 
 }
@@ -42,6 +43,11 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
 auto_advance = true
 disabled = true
@@ -54,17 +60,10 @@ max_intensity = 100.0
 direction = Vector3( 0, 1, 0 )
 max_direction_angle = 80.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-switch_mode = 2
-auto_advance = true
-priority = 2
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 switch_mode = 2
 auto_advance = true
+priority = 2
 __meta__ = {
 
 }
@@ -76,47 +75,67 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=11]
-states/Airborne/node = SubResource( 1 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/Airborne/node = SubResource( 2 )
 states/Airborne/position = Vector2( 689, 125 )
-states/Default/node = SubResource( 2 )
+states/Default/node = SubResource( 3 )
 states/Default/position = Vector2( 455, 125 )
-states/Land/node = SubResource( 3 )
+states/Land/node = SubResource( 4 )
 states/Land/position = Vector2( 360, -246 )
-states/Touch/node = SubResource( 4 )
+states/Touch/node = SubResource( 5 )
 states/Touch/position = Vector2( 455, -102 )
-transitions = [ "Default", "Touch", SubResource( 5 ), "Default", "Airborne", SubResource( 6 ), "Touch", "Land", SubResource( 7 ), "Touch", "Default", SubResource( 8 ), "Airborne", "Default", SubResource( 9 ), "Land", "Default", SubResource( 10 ) ]
+transitions = [ "Default", "Touch", SubResource( 6 ), "Default", "Airborne", SubResource( 7 ), "Touch", "Land", SubResource( 8 ), "Touch", "Default", SubResource( 9 ), "Airborne", "Default", SubResource( 10 ), "Land", "Default", SubResource( 11 ) ]
 start_node = "Default"
-graph_offset = Vector2( 0, -274.627 )
+graph_offset = Vector2( 0, -272.807 )
 script = ExtResource( 1 )
 __meta__ = {
 
 }
 statemachine = ""
 
-[sub_resource type="AnimationNodeStateMachine" id=12]
-states/StateMachine/node = SubResource( 11 )
-states/StateMachine/position = Vector2( 453.8, 86.2 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=15]
+states/DefaultAnim/node = SubResource( 1 )
+states/DefaultAnim/position = Vector2( 687, 88.2 )
+states/StateMachine/node = SubResource( 12 )
+states/StateMachine/position = Vector2( 453.8, 88.2 )
+transitions = [ "StateMachine", "DefaultAnim", SubResource( 13 ), "DefaultAnim", "StateMachine", SubResource( 14 ) ]
 start_node = "StateMachine"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 __meta__ = {
 
 }
 
 [node name="Receptor" type="AnimationTree"]
-tree_root = SubResource( 12 )
+tree_root = SubResource( 15 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 13 )
-parameters/StateMachine/playback = SubResource( 14 )
+parameters/playback = SubResource( 16 )
+parameters/StateMachine/playback = SubResource( 17 )
 script = ExtResource( 3 )
 __meta__ = {
 

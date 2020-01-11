@@ -7,6 +7,8 @@ signal travel_starting
 
 func _start_state(_name, data={}):
 	
+	print([name, _name])
+	
 	var start_name = tree_root.get_start_node()
 	var start = tree_root.get_node(start_name)
 	
@@ -16,19 +18,23 @@ func _start_state(_name, data={}):
 
 func _ready():
 	
-	if Engine.editor_hint: return
-	
-	
-	if not has_meta('unique'):
-		Inf._make_unique(self)
-		return
-	
-	
 	var start_name = tree_root.get_start_node()
 	var start = tree_root.get_node(start_name)
 	
-	if start.has_method('_ready'):
-		start._ready(self, 'parameters/' + start_name + '/', start_name)
+	print('asdf ', start.get_transition_count())
+	
+	
+	if Engine.editor_hint: return
+	
+	if not has_meta('unique'):
+		#Inf._make_unique(self)
+		return
+	
+	
+#	if start.has_method('_ready'):
+#		start._ready(self, null, 'parameters/' + start_name + '/', start_name)
+	
+	print(start.get_transition_count())
 	
 	active = true
 

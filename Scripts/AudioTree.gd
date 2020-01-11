@@ -3,7 +3,6 @@ extends 'res://Scripts/AnimationTree.gd'
 
 func _start_state(_name, data={}):
 	
-	print(_name)
 	._start_state(_name, data)
 
 

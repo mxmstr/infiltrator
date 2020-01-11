@@ -1,5 +1,6 @@
 extends AnimationNodeStateMachineTransition
 
+var owner
 var parent
 var parameters
 var from
@@ -15,11 +16,12 @@ func _on_travel_starting(new_node_name, new_node):
 	disabled = not new_node.priority > from.priority
 
 
-func _ready(_parent, _parameters, _from, _to):
+func _ready(_owner, _parent, _parameters, _from, _to):
 	
+	owner = _owner
 	parent = _parent
 	parameters = _parameters
 	from = _from
 	to = _to
 	
-	parent.connect('travel_starting', self, '_on_travel_starting')
+	owner.connect('travel_starting', self, '_on_travel_starting')

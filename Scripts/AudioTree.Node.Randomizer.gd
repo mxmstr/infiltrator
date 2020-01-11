@@ -1,5 +1,6 @@
 extends AnimationNodeAnimation
 
+var owner
 var parent
 var playback
 var node_name
@@ -22,11 +23,12 @@ func _on_travel_starting(new_node_name, new_node):
 		last = enabled_idx
 
 
-func _ready(_parent, _playback, _node_name):
+func _ready(_owner, _parent, _playback, _node_name):
 	
 	print('randomizer')
+	owner = _owner
 	parent = _parent
 	playback = _playback
 	node_name = _node_name
 	
-	parent.connect('travel_starting', self, '_on_travel_starting')
+	owner.connect('travel_starting', self, '_on_travel_starting')

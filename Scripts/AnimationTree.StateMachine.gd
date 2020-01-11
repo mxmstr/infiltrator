@@ -5,6 +5,7 @@ const camera_rig_track_path = '../../Perspective'
 export(String) var statemachine
 
 var node_name
+var owner
 var parent
 var parameters
 var transitions = []
@@ -18,7 +19,7 @@ signal travel_starting
 
 func _filter_anim_events(is_action, filter_all=false):
 	
-	var playback = parent.get(parameters + 'playback')
+	var playback = owner.get(parameters + 'playback')
 	
 	
 	for node in nodes:
@@ -27,7 +28,7 @@ func _filter_anim_events(is_action, filter_all=false):
 		
 		if node is AnimationNodeAnimation:
 		
-			var animation = parent.get_node('AnimationPlayer').get_animation(node.animation)
+			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
 
 			for track in animation.get_track_count():
 				
@@ -48,7 +49,7 @@ func _unfilter_anim_events():
 		
 		if node is AnimationNodeAnimation:
 			
-			var animation = parent.get_node('AnimationPlayer').get_animation(node.animation)
+			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
 			
 			for track in node.animation.get_track_count():
 				node.animation.track_set_enabled(track, true)
@@ -60,30 +61,30 @@ func _unfilter_anim_events():
 
 func _travel(_name):
 	
-	var playback = parent.get(parameters + 'playback')
+	var playback = owner.get(parameters + 'playback')
 	var current = playback.get_current_node()
 	
 	if not has_node(_name):
 		return
 	
 	
-	parent.emit_signal('travel_starting', _name, get_node(_name))
+	owner.emit_signal('travel_starting', _name, get_node(_name))
 	
+	print([owner.name, _name, parameters, get_transition_count()])
 	playback.travel(_name)
 
 
-func _ready(_parent, _parameters, _node_name):
+func _ready(_owner, _parent, _parameters, _node_name):
 	
-	print(_parent.name)
-	
+	owner = _owner
 	parent = _parent
 	parameters = _parameters
 	node_name = _node_name
 	
-	parent.connect('on_process', self, '_process')
-	
+	owner.connect('on_process', self, '_process')
 	
 	print(get_transition_count())
+	
 	
 	if get_transition_count() == 0:
 
@@ -93,52 +94,50 @@ func _ready(_parent, _parameters, _node_name):
 		if start.has_method('_ready'):
 
 			if start is AnimationNodeStateMachine or start is AnimationNodeBlendSpace1D or start is AnimationNodeBlendSpace2D:
-				start._ready(parent, parameters + start_name + '/', start_name)
+				start._ready(owner, self, parameters + start_name + '/', start_name)
 			else:
-				start._ready(parent, parameters, start_name)
+				start._ready(owner, self, parameters, start_name)
 
 		nodes.append(start)
 
 		return
-	
-	
+
+
 	var anim_names = []
-	
+
 	for idx in range(get_transition_count()):
-		
+
 		var transition = get_transition(idx)
 		var from_name = get_transition_from(idx)
 		var to_name = get_transition_to(idx)
 		var from = get_node(from_name)
 		var to = get_node(to_name)
-		
-		print(from_name)
-		
+
 		if not from_name in anim_names:
-			
+
 			if from.has_method('_ready'):
-				
+
 				if from is AnimationNodeStateMachine or from is AnimationNodeBlendSpace1D or from is AnimationNodeBlendSpace2D:
-					from._ready(parent, parameters + from_name + '/', from_name)
+					from._ready(owner, self, parameters + from_name + '/', from_name)
 				else:
-					from._ready(parent, parameters, from_name)
-			
+					from._ready(owner, self, parameters, from_name)
+
 			anim_names.append(from_name)
 			nodes.append(from)
-		
-		
+
+
 		if from.has_method('_ready'):
 			from.transitions.append(transition)
-		
+
 		if transition.has_method('_ready'):
-			transition._ready(parent, parameters, from, to)
+			transition._ready(owner, self, parameters, from, to)
 
 
 func _process(delta):
 	
-	var playback = parent.get(parameters + 'playback')
+	var playback = owner.get(parameters + 'playback')
 	
 	if current_node != playback.get_current_node():
-		emit_signal('state_starting', playback.get_current_node())
+		owner.emit_signal('state_starting', playback.get_current_node())
 	
 	current_node = playback.get_current_node()
