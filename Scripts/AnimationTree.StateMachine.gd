@@ -58,6 +58,20 @@ func _unfilter_anim_events():
 			node._unfilter_anim_events()
 
 
+func _travel(_name):
+	
+	var playback = parent.get(parameters + 'playback')
+	var current = playback.get_current_node()
+	
+	if not has_node(_name):
+		return
+	
+	
+	parent.emit_signal('travel_starting', _name, get_node(_name))
+	
+	playback.travel(_name)
+
+
 func _ready(_parent, _parameters, _node_name):
 	
 	print(_parent.name)

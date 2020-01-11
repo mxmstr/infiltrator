@@ -7,16 +7,11 @@ signal travel_starting
 
 func _start_state(_name, data={}):
 	
-	var playback = get('parameters/playback')
-	var current = playback.get_current_node()
+	var start_name = tree_root.get_start_node()
+	var start = tree_root.get_node(start_name)
 	
-	if not tree_root.has_node(_name):
-		return
-	
-	
-	emit_signal('travel_starting', _name, tree_root.get_node(_name))
-	
-	playback.travel(_name)
+	if start.has_method('_travel'):
+		start._travel(_name)
 
 
 func _ready():

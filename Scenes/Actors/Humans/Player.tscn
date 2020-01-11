@@ -950,6 +950,7 @@ root_node = NodePath("../../Model/neo_reference_skeleton")
 
 [node name="Movement" parent="." instance=ExtResource( 13 )]
 parameters/playback = SubResource( 59 )
+parameters/BlendSpace1D/blend_position = 1.97858
 parameters/BlendSpace1D/0/2/2/playback = SubResource( 60 )
 parameters/BlendSpace1D/1/0/3/playback = SubResource( 61 )
 
