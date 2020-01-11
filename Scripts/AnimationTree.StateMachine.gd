@@ -8,7 +8,7 @@ var node_name
 var owner
 var parent
 var parameters
-var transitions = []
+var connections = []
 var nodes = []
 
 var current_node = get_start_node()
@@ -70,7 +70,6 @@ func _travel(_name):
 	
 	owner.emit_signal('travel_starting', _name, get_node(_name))
 	
-	print([owner.name, _name, parameters, get_transition_count()])
 	playback.travel(_name)
 
 
@@ -82,8 +81,6 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	node_name = _node_name
 	
 	owner.connect('on_process', self, '_process')
-	
-	print(get_transition_count())
 	
 	
 	if get_transition_count() == 0:
@@ -127,7 +124,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 
 
 		if from.has_method('_ready'):
-			from.transitions.append(transition)
+			from.connections.append(transition)
 
 		if transition.has_method('_ready'):
 			transition._ready(owner, self, parameters, from, to)
@@ -138,6 +135,6 @@ func _process(delta):
 	var playback = owner.get(parameters + 'playback')
 	
 	if current_node != playback.get_current_node():
-		owner.emit_signal('state_starting', playback.get_current_node())
+		emit_signal('state_starting', playback.get_current_node())
 	
 	current_node = playback.get_current_node()

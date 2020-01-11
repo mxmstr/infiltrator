@@ -4,7 +4,7 @@ var owner
 var parent
 var playback
 var node_name
-var transitions = []
+var connections = []
 var last = -1
 
 
@@ -15,10 +15,10 @@ func _on_travel_starting(new_node_name, new_node):
 		var enabled_idx = last
 		
 		while enabled_idx == last:
-			enabled_idx = randi() % len(transitions)
+			enabled_idx = randi() % len(connections)
 		
-		for idx in range(len(transitions)):
-			transitions[idx].disabled = idx != enabled_idx
+		for idx in range(len(connections)):
+			connections[idx].disabled = idx != enabled_idx
 		
 		last = enabled_idx
 

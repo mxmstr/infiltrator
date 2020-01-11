@@ -7,7 +7,8 @@ export(float) var max_direction_angle = -1
 
 var owner
 var parent
-var playback
+var parameters
+var connections = []
 var from
 var to
 
@@ -23,11 +24,11 @@ func _on_stimulate(_collider, _position, _normal, _travel):
 	disabled = not within_intensity or not within_direction
 
 
-func _ready(_owner, _parent, _playback, _from, _to):
+func _ready(_owner, _parent, _parameters, _from, _to):
 	
 	owner = _owner
 	parent = _parent
-	playback = _playback
+	parameters = _parameters
 	from = _from
 	to = _to
 	

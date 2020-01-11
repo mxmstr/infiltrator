@@ -21,7 +21,7 @@ var node_name
 var owner
 var parent
 var parameters
-var transitions = []
+var connections = []
 var nodes = []
 
 var target_pos

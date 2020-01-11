@@ -12,18 +12,19 @@ export(Status) var state
 
 var owner
 var parent
-var playback
+var parameters
+var connections = []
 var from
 var to
 
 var last_status = -1
 
 
-func _ready(_owner, _parent, _playback, _from, _to):
+func _ready(_owner, _parent, _parameters, _from, _to):
 	
 	owner = _owner
 	parent = _parent
-	playback = _playback
+	parameters = _parameters
 	from = _from
 	to = _to
 	

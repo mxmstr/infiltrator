@@ -6,7 +6,7 @@ var node_name
 var owner
 var parent
 var parameters
-var transitions = []
+var connections = []
 
 
 func _on_state_starting(new_name):
@@ -27,4 +27,4 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	parameters = _parameters
 	node_name = _node_name
 	
-	owner.connect('state_starting', self, '_on_state_starting')
+	parent.connect('state_starting', self, '_on_state_starting')

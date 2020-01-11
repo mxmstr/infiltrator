@@ -1,6 +1,6 @@
 [gd_resource type="AnimationNodeStateMachine" load_steps=13 format=2]
 
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://new_script.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
@@ -83,7 +83,7 @@ states/Touch/node = SubResource( 4 )
 states/Touch/position = Vector2( 455, -102 )
 transitions = [ "Default", "Touch", SubResource( 5 ), "Default", "Airborne", SubResource( 6 ), "Touch", "Land", SubResource( 7 ), "Touch", "Default", SubResource( 8 ), "Airborne", "Default", SubResource( 9 ), "Land", "Default", SubResource( 10 ) ]
 start_node = "Default"
-graph_offset = Vector2( 0, -274.627 )
+graph_offset = Vector2( 0, -272.807 )
 script = ExtResource( 1 )
 __meta__ = {
 

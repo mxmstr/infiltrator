@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=2]
+[gd_scene load_steps=116 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=2]
@@ -28,11 +28,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 __meta__ = {
 
 }
@@ -575,27 +570,17 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=59]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=100]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=60]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=61]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=101]
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=62]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=63]
 __meta__ = {
 
 }
@@ -872,27 +857,17 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=96]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=102]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=97]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=98]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=103]
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=99]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=100]
 __meta__ = {
 
 }
@@ -926,7 +901,6 @@ send_to_self = true
 [node name="Perspective" parent="." instance=ExtResource( 7 )]
 editor/display_folded = true
 parameters/playback = SubResource( 2 )
-parameters/StateMachine/playback = SubResource( 3 )
 fp_root_bone = "Pelvis"
 fp_shoulder_bone = "shoulders"
 fp_hidden_bones = [ "Head", "Neck" ]
@@ -940,7 +914,6 @@ transform = Transform( -0.999999, 0, -8.74209e-08, 0, 0.999979, 0, 8.74227e-08, 
 tree_root = SubResource( 54 )
 parameters/playback = SubResource( 55 )
 parameters/Climb/blend_position = 0
-parameters/Jump/blend_position = Vector2( 0, 0 )
 parameters/Jump/3/playback = SubResource( 56 )
 parameters/Jump/4/playback = SubResource( 57 )
 parameters/Jump/5/playback = SubResource( 58 )
@@ -949,10 +922,8 @@ parameters/Jump/5/playback = SubResource( 58 )
 root_node = NodePath("../../Model/neo_reference_skeleton")
 
 [node name="Movement" parent="." instance=ExtResource( 13 )]
-parameters/playback = SubResource( 59 )
-parameters/BlendSpace1D/blend_position = 1.97858
-parameters/BlendSpace1D/0/2/2/playback = SubResource( 60 )
-parameters/BlendSpace1D/1/0/3/playback = SubResource( 61 )
+parameters/0/2/2/playback = SubResource( 100 )
+parameters/1/0/3/playback = SubResource( 101 )
 
 [node name="AnimationPlayer" parent="Movement" index="0"]
 root_node = NodePath("../../Model/neo_reference_skeleton")
@@ -960,7 +931,6 @@ root_node = NodePath("../../Model/neo_reference_skeleton")
 [node name="Receptor" parent="." instance=ExtResource( 14 )]
 editor/display_folded = true
 parameters/playback = SubResource( 62 )
-parameters/StateMachine/playback = SubResource( 63 )
 
 [node name="InputAbilities" parent="." instance=ExtResource( 15 )]
 tree_root = SubResource( 93 )
@@ -968,14 +938,12 @@ parameters/playback = SubResource( 94 )
 
 [node name="InputMovement" parent="." instance=ExtResource( 17 )]
 parameters/playback = SubResource( 95 )
-parameters/StateMachine/playback = SubResource( 96 )
-parameters/StateMachine/Lean/playback = SubResource( 97 )
-parameters/StateMachine/Stance/playback = SubResource( 98 )
+parameters/Lean/playback = SubResource( 102 )
+parameters/Stance/playback = SubResource( 103 )
 
 [node name="FeetAudio" parent="." instance=ExtResource( 18 )]
 editor/display_folded = true
 parameters/playback = SubResource( 99 )
-parameters/StateMachine/playback = SubResource( 100 )
 
 [node name="AudioStreamPlayer3D" parent="FeetAudio" index="1"]
 stream = ExtResource( 19 )

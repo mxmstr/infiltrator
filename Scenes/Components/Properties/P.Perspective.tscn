@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Prop.Perspective.gd" type="Script" id=2]
@@ -55,25 +55,12 @@ __meta__ = {
 }
 statemachine = ""
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/StateMachine/node = SubResource( 7 )
-states/StateMachine/position = Vector2( 452.2, 93.4 )
-start_node = "StateMachine"
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
-__meta__ = {
-
-}
-
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=9]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -93,7 +80,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=10]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:cam_max_x")
@@ -123,7 +110,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=11]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:cam_max_x")
@@ -154,20 +141,19 @@ __meta__ = {
 }
 
 [node name="Perspective" type="AnimationTree"]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 7 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 9 )
-parameters/StateMachine/playback = SubResource( 10 )
+parameters/playback = SubResource( 8 )
 script = ExtResource( 2 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AlignPlayerToCamera = SubResource( 11 )
+anims/AlignPlayerToCamera = SubResource( 9 )
 anims/DefaultAnim = ExtResource( 3 )
-anims/HalfYaw = SubResource( 12 )
-anims/LockYaw = SubResource( 13 )
+anims/HalfYaw = SubResource( 10 )
+anims/LockYaw = SubResource( 11 )
 __meta__ = {
 
 }
