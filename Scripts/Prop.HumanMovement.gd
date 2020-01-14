@@ -206,8 +206,6 @@ func _physics_process(delta):
 	
 	if current_state == state.CLIMBING:
 		
-		print([climb_x_progress, climb_y_progress]) if owner.name == 'Player2' else null
-		
 		var new_x_pos = climb_start.linear_interpolate(climb_target, climb_x_progress)
 		var new_y_pos = climb_start.linear_interpolate(climb_target, climb_y_progress)
 		

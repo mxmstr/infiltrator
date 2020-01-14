@@ -1,194 +1,8 @@
-[gd_resource type="AnimationNodeBlendSpace1D" load_steps=33 format=2]
+[gd_resource type="AnimationNodeBlendSpace1D" load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/AnimationTree.BlendSpace.gd" type="Script" id=3]
-
-[sub_resource type="AnimationNodeAnimation" id=1]
-animation = "CrouchSideStepLeft"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=2]
-animation = "CrouchSidestepRight"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "CrouchForward"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "CrouchBackward"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "CrouchIdle"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "CrouchLeanLeft"
-scale = 3.0
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "CrouchLeanRight"
-scale = 3.0
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-auto_advance = true
-xfade_time = 0.25
-disabled = true
-script = ExtResource( 2 )
-__meta__ = {
-
-}
-assertion = "Equals"
-target = "HumanMovement"
-method = "get"
-args = [ "current_lean" ]
-value = 2.0
-wait_for_frame = 0.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-auto_advance = true
-xfade_time = 0.25
-disabled = true
-script = ExtResource( 2 )
-__meta__ = {
-
-}
-assertion = "Not Equals"
-target = "HumanMovement"
-method = "get"
-args = [ "current_lean" ]
-value = 2.0
-wait_for_frame = 0.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-auto_advance = true
-xfade_time = 0.25
-disabled = true
-script = ExtResource( 2 )
-__meta__ = {
-
-}
-assertion = "Not Equals"
-target = "HumanMovement"
-method = "get"
-args = [ "current_lean" ]
-value = 1.0
-wait_for_frame = 0.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-auto_advance = true
-xfade_time = 0.25
-disabled = true
-script = ExtResource( 2 )
-__meta__ = {
-
-}
-assertion = "Equals"
-target = "HumanMovement"
-method = "get"
-args = [ "current_lean" ]
-value = 1.0
-wait_for_frame = 0.0
-
-[sub_resource type="AnimationNodeStateMachine" id=12]
-states/Default/node = SubResource( 5 )
-states/Default/position = Vector2( 632, 106 )
-states/LeanLeft/node = SubResource( 6 )
-states/LeanLeft/position = Vector2( 403, 106 )
-states/LeanRight/node = SubResource( 7 )
-states/LeanRight/position = Vector2( 868, 106 )
-transitions = [ "Default", "LeanRight", SubResource( 8 ), "LeanRight", "Default", SubResource( 9 ), "LeanLeft", "Default", SubResource( 10 ), "Default", "LeanLeft", SubResource( 11 ) ]
-start_node = "Default"
-graph_offset = Vector2( 143.62, 0 )
-script = ExtResource( 1 )
-__meta__ = {
-
-}
-statemachine = ""
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=13]
-blend_point_0/node = SubResource( 3 )
-blend_point_0/pos = 0.2
-blend_point_1/node = SubResource( 4 )
-blend_point_1/pos = -0.2
-blend_point_2/node = SubResource( 12 )
-blend_point_2/pos = 0.0
-script = ExtResource( 3 )
-__meta__ = {
-
-}
-update_mode = "process"
-speed = 0.0
-x_target = "HumanMovement"
-x_method = "_get_forward_speed"
-x_args = [  ]
-x_max_value = 2.75
-x_min_value = -2.75
-y_target = ""
-y_method = ""
-y_args = [  ]
-y_max_value = 0.0
-y_min_value = 0.0
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=14]
-blend_point_0/node = SubResource( 1 )
-blend_point_0/pos = -0.2
-blend_point_1/node = SubResource( 2 )
-blend_point_1/pos = 0.2
-blend_point_2/node = SubResource( 13 )
-blend_point_2/pos = 0.0
-script = ExtResource( 3 )
-__meta__ = {
-
-}
-update_mode = "process"
-speed = 0.0
-x_target = "HumanMovement"
-x_method = "_get_leftright_speed"
-x_args = [  ]
-x_max_value = -2.75
-x_min_value = 2.75
-y_target = ""
-y_method = ""
-y_args = [  ]
-y_max_value = 0.0
-y_min_value = 0.0
-
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "WalkBackward"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "Walk"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "Run"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=18]
 animation = "T_STAND"
@@ -286,51 +100,57 @@ __meta__ = {
 }
 statemachine = ""
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=26]
-blend_point_0/node = SubResource( 15 )
-blend_point_0/pos = -0.3
-blend_point_1/node = SubResource( 16 )
-blend_point_1/pos = 0.3
-blend_point_2/node = SubResource( 17 )
-blend_point_2/pos = 1.0
-blend_point_3/node = SubResource( 25 )
-blend_point_3/pos = 0.0
-script = ExtResource( 3 )
-__meta__ = {
-
-}
-update_mode = "process"
-speed = 0.0
-x_target = "HumanMovement"
-x_method = "_get_forward_speed"
-x_args = [  ]
-x_max_value = 2.75
-x_min_value = -2.75
-y_target = ""
-y_method = ""
-y_args = [  ]
-y_max_value = 0.0
-y_min_value = 0.0
-
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=36]
 animation = "StrafeLeft"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=37]
 animation = "StrafeRight"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=29]
-blend_point_0/node = SubResource( 26 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 27 )
-blend_point_1/pos = -1.0
-blend_point_2/node = SubResource( 28 )
-blend_point_2/pos = 1.0
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "WalkBackward"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "Walk"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "Run"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "WalkBackward"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=30]
+blend_point_0/node = SubResource( 25 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 36 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 37 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 38 )
+blend_point_3/pos = Vector2( 0, -0.3 )
+blend_point_4/node = SubResource( 39 )
+blend_point_4/pos = Vector2( 0, 0.3 )
+blend_point_5/node = SubResource( 40 )
+blend_point_5/pos = Vector2( 0, 1 )
+blend_point_6/node = SubResource( 41 )
+blend_point_6/pos = Vector2( 0, -1 )
 script = ExtResource( 3 )
 __meta__ = {
 
@@ -342,17 +162,165 @@ x_method = "_get_leftright_speed"
 x_args = [  ]
 x_max_value = -2.75
 x_min_value = 2.75
-y_target = ""
-y_method = ""
+y_target = "HumanMovement"
+y_method = "_get_forward_speed"
 y_args = [  ]
-y_max_value = 0.0
-y_min_value = 0.0
+y_max_value = 2.75
+y_min_value = -2.75
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "CrouchIdle"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "CrouchLeanLeft"
+scale = 3.0
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "CrouchLeanRight"
+scale = 3.0
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+auto_advance = true
+xfade_time = 0.25
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+assertion = "Equals"
+target = "HumanMovement"
+method = "get"
+args = [ "current_lean" ]
+value = 2.0
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+auto_advance = true
+xfade_time = 0.25
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+assertion = "Not Equals"
+target = "HumanMovement"
+method = "get"
+args = [ "current_lean" ]
+value = 2.0
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+auto_advance = true
+xfade_time = 0.25
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+assertion = "Not Equals"
+target = "HumanMovement"
+method = "get"
+args = [ "current_lean" ]
+value = 1.0
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+auto_advance = true
+xfade_time = 0.25
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+assertion = "Equals"
+target = "HumanMovement"
+method = "get"
+args = [ "current_lean" ]
+value = 1.0
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/Default/node = SubResource( 5 )
+states/Default/position = Vector2( 632, 106 )
+states/LeanLeft/node = SubResource( 6 )
+states/LeanLeft/position = Vector2( 403, 106 )
+states/LeanRight/node = SubResource( 7 )
+states/LeanRight/position = Vector2( 868, 106 )
+transitions = [ "Default", "LeanRight", SubResource( 8 ), "LeanRight", "Default", SubResource( 9 ), "LeanLeft", "Default", SubResource( 10 ), "Default", "LeanLeft", SubResource( 11 ) ]
+start_node = "Default"
+graph_offset = Vector2( 143.62, 0 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "CrouchSideStepLeft"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "CrouchSidestepRight"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "CrouchForward"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "CrouchBackward"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=31]
+blend_point_0/node = SubResource( 12 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 32 )
+blend_point_1/pos = Vector2( -0.2, 0 )
+blend_point_2/node = SubResource( 33 )
+blend_point_2/pos = Vector2( 0.2, 0 )
+blend_point_3/node = SubResource( 34 )
+blend_point_3/pos = Vector2( 0, 0.2 )
+blend_point_4/node = SubResource( 35 )
+blend_point_4/pos = Vector2( 0, -0.2 )
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+update_mode = "process"
+speed = 0.0
+x_target = "HumanMovement"
+x_method = "_get_leftright_speed"
+x_args = [  ]
+x_max_value = -2.75
+x_min_value = 2.75
+y_target = "HumanMovement"
+y_method = "_get_forward_speed"
+y_args = [  ]
+y_max_value = 2.75
+y_min_value = -2.75
 
 [resource]
-blend_point_0/node = SubResource( 14 )
-blend_point_0/pos = 1.0
-blend_point_1/node = SubResource( 29 )
-blend_point_1/pos = 2.0
+blend_point_0/node = SubResource( 30 )
+blend_point_0/pos = 2.0
+blend_point_1/node = SubResource( 31 )
+blend_point_1/pos = 1.0
 min_space = 0.0
 max_space = 4.0
 snap = 1.0

@@ -25,7 +25,6 @@ func _on_travel_starting(new_node_name, new_node):
 
 func _ready(_owner, _parent, _playback, _node_name):
 	
-	print('randomizer')
 	owner = _owner
 	parent = _parent
 	playback = _playback

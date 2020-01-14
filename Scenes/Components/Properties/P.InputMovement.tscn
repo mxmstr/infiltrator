@@ -102,9 +102,11 @@ states/Start/position = Vector2( 394, 120 )
 transitions = [ "Start", "LeanLeft", SubResource( 6 ), "Start", "LeanRight", SubResource( 7 ), "LeanLeft", "End", SubResource( 8 ), "LeanRight", "End", SubResource( 9 ), "Start", "LeanDefault", SubResource( 10 ), "LeanDefault", "End", SubResource( 11 ) ]
 start_node = "Start"
 end_node = "End"
+script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Crouch"
@@ -203,9 +205,11 @@ transitions = [ "Start", "Run", SubResource( 18 ), "Start", "Crouch", SubResourc
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( -94.2871, 42.9925 )
+script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 switch_mode = 2
@@ -234,7 +238,7 @@ __meta__ = {
 }
 statemachine = ""
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 __meta__ = {
 
 }
@@ -244,12 +248,12 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=36]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../HumanMovement")
@@ -269,7 +273,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=37]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../HumanMovement")
@@ -312,9 +316,9 @@ __meta__ = {
 [node name="InputMovement" type="AnimationTree"]
 tree_root = SubResource( 27 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 28 )
+parameters/playback = SubResource( 34 )
 parameters/Lean/playback = SubResource( 29 )
-parameters/Stance/playback = SubResource( 30 )
+parameters/Stance/playback = SubResource( 35 )
 script = ExtResource( 3 )
 __meta__ = {
 
@@ -325,8 +329,8 @@ root_node = NodePath(".")
 anims/Crawl = ExtResource( 4 )
 anims/Crouch = ExtResource( 5 )
 anims/DefaultAnim = ExtResource( 6 )
-anims/LeanDefault = SubResource( 31 )
-anims/LeanLeft = SubResource( 32 )
+anims/LeanDefault = SubResource( 36 )
+anims/LeanLeft = SubResource( 37 )
 anims/LeanRight = SubResource( 33 )
 anims/Run = ExtResource( 7 )
 anims/Walk = ExtResource( 8 )

@@ -7,11 +7,8 @@ signal travel_starting
 
 func _start_state(_name, data={}):
 	
-	var start_name = tree_root.get_start_node()
-	var start = tree_root.get_node(start_name)
-	
-	if start.has_method('_travel'):
-		start._travel(_name)
+	if tree_root.has_method('_travel'):
+		tree_root._travel(_name)
 
 
 func _ready():
