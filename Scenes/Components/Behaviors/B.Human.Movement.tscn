@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=2]
+[gd_scene load_steps=123 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=2]
@@ -403,29 +403,31 @@ y_args = [  ]
 y_max_value = 2.75
 y_min_value = -2.75
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=29]
+[sub_resource type="AnimationNodeBlendSpace2D" id=29]
 blend_point_0/node = SubResource( 15 )
-blend_point_0/pos = 2.0
+blend_point_0/pos = Vector2( 0, 2 )
 blend_point_1/node = SubResource( 28 )
-blend_point_1/pos = 1.0
-min_space = 0.0
-max_space = 4.0
-snap = 1.0
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 28 )
+blend_point_2/pos = Vector2( 0.5, 1 )
+min_space = Vector2( -1, 0 )
+max_space = Vector2( 1, 4 )
+snap = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
 __meta__ = {
 
 }
 update_mode = "process"
 speed = 8.0
-x_target = "HumanMovement"
-x_method = "get"
-x_args = [ "current_state" ]
-x_max_value = 4.0
+x_target = ""
+x_method = ""
+x_args = [  ]
+x_max_value = 0.0
 x_min_value = 0.0
-y_target = ""
-y_method = ""
-y_args = [  ]
-y_max_value = 0.0
+y_target = "HumanMovement"
+y_method = "get"
+y_args = [ "current_state" ]
+y_max_value = 4.0
 y_min_value = 0.0
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=30]
@@ -438,20 +440,25 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=32]
+__meta__ = {
+
+}
+
 [node name="Movement" type="AnimationTree"]
 tree_root = SubResource( 29 )
 anim_player = NodePath("AnimationPlayer")
-parameters/blend_position = 1.99252
-parameters/0/blend_position = 0
+parameters/blend_position = Vector2( -0.00332701, 1.94064 )
+parameters/0/blend_position = Vector2( -0.00241083, 0.00684929 )
 parameters/0/0/playback = SubResource( 30 )
-parameters/1/blend_position = 0
+parameters/1/blend_position = Vector2( 0, 0 )
 parameters/1/0/playback = SubResource( 31 )
+parameters/2/blend_position = Vector2( 0, 0 )
+parameters/2/0/playback = SubResource( 32 )
 script = ExtResource( 4 )
 __meta__ = {
 
 }
-root_bone = "Pelvis"
-movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("")

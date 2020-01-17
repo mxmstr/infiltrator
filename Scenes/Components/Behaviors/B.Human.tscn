@@ -545,7 +545,7 @@ states/LandExit/node = SubResource( 31 )
 states/LandExit/position = Vector2( 497, 129.4 )
 transitions = [ "Default", "Drop", SubResource( 32 ), "Default", "Grab", SubResource( 33 ), "Grab", "Default", SubResource( 34 ), "Drop", "Default", SubResource( 35 ), "ClimbExit", "Default", SubResource( 36 ), "Default", "Land", SubResource( 37 ), "Land", "LandExit", SubResource( 38 ), "LandExit", "Default", SubResource( 39 ), "Default", "Fall", SubResource( 40 ), "Fall", "Default", SubResource( 41 ), "Fall", "Default", SubResource( 42 ), "Land", "LandExit", SubResource( 43 ), "Jump", "Default", SubResource( 44 ), "Jump", "Default", SubResource( 45 ), "Default", "FindClimbTarget", SubResource( 46 ), "FindClimbTarget", "Jump", SubResource( 47 ), "FindClimbTarget", "Climb", SubResource( 48 ), "Climb", "ClimbExit", SubResource( 49 ), "Climb", "ClimbExit", SubResource( 50 ) ]
 start_node = "Default"
-graph_offset = Vector2( -235.571, 174.599 )
+graph_offset = Vector2( -130.555, 174.599 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -576,7 +576,7 @@ __meta__ = {
 tree_root = SubResource( 51 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 52 )
-parameters/Climb/blend_position = Vector2( 0, 0 )
+parameters/Climb/blend_position = Vector2( 0.00617874, -0.257991 )
 parameters/Jump/blend_position = Vector2( 0.00134528, 0.0433791 )
 parameters/Jump/3/playback = SubResource( 53 )
 parameters/Jump/4/playback = SubResource( 54 )

@@ -24,6 +24,7 @@ func _filter_anim_events(is_action, filter_all=false):
 	
 	for node in nodes:
 		
+		print([owner.name, parameters, owner.get(parameters + 'playback').is_playing(), current_node])
 		var is_playing = get_node(current_node) == node
 		
 		if node is AnimationNodeAnimation:

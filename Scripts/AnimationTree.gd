@@ -21,7 +21,7 @@ func _ready():
 	
 	
 	if tree_root.has_method('_ready'):
-		tree_root._ready(self, null, 'parameters/', '')
+		tree_root._ready(self, null, 'parameters/', 'root')
 	
 	active = true
 
