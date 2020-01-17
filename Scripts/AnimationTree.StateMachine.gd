@@ -24,7 +24,6 @@ func _filter_anim_events(is_action, filter_all=false):
 	
 	for node in nodes:
 		
-		print([owner.name, parameters, owner.get(parameters + 'playback').is_playing(), current_node])
 		var is_playing = get_node(current_node) == node
 		
 		if node is AnimationNodeAnimation:
@@ -39,7 +38,7 @@ func _filter_anim_events(is_action, filter_all=false):
 				animation.track_set_enabled(track, false if ((is_function_call and not is_playing) or filter_all) else true)# or is_camera_and_overriden else true)
 		
 		
-		if node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D or node is AnimationNodeStateMachine:
+		if node is AnimationNodeStateMachine or node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
 			
 			node._filter_anim_events(is_action, filter_all) if is_playing else node._filter_anim_events(is_action, true)
 

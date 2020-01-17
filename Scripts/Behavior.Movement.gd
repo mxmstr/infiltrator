@@ -158,14 +158,13 @@ func _ready():
 	var playback = $'../Behavior'.get('parameters/playback')
 	playback.connect('state_starting', self, '_on_state_starting')
 
-	#connect('pre_process', self, '_on_pre_process')
-	#connect('post_process', self, '_on_post_process')
+	connect('pre_process', self, '_on_pre_process')
+	connect('post_process', self, '_on_post_process')
 	
 	_set_skeleton()
 
 
 func _process(delta):
 	
-	print('process')
 	_blend_camera(delta)
 	_blend_skeletons(delta)

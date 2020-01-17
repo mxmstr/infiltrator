@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=2]
+[gd_scene load_steps=122 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=2]
@@ -92,20 +92,20 @@
 [ext_resource path="res://Animations/Human/Movement/w_WalkBackward.tres" type="Animation" id=90]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "T_STAND"
+animation = "CrouchIdle"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "LeanLeft"
+animation = "CrouchLeanLeft"
 scale = 3.0
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-animation = "LeanRight"
+animation = "CrouchLeanRight"
 scale = 3.0
 __meta__ = {
 
@@ -119,11 +119,11 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
-assertion = "Not Equals"
+assertion = "Equals"
 target = "HumanMovement"
 method = "get"
 args = [ "current_lean" ]
-value = 1.0
+value = 2.0
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
@@ -134,11 +134,11 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
-assertion = "Equals"
+assertion = "Not Equals"
 target = "HumanMovement"
 method = "get"
 args = [ "current_lean" ]
-value = 1.0
+value = 2.0
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
@@ -149,11 +149,11 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
-assertion = "Equals"
+assertion = "Not Equals"
 target = "HumanMovement"
 method = "get"
 args = [ "current_lean" ]
-value = 2.0
+value = 1.0
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
@@ -164,185 +164,21 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
-assertion = "Not Equals"
+assertion = "Equals"
 target = "HumanMovement"
 method = "get"
 args = [ "current_lean" ]
-value = 2.0
+value = 1.0
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/Default/node = SubResource( 1 )
-states/Default/position = Vector2( 679, 111 )
-states/LeanLeft/node = SubResource( 2 )
-states/LeanLeft/position = Vector2( 465, 111 )
-states/LeanRight/node = SubResource( 3 )
-states/LeanRight/position = Vector2( 885, 111 )
-transitions = [ "LeanLeft", "Default", SubResource( 4 ), "Default", "LeanLeft", SubResource( 5 ), "Default", "LeanRight", SubResource( 6 ), "LeanRight", "Default", SubResource( 7 ) ]
-start_node = "Default"
-graph_offset = Vector2( 190.573, 0 )
-script = ExtResource( 1 )
-__meta__ = {
-
-}
-statemachine = ""
-
-[sub_resource type="AnimationNodeAnimation" id=9]
-animation = "StrafeLeft"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "StrafeRight"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=11]
-animation = "WalkBackward"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "Walk"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=13]
-animation = "Run"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=14]
-animation = "WalkBackward"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeBlendSpace2D" id=15]
-blend_point_0/node = SubResource( 8 )
-blend_point_0/pos = Vector2( 0, 0 )
-blend_point_1/node = SubResource( 9 )
-blend_point_1/pos = Vector2( -1, 0 )
-blend_point_2/node = SubResource( 10 )
-blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 11 )
-blend_point_3/pos = Vector2( 0, -0.3 )
-blend_point_4/node = SubResource( 12 )
-blend_point_4/pos = Vector2( 0, 0.3 )
-blend_point_5/node = SubResource( 13 )
-blend_point_5/pos = Vector2( 0, 1 )
-blend_point_6/node = SubResource( 14 )
-blend_point_6/pos = Vector2( 0, -1 )
-script = ExtResource( 3 )
-__meta__ = {
-
-}
-update_mode = "process"
-speed = 0.0
-x_target = "HumanMovement"
-x_method = "_get_leftright_speed"
-x_args = [  ]
-x_max_value = -2.75
-x_min_value = 2.75
-y_target = "HumanMovement"
-y_method = "_get_forward_speed"
-y_args = [  ]
-y_max_value = 2.75
-y_min_value = -2.75
-
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "CrouchIdle"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "CrouchLeanLeft"
-scale = 3.0
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=18]
-animation = "CrouchLeanRight"
-scale = 3.0
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-auto_advance = true
-xfade_time = 0.25
-disabled = true
-script = ExtResource( 2 )
-__meta__ = {
-
-}
-assertion = "Equals"
-target = "HumanMovement"
-method = "get"
-args = [ "current_lean" ]
-value = 2.0
-wait_for_frame = 0.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-auto_advance = true
-xfade_time = 0.25
-disabled = true
-script = ExtResource( 2 )
-__meta__ = {
-
-}
-assertion = "Not Equals"
-target = "HumanMovement"
-method = "get"
-args = [ "current_lean" ]
-value = 2.0
-wait_for_frame = 0.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-auto_advance = true
-xfade_time = 0.25
-disabled = true
-script = ExtResource( 2 )
-__meta__ = {
-
-}
-assertion = "Not Equals"
-target = "HumanMovement"
-method = "get"
-args = [ "current_lean" ]
-value = 1.0
-wait_for_frame = 0.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-auto_advance = true
-xfade_time = 0.25
-disabled = true
-script = ExtResource( 2 )
-__meta__ = {
-
-}
-assertion = "Equals"
-target = "HumanMovement"
-method = "get"
-args = [ "current_lean" ]
-value = 1.0
-wait_for_frame = 0.0
-
-[sub_resource type="AnimationNodeStateMachine" id=23]
-states/Default/node = SubResource( 16 )
 states/Default/position = Vector2( 632, 106 )
-states/LeanLeft/node = SubResource( 17 )
+states/LeanLeft/node = SubResource( 2 )
 states/LeanLeft/position = Vector2( 403, 106 )
-states/LeanRight/node = SubResource( 18 )
+states/LeanRight/node = SubResource( 3 )
 states/LeanRight/position = Vector2( 868, 106 )
-transitions = [ "Default", "LeanRight", SubResource( 19 ), "LeanRight", "Default", SubResource( 20 ), "LeanLeft", "Default", SubResource( 21 ), "Default", "LeanLeft", SubResource( 22 ) ]
+transitions = [ "Default", "LeanRight", SubResource( 4 ), "LeanRight", "Default", SubResource( 5 ), "LeanLeft", "Default", SubResource( 6 ), "Default", "LeanLeft", SubResource( 7 ) ]
 start_node = "Default"
 graph_offset = Vector2( 143.62, 0 )
 script = ExtResource( 1 )
@@ -351,40 +187,40 @@ __meta__ = {
 }
 statemachine = ""
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "CrouchSideStepLeft"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "CrouchSidestepRight"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "CrouchForward"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "CrouchBackward"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=28]
-blend_point_0/node = SubResource( 23 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=13]
+blend_point_0/node = SubResource( 8 )
 blend_point_0/pos = Vector2( 0, 0 )
-blend_point_1/node = SubResource( 24 )
+blend_point_1/node = SubResource( 9 )
 blend_point_1/pos = Vector2( -0.2, 0 )
-blend_point_2/node = SubResource( 25 )
+blend_point_2/node = SubResource( 10 )
 blend_point_2/pos = Vector2( 0.2, 0 )
-blend_point_3/node = SubResource( 26 )
+blend_point_3/node = SubResource( 11 )
 blend_point_3/pos = Vector2( 0, 0.2 )
-blend_point_4/node = SubResource( 27 )
+blend_point_4/node = SubResource( 12 )
 blend_point_4/pos = Vector2( 0, -0.2 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -403,34 +239,196 @@ y_args = [  ]
 y_max_value = 2.75
 y_min_value = -2.75
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=29]
-blend_point_0/node = SubResource( 15 )
-blend_point_0/pos = Vector2( 0, 2 )
-blend_point_1/node = SubResource( 28 )
-blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 28 )
-blend_point_2/pos = Vector2( 0.5, 1 )
-min_space = Vector2( -1, 0 )
-max_space = Vector2( 1, 4 )
-snap = Vector2( 0.5, 0.5 )
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "T_STAND"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "LeanLeft"
+scale = 3.0
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "LeanRight"
+scale = 3.0
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+auto_advance = true
+xfade_time = 0.25
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+assertion = "Not Equals"
+target = "HumanMovement"
+method = "get"
+args = [ "current_lean" ]
+value = 1.0
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+auto_advance = true
+xfade_time = 0.25
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+assertion = "Equals"
+target = "HumanMovement"
+method = "get"
+args = [ "current_lean" ]
+value = 1.0
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+auto_advance = true
+xfade_time = 0.25
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+assertion = "Equals"
+target = "HumanMovement"
+method = "get"
+args = [ "current_lean" ]
+value = 2.0
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+auto_advance = true
+xfade_time = 0.25
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+assertion = "Not Equals"
+target = "HumanMovement"
+method = "get"
+args = [ "current_lean" ]
+value = 2.0
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/Default/node = SubResource( 16 )
+states/Default/position = Vector2( 679, 111 )
+states/LeanLeft/node = SubResource( 17 )
+states/LeanLeft/position = Vector2( 465, 111 )
+states/LeanRight/node = SubResource( 18 )
+states/LeanRight/position = Vector2( 885, 111 )
+transitions = [ "LeanLeft", "Default", SubResource( 19 ), "Default", "LeanLeft", SubResource( 20 ), "Default", "LeanRight", SubResource( 21 ), "LeanRight", "Default", SubResource( 22 ) ]
+start_node = "Default"
+graph_offset = Vector2( 190.573, 0 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "StrafeLeft"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "StrafeRight"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "WalkBackward"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "Walk"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "Run"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "WalkBackward"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=30]
+blend_point_0/node = SubResource( 23 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 24 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 25 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 26 )
+blend_point_3/pos = Vector2( 0, -0.3 )
+blend_point_4/node = SubResource( 27 )
+blend_point_4/pos = Vector2( 0, 0.3 )
+blend_point_5/node = SubResource( 28 )
+blend_point_5/pos = Vector2( 0, 1 )
+blend_point_6/node = SubResource( 29 )
+blend_point_6/pos = Vector2( 0, -1 )
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+update_mode = "process"
+speed = 0.0
+x_target = "HumanMovement"
+x_method = "_get_leftright_speed"
+x_args = [  ]
+x_max_value = -2.75
+x_min_value = 2.75
+y_target = "HumanMovement"
+y_method = "_get_forward_speed"
+y_args = [  ]
+y_max_value = 2.75
+y_min_value = -2.75
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=14]
+blend_point_0/node = SubResource( 13 )
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource( 30 )
+blend_point_1/pos = 2.0
+min_space = 0.0
+max_space = 4.0
+snap = 1.0
 script = ExtResource( 3 )
 __meta__ = {
 
 }
 update_mode = "process"
 speed = 8.0
-x_target = ""
-x_method = ""
-x_args = [  ]
-x_max_value = 0.0
+x_target = "HumanMovement"
+x_method = "get"
+x_args = [ "current_state" ]
+x_max_value = 4.0
 x_min_value = 0.0
-y_target = "HumanMovement"
-y_method = "get"
-y_args = [ "current_state" ]
-y_max_value = 4.0
+y_target = ""
+y_method = ""
+y_args = [  ]
+y_max_value = 0.0
 y_min_value = 0.0
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 __meta__ = {
 
 }
@@ -440,21 +438,14 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=32]
-__meta__ = {
-
-}
-
 [node name="Movement" type="AnimationTree"]
-tree_root = SubResource( 29 )
+tree_root = SubResource( 14 )
 anim_player = NodePath("AnimationPlayer")
-parameters/blend_position = Vector2( -0.00332701, 1.94064 )
+parameters/blend_position = 1.99715
 parameters/0/blend_position = Vector2( -0.00241083, 0.00684929 )
-parameters/0/0/playback = SubResource( 30 )
+parameters/0/0/playback = SubResource( 15 )
 parameters/1/blend_position = Vector2( 0, 0 )
 parameters/1/0/playback = SubResource( 31 )
-parameters/2/blend_position = Vector2( 0, 0 )
-parameters/2/0/playback = SubResource( 32 )
 script = ExtResource( 4 )
 __meta__ = {
 
