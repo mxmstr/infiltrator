@@ -441,7 +441,7 @@ __meta__ = {
 [node name="Movement" type="AnimationTree"]
 tree_root = SubResource( 14 )
 anim_player = NodePath("AnimationPlayer")
-parameters/blend_position = 1.99715
+parameters/blend_position = 1.93251
 parameters/0/blend_position = Vector2( -0.00241083, 0.00684929 )
 parameters/0/0/playback = SubResource( 15 )
 parameters/1/blend_position = Vector2( 0, 0 )

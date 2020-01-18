@@ -32,6 +32,8 @@ func _filter_anim_events(is_action, filter_all=false):
 	var blend_position = parameters + 'blend_position'
 	var closest_point = call('get_closest_point', owner.get(blend_position))
 
+	print([parameters, closest_point]) if owner.name == 'Movement' else null
+
 
 	for point in call('get_blend_point_count'):
 
