@@ -4,6 +4,8 @@ signal on_physics_process
 signal on_process
 signal travel_starting
 
+var level = 0
+
 
 func _start_state(_name, data={}):
 	

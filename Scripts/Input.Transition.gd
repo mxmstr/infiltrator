@@ -29,7 +29,6 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	to = _to
 	
 	owner.connect('on_process', self, '_process')
-	owner.connect('travel_starting', self, '_on_travel_starting')
 
 
 func _process(delta):

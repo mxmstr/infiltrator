@@ -1,14 +1,11 @@
-extends AnimationNodeAnimation
+extends 'res://Scripts/AnimationTree.Node.gd'
 
-var owner
-var parent
-var playback
-var node_name
-var connections = []
+export(String) var randomizer
+
 var last = -1
 
 
-func _on_travel_starting(new_node_name, new_node):
+func _on_state_starting(new_node_name):
 	
 	if node_name == new_node_name:
 		
@@ -25,9 +22,6 @@ func _on_travel_starting(new_node_name, new_node):
 
 func _ready(_owner, _parent, _playback, _node_name):
 	
-	owner = _owner
-	parent = _parent
-	playback = _playback
-	node_name = _node_name
+	_parent.connect('state_starting', self, '_on_state_starting')
 	
-	owner.connect('travel_starting', self, '_on_travel_starting')
+	._ready(_owner, _parent, _playback, _node_name)

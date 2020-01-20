@@ -1,0 +1,160 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=23 format=2]
+
+[ext_resource path="res://Scripts/AudioTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AudioTree.Randomizer.gd" type="Script" id=3]
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "FTROC_P1"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "FTROC_P2"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "FTROC_P3"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "FTROC_P4"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+randomizer = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=24]
+states/End/node = SubResource( 10 )
+states/End/position = Vector2( 613.402, 112.086 )
+states/FTROC_P1/node = SubResource( 11 )
+states/FTROC_P1/position = Vector2( 425.302, -8.2 )
+states/FTROC_P2/node = SubResource( 12 )
+states/FTROC_P2/position = Vector2( 425.722, 56.12 )
+states/FTROC_P3/node = SubResource( 13 )
+states/FTROC_P3/position = Vector2( 425.163, 144.389 )
+states/FTROC_P4/node = SubResource( 14 )
+states/FTROC_P4/position = Vector2( 425.415, 204.581 )
+states/Start/node = SubResource( 15 )
+states/Start/position = Vector2( 240.2, 112.6 )
+transitions = [ "Start", "FTROC_P1", SubResource( 16 ), "Start", "FTROC_P2", SubResource( 17 ), "Start", "FTROC_P3", SubResource( 18 ), "Start", "FTROC_P4", SubResource( 19 ), "FTROC_P1", "End", SubResource( 20 ), "FTROC_P2", "End", SubResource( 21 ), "FTROC_P3", "End", SubResource( 22 ), "FTROC_P4", "End", SubResource( 23 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, -33.8803 )
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+statemachine = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[resource]
+states/End/node = SubResource( 8 )
+states/End/position = Vector2( 614.6, 105.073 )
+states/Start/node = SubResource( 9 )
+states/Start/position = Vector2( 201, 104.76 )
+states/StepRock/node = SubResource( 24 )
+states/StepRock/position = Vector2( 412.2, 105.487 )
+transitions = [ "Start", "StepRock", SubResource( 25 ), "StepRock", "End", SubResource( 26 ) ]
+start_node = "Start"
+end_node = "End"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+level = 0.0
