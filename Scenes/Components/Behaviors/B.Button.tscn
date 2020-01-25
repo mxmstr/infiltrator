@@ -62,6 +62,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 __meta__ = {

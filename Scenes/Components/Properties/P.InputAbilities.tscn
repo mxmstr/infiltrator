@@ -200,7 +200,6 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 switch_mode = 2
-auto_advance = true
 disabled = true
 script = ExtResource( 3 )
 __meta__ = {
@@ -293,7 +292,7 @@ states/Jump/node = SubResource( 12 )
 states/Jump/position = Vector2( 829.173, -469.543 )
 transitions = [ "Default", "Interact", SubResource( 13 ), "InteractExit", "Default", SubResource( 14 ), "Interact", "InteractSelect", SubResource( 15 ), "InteractSelect", "InteractExit", SubResource( 16 ), "Interact", "InteractUp", SubResource( 17 ), "Interact", "InteractDown", SubResource( 18 ), "InteractUp", "Interact", SubResource( 19 ), "InteractDown", "Interact", SubResource( 20 ), "Default", "Drop", SubResource( 21 ), "Default", "Grab", SubResource( 22 ), "Grab", "Default", SubResource( 23 ), "Drop", "Default", SubResource( 24 ), "Interact", "InteractExit", SubResource( 25 ), "Climb", "Default", SubResource( 26 ), "ClimbEnter", "Climb", SubResource( 27 ), "Jump", "Default", SubResource( 28 ), "ClimbEnter", "Jump", SubResource( 29 ), "Default", "FindClimbTarget", SubResource( 30 ), "FindClimbTarget", "Default", SubResource( 31 ) ]
 start_node = "Default"
-graph_offset = Vector2( 90.855, -554.136 )
+graph_offset = Vector2( 155.475, -48.4631 )
 script = ExtResource( 1 )
 __meta__ = {
 

@@ -38,6 +38,9 @@ func _filter_anim_events(is_action, filter_all=false):
 		var node = call('get_blend_point_node', point)
 		var is_closest = point == closest_point
 
+		if not node.has_method('_filter_anim_events'):
+			return
+
 		if node is AnimationNodeAnimation:
 
 			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
@@ -60,6 +63,9 @@ func _unfilter_anim_events():
 	for point in call('get_blend_point_count'):
 
 		var node = call('get_blend_point_node', point)
+
+		if not node.has_method('_unfilter_anim_events'):
+			return
 
 		if node is AnimationNodeAnimation:
 

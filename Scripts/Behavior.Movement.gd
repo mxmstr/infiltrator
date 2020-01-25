@@ -166,5 +166,7 @@ func _ready():
 
 func _process(delta):
 	
+	#print([active, get('parameters/blend_position')])
+	
 	_blend_camera(delta)
 	_blend_skeletons(delta)

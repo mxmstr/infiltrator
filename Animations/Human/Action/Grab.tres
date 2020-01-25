@@ -4,7 +4,7 @@
 resource_name = "Grab"
 length = 0.1
 tracks/0/type = "method"
-tracks/0/path = NodePath("../../Perspective/Viewport/Camera/RayCast")
+tracks/0/path = NodePath("../../Perspective/Container/Viewport/HUD/CenterMenu")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false

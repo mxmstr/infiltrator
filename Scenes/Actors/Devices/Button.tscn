@@ -24,7 +24,6 @@ __meta__ = {
 }
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
 
 [node name="Collision" parent="." instance=ExtResource( 2 )]
 shape = SubResource( 1 )
@@ -33,7 +32,7 @@ shape = SubResource( 1 )
 parameters/playback = SubResource( 2 )
 
 [node name="AnimationPlayer" parent="Behavior" index="0"]
-root_node = NodePath("../../Model/ButtonControl")
+root_node = NodePath("../../Model")
 
 [editable path="Model"]
 

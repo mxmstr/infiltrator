@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/UI.HUD.gd" type="Script" id=1]
-[ext_resource path="res://Textures/UI/Crosshair.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/UI/HUD.CenterMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Textures/UI/Crosshair.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/UI/HUD.CenterMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/UI/HUD.CenterMenu.Item.tscn" type="PackedScene" id=3]
 
 [node name="HUD" type="Control"]
 anchor_left = 0.5
@@ -13,7 +13,6 @@ margin_left = -512.0
 margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
-script = ExtResource( 1 )
 __meta__ = {
 
 }
@@ -31,13 +30,15 @@ margin_left = 505.0
 margin_right = 518.0
 margin_bottom = 600.0
 size_flags_stretch_ratio = 0.0
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 stretch_mode = 4
 __meta__ = {
 
 }
 
-[node name="CenterMenu" parent="." instance=ExtResource( 3 )]
+[node name="CenterMenu" parent="." instance=ExtResource( 2 )]
 visible = false
-
-[editable path="CenterMenu"]
+color_select = Color( 0, 1, 0.552941, 1 )
+color_default = Color( 1, 1, 1, 1 )
+color_cancel = Color( 1, 0, 0, 1 )
+list_item = ExtResource( 3 )
