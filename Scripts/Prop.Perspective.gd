@@ -151,6 +151,8 @@ func _camera_follow_preview():
 	
 	var rig = $Container/Viewport/CameraRig
 	
+	if null in [owner, rig]: return
+	
 	rig.global_transform.origin = owner.global_transform.origin + owner.global_transform.basis.xform(rig_translation)
 	
 	rig.rotation_degrees = owner.rotation_degrees + rig_rotation_degrees

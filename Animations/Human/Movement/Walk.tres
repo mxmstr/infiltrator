@@ -14,10 +14,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0.4, 1.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ "Step" ],
+"args": [ "StepLight" ],
 "method": "_start_state"
 }, {
-"args": [ "Step" ],
+"args": [ "StepLight" ],
 "method": "_start_state"
 } ]
 }

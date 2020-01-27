@@ -197,7 +197,7 @@ func _resize_collision():
 
 func _physics_process(delta):
 	
-	_resize_collision()
+	#_resize_collision()
 	
 	
 	var vertical = velocity.y + (delta * gravity)

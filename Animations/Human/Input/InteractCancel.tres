@@ -4,7 +4,7 @@
 resource_name = "InteractCancel"
 length = 0.001
 tracks/0/type = "method"
-tracks/0/path = NodePath("../../Perspective/Viewport/HUD/CenterMenu")
+tracks/0/path = NodePath("../../Perspective/Container/Viewport/HUD/CenterMenu")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false

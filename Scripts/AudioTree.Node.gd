@@ -1,5 +1,7 @@
 extends AnimationNodeAnimation
 
+export(String) var node
+
 export(float) var level
 
 var node_name
@@ -16,8 +18,7 @@ func _on_state_starting(new_name):
 		var playback = owner.get(parameters + 'playback')
 		
 		if len(playback.get_travel_path()) == 0:
-		
-			owner.get_node('AudioStreamPlayer3D').unit_db = level
+			owner.level = level
 
 
 func _ready(_owner, _parent, _parameters, _node_name):

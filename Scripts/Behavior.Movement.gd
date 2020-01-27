@@ -102,14 +102,12 @@ func _blend_skeletons(delta):
 
 func _on_pre_process():
 	
-	pass
-	#tree_root._filter_anim_events(blend_mode == Inf.Blend.ACTION)
+	tree_root._filter_anim_events(blend_mode == Inf.Blend.ACTION)
 
 
 func _on_post_process():
 	
-	pass
-	#tree_root._unfilter_anim_events()
+	tree_root._unfilter_anim_events()
 
 
 func _on_state_starting(_name):
@@ -159,15 +157,16 @@ func _ready():
 	
 	var playback = $'../Behavior'.get('parameters/playback')
 	playback.connect('state_starting', self, '_on_state_starting')
-	
+
 	connect('pre_process', self, '_on_pre_process')
 	connect('post_process', self, '_on_post_process')
-	
 	
 	_set_skeleton()
 
 
 func _process(delta):
+	
+	#print([active, get('parameters/blend_position')])
 	
 	_blend_camera(delta)
 	_blend_skeletons(delta)
