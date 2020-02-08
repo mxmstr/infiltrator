@@ -8,4 +8,8 @@ func _establish_link(resource, data):
 	for prop in data:
 		link.set(prop, data[prop])
 	
+	for child in get_children():
+		if child._equals(link):
+			return
+	
 	add_child(link)

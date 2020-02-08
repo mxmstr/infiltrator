@@ -10,59 +10,66 @@ export(bool) var invisible
 export(bool) var interactable
 
 var root
+var items = []
+
+signal released
 
 
 func _is_empty():
 	
-	return len(root.get_children()) == 0
-
-
-func _contain(item):
-	
-	item.get_parent().remove_child(item)
-	root.add_child(item)
-	
-	item.global_transform.origin = root.global_transform.origin
-	item.global_transform.basis = root.global_transform.basis
-	item.visible = not invisible
-	item.get_node('Collision').disabled = true
-
-
-func _release():
-	
-	for child in get_children():
-		
-		var last_transform = child.global_transform.origin
-		var last_rotation = child.rotation
-		
-		child.visible = true
-		child.get_node('Collision').disabled = false
-		
-		
-		if child is RigidBody:
-			
-			var new_child = load(child.filename).instance()
-			$'/root/Game/Actors'.add_child(new_child)
-			new_child.global_transform.origin = last_transform
-			new_child.rotation = last_rotation
-			
-			child.queue_free()
-		
-		else:
-			
-			child.get_parent().remove_child(child)
-			$'/root/Game/Actors'.add_child(child)
-			child.global_transform.origin = last_transform
-			child.rotation = last_rotation
+	return len(items) == 0
 
 
 func _add_item(item):
 	
 	if len(get_children()) < max_quantity and true:#max_item_size:
-		_contain(item)
+		
+		item.visible = not invisible
+		item.get_node('Collision').disabled = true
+		
+		items.append(item)
+		
 		return true
 	
 	return false
+
+
+func _remove_item(item):
+	
+	if _has_item(item):
+		items.erase(item)
+
+
+func _has_item(item):
+	
+	return items.has(item)
+
+
+func _release():
+	
+	for item in items:
+		
+		var last_transform = item.global_transform.origin
+		var last_rotation = item.rotation
+		
+		item.visible = true
+		item.get_node('Collision').disabled = false
+		
+		if item is RigidBody:
+
+			var item_name = item.name
+			var new_item = load(item.filename).instance()
+			
+			$'/root/Game/Actors'.add_child(new_item)
+			item.name = item_name + '_'
+			
+			new_item.name = item_name
+			new_item.global_transform.origin = last_transform
+			new_item.rotation = last_rotation
+
+			item.queue_free()
+		
+		items.erase(item)
 
 
 func _ready():
@@ -75,3 +82,11 @@ func _ready():
 	
 	root.translation = position_offset
 	root.rotation_degrees = rotation_degrees_offset
+
+
+func _process(delta):
+	
+	for item in items:
+		
+		item.global_transform.origin = root.global_transform.origin
+		item.global_transform.basis = root.global_transform.basis

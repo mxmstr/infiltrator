@@ -43,6 +43,8 @@ func _get_status(action, mouse_device, keyboard_device):
 		var type = Type.BUTTON if event is InputEventMouse else Type.KEYBOARD
 		var item = event.get_vbutton() if event is InputEventMouse else event.get_vkey()
 		
+		#print(item) if action == 'Secondary' else null
+		
 		if device == -1:
 			
 			for i in Input.get_device_count():
@@ -129,8 +131,6 @@ func _process(delta):
 	
 	for event in Input.poll_raw():
 		
-		#print(event)
-		
 		if event.type == Type.SCROLL:
 
 			var item
@@ -148,10 +148,13 @@ func _process(delta):
 			if not event.item in vkeys:
 				return
 			
-			#print(event)
+			if event.type == Type.BUTTON:
+				event.item += 1
 			
 			if event.value == 1:
 				emit_signal('device_activated', event.device, event.type)
 
+
+		#print(event)
 
 		events[event.device][event.type][event.item] = [event.value, event.minval, event.maxval]

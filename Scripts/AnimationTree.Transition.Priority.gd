@@ -1,5 +1,7 @@
 extends AnimationNodeStateMachineTransition
 
+export(String) var transition_priority
+
 var owner
 var parent
 var parameters

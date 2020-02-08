@@ -193,8 +193,8 @@ __meta__ = {
 
 [node name="RayCast" type="RayCast" parent="Container/Viewport/CameraRig/Camera"]
 enabled = true
-cast_to = Vector3( 0, 0, -1 )
-collision_mask = 1027
+cast_to = Vector3( 0, 0, -2 )
+collision_mask = 1031
 __meta__ = {
 
 }

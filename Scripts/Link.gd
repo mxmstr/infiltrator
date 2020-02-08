@@ -3,16 +3,18 @@ extends Node
 export var enabled = true
 export(NodePath) var from
 export(NodePath) var to
-#export var from = [NodePath()]
-#export var to = [NodePath()]
 
 
-func _ready():
+func _equals(other):
 	
-	if enabled:
-		_on_enter()
-	else:
-		set_process(false)
+	return get_class() == other.get_class() and from == other.from and to == other.to
+
+
+func _break():
+	
+	_on_exit()
+	
+	queue_free()
 
 
 func _on_enter(): pass
@@ -22,6 +24,14 @@ func _on_execute(): pass
 
 
 func _on_exit(): pass
+
+
+func _ready():
+	
+	if enabled:
+		_on_enter()
+	else:
+		set_process(false)
 
 
 func _process(delta):

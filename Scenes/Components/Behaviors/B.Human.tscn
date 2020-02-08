@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=2]
@@ -91,7 +91,7 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 resource_local_to_scene = true
-animation = "ShootBeretta"
+animation = "DefaultAnim"
 script = ExtResource( 3 )
 __meta__ = {
 
@@ -152,7 +152,7 @@ __meta__ = {
 }
 priority = 0
 type = 0
-blend = 0
+blend = 2
 speed = 1.0
 distance = 0.0
 abilities = true
@@ -379,26 +379,23 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
-switch_mode = 2
 auto_advance = true
+disabled = true
 script = ExtResource( 5 )
 __meta__ = {
 
 }
+transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
-switch_mode = 2
 auto_advance = true
+disabled = true
 script = ExtResource( 5 )
 __meta__ = {
 
 }
+transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
 switch_mode = 2
@@ -419,6 +416,7 @@ script = ExtResource( 5 )
 __meta__ = {
 
 }
+transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=39]
 switch_mode = 2
@@ -439,6 +437,7 @@ script = ExtResource( 5 )
 __meta__ = {
 
 }
+transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
 auto_advance = true
@@ -468,6 +467,7 @@ script = ExtResource( 5 )
 __meta__ = {
 
 }
+transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=45]
 switch_mode = 2
@@ -512,11 +512,32 @@ script = ExtResource( 5 )
 __meta__ = {
 
 }
+transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
 switch_mode = 2
 auto_advance = true
 priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
 __meta__ = {
 
 }
@@ -530,22 +551,22 @@ states/ClimbExit/position = Vector2( 497, 401.794 )
 states/Default/node = SubResource( 6 )
 states/Default/position = Vector2( 131.37, 287 )
 states/Drop/node = SubResource( 7 )
-states/Drop/position = Vector2( 207, 407 )
+states/Drop/position = Vector2( 207, 401.794 )
 states/Fall/node = SubResource( 8 )
 states/Fall/position = Vector2( 131.37, -61.892 )
 states/FindClimbTarget/node = SubResource( 9 )
 states/FindClimbTarget/position = Vector2( 677.249, 274.531 )
 states/Grab/node = SubResource( 10 )
-states/Grab/position = Vector2( 62, 407 )
+states/Grab/position = Vector2( 38, 401.794 )
 states/Jump/node = SubResource( 29 )
 states/Jump/position = Vector2( 497, 221.734 )
 states/Land/node = SubResource( 30 )
 states/Land/position = Vector2( 497, 61.4 )
 states/LandExit/node = SubResource( 31 )
 states/LandExit/position = Vector2( 497, 129.4 )
-transitions = [ "Default", "Drop", SubResource( 32 ), "Default", "Grab", SubResource( 33 ), "Grab", "Default", SubResource( 34 ), "Drop", "Default", SubResource( 35 ), "ClimbExit", "Default", SubResource( 36 ), "Default", "Land", SubResource( 37 ), "Land", "LandExit", SubResource( 38 ), "LandExit", "Default", SubResource( 39 ), "Default", "Fall", SubResource( 40 ), "Fall", "Default", SubResource( 41 ), "Fall", "Default", SubResource( 42 ), "Land", "LandExit", SubResource( 43 ), "Jump", "Default", SubResource( 44 ), "Jump", "Default", SubResource( 45 ), "Default", "FindClimbTarget", SubResource( 46 ), "FindClimbTarget", "Jump", SubResource( 47 ), "FindClimbTarget", "Climb", SubResource( 48 ), "Climb", "ClimbExit", SubResource( 49 ), "Climb", "ClimbExit", SubResource( 50 ) ]
+transitions = [ "Default", "Drop", SubResource( 32 ), "Grab", "Default", SubResource( 34 ), "Drop", "Default", SubResource( 35 ), "ClimbExit", "Default", SubResource( 36 ), "Default", "Land", SubResource( 37 ), "Land", "LandExit", SubResource( 38 ), "LandExit", "Default", SubResource( 39 ), "Default", "Fall", SubResource( 40 ), "Fall", "Default", SubResource( 41 ), "Fall", "Default", SubResource( 42 ), "Land", "LandExit", SubResource( 43 ), "Jump", "Default", SubResource( 44 ), "Jump", "Default", SubResource( 45 ), "Default", "FindClimbTarget", SubResource( 46 ), "FindClimbTarget", "Jump", SubResource( 47 ), "FindClimbTarget", "Climb", SubResource( 48 ), "Climb", "ClimbExit", SubResource( 49 ), "Climb", "ClimbExit", SubResource( 50 ), "Grab", "Default", SubResource( 56 ), "Drop", "Default", SubResource( 57 ), "Default", "Grab", SubResource( 58 ) ]
 start_node = "Default"
-graph_offset = Vector2( -130.555, -99.3523 )
+graph_offset = Vector2( -130.555, 206.975 )
 script = ExtResource( 1 )
 __meta__ = {
 

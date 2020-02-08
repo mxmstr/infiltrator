@@ -1,23 +1,51 @@
 extends 'res://Scripts/Link.gd'
 
+var container
 
-func _find_free_container(node):
+
+func _contain():
 	
-	if node.get_script() != null:
+	var actor = get_node(from)
+	var item = get_node(to)
+
+
+func _find_free_container():
 	
-		var script_name = node.get_script().get_path().get_file()
+	var actor = get_node(from)
+	var item = get_node(to)
+	
+	for child in actor.get_children():
 		
-		if script_name == 'Prop.Container.gd' and \
-			node._add_item(get_node(to)):
-			return true
-	
-	for child in node.get_children():
-		if _find_free_container(child):
-			return true
+		if child.get_script() != null:
+		
+			var script_name = child.get_script().get_path().get_file()
+			
+			if script_name == 'Prop.Container.gd' and child._add_item(item):
+				container = child
+				return true
 	
 	return false
 
 
 func _on_enter():
 	
-	_find_free_container(get_node(from))
+	if not _find_free_container():
+		_break()
+
+
+func _on_exit():
+	
+	var item = get_node(to)
+	
+	container._remove_item(item) if container != null else null
+
+
+func _process(delta):
+	
+	var actor = get_node(from)
+	var item = get_node(to)
+	
+	
+	if not container._has_item(item):
+		_break()
+		return

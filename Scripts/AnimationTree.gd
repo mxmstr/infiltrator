@@ -9,6 +9,8 @@ var level = 0
 
 func _start_state(_name, data={}):
 	
+	#print(_name) if name == 'Behavior' else null
+	
 	if tree_root.has_method('_travel'):
 		tree_root._travel(_name)
 
@@ -36,5 +38,7 @@ func _physics_process(delta):
 func _process(delta):
 	
 	if Engine.editor_hint: return
+	
+	#print(tree_root.current_node) if owner.name == 'Player' and name == 'Behavior' else null
 	
 	emit_signal('on_process', delta)
