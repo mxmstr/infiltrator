@@ -1,5 +1,9 @@
 extends AnimationNodeStateMachineTransition
 
+export(String) var transition_boolean
+
+export(String, 'process', 'state_starting') var update_mode = 'process'
+
 export(String, 'True', 'False', 'Null', 'NotNull') var assertion = 'True'
 export(String) var target
 export(String) var method
@@ -30,6 +34,20 @@ func _evaluate(value):
 		'NotNull': return value != null
 
 
+func _update():
+	
+	disabled = not _evaluate(owner.owner.get_node(target).callv(method, args))
+
+
+func _on_state_starting(new_name):
+
+	if from.get('node_name') == null:
+		return
+	
+	if from.node_name == new_name and update_mode == 'state_starting':
+		_update()
+
+
 func _ready(_owner, _parent, _parameters, _from, _to):
 	
 	owner = _owner
@@ -38,9 +56,11 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	from = _from
 	to = _to
 	
+	parent.connect('state_starting', self, '_on_state_starting') if parent != null else null
 	owner.connect('on_process', self, '_process')
 
 
 func _process(delta):
 	
-	disabled = not _evaluate(owner.owner.get_node(target).callv(method, args))
+	if update_mode == 'process':
+		_update()

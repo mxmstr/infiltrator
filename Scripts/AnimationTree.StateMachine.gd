@@ -17,6 +17,12 @@ signal state_starting
 signal travel_starting
 
 
+func _on_state_starting(new_name):
+	
+	if node_name == new_name:
+		pass#emit_signal('state_starting', current_node)
+
+
 func _filter_anim_events(is_action, filter_all=false):
 	
 	var playback = owner.get(parameters + 'playback')
@@ -79,6 +85,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	parameters = _parameters
 	node_name = _node_name
 	
+	parent.connect('state_starting', self, '_on_state_starting') if parent != null else null
 	owner.connect('on_process', self, '_process')
 	
 	

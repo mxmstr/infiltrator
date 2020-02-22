@@ -2,6 +2,8 @@ extends AnimationRootNode
 
 const camera_rig_track_path = '../../Perspective'
 
+export(String) var blendspace
+
 export(String, 'process', 'state_starting') var update_mode = 'process'
 export var speed = 0.0
 
@@ -38,9 +40,6 @@ func _filter_anim_events(is_action, filter_all=false):
 		var node = call('get_blend_point_node', point)
 		var is_closest = point == closest_point
 
-		if not node.has_method('_filter_anim_events'):
-			return
-
 		if node is AnimationNodeAnimation:
 
 			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
@@ -49,12 +48,14 @@ func _filter_anim_events(is_action, filter_all=false):
 
 				var is_function_call = animation.track_get_type(track) == 2
 				var is_camera_and_overriden = is_action and camera_rig_track_path in str(animation.track_get_path(track))
-
 				animation.track_set_enabled(track, false if (is_function_call and (not is_closest or filter_all)) else true)# or is_camera_and_overriden else true)
 
 
 		if node is AnimationNodeStateMachine or node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
-
+			
+			if not node.has_method('_filter_anim_events'):
+				return
+			
 			node._filter_anim_events(is_action, filter_all) if is_closest else node._filter_anim_events(is_action, true)
 
 

@@ -238,7 +238,7 @@ __meta__ = {
 }
 statemachine = ""
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
 __meta__ = {
 
 }
@@ -248,12 +248,12 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=31]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../HumanMovement")
@@ -273,7 +273,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=32]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../HumanMovement")
@@ -316,9 +316,9 @@ __meta__ = {
 [node name="InputMovement" type="AnimationTree"]
 tree_root = SubResource( 27 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 34 )
+parameters/playback = SubResource( 28 )
 parameters/Lean/playback = SubResource( 29 )
-parameters/Stance/playback = SubResource( 35 )
+parameters/Stance/playback = SubResource( 30 )
 script = ExtResource( 3 )
 __meta__ = {
 
@@ -329,8 +329,8 @@ root_node = NodePath(".")
 anims/Crawl = ExtResource( 4 )
 anims/Crouch = ExtResource( 5 )
 anims/DefaultAnim = ExtResource( 6 )
-anims/LeanDefault = SubResource( 36 )
-anims/LeanLeft = SubResource( 37 )
+anims/LeanDefault = SubResource( 31 )
+anims/LeanLeft = SubResource( 32 )
 anims/LeanRight = SubResource( 33 )
 anims/Run = ExtResource( 7 )
 anims/Walk = ExtResource( 8 )

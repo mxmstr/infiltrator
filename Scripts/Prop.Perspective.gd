@@ -187,8 +187,6 @@ func _contain_selection():
 	
 	if _has_selection():
 		
-		print('Contain')
-		
 		var data = {
 			'from': owner.get_path(),
 			'to': selection.get_path()

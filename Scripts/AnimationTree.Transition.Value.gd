@@ -1,5 +1,9 @@
 extends AnimationNodeStateMachineTransition
 
+export(String) var transition_value
+
+export(String, 'process', 'state_starting') var update_mode = 'process'
+
 export(String, 'Equals', 'Not Equals', 'Greater Than', 'Less Than') var assertion = 'Equals'
 export(String) var target
 export(String) var method
@@ -27,8 +31,25 @@ func _evaluate(_value):
 		
 		'Equals': return value == _value
 		'Not Equals': return value != _value
-		'Greater Than': return value >= _value
-		'Less Than': return value <= _value
+		'Greater Than': return value < _value
+		'Less Than': return value > _value
+
+
+func _update():
+	
+	print(owner.owner.get_node(target).callv(method, args)) if method == '_get_climb_height_mult' else null
+	
+	disabled = not _evaluate(owner.owner.get_node(target).callv(method, args))
+
+
+func _on_state_starting(new_name):
+	
+	print(new_name)
+	
+	var from_name = parent.get_node_name(from)
+	
+	if from_name == new_name and update_mode == 'state_starting':
+		_update()
 
 
 func _ready(_owner, _parent, _parameters, _from, _to):
@@ -39,9 +60,11 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	from = _from
 	to = _to
 	
+	parent.connect('state_starting', self, '_on_state_starting') if parent != null else null
 	owner.connect('on_process', self, '_process')
 
 
 func _process(delta):
 	
-	disabled = not _evaluate(owner.owner.get_node(target).callv(method, args))
+	if update_mode == 'process':
+		_update()

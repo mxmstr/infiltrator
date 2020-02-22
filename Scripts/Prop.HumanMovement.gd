@@ -28,7 +28,7 @@ export var accel = 2
 export var deaccel = 4
 export var max_slope_angle = 30
 
-export var climb_max_height_mult = 3
+export var climb_max_height_mult = 4
 export var climb_find_range = 0.5
 export var climb_forward_amount = 0.4
 
@@ -55,7 +55,7 @@ func _ready():
 
 func _get_climb_height_mult():
 	
-	return climb_height / (collision.shape.extents.y * climb_max_height_mult)
+	return climb_height / (collision.shape.extents.y * climb_max_height_mult) if climb_height != null else 0
 
 
 func _get_forward_speed():
@@ -206,14 +206,16 @@ func _physics_process(delta):
 	
 	if current_state == state.CLIMBING:
 		
-		var new_x_pos = climb_start.linear_interpolate(climb_target, climb_x_progress)
-		var new_y_pos = climb_start.linear_interpolate(climb_target, climb_y_progress)
+		if climb_target != null:
 		
-		owner.global_transform.origin = Vector3(new_x_pos.x, new_y_pos.y, new_x_pos.z)
-		
-		horizontal = Vector3()
-		vertical = 0
-		direction = Vector3()
+			var new_x_pos = climb_start.linear_interpolate(climb_target, climb_x_progress)
+			var new_y_pos = climb_start.linear_interpolate(climb_target, climb_y_progress)
+			
+			owner.global_transform.origin = Vector3(new_x_pos.x, new_y_pos.y, new_x_pos.z)
+			
+			horizontal = Vector3()
+			vertical = 0
+			direction = Vector3()
 	
 	
 	var factor
