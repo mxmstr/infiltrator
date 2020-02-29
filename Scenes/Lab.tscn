@@ -46,7 +46,7 @@ open_angle = Vector3( 0, 90, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538539, 2.62026, -0.504289 )
 
 [node name="Player" parent="Actors" instance=ExtResource( 4 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.04337, 0.26408, -6.54859 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.04337, 6.15836, -6.54859 )
 
 [node name="Player2" parent="Actors" instance=ExtResource( 4 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.71148, 0.317691, -1.74874 )

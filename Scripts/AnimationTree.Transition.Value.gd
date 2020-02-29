@@ -37,14 +37,10 @@ func _evaluate(_value):
 
 func _update():
 	
-	print(owner.owner.get_node(target).callv(method, args)) if method == '_get_climb_height_mult' else null
-	
 	disabled = not _evaluate(owner.owner.get_node(target).callv(method, args))
 
 
 func _on_state_starting(new_name):
-	
-	print(new_name)
 	
 	var from_name = parent.get_node_name(from)
 	

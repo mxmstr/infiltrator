@@ -1,0 +1,55 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "R.Reflect"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[resource]
+states/Default/node = SubResource( 11 )
+states/Default/position = Vector2( 455, 125 )
+states/Reflect/node = SubResource( 12 )
+states/Reflect/position = Vector2( 455, -119.492 )
+states/Touch/node = SubResource( 13 )
+states/Touch/position = Vector2( 354, 0 )
+transitions = [ "Default", "Touch", SubResource( 14 ), "Touch", "Reflect", SubResource( 15 ), "Reflect", "Default", SubResource( 7 ) ]
+start_node = "Default"
+graph_offset = Vector2( -73.0114, -155.688 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""

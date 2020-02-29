@@ -154,12 +154,14 @@ func on_loadmap_pressed():
 				
 				var body = model.get_child(0)
 				var collision = body.get_node('CollisionShape')
+				var receptor = load('res://Scenes/Components/Stimulus/R.Static.tscn').instance()
 				
 				model.remove_child(body)
 				selected.add_child(body)
 				body.add_child(model)
 				body.remove_child(collision)
 				body.add_child(collision)
+				body.add_child(receptor)
 
 				model.scale = Vector3(1, 1, 1)
 				body.scale = scaling
@@ -171,6 +173,7 @@ func on_loadmap_pressed():
 				body.owner = get_tree().get_edited_scene_root()
 				model.owner = get_tree().get_edited_scene_root()
 				collision.owner = get_tree().get_edited_scene_root()
+				receptor.owner = get_tree().get_edited_scene_root()
 
 
 func _ready():

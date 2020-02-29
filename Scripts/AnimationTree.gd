@@ -17,6 +17,7 @@ func _ready():
 	
 	if Engine.editor_hint: return
 	
+	
 	if not has_meta('unique'):
 		Inf._make_unique(self)
 		return

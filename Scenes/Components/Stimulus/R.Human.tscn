@@ -1,53 +1,37 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=2]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Stimulus/R.H.Fall.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Stimulus/R.H.Land.tres" type="Animation" id=5]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Stimulus/R.H.Fall.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Stimulus/R.H.Land.tres" type="Animation" id=6]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends AnimationNodeStateMachine
-
-const camera_rig_track_path = '../../Perspective'
-
-export(String) var statemachine
-
-var node_name
-var owner
-var parent
-var parameters
-var transitions = []
-#var nodes = []
-#
-#var current_node = get_start_node()
-#
-#signal state_starting
-#signal travel_starting"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "R.H.Fall"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "R.H.Land"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 __meta__ = {
 
 }
@@ -58,27 +42,29 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+min_intensity = 0.9
+max_intensity = 100.0
+direction = Vector3( 0, 1, 0 )
+max_direction_angle = 45.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
 auto_advance = true
-disabled = true
-script = ExtResource( 1 )
+priority = 2
 __meta__ = {
 
 }
-min_intensity = 0.02
-max_intensity = 100.0
-direction = Vector3( 0, 1, 0 )
-max_direction_angle = 80.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 switch_mode = 2
 auto_advance = true
-priority = 2
 __meta__ = {
 
 }
@@ -90,49 +76,42 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=12]
-states/Airborne/node = SubResource( 2 )
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Airborne/node = SubResource( 1 )
 states/Airborne/position = Vector2( 689, 125 )
-states/Default/node = SubResource( 3 )
+states/Default/node = SubResource( 2 )
 states/Default/position = Vector2( 455, 125 )
-states/Land/node = SubResource( 4 )
+states/Land/node = SubResource( 3 )
 states/Land/position = Vector2( 360, -246 )
-states/Touch/node = SubResource( 5 )
+states/Touch/node = SubResource( 4 )
 states/Touch/position = Vector2( 455, -102 )
-transitions = [ "Default", "Touch", SubResource( 6 ), "Default", "Airborne", SubResource( 7 ), "Touch", "Land", SubResource( 8 ), "Touch", "Default", SubResource( 9 ), "Airborne", "Default", SubResource( 10 ), "Land", "Default", SubResource( 11 ) ]
+transitions = [ "Default", "Touch", SubResource( 5 ), "Default", "Airborne", SubResource( 6 ), "Touch", "Land", SubResource( 7 ), "Touch", "Default", SubResource( 8 ), "Airborne", "Default", SubResource( 9 ), "Land", "Default", SubResource( 10 ) ]
 start_node = "Default"
-graph_offset = Vector2( 0, -272.807 )
-script = SubResource( 1 )
+graph_offset = Vector2( -73.0114, -141.073 )
+script = ExtResource( 1 )
 __meta__ = {
 
 }
 statemachine = ""
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 __meta__ = {
 
 }
 
 [node name="Receptor" type="AnimationTree"]
-tree_root = SubResource( 12 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 13 )
-script = ExtResource( 2 )
+parameters/playback = SubResource( 12 )
+script = ExtResource( 3 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 3 )
-anims/R.H.Fall = ExtResource( 4 )
-anims/R.H.Land = ExtResource( 5 )
+anims/DefaultAnim = ExtResource( 4 )
+anims/R.H.Fall = ExtResource( 5 )
+anims/R.H.Land = ExtResource( 6 )
 __meta__ = {
 
 }
