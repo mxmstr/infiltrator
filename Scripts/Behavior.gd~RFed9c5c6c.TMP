@@ -8,7 +8,7 @@ func _start_state(_name, data={}):
 	if not enable_abilities:
 		return
 	
-	._start_state(_name, data)
+	._start_state(_name, data={})
 
 
 func _get_visible_interactions():

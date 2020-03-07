@@ -1,8 +1,7 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "FindClimbTarget"
-length = 0.1
+length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../Movement")
 tracks/0/interp = 1
@@ -13,8 +12,8 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "_find_climb_target"
+"args": [ "current_lean", 1 ],
+"method": "set"
 } ]
 }
 __meta__ = {

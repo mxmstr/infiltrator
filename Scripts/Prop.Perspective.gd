@@ -121,6 +121,12 @@ func _ready():
 	call_deferred('_reset_viewport')
 
 
+func _rotate_camera(delta_x, delta_y):
+	
+	camera.rotation.x += delta_x
+	camera.rotation.y += delta_y
+
+
 func _blend_fp_skeleton():
 	
 	var s_world = $'../Model'.get_child(0)

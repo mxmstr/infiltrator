@@ -1,10 +1,6 @@
-extends Node
+extends 'res://Scripts/AnimationTree.gd'
 
 export var sensitivity = 0.01
-
-var active = true
-
-#onready var camera = owner.get_node('Perspective/Container/Viewport/CameraRig/Camera')
 
 
 func _enter_tree():
@@ -19,13 +15,8 @@ func _leave_tree():
 
 func mouse(offset):
 	
-	var camera = owner.get_node('Perspective/Container/Viewport/CameraRig/Camera')
-	
-	camera.rotation.x += offset.y * -sensitivity
-	camera.rotation.y += offset.x * -sensitivity
-	
-	if active:
-		owner.rotation.y += offset.x * -sensitivity
+	$'../Perspective'._rotate_camera(offset.y * -sensitivity, offset.x * -sensitivity)
+	$'../Movement'._rotate(offset.x * -sensitivity)
 
 
 func _process(delta):

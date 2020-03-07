@@ -4,7 +4,7 @@
 resource_name = "Climb.Exit"
 length = 0.001
 tracks/0/type = "method"
-tracks/0/path = NodePath("../../HumanMovement")
+tracks/0/path = NodePath("../../Movement")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -13,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "current_state", 2 ],
+"args": [ "climbing", false ],
 "method": "set"
 } ]
 }

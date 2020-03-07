@@ -23,14 +23,11 @@ func _on_state_starting(new_name):
 		
 		if len(playback.get_travel_path()) == 0:
 			
-			if owner.owner.has_node('InputAbilities'):
-				owner.owner.get_node('InputAbilities').active = abilities
+			owner.enable_abilities = abilities
 			
-			if owner.owner.has_node('InputMovement'):
-				owner.owner.get_node('InputMovement').active = movement
-			
-			if owner.owner.has_node('InputRotation'):
-				owner.owner.get_node('InputRotation').active = rotation
+			if owner.owner.has_node('Movement'):
+				owner.owner.get_node('Movement').enable_movement = movement
+				owner.owner.get_node('Movement').enable_rotation = rotation
 			
 			if owner.owner.has_node('Perspective'):
 				owner.owner.get_node('Perspective')._start_state(camera_mode)

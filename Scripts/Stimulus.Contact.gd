@@ -34,7 +34,7 @@ func _physics_process(delta):
 					'collider': owner, 
 					'position': collision.position,
 					'normal': collision.normal * -1,
-					'travel': $'../HumanMovement'.velocity
+					'travel': $'../Movement'.velocity
 					}
 				
 				collision.collider.get_node('Receptor')._start_state(stim_type, data)
@@ -45,7 +45,7 @@ func _physics_process(delta):
 					'collider': collision.collider,
 					'position': collision.position,
 					'normal': collision.normal * -1,
-					'travel': collision.collider_velocity * -1
+					'travel': $'../Movement'.velocity * -1
 					}
 				
 				get_parent().get_node('Receptor')._start_state(stim_type, data)

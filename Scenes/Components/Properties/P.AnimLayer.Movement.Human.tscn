@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/AnimationTree.BlendSpace.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Behavior.Movement.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Prop.AnimLayer.HumanMovement.gd" type="Script" id=4]
 [ext_resource path="res://Animations/Human/Movement/2_BackwardLeft.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/Human/Movement/2_BackwardRight.tres" type="Animation" id=6]
 [ext_resource path="res://Animations/Human/Movement/2_Crouch.tres" type="Animation" id=7]
@@ -119,8 +119,10 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+transition_value = ""
+update_mode = "process"
 assertion = "Not Equals"
-target = "HumanMovement"
+target = "Movement"
 method = "get"
 args = [ "current_lean" ]
 value = 1.0
@@ -134,8 +136,10 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+transition_value = ""
+update_mode = "process"
 assertion = "Equals"
-target = "HumanMovement"
+target = "Movement"
 method = "get"
 args = [ "current_lean" ]
 value = 1.0
@@ -149,8 +153,10 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+transition_value = ""
+update_mode = "process"
 assertion = "Equals"
-target = "HumanMovement"
+target = "Movement"
 method = "get"
 args = [ "current_lean" ]
 value = 2.0
@@ -164,8 +170,10 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+transition_value = ""
+update_mode = "process"
 assertion = "Not Equals"
-target = "HumanMovement"
+target = "Movement"
 method = "get"
 args = [ "current_lean" ]
 value = 2.0
@@ -242,14 +250,15 @@ script = ExtResource( 3 )
 __meta__ = {
 
 }
+blendspace = ""
 update_mode = "process"
 speed = 0.0
-x_target = "HumanMovement"
+x_target = "Movement"
 x_method = "_get_leftright_speed"
 x_args = [  ]
 x_max_value = -2.75
 x_min_value = 2.75
-y_target = "HumanMovement"
+y_target = "Movement"
 y_method = "_get_forward_speed"
 y_args = [  ]
 y_max_value = 2.75
@@ -283,8 +292,10 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+transition_value = ""
+update_mode = "process"
 assertion = "Equals"
-target = "HumanMovement"
+target = "Movement"
 method = "get"
 args = [ "current_lean" ]
 value = 2.0
@@ -298,8 +309,10 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+transition_value = ""
+update_mode = "process"
 assertion = "Not Equals"
-target = "HumanMovement"
+target = "Movement"
 method = "get"
 args = [ "current_lean" ]
 value = 2.0
@@ -313,8 +326,10 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+transition_value = ""
+update_mode = "process"
 assertion = "Not Equals"
-target = "HumanMovement"
+target = "Movement"
 method = "get"
 args = [ "current_lean" ]
 value = 1.0
@@ -328,8 +343,10 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+transition_value = ""
+update_mode = "process"
 assertion = "Equals"
-target = "HumanMovement"
+target = "Movement"
 method = "get"
 args = [ "current_lean" ]
 value = 1.0
@@ -390,14 +407,15 @@ script = ExtResource( 3 )
 __meta__ = {
 
 }
+blendspace = ""
 update_mode = "process"
 speed = 0.0
-x_target = "HumanMovement"
+x_target = "Movement"
 x_method = "_get_leftright_speed"
 x_args = [  ]
 x_max_value = -2.75
 x_min_value = 2.75
-y_target = "HumanMovement"
+y_target = "Movement"
 y_method = "_get_forward_speed"
 y_args = [  ]
 y_max_value = 2.75
@@ -415,9 +433,10 @@ script = ExtResource( 3 )
 __meta__ = {
 
 }
+blendspace = ""
 update_mode = "process"
 speed = 8.0
-x_target = "HumanMovement"
+x_target = "Movement"
 x_method = "get"
 x_args = [ "current_state" ]
 x_max_value = 4.0
@@ -438,10 +457,10 @@ __meta__ = {
 
 }
 
-[node name="Movement2" type="AnimationTree"]
+[node name="AnimLayerMovement" type="AnimationTree"]
 tree_root = SubResource( 29 )
 anim_player = NodePath("AnimationPlayer")
-parameters/blend_position = 2.00812
+parameters/blend_position = 1.99252
 parameters/0/blend_position = Vector2( 0, 0 )
 parameters/0/0/playback = SubResource( 30 )
 parameters/1/blend_position = Vector2( 0, 0 )

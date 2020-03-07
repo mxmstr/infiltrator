@@ -17,7 +17,7 @@ func _on_timeout():
 
 func _physics_process(delta):
 	
-	var velocity = $'../HumanMovement'.velocity
+	var velocity = $'../Movement'.velocity
 	
 	if get_parent().is_on_floor():
 		

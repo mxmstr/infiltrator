@@ -4,8 +4,7 @@ enum state {
 	CRAWLING,
 	CROUCHING,
 	WALKING,
-	RUNNING,
-	CLIMBING
+	RUNNING
 }
 
 enum lean {
@@ -14,7 +13,7 @@ enum lean {
 	RIGHT
 }
 
-export(state) var current_state = state.WALKING
+export(state) var current_state setget _set_state
 export(lean) var current_lean = lean.DEFAULT
 
 export var gravity = -9.8
@@ -34,8 +33,12 @@ export var climb_forward_amount = 0.4
 
 export var collision_height_mult = 1.0
 
+var enable_rotation = true
+var enable_movement = true
 var direction = Vector3()
 var velocity = Vector3()
+
+var climbing = false
 var climb_collision_mask = 1024
 var climb_steps = 50
 var climb_height
@@ -46,11 +49,6 @@ var climb_y_progress = 0
 
 onready var collision = $'../Collision'
 #onready var ik_righthand = $'../Model'.get_child(0).get_node('RightHandIK/Target')
-
-
-func _ready():
-	
-	pass
 
 
 func _get_climb_height_mult():
@@ -68,7 +66,27 @@ func _get_leftright_speed():
 	return owner.global_transform.basis.xform_inv(velocity).x
 
 
+func _rotate(delta):
+	
+	if not enable_rotation:
+		return
+	
+	owner.rotation.y += delta
+
+
+func _set_state(new_state):
+	
+	if not enable_movement:
+		return
+	
+	current_state = new_state
+
+
 func _set_direction(local_direction):
+	
+	if not enable_movement:
+		return
+	
 	
 	direction = owner.global_transform.basis.xform(local_direction)
 	
@@ -125,7 +143,7 @@ func _test_for_wall(origin, cast_to):
 
 func _find_climb_target():
 	
-	if current_state == state.CLIMBING:
+	if climbing:
 		return
 	
 	
@@ -175,6 +193,7 @@ func _find_climb_target():
 				
 				if not blocked:
 					
+					climbing = true
 					climb_start = origin
 					climb_target = current_collision_point + climb_forward_offset
 					
@@ -185,6 +204,7 @@ func _find_climb_target():
 		
 		last_climb_height = climb_height
 	
+	climbing = false
 	climb_start = null
 	climb_target = null
 
@@ -195,27 +215,32 @@ func _resize_collision():
 	collision.translation.y = collision_height_mult
 
 
+func _ready():
+	
+	current_state = state.WALKING
+
+
 func _physics_process(delta):
 	
-	#_resize_collision()
+	_resize_collision()
 	
 	
 	var vertical = velocity.y + (delta * gravity)
 	var horizontal = Vector3(velocity.x, 0, velocity.z)
 	
 	
-	if current_state == state.CLIMBING:
+	if climbing:
 		
-		if climb_target != null:
+		#if climb_target != null:
 		
-			var new_x_pos = climb_start.linear_interpolate(climb_target, climb_x_progress)
-			var new_y_pos = climb_start.linear_interpolate(climb_target, climb_y_progress)
-			
-			owner.global_transform.origin = Vector3(new_x_pos.x, new_y_pos.y, new_x_pos.z)
-			
-			horizontal = Vector3()
-			vertical = 0
-			direction = Vector3()
+		var new_x_pos = climb_start.linear_interpolate(climb_target, climb_x_progress)
+		var new_y_pos = climb_start.linear_interpolate(climb_target, climb_y_progress)
+		
+		owner.global_transform.origin = Vector3(new_x_pos.x, new_y_pos.y, new_x_pos.z)
+		
+		horizontal = Vector3()
+		vertical = 0
+		direction = Vector3()
 	
 	
 	var factor

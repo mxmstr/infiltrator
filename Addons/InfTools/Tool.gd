@@ -165,6 +165,7 @@ func on_loadmap_pressed():
 
 				model.scale = Vector3(1, 1, 1)
 				body.scale = scaling
+				body.collision_layer = 4
 
 				body.name = model.name
 				model.name = 'Model'

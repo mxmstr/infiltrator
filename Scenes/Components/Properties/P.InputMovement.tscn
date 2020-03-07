@@ -1,14 +1,16 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Input.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.InputMovement.gd" type="Script" id=3]
 [ext_resource path="res://Animations/Human/Input/Crawl.tres" type="Animation" id=4]
 [ext_resource path="res://Animations/Human/Input/Crouch.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/Input/Run.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/Input/Walk.tres" type="Animation" id=8]
-[ext_resource path="res://Scripts/Input.Direction.gd" type="Script" id=9]
+[ext_resource path="res://Animations/Human/Input/LeanDefault.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/Input/LeanLeft.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Human/Input/LeanRight.tres" type="Animation" id=9]
+[ext_resource path="res://Animations/Human/Input/Run.tres" type="Animation" id=10]
+[ext_resource path="res://Animations/Human/Input/Walk.tres" type="Animation" id=11]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
@@ -253,66 +255,6 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=31]
-length = 0.001
-tracks/0/type = "method"
-tracks/0/path = NodePath("../../HumanMovement")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "current_lean", 0 ],
-"method": "set"
-} ]
-}
-__meta__ = {
-
-}
-
-[sub_resource type="Animation" id=32]
-length = 0.001
-tracks/0/type = "method"
-tracks/0/path = NodePath("../../HumanMovement")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "current_lean", 1 ],
-"method": "set"
-} ]
-}
-__meta__ = {
-
-}
-
-[sub_resource type="Animation" id=33]
-length = 0.001
-tracks/0/type = "method"
-tracks/0/path = NodePath("../../HumanMovement")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "current_lean", 2 ],
-"method": "set"
-} ]
-}
-__meta__ = {
-
-}
-
 [node name="InputMovement" type="AnimationTree"]
 tree_root = SubResource( 27 )
 anim_player = NodePath("AnimationPlayer")
@@ -329,17 +271,11 @@ root_node = NodePath(".")
 anims/Crawl = ExtResource( 4 )
 anims/Crouch = ExtResource( 5 )
 anims/DefaultAnim = ExtResource( 6 )
-anims/LeanDefault = SubResource( 31 )
-anims/LeanLeft = SubResource( 32 )
-anims/LeanRight = SubResource( 33 )
-anims/Run = ExtResource( 7 )
-anims/Walk = ExtResource( 8 )
-__meta__ = {
-
-}
-
-[node name="Direction" type="Node" parent="."]
-script = ExtResource( 9 )
+anims/LeanDefault = ExtResource( 7 )
+anims/LeanLeft = ExtResource( 8 )
+anims/LeanRight = ExtResource( 9 )
+anims/Run = ExtResource( 10 )
+anims/Walk = ExtResource( 11 )
 __meta__ = {
 
 }

@@ -1,14 +1,10 @@
-extends Node
-
+extends 'res://Scripts/AnimationTree.gd'
 
 
 func _physics_process(delta):
 	
-	if not owner.active:
-		return
-	
-	var perspective = $'../../Perspective'
-	var human_movement = $'../../HumanMovement'
+	var perspective = $'../Perspective'
+	var human_movement = $'../Movement'
 	
 	var mouse_device = perspective.mouse_device
 	var keyboard_device = perspective.keyboard_device
