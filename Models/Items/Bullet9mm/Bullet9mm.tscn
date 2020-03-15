@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.1, 0.1, 0.5 )
+__meta__ = {
+
+}
+
+[node name="Bullet9mm" type="Spatial"]
+__meta__ = {
+
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+__meta__ = {
+
+}

@@ -11,16 +11,13 @@ func _contain():
 
 func _find_free_container():
 	
-	var actor = get_node(from)
-	var item = get_node(to)
-	
-	for child in actor.get_children():
+	for child in from_node.get_children():
 		
 		if child.get_script() != null:
 		
 			var script_name = child.get_script().get_path().get_file()
 			
-			if script_name == 'Prop.Container.gd' and child._add_item(item):
+			if script_name == 'Prop.Container.gd' and child._add_item(to_node):
 				container = child
 				return true
 	
@@ -30,22 +27,19 @@ func _find_free_container():
 func _on_enter():
 	
 	if not _find_free_container():
-		_break()
+		_on_exit()
+	
+	._on_enter()
 
 
 func _on_exit():
 	
-	var item = get_node(to)
+	container._remove_item(to_node) if container != null else null
 	
-	container._remove_item(item) if container != null else null
+	._on_exit()
 
 
 func _process(delta):
 	
-	var actor = get_node(from)
-	var item = get_node(to)
-	
-	
-	if not container._has_item(item):
-		_break()
-		return
+	if not container._has_item(to_node):
+		_on_exit()

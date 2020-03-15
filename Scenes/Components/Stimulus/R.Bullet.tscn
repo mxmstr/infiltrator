@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Explode"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+min_intensity = 0.0
+max_intensity = 0.0
+direction = Vector3( 0, 0, 0 )
+max_direction_angle = -1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=8]
+states/Default/node = SubResource( 1 )
+states/Default/position = Vector2( 455, 125 )
+states/Explode/node = SubResource( 2 )
+states/Explode/position = Vector2( 360, -246 )
+states/Touch/node = SubResource( 3 )
+states/Touch/position = Vector2( 455, -102 )
+transitions = [ "Default", "Touch", SubResource( 4 ), "Touch", "Explode", SubResource( 5 ), "Touch", "Default", SubResource( 6 ), "Explode", "Default", SubResource( 7 ) ]
+start_node = "Default"
+graph_offset = Vector2( -73.0114, -283.439 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Explode"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Behavior")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Explode" ],
+"method": "_start_state"
+} ]
+}
+__meta__ = {
+
+}
+
+[node name="Receptor" type="AnimationTree"]
+tree_root = SubResource( 8 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 9 )
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 4 )
+anims/Explode = SubResource( 10 )
+__meta__ = {
+
+}

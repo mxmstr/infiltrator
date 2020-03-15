@@ -1,15 +1,38 @@
 extends Node
 
 
-func _establish_link(resource, data):
+func _create(type, data):
 	
-	var link = load('res://scenes/Links/' + resource + '.tscn').instance()
+	var new_link = load('res://scenes/Links/' + type + '.tscn').instance()
 	
 	for prop in data:
-		link.set(prop, data[prop])
+		new_link.set(prop, data[prop])
 	
-	for child in get_children():
-		if child._equals(link):
+	for link in $'/root/Mission/Links'.get_children():
+		if link._equals(new_link):
 			return
 	
-	add_child(link)
+	$'/root/Mission/Links'.add_child(new_link)
+
+
+func _destroy(type, data={}):
+	
+	for link in $'/root/Mission/Links'.get_children():
+		
+		if not type in link.name:
+			continue
+		
+		
+		var props_match = true
+		
+		for prop in data:
+			
+			if link.get(prop) != data[prop]:
+				props_match = false
+				break
+		
+		if not props_match:
+			continue
+		
+		
+		link._on_exit()

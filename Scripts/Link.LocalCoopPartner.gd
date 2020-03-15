@@ -44,8 +44,5 @@ func _on_enter():
 			
 			var p1_control = get_node(to).get_node('Perspective')
 			_split_viewports(p1_control, p2_control)
-
-
-func _on_execute():
 	
-	pass#_on_enter()
+	._on_enter()

@@ -198,7 +198,7 @@ func _contain_selection():
 			'to': selection.get_path()
 			}
 		
-		$'/root/Game/Links'._establish_link('Contains', data)
+		LinkHub._create('Contains', data)
 
 
 func _update_raycast_selection():

@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 Inf="*res://Scripts/Infiltrator.gd"
 RawInput="*res://Scripts/RawInput.gd"
+LinkHub="*res://Scripts/LinkHub.gd"
 
 [display]
 

@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Model.obj-5e89d858f942fb8d006ec6174ad829fa.mesh"
+
+[deps]
+
+files=[ "res://.import/Model.obj-5e89d858f942fb8d006ec6174ad829fa.mesh" ]
+
+source_file="res://Models/Items/RC-P120/Model.obj"
+dest_files=[ "res://.import/Model.obj-5e89d858f942fb8d006ec6174ad829fa.mesh", "res://.import/Model.obj-5e89d858f942fb8d006ec6174ad829fa.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

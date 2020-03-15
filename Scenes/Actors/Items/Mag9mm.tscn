@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=2]
+
+[node name="Mag9mm" type="Spatial"]
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+tags = "Magazine 9mm"
+
+[node name="Container" parent="." instance=ExtResource( 2 )]
+path = NodePath("../../Mag9mm")
+max_quantity = 7
+invisible = true
+required_tags = "Bullet 9mm"

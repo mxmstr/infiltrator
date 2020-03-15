@@ -5,9 +5,9 @@ export(String) var bone_name
 export(Vector3) var position_offset
 export(Vector3) var rotation_degrees_offset
 export(int) var max_quantity
-export(int) var max_item_size
 export(bool) var invisible
 export(bool) var interactable
+export(String, MULTILINE) var required_tags
 
 var root
 var items = []
@@ -22,7 +22,12 @@ func _is_empty():
 
 func _add_item(item):
 	
-	if len(get_children()) < max_quantity and true:#max_item_size:
+	for item_tag in item.tags:
+		if not item_tag in required_tags.split(' '):
+			return false
+	
+	
+	if len(get_children()) < max_quantity:
 		
 		item.visible = not invisible
 		item.get_node('Collision').disabled = true
@@ -37,6 +42,27 @@ func _add_item(item):
 func _remove_item(item):
 	
 	if _has_item(item):
+		
+		var last_transform = item.global_transform.origin
+		var last_rotation = item.rotation
+
+		item.visible = true
+		item.get_node('Collision').disabled = false
+
+		if item is RigidBody:
+
+			var item_name = item.name
+			var new_item = load(item.filename).instance()
+
+			$'/root/Mission/Actors'.add_child(new_item)
+			item.name = item_name + '_'
+
+			new_item.name = item_name
+			new_item.global_transform.origin = last_transform
+			new_item.rotation = last_rotation
+
+			item.queue_free()
+		
 		items.erase(item)
 
 
@@ -47,29 +73,12 @@ func _has_item(item):
 
 func _release():
 	
-	for item in items:
-		
-		var last_transform = item.global_transform.origin
-		var last_rotation = item.rotation
-		
-		item.visible = true
-		item.get_node('Collision').disabled = false
-		
-		if item is RigidBody:
-
-			var item_name = item.name
-			var new_item = load(item.filename).instance()
-			
-			$'/root/Game/Actors'.add_child(new_item)
-			item.name = item_name + '_'
-			
-			new_item.name = item_name
-			new_item.global_transform.origin = last_transform
-			new_item.rotation = last_rotation
-
-			item.queue_free()
-		
-		items.erase(item)
+	var data = {
+		'from_node': owner,
+		'container': self
+	}
+	
+	LinkHub._destroy('Contains', data)
 
 
 func _ready():

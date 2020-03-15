@@ -254,4 +254,4 @@ func _physics_process(delta):
 	velocity = horizontal.linear_interpolate(direction, factor * delta)
 	velocity.y = vertical
 	
-	velocity = get_parent().move_and_slide(velocity, Vector3(0, 1, 0))
+	velocity = owner.move_and_slide(velocity, Vector3(0, 1, 0))
