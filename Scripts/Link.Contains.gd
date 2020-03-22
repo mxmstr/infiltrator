@@ -3,12 +3,6 @@ extends 'res://Scripts/Link.gd'
 var container
 
 
-func _contain():
-	
-	var actor = get_node(from)
-	var item = get_node(to)
-
-
 func _find_free_container():
 	
 	for child in from_node.get_children():
@@ -18,6 +12,7 @@ func _find_free_container():
 			var script_name = child.get_script().get_path().get_file()
 			
 			if script_name == 'Prop.Container.gd' and child._add_item(to_node):
+				
 				container = child
 				return true
 	

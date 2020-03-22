@@ -1,14 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Actors/Devices/Button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Doors/Door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Actors/Items/Item.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Actors/Items/Pistol.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Actors/Humans/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Markers/Waypoint.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Links/LocalCoopPartner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Actors/Items/Mag9mm.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Actors/Humans/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Markers/Waypoint.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Links/LocalCoopPartner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Links/ControlDevice.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Links/Contains.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=11]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
@@ -48,10 +50,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538539, 2.62026, -0.504289 )
 [node name="Pistol" parent="Actors" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.395676, 1.23909, 0 )
 
-[node name="Player" parent="Actors" instance=ExtResource( 5 )]
+[node name="Mag9mm" parent="Actors" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0971781, 1.63611, 0.0572793 )
+
+[node name="Player" parent="Actors" instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0640702, 0.271549, 2.2676 )
 
-[node name="Player2" parent="Actors" instance=ExtResource( 5 )]
+[node name="Player2" parent="Actors" instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.71148, 0.317691, -1.74874 )
 
 [node name="Markers" type="Spatial" parent="."]
@@ -59,15 +64,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Waypoint" parent="Markers" instance=ExtResource( 6 )]
+[node name="Waypoint" parent="Markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01449, 0.1843, 4.43018 )
 next = NodePath("../../../Mission/Markers/Waypoint2")
 
-[node name="Waypoint2" parent="Markers" instance=ExtResource( 6 )]
+[node name="Waypoint2" parent="Markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14671, 0.098032, -5.52101 )
 next = NodePath("../../../Mission/Markers/Waypoint3")
 
-[node name="Waypoint3" parent="Markers" instance=ExtResource( 6 )]
+[node name="Waypoint3" parent="Markers" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2646, 0.1843, -0.170586 )
 next = NodePath("../../../Mission/Markers/Waypoint")
 
@@ -76,21 +81,25 @@ __meta__ = {
 
 }
 
-[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 7 )]
+[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 8 )]
 from = NodePath("../../../Mission/Actors/Player2")
 to = NodePath("../../../Mission/Actors/Player")
 
-[node name="ControlDevice" parent="Links" instance=ExtResource( 8 )]
+[node name="ControlDevice" parent="Links" instance=ExtResource( 9 )]
 from = NodePath("../../../Mission/Actors/Button")
 to = NodePath("../../../Mission/Actors/Door")
 from_interaction = "Push"
 to_interaction = "Open"
 
-[node name="ControlDevice2" parent="Links" instance=ExtResource( 8 )]
+[node name="ControlDevice2" parent="Links" instance=ExtResource( 9 )]
 from = NodePath("../../../Mission/Actors/Button")
 to = NodePath("../../../Mission/Actors/Door")
 from_interaction = "Push"
 to_interaction = "Close"
+
+[node name="Contains" parent="Links" instance=ExtResource( 10 )]
+from = NodePath("../../Actors/Pistol")
+to = NodePath("../../Actors/Mag9mm")
 
 [node name="Static" type="Spatial" parent="."]
 __meta__ = {
@@ -110,6 +119,6 @@ __meta__ = {
 
 }
 
-[node name="Map" parent="Static" instance=ExtResource( 9 )]
+[node name="Map" parent="Static" instance=ExtResource( 11 )]
 
 [editable path="Actors/Door"]

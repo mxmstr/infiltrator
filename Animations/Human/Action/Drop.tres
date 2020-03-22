@@ -14,7 +14,7 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "_release"
+"method": "_release_all"
 } ]
 }
 __meta__ = {

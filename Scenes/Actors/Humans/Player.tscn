@@ -1046,7 +1046,7 @@ __meta__ = {
 editor/display_folded = true
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 1.69407e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="Collision" parent="." instance=ExtResource( 3 )]
 shape = SubResource( 1 )
@@ -1117,6 +1117,7 @@ parameters/Step/StepRock/playback = SubResource( 113 )
 path = NodePath("../Model/neo_reference_skeleton")
 bone_name = "Hand-R"
 max_quantity = 1
+required_tags = "Item"
 
 [editable path="Model"]
 

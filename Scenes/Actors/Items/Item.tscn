@@ -25,6 +25,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+tags = "Item"
 
 [node name="Model" type="Spatial" parent="."]
 __meta__ = {

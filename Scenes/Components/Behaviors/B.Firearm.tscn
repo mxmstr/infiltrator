@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+states/Start/node = SubResource( 1 )
+states/Start/position = Vector2( 440.2, 84.6 )
+start_node = "Start"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Fire"
+tracks/0/type = "method"
+tracks/0/path = NodePath("../../Magazine")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Chamber" ],
+"method": "_push_front_into_container"
+} ]
+}
+__meta__ = {
+
+}
+
+[node name="Behavior" type="AnimationTree"]
+tree_root = SubResource( 2 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 3 )
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
+anims/DefaultAnim = ExtResource( 3 )
+anims/Fire = SubResource( 4 )
+__meta__ = {
+
+}

@@ -35,6 +35,8 @@ export var collision_height_mult = 1.0
 
 var enable_rotation = true
 var enable_movement = true
+
+var speed = 0.0
 var direction = Vector3()
 var velocity = Vector3()
 
@@ -82,31 +84,36 @@ func _set_state(new_state):
 	current_state = new_state
 
 
-func _set_direction(local_direction):
+func _set_speed(new_speed):
 	
 	if not enable_movement:
 		return
-	
-	
-	direction = owner.global_transform.basis.xform(local_direction)
 	
 	match current_state:
 		
 		state.WALKING:
 			
-			direction *= max_speed * walk_mult
+			speed = new_speed * max_speed * walk_mult
 		
 		state.CROUCHING:
 			
-			direction *= max_speed * crouch_mult
+			speed = new_speed * max_speed * crouch_mult
 		
 		state.RUNNING:
 			
-			direction *= max_speed
+			speed = new_speed * max_speed
 		
 		state.CRAWLING:
 			
-			direction *= max_speed * crawl_mult
+			speed = new_speed * max_speed * crawl_mult
+
+
+func _set_direction(new_direction):
+	
+	if not enable_movement:
+		return
+	
+	direction = new_direction
 
 
 func _set_horizontal_velocity(horizontal):
@@ -243,15 +250,15 @@ func _physics_process(delta):
 		direction = Vector3()
 	
 	
+	var new_velocity = owner.global_transform.basis.xform(direction) * speed
 	var factor
 	
-	if direction.dot(horizontal) > 0:
+	if new_velocity.dot(horizontal) > 0:
 		factor = accel
 	else:
 		factor = deaccel
 	
-	
-	velocity = horizontal.linear_interpolate(direction, factor * delta)
+	velocity = horizontal.linear_interpolate(new_velocity, factor * delta)
 	velocity.y = vertical
 	
 	velocity = owner.move_and_slide(velocity, Vector3(0, 1, 0))

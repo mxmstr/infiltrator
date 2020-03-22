@@ -7,3 +7,4 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+release_direction = Vector3( 0, 0, 1 )

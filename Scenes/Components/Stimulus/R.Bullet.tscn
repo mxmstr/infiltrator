@@ -37,7 +37,7 @@ __meta__ = {
 
 }
 min_intensity = 0.0
-max_intensity = 0.0
+max_intensity = 100.0
 direction = Vector3( 0, 0, 0 )
 max_direction_angle = -1.0
 

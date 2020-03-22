@@ -186,7 +186,7 @@ func _align_player_to_camera():
 
 func _has_selection():
 	
-	return selection != null and selection.has_node('Behavior')
+	return selection != null and selection.get('tags') != null and 'Item' in selection.tags
 
 
 func _contain_selection():

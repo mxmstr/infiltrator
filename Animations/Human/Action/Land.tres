@@ -27,8 +27,8 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ Vector3( 0, 0, 0 ) ],
-"method": "_set_direction_local"
+"args": [ 0.0 ],
+"method": "_set_speed"
 } ]
 }
 tracks/2/type = "transform"

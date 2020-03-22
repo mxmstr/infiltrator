@@ -4,6 +4,8 @@ export(NodePath) var path
 export(String) var bone_name
 export(Vector3) var position_offset
 export(Vector3) var rotation_degrees_offset
+export(float) var release_speed
+export(Vector3) var release_direction
 export(int) var max_quantity
 export(bool) var invisible
 export(bool) var interactable
@@ -22,15 +24,17 @@ func _is_empty():
 
 func _add_item(item):
 	
-	for item_tag in item.tags:
-		if not item_tag in required_tags.split(' '):
+	for item_tag in required_tags.split(' '):
+		if not item_tag in item.tags:
 			return false
 	
 	
 	if len(get_children()) < max_quantity:
 		
 		item.visible = not invisible
-		item.get_node('Collision').disabled = true
+		
+		if item.has_node('Collision'):
+			item.get_node('Collision').disabled = true
 		
 		items.append(item)
 		
@@ -47,7 +51,9 @@ func _remove_item(item):
 		var last_rotation = item.rotation
 
 		item.visible = true
-		item.get_node('Collision').disabled = false
+		
+		if item.has_node('Collision'):
+			item.get_node('Collision').disabled = false
 
 		if item is RigidBody:
 
@@ -61,6 +67,10 @@ func _remove_item(item):
 			new_item.global_transform.origin = last_transform
 			new_item.rotation = last_rotation
 
+			if new_item.has_node('Movement'):
+				new_item.get_node('Movement')._set_speed(release_speed)
+				new_item.get_node('Movement')._set_direction(release_direction)
+
 			item.queue_free()
 		
 		items.erase(item)
@@ -71,7 +81,41 @@ func _has_item(item):
 	return items.has(item)
 
 
-func _release():
+func _push_front_into_container(new_container):
+	
+	if len(items) == 0:
+		return
+	
+	var item = _release_front()
+	
+	var data = {
+		'from': owner.get_path(),
+		'to': item,
+		'container': get_node(new_container)
+		}
+	
+	LinkHub._create('Contains', data)
+
+
+func _release_front():
+	
+	if len(items) == 0:
+		return
+	
+	var item = items[0]
+	
+	var data = {
+		'from_node': owner,
+		'to_node': item,
+		'container': self
+	}
+	
+	LinkHub._destroy('Contains', data)
+	
+	return item
+
+
+func _release_all():
 	
 	var data = {
 		'from_node': owner,
@@ -84,7 +128,7 @@ func _release():
 func _ready():
 	
 	root = BoneAttachment.new()
-	get_node(path).add_child(root)
+	get_node(path).call_deferred('add_child', root)
 	
 	if bone_name != '':
 		root.bone_name = bone_name
