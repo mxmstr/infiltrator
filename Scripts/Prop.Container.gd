@@ -73,6 +73,13 @@ func _remove_item(item):
 
 			item.queue_free()
 		
+		else:
+			
+			if item.has_node('Movement'):
+				item.get_node('Movement')._set_speed(release_speed)
+				item.get_node('Movement')._set_direction(release_direction)
+
+		
 		items.erase(item)
 
 
@@ -91,7 +98,7 @@ func _push_front_into_container(new_container):
 	var data = {
 		'from': owner.get_path(),
 		'to': item,
-		'container': get_node(new_container)
+		'container': new_container
 		}
 	
 	LinkHub._create('Contains', data)
@@ -107,7 +114,7 @@ func _release_front():
 	var data = {
 		'from_node': owner,
 		'to_node': item,
-		'container': self
+		'container': name
 	}
 	
 	LinkHub._destroy('Contains', data)
@@ -119,7 +126,7 @@ func _release_all():
 	
 	var data = {
 		'from_node': owner,
-		'container': self
+		'container': name
 	}
 	
 	LinkHub._destroy('Contains', data)

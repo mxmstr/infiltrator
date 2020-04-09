@@ -24,6 +24,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+tags = "Actor"
 
 [node name="Model" parent="." instance=ExtResource( 2 )]
 
@@ -34,7 +35,7 @@ shape = SubResource( 1 )
 parameters/playback = SubResource( 2 )
 
 [node name="AnimationPlayer" parent="Behavior" index="0"]
-root_node = NodePath("../../Model")
+root_node = NodePath("../../Model/ButtonControl")
 
 [editable path="Model"]
 

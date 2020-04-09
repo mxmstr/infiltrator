@@ -13,7 +13,7 @@ func _find_free_container():
 			
 			if script_name == 'Prop.Container.gd' and child._add_item(to_node):
 				
-				container = child
+				container = child.name
 				return true
 	
 	return false
@@ -27,14 +27,20 @@ func _on_enter():
 	._on_enter()
 
 
+func _on_execute(delta):
+	
+	var container_node = from_node.get_node(container)
+	
+	if not container_node._has_item(to_node):
+		_on_exit()
+	
+	._on_execute(delta)
+
+
 func _on_exit():
 	
-	container._remove_item(to_node) if container != null else null
+	var container_node = from_node.get_node(container)
+	
+	container_node._remove_item(to_node) if container_node != null else null
 	
 	._on_exit()
-
-
-func _process(delta):
-	
-	if not container._has_item(to_node):
-		_on_exit()

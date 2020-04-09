@@ -5,13 +5,13 @@ resource_name = "CrouchIdle"
 length = 0.0416667
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../Perspective:rig_translation")
+tracks/0/path = NodePath("../../CameraRig:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 9.7 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 0, 1.1, 0.3 ) ]
@@ -148,7 +148,7 @@ tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/keys = PoolRealArray( 0, 1, -8.97035e-08, 1.19209e-07, 1.30385e-07, 1.043e-07, 7.5e-09, 5.96e-08, 1, 1, 1, 1, 0.0416667, 1, -8.97035e-08, 1.19209e-07, 1.30385e-07, 1.043e-07, 7.5e-09, 5.96e-08, 1, 1, 1, 1 )
 tracks/19/type = "value"
-tracks/19/path = NodePath("../../Perspective:rig_rotation_degrees")
+tracks/19/path = NodePath("../../CameraRig:rotation_degrees")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
@@ -157,7 +157,7 @@ tracks/19/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 180, 0 ) ]
+"values": [ Vector3( 0, -180, 0 ) ]
 }
 __meta__ = {
 

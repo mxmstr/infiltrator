@@ -8,8 +8,8 @@ var timer
 
 func _on_timeout():
 	
-	if get_parent().has_node('Receptor'):
-		get_parent().get_node('Receptor')._start_state('Airborne')
+	#if get_parent().has_node('Receptor'):
+	#	get_parent().get_node('Receptor')._start_state('Airborne')
 	
 	timer.queue_free()
 	timer = null

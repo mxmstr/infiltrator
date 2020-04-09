@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/dd44.dae-f9b1008371dc7867e825415e23fb16a7.scn"
+path="res://.import/dd44.glb-ab0592eed84594ff69457519a0053731.scn"
 
 [deps]
 
-source_file="res://Models/Items/DD44/dd44.dae"
-dest_files=[ "res://.import/dd44.dae-f9b1008371dc7867e825415e23fb16a7.scn" ]
+source_file="res://Models/Items/DD44/dd44.glb"
+dest_files=[ "res://.import/dd44.glb-ab0592eed84594ff69457519a0053731.scn" ]
 
 [params]
 

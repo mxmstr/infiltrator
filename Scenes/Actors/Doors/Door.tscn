@@ -25,6 +25,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+tags = "Actor"
 
 [node name="Model" parent="." instance=ExtResource( 2 )]
 editor/display_folded = true

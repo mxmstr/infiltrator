@@ -5,7 +5,7 @@ resource_name = "neo_reference_skeleton|neo_reference_skeleton|Crouchkf2|neo_re"
 length = 2.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../Perspective/Container/Viewport/CameraRig:translation")
+tracks/0/path = NodePath("../../CameraRig:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -244,7 +244,7 @@ tracks/31/keys = {
 "values": [ 0.3 ]
 }
 tracks/32/type = "value"
-tracks/32/path = NodePath("../../Perspective/Container/Viewport/CameraRig:rotation_degrees")
+tracks/32/path = NodePath("../../CameraRig:rotation_degrees")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/imported = false

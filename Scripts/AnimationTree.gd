@@ -1,10 +1,12 @@
 extends AnimationTree
 
+var make_unique = 0
+
+var level = 0
+
 signal on_physics_process
 signal on_process
 signal travel_starting
-
-var level = 0
 
 
 func _start_state(_name, data={}):
@@ -13,14 +15,25 @@ func _start_state(_name, data={}):
 		tree_root._travel(_name)
 
 
+#func _init():
+#
+#	if Engine.editor_hint: return
+#
+#	if not has_meta('unique'):
+#
+#		get_parent().connect('entered_tree', Inf, '_make_unique', [self])
+#
+#		return
+
+
 func _ready():
 	
 	if Engine.editor_hint: return
 	
 	
-	if not has_meta('unique'):
-		Inf._make_unique(self)
-		return
+#	if not has_meta('unique'):
+#		Inf._make_unique(self)
+#		return
 	
 	
 	if tree_root.has_method('_ready'):

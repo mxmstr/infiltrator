@@ -55,9 +55,14 @@ func _make_unique(old):
 		new.set(prop, export_props[prop])
 	
 	
-	old.get_parent().call_deferred('add_child_below_node', old, new)
-	new.call_deferred('set_owner', old.owner)
-	old.get_parent().call_deferred('remove_child', old)
+#	old.get_parent().call_deferred('add_child_below_node', old, new)
+#	new.call_deferred('set_owner', old.owner)
+#	old.get_parent().call_deferred('remove_child', old)
+#	old.queue_free()
+
+	old.get_parent().add_child_below_node(old, new)
+	new.set_owner(old.owner)
+	old.get_parent().remove_child(old)
 	old.queue_free()
 	
 	

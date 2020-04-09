@@ -30,19 +30,19 @@ func _split_viewports(p1_control, p2_control):
 func _on_enter():
 	
 	if not Inf.coop:
-		get_node(from).queue_free()
+		from_node.queue_free()
 		return
 	
 	
 	yield(get_tree(), 'idle_frame')
 	
-	if get_node(from).has_node('Perspective') if has_node(from) else false:
+	if from.has_node('Perspective'):
 		
-		var p2_control = get_node(from).get_node('Perspective')
+		var p2_control = from.get_node('Perspective')
 		
-		if get_node(to).has_node('Perspective') if has_node(to) else false:
+		if to.has_node('Perspective'):
 			
-			var p1_control = get_node(to).get_node('Perspective')
+			var p1_control = to.get_node('Perspective')
 			_split_viewports(p1_control, p2_control)
 	
 	._on_enter()

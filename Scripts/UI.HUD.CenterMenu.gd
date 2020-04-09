@@ -10,10 +10,6 @@ var selection = null
 var interactions = []
 var select_index = 0
 
-onready var perspective = owner.owner
-
-signal option_selected
-
 
 func _has_interactions():
 	
@@ -131,7 +127,7 @@ func _update_interactions():
 
 func _ready():
 	
-	perspective.connect('changed_selection', self, '_on_selection_changed')
+	$'../../CameraRaycast'.connect('selection_changed', self, '_on_selection_changed')
 
 
 func _process(delta):

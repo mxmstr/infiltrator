@@ -16,6 +16,8 @@ var parent
 var parameters
 var connections = []
 
+signal state_starting
+
 
 func _is_visible():
 	
@@ -25,6 +27,8 @@ func _is_visible():
 func _on_state_starting(new_name):
 	
 	if node_name == new_name:
+		
+		emit_signal('state_starting')
 		
 		var playback = owner.get(parameters + 'playback')
 		

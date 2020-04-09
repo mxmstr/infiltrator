@@ -1,4 +1,4 @@
-tool
+#tool
 extends 'res://Scripts/AnimationTree.gd'
 
 export var mouse_device = -1
@@ -20,16 +20,13 @@ var worldmodel_offset = 15
 var root_id
 var shoulders_id
 
-var selection
-var last_selection
 var rig_translated = false
 var rig_rotated = false
 
-onready var rig = $Container/Viewport/CameraRig
-onready var camera = $Container/Viewport/CameraRig/Camera
-onready var raycast = $Container/Viewport/CameraRig/Camera/RayCast
+var selection
 
-signal changed_selection
+onready var rig = $'../CameraRig'
+onready var camera = rig.get_node('Camera')
 
 
 func _set_rig_translation(new_translation):
@@ -50,9 +47,13 @@ func _set_rig_rotation_degrees(new_rotation):
 	rig_rotated = true
 
 
+func _on_selection_changed(new_selection):
+	
+	selection = new_selection
+
+
 func _reset_viewport():
 	
-	var camera = $Container/Viewport/CameraRig/Camera
 	var mesh = $'../Model'.get_child(0).get_child(0)
 	var viewmesh = $'../ViewModel'.get_child(0).get_child(0)
 	
@@ -71,12 +72,6 @@ func _reset_viewport():
 	camera.set_cull_mask_bit(worldmodel_offset + player_index, false)
 	mesh.set_layer_mask_bit(0, false)
 	mesh.set_layer_mask_bit(worldmodel_offset + player_index, true)
-
-
-func _init_camera():
-	
-	raycast.add_exception(get_parent())
-	selection = raycast.get_collider()
 
 
 func _init_viewport():
@@ -104,27 +99,11 @@ func _init_fp_skeleton():
 	get_parent().add_child_below_node($'../Model', viewmodel)
 
 
-func _ready():
-	
-	if Engine.editor_hint: return
-	
-	
-	if not has_meta('unique'):
-		return
-	
-	_init_camera()
-	_init_viewport()
-	
-	#yield(get_tree(), 'idle_frame')
-	
-	call_deferred('_init_fp_skeleton')
-	call_deferred('_reset_viewport')
-
-
 func _rotate_camera(delta_x, delta_y):
 	
-	camera.rotation.x += delta_x
-	camera.rotation.y += delta_y
+	pass
+	#camera.rotation.x += delta_x
+	#camera.rotation.y += delta_y
 
 
 func _blend_fp_skeleton():
@@ -153,25 +132,16 @@ func _blend_fp_skeleton():
 	s_view.global_transform.origin = owner.global_transform.origin + rig_transform - shoulders_transform
 
 
-func _camera_follow_preview():
-	
-	var rig = $Container/Viewport/CameraRig
-	
-	if null in [owner, rig]: return
-	
-	rig.global_transform.origin = owner.global_transform.origin + owner.global_transform.basis.xform(rig_translation)
-	
-	rig.rotation_degrees = owner.rotation_degrees + rig_rotation_degrees
-
-
 func _camera_follow_target():
-	
-	rig.global_transform.origin = owner.global_transform.origin + owner.global_transform.basis.xform(rig_translation)
-	
-	rig.rotation_degrees = owner.rotation_degrees + rig_rotation_degrees
 	
 	camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)
 	camera.rotation.y = clamp(camera.rotation.y, -cam_max_x, cam_max_x)
+	
+	return
+	
+	rig.global_transform.origin = owner.global_transform.origin + owner.global_transform.basis.xform(rig_translation)
+	
+	rig.rotation_degrees = owner.rotation_degrees + rig_rotation_degrees
 	
 	rig_translated = false
 	rig_rotated = false
@@ -184,14 +154,9 @@ func _align_player_to_camera():
 	owner.look_at(target, Vector3(0, 1, 0))
 
 
-func _has_selection():
-	
-	return selection != null and selection.get('tags') != null and 'Item' in selection.tags
-
-
 func _contain_selection():
 	
-	if _has_selection():
+	if selection != null:
 		
 		var data = {
 			'from': owner.get_path(),
@@ -201,21 +166,24 @@ func _contain_selection():
 		LinkHub._create('Contains', data)
 
 
-func _update_raycast_selection():
+func _ready():
 	
-	var collider = raycast.get_collider()
+	if Engine.editor_hint: return
 	
-	if selection != collider:
-		selection = collider
-		emit_signal('changed_selection', selection)
+	if not has_meta('unique'):
+		return
+	
+	_init_viewport()
+	
+	$'../CameraRaycast'.connect('selection_changed', self, '_on_selection_changed')
+	
+	yield(get_tree(), 'idle_frame')
+	
+	_init_fp_skeleton()
+	_reset_viewport()
 
 
 func _process(delta):
 	
-	if Engine.editor_hint: 
-		_camera_follow_preview()
-		return
-	
 	_camera_follow_target()
 	_blend_fp_skeleton()
-	_update_raycast_selection()

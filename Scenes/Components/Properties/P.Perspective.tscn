@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Prop.Perspective.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
-[ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "AlignPlayerToCamera"
@@ -176,27 +175,3 @@ shadow_atlas_size = 1
 __meta__ = {
 
 }
-
-[node name="HUD" parent="Container/Viewport" instance=ExtResource( 4 )]
-
-[node name="CameraRig" type="Spatial" parent="Container/Viewport"]
-__meta__ = {
-
-}
-
-[node name="Camera" type="Camera" parent="Container/Viewport/CameraRig"]
-cull_mask = 1047583
-current = true
-__meta__ = {
-
-}
-
-[node name="RayCast" type="RayCast" parent="Container/Viewport/CameraRig/Camera"]
-enabled = true
-cast_to = Vector3( 0, 0, -2 )
-collision_mask = 1031
-__meta__ = {
-
-}
-
-[editable path="Container/Viewport/HUD"]

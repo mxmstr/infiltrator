@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Prop.CameraRig.gd" type="Script" id=1]
+
+[node name="CameraRig" type="Spatial"]
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+
+[node name="Camera" type="Camera" parent="."]
+cull_mask = 1047583
+current = true
+__meta__ = {
+
+}

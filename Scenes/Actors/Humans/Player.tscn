@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=2]
+[gd_scene load_steps=140 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=2]
@@ -6,23 +6,26 @@
 [ext_resource path="res://Scenes/Components/Properties/P.Movement.Human.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Stimulus/S.Contact.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Stimulus/S.Airborne.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Components/Properties/P.Perspective.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Behaviors/B.Human.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=10]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/Behavior.Node.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=14]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Priority.gd" type="Script" id=15]
-[ext_resource path="res://Scenes/Components/Properties/P.AnimLayer.Movement.Human.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/Components/Stimulus/R.Human.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/Components/Properties/P.InputAbilities.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=19]
-[ext_resource path="res://Scenes/Components/Properties/P.InputMovement.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scenes/Components/Properties/P.InputRotation.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Scenes/Components/AudioSchemas/AS.Human.Feet.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Components/Stimulus/S.Raycast.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Properties/P.CameraRig.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Components/Properties/P.HUD.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Components/Properties/P.Perspective.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Components/Behaviors/B.Human.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/Behavior.Node.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Priority.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/Components/Properties/P.AnimLayer.Movement.Human.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Components/Stimulus/R.Human.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Components/Properties/P.InputAbilities.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=23]
+[ext_resource path="res://Scenes/Components/Properties/P.InputMovement.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/Components/Properties/P.InputRotation.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/Components/AudioSchemas/AS.Human.Feet.tscn" type="PackedScene" id=26]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.15, 0.75, 0.15 )
@@ -77,7 +80,7 @@ __meta__ = {
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 11 )
+script = ExtResource( 15 )
 __meta__ = {
 
 }
@@ -116,7 +119,7 @@ __meta__ = {
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 11 )
+script = ExtResource( 15 )
 __meta__ = {
 
 }
@@ -150,7 +153,7 @@ states/Start/position = Vector2( 226, 141 )
 transitions = [ "Start", "ClimbHigh", SubResource( 9 ), "ClimbHigh", "End", SubResource( 10 ), "Start", "ClimbMedium", SubResource( 11 ), "ClimbMedium", "End", SubResource( 12 ), "Start", "ClimbLow", SubResource( 13 ), "ClimbLow", "End", SubResource( 14 ) ]
 start_node = "Start"
 end_node = "End"
-script = ExtResource( 10 )
+script = ExtResource( 14 )
 __meta__ = {
 
 }
@@ -167,7 +170,7 @@ camera_mode = "HalfYaw"
 [sub_resource type="AnimationNodeAnimation" id=16]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-script = ExtResource( 12 )
+script = ExtResource( 16 )
 __meta__ = {
 
 }
@@ -183,7 +186,7 @@ camera_mode = "LockYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "Drop"
-script = ExtResource( 12 )
+script = ExtResource( 16 )
 __meta__ = {
 
 }
@@ -199,7 +202,7 @@ camera_mode = "LockYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Fall"
-script = ExtResource( 12 )
+script = ExtResource( 16 )
 __meta__ = {
 
 }
@@ -221,7 +224,7 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "Grab"
-script = ExtResource( 12 )
+script = ExtResource( 16 )
 __meta__ = {
 
 }
@@ -268,7 +271,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
 auto_advance = true
 disabled = true
-script = ExtResource( 13 )
+script = ExtResource( 17 )
 __meta__ = {
 
 }
@@ -315,7 +318,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 auto_advance = true
 disabled = true
-script = ExtResource( 13 )
+script = ExtResource( 17 )
 __meta__ = {
 
 }
@@ -362,7 +365,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
 auto_advance = true
 disabled = true
-script = ExtResource( 13 )
+script = ExtResource( 17 )
 __meta__ = {
 
 }
@@ -408,7 +411,7 @@ blend_point_4/pos = Vector2( 0, 0 )
 blend_point_5/node = SubResource( 38 )
 blend_point_5/pos = Vector2( 0, 0.2 )
 blend_mode = 1
-script = ExtResource( 14 )
+script = ExtResource( 18 )
 __meta__ = {
 
 }
@@ -436,7 +439,7 @@ camera_mode = "HalfYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=40]
 animation = "Land"
-script = ExtResource( 12 )
+script = ExtResource( 16 )
 __meta__ = {
 
 }
@@ -464,7 +467,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
 auto_advance = true
 disabled = true
-script = ExtResource( 15 )
+script = ExtResource( 19 )
 __meta__ = {
 
 }
@@ -473,7 +476,7 @@ transition_priority = ""
 [sub_resource type="AnimationNodeStateMachineTransition" id=44]
 auto_advance = true
 disabled = true
-script = ExtResource( 15 )
+script = ExtResource( 19 )
 __meta__ = {
 
 }
@@ -487,7 +490,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=46]
 auto_advance = true
 disabled = true
-script = ExtResource( 15 )
+script = ExtResource( 19 )
 __meta__ = {
 
 }
@@ -508,7 +511,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=49]
 auto_advance = true
 disabled = true
-script = ExtResource( 15 )
+script = ExtResource( 19 )
 __meta__ = {
 
 }
@@ -517,7 +520,7 @@ transition_priority = ""
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
 auto_advance = true
 disabled = true
-script = ExtResource( 13 )
+script = ExtResource( 17 )
 __meta__ = {
 
 }
@@ -540,7 +543,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=52]
 auto_advance = true
 disabled = true
-script = ExtResource( 15 )
+script = ExtResource( 19 )
 __meta__ = {
 
 }
@@ -549,7 +552,7 @@ transition_priority = ""
 [sub_resource type="AnimationNodeStateMachineTransition" id=53]
 auto_advance = true
 disabled = true
-script = ExtResource( 13 )
+script = ExtResource( 17 )
 __meta__ = {
 
 }
@@ -610,7 +613,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=61]
 auto_advance = true
 disabled = true
-script = ExtResource( 15 )
+script = ExtResource( 19 )
 __meta__ = {
 
 }
@@ -635,7 +638,7 @@ __meta__ = {
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 13 )
+script = ExtResource( 17 )
 __meta__ = {
 
 }
@@ -672,7 +675,7 @@ states/LandExit/position = Vector2( 497, 129.4 )
 transitions = [ "Default", "Drop", SubResource( 42 ), "Grab", "Default", SubResource( 43 ), "Drop", "Default", SubResource( 44 ), "Default", "Land", SubResource( 45 ), "Land", "LandExit", SubResource( 46 ), "LandExit", "Default", SubResource( 47 ), "Default", "Fall", SubResource( 48 ), "Fall", "Default", SubResource( 49 ), "Fall", "Default", SubResource( 50 ), "Land", "LandExit", SubResource( 51 ), "Jump", "Default", SubResource( 52 ), "Jump", "Default", SubResource( 53 ), "Default", "FindClimbTarget", SubResource( 54 ), "FindClimbTarget", "Jump", SubResource( 55 ), "Grab", "Default", SubResource( 56 ), "Drop", "Default", SubResource( 57 ), "Default", "Grab", SubResource( 58 ), "Jump", "FindClimbTarget", SubResource( 59 ), "Jump", "Default", SubResource( 60 ), "Climb", "Climb.Exit", SubResource( 61 ), "Climb", "Climb.Exit", SubResource( 62 ), "Climb.Exit", "Default", SubResource( 63 ), "FindClimbTarget", "Climb", SubResource( 64 ) ]
 start_node = "Default"
 graph_offset = Vector2( -130.555, 192.831 )
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 __meta__ = {
 
 }
@@ -787,7 +790,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=85]
 auto_advance = true
 disabled = true
-script = ExtResource( 13 )
+script = ExtResource( 17 )
 __meta__ = {
 
 }
@@ -832,7 +835,7 @@ states/Start/position = Vector2( 327, 182 )
 transitions = [ "Start", "Drop", SubResource( 85 ), "Start", "Grab", SubResource( 86 ), "Drop", "End", SubResource( 87 ), "Grab", "End", SubResource( 88 ) ]
 start_node = "Start"
 end_node = "End"
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 __meta__ = {
 
 }
@@ -841,7 +844,7 @@ statemachine = ""
 [sub_resource type="AnimationNodeStateMachineTransition" id=90]
 auto_advance = true
 disabled = true
-script = ExtResource( 19 )
+script = ExtResource( 23 )
 __meta__ = {
 
 }
@@ -859,7 +862,7 @@ __meta__ = {
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 19 )
+script = ExtResource( 23 )
 __meta__ = {
 
 }
@@ -877,7 +880,7 @@ __meta__ = {
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 19 )
+script = ExtResource( 23 )
 __meta__ = {
 
 }
@@ -888,7 +891,7 @@ state = 3
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 19 )
+script = ExtResource( 23 )
 __meta__ = {
 
 }
@@ -912,7 +915,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=98]
 switch_mode = 2
 disabled = true
-script = ExtResource( 13 )
+script = ExtResource( 17 )
 __meta__ = {
 
 }
@@ -927,7 +930,7 @@ wait_for_frame = 0.0
 [sub_resource type="AnimationNodeStateMachineTransition" id=99]
 auto_advance = true
 disabled = true
-script = ExtResource( 19 )
+script = ExtResource( 23 )
 __meta__ = {
 
 }
@@ -944,7 +947,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=101]
 auto_advance = true
 disabled = true
-script = ExtResource( 19 )
+script = ExtResource( 23 )
 __meta__ = {
 
 }
@@ -979,7 +982,7 @@ states/Secondary/position = Vector2( 614.848, -176.425 )
 transitions = [ "Default", "Interact", SubResource( 90 ), "InteractExit", "Default", SubResource( 91 ), "Interact", "InteractSelect", SubResource( 92 ), "InteractSelect", "InteractExit", SubResource( 93 ), "Interact", "InteractUp", SubResource( 94 ), "Interact", "InteractDown", SubResource( 95 ), "InteractUp", "Interact", SubResource( 96 ), "InteractDown", "Interact", SubResource( 97 ), "Interact", "InteractExit", SubResource( 98 ), "Default", "Jump", SubResource( 99 ), "Jump", "Default", SubResource( 100 ), "Default", "Secondary", SubResource( 101 ), "Secondary", "Default", SubResource( 102 ) ]
 start_node = "Default"
 graph_offset = Vector2( -210.152, -274.23 )
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 __meta__ = {
 
 }
@@ -1059,7 +1062,40 @@ stim_type = "Touch"
 [node name="AirborneStim" parent="." instance=ExtResource( 6 )]
 delay = 2.0
 
-[node name="Perspective" parent="." instance=ExtResource( 7 )]
+[node name="CameraRaycast" parent="." instance=ExtResource( 7 )]
+cast_to = Vector3( 0, 0, -2 )
+collision_mask = 1031
+path = NodePath("../CameraRig/Camera")
+required_tags = "Actor Item"
+
+[node name="RightHand" parent="." instance=ExtResource( 8 )]
+path = NodePath("../Model/neo_reference_skeleton")
+bone_name = "Hand-R"
+max_quantity = 1
+required_tags = "Item"
+
+[node name="CameraRig" parent="." instance=ExtResource( 9 )]
+editor/display_folded = true
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1.7, 0 )
+viewport = NodePath("../Perspective/Container/Viewport")
+path = NodePath("..")
+
+[node name="HUD" parent="." instance=ExtResource( 10 )]
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+viewport = NodePath("../Perspective/Container/Viewport")
+
+[node name="Crosshair" parent="HUD" index="0"]
+editor/display_folded = true
+
+[node name="Perspective" parent="." instance=ExtResource( 11 )]
 editor/display_folded = true
 parameters/playback = SubResource( 2 )
 fp_root_bone = "Pelvis"
@@ -1068,10 +1104,8 @@ fp_hidden_bones = [ "Head", "Neck" ]
 rig_translation = Vector3( 0, 1.7, 0 )
 rig_rotation_degrees = Vector3( 0, 180, 0 )
 
-[node name="CameraRig" parent="Perspective/Container/Viewport" index="1"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.7, 0 )
-
-[node name="Behavior" parent="." instance=ExtResource( 8 )]
+[node name="Behavior" parent="." instance=ExtResource( 12 )]
+editor/display_folded = true
 tree_root = SubResource( 65 )
 parameters/playback = SubResource( 66 )
 parameters/Climb/playback = SubResource( 67 )
@@ -1082,7 +1116,7 @@ parameters/Jump/5/playback = SubResource( 70 )
 [node name="AnimationPlayer" parent="Behavior" index="0"]
 root_node = NodePath("../../Model/neo_reference_skeleton")
 
-[node name="AnimLayerMovement" parent="." instance=ExtResource( 16 )]
+[node name="AnimLayerMovement" parent="." instance=ExtResource( 20 )]
 active = true
 parameters/blend_position = 2.00451
 parameters/0/0/playback = SubResource( 71 )
@@ -1091,35 +1125,38 @@ parameters/1/0/playback = SubResource( 72 )
 [node name="AnimationPlayer" parent="AnimLayerMovement" index="0"]
 root_node = NodePath("../../Model/neo_reference_skeleton")
 
-[node name="Receptor" parent="." instance=ExtResource( 17 )]
+[node name="Receptor" parent="." instance=ExtResource( 21 )]
+editor/display_folded = true
 parameters/playback = SubResource( 73 )
 
-[node name="InputAbilities" parent="." instance=ExtResource( 18 )]
+[node name="InputAbilities" parent="." instance=ExtResource( 22 )]
+editor/display_folded = true
 tree_root = SubResource( 103 )
 parameters/playback = SubResource( 104 )
 parameters/Secondary/playback = SubResource( 105 )
 
-[node name="InputMovement" parent="." instance=ExtResource( 20 )]
+[node name="InputMovement" parent="." instance=ExtResource( 24 )]
+editor/display_folded = true
 parameters/playback = SubResource( 106 )
 parameters/Lean/playback = SubResource( 107 )
 parameters/Stance/playback = SubResource( 108 )
 
-[node name="InputRotation" parent="." instance=ExtResource( 21 )]
+[node name="InputRotation" parent="." instance=ExtResource( 25 )]
+editor/display_folded = true
 parameters/playback = SubResource( 109 )
 
-[node name="FeetAudio" parent="." instance=ExtResource( 22 )]
+[node name="FeetAudio" parent="." instance=ExtResource( 26 )]
+editor/display_folded = true
 parameters/playback = SubResource( 110 )
 parameters/Land/playback = SubResource( 111 )
 parameters/Step/playback = SubResource( 112 )
 parameters/Step/StepRock/playback = SubResource( 113 )
 
-[node name="RightHand" parent="." instance=ExtResource( 23 )]
-path = NodePath("../Model/neo_reference_skeleton")
-bone_name = "Hand-R"
-max_quantity = 1
-required_tags = "Item"
-
 [editable path="Model"]
+
+[editable path="CameraRig"]
+
+[editable path="HUD"]
 
 [editable path="Perspective"]
 

@@ -14,9 +14,7 @@ func _on_sender_enter():
 
 func _on_enter():
 	
-	var sender = from
-	
-	if has_node(sender) and get_node(sender).has_node('Behavior') and from_interaction != null:
+	if from_node.has_node('Behavior') and from_interaction != null:
 		
-		var sender_action = get_node(sender).get_node('Behavior').tree_root.get_node(from_interaction)
-		sender_action.connect('on_enter', self, '_on_sender_enter')
+		var sender_action = from_node.get_node('Behavior').tree_root.get_node(from_interaction)
+		sender_action.connect('state_starting', self, '_on_sender_enter')
