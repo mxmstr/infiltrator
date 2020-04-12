@@ -108,8 +108,10 @@ func _refresh_children():
 func _update_interactions():
 	
 	if _selection_is_freed():
+		
 		selection = null
 		return
+	
 	
 	if _selection_is_actor():
 	
@@ -127,9 +129,11 @@ func _update_interactions():
 
 func _ready():
 	
-	$'../../CameraRaycast'.connect('selection_changed', self, '_on_selection_changed')
+	pass#$'../../CameraRaycast'.connect('selection_changed', self, '_on_selection_changed')
 
 
 func _process(delta):
+	
+	selection = $'../../CameraRaycast'.selection
 	
 	_update_interactions()

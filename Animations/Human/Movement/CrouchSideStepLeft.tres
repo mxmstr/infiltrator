@@ -11,10 +11,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.58 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, -180, 0 ), Vector3( 0, -180, 14 ) ]
+"values": [ Vector3( 0, -180, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../../Movement:collision_height_mult")
@@ -147,10 +147,10 @@ tracks/18/loop_wrap = true
 tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/keys = {
-"times": PoolRealArray( 0, 0.583333 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 1.1, 0.3 ), Vector3( 0.32, 1, 0.3 ) ]
+"values": [ Vector3( 0, 1.1, 0.3 ) ]
 }
 tracks/19/type = "transform"
 tracks/19/path = NodePath(".:shoulders")

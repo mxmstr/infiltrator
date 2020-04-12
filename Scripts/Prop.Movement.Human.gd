@@ -127,6 +127,13 @@ func _set_vertical_velocity(vertical):
 	velocity.y = vertical
 
 
+func _align_to_camera():
+	
+	var target = owner.global_transform.origin + $'../CameraRig/Camera'.global_transform.basis.z#.inverse()
+	target.y = owner.global_transform.origin.y
+	owner.look_at(target, Vector3(0, 1, 0))
+
+
 func _test_for_wall(origin, cast_to):
 
 	var ray = RayCast.new()

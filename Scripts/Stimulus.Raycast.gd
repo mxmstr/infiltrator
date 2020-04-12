@@ -1,6 +1,7 @@
 extends RayCast
 
 export(String) var stim_type
+export var auto = true
 export var continuous = false
 export var send_to_self = false
 
@@ -28,7 +29,7 @@ func _has_selection():
 
 func _stimulate():
 	
-	if stim_type == '':
+	if stim_type == '' or selection == null:
 		return
 	
 	
@@ -61,18 +62,9 @@ func _stimulate():
 
 func _update_raycast_selection():
 	
-	if selection != get_collider():
-		
-		if _has_selection():
-		
-			selection = get_collider()
-			_stimulate()
-		
-		else:
-			
-			selection = null
-		
-		emit_signal('selection_changed', selection)
+	selection = get_collider() if _has_selection() else null
+
+	#emit_signal('selection_changed', selection)
 
 
 func _ready():
@@ -92,3 +84,6 @@ func _process(delta):
 	global_transform.basis = root.global_transform.basis
 	
 	_update_raycast_selection()
+	
+	if auto:
+		_stimulate()

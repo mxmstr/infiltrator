@@ -3,11 +3,11 @@
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=2]
 [ext_resource path="res://Models/Humans/DefaultHuman.Collision.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Properties/P.Movement.Human.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Stimulus/S.Contact.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Components/Stimulus/S.Airborne.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Components/Stimulus/S.Raycast.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Properties/P.Movement.Human.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/Stimulus/S.Contact.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Stimulus/S.Airborne.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Stimulus/S.Raycast.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Components/Properties/P.CameraRig.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Components/Properties/P.HUD.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Properties/P.Perspective.tscn" type="PackedScene" id=11]
@@ -21,11 +21,11 @@
 [ext_resource path="res://Scripts/AnimationTree.Transition.Priority.gd" type="Script" id=19]
 [ext_resource path="res://Scenes/Components/Properties/P.AnimLayer.Movement.Human.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/Components/Stimulus/R.Human.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Scenes/Components/Properties/P.InputAbilities.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=23]
-[ext_resource path="res://Scenes/Components/Properties/P.InputMovement.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Scenes/Components/Properties/P.InputRotation.tscn" type="PackedScene" id=25]
-[ext_resource path="res://Scenes/Components/AudioSchemas/AS.Human.Feet.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Scenes/Components/AudioSchemas/AS.Human.Feet.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Components/Properties/P.InputAbilities.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=24]
+[ext_resource path="res://Scenes/Components/Properties/P.InputMovement.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/Components/Properties/P.InputRotation.tscn" type="PackedScene" id=26]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.15, 0.75, 0.15 )
@@ -721,6 +721,26 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=110]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=111]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=112]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=113]
+__meta__ = {
+
+}
+
 [sub_resource type="AnimationNodeAnimation" id=74]
 animation = "DefaultAnim"
 __meta__ = {
@@ -844,7 +864,7 @@ statemachine = ""
 [sub_resource type="AnimationNodeStateMachineTransition" id=90]
 auto_advance = true
 disabled = true
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 __meta__ = {
 
 }
@@ -862,7 +882,7 @@ __meta__ = {
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 __meta__ = {
 
 }
@@ -880,7 +900,7 @@ __meta__ = {
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 __meta__ = {
 
 }
@@ -891,7 +911,7 @@ state = 3
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 __meta__ = {
 
 }
@@ -930,7 +950,7 @@ wait_for_frame = 0.0
 [sub_resource type="AnimationNodeStateMachineTransition" id=99]
 auto_advance = true
 disabled = true
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 __meta__ = {
 
 }
@@ -947,7 +967,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=101]
 auto_advance = true
 disabled = true
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 __meta__ = {
 
 }
@@ -1018,26 +1038,6 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=110]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=111]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=112]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=113]
-__meta__ = {
-
-}
-
 [node name="Player" type="KinematicBody"]
 collision_mask = 1027
 script = ExtResource( 1 )
@@ -1054,31 +1054,31 @@ transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-0
 [node name="Collision" parent="." instance=ExtResource( 3 )]
 shape = SubResource( 1 )
 
-[node name="Movement" parent="." instance=ExtResource( 4 )]
-
-[node name="ContactStim" parent="." instance=ExtResource( 5 )]
-stim_type = "Touch"
-
-[node name="AirborneStim" parent="." instance=ExtResource( 6 )]
-delay = 2.0
-
-[node name="CameraRaycast" parent="." instance=ExtResource( 7 )]
-cast_to = Vector3( 0, 0, -2 )
-collision_mask = 1031
-path = NodePath("../CameraRig/Camera")
-required_tags = "Actor Item"
-
-[node name="RightHand" parent="." instance=ExtResource( 8 )]
+[node name="RightHand" parent="." instance=ExtResource( 4 )]
 path = NodePath("../Model/neo_reference_skeleton")
 bone_name = "Hand-R"
 max_quantity = 1
 required_tags = "Item"
 
+[node name="Movement" parent="." instance=ExtResource( 5 )]
+
+[node name="ContactStim" parent="." instance=ExtResource( 6 )]
+stim_type = "Touch"
+
+[node name="AirborneStim" parent="." instance=ExtResource( 7 )]
+delay = 2.0
+
+[node name="CameraRaycast" parent="." instance=ExtResource( 8 )]
+cast_to = Vector3( 0, 0, -2 )
+collision_mask = 1031
+stim_type = "Grab"
+path = NodePath("../CameraRig/Camera")
+required_tags = "Actor Item"
+
 [node name="CameraRig" parent="." instance=ExtResource( 9 )]
 editor/display_folded = true
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1.7, 0 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.7, 0 )
 viewport = NodePath("../Perspective/Container/Viewport")
-path = NodePath("..")
 
 [node name="HUD" parent="." instance=ExtResource( 10 )]
 editor/display_folded = true
@@ -1101,12 +1101,11 @@ parameters/playback = SubResource( 2 )
 fp_root_bone = "Pelvis"
 fp_shoulder_bone = "shoulders"
 fp_hidden_bones = [ "Head", "Neck" ]
-rig_translation = Vector3( 0, 1.7, 0 )
-rig_rotation_degrees = Vector3( 0, 180, 0 )
 
 [node name="Behavior" parent="." instance=ExtResource( 12 )]
 editor/display_folded = true
 tree_root = SubResource( 65 )
+active = true
 parameters/playback = SubResource( 66 )
 parameters/Climb/playback = SubResource( 67 )
 parameters/Jump/3/playback = SubResource( 68 )
@@ -1117,6 +1116,7 @@ parameters/Jump/5/playback = SubResource( 70 )
 root_node = NodePath("../../Model/neo_reference_skeleton")
 
 [node name="AnimLayerMovement" parent="." instance=ExtResource( 20 )]
+editor/display_folded = true
 active = true
 parameters/blend_position = 2.00451
 parameters/0/0/playback = SubResource( 71 )
@@ -1129,28 +1129,28 @@ root_node = NodePath("../../Model/neo_reference_skeleton")
 editor/display_folded = true
 parameters/playback = SubResource( 73 )
 
-[node name="InputAbilities" parent="." instance=ExtResource( 22 )]
-editor/display_folded = true
-tree_root = SubResource( 103 )
-parameters/playback = SubResource( 104 )
-parameters/Secondary/playback = SubResource( 105 )
-
-[node name="InputMovement" parent="." instance=ExtResource( 24 )]
-editor/display_folded = true
-parameters/playback = SubResource( 106 )
-parameters/Lean/playback = SubResource( 107 )
-parameters/Stance/playback = SubResource( 108 )
-
-[node name="InputRotation" parent="." instance=ExtResource( 25 )]
-editor/display_folded = true
-parameters/playback = SubResource( 109 )
-
-[node name="FeetAudio" parent="." instance=ExtResource( 26 )]
+[node name="FeetAudio" parent="." instance=ExtResource( 22 )]
 editor/display_folded = true
 parameters/playback = SubResource( 110 )
 parameters/Land/playback = SubResource( 111 )
 parameters/Step/playback = SubResource( 112 )
 parameters/Step/StepRock/playback = SubResource( 113 )
+
+[node name="InputAbilities" parent="." instance=ExtResource( 23 )]
+editor/display_folded = true
+tree_root = SubResource( 103 )
+parameters/playback = SubResource( 104 )
+parameters/Secondary/playback = SubResource( 105 )
+
+[node name="InputMovement" parent="." instance=ExtResource( 25 )]
+editor/display_folded = true
+parameters/playback = SubResource( 106 )
+parameters/Lean/playback = SubResource( 107 )
+parameters/Stance/playback = SubResource( 108 )
+
+[node name="InputRotation" parent="." instance=ExtResource( 26 )]
+editor/display_folded = true
+parameters/playback = SubResource( 109 )
 
 [editable path="Model"]
 
@@ -1166,10 +1166,10 @@ parameters/Step/StepRock/playback = SubResource( 113 )
 
 [editable path="Receptor"]
 
+[editable path="FeetAudio"]
+
 [editable path="InputAbilities"]
 
 [editable path="InputMovement"]
 
 [editable path="InputRotation"]
-
-[editable path="FeetAudio"]

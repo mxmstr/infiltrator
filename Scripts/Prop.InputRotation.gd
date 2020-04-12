@@ -15,7 +15,7 @@ func _leave_tree():
 
 func mouse(offset):
 	
-	$'../Perspective'._rotate_camera(offset.y * -sensitivity, offset.x * -sensitivity)
+	$'../CameraRig'._rotate_camera(offset.y * -sensitivity, offset.x * -sensitivity)
 	$'../Movement'._rotate(offset.x * -sensitivity)
 
 

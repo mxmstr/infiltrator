@@ -8,11 +8,6 @@ export(String) var fp_root_bone
 export(String) var fp_shoulder_bone
 export(Array, String) var fp_hidden_bones
 
-export(Vector3) var rig_translation setget _set_rig_translation
-export(Vector3) var rig_rotation_degrees setget _set_rig_rotation_degrees
-export var cam_max_x = 0.0
-export var cam_max_y = PI / 2
-
 var player_index = 0
 var viewmodel_offset = 5
 var worldmodel_offset = 15
@@ -23,33 +18,8 @@ var shoulders_id
 var rig_translated = false
 var rig_rotated = false
 
-var selection
-
 onready var rig = $'../CameraRig'
 onready var camera = rig.get_node('Camera')
-
-
-func _set_rig_translation(new_translation):
-	
-	if not Engine.editor_hint and rig_translated:
-		return
-	
-	rig_translation = new_translation
-	rig_translated = true
-
-
-func _set_rig_rotation_degrees(new_rotation):
-	
-	if not Engine.editor_hint and rig_rotated:
-		return
-	
-	rig_rotation_degrees = new_rotation
-	rig_rotated = true
-
-
-func _on_selection_changed(new_selection):
-	
-	selection = new_selection
 
 
 func _reset_viewport():
@@ -99,13 +69,6 @@ func _init_fp_skeleton():
 	get_parent().add_child_below_node($'../Model', viewmodel)
 
 
-func _rotate_camera(delta_x, delta_y):
-	
-	pass
-	#camera.rotation.x += delta_x
-	#camera.rotation.y += delta_y
-
-
 func _blend_fp_skeleton():
 	
 	var s_world = $'../Model'.get_child(0)
@@ -132,38 +95,16 @@ func _blend_fp_skeleton():
 	s_view.global_transform.origin = owner.global_transform.origin + rig_transform - shoulders_transform
 
 
-func _camera_follow_target():
-	
-	camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)
-	camera.rotation.y = clamp(camera.rotation.y, -cam_max_x, cam_max_x)
-	
-	return
-	
-	rig.global_transform.origin = owner.global_transform.origin + owner.global_transform.basis.xform(rig_translation)
-	
-	rig.rotation_degrees = owner.rotation_degrees + rig_rotation_degrees
-	
-	rig_translated = false
-	rig_rotated = false
-
-
-func _align_player_to_camera():
-	
-	var target = owner.global_transform.origin + camera.global_transform.basis.z#.inverse()
-	target.y = owner.global_transform.origin.y
-	owner.look_at(target, Vector3(0, 1, 0))
-
-
-func _contain_selection():
-	
-	if selection != null:
-		
-		var data = {
-			'from': owner.get_path(),
-			'to': selection.get_path()
-			}
-		
-		LinkHub._create('Contains', data)
+#func _contain_selection():
+#
+#	if selection != null:
+#
+#		var data = {
+#			'from': owner.get_path(),
+#			'to': selection.get_path()
+#			}
+#
+#		LinkHub._create('Contains', data)
 
 
 func _ready():
@@ -185,5 +126,4 @@ func _ready():
 
 func _process(delta):
 	
-	_camera_follow_target()
 	_blend_fp_skeleton()
