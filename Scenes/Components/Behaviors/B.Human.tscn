@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=2]
@@ -52,7 +52,7 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "ClimbMedium"
-scale = 1.25
+scale = 0.5
 __meta__ = {
 
 }
@@ -80,7 +80,7 @@ __meta__ = {
 transition_value = ""
 update_mode = "state_starting"
 assertion = "Greater Than"
-target = "Movement"
+target = "ClimbingSkill"
 method = "_get_climb_height_mult"
 args = [  ]
 value = 0.7
@@ -119,7 +119,7 @@ __meta__ = {
 transition_value = ""
 update_mode = "state_starting"
 assertion = "Less Than"
-target = "Movement"
+target = "ClimbingSkill"
 method = "_get_climb_height_mult"
 args = [  ]
 value = 0.2
@@ -591,11 +591,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=58]
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -603,7 +598,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
 auto_advance = true
 disabled = true
 script = ExtResource( 7 )
@@ -612,7 +607,7 @@ __meta__ = {
 }
 transition_priority = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -620,14 +615,14 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+[sub_resource type="AnimationNodeStateMachineTransition" id=60]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
 switch_mode = 2
 auto_advance = true
 disabled = true
@@ -637,13 +632,13 @@ __meta__ = {
 }
 transition_boolean = ""
 update_mode = "process"
-assertion = "NotNull"
-target = "Movement"
-method = "get"
-args = [ "climb_target" ]
+assertion = "True"
+target = "ClimbingSkill"
+method = "_has_targets"
+args = [  ]
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachine" id=63]
+[sub_resource type="AnimationNodeStateMachine" id=62]
 resource_local_to_scene = true
 states/Climb/node = SubResource( 13 )
 states/Climb/position = Vector2( 497, 343.794 )
@@ -665,14 +660,19 @@ states/Land/node = SubResource( 38 )
 states/Land/position = Vector2( 497, 61.4 )
 states/LandExit/node = SubResource( 39 )
 states/LandExit/position = Vector2( 497, 129.4 )
-transitions = [ "Default", "Drop", SubResource( 40 ), "Grab", "Default", SubResource( 41 ), "Drop", "Default", SubResource( 42 ), "Default", "Land", SubResource( 43 ), "Land", "LandExit", SubResource( 44 ), "LandExit", "Default", SubResource( 45 ), "Default", "Fall", SubResource( 46 ), "Fall", "Default", SubResource( 47 ), "Fall", "Default", SubResource( 48 ), "Land", "LandExit", SubResource( 49 ), "Jump", "Default", SubResource( 50 ), "Jump", "Default", SubResource( 51 ), "Default", "FindClimbTarget", SubResource( 52 ), "FindClimbTarget", "Jump", SubResource( 53 ), "Grab", "Default", SubResource( 54 ), "Drop", "Default", SubResource( 55 ), "Default", "Grab", SubResource( 56 ), "Jump", "FindClimbTarget", SubResource( 57 ), "Jump", "Default", SubResource( 58 ), "Climb", "Climb.Exit", SubResource( 59 ), "Climb", "Climb.Exit", SubResource( 60 ), "Climb.Exit", "Default", SubResource( 61 ), "FindClimbTarget", "Climb", SubResource( 62 ) ]
+transitions = [ "Default", "Drop", SubResource( 40 ), "Grab", "Default", SubResource( 41 ), "Drop", "Default", SubResource( 42 ), "Default", "Land", SubResource( 43 ), "Land", "LandExit", SubResource( 44 ), "LandExit", "Default", SubResource( 45 ), "Default", "Fall", SubResource( 46 ), "Fall", "Default", SubResource( 47 ), "Fall", "Default", SubResource( 48 ), "Land", "LandExit", SubResource( 49 ), "Jump", "Default", SubResource( 50 ), "Jump", "Default", SubResource( 51 ), "Default", "FindClimbTarget", SubResource( 52 ), "FindClimbTarget", "Jump", SubResource( 53 ), "Grab", "Default", SubResource( 54 ), "Drop", "Default", SubResource( 55 ), "Default", "Grab", SubResource( 56 ), "Jump", "Default", SubResource( 57 ), "Climb", "Climb.Exit", SubResource( 58 ), "Climb", "Climb.Exit", SubResource( 59 ), "Climb.Exit", "Default", SubResource( 60 ), "FindClimbTarget", "Climb", SubResource( 61 ) ]
 start_node = "Default"
-graph_offset = Vector2( -130.555, 207.391 )
+graph_offset = Vector2( -130.555, 126.987 )
 script = ExtResource( 1 )
 __meta__ = {
 
 }
 statemachine = ""
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=63]
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=64]
 __meta__ = {
@@ -694,20 +694,15 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=68]
-__meta__ = {
-
-}
-
 [node name="Behavior" type="AnimationTree"]
-tree_root = SubResource( 63 )
+tree_root = SubResource( 62 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 64 )
-parameters/Climb/playback = SubResource( 65 )
+parameters/playback = SubResource( 63 )
+parameters/Climb/playback = SubResource( 64 )
 parameters/Jump/blend_position = Vector2( 0.00134528, 0.0433791 )
-parameters/Jump/3/playback = SubResource( 66 )
-parameters/Jump/4/playback = SubResource( 67 )
-parameters/Jump/5/playback = SubResource( 68 )
+parameters/Jump/3/playback = SubResource( 65 )
+parameters/Jump/4/playback = SubResource( 66 )
+parameters/Jump/5/playback = SubResource( 67 )
 script = ExtResource( 8 )
 __meta__ = {
 

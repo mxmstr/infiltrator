@@ -36,13 +36,13 @@ func _on_enter():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	if from.has_node('Perspective'):
+	if from_node.has_node('Perspective'):
 		
-		var p2_control = from.get_node('Perspective')
+		var p2_control = from_node.get_node('Perspective')
 		
-		if to.has_node('Perspective'):
+		if to_node.has_node('Perspective'):
 			
-			var p1_control = to.get_node('Perspective')
+			var p1_control = to_node.get_node('Perspective')
 			_split_viewports(p1_control, p2_control)
 	
 	._on_enter()

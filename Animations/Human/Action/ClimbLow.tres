@@ -16,7 +16,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 1.6, 0.2 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../../Movement:climb_y_progress")
+tracks/1/path = NodePath("../../ClimbingSkill:y_progress")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -27,13 +27,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0, 1.0 ]
 }
-tracks/2/type = "transform"
-tracks/2/path = NodePath(".:Head")
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../Movement:collision_height_mult")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/keys = PoolRealArray( 0, 1, 7.71979e-09, -7.15256e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.0416667, 1, 7.71979e-09, -7.15913e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.0833333, 1, 7.71979e-09, -7.17899e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.125, 1, 7.71979e-09, -7.21219e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.166667, 1, 7.71979e-09, -7.25852e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.208333, 1, 7.71979e-09, -7.31741e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.25, 1, 7.71979e-09, -7.38784e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.291667, 1, 7.71979e-09, -7.46836e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.333333, 1, 7.71979e-09, -7.55699e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.375, 1, 7.71979e-09, -7.65132e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.416667, 1, 7.71979e-09, -7.7486e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.458333, 1, 7.71979e-09, -7.84588e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.5, 1, 7.71979e-09, -7.94022e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.541667, 1, 7.71979e-09, -8.02885e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.583333, 1, 7.71979e-09, -8.10937e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.625, 1, 7.71979e-09, -8.1798e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.666667, 1, 7.71979e-09, -8.23869e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.708333, 1, 7.71979e-09, -8.28502e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.75, 1, 7.71979e-09, -8.31822e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.791667, 1, 7.71979e-09, -8.33808e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.833333, 1, 7.91624e-09, -8.34465e-07, 8.75443e-08, 5.8481e-05, -1.08398e-06, 3.1e-08, 1, 1, 1, 1 )
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 tracks/3/type = "transform"
 tracks/3/path = NodePath(".:shoulders")
 tracks/3/interp = 1
@@ -146,46 +151,39 @@ tracks/18/loop_wrap = true
 tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/keys = PoolRealArray( 0, 1, -2.36032e-08, 2.14577e-06, 2.38419e-07, 0, 0, 0, 1, 1, 1, 1, 0.0416667, 1, -2.36032e-08, 2.14577e-06, 2.38419e-07, 0, 0, 0, 1, 1, 1, 1, 0.791667, 1, -2.36032e-08, 2.14577e-06, 2.38419e-07, 0, 0, 0, 1, 1, 1, 1, 0.833333, 1, -1.55032e-08, 2.14577e-06, 2.01166e-07, 1.05e-08, -1.35e-08, -7e-09, 1, 1, 1, 1 )
-tracks/19/type = "method"
-tracks/19/path = NodePath("../../Movement")
+tracks/19/type = "transform"
+tracks/19/path = NodePath(".:Head")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "climbing", true ],
-"method": "set"
-} ]
-}
+tracks/19/keys = PoolRealArray( 0, 1, 7.71979e-09, -7.15256e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.0416667, 1, 7.71979e-09, -7.15913e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.0833333, 1, 7.71979e-09, -7.17899e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.125, 1, 7.71979e-09, -7.21219e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.166667, 1, 7.71979e-09, -7.25852e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.208333, 1, 7.71979e-09, -7.31741e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.25, 1, 7.71979e-09, -7.38784e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.291667, 1, 7.71979e-09, -7.46836e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.333333, 1, 7.71979e-09, -7.55699e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.375, 1, 7.71979e-09, -7.65132e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.416667, 1, 7.71979e-09, -7.7486e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.458333, 1, 7.71979e-09, -7.84588e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.5, 1, 7.71979e-09, -7.94022e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.541667, 1, 7.71979e-09, -8.02885e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.583333, 1, 7.71979e-09, -8.10937e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.625, 1, 7.71979e-09, -8.1798e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.666667, 1, 7.71979e-09, -8.23869e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.708333, 1, 7.71979e-09, -8.28502e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.75, 1, 7.71979e-09, -8.31822e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.791667, 1, 7.71979e-09, -8.33808e-07, 5.58794e-08, 5.84756e-05, -1.12468e-06, 3.2e-08, 1, 1, 1, 1, 0.833333, 1, 7.91624e-09, -8.34465e-07, 8.75443e-08, 5.8481e-05, -1.08398e-06, 3.1e-08, 1, 1, 1, 1 )
 tracks/20/type = "value"
-tracks/20/path = NodePath("../../Movement:collision_height_mult")
+tracks/20/path = NodePath("../../ClimbingSkill:x_progress")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
 tracks/20/enabled = true
 tracks/20/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
-}
-tracks/21/type = "value"
-tracks/21/path = NodePath("../../Movement:climb_x_progress")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/keys = {
 "times": PoolRealArray( 0.4, 0.83 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 1.0 ]
 }
-tracks/22/type = "value"
-tracks/22/path = NodePath("../../CameraRig:rotation_degrees")
+tracks/21/type = "value"
+tracks/21/path = NodePath("../../CameraRig:rotation_degrees")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ) ]
+}
+tracks/22/type = "method"
+tracks/22/path = NodePath("../../ClimbingSkill")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/imported = false
@@ -193,8 +191,41 @@ tracks/22/enabled = true
 tracks/22/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, -180, 0 ) ]
+"values": [ {
+"args": [  ],
+"method": "_start_climbing"
+} ]
+}
+tracks/23/type = "method"
+tracks/23/path = NodePath("../../ClimbingSkill")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_create_y_drag"
+}, {
+"args": [  ],
+"method": "_create_x_drag"
+} ]
+}
+tracks/24/type = "method"
+tracks/24/path = NodePath("../../ClimbingSkill")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_destroy_y_drag"
+} ]
 }
 __meta__ = {
 

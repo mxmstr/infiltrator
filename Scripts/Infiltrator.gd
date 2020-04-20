@@ -71,7 +71,18 @@ func _make_unique(old):
 	tree_count += 1
 
 
-func add_waypoint(position):
+func _add_actor(actor_path, position=Vector3(), rotation=Vector3()):
+	
+	var new_actor = load('res://Scenes/Actors/' + actor_path + '.tscn').instance()
+	$'/root/Mission/Actors'.add_child(new_actor)
+	
+	new_actor.global_transform.origin = position
+	new_actor.rotation_degrees = rotation
+	
+	return new_actor
+
+
+func _add_waypoint(position):
 
 	var waypoint = load('res://Scenes/Markers/Waypoint2.tscn').instance()
 	$'/root/Mission/Actors'.add_child(waypoint)

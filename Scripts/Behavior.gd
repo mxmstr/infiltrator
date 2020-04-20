@@ -2,6 +2,8 @@ extends 'res://Scripts/AnimationTree.gd'
 
 var enable_abilities = true
 
+var target
+
 
 func _start_state(_name, data={}):
 	

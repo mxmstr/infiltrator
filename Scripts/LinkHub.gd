@@ -13,6 +13,8 @@ func _create(type, data):
 			return
 	
 	$'/root/Mission/Links'.add_child(new_link)
+	
+	return new_link
 
 
 func _destroy(type, data={}):
