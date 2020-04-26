@@ -172,7 +172,7 @@ func _get_item_rotation_offset(item):
 		var item_bone_name = item_data[1]
 		var item_offset = item_data[2].split(',')
 		
-		return Vector3(float(item_offset[0]), float(item_offset[1]), float(item_offset[2])) if (
+		return Vector3(deg2rad(float(item_offset[0])), deg2rad(float(item_offset[1])), deg2rad(float(item_offset[2]))) if (
 			(item_parent_name == '' or root.get_parent().name == item_parent_name) and \
 			(item_bone_name == '' or item_bone_name == bone_name)
 			) else Vector3()
@@ -184,12 +184,12 @@ func _process(delta):
 	
 	for item in items:
 		
-		var item_position_offset = Vector3()#_get_item_position_offset(item)
-		var item_rotation_offset = Vector3()#_get_item_rotation_offset(item)
+		var item_position_offset = _get_item_position_offset(item)
+		var item_rotation_offset = _get_item_rotation_offset(item)
 		
-		item.global_transform.origin = root.global_transform.origin + item_position_offset
+		item.global_transform = root.global_transform.translated(item_position_offset)
+		
 		item.global_transform.basis = root.global_transform.basis
-		
-		item.rotate_x(item_rotation_offset.x)
-		item.rotate_y(item_rotation_offset.y)
-		item.rotate_z(item_rotation_offset.z)
+		item.global_transform.basis = item.global_transform.basis.rotated(item.global_transform.basis.x, item_rotation_offset.x)
+		item.global_transform.basis = item.global_transform.basis.rotated(item.global_transform.basis.y, item_rotation_offset.y)
+		item.global_transform.basis = item.global_transform.basis.rotated(item.global_transform.basis.z, item_rotation_offset.z)
