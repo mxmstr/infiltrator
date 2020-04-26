@@ -670,7 +670,7 @@ states/LandExit/node = SubResource( 41 )
 states/LandExit/position = Vector2( 497, 129.4 )
 transitions = [ "Default", "Drop", SubResource( 42 ), "Grab", "Default", SubResource( 43 ), "Drop", "Default", SubResource( 44 ), "Default", "Land", SubResource( 45 ), "Land", "LandExit", SubResource( 46 ), "LandExit", "Default", SubResource( 47 ), "Default", "Fall", SubResource( 48 ), "Fall", "Default", SubResource( 49 ), "Fall", "Default", SubResource( 50 ), "Land", "LandExit", SubResource( 51 ), "Jump", "Default", SubResource( 52 ), "Jump", "Default", SubResource( 53 ), "Default", "FindClimbTarget", SubResource( 54 ), "FindClimbTarget", "Jump", SubResource( 55 ), "Grab", "Default", SubResource( 56 ), "Drop", "Default", SubResource( 57 ), "Default", "Grab", SubResource( 58 ), "Jump", "Default", SubResource( 59 ), "Climb", "Climb.Exit", SubResource( 60 ), "Climb", "Climb.Exit", SubResource( 61 ), "Climb.Exit", "Default", SubResource( 62 ), "FindClimbTarget", "Climb", SubResource( 63 ) ]
 start_node = "Default"
-graph_offset = Vector2( -130.555, 126.987 )
+graph_offset = Vector2( -130.555, 211.315 )
 script = ExtResource( 14 )
 __meta__ = {
 
@@ -937,10 +937,10 @@ __meta__ = {
 }
 transition_boolean = ""
 update_mode = "process"
-assertion = "False"
+assertion = "Null"
 target = "Perspective"
-method = "_has_selection"
-args = [  ]
+method = "get"
+args = [ "selection" ]
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=102]
@@ -997,7 +997,7 @@ states/Secondary/node = SubResource( 92 )
 states/Secondary/position = Vector2( 614.848, -176.425 )
 transitions = [ "Default", "Interact", SubResource( 93 ), "InteractExit", "Default", SubResource( 94 ), "Interact", "InteractSelect", SubResource( 95 ), "InteractSelect", "InteractExit", SubResource( 96 ), "Interact", "InteractUp", SubResource( 97 ), "Interact", "InteractDown", SubResource( 98 ), "InteractUp", "Interact", SubResource( 99 ), "InteractDown", "Interact", SubResource( 100 ), "Interact", "InteractExit", SubResource( 101 ), "Default", "Jump", SubResource( 102 ), "Jump", "Default", SubResource( 103 ), "Default", "Secondary", SubResource( 104 ), "Secondary", "Default", SubResource( 105 ) ]
 start_node = "Default"
-graph_offset = Vector2( -210.152, -274.23 )
+graph_offset = Vector2( -204.326, -252.027 )
 script = ExtResource( 14 )
 __meta__ = {
 
@@ -1045,7 +1045,7 @@ __meta__ = {
 editor/display_folded = true
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.96462e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.5411e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="Collision" parent="." instance=ExtResource( 3 )]
 shape = SubResource( 1 )
@@ -1069,9 +1069,10 @@ delay = 2.0
 [node name="CameraRaycast" parent="." instance=ExtResource( 9 )]
 cast_to = Vector3( 0, 0, -2 )
 collision_mask = 1031
-stim_type = "Grab"
+auto = false
+send_to_self = true
 path = NodePath("../CameraRig/Camera")
-required_tags = "Actor Item"
+required_tags = "Item"
 
 [node name="CameraRig" parent="." instance=ExtResource( 10 )]
 editor/display_folded = true
@@ -1122,7 +1123,6 @@ parameters/1/0/playback = SubResource( 71 )
 root_node = NodePath("../../Model/neo_reference_skeleton")
 
 [node name="Receptor" parent="." instance=ExtResource( 22 )]
-editor/display_folded = true
 parameters/playback = SubResource( 72 )
 
 [node name="FeetAudio" parent="." instance=ExtResource( 23 )]
@@ -1133,7 +1133,6 @@ parameters/Step/playback = SubResource( 75 )
 parameters/Step/StepRock/playback = SubResource( 76 )
 
 [node name="InputAbilities" parent="." instance=ExtResource( 24 )]
-editor/display_folded = true
 tree_root = SubResource( 106 )
 parameters/playback = SubResource( 107 )
 parameters/Secondary/playback = SubResource( 108 )
@@ -1163,8 +1162,6 @@ parameters/playback = SubResource( 112 )
 [editable path="Receptor"]
 
 [editable path="FeetAudio"]
-
-[editable path="InputAbilities"]
 
 [editable path="InputMovement"]
 

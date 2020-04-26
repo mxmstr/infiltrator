@@ -95,18 +95,6 @@ func _blend_fp_skeleton():
 	s_view.global_transform.origin = owner.global_transform.origin + rig_transform - shoulders_transform
 
 
-#func _contain_selection():
-#
-#	if selection != null:
-#
-#		var data = {
-#			'from': owner.get_path(),
-#			'to': selection.get_path()
-#			}
-#
-#		LinkHub._create('Contains', data)
-
-
 func _ready():
 	
 	if Engine.editor_hint: return
@@ -115,8 +103,6 @@ func _ready():
 		return
 	
 	_init_viewport()
-	
-	$'../CameraRaycast'.connect('selection_changed', self, '_on_selection_changed')
 	
 	yield(get_tree(), 'idle_frame')
 	

@@ -21,20 +21,22 @@ func _has_selection():
 		return false
 	
 	for item_tag in required_tags.split(' '):
-		if not item_tag in get_collider().tags:
+		if not get_collider()._has_tag(item_tag):
 			return false
 	
 	return true
 
 
-func _stimulate():
+func _stimulate(stim_type_override=''):
 	
-	if stim_type == '' or selection == null:
+	var state = stim_type_override if stim_type_override != '' else stim_type
+	
+	if state == '' or selection == null:
 		return
 	
 	
 	if send_to_self:
-			
+		
 		if owner.has_node('Receptor'):
 		
 			var data = {
@@ -44,12 +46,12 @@ func _stimulate():
 				'travel': $'../Movement'.velocity * -1
 				}
 			
-			owner.get_node('Receptor')._start_state(stim_type, data)
+			owner.get_node('Receptor')._start_state(state, data)
 	
 	else:
 		
 		if get_collider().has_node('Receptor'):
-				
+			
 			var data = {
 				'collider': get_collider(),
 				'position': get_collision_point(),
@@ -57,14 +59,14 @@ func _stimulate():
 				'travel': $'../Movement'.velocity
 				}
 			
-			get_collider().get_node('Receptor')._start_state(stim_type, data)
+			get_collider().get_node('Receptor')._start_state(state, data)
 
 
 func _update_raycast_selection():
 	
 	selection = get_collider() if _has_selection() else null
-
-	#emit_signal('selection_changed', selection)
+	
+	emit_signal('selection_changed', selection)
 
 
 func _ready():

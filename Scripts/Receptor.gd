@@ -20,7 +20,7 @@ func _on_state_starting(new_node):
 
 
 func _start_state(_name, _data={}):
-
+	
 	stims.append([_name, _data])
 
 	if len(stims) == 1:
@@ -37,6 +37,16 @@ func _next_stim():
 	emit_signal('on_stimulate', data.collider, data.position, data.normal, data.travel)
 
 	._start_state(type, data)
+
+
+func _contain():
+	
+	var link_data = {
+		'from': owner.get_path(),
+		'to': data.collider.get_path()
+		}
+
+	LinkHub._create('Contains', link_data)
 
 
 func _reflect():

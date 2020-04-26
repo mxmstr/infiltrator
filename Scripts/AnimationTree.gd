@@ -15,26 +15,9 @@ func _start_state(_name, data={}):
 		tree_root._travel(_name)
 
 
-#func _init():
-#
-#	if Engine.editor_hint: return
-#
-#	if not has_meta('unique'):
-#
-#		get_parent().connect('entered_tree', Inf, '_make_unique', [self])
-#
-#		return
-
-
 func _ready():
 	
 	if Engine.editor_hint: return
-	
-	
-#	if not has_meta('unique'):
-#		Inf._make_unique(self)
-#		return
-	
 	
 	if tree_root.has_method('_ready'):
 		tree_root._ready(self, null, 'parameters/', 'root')

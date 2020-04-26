@@ -45,10 +45,10 @@ closed_angle = Vector3( 0, 90, 0 )
 open_angle = Vector3( 0, 90, 0 )
 
 [node name="Item" parent="Actors" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538539, 2.62026, -0.504289 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.556642, 1.18035, 0.596698 )
 
 [node name="Pistol" parent="Actors" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.395676, 1.23909, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0445969, 1.23909, 0.741378 )
 
 [node name="Mag9mm" parent="Actors" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0971781, 1.63611, 0.0572793 )
