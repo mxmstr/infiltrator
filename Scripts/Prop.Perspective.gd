@@ -8,57 +8,99 @@ export(String) var fp_root_bone
 export(String) var fp_shoulder_bone
 export(Array, String) var fp_hidden_bones
 
-var player_index = 0
 var viewmodel_offset = 5
 var worldmodel_offset = 15
 
-var root_id
-var shoulders_id
-
 var rig_translated = false
 var rig_rotated = false
+
+var viewmodels = []
 
 onready var rig = $'../CameraRig'
 onready var camera = rig.get_node('Camera')
 
 
-func _reset_viewport():
+func _on_pre_draw(viewport):
 	
-	var mesh = $'../Model'.get_child(0).get_child(0)
-	var viewmesh = $'../ViewModel'.get_child(0).get_child(0)
-	
-	
-	camera.set_cull_mask_bit(viewmodel_offset, false)
-	viewmesh.set_layer_mask_bit(viewmodel_offset, false)
-	
-	camera.set_cull_mask_bit(worldmodel_offset, true)
-	mesh.set_layer_mask_bit(worldmodel_offset, false)
-	
-	
-	camera.set_cull_mask_bit(viewmodel_offset + player_index, true)
-	viewmesh.set_layer_mask_bit(0, false)
-	viewmesh.set_layer_mask_bit(viewmodel_offset + player_index, true)
-	
-	camera.set_cull_mask_bit(worldmodel_offset + player_index, false)
-	mesh.set_layer_mask_bit(0, false)
-	mesh.set_layer_mask_bit(worldmodel_offset + player_index, true)
+	pass
+#	if viewport == $Container/Viewport.get_viewport_rid():
+#
+#		for child in owner.get_children():
+#
+#			var script_name = child.get_script().get_path().get_file() if child.get_script() != null else ''
+#
+#			if script_name == 'Prop.Container.gd' and child.bone_name != '':
+#
+#				var last = child.root.transform.origin
+#
+#				child.root.global_transform.origin = Vector3(-0.04, 1.23, 0.74)
+#				#child.root.bone_name = child.bone_name
+#				#child.root.force_update_transform()
+#
+#				child._move_items()
+#
+#				#child.root.transform.origin = last
+#
+##				var root = child.root
+##				var fp_root = BoneAttachment.new()
+##				fp_root.bone_name = root.bone_name
+##				$'../ViewModel'.get_child(0).add_child(fp_root)
+##				fp_root.force_update_transform()
+##
+##				child.root = fp_root
+##				child._move_items()
+##
+##				child.root = root
+##				fp_root.free()
 
 
-func _init_viewport():
+func _on_post_draw(viewport):
 	
-	$Container/Viewport.world = get_tree().root.world
-	$Container/Viewport.size = get_tree().root.size
+	pass
+#	if viewport == $Container/Viewport.get_viewport_rid():
+#
+#		for child in owner.get_children():
+#
+#			var script_name = child.get_script().get_path().get_file() if child.get_script() != null else ''
+#
+#			if script_name == 'Prop.Container.gd' and child.bone_name != '':
+#
+##				child.root.translation = Vector3(0, 0, 0)
+##				child.root.bone_name = child.bone_name
+#				#child.root.global_transform.origin = Vector3(0, 0, 0)
+#				#child.root.force_update_transform()
+#				pass
+#				#child._move_items()
+
+
+func _on_item_contained(container, item):
+	
+	var viewmodel = load('res://Scenes/Components/Properties/P.ViewModel.tscn').instance()
+	viewmodel.name = item.name + 'ViewModel'
+	viewmodel.model = item.get_node('Model')
+	viewmodel.bone_name = container.bone_name if container.bone_name != '' else null
+	
+	owner.add_child(viewmodel)
+	viewmodel.owner = owner
+	
+	#viewmodels.append(viewmodel)
+
+
+func _on_item_released(container, item):
+	
+	owner.remove_child(owner.get_node(item.name + 'ViewModel'))
+	
+	#viewmodels.remove(viewmodel)
 
 
 func _init_fp_skeleton():
 	
-	var viewmodel = $'../Model'.duplicate()
-	viewmodel.name = 'ViewModel'
-	viewmodel.get_child(0).get_child(0).cast_shadow = 0
+	var root_id
+	var shoulders_id
 	
-	for idx in range(viewmodel.get_child(0).get_bone_count()):
+	for idx in range($'../Model'.get_child(0).get_bone_count()):
 		
-		var bone_name = viewmodel.get_child(0).get_bone_name(idx)
+		var bone_name = $'../Model'.get_child(0).get_bone_name(idx)
 		
 		if bone_name == fp_root_bone:
 			root_id = idx
@@ -66,33 +108,36 @@ func _init_fp_skeleton():
 		if bone_name == fp_shoulder_bone:
 			shoulders_id = idx
 	
-	get_parent().add_child_below_node($'../Model', viewmodel)
+	
+	var viewmodel = load('res://Scenes/Components/Properties/P.ViewModel.tscn').instance()
+	viewmodel.name = 'ActorViewModel'
+	viewmodel.model = $'../Model'
+	viewmodel.hidden_bones = fp_hidden_bones
+	viewmodel.follow_camera_bone_id = shoulders_id
+	viewmodel.follow_camera_offset = fp_offset
+	
+	owner.add_child(viewmodel)
+	viewmodel.owner = owner
 
 
-func _blend_fp_skeleton():
+func _init_viewport():
 	
-	var s_world = $'../Model'.get_child(0)
-	var s_view = $'../ViewModel'.get_child(0)
-	
-	
-	for idx in range(s_world.get_bone_count()):
-		
-		var bone_name = s_world.get_bone_name(idx)
-		var p_world = s_world.get_bone_global_pose(idx)
-		
-		s_view.set_bone_global_pose(idx, p_world)
-		
-		if bone_name in fp_hidden_bones:
-			p_world = s_world.get_bone_pose(idx)
-			p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
-			s_view.set_bone_pose(idx, p_world)
+	$Container/Viewport.world = get_tree().root.world
+	$Container/Viewport.size = get_tree().root.size
 	
 	
-	var pose_shoulders = s_view.get_bone_global_pose(shoulders_id).origin + fp_offset
-	var shoulders_transform = owner.global_transform.basis.xform(pose_shoulders)
-	var rig_transform = rig.global_transform.origin - owner.global_transform.origin
+	for child in owner.get_children():
+
+		var script_name = child.get_script().get_path().get_file() if child.get_script() != null else ''
+
+		if script_name == 'Prop.Container.gd' and child.bone_name != '':
+			
+			child.connect('item_added', self, '_on_item_contained')
+			child.connect('item_removed', self, '_on_item_released')
 	
-	s_view.global_transform.origin = owner.global_transform.origin + rig_transform - shoulders_transform
+	
+	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
+	VisualServer.connect('viewport_post_draw', self, '_on_post_draw')
 
 
 func _ready():
@@ -102,14 +147,7 @@ func _ready():
 	if not has_meta('unique'):
 		return
 	
-	_init_viewport()
-	
 	yield(get_tree(), 'idle_frame')
 	
 	_init_fp_skeleton()
-	_reset_viewport()
-
-
-func _process(delta):
-	
-	_blend_fp_skeleton()
+	_init_viewport()

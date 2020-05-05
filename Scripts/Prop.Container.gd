@@ -14,6 +14,8 @@ export(String, MULTILINE) var required_tags
 var root
 var items = []
 
+signal item_added
+signal item_removed
 signal released
 
 
@@ -37,6 +39,8 @@ func _add_item(item):
 			item.get_node('Collision').disabled = true
 		
 		items.append(item)
+		
+		emit_signal('item_added', self, item)
 		
 		return true
 	
@@ -81,6 +85,8 @@ func _remove_item(item):
 
 		
 		items.erase(item)
+		
+		emit_signal('item_removed', self, item)
 
 
 func _has_item(item):
@@ -132,18 +138,6 @@ func _release_all():
 	LinkHub._destroy('Contains', data)
 
 
-func _ready():
-	
-	root = BoneAttachment.new()
-	get_node(path).call_deferred('add_child', root)
-	
-	if bone_name != '':
-		root.bone_name = bone_name
-	
-	root.translation = position_offset
-	root.rotation_degrees = rotation_degrees_offset
-
-
 func _get_item_position_offset(item):
 	
 	if item._has_tag('Offset-position'):
@@ -180,7 +174,7 @@ func _get_item_rotation_offset(item):
 	return Vector3()
 
 
-func _process(delta):
+func _move_items():
 	
 	for item in items:
 		
@@ -193,3 +187,27 @@ func _process(delta):
 		item.global_transform.basis = item.global_transform.basis.rotated(item.global_transform.basis.x, item_rotation_offset.x)
 		item.global_transform.basis = item.global_transform.basis.rotated(item.global_transform.basis.y, item_rotation_offset.y)
 		item.global_transform.basis = item.global_transform.basis.rotated(item.global_transform.basis.z, item_rotation_offset.z)
+		
+		item.force_update_transform()
+
+
+func _reset_root():
+	
+	root.translation = position_offset
+	root.rotation_degrees = rotation_degrees_offset
+
+
+func _ready():
+	
+	root = BoneAttachment.new()
+	get_node(path).call_deferred('add_child', root)
+	
+	if bone_name != '':
+		root.bone_name = bone_name
+	
+	_reset_root()
+
+
+func _process(delta):
+	
+	_move_items()

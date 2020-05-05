@@ -1102,6 +1102,7 @@ fp_shoulder_bone = "shoulders"
 fp_hidden_bones = [ "Head", "Neck" ]
 
 [node name="Behavior" parent="." instance=ExtResource( 13 )]
+editor/display_folded = true
 tree_root = SubResource( 64 )
 parameters/playback = SubResource( 65 )
 parameters/Climb/playback = SubResource( 66 )
@@ -1123,6 +1124,7 @@ parameters/1/0/playback = SubResource( 71 )
 root_node = NodePath("../../Model/neo_reference_skeleton")
 
 [node name="Receptor" parent="." instance=ExtResource( 22 )]
+editor/display_folded = true
 parameters/playback = SubResource( 72 )
 
 [node name="FeetAudio" parent="." instance=ExtResource( 23 )]

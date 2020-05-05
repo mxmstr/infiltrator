@@ -4,7 +4,10 @@ export(String, MULTILINE) var tags
 
 var tags_dict = {}
 
+var player_index = 0 setget _set_player_index
+
 signal entered_tree
+signal player_index_changed
 
 
 func _has_tag(tag):
@@ -15,6 +18,13 @@ func _has_tag(tag):
 func _get_tag(tag):
 	
 	return tags_dict[tag]
+
+
+func _set_player_index(new_player_index):
+	
+	player_index = new_player_index
+	
+	emit_signal('player_index_changed', player_index)
 
 
 func _enter_tree():
