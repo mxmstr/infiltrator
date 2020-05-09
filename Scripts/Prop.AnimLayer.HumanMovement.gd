@@ -137,8 +137,8 @@ func _set_skeleton():
 		child.queue_free()
 	
 	
-	$'../Model'.add_child(action_skeleton)
-	$'../Model'.add_child(move_skeleton)
+	add_child(action_skeleton)
+	add_child(move_skeleton)
 	
 	$'../Behavior/AnimationPlayer'.root_node = $'../Behavior/AnimationPlayer'.get_path_to(action_skeleton)
 	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(move_skeleton)
