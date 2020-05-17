@@ -14,8 +14,6 @@ var worldmodel_offset = 15
 var rig_translated = false
 var rig_rotated = false
 
-var viewmodels = []
-
 onready var rig = $'../CameraRig'
 onready var camera = rig.get_node('Camera')
 
@@ -23,74 +21,34 @@ onready var camera = rig.get_node('Camera')
 func _on_pre_draw(viewport):
 	
 	pass
-#	if viewport == $Container/Viewport.get_viewport_rid():
-#
-#		for child in owner.get_children():
-#
-#			var script_name = child.get_script().get_path().get_file() if child.get_script() != null else ''
-#
-#			if script_name == 'Prop.Container.gd' and child.bone_name != '':
-#
-#				var last = child.root.transform.origin
-#
-#				child.root.global_transform.origin = Vector3(-0.04, 1.23, 0.74)
-#				#child.root.bone_name = child.bone_name
-#				#child.root.force_update_transform()
-#
-#				child._move_items()
-#
-#				#child.root.transform.origin = last
-#
-##				var root = child.root
-##				var fp_root = BoneAttachment.new()
-##				fp_root.bone_name = root.bone_name
-##				$'../ViewModel'.get_child(0).add_child(fp_root)
-##				fp_root.force_update_transform()
-##
-##				child.root = fp_root
-##				child._move_items()
-##
-##				child.root = root
-##				fp_root.free()
 
 
 func _on_post_draw(viewport):
 	
 	pass
-#	if viewport == $Container/Viewport.get_viewport_rid():
-#
-#		for child in owner.get_children():
-#
-#			var script_name = child.get_script().get_path().get_file() if child.get_script() != null else ''
-#
-#			if script_name == 'Prop.Container.gd' and child.bone_name != '':
-#
-##				child.root.translation = Vector3(0, 0, 0)
-##				child.root.bone_name = child.bone_name
-#				#child.root.global_transform.origin = Vector3(0, 0, 0)
-#				#child.root.force_update_transform()
-#				pass
-#				#child._move_items()
 
 
 func _on_item_contained(container, item):
 	
-	var viewmodel = load('res://Scenes/Components/Properties/P.ViewModel.tscn').instance()
-	viewmodel.name = item.name + 'ViewModel'
-	viewmodel.model = item.get_node('Model')
-	viewmodel.bone_name = container.bone_name if container.bone_name != '' else null
+	if container.bone_name != '':
 	
-	owner.add_child(viewmodel)
-	viewmodel.owner = owner
-	
-	#viewmodels.append(viewmodel)
+		var viewmodel = load('res://Scenes/Components/Properties/P.ViewModel.tscn').instance()
+		viewmodel.name = item.name + 'ViewModel'
+		viewmodel.model = item.get_node('Model')
+		viewmodel.container = container
+		
+		var path_to_root = item.get_node('Model').get_path_to(container.root)
+		viewmodel.container_root = $'../ActorViewModel'.get_node('Model/' + path_to_root)
+		
+		owner.add_child(viewmodel)
+		viewmodel.owner = owner
 
 
 func _on_item_released(container, item):
 	
-	owner.remove_child(owner.get_node(item.name + 'ViewModel'))
-	
-	#viewmodels.remove(viewmodel)
+	print(item.name + 'ViewModel')
+	owner.get_node(item.name + 'ViewModel').queue_free()
+	#owner.remove_child(owner.get_node(item.name + 'ViewModel'))
 
 
 func _init_fp_skeleton():
@@ -113,8 +71,8 @@ func _init_fp_skeleton():
 	viewmodel.name = 'ActorViewModel'
 	viewmodel.model = $'../Model'
 	viewmodel.hidden_bones = fp_hidden_bones
-	viewmodel.follow_camera_bone_id = shoulders_id
-	viewmodel.follow_camera_offset = fp_offset
+#	viewmodel.follow_camera_bone_id = shoulders_id
+#	viewmodel.follow_camera_offset = fp_offset
 	
 	owner.add_child(viewmodel)
 	viewmodel.owner = owner

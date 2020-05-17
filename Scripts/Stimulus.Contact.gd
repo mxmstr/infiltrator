@@ -6,6 +6,8 @@ export var send_to_self = false
 
 var collisions = []
 
+signal triggered
+
 
 func _ready():
 	
@@ -28,9 +30,11 @@ func _physics_process(delta):
 		
 		if continuous or not collision.collider in colliders:
 			
+			var data
+			
 			if collision.collider.has_node('Receptor'):
 				
-				var data = {
+				data = {
 					'collider': owner, 
 					'position': collision.position,
 					'normal': collision.normal * -1,
@@ -41,7 +45,7 @@ func _physics_process(delta):
 			
 			if send_to_self and get_parent().has_node('Receptor'):
 				
-				var data = {
+				data = {
 					'collider': collision.collider,
 					'position': collision.position,
 					'normal': collision.normal * -1,
@@ -49,6 +53,8 @@ func _physics_process(delta):
 					}
 				
 				get_parent().get_node('Receptor')._start_state(stim_type, data)
+				
+			emit_signal('triggered', data)
 		
 		new_collisions.append(collision)
 	

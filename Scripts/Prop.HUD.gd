@@ -7,4 +7,16 @@ func _notification(what):
 	
 	if what == NOTIFICATION_ENTER_TREE:
 		
-		set_viewport(get_node(viewport))
+		pass#set_viewport(get_node(viewport))
+
+
+func _ready():
+	
+	yield(get_tree(), 'idle_frame')
+	
+	#set_viewport(get_node(viewport))
+
+
+func _process(delta):
+	
+	pass#print(get_node(viewport), ' ', get_viewport())

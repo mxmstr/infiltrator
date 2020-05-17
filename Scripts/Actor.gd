@@ -42,3 +42,9 @@ func _enter_tree():
 		if child.get('make_unique') != null:
 			
 			Inf._make_unique(child)
+
+
+func _ready():
+	
+	yield(get_tree(), 'idle_frame')
+	

@@ -13,6 +13,7 @@ var root
 var selection
 
 signal selection_changed
+signal triggered
 
 
 func _has_selection():
@@ -35,31 +36,31 @@ func _stimulate(stim_type_override=''):
 		return
 	
 	
-	if send_to_self:
-		
-		if owner.has_node('Receptor'):
-		
-			var data = {
-				'collider': get_collider(),
-				'position': get_collision_point(),
-				'normal': get_collision_normal() * -1,
-				'travel': $'../Movement'.velocity * -1
-				}
-			
-			owner.get_node('Receptor')._start_state(state, data)
+	var data
 	
-	else:
+	if get_collider().has_node('Receptor'):
 		
-		if get_collider().has_node('Receptor'):
-			
-			var data = {
-				'collider': get_collider(),
-				'position': get_collision_point(),
-				'normal': get_collision_normal(),
-				'travel': $'../Movement'.velocity
-				}
-			
-			get_collider().get_node('Receptor')._start_state(state, data)
+		data = {
+			'collider': get_collider(),
+			'position': get_collision_point(),
+			'normal': get_collision_normal(),
+			'travel': $'../Movement'.velocity
+			}
+		
+		get_collider().get_node('Receptor')._start_state(state, data)
+	
+	if send_to_self and owner.has_node('Receptor'):
+		
+		data = {
+			'collider': get_collider(),
+			'position': get_collision_point(),
+			'normal': get_collision_normal() * -1,
+			'travel': $'../Movement'.velocity * -1
+			}
+		
+		owner.get_node('Receptor')._start_state(state, data)
+		
+	emit_signal('triggered', data)
 
 
 func _update_raycast_selection():

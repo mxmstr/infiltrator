@@ -200,6 +200,7 @@ func _reset_root():
 func _ready():
 	
 	root = BoneAttachment.new()
+	root.name = name + 'Root'
 	get_node(path).call_deferred('add_child', root)
 	
 	if bone_name != '':

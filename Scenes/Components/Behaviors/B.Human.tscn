@@ -662,7 +662,7 @@ states/LandExit/node = SubResource( 39 )
 states/LandExit/position = Vector2( 497, 129.4 )
 transitions = [ "Default", "Drop", SubResource( 40 ), "Grab", "Default", SubResource( 41 ), "Drop", "Default", SubResource( 42 ), "Default", "Land", SubResource( 43 ), "Land", "LandExit", SubResource( 44 ), "LandExit", "Default", SubResource( 45 ), "Default", "Fall", SubResource( 46 ), "Fall", "Default", SubResource( 47 ), "Fall", "Default", SubResource( 48 ), "Land", "LandExit", SubResource( 49 ), "Jump", "Default", SubResource( 50 ), "Jump", "Default", SubResource( 51 ), "Default", "FindClimbTarget", SubResource( 52 ), "FindClimbTarget", "Jump", SubResource( 53 ), "Grab", "Default", SubResource( 54 ), "Drop", "Default", SubResource( 55 ), "Default", "Grab", SubResource( 56 ), "Jump", "Default", SubResource( 57 ), "Climb", "Climb.Exit", SubResource( 58 ), "Climb", "Climb.Exit", SubResource( 59 ), "Climb.Exit", "Default", SubResource( 60 ), "FindClimbTarget", "Climb", SubResource( 61 ) ]
 start_node = "Default"
-graph_offset = Vector2( -130.555, 188.77 )
+graph_offset = Vector2( -130.555, 154.796 )
 script = ExtResource( 1 )
 __meta__ = {
 

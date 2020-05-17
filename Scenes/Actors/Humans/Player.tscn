@@ -9,8 +9,8 @@
 [ext_resource path="res://Scenes/Components/Stimulus/S.Contact.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Components/Stimulus/S.Airborne.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Components/Stimulus/S.Raycast.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Components/Properties/P.CameraRig.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Components/Properties/P.HUD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Components/Properties/P.HUD.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Components/Properties/P.CameraRig.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Components/Properties/P.Perspective.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Components/Behaviors/B.Human.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=14]
@@ -1042,9 +1042,10 @@ __meta__ = {
 }
 
 [node name="Model" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 8.47033e-22, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="Collision" parent="." instance=ExtResource( 3 )]
 shape = SubResource( 1 )
@@ -1073,12 +1074,7 @@ send_to_self = true
 path = NodePath("../CameraRig/Camera")
 required_tags = "Item"
 
-[node name="CameraRig" parent="." instance=ExtResource( 10 )]
-editor/display_folded = true
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.7, 0 )
-viewport = NodePath("../Perspective/Container/Viewport")
-
-[node name="HUD" parent="." instance=ExtResource( 11 )]
+[node name="HUD" parent="." instance=ExtResource( 10 )]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1092,6 +1088,11 @@ viewport = NodePath("../Perspective/Container/Viewport")
 
 [node name="Crosshair" parent="HUD" index="0"]
 editor/display_folded = true
+
+[node name="CameraRig" parent="." instance=ExtResource( 11 )]
+editor/display_folded = true
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.7, 0 )
+viewport = NodePath("../Perspective/Container/Viewport")
 
 [node name="Perspective" parent="." instance=ExtResource( 12 )]
 editor/display_folded = true
@@ -1150,9 +1151,9 @@ parameters/playback = SubResource( 112 )
 
 [editable path="Model"]
 
-[editable path="CameraRig"]
-
 [editable path="HUD"]
+
+[editable path="CameraRig"]
 
 [editable path="Perspective"]
 
