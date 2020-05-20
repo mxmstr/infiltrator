@@ -71,6 +71,16 @@ func _make_unique(old):
 	tree_count += 1
 
 
+func _get_children_recursive(node, children=[]):
+	
+	for child in node.get_children():
+		
+		children.append(child)
+		children = _get_children_recursive(child, children)
+	
+	return children
+
+
 func _add_actor(actor_path, position=Vector3(), rotation=Vector3()):
 	
 	var new_actor = load('res://Scenes/Actors/' + actor_path + '.tscn').instance()

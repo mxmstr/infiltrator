@@ -26,8 +26,10 @@ __meta__ = {
 tags = "Item Firearm 9mm One-handed Offset-position:neo_reference_skeleton:Hand-R:0.008,0.165,0.028 Offset-rotation:neo_reference_skeleton:Hand-R:-90,180,0"
 
 [node name="Model" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.0961252, -0.145615 )
+
+[node name="SketchUp" parent="Model" index="0"]
+editor/display_folded = true
 
 [node name="Collision" type="CollisionShape" parent="."]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
@@ -51,5 +53,7 @@ path = NodePath("..")
 max_quantity = 1
 invisible = true
 required_tags = "Bullet 9mm"
+
+[editable path="Model"]
 
 [editable path="Behavior"]

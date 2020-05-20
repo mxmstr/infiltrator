@@ -59,29 +59,29 @@ func _remove_item(item):
 		if item.has_node('Collision'):
 			item.get_node('Collision').disabled = false
 
-		if item is RigidBody:
-
-			var item_name = item.name
-			var new_item = load(item.filename).instance()
-
-			$'/root/Mission/Actors'.add_child(new_item)
-			item.name = item_name + '_'
-
-			new_item.name = item_name
-			new_item.global_transform.origin = last_transform
-			new_item.rotation = last_rotation
-
-			if new_item.has_node('Movement'):
-				new_item.get_node('Movement')._set_speed(release_speed)
-				new_item.get_node('Movement')._set_direction(release_direction)
-
-			item.queue_free()
+#		if item is RigidBody:
+#
+#			var item_name = item.name
+#			var new_item = load(item.filename).instance()
+#
+#			$'/root/Mission/Actors'.add_child(new_item)
+#			item.name = item_name + '_'
+#
+#			new_item.name = item_name
+#			new_item.global_transform.origin = last_transform
+#			new_item.rotation = last_rotation
+#
+#			if new_item.has_node('Movement'):
+#				new_item.get_node('Movement')._set_speed(release_speed)
+#				new_item.get_node('Movement')._set_direction(release_direction)
+#
+#			item.queue_free()
+#
+#		else:
 		
-		else:
-			
-			if item.has_node('Movement'):
-				item.get_node('Movement')._set_speed(release_speed)
-				item.get_node('Movement')._set_direction(release_direction)
+		if item.has_node('Movement'):
+			item.get_node('Movement')._set_speed(release_speed)
+			item.get_node('Movement')._set_direction(release_direction)
 
 		
 		items.erase(item)

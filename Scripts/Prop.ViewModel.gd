@@ -20,22 +20,11 @@ func _init_duplicate_meshes():
 	var viewmodel = model.duplicate()
 	add_child(viewmodel)
 	
-	for w_child in viewmodel.get_children():
+	for w_child in Inf._get_children_recursive(viewmodel):
 		
-		w_child = w_child.duplicate()
-		
-		if w_child is Skeleton:
-			
-			for s_child in w_child.get_children():
-				
-				if s_child is MeshInstance:
-					
-					s_child.cast_shadow = 0
-		
-		elif w_child is MeshInstance:
+		if w_child is MeshInstance:
 			
 			w_child.cast_shadow = 0
-	
 
 
 func _cull_mask_bits(world_mesh, view_mesh):
@@ -61,25 +50,34 @@ func _cull_mask_bits(world_mesh, view_mesh):
 
 func _init_mesh_layers():
 	
-	for w_child in model.get_children():
+	for w_child in Inf._get_children_recursive(model):
 		
-		if w_child is Skeleton:
-			
-			var vm_child = get_node('Model/' + w_child.name)
-			
-			for s_child in w_child.get_children():
-				
-				if s_child is MeshInstance:
-				
-					var vs_child = vm_child.get_node(s_child.name)
-					
-					_cull_mask_bits(s_child, vs_child)
+		var path_to_child = model.get_path_to(w_child)
+		var vm_child = get_node('Model/' + path_to_child)
 		
 		if w_child is MeshInstance:
 			
-			var vm_child = get_node('Model/' + w_child.name)
-			
 			_cull_mask_bits(w_child, vm_child)
+
+
+func _uncull_mask_bits(world_mesh, view_mesh):
+	
+	var camera = $'../CameraRig/Camera'
+	
+	world_mesh.set_layer_mask_bit(0, true)
+	world_mesh.set_layer_mask_bit(worldmodel_offset + get_parent().player_index, false)
+
+
+func _revert_mesh_layers():
+	
+	for w_child in Inf._get_children_recursive(model):
+		
+		var path_to_child = model.get_path_to(w_child)
+		var vm_child = get_node('Model/' + path_to_child)
+		
+		if w_child is MeshInstance:
+			
+			_uncull_mask_bits(w_child, vm_child)
 
 
 func _init_container():
@@ -137,6 +135,11 @@ func _ready():
 	_init_container()
 
 
+func _exit_tree():
+	
+	_revert_mesh_layers()
+
+
 func _process(delta):
 	
 	if get_child_count() == 0:
@@ -161,10 +164,12 @@ func _process(delta):
 		#global_transform = global_transform.translated(model.translation)
 	
 	
-	for w_child in model.get_children():
+	for w_child in Inf._get_children_recursive(model):
+		
+		var path_to_child = model.get_path_to(w_child)
+		var vm_child = get_node('Model/' + path_to_child)
 		
 		if w_child is Skeleton:
 			
-			var vm_child = get_node('Model/' + w_child.name)
-			
 			_blend_skeletons(w_child, vm_child)
+	

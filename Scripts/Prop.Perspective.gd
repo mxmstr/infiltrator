@@ -37,7 +37,7 @@ func _on_item_contained(container, item):
 		viewmodel.model = item.get_node('Model')
 		viewmodel.container = container
 		
-		var path_to_root = item.get_node('Model').get_path_to(container.root)
+		var path_to_root = $'../Model'.get_path_to(container.root)
 		viewmodel.container_root = $'../ActorViewModel'.get_node('Model/' + path_to_root)
 		
 		owner.add_child(viewmodel)
@@ -46,9 +46,7 @@ func _on_item_contained(container, item):
 
 func _on_item_released(container, item):
 	
-	print(item.name + 'ViewModel')
 	owner.get_node(item.name + 'ViewModel').queue_free()
-	#owner.remove_child(owner.get_node(item.name + 'ViewModel'))
 
 
 func _init_fp_skeleton():
@@ -71,8 +69,8 @@ func _init_fp_skeleton():
 	viewmodel.name = 'ActorViewModel'
 	viewmodel.model = $'../Model'
 	viewmodel.hidden_bones = fp_hidden_bones
-#	viewmodel.follow_camera_bone_id = shoulders_id
-#	viewmodel.follow_camera_offset = fp_offset
+	viewmodel.follow_camera_bone_id = shoulders_id
+	viewmodel.follow_camera_offset = fp_offset
 	
 	owner.add_child(viewmodel)
 	viewmodel.owner = owner
