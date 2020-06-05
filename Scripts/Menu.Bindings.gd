@@ -44,7 +44,7 @@ func load_config():
 		
 		for device in config.get_section_keys('Devices'):
 			
-			Inf.set(device, config.get_value('Devices', device))
+			Meta.set(device, config.get_value('Devices', device))
 		
 		for action_name in config.get_section_keys('Actions'):
 			
@@ -117,7 +117,7 @@ func _on_rawinput_device_activated(device_id, type):
 		return
 	
 	devices_list.get_node(selected_device + '/Button').text = str(device_id)
-	Inf.set(selected_device, device_id)
+	Meta.set(selected_device, device_id)
 	
 	save_to_config('Devices', selected_device, device_id)
 	
@@ -152,7 +152,7 @@ func _ready():
 	for mouse in MICE:
 		
 		var button = devices_list.get_node(mouse + '/Button')
-		button.text = str(Inf.get(mouse))
+		button.text = str(Meta.get(mouse))
 		button.connect('pressed', self, 'wait_for_rawinput', [mouse])
 		connect('disable_buttons', button, 'set_disabled')
 	
@@ -160,7 +160,7 @@ func _ready():
 	for keyboard in KEYBOARDS:
 		
 		var button = devices_list.get_node(keyboard + '/Button')
-		button.text = str(Inf.get(keyboard))
+		button.text = str(Meta.get(keyboard))
 		button.connect('pressed', self, 'wait_for_rawinput', [keyboard, true])
 		connect('disable_buttons', button, 'set_disabled')
 	

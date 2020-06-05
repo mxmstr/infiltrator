@@ -97,3 +97,38 @@ func _add_waypoint(position):
 	var waypoint = load('res://Scenes/Markers/Waypoint2.tscn').instance()
 	$'/root/Mission/Actors'.add_child(waypoint)
 	waypoint.global_transform.origin = position
+
+
+func GetActorLinearVelocity(actor):
+	
+	return actor.get_node('Movement').velocity if actor.has_node('Movement') else Vector3()
+
+
+func CreateLink(from, to, type, data={}):
+	
+	data.from = from.get_path()
+	data.to = to.get_path()
+	
+	LinkHub._create(type, data)
+
+
+func DestroyLink(from, to, type, data={}):
+	
+	data.from = from.get_path()
+	data.to = to.get_path()
+	
+	LinkHub._destroy(type, data)
+
+
+func StimulateActor(actor, stim, collider, position=Vector3(), normal=Vector3(), travel=Vector3()):
+	
+	if actor.has_node('Receptor'):
+		
+		var data = {
+			'collider': collider,
+			'position': position,
+			'normal': normal,
+			'travel': travel
+			}
+		
+		actor.get_node('Receptor')._start_state(stim, data)

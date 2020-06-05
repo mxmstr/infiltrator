@@ -6,7 +6,7 @@ onready var hint = find_node('Hint')
 
 func _on_coop_toggled(pressed):
 	
-	Inf.coop = pressed
+	Meta.coop = pressed
 
 
 func _ready():

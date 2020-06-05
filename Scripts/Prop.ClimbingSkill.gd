@@ -32,12 +32,12 @@ func _has_targets():
 
 func _create_x_target(position):
 	
-	x_target = Inf._add_actor('Empty', position)
+	x_target = Meta._add_actor('Empty', position)
 
 
 func _create_y_target(position):
 	
-	y_target = Inf._add_actor('Empty', position)
+	y_target = Meta._add_actor('Empty', position)
 
 
 func _create_x_drag():

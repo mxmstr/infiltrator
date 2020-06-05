@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Rooms/Room.Default.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=4]
 [ext_resource path="res://Models/Maps/Lab/Floor1.material" type="Material" id=5]
 [ext_resource path="res://Scenes/Components/Stimulus/R.Static.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Components/Stimulus/R.Static.tres" type="AnimationNodeStateMachine" id=7]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -136,5 +135,4 @@ __meta__ = {
 }
 
 [node name="Receptor" parent="Navmesh/Lab_Floor1" instance=ExtResource( 6 )]
-tree_root = ExtResource( 7 )
 parameters/playback = SubResource( 8 )

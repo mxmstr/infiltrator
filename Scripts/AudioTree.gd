@@ -1,5 +1,7 @@
 extends 'res://Scripts/AnimationTree.gd'
 
+export(float) var level
+
 
 func _start_state(_name, data={}):
 	

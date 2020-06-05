@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Receptor.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 [ext_resource path="res://Animations/Stimulus/S.Reflect.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Stimulus/S.Reflect.PermeateIntoContainer.tres" type="Animation" id=5]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
@@ -12,13 +13,13 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "R.Reflect"
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-animation = "DefaultAnim"
+animation = "S.Reflect.PermeateIntoContainer"
 __meta__ = {
 
 }
@@ -29,6 +30,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
 auto_advance = true
 __meta__ = {
 
@@ -43,14 +45,14 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachine" id=7]
 states/Default/node = SubResource( 1 )
-states/Default/position = Vector2( 455, 125 )
-states/Reflect/node = SubResource( 2 )
-states/Reflect/position = Vector2( 455, -119.492 )
-states/Touch/node = SubResource( 3 )
-states/Touch/position = Vector2( 354, 0 )
-transitions = [ "Default", "Touch", SubResource( 4 ), "Touch", "Reflect", SubResource( 5 ), "Reflect", "Default", SubResource( 6 ) ]
+states/Default/position = Vector2( 533, 177 )
+states/Grab/node = SubResource( 2 )
+states/Grab/position = Vector2( 533, -10.688 )
+states/ReflectPermeateIntoContainer/node = SubResource( 3 )
+states/ReflectPermeateIntoContainer/position = Vector2( 762.989, -10.688 )
+transitions = [ "Default", "Grab", SubResource( 4 ), "Grab", "ReflectPermeateIntoContainer", SubResource( 5 ), "ReflectPermeateIntoContainer", "Default", SubResource( 6 ) ]
 start_node = "Default"
-graph_offset = Vector2( -73.0114, -155.688 )
+graph_offset = Vector2( -73.0114, -58.2652 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -74,6 +76,7 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 3 )
 anims/S.Reflect = ExtResource( 4 )
+anims/S.Reflect.PermeateIntoContainer = ExtResource( 5 )
 __meta__ = {
 
 }

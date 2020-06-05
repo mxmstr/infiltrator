@@ -12,7 +12,7 @@ func _on_sender_enter():
 		get_node(receiver).get_node('Behavior')._start_interaction(to_interaction)
 
 
-func _on_enter():
+func _ready():
 	
 	if from_node.has_node('Behavior') and from_interaction != null:
 		

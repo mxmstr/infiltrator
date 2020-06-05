@@ -14,21 +14,21 @@ func _split_viewports():
 	p1_control.get_node('Container').rect_size.y = height
 	p1_control.get_node('Container/Viewport').size.x = width
 	p1_control.get_node('Container/Viewport').size.y = height
-	p1_control.mouse_device = Inf.p1_mouse
-	p1_control.keyboard_device = Inf.p1_keyboard
+	p1_control.mouse_device = Meta.p1_mouse
+	p1_control.keyboard_device = Meta.p1_keyboard
 	
 	from_node.player_index = 1
 	p2_control.get_node('Container').rect_position.y = height
 	p2_control.get_node('Container').rect_size.y = height
 	p2_control.get_node('Container/Viewport').size.x = width
 	p2_control.get_node('Container/Viewport').size.y = height
-	p2_control.mouse_device = Inf.p2_mouse
-	p2_control.keyboard_device = Inf.p2_keyboard
+	p2_control.mouse_device = Meta.p2_mouse
+	p2_control.keyboard_device = Meta.p2_keyboard
 
 
 func _on_enter():
 	
-	if not Inf.coop:
+	if not Meta.coop:
 		from_node.queue_free()
 		return
 	

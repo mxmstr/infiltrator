@@ -4,14 +4,15 @@ const camera_rig_track_path = '../../Perspective'
 
 export(String) var statemachine
 
+export var chain = false
+
 var node_name
 var owner
 var parent
 var parameters
 var connections = []
 var nodes = []
-
-var current_node = get_start_node()
+var advance = false
 
 signal state_starting
 signal travel_starting
@@ -20,7 +21,7 @@ signal travel_starting
 func _on_state_starting(new_name):
 	
 	if node_name == new_name:
-		pass#emit_signal('state_starting', current_node)
+		advance = chain
 
 
 func _filter_anim_events(is_action, filter_all=false):
@@ -29,7 +30,7 @@ func _filter_anim_events(is_action, filter_all=false):
 	
 	for node in nodes:
 		
-		var is_playing = get_node(current_node) == node
+		var is_playing = get_node(playback.get_current_node()) == node
 		
 		if node is AnimationNodeAnimation:
 		
@@ -76,6 +77,10 @@ func _travel(_name):
 	owner.emit_signal('travel_starting', _name, get_node(_name))
 	
 	playback.travel(_name)
+	
+	
+	owner.advance(0.01)
+	owner.emit_signal('on_process', 0)
 
 
 func _ready(_owner, _parent, _parameters, _node_name):
@@ -85,8 +90,9 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	parameters = _parameters
 	node_name = _node_name
 	
-	if parent != null and parent.has_user_signal('state_starting'):
-		parent.connect('state_starting', self, '_on_state_starting')
+	if parent != null and owner.get(parent.parameters + 'playback') != null:
+		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+	
 	owner.connect('on_process', self, '_process')
 	
 	
@@ -139,9 +145,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 
 func _process(delta):
 	
-	var playback = owner.get(parameters + 'playback')
+	if advance:
+		owner.advance(0.01)
 	
-	if current_node != playback.get_current_node():
-		emit_signal('state_starting', playback.get_current_node())
-	
-	current_node = playback.get_current_node()
+	advance = false

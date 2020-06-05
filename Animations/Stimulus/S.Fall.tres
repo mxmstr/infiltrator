@@ -1,7 +1,7 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "R.H.Fall"
+resource_name = "S.Fall"
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../Behavior")
@@ -16,4 +16,7 @@ tracks/0/keys = {
 "args": [ "Fall" ],
 "method": "_start_state"
 } ]
+}
+__meta__ = {
+
 }

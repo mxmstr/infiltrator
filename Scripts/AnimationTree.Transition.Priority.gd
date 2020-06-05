@@ -1,12 +1,6 @@
-extends AnimationNodeStateMachineTransition
+extends 'res://AnimationTree.Transition.gd'
 
 export(String) var transition_priority
-
-var owner
-var parent
-var parameters
-var from
-var to
 
 
 func _on_travel_starting(new_node_name, new_node):
@@ -20,10 +14,9 @@ func _on_travel_starting(new_node_name, new_node):
 
 func _ready(_owner, _parent, _parameters, _from, _to):
 	
-	owner = _owner
-	parent = _parent
-	parameters = _parameters
-	from = _from
-	to = _to
+	._ready(_owner, _parent, _parameters, _from, _to)
+	
+	if parent != null and owner.get(parent.parameters + 'playback') != null:
+		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	
 	owner.connect('travel_starting', self, '_on_travel_starting')

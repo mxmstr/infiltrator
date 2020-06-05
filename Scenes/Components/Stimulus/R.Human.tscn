@@ -1,12 +1,12 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Receptor.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Stimulus/R.Contain.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Stimulus/R.H.Fall.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Stimulus/R.H.Land.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Stimulus/S.Fall.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Stimulus/S.Grab.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Stimulus/S.Land.tres" type="Animation" id=7]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "R.H.Fall"
@@ -15,19 +15,19 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "R.Contain"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "S.Land"
+__meta__ = {
+
+}
+
 [sub_resource type="AnimationNodeAnimation" id=4]
-animation = "R.H.Land"
+animation = "S.PermeateIntoContainer"
 __meta__ = {
 
 }
@@ -98,17 +98,17 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachine" id=14]
 states/Airborne/node = SubResource( 1 )
 states/Airborne/position = Vector2( 689, 125 )
-states/Contain/node = SubResource( 2 )
-states/Contain/position = Vector2( 635.989, -102 )
-states/Default/node = SubResource( 3 )
+states/Default/node = SubResource( 2 )
 states/Default/position = Vector2( 455, 125 )
-states/Land/node = SubResource( 4 )
+states/Land/node = SubResource( 3 )
 states/Land/position = Vector2( 359, -246 )
+states/PermeateIntoContainer/node = SubResource( 4 )
+states/PermeateIntoContainer/position = Vector2( 702.989, -61.4316 )
 states/Touch/node = SubResource( 5 )
 states/Touch/position = Vector2( 455, -102 )
-transitions = [ "Default", "Touch", SubResource( 6 ), "Default", "Airborne", SubResource( 7 ), "Touch", "Land", SubResource( 8 ), "Touch", "Default", SubResource( 9 ), "Airborne", "Default", SubResource( 10 ), "Land", "Default", SubResource( 11 ), "Default", "Contain", SubResource( 12 ), "Contain", "Default", SubResource( 13 ) ]
+transitions = [ "Default", "Touch", SubResource( 6 ), "Default", "Airborne", SubResource( 7 ), "Touch", "Land", SubResource( 8 ), "Touch", "Default", SubResource( 9 ), "Airborne", "Default", SubResource( 10 ), "Land", "Default", SubResource( 11 ), "Default", "PermeateIntoContainer", SubResource( 12 ), "PermeateIntoContainer", "Default", SubResource( 13 ) ]
 start_node = "Default"
-graph_offset = Vector2( -73.0114, -231.005 )
+graph_offset = Vector2( -73.0114, -310.514 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -116,6 +116,27 @@ __meta__ = {
 statemachine = ""
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "S.PermeateIntoContainer"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Contains" ],
+"method": "_link"
+} ]
+}
 __meta__ = {
 
 }
@@ -131,9 +152,10 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 4 )
-anims/R.Contain = ExtResource( 5 )
-anims/R.H.Fall = ExtResource( 6 )
-anims/R.H.Land = ExtResource( 7 )
+anims/S.Fall = ExtResource( 5 )
+anims/S.Grab = ExtResource( 6 )
+anims/S.Land = ExtResource( 7 )
+anims/S.PermeateIntoContainer = SubResource( 16 )
 __meta__ = {
 
 }

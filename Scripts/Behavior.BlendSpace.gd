@@ -1,8 +1,8 @@
 extends 'res://Scripts/AnimationTree.BlendSpace.gd'
 
-export(Inf.Priority) var priority
-export(Inf.Visibility) var type
-export(Inf.Blend) var blend
+export(Meta.Priority) var priority
+export(Meta.Visibility) var type
+export(Meta.Blend) var blend
 export var distance = 0.0
 export var abilities = true
 export var movement = true
@@ -12,7 +12,7 @@ export var camera_mode = 'LockYaw'
 
 func _is_visible():
 	
-	return type != Inf.Visibility.INVISIBLE
+	return type != Meta.Visibility.INVISIBLE
 
 
 func _on_state_starting(new_name):

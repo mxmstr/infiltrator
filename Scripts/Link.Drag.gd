@@ -28,7 +28,7 @@ func _on_move_and_slide(delta):
 			to_node.global_transform.origin = to_pos.linear_interpolate(from_pos, power)
 
 
-func _on_enter():
+func _ready():
 	
 	start_pos = to_node.global_transform.origin
 	

@@ -2,7 +2,7 @@ extends 'res://Scripts/AnimationTree.gd'
 
 var stims = []
 
-var type
+var stim
 var data
 
 signal on_stimulate
@@ -29,17 +29,17 @@ func _start_state(_name, _data={}):
 
 func _next_stim():
 
-	var stim = stims.pop_front()
+	var next_stim = stims.pop_front()
 
-	type = stim[0]
-	data = stim[1]
+	stim = next_stim[0]
+	data = next_stim[1]
 
 	emit_signal('on_stimulate', data.collider, data.position, data.normal, data.travel)
 
-	._start_state(type, data)
+	._start_state(stim, data)
 
 
-func _contain():
+func _link(type):
 	
 	var link_data = {
 		'from': owner.get_path(),
@@ -49,21 +49,21 @@ func _contain():
 	LinkHub._create('Contains', link_data)
 
 
-func _reflect():
+func _reflect(reflected_stim=''):
 	
 	if data == null:
 		return
 	
 	if data.collider.has_node('Receptor'):
 		
-		var reflected = {
+		var reflected_data = {
 			'collider': data.collider,
 			'position': data.position,
 			'normal': data.normal * -1,
 			'travel': data.travel * -1
 			}
 
-		data.collider.get_node('Receptor')._start_state(type, reflected)
+		data.collider.get_node('Receptor')._start_state(stim if reflected_stim == '' else reflected_stim, reflected_data)
 
 
 func _ready():

@@ -20,7 +20,7 @@ func _init_duplicate_meshes():
 	var viewmodel = model.duplicate()
 	add_child(viewmodel)
 	
-	for w_child in Inf._get_children_recursive(viewmodel):
+	for w_child in Meta._get_children_recursive(viewmodel):
 		
 		if w_child is MeshInstance:
 			
@@ -50,7 +50,7 @@ func _cull_mask_bits(world_mesh, view_mesh):
 
 func _init_mesh_layers():
 	
-	for w_child in Inf._get_children_recursive(model):
+	for w_child in Meta._get_children_recursive(model):
 		
 		var path_to_child = model.get_path_to(w_child)
 		var vm_child = get_node('Model/' + path_to_child)
@@ -70,7 +70,7 @@ func _uncull_mask_bits(world_mesh, view_mesh):
 
 func _revert_mesh_layers():
 	
-	for w_child in Inf._get_children_recursive(model):
+	for w_child in Meta._get_children_recursive(model):
 		
 		var path_to_child = model.get_path_to(w_child)
 		var vm_child = get_node('Model/' + path_to_child)
@@ -164,7 +164,7 @@ func _process(delta):
 		#global_transform = global_transform.translated(model.translation)
 	
 	
-	for w_child in Inf._get_children_recursive(model):
+	for w_child in Meta._get_children_recursive(model):
 		
 		var path_to_child = model.get_path_to(w_child)
 		var vm_child = get_node('Model/' + path_to_child)

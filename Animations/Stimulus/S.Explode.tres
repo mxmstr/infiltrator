@@ -1,7 +1,7 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "R.H.Land"
+resource_name = "Explode"
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../Behavior")
@@ -13,7 +13,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "Land" ],
+"args": [ "Explode" ],
 "method": "_start_state"
 } ]
+}
+__meta__ = {
+
 }

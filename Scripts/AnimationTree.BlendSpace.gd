@@ -4,6 +4,8 @@ const camera_rig_track_path = '../../Perspective'
 
 export(String) var blendspace
 
+export var chain = false
+
 export(String, 'process', 'state_starting') var update_mode = 'process'
 export var speed = 0.0
 
@@ -25,8 +27,19 @@ var parent
 var parameters
 var connections = []
 var nodes = []
+var advance = false
 
 var target_pos = Vector2()
+
+
+func _on_state_starting(new_name):
+	
+	if node_name == new_name:
+		
+		advance = chain
+		
+		if update_mode == 'state_starting':
+			_update()
 
 
 func _filter_anim_events(is_action, filter_all=false):
@@ -100,21 +113,16 @@ func _update():
 	target_pos = Vector2(x_value, y_value)
 
 
-func _on_state_starting(new_name):
-
-	if node_name == new_name and update_mode == 'state_starting':
-		_update()
-
-
 func _ready(_owner, _parent, _parameters, _node_name):
 
 	owner = _owner
 	parent = _parent
 	parameters = _parameters
 	node_name = _node_name
-
-	if parent != null and parent.has_user_signal('state_starting'):
-		parent.connect('state_starting', self, '_on_state_starting')
+	
+	if parent != null and owner.get(parent.parameters + 'playback') != null:
+		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+	
 	owner.connect('on_process', self, '_process')
 
 
@@ -133,6 +141,12 @@ func _ready(_owner, _parent, _parameters, _node_name):
 
 
 func _process(delta):
+
+	if advance:
+		owner.advance(0.01)
+	
+	advance = false
+
 
 	if update_mode == 'process':
 		_update()

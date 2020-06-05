@@ -18,10 +18,4 @@ func _on_state_starting(new_node_name):
 			connections[idx].disabled = idx != enabled_idx
 		
 		last = enabled_idx
-
-
-func _ready(_owner, _parent, _playback, _node_name):
-	
-	_parent.connect('state_starting', self, '_on_state_starting')
-	
-	._ready(_owner, _parent, _playback, _node_name)
+		

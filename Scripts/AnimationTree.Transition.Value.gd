@@ -1,4 +1,4 @@
-extends AnimationNodeStateMachineTransition
+extends 'res://AnimationTree.Transition.gd'
 
 export(String) var transition_value
 
@@ -10,12 +10,6 @@ export(String) var method
 export(Array) var args
 export(float) var value
 export(float) var wait_for_frame
-
-var owner
-var parent
-var parameters
-var from
-var to
 
 
 func _evaluate(_value):
@@ -50,11 +44,10 @@ func _on_state_starting(new_name):
 
 func _ready(_owner, _parent, _parameters, _from, _to):
 	
-	owner = _owner
-	parent = _parent
-	parameters = _parameters
-	from = _from
-	to = _to
+	._ready(_owner, _parent, _parameters, _from, _to)
+	
+	if parent != null and owner.get(parent.parameters + 'playback') != null:
+		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	
 	parent.connect('state_starting', self, '_on_state_starting') if parent != null else null
 	owner.connect('on_process', self, '_process')

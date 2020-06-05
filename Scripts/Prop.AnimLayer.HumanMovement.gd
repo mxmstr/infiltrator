@@ -5,7 +5,7 @@ export(Array, String) var movement_bones
 
 const camera_rig_track_path = '../../Perspective'
 
-var blend_mode = Inf.Blend.ACTION
+var blend_mode = Meta.Blend.ACTION
 
 var model_skeleton
 var action_skeleton
@@ -48,9 +48,9 @@ func _blend_skeletons(delta):
 	
 	var bones = range(model_skeleton.get_bone_count())
 	
-	var layered = blend_mode == Inf.Blend.LAYERED
-	var action_only = blend_mode == Inf.Blend.ACTION
-	var movement_only = blend_mode == Inf.Blend.MOVEMENT
+	var layered = blend_mode == Meta.Blend.LAYERED
+	var action_only = blend_mode == Meta.Blend.ACTION
+	var movement_only = blend_mode == Meta.Blend.MOVEMENT
 	
 	
 	for idx in bones:
@@ -102,7 +102,7 @@ func _blend_skeletons(delta):
 
 func _on_pre_process():
 	
-	tree_root._filter_anim_events(blend_mode == Inf.Blend.ACTION)
+	tree_root._filter_anim_events(blend_mode == Meta.Blend.ACTION)
 
 
 func _on_post_process():
