@@ -26,25 +26,9 @@ func _is_empty():
 
 func _add_item(item):
 	
-	for item_tag in required_tags.split(' '):
-		if not item_tag in item.tags:
-			return false
+	items.append(item)
 	
-	
-	if len(items) < max_quantity:
-		
-		item.visible = not invisible
-		
-		if item.has_node('Collision'):
-			item.get_node('Collision').disabled = true
-		
-		items.append(item)
-		
-		emit_signal('item_added', self, item)
-		
-		return true
-	
-	return false
+	emit_signal('item_added', self, item)
 
 
 func _remove_item(item):
@@ -68,13 +52,7 @@ func _push_front_into_container(new_container):
 	
 	var item = _release_front()
 	
-	var data = {
-		'from': owner.get_path(),
-		'to': item,
-		'container': new_container
-		}
-	
-	LinkHub._create('Contains', data)
+	Meta.CreateLink(owner, item, 'Contains', {'container': new_container})
 
 
 func _release_front():
@@ -84,25 +62,14 @@ func _release_front():
 	
 	var item = items[0]
 	
-	var data = {
-		'from_node': owner,
-		'to_node': item,
-		'container': name
-	}
-	
-	LinkHub._destroy('Contains', data)
+	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
 	
 	return item
 
 
 func _release_all():
 	
-	var data = {
-		'from_node': owner,
-		'container': name
-	}
-	
-	LinkHub._destroy('Contains', data)
+	Meta.DestroyLink(owner, null, 'Contains', {'container': name})
 
 
 func _reset_root():

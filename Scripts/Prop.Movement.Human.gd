@@ -53,6 +53,15 @@ func _get_leftright_speed():
 	return owner.global_transform.basis.xform_inv(velocity).x
 
 
+func _teleport(new_position=null, new_rotation=null):
+	
+	if new_position != null:
+		owner.global_transform.origin = new_position
+	
+	if new_rotation != null:
+		owner.rotation = new_rotation
+
+
 func _rotate(delta):
 	
 	if not enable_rotation:

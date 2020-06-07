@@ -14,6 +14,8 @@ var container
 var container_root
 var container_bone_name
 
+onready var ContainsLink = load('res://Scripts/Link.Contains.gd')
+
 
 func _init_duplicate_meshes():
 	
@@ -148,20 +150,15 @@ func _process(delta):
 	
 	if container_root != null:
 		
-		var item_position_offset = container._get_item_position_offset(model.owner)
-		var item_rotation_offset = container._get_item_rotation_offset(model.owner)
+		var item_position_offset = ContainsLink._get_item_position_offset(model.owner)
+		var item_rotation_offset = ContainsLink._get_item_rotation_offset(model.owner)
 		
 		global_transform = container_root.global_transform.translated(item_position_offset)
 		
 		global_transform.basis = container_root.global_transform.basis
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.x, item_rotation_offset.x)
-		#global_transform.basis = global_transform.basis.rotated(global_transform.basis.x, model.rotation.x)
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.y, item_rotation_offset.y)
-		#global_transform.basis = global_transform.basis.rotated(global_transform.basis.y, model.rotation.y)
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, item_rotation_offset.z)
-		#global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, model.rotation.z)
-		
-		#global_transform = global_transform.translated(model.translation)
 	
 	
 	for w_child in Meta._get_children_recursive(model):

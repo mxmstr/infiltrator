@@ -30,36 +30,20 @@ func _has_selection():
 
 func _stimulate(stim_type_override=''):
 	
-	var state = stim_type_override if stim_type_override != '' else stim_type
+	var new_stim = stim_type_override if stim_type_override != '' else stim_type
 	
-	if state == '' or selection == null:
+	if new_stim == '' or selection == null:
 		return
 	
 	
 	var data
 	
-	if get_collider().has_node('Receptor'):
-		
-		data = {
-			'collider': get_collider(),
-			'position': get_collision_point(),
-			'normal': get_collision_normal(),
-			'travel': $'../Movement'.velocity
-			}
-		
-		get_collider().get_node('Receptor')._start_state(state, data)
+	if send_to_self:
+		Meta.StimulateActor(owner, new_stim, owner, get_collision_point(), get_collision_normal() * -1, $'../Movement'.velocity.length() * -1)
+	else:
+		Meta.StimulateActor(get_collider(), new_stim, owner, get_collision_point(), get_collision_normal(), $'../Movement'.velocity.length())
 	
-	if send_to_self and owner.has_node('Receptor'):
-		
-		data = {
-			'collider': get_collider(),
-			'position': get_collision_point(),
-			'normal': get_collision_normal() * -1,
-			'travel': $'../Movement'.velocity * -1
-			}
-		
-		owner.get_node('Receptor')._start_state(state, data)
-		
+	
 	emit_signal('triggered', data)
 
 

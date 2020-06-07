@@ -114,21 +114,24 @@ func CreateLink(from, to, type, data={}):
 
 func DestroyLink(from, to, type, data={}):
 	
-	data.from = from.get_path()
-	data.to = to.get_path()
+	if from != null:
+		data.from = from.get_path()
+	
+	if to != null:
+		data.to = to.get_path()
 	
 	LinkHub._destroy(type, data)
 
 
-func StimulateActor(actor, stim, collider, position=Vector3(), normal=Vector3(), travel=Vector3()):
+func StimulateActor(actor, stim, collider, position=Vector3(), direction=Vector3(), intensity=0.0):
 	
 	if actor.has_node('Receptor'):
 		
 		var data = {
 			'collider': collider,
 			'position': position,
-			'normal': normal,
-			'travel': travel
+			'direction': direction,
+			'intensity': intensity
 			}
 		
 		actor.get_node('Receptor')._start_state(stim, data)

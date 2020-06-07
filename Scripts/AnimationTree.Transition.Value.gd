@@ -1,4 +1,4 @@
-extends 'res://AnimationTree.Transition.gd'
+extends 'res://Scripts/AnimationTree.Transition.gd'
 
 export(String) var transition_value
 

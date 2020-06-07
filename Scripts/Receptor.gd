@@ -34,19 +34,14 @@ func _next_stim():
 	stim = next_stim[0]
 	data = next_stim[1]
 
-	emit_signal('on_stimulate', data.collider, data.position, data.normal, data.travel)
+	emit_signal('on_stimulate', data.collider, data.position, data.direction, data.intensity)
 
 	._start_state(stim, data)
 
 
 func _link(type):
 	
-	var link_data = {
-		'from': owner.get_path(),
-		'to': data.collider.get_path()
-		}
-
-	LinkHub._create('Contains', link_data)
+	Meta.CreateLink(owner, data.collider, type)
 
 
 func _reflect(reflected_stim=''):
@@ -54,16 +49,10 @@ func _reflect(reflected_stim=''):
 	if data == null:
 		return
 	
-	if data.collider.has_node('Receptor'):
-		
-		var reflected_data = {
-			'collider': data.collider,
-			'position': data.position,
-			'normal': data.normal * -1,
-			'travel': data.travel * -1
-			}
-
-		data.collider.get_node('Receptor')._start_state(stim if reflected_stim == '' else reflected_stim, reflected_data)
+	if reflected_stim == '':
+		reflected_stim = stim
+	
+	Meta.StimulateActor(data.collider, reflected_stim, owner, data.position, data.direction * -1, data.intensity * -1)
 
 
 func _ready():

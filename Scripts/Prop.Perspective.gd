@@ -31,7 +31,7 @@ func _on_post_draw(viewport):
 func _on_item_contained(container, item):
 	
 	if container.bone_name != '':
-	
+		
 		var viewmodel = load('res://Scenes/Components/Properties/P.ViewModel.tscn').instance()
 		viewmodel.name = item.name + 'ViewModel'
 		viewmodel.model = item.get_node('Model')

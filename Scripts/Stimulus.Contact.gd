@@ -32,28 +32,11 @@ func _physics_process(delta):
 			
 			var data
 			
-			if collision.collider.has_node('Receptor'):
-				
-				data = {
-					'collider': owner, 
-					'position': collision.position,
-					'normal': collision.normal * -1,
-					'travel': $'../Movement'.velocity
-					}
-				
-				collision.collider.get_node('Receptor')._start_state(stim_type, data)
+			if send_to_self:
+				Meta.StimulateActor(owner, stim_type, owner, collision.position, collision.normal, $'../Movement'.velocity.length())
+			else:
+				Meta.StimulateActor(collision.collider, stim_type, owner, collision.position, collision.normal * -1, $'../Movement'.velocity.length() * -1)
 			
-			if send_to_self and get_parent().has_node('Receptor'):
-				
-				data = {
-					'collider': collision.collider,
-					'position': collision.position,
-					'normal': collision.normal * -1,
-					'travel': $'../Movement'.velocity * -1
-					}
-				
-				get_parent().get_node('Receptor')._start_state(stim_type, data)
-				
 			emit_signal('triggered', data)
 		
 		new_collisions.append(collision)
