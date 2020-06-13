@@ -12,7 +12,6 @@ var follow_camera_offset = Vector3()
 var model
 var container
 var container_root
-var container_bone_name
 
 onready var ContainsLink = load('res://Scripts/Link.Contains.gd')
 
@@ -121,6 +120,42 @@ func _blend_skeletons(s_world, s_view):
 		s_view.global_transform.origin = owner.global_transform.origin + rig_transform - bone_transform
 
 
+func _get_item_position_offset(item):
+	
+	if item._has_tag('Offset-position'):
+		
+		var item_data = item._get_tag('Offset-position')
+		
+		var item_parent_name = item_data[0]
+		var item_bone_name = item_data[1]
+		var item_offset = item_data[2].split(',')
+		
+		return Vector3(float(item_offset[0]), float(item_offset[1]), float(item_offset[2])) if (
+			(item_parent_name == '' or container_root.get_parent().name == item_parent_name) and \
+			(item_bone_name == '' or item_bone_name == container.bone_name)
+			) else Vector3()
+	
+	return Vector3()
+
+
+func _get_item_rotation_offset(item):
+	
+	if item._has_tag('Offset-rotation'):
+		
+		var item_data = item._get_tag('Offset-rotation')
+		
+		var item_parent_name = item_data[0]
+		var item_bone_name = item_data[1]
+		var item_offset = item_data[2].split(',')
+		
+		return Vector3(deg2rad(float(item_offset[0])), deg2rad(float(item_offset[1])), deg2rad(float(item_offset[2]))) if (
+			(item_parent_name == '' or container_root.get_parent().name == item_parent_name) and \
+			(item_bone_name == '' or item_bone_name == container.bone_name)
+			) else Vector3()
+	
+	return Vector3()
+
+
 func _ready():
 	
 	if owner == null:
@@ -150,8 +185,8 @@ func _process(delta):
 	
 	if container_root != null:
 		
-		var item_position_offset = ContainsLink._get_item_position_offset(model.owner)
-		var item_rotation_offset = ContainsLink._get_item_rotation_offset(model.owner)
+		var item_position_offset = _get_item_position_offset(model.owner)
+		var item_rotation_offset = _get_item_rotation_offset(model.owner)
 		
 		global_transform = container_root.global_transform.translated(item_position_offset)
 		

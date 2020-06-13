@@ -7,6 +7,7 @@ var tags_dict = {}
 var player_index = 0 setget _set_player_index
 
 signal entered_tree
+signal integrate_forces
 signal player_index_changed
 
 
@@ -47,4 +48,8 @@ func _enter_tree():
 func _ready():
 	
 	yield(get_tree(), 'idle_frame')
-	
+
+
+func _integrate_forces(state):
+
+	emit_signal('integrate_forces', state)

@@ -9,7 +9,7 @@ signal on_stimulate
 
 
 func _on_state_starting(new_node):
-
+	
 	if new_node == 'Default':
 
 		if len(stims) == 0:

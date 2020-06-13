@@ -26,7 +26,7 @@ func _split_viewports():
 	p2_control.keyboard_device = Meta.p2_keyboard
 
 
-func _on_enter():
+func _ready():
 	
 	if not Meta.coop:
 		from_node.queue_free()
@@ -37,5 +37,3 @@ func _on_enter():
 	
 	if from_node.has_node('Perspective') and to_node.has_node('Perspective'):
 		_split_viewports()
-	
-	._on_enter()

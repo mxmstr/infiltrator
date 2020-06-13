@@ -1111,7 +1111,6 @@ fp_shoulder_bone = "shoulders"
 fp_hidden_bones = [ "Head", "Neck" ]
 
 [node name="Behavior" parent="." instance=ExtResource( 13 )]
-editor/display_folded = true
 tree_root = SubResource( 64 )
 parameters/playback = SubResource( 65 )
 parameters/Climb/playback = SubResource( 66 )

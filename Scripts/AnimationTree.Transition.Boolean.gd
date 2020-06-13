@@ -49,7 +49,6 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
 		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	
-	parent.connect('state_starting', self, '_on_state_starting') if parent != null else null
 	owner.connect('on_process', self, '_process')
 
 

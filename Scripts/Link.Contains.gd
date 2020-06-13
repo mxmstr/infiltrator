@@ -93,8 +93,6 @@ func _move_item():
 	new_transform.basis = new_transform.basis.rotated(new_transform.basis.z, item_rotation_offset.z)
 	
 	to_node.get_node('Movement')._teleport(new_transform.origin, new_transform.basis.get_euler()) if to_node.has_node('Movement') else null
-	
-	#Meta.StimulateActor(to_node, 'Contain', from_node, new_transform.origin, new_transform.basis.get_euler())
 
 
 func _ready():
@@ -123,3 +121,6 @@ func _exit_tree():
 	
 	to_node.get_node('Movement')._set_speed(container_node.release_speed) if to_node.has_node('Movement') else null
 	to_node.get_node('Movement')._set_direction(container_node.release_direction) if to_node.has_node('Movement') else null
+	
+#	if to_node.get('sleeping') != null:
+#		to_node.apply_impulse(Vector3(), Vector3(0, -10, 0))

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Components/Behaviors/B.Item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/Properties/P.Movement.RigidBody.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/Behaviors/B.Item.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Stimulus/R.RigidBody.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SphereMesh" id=1]
 __meta__ = {
@@ -18,6 +20,11 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+__meta__ = {
+
+}
+
 [node name="Item" type="RigidBody"]
 collision_layer = 4
 collision_mask = 1028
@@ -28,6 +35,7 @@ __meta__ = {
 tags = "Item"
 
 [node name="Model" type="Spatial" parent="."]
+editor/display_folded = true
 __meta__ = {
 
 }
@@ -52,5 +60,10 @@ __meta__ = {
 
 }
 
-[node name="Behavior" parent="." instance=ExtResource( 2 )]
+[node name="Movement" parent="." instance=ExtResource( 2 )]
+
+[node name="Behavior" parent="." instance=ExtResource( 3 )]
 parameters/playback = SubResource( 3 )
+
+[node name="Receptor" parent="." instance=ExtResource( 4 )]
+parameters/playback = SubResource( 4 )

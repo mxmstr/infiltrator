@@ -3,6 +3,11 @@ extends 'res://Scripts/AnimationTree.Transition.gd'
 export(String) var transition_priority
 
 
+func _on_state_starting(new_name):
+	
+	pass
+
+
 func _on_travel_starting(new_node_name, new_node):
 	
 	if new_node.get('priority') == null:

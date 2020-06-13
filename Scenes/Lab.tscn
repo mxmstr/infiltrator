@@ -54,7 +54,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0445969, 1.23909, -0.638068
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0971781, 1.63611, 0.0572793 )
 
 [node name="Player" parent="Actors" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0640702, 0.271549, -1.17375 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0640702, 0.271549, -1.47989 )
 
 [node name="Player2" parent="Actors" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.298016, 0.317691, -2.96263 )

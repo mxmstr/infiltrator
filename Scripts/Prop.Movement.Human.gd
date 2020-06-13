@@ -130,6 +130,9 @@ func _align_to_camera():
 
 func _resize_collision():
 	
+	if collision_height_mult == null:
+		return
+	
 	collision.shape.extents.y = collision_height_mult
 	collision.translation.y = collision_height_mult
 

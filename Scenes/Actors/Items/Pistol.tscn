@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Models/Items/DD44/dd44.glb" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Behaviors/B.Firearm.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Properties/P.Movement.RigidBody.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Behaviors/B.Firearm.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Stimulus/R.RigidBody.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.2, 1, 1.5 )
@@ -12,6 +14,11 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 __meta__ = {
 
 }
@@ -26,6 +33,7 @@ __meta__ = {
 tags = "Item Firearm 9mm One-handed Offset-position:neo_reference_skeleton:Hand-R:0.008,0.165,0.028 Offset-rotation:neo_reference_skeleton:Hand-R:-90,180,0"
 
 [node name="Model" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.0961252, -0.145615 )
 
 [node name="SketchUp" parent="Model" index="0"]
@@ -38,17 +46,22 @@ __meta__ = {
 
 }
 
-[node name="Behavior" parent="." instance=ExtResource( 3 )]
+[node name="Movement" parent="." instance=ExtResource( 3 )]
+
+[node name="Behavior" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
 parameters/playback = SubResource( 2 )
 
-[node name="Magazine" parent="." instance=ExtResource( 4 )]
+[node name="Receptor" parent="." instance=ExtResource( 5 )]
+parameters/playback = SubResource( 3 )
+
+[node name="Magazine" parent="." instance=ExtResource( 6 )]
 path = NodePath("..")
 max_quantity = 1
 invisible = true
 required_tags = "Magazine 9mm"
 
-[node name="Chamber" parent="." instance=ExtResource( 4 )]
+[node name="Chamber" parent="." instance=ExtResource( 6 )]
 path = NodePath("..")
 max_quantity = 1
 invisible = true

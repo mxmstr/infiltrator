@@ -27,6 +27,10 @@ func _on_state_starting(new_name):
 func _filter_anim_events(is_action, filter_all=false):
 	
 	var playback = owner.get(parameters + 'playback')
+	var current_node = playback.get_current_node()
+	
+	if current_node == '':
+		return
 	
 	for node in nodes:
 		
@@ -50,6 +54,12 @@ func _filter_anim_events(is_action, filter_all=false):
 
 
 func _unfilter_anim_events():
+	
+	var playback = owner.get(parameters + 'playback')
+	var current_node = playback.get_current_node()
+	
+	if current_node == '':
+		return
 	
 	for node in nodes:
 		
