@@ -11,7 +11,7 @@ func _ready():
 		return
 
 
-	var anim_names = []
+	var anim_names = ['Start']
 
 	for idx in range(tree_root.get_transition_count()):
 
