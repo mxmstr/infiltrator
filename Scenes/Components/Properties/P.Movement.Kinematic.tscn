@@ -1,8 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/Prop.Movement.Human.gd" type="Script" id=1]
-
-
+[ext_resource path="res://Scripts/Prop.Movement.Kinematic.gd" type="Script" id=1]
 
 [node name="Movement" type="Spatial"]
 script = ExtResource( 1 )

@@ -35,28 +35,3 @@ func _process(delta):
 	if Engine.editor_hint: return
 	
 	emit_signal('on_process', delta)
-	
-	
-	#print(str(get_tree().get_frame()), ' ___')
-#	for i in advances:
-#		advance(0.01)
-#
-#	advances = 0
-
-
-func _msg(msg):
-	
-	print(str(get_tree().get_frame()), ' ', msg)
-
-
-func _input(event):
-	
-	return
-	
-	if event is InputEventKey:
-		
-		if event.scancode == KEY_SPACE:
-			print(str(get_tree().get_frame()), ' input')
-			_start_state('B')
-			#tree_root._travel('B')
-			#get('parameters/playback').travel('C')

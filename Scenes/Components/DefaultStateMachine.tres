@@ -1,0 +1,355 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=38 format=2]
+
+[ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "ClimbHigh"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "ClimbLow"
+scale = 1.5
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "ClimbMedium"
+scale = 0.5
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+transition_value = ""
+update_mode = "state_starting"
+assertion = "Greater Than"
+target = "ClimbingSkill"
+method = "_get_climb_height_mult"
+args = [  ]
+value = 0.7
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+transition_value = ""
+update_mode = "state_starting"
+assertion = "Less Than"
+target = "ClimbingSkill"
+method = "_get_climb_height_mult"
+args = [  ]
+value = 0.2
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/ClimbHigh/node = SubResource( 1 )
+states/ClimbHigh/position = Vector2( 574, 41 )
+states/ClimbLow/node = SubResource( 22 )
+states/ClimbLow/position = Vector2( 574, 210 )
+states/ClimbMedium/node = SubResource( 3 )
+states/ClimbMedium/position = Vector2( 574, 127 )
+states/End/node = SubResource( 4 )
+states/End/position = Vector2( 907, 141 )
+states/Start/node = SubResource( 5 )
+states/Start/position = Vector2( 226, 141 )
+transitions = [ "Start", "ClimbHigh", SubResource( 6 ), "ClimbHigh", "End", SubResource( 7 ), "Start", "ClimbMedium", SubResource( 8 ), "ClimbMedium", "End", SubResource( 9 ), "Start", "ClimbLow", SubResource( 10 ), "ClimbLow", "End", SubResource( 11 ) ]
+start_node = "Start"
+end_node = "End"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+priority = 0
+type = 0
+blend = 0
+distance = 0.0
+abilities = false
+movement = false
+rotation = false
+camera_mode = "HalfYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "FindClimbTarget"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "sidestepleft"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "sidestepright"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "HOPBACK"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "JumpLong"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_boolean = ""
+update_mode = "process"
+assertion = "True"
+target = "."
+method = "is_on_floor"
+args = [  ]
+wait_for_frame = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=31]
+states/End/node = SubResource( 27 )
+states/End/position = Vector2( 822, 99 )
+states/JumpLong/node = SubResource( 28 )
+states/JumpLong/position = Vector2( 606, 99 )
+transitions = [ "JumpLong", "End", SubResource( 29 ), "JumpLong", "End", SubResource( 30 ) ]
+start_node = "JumpLong"
+end_node = "End"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "JumpUp"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_boolean = ""
+update_mode = "process"
+assertion = "True"
+target = "."
+method = "is_on_floor"
+args = [  ]
+wait_for_frame = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=15]
+states/DefaultAnim/node = SubResource( 32 )
+states/DefaultAnim/position = Vector2( 748, 92 )
+states/JumpUp/node = SubResource( 12 )
+states/JumpUp/position = Vector2( 536, 92 )
+transitions = [ "JumpUp", "DefaultAnim", SubResource( 13 ), "JumpUp", "DefaultAnim", SubResource( 14 ) ]
+start_node = "JumpUp"
+end_node = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "JumpUp"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_boolean = ""
+update_mode = "process"
+assertion = "True"
+target = "."
+method = "is_on_floor"
+args = [  ]
+wait_for_frame = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=20]
+states/DefaultAnim/node = SubResource( 16 )
+states/DefaultAnim/position = Vector2( 778, 112 )
+states/jumpForward/node = SubResource( 17 )
+states/jumpForward/position = Vector2( 517, 112 )
+transitions = [ "jumpForward", "DefaultAnim", SubResource( 18 ), "jumpForward", "DefaultAnim", SubResource( 19 ) ]
+start_node = "jumpForward"
+end_node = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=21]
+blend_point_0/node = SubResource( 24 )
+blend_point_0/pos = Vector2( -0.2, 0 )
+blend_point_1/node = SubResource( 25 )
+blend_point_1/pos = Vector2( 0.2, 0 )
+blend_point_2/node = SubResource( 26 )
+blend_point_2/pos = Vector2( 0, -0.2 )
+blend_point_3/node = SubResource( 31 )
+blend_point_3/pos = Vector2( 0, 1 )
+blend_point_4/node = SubResource( 15 )
+blend_point_4/pos = Vector2( 0, 0 )
+blend_point_5/node = SubResource( 20 )
+blend_point_5/pos = Vector2( 0, 0.2 )
+blend_mode = 1
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+blendspace = ""
+chain = false
+update_mode = "state_starting"
+speed = 0.0
+x_target = "Movement"
+x_method = "_get_leftright_speed"
+x_args = [  ]
+x_max_value = -2.75
+x_min_value = 2.75
+y_target = "Movement"
+y_method = "_get_forward_speed"
+y_args = [  ]
+y_max_value = 2.75
+y_min_value = -2.75
+priority = 0
+type = 0
+blend = 0
+distance = 0.0
+abilities = true
+movement = false
+rotation = false
+camera_mode = "HalfYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[resource]
+states/Climb/node = SubResource( 23 )
+states/Climb/position = Vector2( 489, 224 )
+states/FindClimbTarget/node = SubResource( 34 )
+states/FindClimbTarget/position = Vector2( 756, 138 )
+states/Jump/node = SubResource( 21 )
+states/Jump/position = Vector2( 489, 55 )
+states/Start/node = SubResource( 33 )
+states/Start/position = Vector2( 264, 146 )
+__meta__ = {
+
+}

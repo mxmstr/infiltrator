@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=1]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+states/Start/node = SubResource( 1 )
+states/Start/position = Vector2( 640, 146 )
+start_node = "Start"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+__meta__ = {
+
+}
+
+[node name="Interface" type="AnimationTree"]
+tree_root = SubResource( 2 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 2 )
+__meta__ = {
+
+}

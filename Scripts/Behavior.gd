@@ -31,6 +31,10 @@ func _has_interaction(_name):
 
 func _set_skeleton():
 	
+	if not get_node('../Model'):
+		return
+	
+	
 	var skeleton = $'../Model'.get_child(0)
 	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(skeleton)
 
