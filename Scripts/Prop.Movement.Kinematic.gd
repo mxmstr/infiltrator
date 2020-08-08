@@ -11,12 +11,17 @@ var velocity = Vector3()
 signal move_and_slide
 
 
+func _get_speed():
+	
+	return velocity.length()
+
+
 func _get_forward_speed():
 	
 	return owner.global_transform.basis.xform_inv(velocity).z
 
 
-func _get_leftright_speed():
+func _get_sidestep_speed():
 	
 	return owner.global_transform.basis.xform_inv(velocity).x
 

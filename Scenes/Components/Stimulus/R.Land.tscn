@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Stimulus/S.Land.tres" type="Animation" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Land"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+min_intensity = 1.0
+max_intensity = 100.0
+within_direction = Vector3( 0, 1, 0 )
+max_direction_angle = 45.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/Land/node = SubResource( 3 )
+states/Land/position = Vector2( 810, 312 )
+states/Start/node = SubResource( 1 )
+states/Start/position = Vector2( 381, 312 )
+transitions = [ "Start", "Land", SubResource( 4 ), "Land", "Start", SubResource( 8 ) ]
+start_node = "Start"
+end_node = "Start"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
+[node name="LandResponse" type="AnimationTree"]
+tree_root = SubResource( 6 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 7 )
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+start_node = "Touch"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 4 )
+anims/Land = ExtResource( 5 )
+__meta__ = {
+
+}

@@ -31,7 +31,7 @@ func _has_interaction(_name):
 
 func _set_skeleton():
 	
-	if not get_node('../Model'):
+	if not has_node('../Model'):
 		return
 	
 	

@@ -10,7 +10,7 @@ __meta__ = {
 
 [resource]
 states/Start/node = SubResource( 1 )
-states/Start/position = Vector2( 624, 170 )
+states/Start/position = Vector2( 608, 275 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 1 )

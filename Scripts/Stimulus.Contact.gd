@@ -33,9 +33,9 @@ func _physics_process(delta):
 			var data
 			
 			if send_to_self:
-				Meta.StimulateActor(owner, stim_type, owner, collision.position, collision.normal, $'../Movement'.velocity.length())
+				Meta.StimulateActor(owner, stim_type, owner, collision.position, collision.normal, $'../Movement'._get_speed())
 			else:
-				Meta.StimulateActor(collision.collider, stim_type, owner, collision.position, collision.normal * -1, $'../Movement'.velocity.length() * -1)
+				Meta.StimulateActor(collision.collider, stim_type, owner, collision.position, collision.normal * -1, $'../Movement'._get_speed() * -1)
 			
 			emit_signal('triggered', data)
 		

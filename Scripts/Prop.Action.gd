@@ -3,15 +3,26 @@ extends AnimationTree
 var make_unique = 0
 
 export(NodePath) var tree_node
+export var start_node = 'Start'
+export var end_node = 'Start'
 
 
-func _ready():
+func _enter_tree():
 	
 	if tree_root.get_transition_count() == 0:
 		return
 
 
-	var anim_names = ['Start']
+#	var current_animation_player = $AnimationPlayer
+#	var new_animation_player = get_node(tree_node).get_node('AnimationPlayer')
+#
+#	for animation_name in current_animation_player.get_animation_list():
+#
+#		var animation = current_animation_player.get_animation(animation_name)
+#		new_animation_player.add_animation(animation_name, animation)
+
+
+	var anim_names = [start_node, end_node]
 
 	for idx in range(tree_root.get_transition_count()):
 
@@ -35,4 +46,10 @@ func _ready():
 			anim_names.append(to_name)
 
 
+		if from_name == tree_root.get_start_node():
+			from_name = start_node
+		
+		if to_name == tree_root.get_end_node():
+			to_name = end_node
+		
 		get_node(tree_node).tree_root.add_transition(from_name, to_name, transition.duplicate())

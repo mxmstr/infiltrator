@@ -1,0 +1,382 @@
+[gd_scene load_steps=151 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AudioTree.StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Audio/FTCAR_A1.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Audio/FTCAR_A2.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Audio/FTCAR_A3.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Audio/FTCAR_A4.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Audio/FTCAR_J.tres" type="Animation" id=9]
+[ext_resource path="res://Animations/Audio/FTCAR_P1.tres" type="Animation" id=10]
+[ext_resource path="res://Animations/Audio/FTCAR_P2.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/Audio/FTCAR_P3.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/Audio/FTCAR_P4.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Audio/FTDIR_A1.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Audio/FTDIR_A2.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Audio/FTDIR_A3.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Audio/FTDIR_A4.tres" type="Animation" id=17]
+[ext_resource path="res://Animations/Audio/FTDIR_J.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Audio/FTDIR_P1.tres" type="Animation" id=19]
+[ext_resource path="res://Animations/Audio/FTDIR_P2.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Audio/FTDIR_P3.tres" type="Animation" id=21]
+[ext_resource path="res://Animations/Audio/FTDIR_P4.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Audio/FTGRA_A1.tres" type="Animation" id=23]
+[ext_resource path="res://Animations/Audio/FTGRA_A2.tres" type="Animation" id=24]
+[ext_resource path="res://Animations/Audio/FTGRA_A3.tres" type="Animation" id=25]
+[ext_resource path="res://Animations/Audio/FTGRA_A4.tres" type="Animation" id=26]
+[ext_resource path="res://Animations/Audio/FTGRA_J.tres" type="Animation" id=27]
+[ext_resource path="res://Animations/Audio/FTGRA_P1.tres" type="Animation" id=28]
+[ext_resource path="res://Animations/Audio/FTGRA_P2.tres" type="Animation" id=29]
+[ext_resource path="res://Animations/Audio/FTGRA_P3.tres" type="Animation" id=30]
+[ext_resource path="res://Animations/Audio/FTGRA_P4.tres" type="Animation" id=31]
+[ext_resource path="res://Animations/Audio/FTMET_A1.tres" type="Animation" id=32]
+[ext_resource path="res://Animations/Audio/FTMET_A2.tres" type="Animation" id=33]
+[ext_resource path="res://Animations/Audio/FTMET_A3.tres" type="Animation" id=34]
+[ext_resource path="res://Animations/Audio/FTMET_A4.tres" type="Animation" id=35]
+[ext_resource path="res://Animations/Audio/FTMET_J.tres" type="Animation" id=36]
+[ext_resource path="res://Animations/Audio/FTMET_P1.tres" type="Animation" id=37]
+[ext_resource path="res://Animations/Audio/FTMET_P2.tres" type="Animation" id=38]
+[ext_resource path="res://Animations/Audio/FTMET_P3.tres" type="Animation" id=39]
+[ext_resource path="res://Animations/Audio/FTMET_P4.tres" type="Animation" id=40]
+[ext_resource path="res://Animations/Audio/FTROC_A1.tres" type="Animation" id=41]
+[ext_resource path="res://Animations/Audio/FTROC_A2.tres" type="Animation" id=42]
+[ext_resource path="res://Animations/Audio/FTROC_A3.tres" type="Animation" id=43]
+[ext_resource path="res://Animations/Audio/FTROC_A4.tres" type="Animation" id=44]
+[ext_resource path="res://Animations/Audio/FTROC_J.tres" type="Animation" id=45]
+[ext_resource path="res://Animations/Audio/FTROC_P1.tres" type="Animation" id=46]
+[ext_resource path="res://Animations/Audio/FTROC_P2.tres" type="Animation" id=47]
+[ext_resource path="res://Animations/Audio/FTROC_P3.tres" type="Animation" id=48]
+[ext_resource path="res://Animations/Audio/FTROC_P4.tres" type="Animation" id=49]
+[ext_resource path="res://Animations/Audio/FTTIL_A1.tres" type="Animation" id=50]
+[ext_resource path="res://Animations/Audio/FTTIL_A2.tres" type="Animation" id=51]
+[ext_resource path="res://Animations/Audio/FTTIL_A3.tres" type="Animation" id=52]
+[ext_resource path="res://Animations/Audio/FTTIL_A4.tres" type="Animation" id=53]
+[ext_resource path="res://Animations/Audio/FTTIL_J.tres" type="Animation" id=54]
+[ext_resource path="res://Animations/Audio/FTTIL_P1.tres" type="Animation" id=55]
+[ext_resource path="res://Animations/Audio/FTTIL_P2.tres" type="Animation" id=56]
+[ext_resource path="res://Animations/Audio/FTTIL_P3.tres" type="Animation" id=57]
+[ext_resource path="res://Animations/Audio/FTTIL_P4.tres" type="Animation" id=58]
+[ext_resource path="res://Animations/Audio/FTWAT_1.tres" type="Animation" id=59]
+[ext_resource path="res://Animations/Audio/FTWAT_2.tres" type="Animation" id=60]
+[ext_resource path="res://Animations/Audio/FTWAT_3.tres" type="Animation" id=61]
+[ext_resource path="res://Animations/Audio/FTWAT_4.tres" type="Animation" id=62]
+[ext_resource path="res://Animations/Audio/FTWAT_J.tres" type="Animation" id=63]
+[ext_resource path="res://Animations/Audio/FTWOO_A1.tres" type="Animation" id=64]
+[ext_resource path="res://Animations/Audio/FTWOO_A2.tres" type="Animation" id=65]
+[ext_resource path="res://Animations/Audio/FTWOO_A3.tres" type="Animation" id=66]
+[ext_resource path="res://Animations/Audio/FTWOO_A4.tres" type="Animation" id=67]
+[ext_resource path="res://Animations/Audio/FTWOO_J.tres" type="Animation" id=68]
+[ext_resource path="res://Animations/Audio/FTWOO_P1.tres" type="Animation" id=69]
+[ext_resource path="res://Animations/Audio/FTWOO_P2.tres" type="Animation" id=70]
+[ext_resource path="res://Animations/Audio/FTWOO_P3.tres" type="Animation" id=71]
+[ext_resource path="res://Animations/Audio/FTWOO_P4.tres" type="Animation" id=72]
+[ext_resource path="res://Animations/Audio/FT_APE1.tres" type="Animation" id=73]
+[ext_resource path="res://Animations/Audio/FT_APE2.tres" type="Animation" id=74]
+[ext_resource path="res://Animations/Audio/FT_BUR1.tres" type="Animation" id=75]
+[ext_resource path="res://Animations/Audio/FT_BUR2.tres" type="Animation" id=76]
+[ext_resource path="res://Animations/Audio/FT_BUR3.tres" type="Animation" id=77]
+[ext_resource path="res://Animations/Audio/FT_BUR4.tres" type="Animation" id=78]
+[ext_resource path="res://Animations/Audio/FT_CHRB1.tres" type="Animation" id=79]
+[ext_resource path="res://Animations/Audio/FT_FROG1.tres" type="Animation" id=80]
+[ext_resource path="res://Animations/Audio/FT_FUNG1.tres" type="Animation" id=81]
+[ext_resource path="res://Animations/Audio/FT_FUNG2.tres" type="Animation" id=82]
+[ext_resource path="res://Animations/Audio/FT_FUNG3.tres" type="Animation" id=83]
+[ext_resource path="res://Animations/Audio/FT_FUNG4.tres" type="Animation" id=84]
+[ext_resource path="res://Animations/Audio/FT_HH1.tres" type="Animation" id=85]
+[ext_resource path="res://Animations/Audio/FT_HH2.tres" type="Animation" id=86]
+[ext_resource path="res://Animations/Audio/FT_HH3.tres" type="Animation" id=87]
+[ext_resource path="res://Animations/Audio/FT_HH4.tres" type="Animation" id=88]
+[ext_resource path="res://Animations/Audio/FT_ICE1.tres" type="Animation" id=89]
+[ext_resource path="res://Animations/Audio/FT_ICE2.tres" type="Animation" id=90]
+[ext_resource path="res://Animations/Audio/FT_ICE3.tres" type="Animation" id=91]
+[ext_resource path="res://Animations/Audio/FT_ICE4.tres" type="Animation" id=92]
+[ext_resource path="res://Animations/Audio/FT_SPID1.tres" type="Animation" id=93]
+[ext_resource path="res://Animations/Audio/FT_SPID2.tres" type="Animation" id=94]
+[ext_resource path="res://Animations/Audio/FT_SPID3.tres" type="Animation" id=95]
+[ext_resource path="res://Animations/Audio/FT_SPID4.tres" type="Animation" id=96]
+[ext_resource path="res://Animations/Audio/FT_ZOMB1.tres" type="Animation" id=97]
+[ext_resource path="res://Animations/Audio/FT_ZOMB2.tres" type="Animation" id=98]
+[ext_resource path="res://Animations/Audio/FT_ZOMB3.tres" type="Animation" id=99]
+[ext_resource path="res://Animations/Audio/FT_ZOMB4.tres" type="Animation" id=100]
+[ext_resource path="res://Animations/Audio/ft_Frog4.tres" type="Animation" id=101]
+[ext_resource path="res://Animations/Audio/ft_cb1.tres" type="Animation" id=102]
+[ext_resource path="res://Animations/Audio/ft_cb1m.tres" type="Animation" id=103]
+[ext_resource path="res://Animations/Audio/ft_cb2.tres" type="Animation" id=104]
+[ext_resource path="res://Animations/Audio/ft_cb2m.tres" type="Animation" id=105]
+[ext_resource path="res://Animations/Audio/ft_cb3.tres" type="Animation" id=106]
+[ext_resource path="res://Animations/Audio/ft_cb3m.tres" type="Animation" id=107]
+[ext_resource path="res://Animations/Audio/ft_cb4.tres" type="Animation" id=108]
+[ext_resource path="res://Animations/Audio/ft_cb4m.tres" type="Animation" id=109]
+[ext_resource path="res://Animations/Audio/ft_chrb2.tres" type="Animation" id=110]
+[ext_resource path="res://Animations/Audio/ft_chrb3.tres" type="Animation" id=111]
+[ext_resource path="res://Animations/Audio/ft_chrb4.tres" type="Animation" id=112]
+[ext_resource path="res://Animations/Audio/ft_frog2.tres" type="Animation" id=113]
+[ext_resource path="res://Animations/Audio/ft_frog3.tres" type="Animation" id=114]
+[ext_resource path="res://Animations/Audio/ft_sb1.tres" type="Animation" id=115]
+[ext_resource path="res://Animations/Audio/ft_sb2.tres" type="Animation" id=116]
+[ext_resource path="res://Animations/Audio/ft_sb3.tres" type="Animation" id=117]
+[ext_resource path="res://Animations/Audio/ft_sb4.tres" type="Animation" id=118]
+[ext_resource path="res://Animations/Audio/ft_tree1.tres" type="Animation" id=119]
+[ext_resource path="res://Animations/Audio/ft_tree2.tres" type="Animation" id=120]
+[ext_resource path="res://Animations/Audio/ft_tree3.tres" type="Animation" id=121]
+[ext_resource path="res://Animations/Audio/ft_tree4.tres" type="Animation" id=122]
+[ext_resource path="res://Animations/Audio/ft_tree5.tres" type="Animation" id=123]
+[ext_resource path="res://Animations/Audio/ft_tree6.tres" type="Animation" id=124]
+[ext_resource path="res://Animations/Audio/ft_tree7.tres" type="Animation" id=125]
+[ext_resource path="res://Animations/Audio/ft_tree8.tres" type="Animation" id=126]
+[ext_resource path="res://Animations/Audio/ft_wb1.tres" type="Animation" id=127]
+[ext_resource path="res://Animations/Audio/ft_wb1m.tres" type="Animation" id=128]
+[ext_resource path="res://Animations/Audio/ft_wb2.tres" type="Animation" id=129]
+[ext_resource path="res://Animations/Audio/ft_wb2m.tres" type="Animation" id=130]
+[ext_resource path="res://Animations/Audio/ft_wb3.tres" type="Animation" id=131]
+[ext_resource path="res://Animations/Audio/ft_wb3m.tres" type="Animation" id=132]
+[ext_resource path="res://Animations/Audio/ft_wb4.tres" type="Animation" id=133]
+[ext_resource path="res://Animations/Audio/ft_wb4m.tres" type="Animation" id=134]
+[ext_resource path="res://Animations/Audio/ftsnow1.tres" type="Animation" id=135]
+[ext_resource path="res://Animations/Audio/ftsnow2.tres" type="Animation" id=136]
+[ext_resource path="res://Animations/Audio/ftsnow3.tres" type="Animation" id=137]
+[ext_resource path="res://Animations/Audio/ftsnow4.tres" type="Animation" id=138]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "FTROC_J"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/End/node = SubResource( 1 )
+states/End/position = Vector2( 594.6, 99.8 )
+states/FTROC_J/node = SubResource( 2 )
+states/FTROC_J/position = Vector2( 416.2, 99.32 )
+states/Start/node = SubResource( 3 )
+states/Start/position = Vector2( 241.8, 99.8 )
+transitions = [ "Start", "FTROC_J", SubResource( 4 ), "FTROC_J", "End", SubResource( 5 ) ]
+start_node = "Start"
+end_node = "End"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+level = -5.0
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=10]
+states/Land/node = SubResource( 6 )
+states/Land/position = Vector2( 756.384, 43.552 )
+states/Start/node = SubResource( 7 )
+states/Start/position = Vector2( 333, 43.552 )
+transitions = [ "Start", "Land", SubResource( 8 ), "Land", "Start", SubResource( 9 ) ]
+start_node = "Start"
+end_node = "Start"
+graph_offset = Vector2( -13, -93.7663 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+__meta__ = {
+
+}
+
+[node name="ImpactSound" type="AnimationTree"]
+tree_root = SubResource( 10 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 11 )
+parameters/Land/playback = SubResource( 12 )
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 4 )
+anims/FTCAR_A1 = ExtResource( 5 )
+anims/FTCAR_A2 = ExtResource( 6 )
+anims/FTCAR_A3 = ExtResource( 7 )
+anims/FTCAR_A4 = ExtResource( 8 )
+anims/FTCAR_J = ExtResource( 9 )
+anims/FTCAR_P1 = ExtResource( 10 )
+anims/FTCAR_P2 = ExtResource( 11 )
+anims/FTCAR_P3 = ExtResource( 12 )
+anims/FTCAR_P4 = ExtResource( 13 )
+anims/FTDIR_A1 = ExtResource( 14 )
+anims/FTDIR_A2 = ExtResource( 15 )
+anims/FTDIR_A3 = ExtResource( 16 )
+anims/FTDIR_A4 = ExtResource( 17 )
+anims/FTDIR_J = ExtResource( 18 )
+anims/FTDIR_P1 = ExtResource( 19 )
+anims/FTDIR_P2 = ExtResource( 20 )
+anims/FTDIR_P3 = ExtResource( 21 )
+anims/FTDIR_P4 = ExtResource( 22 )
+anims/FTGRA_A1 = ExtResource( 23 )
+anims/FTGRA_A2 = ExtResource( 24 )
+anims/FTGRA_A3 = ExtResource( 25 )
+anims/FTGRA_A4 = ExtResource( 26 )
+anims/FTGRA_J = ExtResource( 27 )
+anims/FTGRA_P1 = ExtResource( 28 )
+anims/FTGRA_P2 = ExtResource( 29 )
+anims/FTGRA_P3 = ExtResource( 30 )
+anims/FTGRA_P4 = ExtResource( 31 )
+anims/FTMET_A1 = ExtResource( 32 )
+anims/FTMET_A2 = ExtResource( 33 )
+anims/FTMET_A3 = ExtResource( 34 )
+anims/FTMET_A4 = ExtResource( 35 )
+anims/FTMET_J = ExtResource( 36 )
+anims/FTMET_P1 = ExtResource( 37 )
+anims/FTMET_P2 = ExtResource( 38 )
+anims/FTMET_P3 = ExtResource( 39 )
+anims/FTMET_P4 = ExtResource( 40 )
+anims/FTROC_A1 = ExtResource( 41 )
+anims/FTROC_A2 = ExtResource( 42 )
+anims/FTROC_A3 = ExtResource( 43 )
+anims/FTROC_A4 = ExtResource( 44 )
+anims/FTROC_J = ExtResource( 45 )
+anims/FTROC_P1 = ExtResource( 46 )
+anims/FTROC_P2 = ExtResource( 47 )
+anims/FTROC_P3 = ExtResource( 48 )
+anims/FTROC_P4 = ExtResource( 49 )
+anims/FTTIL_A1 = ExtResource( 50 )
+anims/FTTIL_A2 = ExtResource( 51 )
+anims/FTTIL_A3 = ExtResource( 52 )
+anims/FTTIL_A4 = ExtResource( 53 )
+anims/FTTIL_J = ExtResource( 54 )
+anims/FTTIL_P1 = ExtResource( 55 )
+anims/FTTIL_P2 = ExtResource( 56 )
+anims/FTTIL_P3 = ExtResource( 57 )
+anims/FTTIL_P4 = ExtResource( 58 )
+anims/FTWAT_1 = ExtResource( 59 )
+anims/FTWAT_2 = ExtResource( 60 )
+anims/FTWAT_3 = ExtResource( 61 )
+anims/FTWAT_4 = ExtResource( 62 )
+anims/FTWAT_J = ExtResource( 63 )
+anims/FTWOO_A1 = ExtResource( 64 )
+anims/FTWOO_A2 = ExtResource( 65 )
+anims/FTWOO_A3 = ExtResource( 66 )
+anims/FTWOO_A4 = ExtResource( 67 )
+anims/FTWOO_J = ExtResource( 68 )
+anims/FTWOO_P1 = ExtResource( 69 )
+anims/FTWOO_P2 = ExtResource( 70 )
+anims/FTWOO_P3 = ExtResource( 71 )
+anims/FTWOO_P4 = ExtResource( 72 )
+anims/FT_APE1 = ExtResource( 73 )
+anims/FT_APE2 = ExtResource( 74 )
+anims/FT_BUR1 = ExtResource( 75 )
+anims/FT_BUR2 = ExtResource( 76 )
+anims/FT_BUR3 = ExtResource( 77 )
+anims/FT_BUR4 = ExtResource( 78 )
+anims/FT_CHRB1 = ExtResource( 79 )
+anims/FT_FROG1 = ExtResource( 80 )
+anims/FT_FUNG1 = ExtResource( 81 )
+anims/FT_FUNG2 = ExtResource( 82 )
+anims/FT_FUNG3 = ExtResource( 83 )
+anims/FT_FUNG4 = ExtResource( 84 )
+anims/FT_HH1 = ExtResource( 85 )
+anims/FT_HH2 = ExtResource( 86 )
+anims/FT_HH3 = ExtResource( 87 )
+anims/FT_HH4 = ExtResource( 88 )
+anims/FT_ICE1 = ExtResource( 89 )
+anims/FT_ICE2 = ExtResource( 90 )
+anims/FT_ICE3 = ExtResource( 91 )
+anims/FT_ICE4 = ExtResource( 92 )
+anims/FT_SPID1 = ExtResource( 93 )
+anims/FT_SPID2 = ExtResource( 94 )
+anims/FT_SPID3 = ExtResource( 95 )
+anims/FT_SPID4 = ExtResource( 96 )
+anims/FT_ZOMB1 = ExtResource( 97 )
+anims/FT_ZOMB2 = ExtResource( 98 )
+anims/FT_ZOMB3 = ExtResource( 99 )
+anims/FT_ZOMB4 = ExtResource( 100 )
+anims/ft_Frog4 = ExtResource( 101 )
+anims/ft_cb1 = ExtResource( 102 )
+anims/ft_cb1m = ExtResource( 103 )
+anims/ft_cb2 = ExtResource( 104 )
+anims/ft_cb2m = ExtResource( 105 )
+anims/ft_cb3 = ExtResource( 106 )
+anims/ft_cb3m = ExtResource( 107 )
+anims/ft_cb4 = ExtResource( 108 )
+anims/ft_cb4m = ExtResource( 109 )
+anims/ft_chrb2 = ExtResource( 110 )
+anims/ft_chrb3 = ExtResource( 111 )
+anims/ft_chrb4 = ExtResource( 112 )
+anims/ft_frog2 = ExtResource( 113 )
+anims/ft_frog3 = ExtResource( 114 )
+anims/ft_sb1 = ExtResource( 115 )
+anims/ft_sb2 = ExtResource( 116 )
+anims/ft_sb3 = ExtResource( 117 )
+anims/ft_sb4 = ExtResource( 118 )
+anims/ft_tree1 = ExtResource( 119 )
+anims/ft_tree2 = ExtResource( 120 )
+anims/ft_tree3 = ExtResource( 121 )
+anims/ft_tree4 = ExtResource( 122 )
+anims/ft_tree5 = ExtResource( 123 )
+anims/ft_tree6 = ExtResource( 124 )
+anims/ft_tree7 = ExtResource( 125 )
+anims/ft_tree8 = ExtResource( 126 )
+anims/ft_wb1 = ExtResource( 127 )
+anims/ft_wb1m = ExtResource( 128 )
+anims/ft_wb2 = ExtResource( 129 )
+anims/ft_wb2m = ExtResource( 130 )
+anims/ft_wb3 = ExtResource( 131 )
+anims/ft_wb3m = ExtResource( 132 )
+anims/ft_wb4 = ExtResource( 133 )
+anims/ft_wb4m = ExtResource( 134 )
+anims/ftsnow1 = ExtResource( 135 )
+anims/ftsnow2 = ExtResource( 136 )
+anims/ftsnow3 = ExtResource( 137 )
+anims/ftsnow4 = ExtResource( 138 )
+__meta__ = {
+
+}

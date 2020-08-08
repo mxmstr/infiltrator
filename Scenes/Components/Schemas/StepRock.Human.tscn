@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Animations/Audio/FTROC_P1.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Audio/FTROC_P2.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Audio/FTROC_P3.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Audio/FTROC_P4.tres" type="Animation" id=4]
+
+[node name="StepRock" type="AnimationPlayer"]
+anims/FTROC_P1 = ExtResource( 1 )
+anims/FTROC_P2 = ExtResource( 2 )
+anims/FTROC_P3 = ExtResource( 3 )
+anims/FTROC_P4 = ExtResource( 4 )
+__meta__ = {
+
+}

@@ -7,6 +7,7 @@
 [ext_resource path="res://Animations/Stimulus/S.Fall.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/Stimulus/S.Grab.tres" type="Animation" id=6]
 [ext_resource path="res://Animations/Stimulus/S.Land.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Stimulus/R.Contain.tres" type="Animation" id=8]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "R.H.Fall"
@@ -108,7 +109,7 @@ states/Touch/node = SubResource( 5 )
 states/Touch/position = Vector2( 455, -102 )
 transitions = [ "Default", "Touch", SubResource( 6 ), "Default", "Airborne", SubResource( 7 ), "Touch", "Land", SubResource( 8 ), "Touch", "Default", SubResource( 9 ), "Airborne", "Default", SubResource( 10 ), "Land", "Default", SubResource( 11 ), "Default", "PermeateIntoContainer", SubResource( 12 ), "PermeateIntoContainer", "Default", SubResource( 13 ) ]
 start_node = "Default"
-graph_offset = Vector2( -73.0114, -129.32 )
+graph_offset = Vector2( -73.0114, -296.96 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -117,27 +118,6 @@ statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=15]
-__meta__ = {
-
-}
-
-[sub_resource type="Animation" id=16]
-resource_name = "S.PermeateIntoContainer"
-length = 0.001
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Contains" ],
-"method": "_link"
-} ]
-}
 __meta__ = {
 
 }
@@ -156,7 +136,7 @@ anims/DefaultAnim = ExtResource( 4 )
 anims/S.Fall = ExtResource( 5 )
 anims/S.Grab = ExtResource( 6 )
 anims/S.Land = ExtResource( 7 )
-anims/S.PermeateIntoContainer = SubResource( 16 )
+anims/S.PermeateIntoContainer = ExtResource( 8 )
 __meta__ = {
 
 }

@@ -39,9 +39,12 @@ func _next_stim():
 	._start_state(stim, data)
 
 
-func _link(type):
+func _link(type, reverse=false):
 	
-	Meta.CreateLink(owner, data.collider, type)
+	if reverse:
+		Meta.CreateLink(data.collider, owner, type)
+	else:
+		Meta.CreateLink(owner, data.collider, type)
 
 
 func _reflect(reflected_stim=''):

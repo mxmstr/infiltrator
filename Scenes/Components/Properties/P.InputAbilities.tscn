@@ -282,7 +282,7 @@ states/Secondary/node = SubResource( 16 )
 states/Secondary/position = Vector2( 614.848, -176.425 )
 transitions = [ "Default", "Interact", SubResource( 17 ), "InteractExit", "Default", SubResource( 18 ), "Interact", "InteractSelect", SubResource( 19 ), "InteractSelect", "InteractExit", SubResource( 20 ), "Interact", "InteractUp", SubResource( 21 ), "Interact", "InteractDown", SubResource( 22 ), "InteractUp", "Interact", SubResource( 23 ), "InteractDown", "Interact", SubResource( 24 ), "Interact", "InteractExit", SubResource( 25 ), "Default", "JumpOrClimb", SubResource( 26 ), "JumpOrClimb", "Default", SubResource( 27 ), "Default", "Secondary", SubResource( 28 ), "Secondary", "Default", SubResource( 29 ) ]
 start_node = "Default"
-graph_offset = Vector2( -210.152, -559.29 )
+graph_offset = Vector2( -210.152, -491.768 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -301,6 +301,7 @@ __meta__ = {
 }
 
 [sub_resource type="Animation" id=33]
+resource_name = "JumpOrClimb"
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../Behavior")
 tracks/0/interp = 1
@@ -337,7 +338,6 @@ anims/Crawl = ExtResource( 7 )
 anims/Crouch = ExtResource( 8 )
 anims/DefaultAnim = ExtResource( 9 )
 anims/Drop = ExtResource( 10 )
-anims/FindClimbTarget = SubResource( 33 )
 anims/Grab = ExtResource( 11 )
 anims/Interact = ExtResource( 12 )
 anims/Interact.Exit = ExtResource( 13 )
@@ -346,6 +346,7 @@ anims/InteractDown = ExtResource( 15 )
 anims/InteractSelect = ExtResource( 16 )
 anims/InteractUp = ExtResource( 17 )
 anims/Jump = ExtResource( 18 )
+anims/JumpOrClimb = SubResource( 33 )
 anims/Run = ExtResource( 19 )
 anims/Walk = ExtResource( 20 )
 __meta__ = {

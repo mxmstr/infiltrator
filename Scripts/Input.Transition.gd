@@ -33,6 +33,9 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 
 func _process(delta):
 	
+	if not owner.has_node('../Perspective'):
+		return
+	
 	var mouse_device = owner.get_node('../Perspective').mouse_device
 	var keyboard_device = owner.get_node('../Perspective').keyboard_device
 	

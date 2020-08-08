@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Receptor.gd" type="Script" id=2]
@@ -10,11 +10,75 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=4]
-states/Start/node = SubResource( 1 )
-states/Start/position = Vector2( 624, 170 )
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/Airborne/node = SubResource( 1 )
+states/Airborne/position = Vector2( 773, 445.215 )
+states/GetContained/node = SubResource( 2 )
+states/GetContained/position = Vector2( 773, 380.215 )
+states/Start/node = SubResource( 3 )
+states/Start/position = Vector2( 457, 315 )
+states/Touch/node = SubResource( 4 )
+states/Touch/position = Vector2( 773, 315 )
+transitions = [ "Start", "Touch", SubResource( 5 ), "Touch", "Start", SubResource( 6 ), "Start", "GetContained", SubResource( 9 ), "GetContained", "Start", SubResource( 10 ), "Start", "Airborne", SubResource( 11 ), "Airborne", "Start", SubResource( 12 ) ]
 start_node = "Start"
-graph_offset = Vector2( 0, 75.2147 )
+graph_offset = Vector2( 0, 249.1 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -22,15 +86,15 @@ __meta__ = {
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 __meta__ = {
 
 }
 
 [node name="Perception" type="AnimationTree"]
-tree_root = SubResource( 4 )
+tree_root = SubResource( 7 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 8 )
 script = ExtResource( 2 )
 __meta__ = {
 

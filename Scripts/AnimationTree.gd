@@ -1,7 +1,8 @@
 extends AnimationTree
 
-var make_unique = 0
+export(String, 'Action', 'Sound') var schema_type = 'Action'
 
+var make_unique = 0
 var advances = 0
 
 signal on_physics_process
