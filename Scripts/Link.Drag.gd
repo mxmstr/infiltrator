@@ -30,6 +30,9 @@ func _on_move_and_slide(delta):
 
 func _ready():
 	
+	if is_queued_for_deletion():
+		return
+	
 	start_pos = to_node.global_transform.origin
 	
 	to_node.get_node('Movement').connect('move_and_slide', self, '_on_move_and_slide')

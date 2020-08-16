@@ -17,14 +17,14 @@ func _enter_tree():
 	
 	if not enabled:
 		queue_free()
+		return
 	
+	if not has_node(from) or not has_node(to):
+		queue_free()
+		return
 	
 	from_node = get_node(from)
 	to_node = get_node(to)
-	
-	if null in [from_node, to_node]:
-		queue_free()
-	
 	
 	from_node.connect('tree_exited', self, 'queue_free')
 	to_node.connect('tree_exited', self, 'queue_free')

@@ -134,6 +134,6 @@ func _ready():
 
 func _process(delta):
 	
-	selection = $'../../CameraRaycast'.selection
+	selection = $'../../CameraRaycastStim'.selection
 	
 	_update_interactions()

@@ -11,16 +11,7 @@ func _enter_tree():
 	
 	if tree_root.get_transition_count() == 0:
 		return
-
-
-#	var current_animation_player = $AnimationPlayer
-#	var new_animation_player = get_node(tree_node).get_node('AnimationPlayer')
-#
-#	for animation_name in current_animation_player.get_animation_list():
-#
-#		var animation = current_animation_player.get_animation(animation_name)
-#		new_animation_player.add_animation(animation_name, animation)
-
+	
 
 	var anim_names = [start_node, end_node]
 

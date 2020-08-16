@@ -97,6 +97,9 @@ func _move_item():
 
 func _ready():
 	
+	if is_queued_for_deletion():
+		return
+	
 	if not _find_free_container():
 		queue_free()
 

@@ -28,8 +28,14 @@ func _split_viewports():
 
 func _ready():
 	
+	if is_queued_for_deletion():
+		return
+	
 	if not Meta.coop:
-		from_node.queue_free()
+		
+		if from_node != null:
+			from_node.queue_free()
+			
 		return
 	
 	

@@ -1,6 +1,6 @@
 extends 'res://Scripts/AnimationTree.Node.gd'
 
-const schemas_dir = 'res://Scenes/Schemas/'
+const schemas_dir = 'res://Scenes/Components/Schemas/'
 
 export(String) var schema_name
 
@@ -61,7 +61,7 @@ func _ready(_owner, _parent, _parameters, _name):
 	dir.list_dir_end()
 	
 	
-	var schema_animation_player = load(selected_schema).instance()
+	var schema_animation_player = load(schemas_dir + selected_schema).instance()
 	animation_list = schema_animation_player.get_animation_list()
 	
 	for animation_name in animation_list:

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Animations/Audio/FTROC_J.tres" type="Animation" id=1]
+
+[node name="LandRock" type="AnimationPlayer"]
+anims/FTROC_J = ExtResource( 1 )
+__meta__ = {
+
+}
