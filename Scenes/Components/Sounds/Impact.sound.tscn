@@ -19,7 +19,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "LandRock"
+schema_name = "ImpactRock"
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
@@ -77,11 +77,11 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=10]
-states/Land/node = SubResource( 6 )
-states/Land/position = Vector2( 756.384, 43.552 )
+states/Impact/node = SubResource( 6 )
+states/Impact/position = Vector2( 756.384, 43.552 )
 states/Start/node = SubResource( 7 )
 states/Start/position = Vector2( 333, 43.552 )
-transitions = [ "Start", "Land", SubResource( 8 ), "Land", "Start", SubResource( 9 ) ]
+transitions = [ "Start", "Impact", SubResource( 8 ), "Impact", "Start", SubResource( 9 ) ]
 start_node = "Start"
 end_node = "Start"
 graph_offset = Vector2( -13, -93.7663 )
@@ -106,7 +106,7 @@ __meta__ = {
 tree_root = SubResource( 10 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 11 )
-parameters/Land/playback = SubResource( 12 )
+parameters/Impact/playback = SubResource( 12 )
 script = ExtResource( 4 )
 __meta__ = {
 

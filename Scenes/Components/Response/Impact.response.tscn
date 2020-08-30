@@ -4,21 +4,24 @@
 [ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Stimulus/S.Land.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Property/Impact.tres" type="Animation" id=5]
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+
+
+
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Land"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
 switch_mode = 2
 auto_advance = true
 disabled = true
@@ -31,22 +34,22 @@ max_intensity = 100.0
 within_direction = Vector3( 0, 1, 0 )
 max_direction_angle = 45.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=6]
-states/Land/node = SubResource( 3 )
-states/Land/position = Vector2( 810, 312 )
-states/Start/node = SubResource( 1 )
-states/Start/position = Vector2( 381, 312 )
-transitions = [ "Start", "Land", SubResource( 4 ), "Land", "Start", SubResource( 8 ) ]
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/Impact/node = SubResource( 1 )
+states/Impact/position = Vector2( 816, 163 )
+states/Start/node = SubResource( 2 )
+states/Start/position = Vector2( 387, 163 )
+transitions = [ "Start", "Impact", SubResource( 3 ), "Impact", "Start", SubResource( 4 ) ]
 start_node = "Start"
 end_node = "Start"
-graph_offset = Vector2( 0, 75.2147 )
+graph_offset = Vector2( 0, 52.9696 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -54,15 +57,15 @@ __meta__ = {
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 __meta__ = {
 
 }
 
-[node name="LandResponse" type="AnimationTree"]
-tree_root = SubResource( 6 )
+[node name="ImpactResponse" type="AnimationTree"]
+tree_root = SubResource( 5 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 7 )
+parameters/playback = SubResource( 6 )
 script = ExtResource( 3 )
 __meta__ = {
 

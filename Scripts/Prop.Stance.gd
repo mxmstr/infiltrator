@@ -36,8 +36,8 @@ var lock_direction = false
 var lock_rotation = false
 var lock_movement = false
 
-onready var movement = $'../Movement'
-onready var collision = $'../Collision'
+onready var movement = $'../Movement' if has_node('../Movement') else null
+onready var collision = $'../Collision' if has_node('../Collision') else null
 
 
 func _rotate(delta):

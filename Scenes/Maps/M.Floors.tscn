@@ -2,9 +2,10 @@
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Models/Maps/Floors/Stone_Marble.material" type="Material" id=2]
-[ext_resource path="res://Scenes/Components/Stimulus/S.Contact.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Stimulus/Contact.stimulus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Stimulus.Contact.gd" type="Script" id=4]
 [ext_resource path="res://Models/Maps/Floors/Wood_Floor_Dark.material" type="Material" id=5]
+
 
 [sub_resource type="NavigationMesh" id=3]
 vertices = PoolVector3Array( 2.36384, 0.4, -3.15281, 0.26384, 0.4, -3.15281, -0.0361598, 0.4, -0.752812, 2.36384, 0.4, -0.152812, -3.03616, 0.4, 1.64719, 1.16384, 0.4, 1.64719, -0.0361598, 0.4, -0.752812, -3.03616, 0.4, -0.752812, 1.16384, 0.4, 0.147188, 2.36384, 0.4, -0.152812, -0.0361598, 0.4, -0.752812, 1.16384, 0.4, 1.64719, 1.16384, 0.4, 0.147188, -0.0361598, 0.4, -0.752812 )

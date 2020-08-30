@@ -127,11 +127,11 @@ func on_loadaudio_pressed():
 					anim.track_set_path(track, NodePath('AudioStreamPlayer3D'))
 					anim.audio_track_insert_key(track, 0, stream)
 					
-					#selected.add_animation(file, anim)
-					ResourceSaver.save(
-						dock.get_node('LoadAudioOutput').text + file + '.tres', 
-						anim#selected.get_animation(file)
-						)
+					selected.add_animation(file, anim)
+#					ResourceSaver.save(
+#						dock.get_node('LoadAudioOutput').text + file + '.tres', 
+#						anim#selected.get_animation(file)
+#						)
 
 			dir.list_dir_end()
 

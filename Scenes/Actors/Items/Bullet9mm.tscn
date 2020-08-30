@@ -2,10 +2,13 @@
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Models/Items/Bullet9mm/Bullet9mm.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Properties/P.Movement.Projectile.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Stimulus/S.Contact.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Properties/Movement.Projectile.property.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Stimulus/Contact.stimulus.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Behaviors/B.Item.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Components/Stimulus/R.Bullet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Response/R.Bullet.tscn" type="PackedScene" id=6]
+
+
+
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {

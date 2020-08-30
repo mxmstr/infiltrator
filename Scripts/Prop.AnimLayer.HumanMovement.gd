@@ -46,6 +46,10 @@ func _blend_camera(delta):
 
 func _blend_skeletons(delta):
 	
+	if model_skeleton == null:
+		return
+	
+	
 	var bones = range(model_skeleton.get_bone_count())
 	
 	var layered = blend_mode == Meta.Blend.LAYERED
@@ -126,6 +130,10 @@ func _on_state_starting(_name):
 
 
 func _set_skeleton():
+	
+	if not has_node('../Model'):
+		return
+	
 	
 	model_skeleton = $'../Model'.get_child(0)
 	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(model_skeleton)

@@ -2,10 +2,13 @@
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Models/Items/DD44/dd44.glb" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Properties/P.Movement.RigidBody.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/Behaviors/B.Firearm.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Stimulus/R.RigidBody.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Response/R.RigidBody.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=6]
+
+
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.2, 1, 1.5 )

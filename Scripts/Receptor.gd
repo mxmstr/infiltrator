@@ -8,6 +8,11 @@ var data
 signal on_stimulate
 
 
+func _collider_has_tag(tag):
+	
+	return data.collider._has_tag(tag)
+
+
 func _on_state_starting(new_node):
 	
 	if new_node == 'Default':

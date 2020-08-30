@@ -1,19 +1,21 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scenes/Actors/KinematicBody.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Components/Properties/P.HUD.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Properties/P.CameraRig.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Properties/P.Stance.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Properties/P.ClimbingSkill.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Components/Properties/P.Container.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Components/Stimulus/S.Contact.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Stimulus/S.Airborne.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Components/Stimulus/S.Raycast.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Components/Properties/P.Perspective.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Components/Actions/Action.JumpOrClimb.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Components/Stimulus/R.Land.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Components/Sounds/Sound.Impact.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/Components/Sounds/Sound.Step.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Components/Properties/HUD.property.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/Properties/CameraRig.property.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Properties/Stance.property.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Properties/ClimbingSkill.property.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Stimulus/Contact.stimulus.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Stimulus/Airborne.stimulus.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Stimulus/Raycast.stimulus.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Components/Properties/Perspective.property.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Components/Actions/JumpOrClimb.action.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Components/Response/Impact.response.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Components/Sounds/Impact.sound.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Components/Sounds/Step.sound.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=16]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
@@ -90,12 +92,33 @@ __meta__ = {
 
 }
 
-[node name="Human" instance=ExtResource( 1 )]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+__meta__ = {
+
+}
+
+[node name="Human" index="0" instance=ExtResource( 1 )]
 
 [node name="HUD" parent="." index="0" instance=ExtResource( 2 )]
 viewport = NodePath("../Perspective/Container/Viewport")
 
 [node name="CameraRig" parent="." index="1" instance=ExtResource( 3 )]
+editor/display_folded = true
 viewport = NodePath("../Perspective/Container/Viewport")
 
 [node name="Stance" parent="." index="2" instance=ExtResource( 4 )]
@@ -116,43 +139,57 @@ stim_type = "Touch"
 delay = 2.0
 
 [node name="CameraRaycastStim" parent="." index="8" instance=ExtResource( 9 )]
+path = NodePath("../CameraRig/Camera")
+required_tags = "Item"
 
-[node name="Perspective" parent="." index="9" instance=ExtResource( 10 )]
+[node name="AnimLayerMovement" parent="." index="9" instance=ExtResource( 10 )]
+parameters/0/0/playback = SubResource( 1 )
+parameters/1/0/playback = SubResource( 2 )
+
+[node name="Perspective" parent="." index="10" instance=ExtResource( 11 )]
 editor/display_folded = true
-parameters/playback = SubResource( 1 )
+parameters/playback = SubResource( 3 )
 
-[node name="JumpOrClimbAction" parent="." index="10" instance=ExtResource( 11 )]
-parameters/playback = SubResource( 2 )
-parameters/Climb/playback = SubResource( 3 )
-parameters/Jump/3/playback = SubResource( 4 )
-parameters/Jump/4/playback = SubResource( 5 )
-parameters/Jump/5/playback = SubResource( 6 )
+[node name="JumpOrClimbAction" parent="." index="11" instance=ExtResource( 12 )]
+parameters/playback = SubResource( 4 )
+parameters/Climb/playback = SubResource( 5 )
+parameters/Jump/3/playback = SubResource( 6 )
+parameters/Jump/4/playback = SubResource( 7 )
+parameters/Jump/5/playback = SubResource( 8 )
 tree_node = NodePath("../Behavior")
 
-[node name="LandResponse" parent="." index="11" instance=ExtResource( 12 )]
-parameters/playback = SubResource( 7 )
+[node name="ImpactResponse" parent="." index="12" instance=ExtResource( 13 )]
+parameters/playback = SubResource( 9 )
 tree_node = NodePath("../Perception")
 
-[node name="ImpactSound" parent="." index="12" instance=ExtResource( 13 )]
-parameters/playback = SubResource( 8 )
-parameters/Land/playback = SubResource( 9 )
-tree_node = NodePath("../Audio")
-
-[node name="StepSound" parent="." index="13" instance=ExtResource( 14 )]
+[node name="ImpactSound" parent="." index="13" instance=ExtResource( 14 )]
 parameters/playback = SubResource( 10 )
-parameters/Step/playback = SubResource( 11 )
-tree_node = NodePath("../Audio")
+parameters/Impact/playback = SubResource( 11 )
+tree_node = NodePath("../FeetAudio")
 
-[node name="Behavior" parent="." index="15"]
+[node name="StepSound" parent="." index="14" instance=ExtResource( 15 )]
 parameters/playback = SubResource( 12 )
+parameters/Step/playback = SubResource( 13 )
+tree_node = NodePath("../FeetAudio")
 
-[node name="Perception" parent="." index="16"]
-parameters/playback = SubResource( 13 )
-
-[node name="Interface" parent="." index="17"]
+[node name="VoiceAudio" parent="." index="15" instance=ExtResource( 16 )]
 parameters/playback = SubResource( 14 )
 
-[node name="Audio" parent="." index="18"]
+[node name="FoleyAudio" parent="." index="16" instance=ExtResource( 16 )]
 parameters/playback = SubResource( 15 )
+
+[node name="FeetAudio" parent="." index="17" instance=ExtResource( 16 )]
+parameters/playback = SubResource( 16 )
+
+[node name="Behavior" parent="." index="19"]
+parameters/playback = SubResource( 17 )
+
+[node name="Perception" parent="." index="20"]
+parameters/playback = SubResource( 18 )
+
+[node name="Interface" parent="." index="21"]
+parameters/playback = SubResource( 19 )
+
+[editable path="CameraRig"]
 
 [editable path="Perspective"]

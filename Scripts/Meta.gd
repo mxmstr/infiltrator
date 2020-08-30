@@ -71,6 +71,40 @@ func _make_unique(old):
 	tree_count += 1
 
 
+func _get_files_recursive(root, begins_with='', ends_with=''):
+	
+	var files = []
+	var dirs = [root]
+	
+	
+	while not dirs.empty():
+		
+		var dir = Directory.new()
+		dir.open(dirs.pop_front())
+		dir.list_dir_begin()
+		
+		while true:
+			
+			var file = dir.get_next()
+			
+			if not file:
+				
+				dir.list_dir_end()
+				break
+			
+			if dir.current_is_dir() and not file in ['.', '..']:
+				
+				dirs.append('%s/%s' % [dir.get_current_dir(), file])
+				continue
+			
+			if not file.begins_with(begins_with) or not file.ends_with(ends_with):
+				continue
+			
+			files.append('%s/%s' % [dir.get_current_dir(), file])
+	
+	return files
+
+
 func _get_children_recursive(node, children=[]):
 	
 	for child in node.get_children():

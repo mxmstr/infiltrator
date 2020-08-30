@@ -4,3 +4,6 @@
 
 [node name="AirborneStim" type="Node"]
 script = ExtResource( 1 )
+__meta__ = {
+
+}

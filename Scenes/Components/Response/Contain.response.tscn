@@ -38,11 +38,11 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
-states/Land/node = SubResource( 1 )
-states/Land/position = Vector2( 810, 312 )
+states/Contain/node = SubResource( 1 )
+states/Contain/position = Vector2( 810, 312 )
 states/Start/node = SubResource( 2 )
 states/Start/position = Vector2( 381, 312 )
-transitions = [ "Start", "Land", SubResource( 3 ), "Land", "Start", SubResource( 4 ) ]
+transitions = [ "Start", "Contain", SubResource( 3 ), "Contain", "Start", SubResource( 4 ) ]
 start_node = "Start"
 end_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )

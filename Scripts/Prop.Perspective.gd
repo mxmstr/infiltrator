@@ -32,7 +32,7 @@ func _on_item_contained(container, item):
 	
 	if container.bone_name != '':
 		
-		var viewmodel = preload('res://Scenes/Components/Properties/P.ViewModel.tscn').instance()
+		var viewmodel = preload('res://Scenes/Components/Properties/ViewModel.property.tscn').instance()
 		viewmodel.name = item.name + 'ViewModel'
 		viewmodel.model = item.get_node('Model')
 		viewmodel.container = container
@@ -51,6 +51,10 @@ func _on_item_released(container, item):
 
 func _init_fp_skeleton():
 	
+	if not has_node('../Model'):
+		return
+	
+	
 	var root_id
 	var shoulders_id
 	
@@ -65,7 +69,7 @@ func _init_fp_skeleton():
 			shoulders_id = idx
 	
 	
-	var viewmodel = preload('res://Scenes/Components/Properties/P.ViewModel.tscn').instance()
+	var viewmodel = preload('res://Scenes/Components/Properties/ViewModel.property.tscn').instance()
 	viewmodel.name = 'ActorViewModel'
 	viewmodel.model = $'../Model'
 	viewmodel.hidden_bones = fp_hidden_bones

@@ -17,7 +17,7 @@ var y_target
 var x_drag
 var y_drag
 
-onready var collision = $'../Collision'
+onready var collision = $'../Collision' if has_node('../Collision') else null
 
 
 func _get_climb_height_mult():

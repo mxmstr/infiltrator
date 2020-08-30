@@ -1,6 +1,7 @@
 extends 'res://Scripts/AnimationTree.Node.gd'
 
-const schemas_dir = 'res://Scenes/Components/Schemas/'
+const schemas_dir = 'res://Scenes/Schemas/'
+const schemas_extension = '.schema.tscn'
 
 export(String) var schema_name
 
@@ -28,24 +29,10 @@ func _ready(_owner, _parent, _parameters, _name):
 	
 	var selected_schema
 	var selected_schema_tag_count = 0
-	var files = []
-	var dir = Directory.new()
-	dir.open(schemas_dir)
-	dir.list_dir_begin()
 	
-	while true:
-		
-		var file = dir.get_next()
-		
-		if file == '':
-			break
-		
-		if not file.begins_with(schema_name) or not file.ends_with('.tscn'):
-			continue
-		
-		if selected_schema == null:
-			selected_schema = file
-			continue
+	var files = Meta._get_files_recursive(schemas_dir, schema_name, schemas_extension)
+	
+	for file in files:
 		
 		var tag_count = 0
 		
@@ -53,16 +40,18 @@ func _ready(_owner, _parent, _parameters, _name):
 			if tag in file:
 				tag_count += 1
 		
+		if selected_schema == null:
+			selected_schema = file
+			continue
+		
 		if tag_count > selected_schema_tag_count:
 			
 			selected_schema = file
 			selected_schema_tag_count = tag_count
 	
-	dir.list_dir_end()
 	
-	
-	var schema_animation_player = load(schemas_dir + selected_schema).instance()
-	animation_list = schema_animation_player.get_animation_list()
+	var schema_animation_player = load(selected_schema).instance()
+	animation_list = Array(schema_animation_player.get_animation_list())
 	
 	for animation_name in animation_list:
 		

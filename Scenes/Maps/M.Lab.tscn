@@ -5,7 +5,8 @@
 [ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=4]
 [ext_resource path="res://Models/Maps/Lab/Floor1.material" type="Material" id=5]
-[ext_resource path="res://Scenes/Components/Stimulus/R.Static.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Response/R.Static.tscn" type="PackedScene" id=6]
+
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true

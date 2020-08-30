@@ -1,11 +1,16 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Components/Properties/P.Movement.RigidBody.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Properties/P.Behavior.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Properties/P.Perception.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Properties/P.Interface.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Components/Properties/P.Audio.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Properties/Perception.property.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=6]
+
+
+
+
+
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
