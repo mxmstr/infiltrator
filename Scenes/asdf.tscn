@@ -1,0 +1,138 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Land"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+min_intensity = 0.0
+max_intensity = 0.0
+within_direction = Vector3( 0, 0, 0 )
+max_direction_angle = -1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/Airborne/node = SubResource( 1 )
+states/Airborne/position = Vector2( 773, 445.215 )
+states/Contact/node = SubResource( 2 )
+states/Contact/position = Vector2( 773, 315 )
+states/GetContained/node = SubResource( 3 )
+states/GetContained/position = Vector2( 773, 380.215 )
+states/Impact/node = SubResource( 4 )
+states/Impact/position = Vector2( 0, 0 )
+states/Start/node = SubResource( 5 )
+states/Start/position = Vector2( 457, 315 )
+transitions = [ "Start", "Contact", SubResource( 6 ), "Contact", "Start", SubResource( 7 ), "Start", "GetContained", SubResource( 8 ), "GetContained", "Start", SubResource( 9 ), "Start", "Airborne", SubResource( 10 ), "Airborne", "Start", SubResource( 11 ), "Contact", "Impact", SubResource( 12 ), "Impact", "Start", SubResource( 13 ) ]
+start_node = "Start"
+graph_offset = Vector2( 0, 212.493 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+__meta__ = {
+
+}
+
+[node name="Perception" type="AnimationTree"]
+tree_root = SubResource( 14 )
+anim_player = NodePath("AnimationPlayer")
+active = true
+parameters/playback = SubResource( 15 )
+script = ExtResource( 3 )
+__meta__ = {
+"unique": true
+}
+schema_type = "Action"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 4 )
+__meta__ = {
+
+}

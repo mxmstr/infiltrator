@@ -1,19 +1,19 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Property/Impact.tres" type="Animation" id=5]
-
-
-
+[ext_resource path="res://Scripts/AnimationTree.Node.Schema.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Land"
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+chain = false
+schema_name = "Impact"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
@@ -25,14 +25,14 @@ __meta__ = {
 switch_mode = 2
 auto_advance = true
 disabled = true
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 __meta__ = {
 
 }
-min_intensity = 1.0
-max_intensity = 100.0
-within_direction = Vector3( 0, 1, 0 )
-max_direction_angle = 45.0
+min_intensity = 0.0
+max_intensity = 0.0
+within_direction = Vector3( 0, 0, 0 )
+max_direction_angle = -1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
 switch_mode = 2
@@ -66,15 +66,14 @@ __meta__ = {
 tree_root = SubResource( 5 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 6 )
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
-start_node = "Touch"
+start_node = "Contact"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 4 )
-anims/Land = ExtResource( 5 )
+anims/DefaultAnim = ExtResource( 5 )
 __meta__ = {
 
 }

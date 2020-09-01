@@ -157,9 +157,9 @@ func DestroyLink(from, to, type, data={}):
 	LinkHub._destroy(type, data)
 
 
-func StimulateActor(actor, stim, collider, position=Vector3(), direction=Vector3(), intensity=0.0):
+func StimulateActor(actor, stim, collider=self, position=Vector3(), direction=Vector3(), intensity=0.0):
 	
-	if actor.has_node('Receptor'):
+	if actor.has_node('Perception'):
 		
 		var data = {
 			'collider': collider,
@@ -168,4 +168,11 @@ func StimulateActor(actor, stim, collider, position=Vector3(), direction=Vector3
 			'intensity': intensity
 			}
 		
-		actor.get_node('Receptor')._start_state(stim, data)
+		actor.get_node('Perception')._start_state(stim, data)
+
+
+func _input(event):
+	
+	if event.is_action_pressed('Jump') and has_node('../Infiltrator'):
+		StimulateActor($'../Infiltrator', 'Contact')
+		

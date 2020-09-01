@@ -18,11 +18,13 @@ func _on_stimulate(collider, position, direction, intensity):
 	intensity *= 10000
 	
 	var has_intensity = intensity >= min_intensity and intensity <= max_intensity
+	var has_direction = true
 	
-	var local_within_direction = owner.get_parent().global_transform.basis.xform(within_direction)
-	var has_direction = max_direction_angle == -1 or direction.angle_to(local_within_direction) < deg2rad(max_direction_angle)
+	if within_direction.length() > 0:
+		var local_within_direction = owner.get_parent().global_transform.basis.xform(within_direction)
+		has_direction = max_direction_angle == -1 or direction.angle_to(local_within_direction) < deg2rad(max_direction_angle)
 	
-	disabled = not has_intensity or not has_direction
+	disabled = not (has_intensity and has_direction)
 
 
 func _ready(_owner, _parent, _parameters, _from, _to):

@@ -35,4 +35,7 @@ func _process(delta):
 	
 	if Engine.editor_hint: return
 	
+#	if name == 'Perception':
+#		print(get('parameters/playback').get_current_node())
+	
 	emit_signal('on_process', delta)
