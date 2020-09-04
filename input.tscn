@@ -1,19 +1,20 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Node.Schema.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=4]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Input/JumpOrClimbInput.tres" type="Animation" id=6]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "Land"
+animation = "JumpOrClimbInput"
 script = ExtResource( 2 )
 __meta__ = {
 
 }
 chain = true
-schema_name = "Impact"
+schema_name = "JumpOrClimbInput"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
@@ -22,17 +23,14 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=3]
-switch_mode = 2
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
 __meta__ = {
 
 }
-min_intensity = 0.0
-max_intensity = 0.0
-within_direction = Vector3( 0, 0, 0 )
-max_direction_angle = -1.0
+action = "Jump"
+state = 3
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
 switch_mode = 2
@@ -42,14 +40,13 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
-states/Impact/node = SubResource( 1 )
-states/Impact/position = Vector2( 816, 163 )
+states/JumpOrClimb/node = SubResource( 1 )
+states/JumpOrClimb/position = Vector2( 0, 0 )
 states/Start/node = SubResource( 2 )
-states/Start/position = Vector2( 387, 163 )
-transitions = [ "Start", "Impact", SubResource( 3 ), "Impact", "Start", SubResource( 4 ) ]
+states/Start/position = Vector2( 624, 170 )
+transitions = [ "Start", "JumpOrClimb", SubResource( 3 ), "JumpOrClimb", "Start", SubResource( 4 ) ]
 start_node = "Start"
-end_node = "Start"
-graph_offset = Vector2( 0, 52.9696 )
+graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -62,18 +59,20 @@ __meta__ = {
 
 }
 
-[node name="ImpactResponse" type="AnimationTree"]
+[node name="Interface" type="AnimationTree"]
 tree_root = SubResource( 5 )
 anim_player = NodePath("AnimationPlayer")
+active = true
 parameters/playback = SubResource( 6 )
 script = ExtResource( 4 )
 __meta__ = {
-
+"unique": true
 }
-start_node = "Contact"
+schema_type = "Action"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 5 )
+anims/JumpOrClimbInput = ExtResource( 6 )
 __meta__ = {
 
 }

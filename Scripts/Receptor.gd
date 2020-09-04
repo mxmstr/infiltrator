@@ -13,11 +13,6 @@ func _collider_has_tag(tag):
 	return data.collider._has_tag(tag)
 
 
-func _asdf(node):
-	
-	print(node.name)
-
-
 func _on_state_starting(new_node):
 	
 	if new_node == 'Default':

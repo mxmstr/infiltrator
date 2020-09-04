@@ -1,9 +1,12 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=3]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+[ext_resource path="res://Scripts/AnimationTree.Node.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AnimationTree.Node.Schema.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=5]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Property/Impact.tres" type="Animation" id=7]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
@@ -13,9 +16,11 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+chain = true
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
@@ -24,10 +29,13 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=4]
-animation = "Land"
+animation = "Impact"
+script = ExtResource( 3 )
 __meta__ = {
 
 }
+chain = true
+schema_name = "Impact"
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
@@ -77,8 +85,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
 switch_mode = 2
 auto_advance = true
-disabled = true
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
@@ -125,14 +132,15 @@ tree_root = SubResource( 14 )
 anim_player = NodePath("AnimationPlayer")
 active = true
 parameters/playback = SubResource( 15 )
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 __meta__ = {
 "unique": true
 }
 schema_type = "Action"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 4 )
+anims/DefaultAnim = ExtResource( 6 )
+anims/Impact = ExtResource( 7 )
 __meta__ = {
 
 }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=2]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource path="res://Scripts/AnimationTree.Node.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
@@ -12,9 +13,11 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+chain = true
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
@@ -95,13 +98,13 @@ __meta__ = {
 tree_root = SubResource( 11 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 12 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 3 )
+anims/DefaultAnim = ExtResource( 4 )
 __meta__ = {
 
 }

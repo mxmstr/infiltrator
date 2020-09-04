@@ -169,10 +169,3 @@ func StimulateActor(actor, stim, collider=self, position=Vector3(), direction=Ve
 			}
 		
 		actor.get_node('Perception')._start_state(stim, data)
-
-
-func _input(event):
-	
-	if event.is_action_pressed('Jump') and has_node('../Infiltrator'):
-		StimulateActor($'../Infiltrator', 'Contact')
-		

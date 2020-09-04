@@ -88,7 +88,6 @@ func _travel(_name):
 	
 	playback.travel(_name)
 	
-	print(_name)
 	owner.advance(0.01)
 	owner.emit_signal('on_process', 0)
 
