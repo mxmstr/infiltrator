@@ -1,4 +1,4 @@
-extends 'res://Scripts/AnimationTree.StateMachine.gd'
+extends "res://Scripts/AnimationTree.Node.Schema.gd"
 
 export(Meta.Priority) var priority
 export(Meta.Visibility) var type
@@ -20,11 +20,9 @@ func _is_visible():
 
 func _on_state_starting(new_name):
 	
-	._on_state_starting(new_name)
-	
 	if node_name == new_name:
 		
-		var playback = owner.get(parent.parameters + 'playback')
+		var playback = owner.get(parameters + 'playback')
 		
 		if len(playback.get_travel_path()) == 0:
 			

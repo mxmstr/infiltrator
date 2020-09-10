@@ -21,6 +21,31 @@ var model_blend_amount = 0.0
 var model_blend_speed = 0.5
 
 
+func _on_pre_process():
+	
+	tree_root._filter_anim_events(blend_mode == Meta.Blend.ACTION)
+
+
+func _on_post_process():
+	
+	tree_root._unfilter_anim_events()
+
+
+func _on_state_starting(_name):
+	
+	var node = $'../Behavior'.tree_root.get_node(_name)
+	
+	if node.get('blend') == null:
+		return
+	
+	if blend_mode != node.blend:
+		_cache_move_pose()
+	
+	_cache_action_pose()
+	
+	blend_mode = node.blend
+
+
 func _cache_action_pose():
 	
 	action_blend_amount = 1.0
@@ -104,31 +129,6 @@ func _blend_skeletons(delta):
 		model_skeleton.set_bone_global_pose(idx, model_transform)
 
 
-func _on_pre_process():
-	
-	tree_root._filter_anim_events(blend_mode == Meta.Blend.ACTION)
-
-
-func _on_post_process():
-	
-	tree_root._unfilter_anim_events()
-
-
-func _on_state_starting(_name):
-	
-	var node = $'../Behavior'.tree_root.get_node(_name)
-	
-	if node.get('blend') == null:
-		return
-	
-	if blend_mode != node.blend:
-		_cache_move_pose()
-	
-	_cache_action_pose()
-	
-	blend_mode = node.blend
-
-
 func _set_skeleton():
 	
 	if not has_node('../Model'):
@@ -173,8 +173,6 @@ func _ready():
 
 
 func _process(delta):
-	
-	#print([active, get('parameters/blend_position')])
 	
 	_blend_camera(delta)
 	_blend_skeletons(delta)

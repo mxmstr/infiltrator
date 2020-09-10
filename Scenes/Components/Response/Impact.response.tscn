@@ -49,7 +49,7 @@ states/Start/position = Vector2( 387, 163 )
 transitions = [ "Start", "Impact", SubResource( 3 ), "Impact", "Start", SubResource( 4 ) ]
 start_node = "Start"
 end_node = "Start"
-graph_offset = Vector2( 0, 52.9696 )
+graph_offset = Vector2( 0, 10.9397 )
 script = ExtResource( 1 )
 __meta__ = {
 

@@ -114,6 +114,9 @@ tags = "Actor Action:Human"
 [node name="JumpOrClimbInput" parent="." index="2"]
 parameters/playback = SubResource( 1 )
 
+[node name="Camera" parent="CameraRig" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
+
 [node name="InventoryContainer" parent="." index="7"]
 path = NodePath("../../Infiltrator")
 
