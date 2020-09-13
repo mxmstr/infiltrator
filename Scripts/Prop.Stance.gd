@@ -3,8 +3,7 @@ extends Node
 enum Stance {
 	CRAWLING,
 	CROUCHING,
-	WALKING,
-	RUNNING
+	WALKING
 }
 
 enum Lean {
@@ -38,6 +37,7 @@ var lock_movement = false
 
 onready var movement = $'../Movement' if has_node('../Movement') else null
 onready var collision = $'../Collision' if has_node('../Collision') else null
+onready var camera = $'../CameraRig/Camera' if has_node('../CameraRig/Camera') else null
 
 
 func _rotate(delta):
@@ -86,7 +86,7 @@ func _set_sidestep_speed(new_speed):
 
 func _align_to_camera():
 	
-	var target = owner.global_transform.origin + $'../CameraRig/Camera'.global_transform.basis.z#.inverse()
+	var target = owner.global_transform.origin + camera.global_transform.basis.z#.inverse()
 	target.y = owner.global_transform.origin.y
 	owner.look_at(target, Vector3(0, 1, 0))
 

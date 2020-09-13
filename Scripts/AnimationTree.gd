@@ -4,6 +4,7 @@ export(String, 'Action', 'Sound') var schema_type = 'Action'
 
 var make_unique = 0
 var advances = 0
+var data
 
 signal on_physics_process
 signal on_process
@@ -31,7 +32,9 @@ func _on_post_call_method_track(_animation, track_index, key_index):
 	pass#print('post_call ', _animation.track_get_key_value(track_index, key_index))
 
 
-func _start_state(_name, data={}):
+func _start_state(_name, _data={}):
+	
+	data = _data
 	
 	if tree_root.has_method('_travel'):
 		tree_root._travel(_name)

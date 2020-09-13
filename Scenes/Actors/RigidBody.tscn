@@ -3,9 +3,10 @@
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Properties/Perception.property.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=6]
+
 
 
 

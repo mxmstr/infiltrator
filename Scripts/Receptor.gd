@@ -1,9 +1,7 @@
 extends 'res://Scripts/AnimationTree.gd'
 
 var stims = []
-
 var stim
-var data
 
 signal on_stimulate
 
@@ -36,12 +34,12 @@ func _next_stim():
 
 	var next_stim = stims.pop_front()
 
-	stim = next_stim[0]
-	data = next_stim[1]
+	var _stim = next_stim[0]
+	var _data = next_stim[1]
 
 	emit_signal('on_stimulate', data.collider, data.position, data.direction, data.intensity)
 
-	._start_state(stim, data)
+	._start_state(_stim, _data)
 
 
 func _link(type, reverse=false):

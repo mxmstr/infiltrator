@@ -5,6 +5,7 @@ var make_unique = 0
 export(NodePath) var tree_node
 export var start_node = 'Start'
 export var end_node = 'Start'
+export(String, MULTILINE) var tags
 
 
 func _enter_tree():
