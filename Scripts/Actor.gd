@@ -2,8 +2,8 @@ extends Spatial
 
 export(String, MULTILINE) var tags
 
+var base_name
 var tags_dict = {}
-
 var player_index = 0 setget _set_player_index
 
 signal entered_tree
@@ -26,6 +26,13 @@ func _set_player_index(new_player_index):
 	player_index = new_player_index
 	
 	emit_signal('player_index_changed', player_index)
+
+
+func _notification(what):
+	
+	if what == NOTIFICATION_INSTANCED:
+		
+		base_name = name
 
 
 func _enter_tree():

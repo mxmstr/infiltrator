@@ -2,7 +2,7 @@ extends 'res://Scripts/AnimationTree.Transition.gd'
 
 export(String) var transition_boolean
 
-export(String, 'process', 'state_starting') var update_mode = 'process'
+export(String, 'process', 'state_starting', 'travel_starting') var update_mode = 'process'
 
 export(String, 'True', 'False', 'Null', 'NotNull') var assertion = 'True'
 export(String) var target
@@ -30,7 +30,16 @@ func _evaluate(value):
 
 func _update():
 	
-	disabled = not _evaluate(owner.owner.get_node(target).callv(method, args))
+	var _args = []
+	
+	for arg in args:
+		
+		if arg is String and arg.begins_with('$'):
+			arg = owner.get_indexed(arg.replace('$', ''))
+		
+		_args.append(arg)
+	
+	disabled = not _evaluate(owner.owner.get_node(target).callv(method, _args))
 
 
 func _on_state_starting(new_name):
@@ -42,12 +51,21 @@ func _on_state_starting(new_name):
 		_update()
 
 
+func _on_travel_starting(new_name):
+	
+	if update_mode == 'travel_starting':
+		_update()
+
+
 func _ready(_owner, _parent, _parameters, _from, _to):
 	
 	._ready(_owner, _parent, _parameters, _from, _to)
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
 		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+	
+	if parent != null and parent.has_user_signal('travel_starting'):
+		parent.connect('travel_starting', self, '_on_travel_starting')
 	
 	owner.connect('on_process', self, '_process')
 

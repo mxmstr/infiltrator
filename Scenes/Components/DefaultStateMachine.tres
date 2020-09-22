@@ -2,14 +2,14 @@
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [resource]
-states/Start/node = SubResource( 20 )
+states/Start/node = SubResource( 1 )
 states/Start/position = Vector2( 604, 183 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )

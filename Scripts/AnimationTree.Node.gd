@@ -9,11 +9,16 @@ var parameters
 var connections = []
 var advance = false
 
+signal state_starting
+
 
 func _on_state_starting(new_name):
 	
 	if node_name == new_name:
+		
 		advance = chain
+		
+		emit_signal('state_starting', node_name, owner.data)
 
 
 func _ready(_owner, _parent, _parameters, _name):

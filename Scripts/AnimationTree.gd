@@ -5,6 +5,7 @@ export(String, 'Action', 'Sound') var schema_type = 'Action'
 var make_unique = 0
 var advances = 0
 var data
+var cached_args = []
 
 signal on_physics_process
 signal on_process
@@ -14,6 +15,7 @@ signal travel_starting
 func _on_pre_call_method_track(_animation, track_index, key_index):
 	
 	var key = _animation.track_get_key_value(track_index, key_index)
+	var cached_args = key.args.duplicate()
 	
 	for index in range(key.args.size()):
 		
@@ -28,8 +30,13 @@ func _on_pre_call_method_track(_animation, track_index, key_index):
 
 func _on_post_call_method_track(_animation, track_index, key_index):
 	
+	var key = _animation.track_get_key_value(track_index, key_index)
+	key.args = cached_args
+	
+	_animation.track_set_key_value(track_index, key_index, key)
+	
 	#print(str(owner.get_tree().get_frame()), ' post_call ')
-	pass#print('post_call ', _animation.track_get_key_value(track_index, key_index))
+	#print('post_call ', _animation.track_get_key_value(track_index, key_index))
 
 
 func _start_state(_name, _data={}):

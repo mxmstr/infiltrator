@@ -138,6 +138,17 @@ func GetActorLinearVelocity(actor):
 	return actor.get_node('Movement').velocity if actor.has_node('Movement') else Vector3()
 
 
+func GetLinks(from, to, type, data={}):
+	
+	if from != null:
+		data.from = from.get_path()
+	
+	if to != null:
+		data.to = to.get_path()
+	
+	LinkHub._get_links(type, data)
+
+
 func CreateLink(from, to, type, data={}):
 	
 	data.from = from.get_path()
@@ -169,3 +180,11 @@ func StimulateActor(actor, stim, collider=self, position=Vector3(), direction=Ve
 			}
 		
 		actor.get_node('Perception')._start_state(stim, data)
+
+
+func CreateEvent(actor, event_name):
+	
+	var event = load('res://Scenes/Actors/Events' + event_name + '.tscn').instance()
+	$'/root/Mission/Actors'.add_child(event)
+	
+	CreateLink(event, actor, 'EventMaster')

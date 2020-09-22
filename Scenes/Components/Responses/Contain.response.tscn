@@ -66,7 +66,7 @@ script = ExtResource( 3 )
 __meta__ = {
 
 }
-start_node = "Touch"
+start_node = "Contain"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 4 )

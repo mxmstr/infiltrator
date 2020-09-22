@@ -6,9 +6,9 @@
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Properties/Stance.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/ClimbingSkill.property.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Components/Stimulus/Contact.stimulus.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Stimulus/Airborne.stimulus.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Components/Stimulus/Raycast.stimulus.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Components/Stimuli/Contact.stimulus.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Stimuli/Airborne.stimulus.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Stimuli/Raycast.stimulus.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Components/Properties/HUD.property.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Properties/CameraRig.property.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Components/Properties/Perspective.property.tscn" type="PackedScene" id=12]
@@ -21,12 +21,14 @@
 [ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=19]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Priority.gd" type="Script" id=20]
 [ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Scenes/Components/Response/R.Human.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Components/Responses/R.Human.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Components/Sounds/Step.sound.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Components/Properties/InputAbilities.property.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=25]
 [ext_resource path="res://Scenes/Components/Properties/InputMovement.property.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Components/Properties/InputRotation.property.tscn" type="PackedScene" id=27]
+
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.15, 0.75, 0.15 )

@@ -6,16 +6,18 @@
 [ext_resource path="res://Scenes/Components/Properties/Stance.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Properties/ClimbingSkill.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Components/Stimulus/Contact.stimulus.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Stimulus/Airborne.stimulus.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Components/Stimulus/Raycast.stimulus.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Components/Stimuli/Contact.stimulus.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Stimuli/Airborne.stimulus.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Stimuli/Raycast.stimulus.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Properties/Perspective.property.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Components/Actions/JumpOrClimb.action.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Components/Response/Impact.response.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Components/Responses/Impact.response.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Components/Sounds/Impact.sound.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Components/Sounds/Step.sound.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=16]
+
+
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {

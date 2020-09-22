@@ -3,17 +3,15 @@ extends 'res://Scripts/AnimationTree.gd'
 var stims = []
 var stim
 
-signal on_stimulate
-
 
 func _collider_has_tag(tag):
 	
 	return data.collider._has_tag(tag)
 
 
-func _on_state_starting(new_node):
+func _on_tree_root_state_starting(sm_node_name):
 	
-	if new_node == 'Default':
+	if sm_node_name == 'Default':
 
 		if len(stims) == 0:
 			pass#type = null
@@ -36,8 +34,6 @@ func _next_stim():
 
 	var _stim = next_stim[0]
 	var _data = next_stim[1]
-
-	emit_signal('on_stimulate', data.collider, data.position, data.direction, data.intensity)
 
 	._start_state(_stim, _data)
 
@@ -65,4 +61,4 @@ func _ready():
 
 	var playback = get('parameters/playback')
 
-	tree_root.connect('state_starting', self, '_on_state_starting')
+	tree_root.connect('state_starting', self, '_on_tree_root_state_starting')

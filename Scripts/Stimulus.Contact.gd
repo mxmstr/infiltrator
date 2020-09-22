@@ -24,6 +24,8 @@ func _ready():
 
 func _physics_process(delta):
 	
+	return
+	
 	var colliders = []
 	
 	for collision in collisions:
@@ -53,9 +55,9 @@ func _physics_process(delta):
 	
 	else:
 		
-		for actor in $'/root/Mission/Actors':
+		for actor in $'/root/Mission/Actors'.get_children():
 			
-			var collision = { collider: actor }
+			var collision = { 'collider': actor }
 			
 			if actor != owner and \
 				owner.global_transform.origin.distance_to(actor.global_transform.origin) < max_distance and \

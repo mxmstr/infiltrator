@@ -2,9 +2,10 @@
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Models/Maps/Floors/Stone_Marble.material" type="Material" id=2]
-[ext_resource path="res://Scenes/Components/Stimulus/Contact.stimulus.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Stimuli/Contact.stimulus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Stimulus.Contact.gd" type="Script" id=4]
 [ext_resource path="res://Models/Maps/Floors/Wood_Floor_Dark.material" type="Material" id=5]
+
 
 
 [sub_resource type="NavigationMesh" id=3]

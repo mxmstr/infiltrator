@@ -4,8 +4,9 @@
 [ext_resource path="res://Models/Items/DD44/dd44.glb" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/Behaviors/B.Firearm.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Response/R.RigidBody.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/Responses/R.RigidBody.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=6]
+
 
 
 
