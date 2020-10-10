@@ -24,8 +24,6 @@ func _ready():
 
 func _physics_process(delta):
 	
-	return
-	
 	var colliders = []
 	
 	for collision in collisions:
@@ -45,9 +43,9 @@ func _physics_process(delta):
 				var data
 				
 				if send_to_self:
-					Meta.StimulateActor(owner, stim_type, owner, collision.position, collision.normal, $'../Movement'._get_speed())
+					Meta.StimulateActor(owner, stim_type, owner, $'../Movement'._get_speed(), collision.position, collision.normal)
 				else:
-					Meta.StimulateActor(collision.collider, stim_type, owner, collision.position, collision.normal * -1, $'../Movement'._get_speed() * -1)
+					Meta.StimulateActor(collision.collider, stim_type, owner, $'../Movement'._get_speed() * -1, collision.position, collision.normal * -1)
 				
 				emit_signal('triggered', data)
 			
@@ -57,12 +55,13 @@ func _physics_process(delta):
 		
 		for actor in $'/root/Mission/Actors'.get_children():
 			
-			var collision = { 'collider': actor }
+			if actor == owner:
+				continue
 			
-			if actor != owner and \
-				owner.global_transform.origin.distance_to(actor.global_transform.origin) < max_distance and \
-				continuous or \
-				not collision.collider in colliders:
+			var collision = { 'collider': actor }
+			var within_distance = max_distance == 0 or owner.global_transform.origin.distance_to(actor.global_transform.origin) < max_distance
+			
+			if within_distance and continuous or not collision.collider in colliders:
 				
 				var data
 				

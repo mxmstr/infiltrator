@@ -4,7 +4,8 @@ export var gravity = -9.8
 export var accel = 2
 export var deaccel = 4
 
-var speed = 0.0
+var move_speed = 0.0
+var turn_speed = 0.0
 var direction = Vector3()
 var velocity = Vector3()
 
@@ -40,6 +41,14 @@ func _turn(delta):
 	owner.rotation.y += delta
 
 
+func _face(target, new_turn_speed=0.0):
+	
+	if new_turn_speed == 0:
+		owner.global_transform.look_at(target.global_transform.origin, Vector3(0, 1, 0))
+	
+	
+
+
 func _set_horizontal_velocity(horizontal):
 	
 	horizontal = owner.global_transform.basis.xform(horizontal)
@@ -55,7 +64,7 @@ func _physics_process(delta):
 	
 	var horizontal = Vector3(velocity.x, 0, velocity.z)
 	
-	var new_velocity = owner.global_transform.basis.xform(direction) * speed
+	var new_velocity = owner.global_transform.basis.xform(direction) * move_speed
 	var factor
 	
 	if new_velocity.dot(horizontal) > 0:

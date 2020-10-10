@@ -4,11 +4,6 @@ var stims = []
 var stim
 
 
-func _collider_has_tag(tag):
-	
-	return data.collider._has_tag(tag)
-
-
 func _on_tree_root_state_starting(sm_node_name):
 	
 	if sm_node_name == 'Default':
@@ -38,14 +33,6 @@ func _next_stim():
 	._start_state(_stim, _data)
 
 
-func _link(type, reverse=false):
-	
-	if reverse:
-		Meta.CreateLink(data.collider, owner, type)
-	else:
-		Meta.CreateLink(owner, data.collider, type)
-
-
 func _reflect(reflected_stim=''):
 	
 	if data == null:
@@ -54,7 +41,7 @@ func _reflect(reflected_stim=''):
 	if reflected_stim == '':
 		reflected_stim = stim
 	
-	Meta.StimulateActor(data.collider, reflected_stim, owner, data.position, data.direction * -1, data.intensity * -1)
+	Meta.StimulateActor(data.source, reflected_stim, owner, data.intensity * -1, data.position, data.direction * -1)
 
 
 func _ready():

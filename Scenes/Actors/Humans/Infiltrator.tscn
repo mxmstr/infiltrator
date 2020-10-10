@@ -158,7 +158,7 @@ parameters/playback = SubResource( 17 )
 [node name="Behavior" parent="." index="22"]
 parameters/playback = SubResource( 18 )
 
-[node name="Perception" parent="." index="23"]
+[node name="Reception" parent="." index="23"]
 parameters/playback = SubResource( 19 )
 
 [node name="Interface" parent="." index="24"]

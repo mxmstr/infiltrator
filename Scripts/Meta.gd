@@ -168,12 +168,12 @@ func DestroyLink(from, to, type, data={}):
 	LinkHub._destroy(type, data)
 
 
-func StimulateActor(actor, stim, collider=self, position=Vector3(), direction=Vector3(), intensity=0.0):
+func StimulateActor(actor, stim, source=self, intensity=0.0, position=Vector3(), direction=Vector3()):
 	
 	if actor.has_node('Perception'):
 		
 		var data = {
-			'collider': collider,
+			'source': source,
 			'position': position,
 			'direction': direction,
 			'intensity': intensity

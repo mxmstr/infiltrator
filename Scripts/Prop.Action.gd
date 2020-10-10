@@ -26,14 +26,16 @@ func _enter_tree():
 
 		if not from_name in anim_names:
 
-			get_node(tree_node).tree_root.add_node(from_name, from.duplicate())
+			if not get_node(tree_node).tree_root.has_node(from_name):
+				get_node(tree_node).tree_root.add_node(from_name, from.duplicate())
 			
 			anim_names.append(from_name)
 
 
 		if not to_name in anim_names:
 
-			get_node(tree_node).tree_root.add_node(to_name, to.duplicate())
+			if not get_node(tree_node).tree_root.has_node(to_name):
+				get_node(tree_node).tree_root.add_node(to_name, to.duplicate())
 			
 			anim_names.append(to_name)
 
@@ -44,4 +46,5 @@ func _enter_tree():
 		if to_name == tree_root.get_end_node():
 			to_name = end_node
 		
-		get_node(tree_node).tree_root.add_transition(from_name, to_name, transition.duplicate())
+		if not get_node(tree_node).tree_root.has_transition(from_name, to_name):
+			get_node(tree_node).tree_root.add_transition(from_name, to_name, transition.duplicate())

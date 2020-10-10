@@ -1,9 +1,10 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Reception.Transition.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Land"

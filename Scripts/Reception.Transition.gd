@@ -13,7 +13,7 @@ var from
 var to
 
 
-func _on_stimulate(collider, position, direction, intensity):
+func _on_stimulate(source, position, direction, intensity):
 	
 	intensity *= 10000
 	

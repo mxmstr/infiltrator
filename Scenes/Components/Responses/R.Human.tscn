@@ -1,13 +1,15 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Receptor.Transition.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Receptor.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Reception.Transition.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Reception.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 [ext_resource path="res://Animations/Property/S.Fall.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/Property/S.Grab.tres" type="Animation" id=6]
 [ext_resource path="res://Animations/Property/Impact.tres" type="Animation" id=7]
 [ext_resource path="res://Animations/Property/Contain.tres" type="Animation" id=8]
+
+
 
 
 

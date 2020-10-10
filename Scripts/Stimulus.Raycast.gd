@@ -39,9 +39,9 @@ func _stimulate(stim_type_override=''):
 	var data
 	
 	if send_to_self:
-		Meta.StimulateActor(owner, new_stim, owner, get_collision_point(), get_collision_normal() * -1, $'../Movement'.velocity.length() * -1)
+		Meta.StimulateActor(owner, new_stim, owner, $'../Movement'.velocity.length() * -1, get_collision_point(), get_collision_normal() * -1)
 	else:
-		Meta.StimulateActor(get_collider(), new_stim, owner, get_collision_point(), get_collision_normal(), $'../Movement'.velocity.length())
+		Meta.StimulateActor(get_collider(), new_stim, owner, $'../Movement'.velocity.length(), get_collision_point(), get_collision_normal())
 	
 	
 	emit_signal('triggered', data)

@@ -162,7 +162,7 @@ tree_node = NodePath("../Behavior")
 
 [node name="ImpactResponse" parent="." index="12" instance=ExtResource( 13 )]
 parameters/playback = SubResource( 9 )
-tree_node = NodePath("../Perception")
+tree_node = NodePath("../Reception")
 
 [node name="ImpactSound" parent="." index="13" instance=ExtResource( 14 )]
 parameters/playback = SubResource( 10 )
@@ -186,7 +186,7 @@ parameters/playback = SubResource( 16 )
 [node name="Behavior" parent="." index="19"]
 parameters/playback = SubResource( 17 )
 
-[node name="Perception" parent="." index="20"]
+[node name="Reception" parent="." index="20"]
 parameters/playback = SubResource( 18 )
 
 [node name="Interface" parent="." index="21"]
