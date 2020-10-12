@@ -112,5 +112,5 @@ func _physics_process(delta):
 	
 	var velocity = Vector3(sidestep_speed, 0, forward_speed)
 	
-	movement.speed = velocity.length()
-	movement.direction = velocity.normalized()
+	movement._set_speed(velocity.length())
+	movement._set_direction(velocity.normalized(), true)

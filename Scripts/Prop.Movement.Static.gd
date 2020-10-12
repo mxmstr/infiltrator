@@ -1,10 +1,4 @@
-extends Spatial
-
-export var speed = 0.0
-export var gravity = -9.8
-
-var direction = Vector3()
-var velocity = Vector3()
+extends 'res://Scripts/Prop.Movement.gd'
 
 #
 #func _set_speed(new_speed):

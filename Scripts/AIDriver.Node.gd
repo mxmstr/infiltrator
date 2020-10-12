@@ -2,6 +2,10 @@ extends "res://Scripts/AnimationTree.Node.gd"
 
 export(Array, Dictionary) var triggers
 
+var drive_mode = DriveMode.Steer
+var move_speed = 0
+var turn_speed = 0
+
 
 func _on_state_starting(new_name):
 	
@@ -11,6 +15,5 @@ func _on_state_starting(new_name):
 		
 		if len(playback.get_travel_path()) == 0:
 			
-			pass
-#			if owner.owner.has_node('AIDriver'):
-#				owner.owner.get_node('AIDriver')._start_state(driver_command)
+			owner.drive_mode = drive_mode
+			

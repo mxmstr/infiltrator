@@ -596,6 +596,7 @@ script = ExtResource( 11 )
 __meta__ = {
 
 }
+schema_type = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AIDriver" index="0"]
 anims/DefaultAnim = ExtResource( 6 )

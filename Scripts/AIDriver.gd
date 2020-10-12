@@ -1,25 +1,24 @@
 extends "res://Scripts/AnimationTree.gd"
 
+enum DriverMode {
+	Steer
+	Sidestep
+}
 
 var target
+var drive_mode = DriverMode.Steer
 var move_speed = 0
 var turn_speed = 0
 
 
 func _physics_process(delta):
 	
-	if turn_speed > 0:
+	if drive_mode == DriverMode.Steer:
+		
+		owner.get_node('Movement')._set_direction(Vector3(0, 0, 1), true)
+		owner.get_node('Movement')._face(target, turn_speed * delta)
 	
-		var owner_direction = owner.global_transform.basis.z
-		var turn_target = owner.direction_to(target)
-		var angle = owner_direction.angle_to(turn_target)
-		var angle_delta  = turn_speed * delta
+	if drive_mode == DriverMode.Sidestep:
 		
-		if angle > angle_delta:
-			
-			turn_target = owner.global_transform.basis.z.linear_interpolate(turn_target, angle / angle_delta)
-			owner.global_transform.look_at(owner.global_transform.origin - turn_target)
-		
-		else:
-			
-			owner.global_transform.look_at(-turn_target)
+		owner.get_node('Movement')._set_direction(owner.direction_to(target))
+		owner.get_node('Movement')._face(target, turn_speed * delta)
