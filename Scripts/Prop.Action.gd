@@ -8,6 +8,16 @@ export var end_node = 'Start'
 export(String, MULTILINE) var tags
 
 
+func _ready():
+	
+	if Engine.editor_hint:
+#
+#		if tree_root.has_method('_editor_ready'):
+#			tree_root._editor_ready(self, null, 'parameters/', 'root')
+		
+		return
+
+
 func _enter_tree():
 	
 	if tree_root.get_transition_count() == 0:
@@ -25,7 +35,7 @@ func _enter_tree():
 		var to = tree_root.get_node(to_name)
 
 		if not from_name in anim_names:
-
+			
 			if not get_node(tree_node).tree_root.has_node(from_name):
 				get_node(tree_node).tree_root.add_node(from_name, from.duplicate())
 			
@@ -33,7 +43,7 @@ func _enter_tree():
 
 
 		if not to_name in anim_names:
-
+			
 			if not get_node(tree_node).tree_root.has_node(to_name):
 				get_node(tree_node).tree_root.add_node(to_name, to.duplicate())
 			
@@ -45,6 +55,7 @@ func _enter_tree():
 		
 		if to_name == tree_root.get_end_node():
 			to_name = end_node
+		
 		
 		if not get_node(tree_node).tree_root.has_transition(from_name, to_name):
 			get_node(tree_node).tree_root.add_transition(from_name, to_name, transition.duplicate())

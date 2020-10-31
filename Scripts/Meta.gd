@@ -18,6 +18,11 @@ enum Priority {
 	VERY_HIGH
 }
 
+enum DriverMode {
+	Steer
+	Sidestep
+}
+
 var tree_count = 0
 
 var coop = false

@@ -1,8 +1,7 @@
+tool
 extends AnimationNodeStateMachine
 
 const camera_rig_track_path = '../../Perspective'
-
-export(String) var statemachine
 
 export var chain = false
 
@@ -11,7 +10,6 @@ var owner
 var parent
 var parameters
 var connections = []
-var nodes = []
 var advance = false
 
 signal state_starting
@@ -28,17 +26,19 @@ func _filter_anim_events(is_action, filter_all=false):
 	
 	var playback = owner.get(parameters + 'playback')
 	var current_node = playback.get_current_node()
+	var children = get_child_nodes()
 	
 	if current_node == '':
 		return
-	
-	for node in nodes:
+
+	for child_name in children:
 		
-		var is_playing = get_node(playback.get_current_node()) == node
+		var child = children[child_name]
+		var is_playing = get_node(playback.get_current_node()) == child
 		
-		if node is AnimationNodeAnimation:
+		if child is AnimationNodeAnimation:
 		
-			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
+			var animation = owner.get_node('AnimationPlayer').get_animation(child.animation)
 
 			for track in animation.get_track_count():
 				
@@ -48,31 +48,40 @@ func _filter_anim_events(is_action, filter_all=false):
 				animation.track_set_enabled(track, false if (is_function_call and (not is_playing or filter_all)) else true)# or is_camera_and_overriden else true)
 		
 		
-		if node is AnimationNodeStateMachine or node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
+		if child is AnimationNodeStateMachine or \
+			child is AnimationNodeBlendTree or \
+			child is AnimationNodeBlendSpace1D or \
+			child is AnimationNodeBlendSpace2D:
 			
-			node._filter_anim_events(is_action, filter_all) if is_playing else node._filter_anim_events(is_action, true)
+			child._filter_anim_events(is_action, filter_all) if is_playing else child._filter_anim_events(is_action, true)
 
 
 func _unfilter_anim_events():
 	
 	var playback = owner.get(parameters + 'playback')
 	var current_node = playback.get_current_node()
+	var children = get_child_nodes()
 	
 	if current_node == '':
 		return
 	
-	for node in nodes:
+	for child_name in children:
 		
-		if node is AnimationNodeAnimation:
-			
-			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
-			
-			for track in node.animation.get_track_count():
-				node.animation.track_set_enabled(track, true)
+		var child = children[child_name]
 		
-		if node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
+		if child is AnimationNodeAnimation:
 			
-			node._unfilter_anim_events()
+			var animation = owner.get_node('AnimationPlayer').get_animation(child.animation)
+			
+			for track in child.animation.get_track_count():
+				child.animation.track_set_enabled(track, true)
+		
+		if child is AnimationNodeStateMachine or \
+			child is AnimationNodeBlendTree or \
+			child is AnimationNodeBlendSpace1D or \
+			child is AnimationNodeBlendSpace2D:
+			
+			child._unfilter_anim_events()
 
 
 func _travel(_name):
@@ -92,6 +101,25 @@ func _travel(_name):
 	owner.emit_signal('on_process', 0)
 
 
+func _editor_ready(_owner, _parent, _parameters, _name):
+	
+	var children = get_child_nodes()
+
+	for child_name in children:
+		
+		var child = children[child_name]
+		
+		if child.has_method('_editor_ready'):
+
+			if child is AnimationNodeStateMachine or \
+				child is AnimationNodeBlendTree or \
+				child is AnimationNodeBlendSpace1D or \
+				child is AnimationNodeBlendSpace2D:
+				child._editor_ready(_owner, self, _parameters + child_name + '/', child_name)
+			else:
+				child._editor_ready(_owner, self, _parameters, child_name)
+
+
 func _ready(_owner, _parent, _parameters, _node_name):
 	
 	owner = _owner
@@ -103,25 +131,25 @@ func _ready(_owner, _parent, _parameters, _node_name):
 		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	
 	owner.connect('on_process', self, '_process')
-	
-	
-	if get_transition_count() == 0:
 
-		var start_name = get_start_node()
-		var start = get_node(start_name)
 
-		if start.has_method('_ready'):
+	var children = get_child_nodes()
 
-			if start is AnimationNodeStateMachine or start is AnimationNodeBlendSpace1D or start is AnimationNodeBlendSpace2D:
-				start._ready(owner, self, parameters + start_name + '/', start_name)
+	for child_name in children:
+		
+		var child = children[child_name]
+		
+		if child.has_method('_ready'):
+
+			if child is AnimationNodeStateMachine or \
+				child is AnimationNodeBlendTree or \
+				child is AnimationNodeBlendSpace1D or \
+				child is AnimationNodeBlendSpace2D:
+				child._ready(owner, self, parameters + child_name + '/', child_name)
 			else:
-				start._ready(owner, self, parameters, start_name)
-
-		nodes.append(start)
-
-		return
-
-
+				child._ready(owner, self, parameters, child_name)
+	
+	
 	var anim_names = []
 
 	for idx in range(get_transition_count()):
@@ -131,19 +159,6 @@ func _ready(_owner, _parent, _parameters, _node_name):
 		var to_name = get_transition_to(idx)
 		var from = get_node(from_name)
 		var to = get_node(to_name)
-
-		if not from_name in anim_names:
-
-			if from.has_method('_ready'):
-
-				if from is AnimationNodeStateMachine or from is AnimationNodeBlendSpace1D or from is AnimationNodeBlendSpace2D:
-					from._ready(owner, self, parameters + from_name + '/', from_name)
-				else:
-					from._ready(owner, self, parameters, from_name)
-
-			anim_names.append(from_name)
-			nodes.append(from)
-
 
 		if from.has_method('_ready'):
 			from.connections.append(transition)

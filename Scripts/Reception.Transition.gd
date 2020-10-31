@@ -3,7 +3,7 @@ extends AnimationNodeStateMachineTransition
 export(float) var min_intensity
 export(float) var max_intensity
 export(Vector3) var within_direction
-export(float) var max_direction_angle = -1
+export(float) var max_direction_angle = -1.0
 
 var owner
 var parent

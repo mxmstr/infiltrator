@@ -26,7 +26,6 @@ var owner
 var parent
 var parameters
 var connections = []
-var nodes = []
 var advance = false
 
 var target_pos = Vector2()
@@ -46,16 +45,16 @@ func _filter_anim_events(is_action, filter_all=false):
 
 	var blend_position = parameters + 'blend_position'
 	var closest_point = call('get_closest_point', owner.get(blend_position))
+	var children = get_child_nodes()
 
+	for child_name in children:
+		
+		var child = children[child_name]
+		var is_closest = child.name == closest_point
 
-	for point in call('get_blend_point_count'):
+		if child is AnimationNodeAnimation:
 
-		var node = call('get_blend_point_node', point)
-		var is_closest = point == closest_point
-
-		if node is AnimationNodeAnimation:
-
-			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
+			var animation = owner.get_node('AnimationPlayer').get_animation(child.animation)
 
 			for track in animation.get_track_count():
 
@@ -63,34 +62,42 @@ func _filter_anim_events(is_action, filter_all=false):
 				var is_camera_and_overriden = is_action and camera_rig_track_path in str(animation.track_get_path(track))
 				animation.track_set_enabled(track, false if (is_function_call and (not is_closest or filter_all)) else true)# or is_camera_and_overriden else true)
 
-
-		if node is AnimationNodeStateMachine or node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
+		
+		if child is AnimationNodeStateMachine or \
+			child is AnimationNodeBlendTree or \
+			child is AnimationNodeBlendSpace1D or \
+			child is AnimationNodeBlendSpace2D:
 			
-			if not node.has_method('_filter_anim_events'):
+			if not child.has_method('_filter_anim_events'):
 				return
 			
-			node._filter_anim_events(is_action, filter_all) if is_closest else node._filter_anim_events(is_action, true)
+			child._filter_anim_events(is_action, filter_all) if is_closest else child._filter_anim_events(is_action, true)
 
 
 func _unfilter_anim_events():
 	
-	for point in call('get_blend_point_count'):
+	var children = get_child_nodes()
 
-		var node = call('get_blend_point_node', point)
-
-		if not node.has_method('_unfilter_anim_events'):
+	for child_name in children:
+		
+		var child = children[child_name]
+		
+		if not child.has_method('_unfilter_anim_events'):
 			return
+		
+		if child is AnimationNodeAnimation:
 
-		if node is AnimationNodeAnimation:
-
-			var animation = owner.get_node('AnimationPlayer').get_animation(node.animation)
+			var animation = owner.get_node('AnimationPlayer').get_animation(child.animation)
 
 			for track in animation.get_track_count():
 				animation.track_set_enabled(track, true)
-
-		if node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
-
-			node._unfilter_anim_events()
+		
+		if child is AnimationNodeStateMachine or \
+			child is AnimationNodeBlendTree or \
+			child is AnimationNodeBlendSpace1D or \
+			child is AnimationNodeBlendSpace2D:
+			
+			child._unfilter_anim_events()
 
 
 func _update():
@@ -126,18 +133,21 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	owner.connect('on_process', self, '_process')
 
 
-	for point in call('get_blend_point_count'):
+	var children = get_child_nodes()
 
-		var node = call('get_blend_point_node', point)
+	for child_name in children:
+		
+		var child = children[child_name]
+		
+		if child.has_method('_ready'):
 
-		if node.has_method('_ready'):
-
-			if node is AnimationNodeStateMachine or node is AnimationNodeBlendSpace1D or node is AnimationNodeBlendSpace2D:
-				node._ready(owner, self, parameters + str(point) + '/', str(point))
+			if child is AnimationNodeStateMachine or \
+				child is AnimationNodeBlendTree or \
+				child is AnimationNodeBlendSpace1D or \
+				child is AnimationNodeBlendSpace2D:
+				child._ready(owner, self, parameters + child_name + '/', child_name)
 			else:
-				node._ready(owner, self, parameters, str(point))
-
-		nodes.append(node)
+				child._ready(owner, self, parameters, child_name)
 
 
 func _process(delta):
