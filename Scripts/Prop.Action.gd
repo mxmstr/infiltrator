@@ -1,3 +1,4 @@
+tool
 extends AnimationTree
 
 var make_unique = 0
@@ -8,17 +9,19 @@ export var end_node = 'Start'
 export(String, MULTILINE) var tags
 
 
-func _ready():
+func _on_parameter_changed(base_path, p_name, p_value):
 	
-	if Engine.editor_hint:
-#
-#		if tree_root.has_method('_editor_ready'):
-#			tree_root._editor_ready(self, null, 'parameters/', 'root')
-		
-		return
+	print(base_path, p_name, p_value)
 
 
 func _enter_tree():
+	
+	if Engine.editor_hint:
+		
+		connect('parameter_changed', self, '_on_parameter_changed')
+		
+		return
+	
 	
 	if tree_root.get_transition_count() == 0:
 		return

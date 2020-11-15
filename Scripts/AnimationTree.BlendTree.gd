@@ -57,8 +57,8 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	parameters = _parameters
 	node_name = _node_name
 	
-	if parent != null and owner.get(parent.parameters + 'playback') != null:
-		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+#	if parent != null and owner.get(parent.parameters + 'playback') != null:
+#		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	
 	owner.connect('on_process', self, '_process')
 
