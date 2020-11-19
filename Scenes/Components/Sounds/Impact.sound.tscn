@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AudioTree.StateMachine.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/AnimationTree.Node.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/AnimationTree.Node.Schema.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=5]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=6]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
@@ -14,15 +14,16 @@ __meta__ = {
 
 }
 chain = true
+schema = ""
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "FTROC_J"
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 __meta__ = {
 
 }
 chain = true
-schema_name = "ImpactRock"
+schema = ""
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
@@ -31,6 +32,7 @@ __meta__ = {
 
 }
 chain = true
+schema = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
 auto_advance = true
@@ -59,7 +61,6 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
-statemachine = ""
 chain = true
 level = -5.0
 
@@ -94,7 +95,6 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
-statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
@@ -112,13 +112,13 @@ tree_root = SubResource( 10 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 11 )
 parameters/Impact/playback = SubResource( 12 )
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 6 )
+anims/DefaultAnim = ExtResource( 5 )
 __meta__ = {
 
 }

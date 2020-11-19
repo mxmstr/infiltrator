@@ -1,4 +1,4 @@
-extends 'res://Scripts/AnimationTree.Node.gd'
+extends "res://Scripts/AnimationTree.Animation.gd"
 
 export(Meta.Priority) var priority
 export(Meta.Visibility) var type
@@ -21,8 +21,6 @@ func _is_visible():
 func _on_state_starting(new_name):
 	
 	if node_name == new_name:
-		
-		#emit_signal('state_starting')
 		
 		var playback = owner.get(parameters + 'playback')
 		

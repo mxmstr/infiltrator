@@ -1,4 +1,4 @@
-extends "res://Scripts/AnimationTree.Node.gd"
+extends "res://Scripts/AnimationTree.Animation.gd"
 
 export(String) var driver_command
 

@@ -1,16 +1,18 @@
 [gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/AnimationTree.Node.Schema.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/AnimationTree.Node.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Behavior.Node.Schema.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Priority.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=10]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=11]
+
+
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
