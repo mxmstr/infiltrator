@@ -7,7 +7,6 @@
 [ext_resource path="res://Scripts/Prop.AnimLayer.HumanMovement.gd" type="Script" id=5]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=6]
 
-
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "LeanLeft"
 scale = 3.0
@@ -16,7 +15,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "StandLeanLeft"
+schema = "StandLeanLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "LeanRight"
@@ -26,7 +25,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "StandLeanRight"
+schema = "StandLeanRight"
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "T_STAND"
@@ -35,7 +34,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "Stand"
+schema = "Stand"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
 auto_advance = true
@@ -119,7 +118,6 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
-statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeAnimation" id=9]
@@ -129,7 +127,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "RunLeft"
+schema = "RunLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
 animation = "StrafeRight"
@@ -138,7 +136,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "RunRight"
+schema = "RunRight"
 
 [sub_resource type="AnimationNodeAnimation" id=11]
 animation = "WalkBackward"
@@ -147,7 +145,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "WalkBackward"
+schema = "WalkBackward"
 
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Walk"
@@ -156,7 +154,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "WalkForward"
+schema = "WalkForward"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Run"
@@ -165,7 +163,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "RunForward"
+schema = "RunForward"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "WalkBackward"
@@ -174,7 +172,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "RunBackward"
+schema = "WalkBackward"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=15]
 blend_point_0/node = SubResource( 8 )
@@ -217,7 +215,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "Crouch"
+schema = "Crouch"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "CrouchLeanLeft"
@@ -227,7 +225,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "CrouchLeanLeft"
+schema = "CrouchLeanLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=18]
 animation = "CrouchLeanRight"
@@ -237,7 +235,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "CrouchLeanRight"
+schema = "CrouchLeanRight"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
 auto_advance = true
@@ -316,12 +314,11 @@ states/LeanRight/node = SubResource( 18 )
 states/LeanRight/position = Vector2( 868, 106 )
 transitions = [ "Crouch", "LeanRight", SubResource( 19 ), "LeanRight", "Crouch", SubResource( 20 ), "LeanLeft", "Crouch", SubResource( 21 ), "Crouch", "LeanLeft", SubResource( 22 ) ]
 start_node = "Crouch"
-graph_offset = Vector2( 143.62, 0 )
+graph_offset = Vector2( 128.714, 0 )
 script = ExtResource( 1 )
 __meta__ = {
 
 }
-statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeAnimation" id=24]
@@ -331,7 +328,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "CrouchLeft"
+schema = "CrouchLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=25]
 animation = "CrouchSidestepRight"
@@ -340,7 +337,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "CrouchRight"
+schema = "CrouchRight"
 
 [sub_resource type="AnimationNodeAnimation" id=26]
 animation = "CrouchForward"
@@ -349,7 +346,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "CrouchForward"
+schema = "CrouchForward"
 
 [sub_resource type="AnimationNodeAnimation" id=27]
 animation = "CrouchBackward"
@@ -358,7 +355,7 @@ __meta__ = {
 
 }
 chain = false
-schema_name = "CrouchBackward"
+schema = "CrouchBackward"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=28]
 blend_point_0/node = SubResource( 23 )

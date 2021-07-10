@@ -45,12 +45,12 @@ func _filter_anim_events(is_action, filter_all=false):
 
 	var blend_position = parameters + 'blend_position'
 	var closest_point = call('get_closest_point', owner.get(blend_position))
-	var children = get_child_nodes()
+	var children = get_children()
 
 	for child_name in children:
 		
 		var child = children[child_name]
-		var is_closest = child.name == closest_point
+		var is_closest = int(child_name) == closest_point
 
 		if child is AnimationNodeAnimation:
 
@@ -76,7 +76,7 @@ func _filter_anim_events(is_action, filter_all=false):
 
 func _unfilter_anim_events():
 	
-	var children = get_child_nodes()
+	var children = get_children()
 
 	for child_name in children:
 		
@@ -133,7 +133,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	owner.connect('on_process', self, '_process')
 
 
-	var children = get_child_nodes()
+	var children = get_children()
 
 	for child_name in children:
 		

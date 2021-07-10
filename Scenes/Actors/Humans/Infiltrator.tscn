@@ -104,7 +104,7 @@ __meta__ = {
 
 }
 
-[node name="Infiltrator" index="0" instance=ExtResource( 1 )]
+[node name="Infiltrator" instance=ExtResource( 1 )]
 tags = "Actor Action:Human"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
@@ -121,6 +121,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
 path = NodePath("../../Infiltrator")
 
 [node name="AnimLayerMovement" parent="." index="12"]
+parameters/blend_position = 1.99417
+parameters/0/blend_position = Vector2( -0.00105375, -0.017341 )
 parameters/0/0/playback = SubResource( 2 )
 parameters/1/0/playback = SubResource( 3 )
 

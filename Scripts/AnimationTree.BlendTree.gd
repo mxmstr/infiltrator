@@ -33,7 +33,7 @@ func _unfilter_anim_events():
 
 func _editor_ready(_owner, _parent, _parameters, _name):
 	
-	var children = get_child_nodes()
+	var children = get_children()
 
 	for child_name in children:
 		
@@ -63,7 +63,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	owner.connect('on_process', self, '_process')
 
 
-	var children = get_child_nodes()
+	var children = get_children()
 
 	for child_name in children:
 		

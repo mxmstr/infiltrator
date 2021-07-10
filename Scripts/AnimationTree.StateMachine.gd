@@ -26,7 +26,7 @@ func _filter_anim_events(is_action, filter_all=false):
 	
 	var playback = owner.get(parameters + 'playback')
 	var current_node = playback.get_current_node()
-	var children = get_child_nodes()
+	var children = get_children()
 	
 	if current_node == '':
 		return
@@ -60,7 +60,7 @@ func _unfilter_anim_events():
 	
 	var playback = owner.get(parameters + 'playback')
 	var current_node = playback.get_current_node()
-	var children = get_child_nodes()
+	var children = get_children()
 	
 	if current_node == '':
 		return
@@ -73,8 +73,8 @@ func _unfilter_anim_events():
 			
 			var animation = owner.get_node('AnimationPlayer').get_animation(child.animation)
 			
-			for track in child.animation.get_track_count():
-				child.animation.track_set_enabled(track, true)
+			for track in animation.get_track_count():
+				animation.track_set_enabled(track, true)
 		
 		if child is AnimationNodeStateMachine or \
 			child is AnimationNodeBlendTree or \
@@ -103,7 +103,7 @@ func _travel(_name):
 
 func _editor_ready(_owner, _parent, _parameters, _name):
 	
-	var children = get_child_nodes()
+	var children = get_children()
 
 	for child_name in children:
 		
@@ -133,7 +133,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	owner.connect('on_process', self, '_process')
 
 
-	var children = get_child_nodes()
+	var children = get_children()
 
 	for child_name in children:
 		
