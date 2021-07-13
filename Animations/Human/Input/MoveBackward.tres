@@ -1,7 +1,7 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "Crouch"
+resource_name = "MoveBackward"
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../Stance")
@@ -13,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "stance", 1 ],
+"args": [ "forward_speed", -1.0 ],
 "method": "set"
 } ]
 }

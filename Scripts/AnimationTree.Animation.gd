@@ -25,36 +25,14 @@ func _load_animtions():
 	
 	
 	var animation_player = owner.get_node('AnimationPlayer')
-	var tags = []
+	var owner_tags = []
 	
 	if owner.owner._has_tag(owner.schema_type):
-		tags = owner.owner._get_tag(owner.schema_type)
+		owner_tags = owner.owner._get_tag(owner.schema_type)
 	
+	var files = Meta._get_files_recursive(schemas_dir, schema, schemas_extension, owner_tags)
 	
-	var selected_schema
-	var selected_schema_tag_count = 0
-	
-	var files = Meta._get_files_recursive(schemas_dir, schema, schemas_extension)
-	
-	for file in files:
-		
-		var tag_count = 0
-		
-		for tag in tags:
-			if tag in file:
-				tag_count += 1
-		
-		if selected_schema == null:
-			selected_schema = file
-			continue
-		
-		if tag_count > selected_schema_tag_count:
-			
-			selected_schema = file
-			selected_schema_tag_count = tag_count
-	
-	
-	var schema_animation_player = load(selected_schema).instance()
+	var schema_animation_player = load(files[0]).instance()
 	animation_list = Array(schema_animation_player.get_animation_list())
 	
 	for animation_name in animation_list:

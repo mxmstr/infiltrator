@@ -76,11 +76,13 @@ func _make_unique(old):
 	tree_count += 1
 
 
-func _get_files_recursive(root, begins_with='', ends_with=''):
+func _get_files_recursive(root, begins_with='', ends_with='', tags=null):
 	
 	var files = []
 	var dirs = [root]
 	
+	var file_to_add
+	var highest_tag_count = 0
 	
 	while not dirs.empty():
 		
@@ -102,11 +104,38 @@ func _get_files_recursive(root, begins_with='', ends_with=''):
 				dirs.append('%s/%s' % [dir.get_current_dir(), file])
 				continue
 			
-			if not file.begins_with(begins_with) or not file.ends_with(ends_with):
-				continue
-			
-			files.append('%s/%s' % [dir.get_current_dir(), file])
+			if file.begins_with(begins_with) and file.ends_with(ends_with):
+				
+				if tags:
+					
+					var file_tags = file.split('.')
+					
+					if file_tags[0] != begins_with:
+						continue
+					
+					if file_to_add == null:
+						file_to_add = '%s/%s' % [dir.get_current_dir(), file] 
+						continue
+					
+					
+					var tag_count = 0
+					
+					for tag in tags:
+						if tag in file_tags:
+							tag_count += 1
+					
+					if tag_count > highest_tag_count:
+						
+						file_to_add = '%s/%s' % [dir.get_current_dir(), file]
+						highest_tag_count = tag_count
+					
+				else:
+					
+					files.append('%s/%s' % [dir.get_current_dir(), file])
 	
+	if file_to_add != null:
+		files.append(file_to_add)
+		
 	return files
 
 

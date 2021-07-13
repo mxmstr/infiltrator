@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = true
+schema = "MoveForwardStopInput"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "JumpOrClimb"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+action = "Forward"
+state = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+action = "Backward"
+state = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=8]
+states/NotBackward/node = SubResource( 1 )
+states/NotBackward/position = Vector2( 861.391, 192 )
+states/NotForward/node = SubResource( 2 )
+states/NotForward/position = Vector2( 553, 134 )
+states/Start/node = SubResource( 3 )
+states/Start/position = Vector2( 257, 192 )
+transitions = [ "Start", "NotForward", SubResource( 4 ), "NotForward", "Start", SubResource( 5 ), "NotForward", "NotBackward", SubResource( 6 ), "NotBackward", "Start", SubResource( 7 ) ]
+start_node = "Start"
+end_node = "Start"
+graph_offset = Vector2( 50.6835, 65.4608 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+__meta__ = {
+
+}
+
+[node name="MoveForwardStopInput" type="AnimationTree"]
+tree_root = SubResource( 8 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 9 )
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 5 )
+__meta__ = {
+
+}

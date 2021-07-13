@@ -1,12 +1,18 @@
 extends Node
 
-enum Stance {
-	CRAWLING,
-	CROUCHING,
-	WALKING
+enum StanceType {
+	STANDING,
+	CROUCHING
+	CRAWLING
 }
 
-enum Lean {
+enum SpeedType {
+	STOPPED,
+	WALKING,
+	RUNNING
+}
+
+enum LeanDirection {
 	DEFAULT,
 	LEFT,
 	RIGHT
@@ -15,8 +21,9 @@ enum Lean {
 export(float) var forward_speed setget _set_forward_speed
 export(float) var sidestep_speed setget _set_sidestep_speed
 
-export(Stance) var current_stance = Stance.WALKING setget _set_stance
-export(Lean) var current_lean = Lean.DEFAULT
+export(StanceType) var stance = StanceType.STANDING setget _set_stance
+export(SpeedType) var speed = SpeedType.RUNNING
+export(LeanDirection) var lean = LeanDirection.DEFAULT
 
 export var max_speed = 2.75
 export var walk_mult = 0.3
@@ -53,23 +60,19 @@ func _set_stance(new_state):
 	if lock_stance:
 		return
 		
-	current_stance = new_state
+	stance = new_state
 	
-	match current_stance:
+	match stance:
 	
-		Stance.WALKING:
+		StanceType.STANDING:
 			
 			speed_mult = walk_mult
 		
-		Stance.CROUCHING:
+		StanceType.CROUCHING:
 			
 			speed_mult = crouch_mult
 		
-		Stance.RUNNING:
-			
-			speed_mult = max_speed
-		
-		Stance.CRAWLING:
+		StanceType.CRAWLING:
 			
 			speed_mult = crawl_mult
 
@@ -110,7 +113,7 @@ func _physics_process(delta):
 	if lock_movement:
 		return
 	
-	var velocity = Vector3(sidestep_speed, 0, forward_speed)
+	var velocity = Vector3(sidestep_speed, 0, forward_speed) * max_speed * speed_mult
 	
 	movement._set_speed(velocity.length())
 	movement._set_direction(velocity.normalized(), true)

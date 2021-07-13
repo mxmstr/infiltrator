@@ -389,7 +389,7 @@ y_min_value = -2.75
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=29]
 blend_point_0/node = SubResource( 15 )
-blend_point_0/pos = 2.0
+blend_point_0/pos = 0.0
 blend_point_1/node = SubResource( 28 )
 blend_point_1/pos = 1.0
 min_space = 0.0
@@ -405,7 +405,7 @@ update_mode = "process"
 speed = 8.0
 x_target = "Stance"
 x_method = "get"
-x_args = [ "current_stance" ]
+x_args = [ "stance" ]
 x_max_value = 4.0
 x_min_value = 0.0
 y_target = ""

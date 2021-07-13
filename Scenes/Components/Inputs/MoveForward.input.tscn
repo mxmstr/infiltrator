@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "JumpOrClimb"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = true
+schema = "MoveForwardInput"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+action = "Forward"
+state = 3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/MoveForward/node = SubResource( 1 )
+states/MoveForward/position = Vector2( 781, 192 )
+states/Start/node = SubResource( 2 )
+states/Start/position = Vector2( 388, 192 )
+transitions = [ "Start", "MoveForward", SubResource( 3 ), "MoveForward", "Start", SubResource( 4 ) ]
+start_node = "Start"
+end_node = "Start"
+graph_offset = Vector2( 113.391, 97.9739 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
+
+[node name="MoveForwardInput" type="AnimationTree"]
+tree_root = SubResource( 5 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 6 )
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 5 )
+__meta__ = {
+
+}

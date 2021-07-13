@@ -10,7 +10,8 @@
 [ext_resource path="res://Animations/Human/Input/LeanLeft.tres" type="Animation" id=8]
 [ext_resource path="res://Animations/Human/Input/LeanRight.tres" type="Animation" id=9]
 [ext_resource path="res://Animations/Human/Input/Run.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/Human/Input/Walk.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/Human/Input/Stand.tres" type="Animation" id=11]
+
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
