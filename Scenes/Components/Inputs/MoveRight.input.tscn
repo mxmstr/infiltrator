@@ -12,7 +12,7 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
-chain = true
+chain = false
 schema = "MoveRightInput"
 
 [sub_resource type="AnimationNodeAnimation" id=2]

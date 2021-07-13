@@ -5,7 +5,6 @@ export(String, 'Action', 'Sound') var schema_type = 'Action'
 var make_unique = 0
 var advances = 0
 var data
-var cached_args = []
 
 signal on_physics_process
 signal on_process
@@ -15,7 +14,7 @@ signal travel_starting
 func _on_pre_call_method_track(_animation, track_index, key_index):
 	
 	var key = _animation.track_get_key_value(track_index, key_index)
-	var cached_args = key.args.duplicate()
+	Meta.cached_args = key.args.duplicate()
 	
 	for index in range(key.args.size()):
 		
@@ -24,19 +23,14 @@ func _on_pre_call_method_track(_animation, track_index, key_index):
 		if arg is String and arg.begins_with('$'):
 			key.args[index] = get_indexed(arg.replace('$', ''))
 			_animation.track_set_key_value(track_index, key_index, key)
-	
-	#print(str(owner.get_tree().get_frame()), ' pre_call ', key.method, ' ', key.args)
 
 
 func _on_post_call_method_track(_animation, track_index, key_index):
 	
 	var key = _animation.track_get_key_value(track_index, key_index)
-	key.args = cached_args
+	key.args = Meta.cached_args
 	
 	_animation.track_set_key_value(track_index, key_index, key)
-	
-	#print(str(owner.get_tree().get_frame()), ' post_call ')
-	#print('post_call ', _animation.track_get_key_value(track_index, key_index))
 
 
 func _start_state(_name, _data={}):
@@ -68,5 +62,8 @@ func _physics_process(delta):
 func _process(delta):
 	
 	if Engine.editor_hint: return
+	
+#	var playback = get('parameters/playback')
+#	var current_node = playback.get_current_node()
 	
 	emit_signal('on_process', delta)

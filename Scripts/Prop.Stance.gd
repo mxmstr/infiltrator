@@ -113,6 +113,8 @@ func _physics_process(delta):
 	if lock_movement:
 		return
 	
+	#print(sidestep_speed, ' ', forward_speed)
+	
 	var velocity = Vector3(sidestep_speed, 0, forward_speed) * max_speed * speed_mult
 	
 	movement._set_speed(velocity.length())

@@ -31,6 +31,8 @@ var p1_keyboard = -1
 var p2_mouse = -1
 var p2_keyboard = -1
 
+var cached_args = []
+
 
 func _make_unique(old):
 	

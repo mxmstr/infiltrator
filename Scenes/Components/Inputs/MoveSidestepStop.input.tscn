@@ -49,7 +49,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
-auto_advance = true
+switch_mode = 2
 disabled = true
 script = ExtResource( 3 )
 __meta__ = {
