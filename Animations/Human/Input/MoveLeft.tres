@@ -13,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "sidestep_speed", -1.0 ],
+"args": [ "sidestep_speed", 1.0 ],
 "method": "set"
 } ]
 }

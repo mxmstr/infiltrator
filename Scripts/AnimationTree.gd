@@ -63,7 +63,9 @@ func _process(delta):
 	
 	if Engine.editor_hint: return
 	
-#	var playback = get('parameters/playback')
-#	var current_node = playback.get_current_node()
+#	if name == 'Interface':
+#		var playback = get('parameters/playback')
+#		var current_node = playback.get_current_node()
+#		#print(current_node)
 	
 	emit_signal('on_process', delta)

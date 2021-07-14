@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=4]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
@@ -49,7 +49,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
-switch_mode = 2
+auto_advance = true
 disabled = true
 script = ExtResource( 3 )
 __meta__ = {
@@ -74,8 +74,7 @@ states/Start/node = SubResource( 3 )
 states/Start/position = Vector2( 257, 192 )
 transitions = [ "Start", "NotLeft", SubResource( 4 ), "NotLeft", "Start", SubResource( 5 ), "NotLeft", "NotRight", SubResource( 6 ), "NotRight", "Start", SubResource( 7 ) ]
 start_node = "Start"
-end_node = "Start"
-graph_offset = Vector2( 50.6835, 65.4608 )
+graph_offset = Vector2( -74.501, 65.4608 )
 script = ExtResource( 1 )
 __meta__ = {
 
