@@ -7,10 +7,6 @@
 [ext_resource path="res://Scenes/Components/Responses/R.RigidBody.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=6]
 
-
-
-
-
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.2, 1, 1.5 )
 __meta__ = {
@@ -34,7 +30,9 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
-tags = "Item Firearm 9mm One-handed Offset-position:neo_reference_skeleton:Hand-R:0.008,0.165,0.028 Offset-rotation:neo_reference_skeleton:Hand-R:-90,180,0"
+tags = "Item Firearm 9mm One-handed 
+Offset-position:neo_reference_skeleton:Hand-R:0.008,0.165,0.028 
+Offset-rotation:neo_reference_skeleton:Hand-R:-90,180,0"
 
 [node name="Model" parent="." instance=ExtResource( 2 )]
 editor/display_folded = true

@@ -16,7 +16,7 @@ __meta__ = {
 }
 
 [node name="Infiltrator" parent="Actors" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.553998, -1.58754 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15849, -1.58754 )
 
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {

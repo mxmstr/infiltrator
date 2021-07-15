@@ -13,13 +13,16 @@ __meta__ = {
 
 }
 chain = true
-schema = "MoveBackwardInput"
+schema = "CrouchInput"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "DefaultAnim"
+animation = "JumpOrClimb"
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+chain = true
+schema = "StandInput"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=3]
 auto_advance = true
@@ -28,23 +31,26 @@ script = ExtResource( 3 )
 __meta__ = {
 
 }
-action = "Backward"
-state = 3
+action = "Crouch"
+state = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
-switch_mode = 2
 auto_advance = true
+disabled = true
+script = ExtResource( 3 )
 __meta__ = {
 
 }
+action = "Crouch"
+state = 0
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
-states/MoveBackward/node = SubResource( 1 )
-states/MoveBackward/position = Vector2( 781, 192 )
-states/Start/node = SubResource( 2 )
-states/Start/position = Vector2( 388, 192 )
-transitions = [ "Start", "MoveBackward", SubResource( 3 ), "MoveBackward", "Start", SubResource( 4 ) ]
-start_node = "Start"
+states/Crouch/node = SubResource( 1 )
+states/Crouch/position = Vector2( 781, 192 )
+states/Stand/node = SubResource( 2 )
+states/Stand/position = Vector2( 388, 192 )
+transitions = [ "Stand", "Crouch", SubResource( 3 ), "Crouch", "Stand", SubResource( 4 ) ]
+start_node = "Stand"
 graph_offset = Vector2( 113.391, 97.9739 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -57,7 +63,7 @@ __meta__ = {
 
 }
 
-[node name="MoveBackwardInput" type="AnimationTree"]
+[node name="CrouchInput" type="AnimationTree"]
 tree_root = SubResource( 5 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 6 )

@@ -45,6 +45,15 @@ func _has_item(item):
 	return items.has(item)
 
 
+func _has_item_with_tag(tag):
+	
+	for item in items:
+		if item._has_tag(tag):
+			return true
+	
+	return false
+
+
 func _push_front_into_container(new_container):
 	
 	if len(items) == 0:

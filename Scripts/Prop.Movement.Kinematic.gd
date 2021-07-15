@@ -1,8 +1,8 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
-export var gravity = -9.8
-export var accel = 2
-export var deaccel = 4
+export var gravity = -300.0
+export var accel = 3
+export var deaccel = 5
 
 signal move_and_slide
 

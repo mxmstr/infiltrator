@@ -13,10 +13,10 @@ __meta__ = {
 
 }
 chain = true
-schema = "MoveBackwardInput"
+schema = "PrimaryActionInput"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "DefaultAnim"
+animation = "JumpOrClimb"
 __meta__ = {
 
 }
@@ -28,7 +28,7 @@ script = ExtResource( 3 )
 __meta__ = {
 
 }
-action = "Backward"
+action = "Primary"
 state = 3
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
@@ -39,11 +39,11 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
-states/MoveBackward/node = SubResource( 1 )
-states/MoveBackward/position = Vector2( 781, 192 )
+states/Primary/node = SubResource( 1 )
+states/Primary/position = Vector2( 781, 192 )
 states/Start/node = SubResource( 2 )
 states/Start/position = Vector2( 388, 192 )
-transitions = [ "Start", "MoveBackward", SubResource( 3 ), "MoveBackward", "Start", SubResource( 4 ) ]
+transitions = [ "Start", "Primary", SubResource( 3 ), "Primary", "Start", SubResource( 4 ) ]
 start_node = "Start"
 graph_offset = Vector2( 113.391, 97.9739 )
 script = ExtResource( 1 )
@@ -57,7 +57,7 @@ __meta__ = {
 
 }
 
-[node name="MoveBackwardInput" type="AnimationTree"]
+[node name="PrimaryActionInput" type="AnimationTree"]
 tree_root = SubResource( 5 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 6 )

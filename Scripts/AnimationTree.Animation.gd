@@ -18,7 +18,7 @@ var animation_list = []
 signal state_starting
 
 
-func _load_animtions():
+func _load_animations():
 	
 	if schema == null or schema == '':
 		return
@@ -75,7 +75,7 @@ func _ready(_owner, _parent, _parameters, _name):
 	
 	owner.connect('on_process', self, '_process')
 	
-	_load_animtions()
+	_load_animations()
 
 
 func _process(delta):

@@ -27,8 +27,8 @@ export(LeanDirection) var lean = LeanDirection.DEFAULT
 
 export var max_speed = 2.75
 export var walk_mult = 0.3
-export var crouch_mult = 0.15
-export var crawl_mult = 0.1
+export var crouch_mult = 0.25
+export var crawl_mult = 0.15
 
 export var max_slope_angle = 30
 
@@ -66,7 +66,7 @@ func _set_stance(new_state):
 	
 		StanceType.STANDING:
 			
-			speed_mult = walk_mult
+			speed_mult = 1.0
 		
 		StanceType.CROUCHING:
 			
@@ -112,8 +112,6 @@ func _physics_process(delta):
 	
 	if lock_movement:
 		return
-	
-	#print(sidestep_speed, ' ', forward_speed)
 	
 	var velocity = Vector3(sidestep_speed, 0, forward_speed) * max_speed * speed_mult
 	
