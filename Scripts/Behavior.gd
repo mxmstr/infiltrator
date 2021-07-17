@@ -7,8 +7,6 @@ var target
 
 func _start_state(_name, data={}):
 	
-	print('behavior ', _name)
-	
 	if not enable_abilities:
 		return
 	
@@ -50,4 +48,3 @@ func _process(delta):
 	
 	var playback = get('parameters/playback')
 	var current_node = playback.get_current_node()
-	#print(current_node)

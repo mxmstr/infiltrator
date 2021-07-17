@@ -121,6 +121,4 @@ func _process(delta):
 	if advance:
 		owner.advance(0.01)
 	
-	owner.set(parameters + 'Blend3/blend_amount', 1)
-	
 	advance = false

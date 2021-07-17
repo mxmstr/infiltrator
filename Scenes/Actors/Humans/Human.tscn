@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scenes/Actors/KinematicBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Properties/HUD.property.tscn" type="PackedScene" id=2]
@@ -58,22 +58,17 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 __meta__ = {
 
 }
@@ -119,6 +114,21 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 __meta__ = {
 
 }
@@ -170,41 +180,44 @@ parameters/Jump/5/playback = SubResource( 8 )
 tree_node = NodePath("../Behavior")
 
 [node name="PrimaryAction" parent="." index="12" instance=ExtResource( 13 )]
-parameters/playback = SubResource( 20 )
-parameters/Primary/playback = SubResource( 21 )
+parameters/playback = SubResource( 9 )
+parameters/Primary/playback = SubResource( 10 )
+parameters/Shoot/Blend2/blend_amount = 0
+parameters/Shoot/SwitchBlendModes/playback = SubResource( 23 )
 tree_node = NodePath("../Behavior")
 
 [node name="ImpactResponse" parent="." index="13" instance=ExtResource( 14 )]
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 11 )
 tree_node = NodePath("../Reception")
 
 [node name="ImpactSound" parent="." index="14" instance=ExtResource( 15 )]
-parameters/playback = SubResource( 10 )
-parameters/Impact/playback = SubResource( 11 )
+parameters/playback = SubResource( 12 )
+parameters/Impact/playback = SubResource( 13 )
 tree_node = NodePath("../FeetAudio")
 
 [node name="StepSound" parent="." index="15" instance=ExtResource( 16 )]
-parameters/playback = SubResource( 12 )
-parameters/Step/playback = SubResource( 13 )
+parameters/playback = SubResource( 14 )
+parameters/Step/playback = SubResource( 15 )
 tree_node = NodePath("../FeetAudio")
 
 [node name="VoiceAudio" parent="." index="16" instance=ExtResource( 17 )]
-parameters/playback = SubResource( 14 )
-
-[node name="FoleyAudio" parent="." index="17" instance=ExtResource( 17 )]
-parameters/playback = SubResource( 15 )
-
-[node name="FeetAudio" parent="." index="18" instance=ExtResource( 17 )]
 parameters/playback = SubResource( 16 )
 
-[node name="Behavior" parent="." index="20"]
+[node name="FoleyAudio" parent="." index="17" instance=ExtResource( 17 )]
 parameters/playback = SubResource( 17 )
 
-[node name="Reception" parent="." index="21"]
+[node name="FeetAudio" parent="." index="18" instance=ExtResource( 17 )]
 parameters/playback = SubResource( 18 )
 
-[node name="Interface" parent="." index="22"]
+[node name="Behavior" parent="." index="20"]
 parameters/playback = SubResource( 19 )
+parameters/Start/playback = SubResource( 20 )
+
+[node name="Reception" parent="." index="21"]
+parameters/playback = SubResource( 21 )
+
+[node name="Interface" parent="." index="22"]
+parameters/playback = SubResource( 22 )
 
 [editable path="CameraRig"]
 

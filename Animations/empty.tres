@@ -1,0 +1,8 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "empty"
+length = 2.0
+__meta__ = {
+
+}

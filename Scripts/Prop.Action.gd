@@ -60,5 +60,5 @@ func _enter_tree():
 			to_name = end_node
 		
 		
-		if not get_node(tree_node).tree_root.has_transition(from_name, to_name):
-			get_node(tree_node).tree_root.add_transition(from_name, to_name, transition.duplicate())
+		#if not get_node(tree_node).tree_root.has_transition(from_name, to_name):
+		get_node(tree_node).tree_root.add_transition(from_name, to_name, transition.duplicate())

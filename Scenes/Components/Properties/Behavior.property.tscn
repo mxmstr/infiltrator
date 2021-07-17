@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Behavior.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeStateMachine" id=1]
 script = ExtResource( 2 )
 __meta__ = {
 
@@ -26,17 +25,21 @@ camera_mode = "LockYaw"
 
 [sub_resource type="AnimationNodeStateMachine" id=2]
 states/Start/node = SubResource( 1 )
-states/Start/position = Vector2( 624, 170 )
+states/Start/position = Vector2( 623.453, 162 )
 start_node = "Start"
-graph_offset = Vector2( 0, 38.6886 )
+graph_offset = Vector2( 10.4534, 38.6886 )
 script = ExtResource( 1 )
 __meta__ = {
 
 }
-statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 __meta__ = {
 
 }
@@ -45,6 +48,7 @@ __meta__ = {
 tree_root = SubResource( 2 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 3 )
+parameters/Start/playback = SubResource( 4 )
 script = ExtResource( 3 )
 __meta__ = {
 

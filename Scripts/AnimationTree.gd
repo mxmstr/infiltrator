@@ -16,9 +16,6 @@ func _on_pre_call_method_track(_animation, track_index, key_index):
 	var key = _animation.track_get_key_value(track_index, key_index)
 	Meta.cached_args = key.args.duplicate()
 	
-	if name == 'PrimaryActionInput':
-		print(key)
-	
 	for index in range(key.args.size()):
 		
 		var arg = key.args[index]
@@ -65,16 +62,5 @@ func _physics_process(delta):
 func _process(delta):
 	
 	if Engine.editor_hint: return
-	
-#	if name == 'PrimaryActionInput':
-#		get_node('../Behavior')._start_state('Primary')
-	
-#	if name == 'PrimaryActionInput':
-#		print($AnimationPlayer.get_animation('PrimaryAction').track_get_key_value(0, 0))
-	
-#	if name == 'PrimaryActionInput':
-#		var playback = get('parameters/playback')
-#		var current_node = playback.get_current_node()
-#		print(current_node)
 	
 	emit_signal('on_process', delta)

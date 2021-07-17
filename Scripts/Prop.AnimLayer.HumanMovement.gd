@@ -101,7 +101,7 @@ func _blend_skeletons(delta):
 			
 			if action_blend_amount > 0:
 
-				action_transform = action_transform.interpolate_with(cached_action_pose[idx], action_blend_amount)
+				action_transform = action_transform#.interpolate_with(cached_action_pose[idx], action_blend_amount)
 
 				action_blend_amount -= delta * action_blend_speed
 				action_blend_amount = max(action_blend_amount, 0)
@@ -115,7 +115,7 @@ func _blend_skeletons(delta):
 		
 		if model_blend_amount > 0:
 
-			var blended_transform = model_transform.interpolate_with(cached_model_pose[idx], model_blend_amount)
+			var blended_transform = model_transform#.interpolate_with(cached_model_pose[idx], model_blend_amount)
 
 			if bone_name == root_bone:
 				model_transform = blended_transform

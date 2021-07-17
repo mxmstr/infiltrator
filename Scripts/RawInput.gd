@@ -48,13 +48,16 @@ func _get_status(action, mouse_device, keyboard_device):
 		if device == -1:
 			
 			for i in Input.get_device_count():
+				
 				status = events[i][type][item][0]
+				
 				if status == 1:
 					return status
 		
 		else:
 			
 			status = events[device][type][item][0]
+			
 			if status == 1:
 				return status
 	
