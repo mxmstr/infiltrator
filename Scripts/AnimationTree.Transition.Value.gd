@@ -14,8 +14,6 @@ export(float) var wait_for_frame
 
 func _evaluate(_value):
 	
-	print(_value) if transition_value == 'asdf' else null
-	
 	var playback = owner.get(parameters + 'playback')
 	
 	var current_frame = 0 if not playback.is_playing() else playback.get_current_play_pos()

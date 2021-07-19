@@ -14,14 +14,13 @@ func _on_parameter_changed(base_path, p_name, p_value):
 	print(base_path, p_name, p_value)
 
 
-func _enter_tree():
+func _ready():
 	
 	if Engine.editor_hint:
 		
 		connect('parameter_changed', self, '_on_parameter_changed')
 		
 		return
-	
 	
 	if tree_root.get_transition_count() == 0:
 		return
@@ -30,7 +29,7 @@ func _enter_tree():
 	var anim_names = [start_node, end_node]
 
 	for idx in range(tree_root.get_transition_count()):
-
+		
 		var transition = tree_root.get_transition(idx)
 		var from_name = tree_root.get_transition_from(idx)
 		var to_name = tree_root.get_transition_to(idx)
@@ -60,5 +59,4 @@ func _enter_tree():
 			to_name = end_node
 		
 		
-		#if not get_node(tree_node).tree_root.has_transition(from_name, to_name):
 		get_node(tree_node).tree_root.add_transition(from_name, to_name, transition.duplicate())

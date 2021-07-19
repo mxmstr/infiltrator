@@ -37,6 +37,7 @@ func _notification(what):
 
 func _enter_tree():
 	
+	#.replace('\n', ' ')
 	for tag in tags.split(' '):
 		
 		var values = Array(tag.split(':'))

@@ -3,6 +3,7 @@ extends "res://Scripts/AnimationTree.Animation.gd"
 export(Meta.Priority) var priority
 export(Meta.Visibility) var type
 export(Meta.Blend) var blend
+export var cache_pose = true
 export var distance = 0.0
 export var enable_abilities = true
 export var lock_stance = false
@@ -40,3 +41,4 @@ func _on_state_starting(new_name):
 			
 			if owner.owner.has_node('AnimLayerMovement'):
 				owner.owner.get_node('AnimLayerMovement').blend_mode = blend
+				owner.owner.get_node('AnimLayerMovement').cache_poses = cache_pose

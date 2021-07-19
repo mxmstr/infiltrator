@@ -6,6 +6,7 @@ export(Array, String) var movement_bones
 const camera_rig_track_path = '../../Perspective'
 
 var blend_mode = Meta.Blend.ACTION
+var cache_poses = true
 
 var model_skeleton
 var action_skeleton
@@ -15,7 +16,7 @@ var cached_action_pose = []
 var cached_model_pose = []
 
 var action_blend_amount = 0.0
-var action_blend_speed = 0.1
+var action_blend_speed = 0.5
 
 var model_blend_amount = 0.0
 var model_blend_speed = 0.5
@@ -38,10 +39,12 @@ func _on_state_starting(_name):
 	if node.get('blend') == null:
 		return
 	
+	
 	if blend_mode != node.blend:
 		_cache_move_pose()
 	
-	_cache_action_pose()
+	if cache_poses:
+		_cache_action_pose()
 	
 	blend_mode = node.blend
 
@@ -101,7 +104,7 @@ func _blend_skeletons(delta):
 			
 			if action_blend_amount > 0:
 
-				action_transform = action_transform#.interpolate_with(cached_action_pose[idx], action_blend_amount)
+				action_transform = action_transform.interpolate_with(cached_action_pose[idx], action_blend_amount)
 
 				action_blend_amount -= delta * action_blend_speed
 				action_blend_amount = max(action_blend_amount, 0)
@@ -114,8 +117,10 @@ func _blend_skeletons(delta):
 		
 		
 		if model_blend_amount > 0:
-
-			var blended_transform = model_transform#.interpolate_with(cached_model_pose[idx], model_blend_amount)
+			
+			var blended_transform
+			
+			blended_transform = model_transform.interpolate_with(cached_model_pose[idx], model_blend_amount)
 
 			if bone_name == root_bone:
 				model_transform = blended_transform

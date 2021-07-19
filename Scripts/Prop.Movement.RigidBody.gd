@@ -17,7 +17,7 @@ func _teleport(_new_position=null, _new_rotation=null):
 	
 	if _new_rotation != null:
 		new_rotation = _new_rotation
-		owner.rotation = _new_rotation
+		owner.transform.basis = _new_rotation
 	
 	teleporting = true
 

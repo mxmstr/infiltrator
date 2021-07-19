@@ -95,6 +95,28 @@ func on_loadanim_pressed():
 			dir.list_dir_end()
 
 
+func on_flipanim_pressed():
+	
+	var files = []
+	var dir = Directory.new()
+	dir.open(dock.get_node('FlipAnimInput').text)
+	dir.list_dir_begin()
+	
+	while true:
+		
+		var file = dir.get_next()
+		
+		if file == '':
+			break
+		
+		elif not file.begins_with('.') and file.ends_with('.tres'):
+			
+			var anim_source = load(dock.get_node('FlipAnimInput').text + file)
+			for track in anim_source.get_track_count():
+		
+	dir.list_dir_end()
+
+
 func on_loadaudio_pressed():
 	
 	if not selection.get_selected_nodes().empty():

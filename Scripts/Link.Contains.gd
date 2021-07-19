@@ -85,6 +85,7 @@ func _move_item():
 	var item_position_offset = _get_item_position_offset(to_node)
 	var item_rotation_offset = _get_item_rotation_offset(to_node)
 	
+	#print(item_position_offset, item_rotation_offset)
 	var new_transform = container_node.root.global_transform.translated(item_position_offset)
 	
 	new_transform.basis = container_node.root.global_transform.basis
@@ -92,7 +93,7 @@ func _move_item():
 	new_transform.basis = new_transform.basis.rotated(new_transform.basis.y, item_rotation_offset.y)
 	new_transform.basis = new_transform.basis.rotated(new_transform.basis.z, item_rotation_offset.z)
 	
-	to_node.get_node('Movement')._teleport(new_transform.origin, new_transform.basis.get_euler()) if to_node.has_node('Movement') else null
+	to_node.get_node('Movement')._teleport(new_transform.origin, new_transform.basis) if to_node.has_node('Movement') else null
 
 
 func _ready():
@@ -114,7 +115,11 @@ func _process(delta):
 
 func _exit_tree():
 	
-	container_node._remove_item(to_node) if container_node != null else null
+	if not enabled:
+		return
+	
+	if container_node != null:
+		container_node._remove_item(to_node)
 	
 	
 	to_node.visible = true
@@ -122,8 +127,10 @@ func _exit_tree():
 	if to_node.has_node('Collision'):
 		to_node.get_node('Collision').disabled = false
 	
-	to_node.get_node('Movement')._set_speed(container_node.release_speed) if to_node.has_node('Movement') else null
-	to_node.get_node('Movement')._set_direction(container_node.release_direction) if to_node.has_node('Movement') else null
+	if container_node != null:
+		if to_node.has_node('Movement'):
+			to_node.get_node('Movement')._set_speed(container_node.release_speed)
+			to_node.get_node('Movement')._set_direction(container_node.release_direction)
 	
 #	if to_node.get('sleeping') != null:
 #		to_node.apply_impulse(Vector3(), Vector3(0, -10, 0))
