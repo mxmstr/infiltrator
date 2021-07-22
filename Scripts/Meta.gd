@@ -34,7 +34,7 @@ var p2_keyboard = -1
 var cached_args = []
 
 
-func _make_unique(old):
+func _make_unique(old, new_owner=null):
 	
 	var export_props = {}
 	
@@ -62,13 +62,13 @@ func _make_unique(old):
 		new.set(prop, export_props[prop])
 	
 	
-#	old.get_parent().call_deferred('add_child_below_node', old, new)
-#	new.call_deferred('set_owner', old.owner)
-#	old.get_parent().call_deferred('remove_child', old)
-#	old.queue_free()
-
 	old.get_parent().add_child_below_node(old, new)
-	new.set_owner(old.owner)
+	
+	if new_owner:
+		new.set_owner(new_owner)
+	else:
+		new.set_owner(old.owner)
+	
 	old.get_parent().remove_child(old)
 	old.queue_free()
 	
@@ -151,7 +151,7 @@ func _get_children_recursive(node, children=[]):
 	return children
 
 
-func _add_actor(actor_path, position=Vector3(), rotation=Vector3()):
+func AddActor(actor_path, position=Vector3(), rotation=Vector3()):
 	
 	var new_actor = load('res://Scenes/Actors/' + actor_path + '.tscn').instance()
 	$'/root/Mission/Actors'.add_child(new_actor)
@@ -162,7 +162,7 @@ func _add_actor(actor_path, position=Vector3(), rotation=Vector3()):
 	return new_actor
 
 
-func _add_waypoint(position):
+func AddWayPoint(position):
 
 	var waypoint = load('res://Scenes/Markers/Waypoint2.tscn').instance()
 	$'/root/Mission/Actors'.add_child(waypoint)

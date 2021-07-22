@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "DefaultAnim"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+schema = "Reflect"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "data.collider._has_tag(TAG)"
+arguments = {
+"TAG": "Bullet"
+}
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/End/node = SubResource( 1 )
+states/End/position = Vector2( 908.613, 146 )
+states/HitEffect/node = SubResource( 2 )
+states/HitEffect/position = Vector2( 414.613, 146 )
+states/Reflect/node = SubResource( 8 )
+states/Reflect/position = Vector2( 675.613, 146 )
+states/Touch/node = SubResource( 3 )
+states/Touch/position = Vector2( 154, 146 )
+transitions = [ "Touch", "HitEffect", SubResource( 4 ), "HitEffect", "Reflect", SubResource( 9 ), "Reflect", "End", SubResource( 10 ) ]
+start_node = "Touch"
+end_node = "End"
+graph_offset = Vector2( -51.0486, -7.99613 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
+[node name="TouchResponse" type="AnimationTree"]
+tree_root = SubResource( 6 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 7 )
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+start_node = "Touch"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 4 )
+__meta__ = {
+
+}

@@ -5,40 +5,45 @@ export(String) var container
 var container_node
 
 
-func _is_container(prop):
+func _is_container():
 	
-	if prop.get_script() != null:
+	if container_node.get_script() != null:
 		
-		var script_name = prop.get_script().get_path().get_file()
+		var script_name = container_node.get_script().get_path().get_file()
 		
 		return script_name == 'Prop.Container.gd'
 	
 	return false
 
 
+func _try_container():
+	
+	for item_tag in container_node.required_tags.split(' '):
+		if not item_tag in to_node.tags:
+			prints(to, 'bah1')
+			return false
+	
+	if len(container_node.items) >= container_node.max_quantity:
+		return false
+		
+	to_node.visible = not container_node.invisible
+	
+	if to_node.has_node('Collision'):
+		to_node.get_node('Collision').disabled = true
+	
+	container_node._add_item(to_node)
+	
+	return true
+
+
 func _find_free_container():
 	
 	for prop in from_node.get_children():
 		
-		if _is_container(prop):
-			
-			for item_tag in prop.required_tags.split(' '):
-				if not item_tag in to_node.tags:
-					continue
-			
-			if len(prop.items) >= prop.max_quantity:
-				continue
-				
-			to_node.visible = not prop.invisible
-			
-			if to_node.has_node('Collision'):
-				to_node.get_node('Collision').disabled = true
-			
-			prop._add_item(to_node)
-			
-			container = prop.name
-			container_node = from_node.get_node(container)
-			
+		container = prop.name
+		container_node = prop
+		
+		if _is_container() and _try_container():
 			return true
 	
 	return false
@@ -101,8 +106,18 @@ func _ready():
 	if is_queued_for_deletion():
 		return
 	
-	if not _find_free_container():
-		queue_free()
+	
+	if not container:
+		
+		if not _find_free_container():
+			queue_free()
+		
+	else:
+		
+		container_node = from_node.get_node(container)
+		
+		if not _try_container():
+			queue_free()
 
 
 func _process(delta):

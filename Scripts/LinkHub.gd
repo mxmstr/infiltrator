@@ -37,7 +37,7 @@ func _create(type, data):
 		if link._equals(new_link):
 			return
 	
-	$'/root/Mission/Links'.add_child(new_link)
+	$'/root/Mission/Links'.call_deferred('add_child', new_link)
 	
 	return new_link
 

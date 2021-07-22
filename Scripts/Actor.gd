@@ -1,5 +1,6 @@
 extends Spatial
 
+export(NodePath) var new_owner
 export(String, MULTILINE) var tags
 
 var base_name
@@ -50,7 +51,10 @@ func _enter_tree():
 		
 		if child.get('make_unique') != null:
 			
-			Meta._make_unique(child)
+			if new_owner.is_empty():
+				Meta._make_unique(child)
+			else:
+				Meta._make_unique(child, get_node(new_owner))
 
 
 func _ready():

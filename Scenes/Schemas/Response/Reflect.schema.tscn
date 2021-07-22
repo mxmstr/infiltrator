@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Reflect"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Reception")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_reflect"
+} ]
+}
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/Reflect = SubResource( 1 )
+__meta__ = {
+
+}

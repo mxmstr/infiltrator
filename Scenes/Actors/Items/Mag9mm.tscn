@@ -1,18 +1,51 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=2]
 
-
-[node name="Mag9mm" type="Spatial"]
-script = ExtResource( 1 )
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
 
 }
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+__meta__ = {
+
+}
+
+[node name="Mag9mm" instance=ExtResource( 1 )]
 tags = "Magazine 9mm"
 
-[node name="Container" parent="." instance=ExtResource( 2 )]
+[node name="Container" parent="." index="0" instance=ExtResource( 2 )]
 path = NodePath("../../Mag9mm")
 max_quantity = 7
 invisible = true
 required_tags = "Bullet 9mm"
+
+[node name="Behavior" parent="." index="2"]
+parameters/playback = SubResource( 1 )
+parameters/Start/playback = SubResource( 2 )
+
+[node name="Reception" parent="." index="3"]
+parameters/playback = SubResource( 3 )
+
+[node name="Interface" parent="." index="4"]
+parameters/playback = SubResource( 4 )
+
+[node name="Audio" parent="." index="5"]
+parameters/playback = SubResource( 5 )

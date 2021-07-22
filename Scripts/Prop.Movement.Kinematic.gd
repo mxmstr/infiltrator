@@ -3,6 +3,7 @@ extends 'res://Scripts/Prop.Movement.gd'
 export var gravity = -300.0
 export var accel = 3
 export var deaccel = 5
+export var ghost = false
 
 signal move_and_slide
 
@@ -46,7 +47,7 @@ func _teleport(new_position=null, new_rotation=null):
 		owner.global_transform.origin = new_position
 	
 	if new_rotation != null:
-		owner.rotation = new_rotation
+		owner.global_transform.basis = new_rotation
 
 
 func _turn(delta):
@@ -84,8 +85,13 @@ func _physics_process(delta):
 	else:
 		factor = deaccel
 	
-	velocity = horizontal.linear_interpolate(new_velocity, factor * delta)
-	velocity.y += (delta * gravity)
-	velocity = owner.move_and_slide(velocity, Vector3(0, 1, 0))
+	if factor > 0:
+		velocity = horizontal.linear_interpolate(new_velocity, factor * delta)
+	else:
+		velocity = new_velocity
 	
-	emit_signal('move_and_slide', delta)
+	velocity.y += (delta * gravity)
+	
+	if not ghost:
+		velocity = owner.move_and_slide(velocity, Vector3(0, 1, 0))
+		emit_signal('move_and_slide', delta)

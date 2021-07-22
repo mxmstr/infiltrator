@@ -7,7 +7,6 @@ enum ContactType {
 
 export(String) var stim_type
 export var continuous = false
-export var send_to_self = false
 
 export(ContactType) var contact_type = ContactType.Collision
 export var max_distance = 0.0
@@ -42,10 +41,7 @@ func _physics_process(delta):
 				
 				var data
 				
-				if send_to_self:
-					Meta.StimulateActor(owner, stim_type, owner, $'../Movement'._get_speed(), collision.position, collision.normal)
-				else:
-					Meta.StimulateActor(collision.collider, stim_type, owner, $'../Movement'._get_speed() * -1, collision.position, collision.normal * -1)
+				Meta.StimulateActor(collision.collider, stim_type, owner, $'../Movement'._get_speed() * -1, collision.position, collision.normal * -1)
 				
 				emit_signal('triggered', data)
 			
@@ -65,10 +61,7 @@ func _physics_process(delta):
 				
 				var data
 				
-				if send_to_self:
-					Meta.StimulateActor(owner, stim_type, owner)
-				else:
-					Meta.StimulateActor(collision.collider, stim_type, owner)
+				Meta.StimulateActor(collision.collider, stim_type, owner)
 				
 				emit_signal('triggered', data)
 			

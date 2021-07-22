@@ -59,4 +59,6 @@ func _ready():
 			to_name = end_node
 		
 		
+		if not tree_root.has_node(from_name):
+			prints(from_name, name,  owner.name)
 		get_node(tree_node).tree_root.add_transition(from_name, to_name, transition.duplicate())

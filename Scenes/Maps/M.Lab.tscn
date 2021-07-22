@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Rooms/Room.Default.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=4]
-[ext_resource path="res://Models/Maps/Lab/Floor1.material" type="Material" id=5]
-[ext_resource path="res://Scenes/Components/Responses/R.Static.tscn" type="PackedScene" id=6]
-
-
+[ext_resource path="res://Scripts/Actor.gd" type="Script" id=5]
+[ext_resource path="res://Models/Maps/Lab/Floor1.material" type="Material" id=6]
+[ext_resource path="res://Scenes/Components/Responses/Touch.StaticGeometry.response.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=8]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -52,7 +52,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97539,
 "index_count": 522,
-"material": ExtResource( 5 ),
+"material": ExtResource( 6 ),
 "name": "Floor1",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -69,6 +69,11 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 __meta__ = {
 
 }
@@ -119,9 +124,11 @@ __meta__ = {
 
 [node name="Lab_Floor1" type="StaticBody" parent="Navmesh"]
 collision_layer = 1024
+script = ExtResource( 5 )
 __meta__ = {
 
 }
+new_owner = NodePath(".")
 
 [node name="Model" type="MeshInstance" parent="Navmesh/Lab_Floor1"]
 mesh = SubResource( 6 )
@@ -136,5 +143,9 @@ __meta__ = {
 
 }
 
-[node name="Receptor" parent="Navmesh/Lab_Floor1" instance=ExtResource( 6 )]
+[node name="TouchResponse" parent="Navmesh/Lab_Floor1" instance=ExtResource( 7 )]
 parameters/playback = SubResource( 8 )
+tree_node = NodePath("../Reception")
+
+[node name="Reception" parent="Navmesh/Lab_Floor1" instance=ExtResource( 8 )]
+parameters/playback = SubResource( 9 )
