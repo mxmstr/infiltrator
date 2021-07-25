@@ -10,16 +10,10 @@ func _ready():
 	if is_queued_for_deletion():
 		return
 	
-	
-	
 	products = products.c_escape().replace('\\n', ' ')
-#	products = products.strip_escapes()
 	
 	var new_product = {}
 	var i = 0
-	
-	print(products)
-	print(products.split(' ', false))
 	
 	for param in products.split(' ', false):
 		
@@ -55,8 +49,6 @@ func _create_product(target, target_container, amount, item):
 		Meta.CreateLink(target, new_actor, 'Contains', { 'container': target_container })
 		
 		for subproduct in products_list:
-			
-			#prints('asdf', subproduct.target.strip_edges(), product.item.strip_edges(), subproduct.target == product.item)
 			
 			if subproduct.target == item:
 				

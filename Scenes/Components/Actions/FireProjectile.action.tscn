@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+schema = "FireProjectile"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/FireProjectile/node = SubResource( 1 )
+states/FireProjectile/position = Vector2( 594.613, 99 )
+states/Start/node = SubResource( 2 )
+states/Start/position = Vector2( 247, 99 )
+transitions = [ "Start", "FireProjectile", SubResource( 3 ), "FireProjectile", "Start", SubResource( 4 ) ]
+start_node = "Start"
+graph_offset = Vector2( -71.387, -7.99613 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
+
+[node name="FireProjectileAction" type="AnimationTree"]
+tree_root = SubResource( 5 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 6 )
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 3 )
+__meta__ = {
+
+}

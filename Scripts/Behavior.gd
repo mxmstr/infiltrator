@@ -48,3 +48,7 @@ func _process(delta):
 	
 	var playback = get('parameters/playback')
 	var current_node = playback.get_current_node()
+	
+#	if owner.name == 'Pistol':
+#		print(current_node)
+		

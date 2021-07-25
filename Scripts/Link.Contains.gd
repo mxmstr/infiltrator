@@ -20,7 +20,6 @@ func _try_container():
 	
 	for item_tag in container_node.required_tags.split(' '):
 		if not item_tag in to_node.tags:
-			prints(to, 'bah1')
 			return false
 	
 	if len(container_node.items) >= container_node.max_quantity:
@@ -29,6 +28,7 @@ func _try_container():
 	to_node.visible = not container_node.invisible
 	
 	if to_node.has_node('Collision'):
+		prints('disabled', to_node.name)
 		to_node.get_node('Collision').disabled = true
 	
 	container_node._add_item(to_node)
@@ -128,18 +128,15 @@ func _process(delta):
 	_move_item()
 
 
-func _exit_tree():
-	
-	if not enabled:
-		return
+func _destroy():
 	
 	if container_node != null:
 		container_node._remove_item(to_node)
 	
-	
 	to_node.visible = true
 	
 	if to_node.has_node('Collision'):
+		prints('enabled', to_node.name)
 		to_node.get_node('Collision').disabled = false
 	
 	if container_node != null:
@@ -149,3 +146,5 @@ func _exit_tree():
 	
 #	if to_node.get('sleeping') != null:
 #		to_node.apply_impulse(Vector3(), Vector3(0, -10, 0))
+	
+	._destroy()

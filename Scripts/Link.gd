@@ -28,3 +28,8 @@ func _enter_tree():
 	
 	from_node.connect('tree_exited', self, 'queue_free')
 	to_node.connect('tree_exited', self, 'queue_free')
+
+
+func _destroy():
+	
+	queue_free()

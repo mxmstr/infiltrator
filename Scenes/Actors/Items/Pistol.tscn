@@ -1,11 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Actors/RigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Items/DD44/dd44.glb" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Actions/FireProjectile.action.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Actions/LoadChamber.action.tscn" type="PackedScene" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.2, 1, 1.5 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 __meta__ = {
 
 }
@@ -35,6 +42,11 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
 [node name="Pistol" instance=ExtResource( 1 )]
 tags = "Item Firearm 9mm One-handed Offset-position:neo_reference_skeleton:Hand-R:0.008,0.165,0.028 Offset-rotation:neo_reference_skeleton:Hand-R:90,0,180"
 
@@ -60,15 +72,23 @@ max_quantity = 1
 invisible = true
 required_tags = "Bullet 9mm"
 
-[node name="Behavior" parent="." index="5"]
+[node name="FireProjectileAction" parent="." index="4" instance=ExtResource( 4 )]
+parameters/playback = SubResource( 8 )
+tree_node = NodePath("../Behavior")
+
+[node name="LoadChamberAction" parent="." index="5" instance=ExtResource( 5 )]
 parameters/playback = SubResource( 2 )
-parameters/Start/playback = SubResource( 3 )
+tree_node = NodePath("../Behavior")
 
-[node name="Reception" parent="." index="6"]
-parameters/playback = SubResource( 4 )
+[node name="Behavior" parent="." index="7"]
+parameters/playback = SubResource( 3 )
+parameters/Start/playback = SubResource( 4 )
 
-[node name="Interface" parent="." index="7"]
+[node name="Reception" parent="." index="8"]
 parameters/playback = SubResource( 5 )
 
-[node name="Audio" parent="." index="8"]
+[node name="Interface" parent="." index="9"]
 parameters/playback = SubResource( 6 )
+
+[node name="Audio" parent="." index="10"]
+parameters/playback = SubResource( 7 )

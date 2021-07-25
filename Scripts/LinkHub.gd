@@ -62,4 +62,4 @@ func _destroy(type, data={}):
 			continue
 		
 		
-		link.queue_free()
+		link._destroy()

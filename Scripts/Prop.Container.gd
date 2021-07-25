@@ -54,7 +54,7 @@ func _has_item_with_tag(tag):
 	return false
 
 
-func _push_front_into_container(new_container):
+func _push_front_into_container(new_container, new_):
 	
 	if len(items) == 0:
 		return

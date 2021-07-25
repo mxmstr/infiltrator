@@ -15,6 +15,15 @@ func _evaluate():
 	exec.parse(expression, arguments.keys())
 	var result = exec.execute(arguments.values(), owner)
 	
+	if exec.has_execute_failed():
+		print(exec.get_error_text())
+	
+#	if owner.owner.name == 'Pistol':
+#		prints(owner.name, result, 
+#			true if owner.get_node('../Chamber')._is_empty() and not \
+#			owner.get_node('../Magazine')._is_empty() and not \
+#			owner.get_node('../Magazine').items[0].get_node('Container')._is_empty() else false)
+	
 	return result
 
 
@@ -29,7 +38,7 @@ func _update():
 		
 		_args.append(arg)
 	
-	disabled = _evaluate()
+	disabled = not _evaluate()
 
 
 func _on_state_starting(new_name):
