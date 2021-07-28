@@ -12,11 +12,6 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 __meta__ = {
 
@@ -47,11 +42,16 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+__meta__ = {
+
+}
+
 [node name="Pistol" instance=ExtResource( 1 )]
 tags = "Item Firearm 9mm One-handed Offset-position:neo_reference_skeleton:Hand-R:0.008,0.165,0.028 Offset-rotation:neo_reference_skeleton:Hand-R:90,0,180"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.0961252, -0.145615 )
+transform = Transform( 1.5, 0, 0, 0, 1.4987, -0.0625466, 0, 0.0625466, 1.4987, 0, -0.0961252, -0.145615 )
 
 [node name="Collision" type="CollisionShape" parent="." index="1"]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
@@ -68,27 +68,30 @@ required_tags = "Magazine 9mm"
 
 [node name="Chamber" parent="." index="3" instance=ExtResource( 3 )]
 path = NodePath("..")
+release_speed = 12.0
+release_direction = Vector3( 0, 0, -1 )
+release_exclude_parent = true
 max_quantity = 1
 invisible = true
 required_tags = "Bullet 9mm"
 
 [node name="FireProjectileAction" parent="." index="4" instance=ExtResource( 4 )]
-parameters/playback = SubResource( 8 )
-tree_node = NodePath("../Behavior")
-
-[node name="LoadChamberAction" parent="." index="5" instance=ExtResource( 5 )]
 parameters/playback = SubResource( 2 )
 tree_node = NodePath("../Behavior")
 
-[node name="Behavior" parent="." index="7"]
+[node name="LoadChamberAction" parent="." index="5" instance=ExtResource( 5 )]
 parameters/playback = SubResource( 3 )
-parameters/Start/playback = SubResource( 4 )
+tree_node = NodePath("../Behavior")
+
+[node name="Behavior" parent="." index="7"]
+parameters/playback = SubResource( 4 )
+parameters/Start/playback = SubResource( 5 )
 
 [node name="Reception" parent="." index="8"]
-parameters/playback = SubResource( 5 )
-
-[node name="Interface" parent="." index="9"]
 parameters/playback = SubResource( 6 )
 
-[node name="Audio" parent="." index="10"]
+[node name="Interface" parent="." index="9"]
 parameters/playback = SubResource( 7 )
+
+[node name="Audio" parent="." index="10"]
+parameters/playback = SubResource( 8 )

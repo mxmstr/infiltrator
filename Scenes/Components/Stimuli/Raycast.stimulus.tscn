@@ -1,10 +1,44 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Stimulus.Raycast.gd" type="Script" id=1]
 
+[sub_resource type="CapsuleMesh" id=3]
+radius = 0.1
+__meta__ = {
+
+}
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.5, 0.5, 0.5 )
+__meta__ = {
+
+}
+
 [node name="RaycastStim" type="RayCast"]
 enabled = true
+cast_to = Vector3( 0, 0, -1 )
 script = ExtResource( 1 )
+__meta__ = {
+
+}
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 3 )
+material/0 = null
+__meta__ = {
+
+}
+
+[node name="Target" type="Spatial" parent="."]
+__meta__ = {
+
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="Target"]
+visible = false
+mesh = SubResource( 2 )
+material/0 = null
 __meta__ = {
 
 }

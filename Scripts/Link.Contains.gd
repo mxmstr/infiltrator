@@ -28,7 +28,6 @@ func _try_container():
 	to_node.visible = not container_node.invisible
 	
 	if to_node.has_node('Collision'):
-		prints('disabled', to_node.name)
 		to_node.get_node('Collision').disabled = true
 	
 	container_node._add_item(to_node)
@@ -136,13 +135,12 @@ func _destroy():
 	to_node.visible = true
 	
 	if to_node.has_node('Collision'):
-		prints('enabled', to_node.name)
 		to_node.get_node('Collision').disabled = false
 	
 	if container_node != null:
 		if to_node.has_node('Movement'):
 			to_node.get_node('Movement')._set_speed(container_node.release_speed)
-			to_node.get_node('Movement')._set_direction(container_node.release_direction)
+			to_node.get_node('Movement')._set_direction(container_node.release_direction, true)
 	
 #	if to_node.get('sleeping') != null:
 #		to_node.apply_impulse(Vector3(), Vector3(0, -10, 0))

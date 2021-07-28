@@ -17,7 +17,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -26,13 +26,13 @@ __meta__ = {
 chain = false
 schema = "Reflect"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 auto_advance = true
 disabled = true
 script = ExtResource( 2 )
@@ -41,34 +41,35 @@ __meta__ = {
 }
 transition_expression = ""
 update_mode = "state_starting"
-expression = "data.collider._has_tag(TAG)"
+expression = "data.get(SOURCE)._has_tag(TAG)"
 arguments = {
+"SOURCE": "source",
 "TAG": "Bullet"
 }
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=6]
+[sub_resource type="AnimationNodeStateMachine" id=8]
 states/End/node = SubResource( 1 )
 states/End/position = Vector2( 908.613, 146 )
 states/HitEffect/node = SubResource( 2 )
 states/HitEffect/position = Vector2( 414.613, 146 )
-states/Reflect/node = SubResource( 8 )
+states/Reflect/node = SubResource( 3 )
 states/Reflect/position = Vector2( 675.613, 146 )
-states/Touch/node = SubResource( 3 )
+states/Touch/node = SubResource( 4 )
 states/Touch/position = Vector2( 154, 146 )
-transitions = [ "Touch", "HitEffect", SubResource( 4 ), "HitEffect", "Reflect", SubResource( 9 ), "Reflect", "End", SubResource( 10 ) ]
+transitions = [ "Touch", "HitEffect", SubResource( 5 ), "HitEffect", "Reflect", SubResource( 6 ), "Reflect", "End", SubResource( 7 ) ]
 start_node = "Touch"
 end_node = "End"
 graph_offset = Vector2( -51.0486, -7.99613 )
@@ -76,15 +77,15 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 __meta__ = {
 
 }
 
 [node name="TouchResponse" type="AnimationTree"]
-tree_root = SubResource( 6 )
+tree_root = SubResource( 8 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 7 )
+parameters/playback = SubResource( 9 )
 script = ExtResource( 3 )
 __meta__ = {
 

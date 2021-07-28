@@ -37,6 +37,8 @@ func _start_state(_name, _data={}):
 	
 	data = _data
 	
+	#prints(owner.name, name)
+	
 	if tree_root.has_method('_travel'):
 		tree_root._travel(_name)
 

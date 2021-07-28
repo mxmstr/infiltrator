@@ -139,8 +139,12 @@ __meta__ = {
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 
+[node name="neo_reference_skeleton" parent="Model" index="0"]
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+bones/16/bound_children = [ NodePath("BoneAttachment") ]
+
 [node name="BoneAttachment" type="BoneAttachment" parent="Model/neo_reference_skeleton" index="1"]
-transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
+transform = Transform( 0.810113, -0.507114, 0.294198, 0.0919736, -0.385668, -0.918042, 0.579015, 0.770777, -0.265794, 0.42488, 0.579681, 0.361082 )
 bone_name = "Gun"
 __meta__ = {
 

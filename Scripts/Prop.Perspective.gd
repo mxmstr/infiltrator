@@ -86,14 +86,14 @@ func _init_viewport():
 	$Container/Viewport.size = get_tree().root.size
 	
 	
-#	for child in owner.get_children():
-#
-#		var script_name = child.get_script().get_path().get_file() if child.get_script() != null else ''
-#
-#		if script_name == 'Prop.Container.gd' and child.bone_name != '':
-#
-#			child.connect('item_added', self, '_on_item_contained')
-#			child.connect('item_removed', self, '_on_item_released')
+	for child in owner.get_children():
+
+		var script_name = child.get_script().get_path().get_file() if child.get_script() != null else ''
+
+		if script_name == 'Prop.Container.gd' and child.bone_name != '':
+
+			child.connect('item_added', self, '_on_item_contained')
+			child.connect('item_removed', self, '_on_item_released')
 	
 	
 	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
@@ -109,5 +109,5 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	#_init_fp_skeleton()
+	_init_fp_skeleton()
 	_init_viewport()

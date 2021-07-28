@@ -2,10 +2,13 @@ extends Node
 
 export(NodePath) var path
 export(String) var bone_name
+export var parent_position = true
+export var parent_rotation = true
 export(Vector3) var position_offset
 export(Vector3) var rotation_degrees_offset
 export(float) var release_speed
 export(Vector3) var release_direction
+export var release_exclude_parent = false
 export(int) var max_quantity
 export(bool) var invisible
 export(bool) var interactable
@@ -54,7 +57,7 @@ func _has_item_with_tag(tag):
 	return false
 
 
-func _push_front_into_container(new_container, new_):
+func _push_front_into_container(new_container):
 	
 	if len(items) == 0:
 		return
@@ -64,12 +67,25 @@ func _push_front_into_container(new_container, new_):
 	Meta.CreateLink(owner, item, 'Contains', {'container': new_container})
 
 
+func _exclude_recursive(item, parent):
+	
+	item.add_collision_exception_with(parent)
+	
+	for link in Meta.GetLinks(null, parent, 'Contains'):
+		
+		item.add_collision_exception_with(link.owner)
+		_exclude_recursive(item, link.owner)
+
+
 func _release_front():
 	
 	if len(items) == 0:
 		return
 	
 	var item = items[0]
+	
+	if release_exclude_parent:
+		_exclude_recursive(item, owner)
 	
 	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
 	

@@ -24,6 +24,8 @@ func _get_links(type, data={}):
 		
 		
 		links.append(link)
+	
+	return links
 
 
 func _create(type, data):

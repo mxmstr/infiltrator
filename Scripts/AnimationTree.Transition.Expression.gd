@@ -16,13 +16,7 @@ func _evaluate():
 	var result = exec.execute(arguments.values(), owner)
 	
 	if exec.has_execute_failed():
-		print(exec.get_error_text())
-	
-#	if owner.owner.name == 'Pistol':
-#		prints(owner.name, result, 
-#			true if owner.get_node('../Chamber')._is_empty() and not \
-#			owner.get_node('../Magazine')._is_empty() and not \
-#			owner.get_node('../Magazine').items[0].get_node('Container')._is_empty() else false)
+		prints(exec.get_error_text())#, expression)
 	
 	return result
 

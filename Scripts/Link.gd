@@ -26,10 +26,12 @@ func _enter_tree():
 	from_node = get_node(from)
 	to_node = get_node(to)
 	
-	from_node.connect('tree_exited', self, 'queue_free')
-	to_node.connect('tree_exited', self, 'queue_free')
+#	from_node.connect('tree_exited', self, 'queue_free')
+#	to_node.connect('tree_exited', self, 'queue_free')
 
 
 func _destroy():
+	
+	set_process(false)
 	
 	queue_free()

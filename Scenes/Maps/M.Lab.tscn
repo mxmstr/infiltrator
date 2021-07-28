@@ -123,12 +123,12 @@ __meta__ = {
 }
 
 [node name="Lab_Floor1" type="StaticBody" parent="Navmesh"]
-collision_layer = 1024
 script = ExtResource( 5 )
 __meta__ = {
 
 }
 new_owner = NodePath(".")
+tags = "Map"
 
 [node name="Model" type="MeshInstance" parent="Navmesh/Lab_Floor1"]
 mesh = SubResource( 6 )

@@ -49,9 +49,22 @@ func _stimulate(stim_type_override=''):
 
 func _update_raycast_selection():
 	
-	selection = get_collider() if _has_selection() else null
+#	if get_collider():
+#		prints(get_collider().name, get_collision_point())
+	
+	$Target.global_transform.origin = get_collision_point()
+	
+	if _has_selection():
+		
+		selection = get_collider()
 	
 	emit_signal('selection_changed', selection)
+
+
+func _reset_root():
+	
+	root.translation = Vector3()
+	root.rotation_degrees = Vector3()
 
 
 func _ready():
@@ -61,7 +74,8 @@ func _ready():
 	
 	if bone_name != '':
 		root.bone_name = bone_name
-	
+		
+	_reset_root()
 	#add_exception(owner)
 
 

@@ -70,7 +70,7 @@ func _make_unique(old, new_owner=null):
 		new.set_owner(old.owner)
 	
 	old.get_parent().remove_child(old)
-	old.queue_free()
+	old.free()
 	
 	
 	dir.remove(new_filename)
@@ -182,7 +182,7 @@ func GetLinks(from, to, type, data={}):
 	if to != null:
 		data.to = to.get_path()
 	
-	LinkHub._get_links(type, data)
+	return LinkHub._get_links(type, data)
 
 
 func CreateLink(from, to, type, data={}):
@@ -206,7 +206,10 @@ func DestroyLink(from, to, type, data={}):
 
 func StimulateActor(actor, stim, source=self, intensity=0.0, position=Vector3(), direction=Vector3()):
 	
-	if actor.has_node('Perception'):
+	if not weakref(actor).get_ref() or not weakref(source).get_ref():
+		return
+	
+	if actor.has_node('Reception'):
 		
 		var data = {
 			'source': source,
@@ -215,7 +218,7 @@ func StimulateActor(actor, stim, source=self, intensity=0.0, position=Vector3(),
 			'intensity': intensity
 			}
 		
-		actor.get_node('Perception')._start_state(stim, data)
+		actor.get_node('Reception')._start_state(stim, data)
 
 
 func CreateEvent(actor, event_name):
