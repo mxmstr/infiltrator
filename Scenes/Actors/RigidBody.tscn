@@ -7,6 +7,8 @@
 [ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=6]
 
+
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
 

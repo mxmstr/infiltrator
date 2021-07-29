@@ -30,6 +30,8 @@
 
 
 
+
+
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.15, 0.75, 0.15 )
 __meta__ = {

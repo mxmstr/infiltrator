@@ -2,6 +2,8 @@
 
 [ext_resource path="res://Scenes/Markers/Waypoint.tres" type="PrismMesh" id=1]
 
+
+
 [node name="Waypoint" type="Spatial"]
 __meta__ = {
 

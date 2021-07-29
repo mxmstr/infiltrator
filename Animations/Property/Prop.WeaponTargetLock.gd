@@ -11,7 +11,7 @@ func _on_fire(container, projectile):
 		projectile.global_transform.origin.direction_to(get_node(target).global_transform.origin)
 	)
 	
-	projectile.look_at(get_node(target).global_transform.origin, Vector3(0, 1, 0))
+	projectile.look_at(target_pos, Vector3(0, 1, 0))
 
 
 func _on_item_equipped(container, item):

@@ -3,6 +3,8 @@
 [ext_resource path="res://Scripts/Marker.Waypoint.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Markers/Waypoint.tres" type="PrismMesh" id=2]
 
+
+
 [node name="Waypoint" type="Spatial"]
 script = ExtResource( 1 )
 __meta__ = {

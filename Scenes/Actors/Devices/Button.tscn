@@ -5,6 +5,8 @@
 [ext_resource path="res://Models/Devices/Button/Button.Collision.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/Behaviors/B.Button.tscn" type="PackedScene" id=4]
 
+
+
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 0.260087, 1 )
 __meta__ = {

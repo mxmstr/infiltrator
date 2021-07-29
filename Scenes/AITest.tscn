@@ -6,6 +6,8 @@
 [ext_resource path="res://Scenes/Links/ControlDevice.link.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=5]
 
+
+
 [node name="Mission" type="Spatial"]
 __meta__ = {
 

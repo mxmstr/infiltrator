@@ -4,7 +4,7 @@
 resource_name = "Explode"
 length = 0.001
 tracks/0/type = "method"
-tracks/0/path = NodePath("..")
+tracks/0/path = NodePath("/root/Meta")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -13,8 +13,36 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
+"args": [ "Particles/Smoke", "$data:position" ],
+"method": "AddActor"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
 "args": [  ],
 "method": "queue_free"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("/root/Meta")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Particles/Sparks", "$data:position", null, "$data:direction" ],
+"method": "AddActor"
 } ]
 }
 __meta__ = {

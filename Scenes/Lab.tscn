@@ -19,7 +19,7 @@ __meta__ = {
 }
 
 [node name="Infiltrator" parent="Actors" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.28247, 0.544813, -4.60211 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.54618, 0.29421, 0 )
 
 [node name="Pistol" parent="Actors" instance=ExtResource( 2 )]
 

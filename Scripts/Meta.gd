@@ -151,13 +151,21 @@ func _get_children_recursive(node, children=[]):
 	return children
 
 
-func AddActor(actor_path, position=Vector3(), rotation=Vector3()):
+func AddActor(actor_path, position=null, rotation=null, direction=null):
 	
 	var new_actor = load('res://Scenes/Actors/' + actor_path + '.tscn').instance()
 	$'/root/Mission/Actors'.add_child(new_actor)
 	
-	new_actor.global_transform.origin = position
-	new_actor.rotation_degrees = rotation
+	if position:
+		new_actor.global_transform.origin = position
+	
+	if rotation:
+		new_actor.rotation_degrees = rotation
+	
+	if direction:
+		
+		var target = new_actor.global_transform.origin - direction
+		new_actor.look_at(target, Vector3(0, 1, 0))
 	
 	return new_actor
 

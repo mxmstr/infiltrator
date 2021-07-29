@@ -2,6 +2,8 @@
 
 [ext_resource path="res://Scenes/Rooms/Room.Hallway.Large.tres" type="Material" id=1]
 
+
+
 [sub_resource type="CubeMesh" id=1]
 
 material = ExtResource( 1 )

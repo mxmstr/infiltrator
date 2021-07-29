@@ -11,6 +11,8 @@
 [ext_resource path="res://Scenes/Components/Inputs/PrimaryAction.input.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Animations/Property/Prop.WeaponTargetLock.gd" type="Script" id=10]
 
+
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
 

@@ -4,6 +4,8 @@
 [ext_resource path="res://Scenes/Components/Stimuli/AudibleEvent.stimulus.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Prop.Life.gd" type="Script" id=3]
 
+
+
 [node name="Noise" type="Spatial"]
 script = ExtResource( 1 )
 __meta__ = {

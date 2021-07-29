@@ -13,9 +13,12 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
+script = ExtResource( 1 )
 __meta__ = {
 
 }
+chain = false
+schema = ""
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
@@ -63,13 +66,13 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/End/node = SubResource( 1 )
 states/End/position = Vector2( 908.613, 146 )
-states/HitEffect/node = SubResource( 2 )
-states/HitEffect/position = Vector2( 414.613, 146 )
+states/ImpactEffect/node = SubResource( 2 )
+states/ImpactEffect/position = Vector2( 414.613, 146 )
 states/Reflect/node = SubResource( 3 )
 states/Reflect/position = Vector2( 675.613, 146 )
 states/Touch/node = SubResource( 4 )
 states/Touch/position = Vector2( 154, 146 )
-transitions = [ "Touch", "HitEffect", SubResource( 5 ), "HitEffect", "Reflect", SubResource( 6 ), "Reflect", "End", SubResource( 7 ) ]
+transitions = [ "Touch", "ImpactEffect", SubResource( 5 ), "ImpactEffect", "Reflect", SubResource( 6 ), "Reflect", "End", SubResource( 7 ) ]
 start_node = "Touch"
 end_node = "End"
 graph_offset = Vector2( -51.0486, -7.99613 )

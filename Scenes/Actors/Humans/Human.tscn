@@ -17,6 +17,8 @@
 [ext_resource path="res://Scenes/Components/Sounds/Step.sound.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=16]
 
+
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
 

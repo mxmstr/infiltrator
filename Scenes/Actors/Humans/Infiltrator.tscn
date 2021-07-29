@@ -104,6 +104,11 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+__meta__ = {
+
+}
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 __meta__ = {
 
@@ -155,11 +160,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=32]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 __meta__ = {
 
 }
@@ -227,34 +227,34 @@ parameters/Shoot/playback = SubResource( 19 )
 parameters/Shoot/NotEmpty/SwitchBlendModes/playback = SubResource( 20 )
 
 [node name="ImpactSound" parent="." index="24"]
-parameters/playback = SubResource( 22 )
-parameters/Impact/playback = SubResource( 23 )
+parameters/playback = SubResource( 21 )
+parameters/Impact/playback = SubResource( 22 )
 
 [node name="StepSound" parent="." index="25"]
-parameters/playback = SubResource( 24 )
-parameters/Step/playback = SubResource( 25 )
+parameters/playback = SubResource( 23 )
+parameters/Step/playback = SubResource( 24 )
 
 [node name="VoiceAudio" parent="." index="26"]
-parameters/playback = SubResource( 26 )
+parameters/playback = SubResource( 25 )
 
 [node name="FoleyAudio" parent="." index="27"]
-parameters/playback = SubResource( 27 )
+parameters/playback = SubResource( 26 )
 
 [node name="FeetAudio" parent="." index="28"]
-parameters/playback = SubResource( 28 )
+parameters/playback = SubResource( 27 )
 
 [node name="Behavior" parent="." index="30"]
-parameters/playback = SubResource( 29 )
-parameters/Start/playback = SubResource( 30 )
+parameters/playback = SubResource( 28 )
+parameters/Start/playback = SubResource( 29 )
 
 [node name="Reception" parent="." index="31"]
-parameters/playback = SubResource( 31 )
+parameters/playback = SubResource( 30 )
 
 [node name="Interface" parent="." index="32"]
-parameters/playback = SubResource( 32 )
+parameters/playback = SubResource( 31 )
 
 [node name="Audio" parent="." index="33"]
-parameters/playback = SubResource( 33 )
+parameters/playback = SubResource( 32 )
 
 [editable path="Model"]
 
