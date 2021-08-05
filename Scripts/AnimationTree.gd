@@ -35,6 +35,9 @@ func _on_post_call_method_track(_animation, track_index, key_index):
 
 func _start_state(_name, _data={}):
 	
+	if not active:
+		return
+	
 	data = _data
 	
 	#prints(owner.name, name)

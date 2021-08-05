@@ -30,6 +30,9 @@ func _try_container():
 	if to_node.has_node('Collision'):
 		to_node.get_node('Collision').disabled = true
 	
+	if to_node.has_node('Reception'):
+		to_node.get_node('Reception').active = false
+	
 	container_node._add_item(to_node)
 	
 	return true
@@ -136,6 +139,9 @@ func _destroy():
 	
 	if to_node.has_node('Collision'):
 		to_node.get_node('Collision').disabled = false
+	
+	if to_node.has_node('Reception'):
+		to_node.get_node('Reception').active = true
 	
 	if container_node != null:
 		if to_node.has_node('Movement'):

@@ -13,8 +13,6 @@ export var max_distance = 0.0
 
 var collisions = []
 
-signal triggered
-
 
 func _ready():
 	
@@ -39,11 +37,7 @@ func _physics_process(delta):
 			
 			if continuous or not collision.collider in colliders:
 				
-				var data
-				
 				Meta.StimulateActor(collision.collider, stim_type, owner, $'../Movement'._get_speed() * -1, collision.position, collision.normal * -1)
-				
-				emit_signal('triggered', data)
 			
 			new_collisions.append(collision)
 	

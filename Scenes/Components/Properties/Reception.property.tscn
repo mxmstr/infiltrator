@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
@@ -11,7 +11,13 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
@@ -20,25 +26,28 @@ __meta__ = {
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 auto_advance = true
 priority = 32
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=2]
-states/Start/node = SubResource( 1 )
-states/Start/position = Vector2( 439, 351 )
-states/Touch/node = SubResource( 4 )
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/End/node = SubResource( 1 )
+states/End/position = Vector2( 887, 299.905 )
+states/Start/node = SubResource( 2 )
+states/Start/position = Vector2( 419, 299.905 )
+states/Touch/node = SubResource( 3 )
 states/Touch/position = Vector2( 654, 299.905 )
-transitions = [ "Start", "Touch", SubResource( 5 ), "Touch", "Start", SubResource( 6 ) ]
+transitions = [ "Start", "Touch", SubResource( 4 ), "Touch", "End", SubResource( 5 ) ]
 start_node = "Start"
+end_node = "End"
 graph_offset = Vector2( 0, 188.905 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -46,15 +55,15 @@ __meta__ = {
 }
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 __meta__ = {
 
 }
 
 [node name="Reception" type="AnimationTree"]
-tree_root = SubResource( 2 )
+tree_root = SubResource( 6 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 7 )
 script = ExtResource( 3 )
 __meta__ = {
 

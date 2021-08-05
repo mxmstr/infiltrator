@@ -1,0 +1,144 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Reception.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Reflect"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = false
+schema = "Reflect"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "DefaultAnim"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "data.get(SOURCE)._has_tag(TAG)"
+arguments = {
+"SOURCE": "source",
+"TAG": "Bullet"
+}
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=10]
+states/ImpactEffect/node = SubResource( 1 )
+states/ImpactEffect/position = Vector2( 0, 0 )
+states/Reflect/node = SubResource( 2 )
+states/Reflect/position = Vector2( 0, 0 )
+states/Start/node = SubResource( 3 )
+states/Start/position = Vector2( 439, 351 )
+states/Touch/node = SubResource( 4 )
+states/Touch/position = Vector2( 654, 299.905 )
+transitions = [ "Start", "Touch", SubResource( 5 ), "Touch", "Start", SubResource( 6 ), "Touch", "ImpactEffect", SubResource( 7 ), "ImpactEffect", "Reflect", SubResource( 8 ), "Reflect", "Start", SubResource( 9 ) ]
+start_node = "Start"
+graph_offset = Vector2( 0, 188.905 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Reflect"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Reception")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_reflect"
+} ]
+}
+__meta__ = {
+
+}
+
+[node name="Reception" type="AnimationTree"]
+tree_root = SubResource( 10 )
+anim_player = NodePath("AnimationPlayer")
+active = true
+parameters/playback = SubResource( 11 )
+script = ExtResource( 4 )
+__meta__ = {
+"unique": true
+}
+schema_type = "Action"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 5 )
+anims/Reflect = SubResource( 12 )
+__meta__ = {
+
+}

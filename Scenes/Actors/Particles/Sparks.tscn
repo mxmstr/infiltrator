@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Actors/Particles/red_robot/laser/impact_effect/EmissionEmbers.tres" type="Material" id=1]
 [ext_resource path="res://Scripts/Particles.gd" type="Script" id=2]
@@ -23,12 +23,18 @@ __meta__ = {
 
 }
 
-[node name="BuildupParticles" type="CPUParticles"]
+[sub_resource type="PrismMesh" id=4]
+size = Vector3( 0.1, 0.1, 0.1 )
+__meta__ = {
+
+}
+
+[node name="Sparks" type="CPUParticles"]
 transform = Transform( 1, 3.70164e-10, 5.82077e-11, 3.66526e-10, 1, 9.31323e-10, 0, 1.86265e-09, 1, -1.39698e-09, 0, -1.47648 )
 material_override = ExtResource( 1 )
 emitting = false
 amount = 10
-lifetime = 0.3
+lifetime = 0.15
 one_shot = true
 mesh = SubResource( 1 )
 flag_align_y = true
@@ -44,6 +50,13 @@ scale_amount_curve = SubResource( 2 )
 color_ramp = SubResource( 3 )
 hue_variation_random = 0.87
 script = ExtResource( 2 )
+__meta__ = {
+
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 4 )
+material/0 = null
 __meta__ = {
 
 }

@@ -69,8 +69,6 @@ func _evaluate(expression, arguments):
 	var result = exec.execute(arguments.values(), self)
 	
 	if exec.has_execute_failed():
-		#print(get_node('Magazine').items[0]._release_front())
-		#print(_get_meta().CreateLink(self,  get_node(MAGAZINE).items[0]._release_front(), CONTAINS, { container: CHAMBER } ))
 		prints(exec.get_error_text())
 	
 	return result

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=2]
@@ -7,12 +7,9 @@
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
-script = ExtResource( 1 )
 __meta__ = {
 
 }
-chain = true
-schema = "Die"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
@@ -26,8 +23,8 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
-chain = true
-schema = "Explode"
+chain = false
+schema = ""
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
@@ -35,8 +32,8 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
-chain = true
-schema = "TPToCollisionPoint"
+chain = false
+schema = "Reflect"
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
@@ -56,25 +53,23 @@ update_mode = "state_starting"
 expression = "data.get(SOURCE)._has_tag(TAG)"
 arguments = {
 "SOURCE": "source",
-"TAG": "Map"
+"TAG": "Bullet"
 }
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
 auto_advance = true
-disabled = true
-script = ExtResource( 2 )
 __meta__ = {
 
 }
-transition_expression = ""
-update_mode = "state_starting"
-expression = "data.get(SOURCE)._has_tag(TAG)"
-arguments = {
-"SOURCE": "source",
-"TAG": "Hitbox"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
 }
-wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 switch_mode = 2
@@ -83,48 +78,34 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=12]
-states/Die/node = SubResource( 1 )
-states/Die/position = Vector2( 802.951, 53 )
+[sub_resource type="AnimationNodeStateMachine" id=10]
+states/DefaultAnim/node = SubResource( 1 )
+states/DefaultAnim/position = Vector2( 823.951, 85.1714 )
 states/End/node = SubResource( 2 )
-states/End/position = Vector2( 992.613, 147 )
-states/Explode/node = SubResource( 3 )
-states/Explode/position = Vector2( 386.613, 53 )
-states/TPToCollisionPoint/node = SubResource( 4 )
-states/TPToCollisionPoint/position = Vector2( 602.951, 53 )
+states/End/position = Vector2( 966.613, 146 )
+states/ImpactEffect/node = SubResource( 3 )
+states/ImpactEffect/position = Vector2( 414.613, 146 )
+states/Reflect/node = SubResource( 4 )
+states/Reflect/position = Vector2( 675.613, 146 )
 states/Touch/node = SubResource( 5 )
-states/Touch/position = Vector2( 231, 147 )
-transitions = [ "Touch", "Explode", SubResource( 6 ), "Touch", "Die", SubResource( 7 ), "Die", "End", SubResource( 9 ), "Explode", "TPToCollisionPoint", SubResource( 10 ), "TPToCollisionPoint", "Die", SubResource( 11 ) ]
+states/Touch/position = Vector2( 154, 146 )
+transitions = [ "Touch", "ImpactEffect", SubResource( 6 ), "ImpactEffect", "Reflect", SubResource( 7 ), "Reflect", "DefaultAnim", SubResource( 8 ), "DefaultAnim", "End", SubResource( 9 ) ]
 start_node = "Touch"
 end_node = "End"
-graph_offset = Vector2( -51.0486, -7.99613 )
+graph_offset = Vector2( -51.0486, 40.1714 )
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 __meta__ = {
 
 }
 
 [node name="TouchResponse" type="AnimationTree"]
-tree_root = SubResource( 12 )
+tree_root = SubResource( 10 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 13 )
+parameters/playback = SubResource( 11 )
 script = ExtResource( 3 )
 __meta__ = {
 

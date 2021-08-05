@@ -97,6 +97,26 @@ func _travel(_name):
 	
 	playback.travel(_name)
 	
+	if not playback.is_playing():
+		prints('Not playing', owner.owner.name)
+	
+	owner.advance(0.01)
+	owner.emit_signal('on_process', 0)
+
+
+func _start(_name):
+	
+	var playback = owner.get(parameters + 'playback')
+	var current = playback.get_current_node()
+	
+	if not has_node(_name):
+		return
+	
+	
+	owner.emit_signal('travel_starting', _name, get_node(_name))
+	
+	playback.start(_name)
+	
 	owner.advance(0.01)
 	owner.emit_signal('on_process', 0)
 

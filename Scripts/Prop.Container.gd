@@ -69,11 +69,12 @@ func _push_front_into_container(new_container):
 
 func _exclude_recursive(item, parent):
 	
+#	if item is Area:
+#		item
+#	else:
 	item.add_collision_exception_with(parent)
 	
 	for link in Meta.GetLinks(null, parent, 'Contains'):
-		
-		item.add_collision_exception_with(link.owner)
 		_exclude_recursive(item, link.owner)
 
 

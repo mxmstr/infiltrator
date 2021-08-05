@@ -1,12 +1,172 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Infiltrator.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Items/Pistol.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Links/Contains.link.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Links/Factory.link.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Links/LocalCoopPartner.link.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Links/ControlDevice.link.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Links/Contains.link.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Links/Factory.link.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Links/LocalCoopPartner.link.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=7]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=32]
+__meta__ = {
+
+}
 
 [node name="Mission" type="Spatial"]
 __meta__ = {
@@ -19,9 +179,89 @@ __meta__ = {
 }
 
 [node name="Infiltrator" parent="Actors" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.54618, 0.29421, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.06246, 0.29421, -0.2267 )
+
+[node name="MoveRightInput" parent="Actors/Infiltrator" index="3"]
+parameters/playback = SubResource( 1 )
+
+[node name="MoveLeftInput" parent="Actors/Infiltrator" index="4"]
+parameters/playback = SubResource( 2 )
+
+[node name="MoveSidestepStopInput" parent="Actors/Infiltrator" index="5"]
+parameters/playback = SubResource( 3 )
+
+[node name="MoveForwardInput" parent="Actors/Infiltrator" index="6"]
+parameters/playback = SubResource( 4 )
+
+[node name="MoveBackwardInput" parent="Actors/Infiltrator" index="7"]
+parameters/playback = SubResource( 5 )
+
+[node name="MoveForwardStopInput" parent="Actors/Infiltrator" index="8"]
+parameters/playback = SubResource( 6 )
+
+[node name="CrouchInput" parent="Actors/Infiltrator" index="9"]
+parameters/playback = SubResource( 7 )
+
+[node name="PrimaryActionInput" parent="Actors/Infiltrator" index="10"]
+parameters/playback = SubResource( 8 )
+
+[node name="Camera" parent="Actors/Infiltrator/CameraRig" index="0"]
+transform = Transform( 1, -2.65699e-08, -9.00222e-09, 2.65699e-08, 0.794053, 0.607849, -9.00225e-09, -0.607849, 0.794053, 8.9407e-08, 2.4964, 1.18062 )
+
+[node name="AnimLayerMovement" parent="Actors/Infiltrator" index="21"]
+parameters/0/0/playback = SubResource( 9 )
+parameters/1/0/playback = SubResource( 10 )
+
+[node name="Perspective" parent="Actors/Infiltrator" index="22"]
+parameters/playback = SubResource( 11 )
+
+[node name="JumpOrClimbAction" parent="Actors/Infiltrator" index="23"]
+parameters/playback = SubResource( 12 )
+parameters/Climb/playback = SubResource( 13 )
+parameters/Jump/3/playback = SubResource( 14 )
+parameters/Jump/4/playback = SubResource( 15 )
+parameters/Jump/5/playback = SubResource( 16 )
+
+[node name="PrimaryAction" parent="Actors/Infiltrator" index="24"]
+parameters/playback = SubResource( 17 )
+parameters/Primary/playback = SubResource( 18 )
+parameters/Shoot/playback = SubResource( 19 )
+parameters/Shoot/NotEmpty/SwitchBlendModes/playback = SubResource( 20 )
+
+[node name="ImpactSound" parent="Actors/Infiltrator" index="25"]
+parameters/playback = SubResource( 21 )
+parameters/Impact/playback = SubResource( 22 )
+
+[node name="StepSound" parent="Actors/Infiltrator" index="26"]
+parameters/playback = SubResource( 23 )
+parameters/Step/playback = SubResource( 24 )
+
+[node name="VoiceAudio" parent="Actors/Infiltrator" index="27"]
+parameters/playback = SubResource( 25 )
+
+[node name="FoleyAudio" parent="Actors/Infiltrator" index="28"]
+parameters/playback = SubResource( 26 )
+
+[node name="FeetAudio" parent="Actors/Infiltrator" index="29"]
+parameters/playback = SubResource( 27 )
+
+[node name="Behavior" parent="Actors/Infiltrator" index="31"]
+parameters/playback = SubResource( 28 )
+parameters/Start/playback = SubResource( 29 )
+
+[node name="Reception" parent="Actors/Infiltrator" index="32"]
+parameters/playback = SubResource( 30 )
+
+[node name="Interface" parent="Actors/Infiltrator" index="33"]
+parameters/playback = SubResource( 31 )
+
+[node name="Audio" parent="Actors/Infiltrator" index="34"]
+parameters/playback = SubResource( 32 )
 
 [node name="Pistol" parent="Actors" instance=ExtResource( 2 )]
+
+[node name="Hitboxes" parent="Actors" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.57794, 0.186518, -0.251163 )
 
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {
@@ -33,33 +273,21 @@ __meta__ = {
 
 }
 
-[node name="InfContainsPistol" parent="Links" instance=ExtResource( 3 )]
+[node name="InfContainsPistol" parent="Links" instance=ExtResource( 4 )]
 from = NodePath("../../Actors/Infiltrator")
 to = NodePath("../../Actors/Pistol")
 container = "RightHandContainer"
 
-[node name="InfPistolAmmoFactory" parent="Links" instance=ExtResource( 4 )]
+[node name="InfPistolAmmoFactory" parent="Links" instance=ExtResource( 5 )]
 from = NodePath("../../Actors/Pistol")
 to = NodePath("../../Actors/Pistol")
 container = "Magazine"
 products = "target target_container << 1 Items/Mag9mm 
- Items/Mag9mm Container << 7 Items/Bullet9mm"
+ Items/Mag9mm Container << 50 Items/Bullet9mm"
 
-[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 5 )]
-from = NodePath("../../../Mission/Actors/Player2")
-to = NodePath("../../../Mission/Actors/Player")
-
-[node name="ControlDevice" parent="Links" instance=ExtResource( 6 )]
-from = NodePath("../../../Mission/Actors/Button")
-to = NodePath("../../../Mission/Actors/Door")
-from_interaction = "Push"
-to_interaction = "Open"
-
-[node name="ControlDevice2" parent="Links" instance=ExtResource( 6 )]
-from = NodePath("../../../Mission/Actors/Button")
-to = NodePath("../../../Mission/Actors/Door")
-from_interaction = "Push"
-to_interaction = "Close"
+[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 6 )]
+enabled = false
+to = NodePath("../../Actors/Infiltrator")
 
 [node name="Static" type="Spatial" parent="."]
 __meta__ = {
@@ -80,3 +308,7 @@ __meta__ = {
 }
 
 [node name="Map" parent="Static" instance=ExtResource( 7 )]
+
+[editable path="Actors/Infiltrator"]
+
+[editable path="Actors/Infiltrator/CameraRig"]

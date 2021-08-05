@@ -8,3 +8,9 @@ func _ready():
 #	yield(get_tree().create_timer(2.0), "timeout")
 #
 #	show()
+
+
+func _process(delta):
+	
+	if not emitting:
+		queue_free()

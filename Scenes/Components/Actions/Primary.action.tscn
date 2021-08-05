@@ -1,15 +1,14 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/AnimationTree.BlendTree.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=9]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=10]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=8]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=9]
 
 [sub_resource type="AnimationNodeStateMachine" id=1]
 script = ExtResource( 1 )
@@ -111,13 +110,13 @@ script = ExtResource( 4 )
 __meta__ = {
 
 }
-transition_value = "asdf"
+transition_expression = ""
 update_mode = "process"
-assertion = "Less Than"
-target = "Movement"
-method = "_get_speed"
-args = [  ]
-value = 0.1
+expression = "get_node(MOVEMENT)._get_speed() < 0.1 and get_node(STANCE).stance == 0"
+arguments = {
+"MOVEMENT": "../Movement",
+"STANCE": "../Stance"
+}
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
@@ -126,13 +125,13 @@ script = ExtResource( 4 )
 __meta__ = {
 
 }
-transition_value = ""
+transition_expression = ""
 update_mode = "process"
-assertion = "Greater Than"
-target = "Movement"
-method = "_get_speed"
-args = [  ]
-value = 0.1
+expression = "get_node(MOVEMENT)._get_speed() > 0.1 or get_node(STANCE).stance > 0"
+arguments = {
+"MOVEMENT": "../Movement",
+"STANCE": "../Stance"
+}
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachine" id=11]
@@ -158,7 +157,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeBlendTree" id=13]
-graph_offset = Vector2( -362.306, 390 )
+graph_offset = Vector2( -362.306, 38.5421 )
 nodes/Blend2/node = SubResource( 3 )
 nodes/Blend2/position = Vector2( 280, 120 )
 nodes/Blend3/node = SubResource( 4 )
@@ -192,7 +191,7 @@ schema = ""
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 auto_advance = true
 disabled = true
-script = ExtResource( 7 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
@@ -263,7 +262,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 auto_advance = true
 disabled = true
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
@@ -323,13 +322,13 @@ parameters/Shoot/playback = SubResource( 28 )
 parameters/Shoot/NotEmpty/Blend2/blend_amount = 0
 parameters/Shoot/NotEmpty/Blend3/blend_amount = 0
 parameters/Shoot/NotEmpty/SwitchBlendModes/playback = SubResource( 29 )
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 10 )
+anims/DefaultAnim = ExtResource( 9 )
 __meta__ = {
 
 }

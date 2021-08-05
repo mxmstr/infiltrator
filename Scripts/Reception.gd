@@ -4,18 +4,26 @@ var stims = []
 var stim
 
 
+func _on_tree_root_pre_process():
+	
+	if data and not weakref(data.source).get_ref():
+		_next_stim()
+
+
+func _on_tree_root_post_process():
+	
+	pass
+
+
 func _on_tree_root_state_starting(sm_node_name):
 	
-	if sm_node_name == 'Start':
-
-		if len(stims) == 0:
-			pass#type = null
-			#data = null
-		else:
-			_next_stim()
+	pass
 
 
 func _start_state(_name, _data={}):
+	
+	if not active:
+		return
 	
 	stims.append([_name, _data])
 
@@ -24,18 +32,26 @@ func _start_state(_name, _data={}):
 
 
 func _next_stim():
-
+	
+	if not stims.size():
+		
+		stim = null
+		data = null
+		
+		return
+	
 	var next_stim = stims.pop_front()
 	
 	stim = next_stim[0]
-	var _data = next_stim[1]
+	data = next_stim[1]
 	
-	._start_state(stim, _data)
+	if tree_root.has_method('_start'):
+		tree_root._start(stim)
 
 
 func _reflect(reflected_stim=''):
 	
-	if data == null:
+	if not data:
 		return
 	
 	if reflected_stim == '':
@@ -45,6 +61,8 @@ func _reflect(reflected_stim=''):
 
 
 func _ready():
-
+	
 	var playback = get('parameters/playback')
 	playback.connect('state_starting', self, '_on_tree_root_state_starting')
+	playback.connect('pre_process', self, '_on_tree_root_pre_process')
+	playback.connect('post_process', self, '_on_tree_root_post_process')

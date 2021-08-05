@@ -1,7 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Actors/Area.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Components/Stimuli/Contact.Area.stimulus.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/Responses/Touch.Hitbox.response.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
@@ -28,14 +34,15 @@ __meta__ = {
 
 }
 
-[node name="Mag9mm" instance=ExtResource( 1 )]
-tags = "Magazine 9mm"
+[node name="Hitbox" instance=ExtResource( 1 )]
+tags = "Hitbox"
 
-[node name="Container" parent="." index="0" instance=ExtResource( 2 )]
-path = NodePath("../../Mag9mm")
-max_quantity = 50
-invisible = true
-required_tags = "Bullet 9mm"
+[node name="ContactStim" parent="." index="0" instance=ExtResource( 2 )]
+stim_type = "Touch"
+
+[node name="TouchResponse" parent="." index="1" instance=ExtResource( 3 )]
+parameters/playback = SubResource( 6 )
+tree_node = NodePath("../Reception")
 
 [node name="Behavior" parent="." index="2"]
 parameters/playback = SubResource( 1 )

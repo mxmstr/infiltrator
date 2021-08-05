@@ -5,13 +5,13 @@
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -20,13 +20,13 @@ __meta__ = {
 chain = false
 schema = "LoadChamber"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
 auto_advance = true
 disabled = true
 script = ExtResource( 2 )
@@ -35,7 +35,8 @@ __meta__ = {
 }
 transition_expression = ""
 update_mode = "process"
-expression = "get_node(CHAMBER)._is_empty() and not get_node(MAGAZINE)._is_empty() and not get_node(MAGAZINE).items[0].get_node(CONTAINER)._is_empty()"
+expression = "get_node(CHAMBER)._is_empty() and not get_node(MAGAZINE)._is_empty()
+not get_node(MAGAZINE).items[0].get_node(CONTAINER)._is_empty() "
 arguments = {
 "CHAMBER": "../Chamber",
 "CONTAINER": "Container",
@@ -43,50 +44,50 @@ arguments = {
 }
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=5]
-states/DefaultAnim/node = SubResource( 7 )
+[sub_resource type="AnimationNodeStateMachine" id=8]
+states/DefaultAnim/node = SubResource( 1 )
 states/DefaultAnim/position = Vector2( 844.613, 98.0039 )
-states/LoadChamber/node = SubResource( 1 )
+states/LoadChamber/node = SubResource( 2 )
 states/LoadChamber/position = Vector2( 552.613, 40 )
-states/Start/node = SubResource( 2 )
+states/Start/node = SubResource( 3 )
 states/Start/position = Vector2( 247, 99 )
-transitions = [ "Start", "LoadChamber", SubResource( 3 ), "LoadChamber", "Start", SubResource( 4 ), "LoadChamber", "DefaultAnim", SubResource( 8 ), "DefaultAnim", "Start", SubResource( 9 ) ]
+transitions = [ "Start", "LoadChamber", SubResource( 4 ), "LoadChamber", "Start", SubResource( 5 ), "LoadChamber", "DefaultAnim", SubResource( 6 ), "DefaultAnim", "Start", SubResource( 7 ) ]
 start_node = "Start"
 graph_offset = Vector2( -31.6497, -7.99613 )
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 __meta__ = {
 
 }
 
 [node name="LoadChamberAction" type="AnimationTree"]
-tree_root = SubResource( 5 )
+tree_root = SubResource( 8 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 6 )
+parameters/playback = SubResource( 9 )
 script = ExtResource( 3 )
 __meta__ = {
 

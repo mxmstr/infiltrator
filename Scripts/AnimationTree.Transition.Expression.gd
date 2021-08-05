@@ -8,17 +8,25 @@ export(String, MULTILINE) var expression
 export(Dictionary) var arguments
 export(float) var wait_for_frame
 
+var exec_list = []
+
 
 func _evaluate():
 	
-	var exec = Expression.new()
-	exec.parse(expression, arguments.keys())
-	var result = exec.execute(arguments.values(), owner)
+	for exec in exec_list:
+		
+		var result = exec.execute(arguments.values(), owner)
+		
+		if not result:
+		
+			if exec.has_execute_failed():
+				
+				print('aaaa ', owner.data.source)
+				prints(owner.owner.name, from.node_name, exec.get_error_text())
+			
+			return false
 	
-	if exec.has_execute_failed():
-		prints(exec.get_error_text())#, expression)
-	
-	return result
+	return true
 
 
 func _update():
@@ -60,6 +68,13 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 		parent.connect('travel_starting', self, '_on_travel_starting')
 	
 	owner.connect('on_process', self, '_process')
+	
+	
+	for line in expression.split('\n'):
+		
+		var exec = Expression.new()
+		exec.parse(line, arguments.keys())
+		exec_list.append(exec)
 
 
 func _process(delta):

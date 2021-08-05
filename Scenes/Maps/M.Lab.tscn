@@ -131,6 +131,7 @@ new_owner = NodePath(".")
 tags = "Map"
 
 [node name="Model" type="MeshInstance" parent="Navmesh/Lab_Floor1"]
+layers = 2
 mesh = SubResource( 6 )
 material/0 = null
 __meta__ = {
