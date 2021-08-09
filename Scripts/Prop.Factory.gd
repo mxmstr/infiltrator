@@ -28,8 +28,8 @@ func _ready():
 	
 	var container = owner.get_node(container_name)
 	
-	for product in products_list:
-		
-		if product.target == 'target':
-			
-			Meta.CreateLink(Meta._add_actor(product.item)
+#	for product in products_list:
+#
+#		if product.target == 'target':
+#
+#			Meta.CreateLink(Meta._add_actor(product.item))

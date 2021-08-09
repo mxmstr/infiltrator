@@ -7,6 +7,7 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
+resource_local_to_scene = true
 animation = "JumpOrClimb"
 script = ExtResource( 2 )
 __meta__ = {
@@ -16,6 +17,7 @@ chain = true
 schema = ""
 
 [sub_resource type="AnimationNodeAnimation" id=2]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
@@ -25,12 +27,14 @@ chain = true
 schema = "MoveSidestepStopInput"
 
 [sub_resource type="AnimationNodeAnimation" id=3]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
+resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
@@ -41,6 +45,7 @@ action = "Left"
 state = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
+resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -49,6 +54,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
+resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
@@ -59,6 +65,7 @@ action = "Right"
 state = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
+resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 __meta__ = {
@@ -66,8 +73,9 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
+resource_local_to_scene = true
 states/NotLeft/node = SubResource( 1 )
-states/NotLeft/position = Vector2( 553, 134 )
+states/NotLeft/position = Vector2( 557, 140 )
 states/NotRight/node = SubResource( 2 )
 states/NotRight/position = Vector2( 861.391, 192 )
 states/Start/node = SubResource( 3 )

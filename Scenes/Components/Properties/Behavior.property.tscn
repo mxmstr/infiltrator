@@ -6,6 +6,7 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
 [sub_resource type="AnimationNodeStateMachine" id=1]
+resource_local_to_scene = true
 script = ExtResource( 2 )
 __meta__ = {
 
@@ -14,6 +15,7 @@ chain = false
 priority = 0
 type = 0
 blend = 1
+cache_pose = true
 distance = 0.0
 enable_abilities = true
 lock_stance = false
@@ -24,6 +26,7 @@ lock_movement = false
 camera_mode = "LockYaw"
 
 [sub_resource type="AnimationNodeStateMachine" id=2]
+resource_local_to_scene = true
 states/Start/node = SubResource( 1 )
 states/Start/position = Vector2( 623.453, 162 )
 start_node = "Start"

@@ -4,13 +4,15 @@
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Prop.InputMovement.gd" type="Script" id=3]
 [ext_resource path="res://Animations/Human/Input/Crawl.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/Input/Crouch.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Input/CrouchInput.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=6]
 [ext_resource path="res://Animations/Human/Input/LeanDefault.tres" type="Animation" id=7]
 [ext_resource path="res://Animations/Human/Input/LeanLeft.tres" type="Animation" id=8]
 [ext_resource path="res://Animations/Human/Input/LeanRight.tres" type="Animation" id=9]
 [ext_resource path="res://Animations/Human/Input/Run.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/Human/Input/Stand.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/Human/Input/StandInput.tres" type="Animation" id=11]
+
+
 
 
 [sub_resource type="AnimationNodeAnimation" id=1]

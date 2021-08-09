@@ -82,8 +82,8 @@ __meta__ = {
 
 [node name="Bullet9mm" instance=ExtResource( 1 )]
 collision_layer = 8
-collision_mask = 1
-tags = "Actor Bullet 9mm"
+collision_mask = 17
+tags = "Actor Bullet 9mm Damage:10"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.413379, 0, 0, 0, 0.413379, 0, 0, 0, 0.413379, 0, 0, 0 )
@@ -92,6 +92,7 @@ visible = false
 [node name="Particles" type="Particles" parent="." index="1"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 material_override = SubResource( 1 )
+cast_shadow = 0
 amount = 20
 lifetime = 0.41
 visibility_aabb = AABB( -0.193909, -0.932309, -0.371607, 0.387815, 1.86463, 0.743204 )

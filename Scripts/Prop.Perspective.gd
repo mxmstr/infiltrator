@@ -104,8 +104,8 @@ func _ready():
 	
 	if Engine.editor_hint: return
 	
-	if not has_meta('unique'):
-		return
+#	if not has_meta('unique'):
+#		return
 	
 	yield(get_tree(), 'idle_frame')
 	

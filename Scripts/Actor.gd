@@ -49,12 +49,15 @@ func _enter_tree():
 	
 	for child in get_children():
 		
-		if child.get('make_unique') != null:
-			
-			if new_owner.is_empty():
-				Meta._make_unique(child)
-			else:
-				Meta._make_unique(child, get_node(new_owner))
+		if new_owner:
+			child.set_owner(get_node(new_owner))
+
+#		if child.get('make_unique') != null:
+#
+#			if new_owner.is_empty():
+#				Meta._make_unique(child)
+#			else:
+#				Meta._make_unique(child, get_node(new_owner))
 
 
 func _get_meta():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
@@ -8,6 +8,12 @@
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
 
@@ -15,7 +21,7 @@ __meta__ = {
 chain = false
 schema = ""
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Reflect"
 script = ExtResource( 2 )
 __meta__ = {
@@ -24,13 +30,13 @@ __meta__ = {
 chain = false
 schema = "Reflect"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
@@ -39,19 +45,19 @@ __meta__ = {
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 auto_advance = true
 priority = 32
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
@@ -67,13 +73,6 @@ arguments = {
 }
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 switch_mode = 2
 auto_advance = true
@@ -81,17 +80,27 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=10]
-states/ImpactEffect/node = SubResource( 1 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/End/node = SubResource( 1 )
+states/End/position = Vector2( 887, 299.905 )
+states/ImpactEffect/node = SubResource( 2 )
 states/ImpactEffect/position = Vector2( 0, 0 )
-states/Reflect/node = SubResource( 2 )
+states/Reflect/node = SubResource( 3 )
 states/Reflect/position = Vector2( 0, 0 )
-states/Start/node = SubResource( 3 )
-states/Start/position = Vector2( 439, 351 )
-states/Touch/node = SubResource( 4 )
+states/Start/node = SubResource( 4 )
+states/Start/position = Vector2( 419, 299.905 )
+states/Touch/node = SubResource( 5 )
 states/Touch/position = Vector2( 654, 299.905 )
-transitions = [ "Start", "Touch", SubResource( 5 ), "Touch", "Start", SubResource( 6 ), "Touch", "ImpactEffect", SubResource( 7 ), "ImpactEffect", "Reflect", SubResource( 8 ), "Reflect", "Start", SubResource( 9 ) ]
+transitions = [ "Start", "Touch", SubResource( 6 ), "Touch", "End", SubResource( 7 ), "Touch", "ImpactEffect", SubResource( 8 ), "ImpactEffect", "Reflect", SubResource( 9 ), "Reflect", "End", SubResource( 10 ) ]
 start_node = "Start"
+end_node = "End"
 graph_offset = Vector2( 0, 188.905 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -99,12 +108,12 @@ __meta__ = {
 }
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 resource_name = "Reflect"
 length = 0.001
 tracks/0/type = "method"
@@ -126,10 +135,10 @@ __meta__ = {
 }
 
 [node name="Reception" type="AnimationTree"]
-tree_root = SubResource( 10 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("AnimationPlayer")
 active = true
-parameters/playback = SubResource( 11 )
+parameters/playback = SubResource( 12 )
 script = ExtResource( 4 )
 __meta__ = {
 "unique": true
@@ -138,7 +147,7 @@ schema_type = "Action"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 5 )
-anims/Reflect = SubResource( 12 )
+anims/Reflect = SubResource( 13 )
 __meta__ = {
 
 }

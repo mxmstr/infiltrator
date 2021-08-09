@@ -6,18 +6,21 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=3]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
@@ -26,12 +29,14 @@ __meta__ = {
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+resource_local_to_scene = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+resource_local_to_scene = true
 auto_advance = true
 priority = 32
 __meta__ = {
@@ -39,13 +44,14 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=6]
+resource_local_to_scene = true
 states/End/node = SubResource( 1 )
 states/End/position = Vector2( 887, 299.905 )
 states/Start/node = SubResource( 2 )
 states/Start/position = Vector2( 419, 299.905 )
 states/Touch/node = SubResource( 3 )
 states/Touch/position = Vector2( 654, 299.905 )
-transitions = [ "Start", "Touch", SubResource( 4 ), "Touch", "End", SubResource( 5 ) ]
+transitions = [ "Start", "Touch", SubResource( 23 ), "Touch", "End", SubResource( 24 ) ]
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 188.905 )
@@ -53,7 +59,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
-chain = false
+chain = true
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 __meta__ = {

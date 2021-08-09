@@ -48,11 +48,14 @@ func _make_unique(old, new_owner=null):
 	var new_filename = 'res://duplicated' + str(tree_count) + '.tscn'
 	
 	
+	prints('old', old.filename, old.tree_root.get_node('Start'))
 	var new = load(old.filename)
+	prints('new', new.instance().tree_root.get_node('Start'))
 	ResourceSaver.save(new_filename, new)
 	
 	
 	new = load(new_filename).instance()
+	prints('new', new.filename, new.tree_root)
 	new.name = old.name
 	new.set_meta('unique', true)
 	old.name += '_'
@@ -78,7 +81,7 @@ func _make_unique(old, new_owner=null):
 	tree_count += 1
 
 
-func _get_files_recursive(root, begins_with='', ends_with='', tags=null):
+func _get_files_recursive(root, begins_with='', ends_with='', actor_tags=null):
 	
 	var files = []
 	var dirs = [root]
@@ -106,14 +109,16 @@ func _get_files_recursive(root, begins_with='', ends_with='', tags=null):
 				dirs.append('%s/%s' % [dir.get_current_dir(), file])
 				continue
 			
+			
 			if file.begins_with(begins_with) and file.ends_with(ends_with):
 				
-				if tags:
+				if actor_tags:
 					
-					var file_tags = file.split('.')
-					
-					if file_tags[0] != begins_with:
+					if file.split('.')[0] != begins_with:
 						continue
+					
+					var file_stripped = file.trim_prefix(begins_with).trim_suffix(ends_with)
+					var file_tags = file_stripped.split('.')
 					
 					if file_to_add == null:
 						file_to_add = '%s/%s' % [dir.get_current_dir(), file] 
@@ -122,9 +127,14 @@ func _get_files_recursive(root, begins_with='', ends_with='', tags=null):
 					
 					var tag_count = 0
 					
-					for tag in tags:
-						if tag in file_tags:
+					for file_tag in file_tags:
+						
+						if file_tag == begins_with:
+							continue
+						
+						if file_tag in actor_tags:
 							tag_count += 1
+					
 					
 					if tag_count > highest_tag_count:
 						

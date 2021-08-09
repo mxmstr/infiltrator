@@ -11,6 +11,7 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=9]
 
 [sub_resource type="AnimationNodeStateMachine" id=1]
+resource_local_to_scene = true
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -171,7 +172,7 @@ nodes/SwitchBlendModes/position = Vector2( 80, 300 )
 nodes/Up/node = SubResource( 12 )
 nodes/Up/position = Vector2( -160, 260 )
 nodes/output/position = Vector2( 460, 160 )
-node_connections = [ "output", 0, "Blend2", "Blend2", 0, "Blend3", "Blend2", 1, "SwitchBlendModes", "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up" ]
+node_connections = [ "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up", "Blend2", 0, "Blend3", "Blend2", 1, "SwitchBlendModes", "output", 0, "Blend2" ]
 script = ExtResource( 5 )
 __meta__ = {
 
@@ -219,6 +220,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=18]
+resource_local_to_scene = true
 states/End/node = SubResource( 2 )
 states/End/position = Vector2( 935, 95 )
 states/NotEmpty/node = SubResource( 13 )
@@ -235,17 +237,20 @@ __meta__ = {
 chain = false
 
 [sub_resource type="AnimationNodeAnimation" id=19]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
+resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
+resource_local_to_scene = true
 auto_advance = true
 priority = 2
 __meta__ = {
@@ -253,13 +258,16 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
+resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
+priority = 2
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
+resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 7 )
@@ -275,11 +283,13 @@ args = [ "Firearm" ]
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
+resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=25]
+resource_local_to_scene = true
 states/Primary/node = SubResource( 1 )
 states/Primary/position = Vector2( 422.951, 139 )
 states/Shoot/node = SubResource( 18 )

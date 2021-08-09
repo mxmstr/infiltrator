@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Animations/Human/Input/Stand.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/Input/StandInput.tres" type="Animation" id=1]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-anims/Stand = ExtResource( 1 )
+anims/StandInput = ExtResource( 1 )
 __meta__ = {
 
 }

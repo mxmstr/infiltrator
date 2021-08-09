@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Actors/Particles/red_robot/laser/impact_effect/EmissionEmbers.tres" type="Material" id=1]
 [ext_resource path="res://Scripts/Particles.gd" type="Script" id=2]
@@ -19,12 +19,6 @@ __meta__ = {
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0.766756, 1 )
 colors = PoolColorArray( 1, 0, 0, 0, 0.921875, 0.270081, 0.31591, 1 )
-__meta__ = {
-
-}
-
-[sub_resource type="PrismMesh" id=4]
-size = Vector3( 0.1, 0.1, 0.1 )
 __meta__ = {
 
 }
@@ -50,13 +44,6 @@ scale_amount_curve = SubResource( 2 )
 color_ramp = SubResource( 3 )
 hue_variation_random = 0.87
 script = ExtResource( 2 )
-__meta__ = {
-
-}
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 4 )
-material/0 = null
 __meta__ = {
 
 }

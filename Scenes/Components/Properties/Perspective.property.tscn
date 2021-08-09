@@ -5,40 +5,47 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
+resource_local_to_scene = true
 animation = "AlignPlayerToCamera"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
+resource_local_to_scene = true
 animation = "HalfYaw"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=3]
+resource_local_to_scene = true
 animation = "LockYaw"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
+resource_local_to_scene = true
 xfade_time = 0.1
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
+resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
+resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=7]
+resource_local_to_scene = true
 states/AlignPlayerToCamera/node = SubResource( 1 )
 states/AlignPlayerToCamera/position = Vector2( 640, 235 )
 states/HalfYaw/node = SubResource( 2 )
@@ -52,7 +59,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
-statemachine = ""
+chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 __meta__ = {

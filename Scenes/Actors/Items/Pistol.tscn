@@ -68,7 +68,7 @@ required_tags = "Magazine 9mm"
 
 [node name="Chamber" parent="." index="3" instance=ExtResource( 3 )]
 path = NodePath("..")
-release_speed = 12.0
+release_speed = 500.0
 max_quantity = 1
 invisible = true
 required_tags = "Bullet 9mm"

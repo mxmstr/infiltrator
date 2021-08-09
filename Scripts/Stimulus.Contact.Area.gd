@@ -5,7 +5,7 @@ export(String) var stim_type
 
 func _on_body_shape_entered(body_id, body, body_shape, area_shape):
 	
-	prints(owner.name, body.name)
+	#prints(owner.name, body.name)
 	
 	Meta.StimulateActor(body, stim_type, owner)
 
@@ -23,10 +23,11 @@ func _ready():
 
 func _physics_process(delta):
 	
-	
-	if owner.get_overlapping_bodies().size():
-		print(owner.get_overlapping_bodies().size())
-	
+	pass
+#
+#	if owner.get_overlapping_bodies().size():
+#		print(owner.get_overlapping_bodies().size())
+#
 #	if owner.get_overlapping_areas().size():
 #		print(owner.get_overlapping_areas().size())
 	#prints(, owner.get_overlapping_bodies())

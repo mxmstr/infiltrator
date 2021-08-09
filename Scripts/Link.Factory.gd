@@ -44,12 +44,18 @@ func _create_product(target, target_container, amount, item):
 	
 	for i in range(amount):
 		
-		var new_actor = Meta.AddActor(item)
+		if target.get_node(target_container).factory_mode:
 		
-		Meta.CreateLink(target, new_actor, 'Contains', { 'container': target_container })
+			target.get_node(target_container)._add_item(item)
 		
-		for subproduct in products_list:
+		else:
+		
+			var new_actor = Meta.AddActor(item)
 			
-			if subproduct.target == item:
+			Meta.CreateLink(target, new_actor, 'Contains', { 'container': target_container })
+			
+			for subproduct in products_list:
 				
-				_create_product(new_actor, subproduct.target_container, subproduct.amount, subproduct.item)
+				if subproduct.target == item:
+					
+					_create_product(new_actor, subproduct.target_container, subproduct.amount, subproduct.item)

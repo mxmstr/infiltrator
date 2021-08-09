@@ -22,9 +22,6 @@ func _on_tree_root_state_starting(sm_node_name):
 
 func _start_state(_name, _data={}):
 	
-	if not active:
-		return
-	
 	stims.append([_name, _data])
 
 	if len(stims) == 1:
@@ -66,3 +63,9 @@ func _ready():
 	playback.connect('state_starting', self, '_on_tree_root_state_starting')
 	playback.connect('pre_process', self, '_on_tree_root_pre_process')
 	playback.connect('post_process', self, '_on_tree_root_post_process')
+
+
+#func _process(delta):
+#
+#	if 'Lab_Floor1' in owner.name:
+#		prints($AnimationPlayer.has_animation('Reflect'))

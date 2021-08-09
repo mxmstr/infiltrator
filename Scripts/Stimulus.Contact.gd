@@ -37,6 +37,9 @@ func _physics_process(delta):
 			
 			if continuous or not collision.collider in colliders:
 				
+#				if 'Bullet9mm' in owner.name:
+#					prints(collision.collider.name)
+				
 				Meta.StimulateActor(collision.collider, stim_type, owner, $'../Movement'._get_speed() * -1, collision.position, collision.normal * -1)
 			
 			new_collisions.append(collision)

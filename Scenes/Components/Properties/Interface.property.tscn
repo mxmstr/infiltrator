@@ -5,12 +5,14 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=2]
+resource_local_to_scene = true
 states/Start/node = SubResource( 1 )
 states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
@@ -19,7 +21,6 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
-statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]

@@ -7,7 +7,7 @@
 [ext_resource path="res://Animations/Human/Input/Climb.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/Human/Input/Climb.Enter.tres" type="Animation" id=6]
 [ext_resource path="res://Animations/Human/Input/Crawl.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/Input/Crouch.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Human/Input/CrouchInput.tres" type="Animation" id=8]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=9]
 [ext_resource path="res://Animations/Human/Input/Drop.tres" type="Animation" id=10]
 [ext_resource path="res://Animations/Human/Input/Grab.tres" type="Animation" id=11]
@@ -19,7 +19,9 @@
 [ext_resource path="res://Animations/Human/Input/InteractUp.tres" type="Animation" id=17]
 [ext_resource path="res://Animations/Human/Input/Jump.tres" type="Animation" id=18]
 [ext_resource path="res://Animations/Human/Input/Run.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/Input/Stand.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Human/Input/StandInput.tres" type="Animation" id=20]
+
+
 
 
 [sub_resource type="AnimationNodeAnimation" id=1]

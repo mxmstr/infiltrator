@@ -33,6 +33,7 @@ tags = "Magazine 9mm"
 
 [node name="Container" parent="." index="0" instance=ExtResource( 2 )]
 path = NodePath("../../Mag9mm")
+factory_mode = true
 max_quantity = 50
 invisible = true
 required_tags = "Bullet 9mm"

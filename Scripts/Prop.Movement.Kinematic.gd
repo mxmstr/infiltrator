@@ -75,18 +75,16 @@ func _face(target, angle_delta=0.0):
 
 func _physics_process(delta):
 	
-	var horizontal = Vector3(velocity.x, 0, velocity.z)
-	
-	var new_velocity = direction * speed
+	var new_velocity = direction * speed * delta
 	var factor
 	
-	if new_velocity.dot(horizontal) > 0:
+	if new_velocity.dot(velocity) > 0:
 		factor = accel
 	else:
 		factor = deaccel
 	
 	if factor > 0:
-		velocity = horizontal.linear_interpolate(new_velocity, factor * delta)
+		velocity = velocity.linear_interpolate(new_velocity, factor * delta)
 	else:
 		velocity = new_velocity
 	

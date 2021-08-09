@@ -9,25 +9,25 @@ __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=7]
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.185674, 0.201435, 0.140653 )
 __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=13]
+[sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.177831, 0.0582971, 0.0953706 )
 __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=19]
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 0.0652335, 0.0737853, 0.0460674 )
 __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=25]
+[sub_resource type="BoxShape" id=5]
 extents = Vector3( 0.082711, 0.120587, 0.100162 )
 __meta__ = {
 
@@ -62,7 +62,7 @@ new_owner = NodePath(".")
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Torso/Hitbox" index="5"]
 transform = Transform( 1, 9.28637e-21, 0, 9.28641e-21, 1, 0, 0, 0, 1, 1.48068e-07, -0.212602, -0.0101683 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 __meta__ = {
 
 }
@@ -79,7 +79,7 @@ new_owner = NodePath(".")
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Shoulders/Hitbox" index="5"]
 transform = Transform( 1, 9.28637e-21, 0, 9.28641e-21, 1, 0, 0, 0, 1, 1.2232e-07, -0.0219386, -0.0380383 )
-shape = SubResource( 13 )
+shape = SubResource( 3 )
 __meta__ = {
 
 }
@@ -96,7 +96,7 @@ new_owner = NodePath(".")
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Neck/Hitbox" index="5"]
 transform = Transform( 1, 9.28637e-21, 0, 9.28641e-21, 1, 0, 0, 0, 1, 1.36424e-09, 0, 0.00418824 )
-shape = SubResource( 19 )
+shape = SubResource( 4 )
 __meta__ = {
 
 }
@@ -113,7 +113,7 @@ new_owner = NodePath(".")
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Head/Hitbox" index="5"]
 transform = Transform( 1, 9.26452e-21, 0, 9.26456e-21, 1, 0, 0, 0, 1, 1.58398e-08, -0.123415, 0.0154985 )
-shape = SubResource( 25 )
+shape = SubResource( 5 )
 __meta__ = {
 
 }

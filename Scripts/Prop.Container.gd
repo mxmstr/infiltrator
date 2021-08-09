@@ -2,6 +2,7 @@ extends Node
 
 export(NodePath) var path
 export(String) var bone_name
+export var factory_mode = false
 export var parent_position = true
 export var parent_rotation = true
 export(Vector3) var position_offset
@@ -59,7 +60,7 @@ func _has_item_with_tag(tag):
 
 func _push_front_into_container(new_container):
 	
-	if len(items) == 0:
+	if not items.size():
 		return
 	
 	var item = _release_front()
@@ -80,10 +81,15 @@ func _exclude_recursive(item, parent):
 
 func _release_front():
 	
-	if len(items) == 0:
+	if not items.size():
 		return
 	
 	var item = items[0]
+	
+	if factory_mode:
+		
+		return Meta.AddActor(item, root.global_transform.origin, root.rotation_degrees)
+	
 	
 	if release_exclude_parent:
 		_exclude_recursive(item, owner)

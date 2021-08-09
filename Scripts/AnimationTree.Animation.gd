@@ -20,15 +20,15 @@ signal state_starting
 
 func _load_animations():
 	
-	if schema == null or schema == '':
+	if not schema or schema == '':
 		return
 	
 	
 	var animation_player = owner.get_node('AnimationPlayer')
-	var owner_tags = []
+	var owner_tags = owner.owner.tags_dict.keys()#[]
 	
-	if owner.owner._has_tag(owner.schema_type):
-		owner_tags = owner.owner._get_tag(owner.schema_type)
+#	if owner.owner._has_tag(owner.schema_type):
+#		owner_tags = owner.owner._get_tag(owner.schema_type)
 	
 	var files = Meta._get_files_recursive(schemas_dir, schema, schemas_extension, owner_tags)
 	

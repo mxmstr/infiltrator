@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Rooms/Room.Default.tscn" type="PackedScene" id=2]
@@ -7,7 +7,10 @@
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=5]
 [ext_resource path="res://Models/Maps/Lab/Floor1.material" type="Material" id=6]
 [ext_resource path="res://Scenes/Components/Responses/Touch.StaticGeometry.response.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=11]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -68,12 +71,170 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeAnimation" id=10]
+resource_local_to_scene = true
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeAnimation" id=11]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+chain = false
+schema = "Reflect"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+resource_local_to_scene = true
+auto_advance = true
+disabled = true
+script = ExtResource( 9 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "data.get(SOURCE)._has_tag(TAG)"
+arguments = {
+"SOURCE": "source",
+"TAG": "Bullet"
+}
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=17]
+resource_local_to_scene = true
+states/Asdfasd/node = SubResource( 10 )
+states/Asdfasd/position = Vector2( 863.889, 90.0039 )
+states/End/node = SubResource( 11 )
+states/End/position = Vector2( 1049.61, 146 )
+states/ImpactEffect/node = SubResource( 12 )
+states/ImpactEffect/position = Vector2( 414.613, 146 )
+states/Reflect/node = SubResource( 13 )
+states/Reflect/position = Vector2( 675.613, 146 )
+states/Touch/node = SubResource( 14 )
+states/Touch/position = Vector2( 154, 146 )
+transitions = [ "Touch", "ImpactEffect", SubResource( 15 ), "ImpactEffect", "Reflect", SubResource( 16 ), "Reflect", "Asdfasd", SubResource( 8 ), "Asdfasd", "End", SubResource( 9 ) ]
+start_node = "Touch"
+end_node = "End"
+graph_offset = Vector2( 54.6817, -7.99613 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+resource_local_to_scene = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+resource_local_to_scene = true
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=25]
+resource_local_to_scene = true
+states/End/node = SubResource( 20 )
+states/End/position = Vector2( 887, 299.905 )
+states/Start/node = SubResource( 21 )
+states/Start/position = Vector2( 419, 299.905 )
+states/Touch/node = SubResource( 22 )
+states/Touch/position = Vector2( 654, 299.905 )
+transitions = [ "Start", "Touch", SubResource( 23 ), "Touch", "End", SubResource( 24 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, 188.905 )
+script = ExtResource( 11 )
+__meta__ = {
+
+}
+chain = true
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 __meta__ = {
 
 }
@@ -145,8 +306,10 @@ __meta__ = {
 }
 
 [node name="TouchResponse" parent="Navmesh/Lab_Floor1" instance=ExtResource( 7 )]
-parameters/playback = SubResource( 8 )
+tree_root = SubResource( 17 )
+parameters/playback = SubResource( 18 )
 tree_node = NodePath("../Reception")
 
-[node name="Reception" parent="Navmesh/Lab_Floor1" instance=ExtResource( 8 )]
-parameters/playback = SubResource( 9 )
+[node name="Reception" parent="Navmesh/Lab_Floor1" instance=ExtResource( 10 )]
+tree_root = SubResource( 25 )
+parameters/playback = SubResource( 19 )

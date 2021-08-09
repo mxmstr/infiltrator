@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Reception.Transition.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+resource_local_to_scene = true
+animation = "Land"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = true
+schema = "Damage"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=179]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+min_intensity = 0.0
+max_intensity = 0.0
+within_direction = Vector3( 0, 0, 0 )
+max_direction_angle = -1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=180]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+resource_local_to_scene = true
+states/Damage/node = SubResource( 1 )
+states/Damage/position = Vector2( 582, 128 )
+states/End/node = SubResource( 2 )
+states/End/position = Vector2( 909, 128 )
+states/Start/node = SubResource( 3 )
+states/Start/position = Vector2( 283, 128 )
+transitions = [ "Start", "Damage", SubResource( 179 ), "Damage", "End", SubResource( 180 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, 10.9397 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
+[node name="DamageResponse" type="AnimationTree"]
+tree_root = SubResource( 6 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 7 )
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+start_node = "Touch"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 5 )
+__meta__ = {
+
+}

@@ -1,0 +1,210 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Scenes/Actors/Humans/Human.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Models/Humans/DefaultHumanCollision.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+__meta__ = {
+
+}
+
+[node name="Dummy" instance=ExtResource( 1 )]
+tags = "Actor Male"
+
+[node name="Model" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="Collision" parent="." index="1" instance=ExtResource( 3 )]
+
+[node name="HUD" parent="." index="2"]
+viewport = NodePath("../../Dummy/Perspective/Container/Viewport")
+
+[node name="CameraRig" parent="." index="3"]
+viewport = NodePath("../../Dummy/Perspective/Container/Viewport")
+
+[node name="InventoryContainer" parent="." index="6"]
+path = NodePath("../../Dummy")
+
+[node name="CameraRaycastStim" parent="." index="10"]
+path = NodePath("../../Dummy/CameraRig/Camera")
+
+[node name="AnimLayerMovement" parent="." index="11"]
+parameters/0/0/playback = SubResource( 1 )
+parameters/1/0/playback = SubResource( 2 )
+
+[node name="Perspective" parent="." index="12"]
+parameters/playback = SubResource( 3 )
+
+[node name="JumpOrClimbAction" parent="." index="13"]
+parameters/playback = SubResource( 4 )
+parameters/Climb/playback = SubResource( 5 )
+parameters/Jump/3/playback = SubResource( 6 )
+parameters/Jump/4/playback = SubResource( 7 )
+parameters/Jump/5/playback = SubResource( 8 )
+tree_node = NodePath("../../Dummy/Behavior")
+
+[node name="PrimaryAction" parent="." index="14"]
+parameters/playback = SubResource( 9 )
+parameters/Primary/playback = SubResource( 10 )
+parameters/Shoot/playback = SubResource( 11 )
+parameters/Shoot/NotEmpty/SwitchBlendModes/playback = SubResource( 12 )
+tree_node = NodePath("../../Dummy/Behavior")
+
+[node name="ImpactSound" parent="." index="15"]
+parameters/playback = SubResource( 13 )
+parameters/Impact/playback = SubResource( 14 )
+tree_node = NodePath("../../Dummy/FeetAudio")
+
+[node name="StepSound" parent="." index="16"]
+parameters/playback = SubResource( 15 )
+parameters/Step/playback = SubResource( 16 )
+tree_node = NodePath("../../Dummy/FeetAudio")
+
+[node name="OofSound" parent="." index="17"]
+parameters/playback = SubResource( 25 )
+
+[node name="VoiceAudio" parent="." index="18"]
+parameters/playback = SubResource( 17 )
+
+[node name="FoleyAudio" parent="." index="19"]
+parameters/playback = SubResource( 18 )
+
+[node name="FeetAudio" parent="." index="20"]
+parameters/playback = SubResource( 19 )
+
+[node name="Behavior" parent="." index="22"]
+parameters/playback = SubResource( 20 )
+parameters/Start/playback = SubResource( 21 )
+
+[node name="Reception" parent="." index="23"]
+parameters/playback = SubResource( 22 )
+
+[node name="Interface" parent="." index="24"]
+parameters/playback = SubResource( 23 )
+
+[node name="Audio" parent="." index="25"]
+parameters/playback = SubResource( 24 )
+
+[editable path="CameraRig"]
+
+[editable path="Perspective"]

@@ -5,8 +5,8 @@ export(PackedScene) var source
 
 func _ready():
 	
-	if not owner.has_meta('unique'):
-		return
+#	if not owner.has_meta('unique'):
+#		return
 	
 	
 	for child in source.instance().get_child(0).get_children():

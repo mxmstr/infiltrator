@@ -122,6 +122,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=12]
+resource_local_to_scene = true
 states/ClimbHigh/node = SubResource( 1 )
 states/ClimbHigh/position = Vector2( 574, 47 )
 states/ClimbLow/node = SubResource( 2 )
@@ -143,6 +144,7 @@ chain = false
 priority = 0
 type = 0
 blend = 0
+cache_pose = true
 distance = 0.0
 enable_abilities = true
 lock_stance = true
@@ -153,6 +155,7 @@ lock_movement = true
 camera_mode = "HalfYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
+resource_local_to_scene = true
 animation = "Climb.Exit"
 script = ExtResource( 4 )
 __meta__ = {
@@ -163,6 +166,7 @@ schema = ""
 priority = 0
 type = 0
 blend = 0
+cache_pose = true
 distance = 0.0
 enable_abilities = true
 lock_stance = false
@@ -173,6 +177,7 @@ lock_movement = false
 camera_mode = "LockYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
+resource_local_to_scene = true
 animation = "FindClimbTarget"
 script = ExtResource( 4 )
 __meta__ = {
@@ -183,6 +188,7 @@ schema = ""
 priority = 0
 type = 0
 blend = 0
+cache_pose = true
 distance = 0.0
 enable_abilities = true
 lock_stance = false
@@ -384,6 +390,7 @@ __meta__ = {
 chain = false
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=33]
+resource_local_to_scene = true
 blend_point_0/node = SubResource( 15 )
 blend_point_0/pos = Vector2( -0.2, 0 )
 blend_point_1/node = SubResource( 16 )
@@ -418,6 +425,7 @@ y_min_value = -2.75
 priority = 0
 type = 0
 blend = 0
+cache_pose = true
 distance = 0.0
 enable_abilities = true
 lock_stance = true
@@ -428,17 +436,20 @@ lock_movement = true
 camera_mode = "HalfYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=34]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
+resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
+resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -447,6 +458,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
+resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 8 )
@@ -456,6 +468,7 @@ __meta__ = {
 transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
+resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 6 )
@@ -471,6 +484,7 @@ args = [  ]
 wait_for_frame = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=39]
+resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -479,6 +493,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
+resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 disabled = true
@@ -495,6 +510,7 @@ args = [  ]
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
+resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 8 )
@@ -504,6 +520,7 @@ __meta__ = {
 transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
+resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -512,6 +529,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
+resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 __meta__ = {
@@ -519,6 +537,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=44]
+resource_local_to_scene = true
 states/Climb/node = SubResource( 12 )
 states/Climb/position = Vector2( 584, 231 )
 states/ClimbExit/node = SubResource( 13 )
@@ -531,7 +550,7 @@ states/Start/node = SubResource( 34 )
 states/Start/position = Vector2( 264, 146 )
 transitions = [ "Start", "FindClimbTarget", SubResource( 35 ), "FindClimbTarget", "Jump", SubResource( 36 ), "Jump", "Start", SubResource( 37 ), "Jump", "Start", SubResource( 38 ), "Jump", "Start", SubResource( 39 ), "FindClimbTarget", "Climb", SubResource( 40 ), "Climb", "ClimbExit", SubResource( 41 ), "Climb", "ClimbExit", SubResource( 42 ), "ClimbExit", "Start", SubResource( 43 ) ]
 start_node = "Start"
-graph_offset = Vector2( -62.4102, 72.0609 )
+graph_offset = Vector2( -62.4102, 6.13976 )
 __meta__ = {
 
 }

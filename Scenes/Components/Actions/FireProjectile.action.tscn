@@ -5,6 +5,7 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -14,17 +15,20 @@ chain = false
 schema = "FireProjectile"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=3]
+resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
+resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 __meta__ = {
@@ -32,6 +36,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
+resource_local_to_scene = true
 states/FireProjectile/node = SubResource( 1 )
 states/FireProjectile/position = Vector2( 594.613, 99 )
 states/Start/node = SubResource( 2 )
