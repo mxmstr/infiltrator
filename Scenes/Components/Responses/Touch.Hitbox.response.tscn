@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -16,24 +15,12 @@ chain = false
 schema = "DamageOwner"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-script = ExtResource( 1 )
-__meta__ = {
-
-}
-chain = false
-schema = "ImpactEffect"
-
-[sub_resource type="AnimationNodeAnimation" id=4]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -42,15 +29,27 @@ __meta__ = {
 chain = false
 schema = "Reflect"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
-resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 auto_advance = true
 disabled = true
 script = ExtResource( 2 )
@@ -66,43 +65,16 @@ arguments = {
 }
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
-resource_local_to_scene = true
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-resource_local_to_scene = true
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-resource_local_to_scene = true
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=10]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeStateMachine" id=8]
 states/DamageOwner/node = SubResource( 1 )
-states/DamageOwner/position = Vector2( 586.951, 146 )
+states/DamageOwner/position = Vector2( 478.951, 146 )
 states/End/node = SubResource( 2 )
 states/End/position = Vector2( 990.613, 146 )
-states/ImpactEffect/node = SubResource( 3 )
-states/ImpactEffect/position = Vector2( 356.613, 146 )
-states/Reflect/node = SubResource( 4 )
+states/Reflect/node = SubResource( 3 )
 states/Reflect/position = Vector2( 789.613, 146 )
-states/Touch/node = SubResource( 5 )
+states/Touch/node = SubResource( 4 )
 states/Touch/position = Vector2( 154, 146 )
-transitions = [ "Touch", "ImpactEffect", SubResource( 6 ), "Reflect", "End", SubResource( 7 ), "ImpactEffect", "DamageOwner", SubResource( 8 ), "DamageOwner", "Reflect", SubResource( 9 ) ]
+transitions = [ "Reflect", "End", SubResource( 5 ), "DamageOwner", "Reflect", SubResource( 6 ), "Touch", "DamageOwner", SubResource( 7 ) ]
 start_node = "Touch"
 end_node = "End"
 graph_offset = Vector2( -55.7185, 40.1714 )
@@ -110,15 +82,15 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 __meta__ = {
 
 }
 
 [node name="TouchResponse" type="AnimationTree"]
-tree_root = SubResource( 10 )
+tree_root = SubResource( 8 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 11 )
+parameters/playback = SubResource( 9 )
 script = ExtResource( 3 )
 __meta__ = {
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Animations/Human/Movement/Stand.tres" type="Animation" id=1]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+playback_speed = 0.5
+anims/Stand = ExtResource( 1 )
+__meta__ = {
+
+}

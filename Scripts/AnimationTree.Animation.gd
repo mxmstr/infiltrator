@@ -33,6 +33,7 @@ func _load_animations():
 	var files = Meta._get_files_recursive(schemas_dir, schema, schemas_extension, owner_tags)
 	
 	var schema_animation_player = load(files[0]).instance()
+	var schema_speed = schema_animation_player.playback_speed
 	animation_list = Array(schema_animation_player.get_animation_list())
 	
 	for animation_name in animation_list:
@@ -42,6 +43,7 @@ func _load_animations():
 	
 	
 	animation = animation_list[0]
+	scale *= schema_speed
 
 
 func _randomize_animation():

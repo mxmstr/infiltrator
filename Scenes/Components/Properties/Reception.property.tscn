@@ -1,9 +1,16 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Reception.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=247]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 resource_local_to_scene = true
@@ -29,13 +36,27 @@ __meta__ = {
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=245]
 resource_local_to_scene = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+[sub_resource type="AnimationNodeStateMachineTransition" id=246]
+resource_local_to_scene = true
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=248]
+resource_local_to_scene = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=249]
 resource_local_to_scene = true
 auto_advance = true
 priority = 32
@@ -45,13 +66,15 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachine" id=6]
 resource_local_to_scene = true
+states/Damage/node = SubResource( 247 )
+states/Damage/position = Vector2( 654, 346.905 )
 states/End/node = SubResource( 1 )
 states/End/position = Vector2( 887, 299.905 )
 states/Start/node = SubResource( 2 )
 states/Start/position = Vector2( 419, 299.905 )
 states/Touch/node = SubResource( 3 )
-states/Touch/position = Vector2( 654, 299.905 )
-transitions = [ "Start", "Touch", SubResource( 23 ), "Touch", "End", SubResource( 24 ) ]
+states/Touch/position = Vector2( 654, 241.905 )
+transitions = [ "Start", "Touch", SubResource( 245 ), "Touch", "End", SubResource( 246 ), "Start", "Damage", SubResource( 248 ), "Damage", "End", SubResource( 249 ) ]
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 188.905 )

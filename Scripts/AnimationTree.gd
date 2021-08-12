@@ -21,7 +21,8 @@ func _on_pre_call_method_track(_animation, track_index, key_index):
 		var arg = key.args[index]
 		
 		if arg is String and arg.begins_with('$'):
-			key.args[index] = get_indexed(arg.replace('$', ''))
+			
+			key.args[index] = get_indexed(arg.right(1))
 			_animation.track_set_key_value(track_index, key_index, key)
 
 
@@ -39,9 +40,6 @@ func _start_state(_name, _data={}):
 		return
 	
 	data = _data
-	
-	if owner.name == 'PrimaryActionInput':
-		prints(OS.get_system_time_msecs(), owner.name, name)
 	
 	if tree_root.has_method('_travel'):
 		tree_root._travel(_name)

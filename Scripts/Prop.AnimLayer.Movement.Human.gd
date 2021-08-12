@@ -140,16 +140,6 @@ func _set_skeleton():
 		return
 	
 	
-	model_skeleton = $'../Model'.get_child(0)
-	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(model_skeleton)
-	
-	action_skeleton = model_skeleton.duplicate()
-	move_skeleton = model_skeleton.duplicate()
-	
-	for child in action_skeleton.get_children() + move_skeleton.get_children():
-		child.queue_free()
-	
-	
 	add_child(action_skeleton)
 	add_child(move_skeleton)
 	
@@ -158,6 +148,22 @@ func _set_skeleton():
 	
 	
 	active = true
+
+
+func _enter_tree():
+	
+	if not has_node('../Model'):
+		return
+	
+	
+	model_skeleton = $'../Model'.get_child(0)
+	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(model_skeleton)
+	
+	action_skeleton = model_skeleton.duplicate()
+	move_skeleton = model_skeleton.duplicate()
+	
+	for child in action_skeleton.get_children() + move_skeleton.get_children():
+		child.queue_free()
 
 
 func _ready():

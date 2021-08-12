@@ -18,14 +18,18 @@ onready var ContainsLink = load('res://Scripts/Link.Contains.gd')
 
 func _init_duplicate_meshes():
 	
-	var viewmodel = model.duplicate()
-	add_child(viewmodel)
+	transform = model.transform
 	
-	for w_child in Meta._get_children_recursive(viewmodel):
+	var viewmodel = model.get_child(0).duplicate()
+	
+	for child in viewmodel.get_children():
 		
-		if w_child is MeshInstance:
-			
-			w_child.cast_shadow = 0
+		if child is MeshInstance:
+			child.cast_shadow = 0
+		else:
+			child.queue_free()
+	
+	add_child(viewmodel)
 
 
 func _cull_mask_bits(world_mesh, view_mesh):
@@ -51,10 +55,13 @@ func _cull_mask_bits(world_mesh, view_mesh):
 
 func _init_mesh_layers():
 	
-	for w_child in Meta._get_children_recursive(model):
+	for w_child in model.get_child(0).get_children():
+		
+		if not w_child is MeshInstance:
+			continue
 		
 		var path_to_child = model.get_path_to(w_child)
-		var vm_child = get_node('Model/' + path_to_child)
+		var vm_child = get_node(path_to_child)
 		
 		if w_child is MeshInstance:
 			
@@ -71,10 +78,10 @@ func _uncull_mask_bits(world_mesh, view_mesh):
 
 func _revert_mesh_layers():
 	
-	for w_child in Meta._get_children_recursive(model):
+	for w_child in model.get_child(0).get_children():
 		
 		var path_to_child = model.get_path_to(w_child)
-		var vm_child = get_node('Model/' + path_to_child)
+		var vm_child = get_node(path_to_child)
 		
 		if w_child is MeshInstance:
 			
@@ -156,13 +163,15 @@ func _get_item_rotation_offset(item):
 	return Vector3()
 
 
+func _enter_tree():
+	
+	_init_duplicate_meshes()
+
+
 func _ready():
 	
 	if owner == null:
 		yield(get_tree(), 'idle_frame')
-	
-	
-	_init_duplicate_meshes()
 	
 	owner.connect('player_index_changed', self, '_init_mesh_layers')
 	
@@ -196,12 +205,5 @@ func _process(delta):
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, item_rotation_offset.z)
 	
 	
-	for w_child in Meta._get_children_recursive(model):
-		
-		var path_to_child = model.get_path_to(w_child)
-		var vm_child = get_node('Model/' + path_to_child)
-		
-		if w_child is Skeleton:
-			
-			_blend_skeletons(w_child, vm_child)
+	_blend_skeletons(model.get_child(0), get_child(0))
 	

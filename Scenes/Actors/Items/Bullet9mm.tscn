@@ -1,10 +1,14 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Scenes/Actors/KinematicBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Items/Bullet9mm/Bullet9mm.tscn" type="PackedScene" id=2]
 [ext_resource path="res://enemies/red_robot/laser/impact_effect/EmissionEmbers.shader" type="Shader" id=3]
 [ext_resource path="res://Scenes/Components/Stimuli/Contact.stimulus.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Responses/Touch.Bullet.response.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -50,32 +54,311 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "DefaultAnim"
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+chain = false
+schema = "Die"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "DefaultAnim"
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+chain = false
+schema = "Explode"
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "DefaultAnim"
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+chain = false
+schema = "HitFlesh"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "DefaultAnim"
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+chain = false
+schema = "TPToCollisionPoint"
+
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+auto_advance = true
+disabled = true
+script = ExtResource( 7 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "data.get(SOURCE)._has_tag(TAG)"
+arguments = {
+"SOURCE": "source",
+"TAG": "Map"
+}
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+auto_advance = true
+disabled = true
+script = ExtResource( 7 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "data.get(SOURCE)._has_tag(TAG)"
+arguments = {
+"SOURCE": "source",
+"TAG": "Hitbox"
+}
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=36]
+states/Die/node = SubResource( 30 )
+states/Die/position = Vector2( 802.951, 53 )
+states/End/node = SubResource( 31 )
+states/End/position = Vector2( 992.613, 147 )
+states/Explode/node = SubResource( 32 )
+states/Explode/position = Vector2( 386.613, 53 )
+states/HitFlesh/node = SubResource( 33 )
+states/HitFlesh/position = Vector2( 484.633, 147 )
+states/TPToCollisionPoint/node = SubResource( 34 )
+states/TPToCollisionPoint/position = Vector2( 602.951, 53 )
+states/Touch/node = SubResource( 35 )
+states/Touch/position = Vector2( 231, 147 )
+transitions = [ "Touch", "Explode", SubResource( 7 ), "Die", "End", SubResource( 8 ), "Explode", "TPToCollisionPoint", SubResource( 9 ), "TPToCollisionPoint", "Die", SubResource( 10 ), "Touch", "HitFlesh", SubResource( 11 ), "HitFlesh", "Die", SubResource( 12 ) ]
+start_node = "Touch"
+end_node = "End"
+graph_offset = Vector2( 57.6328, -7.99613 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=38]
+script = ExtResource( 9 )
+__meta__ = {
+
+}
+chain = false
+priority = 0
+type = 0
+blend = 1
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeStateMachine" id=39]
+states/Start/node = SubResource( 38 )
+states/Start/position = Vector2( 623.453, 162 )
+start_node = "Start"
+graph_offset = Vector2( 10.4534, 38.6886 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=40]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=42]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "DefaultAnim"
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=20]
+states/Damage/node = SubResource( 42 )
+states/Damage/position = Vector2( 654, 346.905 )
+states/End/node = SubResource( 13 )
+states/End/position = Vector2( 887, 299.905 )
+states/Start/node = SubResource( 14 )
+states/Start/position = Vector2( 419, 299.905 )
+states/Touch/node = SubResource( 15 )
+states/Touch/position = Vector2( 654, 241.905 )
+transitions = [ "Start", "Touch", SubResource( 16 ), "Touch", "End", SubResource( 17 ), "Start", "Damage", SubResource( 18 ), "Damage", "End", SubResource( 19 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, 188.905 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+chain = true
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/Start/node = SubResource( 22 )
+states/Start/position = Vector2( 624, 170 )
+start_node = "Start"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=28]
+states/End/node = SubResource( 25 )
+states/End/position = Vector2( 788, 177 )
+states/Start/node = SubResource( 26 )
+states/Start/position = Vector2( 333, 177 )
+transitions = [ "Start", "End", SubResource( 27 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
 __meta__ = {
 
 }
@@ -112,7 +395,8 @@ __meta__ = {
 stim_type = "Touch"
 
 [node name="TouchResponse" parent="." index="4" instance=ExtResource( 5 )]
-parameters/playback = SubResource( 7 )
+tree_root = SubResource( 36 )
+parameters/playback = SubResource( 37 )
 tree_node = NodePath("../Reception")
 
 [node name="Movement" parent="." index="5"]
@@ -121,14 +405,18 @@ accel = 0
 deaccel = 0
 
 [node name="Behavior" parent="." index="6"]
-parameters/playback = SubResource( 8 )
-parameters/Start/playback = SubResource( 9 )
+tree_root = SubResource( 39 )
+parameters/playback = SubResource( 40 )
+parameters/Start/playback = SubResource( 41 )
 
 [node name="Reception" parent="." index="7"]
-parameters/playback = SubResource( 10 )
+tree_root = SubResource( 20 )
+parameters/playback = SubResource( 21 )
 
 [node name="Interface" parent="." index="8"]
-parameters/playback = SubResource( 11 )
+tree_root = SubResource( 23 )
+parameters/playback = SubResource( 24 )
 
 [node name="Audio" parent="." index="9"]
-parameters/playback = SubResource( 12 )
+tree_root = SubResource( 28 )
+parameters/playback = SubResource( 29 )

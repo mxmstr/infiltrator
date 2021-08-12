@@ -86,9 +86,9 @@ func _unfilter_anim_events():
 
 func _travel(_name):
 	
-	if owner.name == 'Behavior' and owner.owner.name == 'Infiltrator':
-		prints(OS.get_system_time_msecs(), _name)
-	
+#	if owner.name == 'Behavior' and owner.owner.name == 'Infiltrator':
+#		prints(OS.get_system_time_msecs(), _name)
+#
 	var playback = owner.get(parameters + 'playback')
 	var current = playback.get_current_node()
 	
