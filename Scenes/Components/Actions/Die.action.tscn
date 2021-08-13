@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+clip_start = 0.05
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+schema = "Die"
+priority = 0
+type = 0
+blend = 0
+cache_pose = true
+distance = 0.0
+enable_abilities = false
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=201]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=199]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=200]
+switch_mode = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=202]
+states/Die/node = SubResource( 1 )
+states/Die/position = Vector2( 667.951, 101 )
+states/Start/node = SubResource( 201 )
+states/Start/position = Vector2( 302, 101 )
+transitions = [ "Start", "Die", SubResource( 199 ), "Die", "Start", SubResource( 200 ) ]
+start_node = "Start"
+graph_offset = Vector2( -71.387, -7.99613 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=203]
+__meta__ = {
+
+}
+
+[node name="DieAction" type="AnimationTree"]
+tree_root = SubResource( 202 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 203 )
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 3 )
+__meta__ = {
+
+}

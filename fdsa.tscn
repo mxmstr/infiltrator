@@ -1,0 +1,931 @@
+[gd_scene load_steps=96 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/AnimationTree.BlendTree.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Priority.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=11]
+[ext_resource path="res://Animations/Human/Action/Death/Death_Stomach.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/Action/ShootBeretta.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/Action/ShootBeretta_Down.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/Action/ShootBeretta_Up.tres" type="Animation" id=16]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
+scale = 1.5
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+scale = 0.5
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+transition_value = ""
+update_mode = "state_starting"
+assertion = "Greater Than"
+target = "ClimbingSkill"
+method = "_get_climb_height_mult"
+args = [  ]
+value = 0.7
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+transition_value = ""
+update_mode = "state_starting"
+assertion = "Less Than"
+target = "ClimbingSkill"
+method = "_get_climb_height_mult"
+args = [  ]
+value = 0.2
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/ClimbHigh/node = SubResource( 1 )
+states/ClimbHigh/position = Vector2( 574, 47 )
+states/ClimbLow/node = SubResource( 2 )
+states/ClimbLow/position = Vector2( 574, 233 )
+states/ClimbMedium/node = SubResource( 3 )
+states/ClimbMedium/position = Vector2( 574, 141 )
+states/End/node = SubResource( 4 )
+states/End/position = Vector2( 907, 141 )
+states/Start/node = SubResource( 5 )
+states/Start/position = Vector2( 226, 141 )
+transitions = [ "Start", "ClimbHigh", SubResource( 6 ), "ClimbHigh", "End", SubResource( 7 ), "Start", "ClimbMedium", SubResource( 8 ), "ClimbMedium", "End", SubResource( 9 ), "Start", "ClimbLow", SubResource( 10 ), "ClimbLow", "End", SubResource( 11 ) ]
+start_node = "Start"
+end_node = "End"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = false
+priority = 0
+type = 0
+blend = 0
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = true
+lock_speed = true
+lock_direction = true
+lock_rotation = true
+lock_movement = true
+camera_mode = "HalfYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Climb.Exit"
+script = ExtResource( 5 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+priority = 0
+type = 0
+blend = 0
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Death_Stomach"
+clip_start = 0.05
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = "Die"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "FindClimbTarget"
+script = ExtResource( 5 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+priority = 0
+type = 0
+blend = 0
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "JumpLong"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_boolean = ""
+update_mode = "process"
+assertion = "True"
+target = "."
+method = "is_on_floor"
+args = [  ]
+wait_for_frame = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/End/node = SubResource( 19 )
+states/End/position = Vector2( 822, 99 )
+states/JumpLong/node = SubResource( 20 )
+states/JumpLong/position = Vector2( 606, 99 )
+transitions = [ "JumpLong", "End", SubResource( 21 ), "JumpLong", "End", SubResource( 22 ) ]
+start_node = "JumpLong"
+end_node = "End"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "JumpUp"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_boolean = ""
+update_mode = "process"
+assertion = "True"
+target = "."
+method = "is_on_floor"
+args = [  ]
+wait_for_frame = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=28]
+states/End/node = SubResource( 24 )
+states/End/position = Vector2( 748, 92 )
+states/JumpUp/node = SubResource( 25 )
+states/JumpUp/position = Vector2( 536, 92 )
+transitions = [ "JumpUp", "End", SubResource( 26 ), "JumpUp", "End", SubResource( 27 ) ]
+start_node = "JumpUp"
+end_node = "End"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "JumpUp"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_boolean = ""
+update_mode = "process"
+assertion = "True"
+target = "."
+method = "is_on_floor"
+args = [  ]
+wait_for_frame = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=33]
+states/End/node = SubResource( 29 )
+states/End/position = Vector2( 778, 112 )
+states/jumpForward/node = SubResource( 30 )
+states/jumpForward/position = Vector2( 517, 112 )
+transitions = [ "jumpForward", "End", SubResource( 31 ), "jumpForward", "End", SubResource( 32 ) ]
+start_node = "jumpForward"
+end_node = "End"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=34]
+blend_point_0/node = SubResource( 16 )
+blend_point_0/pos = Vector2( -0.2, 0 )
+blend_point_1/node = SubResource( 17 )
+blend_point_1/pos = Vector2( 0.2, 0 )
+blend_point_2/node = SubResource( 18 )
+blend_point_2/pos = Vector2( 0, -0.2 )
+blend_point_3/node = SubResource( 23 )
+blend_point_3/pos = Vector2( 0, 1 )
+blend_point_4/node = SubResource( 28 )
+blend_point_4/pos = Vector2( 0, 0 )
+blend_point_5/node = SubResource( 33 )
+blend_point_5/pos = Vector2( 0, 0.2 )
+blend_mode = 1
+script = ExtResource( 7 )
+__meta__ = {
+
+}
+blendspace = ""
+chain = false
+update_mode = "state_starting"
+speed = 0.0
+x_target = "Movement"
+x_method = "_get_sidestep_speed"
+x_args = [  ]
+x_max_value = -2.75
+x_min_value = 2.75
+y_target = "Movement"
+y_method = "_get_forward_speed"
+y_args = [  ]
+y_max_value = 2.75
+y_min_value = -2.75
+priority = 0
+type = 0
+blend = 0
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = true
+lock_speed = true
+lock_direction = false
+lock_rotation = true
+lock_movement = true
+camera_mode = "HalfYaw"
+
+[sub_resource type="AnimationNodeStateMachine" id=35]
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = true
+priority = 0
+type = 0
+blend = 2
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlend2" id=37]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlend3" id=38]
+sync = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "ShootBeretta"
+scale = 3.0
+clip_start = 0.05
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "ShootBeretta_Down"
+scale = 3.0
+clip_start = 0.05
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "DefaultAnim"
+script = ExtResource( 5 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+priority = 0
+type = 0
+blend = 2
+cache_pose = false
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=42]
+animation = "DefaultAnim"
+script = ExtResource( 5 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+priority = 0
+type = 0
+blend = 0
+cache_pose = false
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+auto_advance = true
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(MOVEMENT)._get_speed() < 0.1 and get_node(STANCE).stance == 0"
+arguments = {
+"MOVEMENT": "../Movement",
+"STANCE": "../Stance"
+}
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+auto_advance = true
+disabled = true
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(MOVEMENT)._get_speed() > 0.1 or get_node(STANCE).stance > 0"
+arguments = {
+"MOVEMENT": "../Movement",
+"STANCE": "../Stance"
+}
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachine" id=45]
+states/Moving/node = SubResource( 41 )
+states/Moving/position = Vector2( 388, 99 )
+states/Stopped/node = SubResource( 42 )
+states/Stopped/position = Vector2( 781, 99 )
+transitions = [ "Moving", "Stopped", SubResource( 43 ), "Stopped", "Moving", SubResource( 44 ) ]
+start_node = "Moving"
+graph_offset = Vector2( -41.3325, -24.8796 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "ShootBeretta_Up"
+scale = 3.0
+clip_start = 0.05
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendTree" id=47]
+graph_offset = Vector2( -362.306, 38.5421 )
+nodes/Blend2/node = SubResource( 37 )
+nodes/Blend2/position = Vector2( 280, 120 )
+nodes/Blend3/node = SubResource( 38 )
+nodes/Blend3/position = Vector2( 100, 100 )
+nodes/Default/node = SubResource( 39 )
+nodes/Default/position = Vector2( -160, 140 )
+nodes/Down/node = SubResource( 40 )
+nodes/Down/position = Vector2( -160, 20 )
+nodes/SwitchBlendModes/node = SubResource( 45 )
+nodes/SwitchBlendModes/position = Vector2( 80, 300 )
+nodes/Up/node = SubResource( 46 )
+nodes/Up/position = Vector2( -160, 260 )
+nodes/output/position = Vector2( 460, 160 )
+node_connections = [ "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up", "Blend2", 0, "Blend3", "Blend2", 1, "SwitchBlendModes", "output", 0, "Blend2" ]
+script = ExtResource( 9 )
+__meta__ = {
+
+}
+chain = false
+schema = "Shoot"
+
+[sub_resource type="AnimationNodeAnimation" id=48]
+animation = "DefaultAnim"
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+auto_advance = true
+disabled = true
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "not get_node(RIGHTHAND).items[0].get_node(CHAMBER)._is_empty()"
+arguments = {
+"CHAMBER": "Chamber",
+"RIGHTHAND": "../RightHandContainer"
+}
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=52]
+states/End/node = SubResource( 36 )
+states/End/position = Vector2( 935, 95 )
+states/NotEmpty/node = SubResource( 47 )
+states/NotEmpty/position = Vector2( 643, 42 )
+states/Start/node = SubResource( 48 )
+states/Start/position = Vector2( 360, 95 )
+transitions = [ "Start", "NotEmpty", SubResource( 49 ), "NotEmpty", "End", SubResource( 50 ), "Start", "End", SubResource( 51 ) ]
+start_node = "Start"
+end_node = "End"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeStateMachine" id=53]
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = false
+priority = 0
+type = 0
+blend = 1
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+auto_advance = true
+disabled = true
+script = ExtResource( 10 )
+__meta__ = {
+
+}
+transition_priority = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_boolean = ""
+update_mode = "process"
+assertion = "True"
+target = "."
+method = "is_on_floor"
+args = [  ]
+wait_for_frame = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_boolean = ""
+update_mode = "process"
+assertion = "True"
+target = "ClimbingSkill"
+method = "_has_targets"
+args = [  ]
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+auto_advance = true
+disabled = true
+script = ExtResource( 10 )
+__meta__ = {
+
+}
+transition_priority = ""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=65]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_boolean = ""
+update_mode = "state_starting"
+assertion = "True"
+target = "RightHandContainer"
+method = "_has_item_with_tag"
+args = [ "Firearm" ]
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=70]
+states/Climb/node = SubResource( 12 )
+states/Climb/position = Vector2( 992, -55 )
+states/ClimbExit/node = SubResource( 13 )
+states/ClimbExit/position = Vector2( 887, 93 )
+states/Die/node = SubResource( 14 )
+states/Die/position = Vector2( 877, 381 )
+states/FindClimbTarget/node = SubResource( 15 )
+states/FindClimbTarget/position = Vector2( 747, -47 )
+states/Jump/node = SubResource( 34 )
+states/Jump/position = Vector2( 304, -150 )
+states/Primary/node = SubResource( 35 )
+states/Primary/position = Vector2( 183, 391 )
+states/Shoot/node = SubResource( 52 )
+states/Shoot/position = Vector2( 389, 515 )
+states/Start/node = SubResource( 53 )
+states/Start/position = Vector2( 623.453, 162 )
+transitions = [ "Start", "FindClimbTarget", SubResource( 54 ), "FindClimbTarget", "Jump", SubResource( 55 ), "Jump", "Start", SubResource( 56 ), "Jump", "Start", SubResource( 57 ), "Jump", "Start", SubResource( 58 ), "FindClimbTarget", "Climb", SubResource( 59 ), "Climb", "ClimbExit", SubResource( 60 ), "Climb", "ClimbExit", SubResource( 61 ), "ClimbExit", "Start", SubResource( 62 ), "Start", "Primary", SubResource( 63 ), "Primary", "Start", SubResource( 64 ), "Shoot", "Start", SubResource( 65 ), "Primary", "Shoot", SubResource( 66 ), "Shoot", "Primary", SubResource( 67 ), "Start", "Die", SubResource( 68 ), "Die", "Start", SubResource( 69 ) ]
+start_node = "Start"
+graph_offset = Vector2( 10.4534, -226.755 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=71]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=72]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=73]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=74]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=75]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=76]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=77]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=78]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=79]
+__meta__ = {
+
+}
+
+[node name="Behavior" type="AnimationTree"]
+tree_root = SubResource( 70 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 71 )
+parameters/Climb/playback = SubResource( 72 )
+parameters/Jump/blend_position = Vector2( 0, 0 )
+parameters/Jump/3/playback = SubResource( 73 )
+parameters/Jump/4/playback = SubResource( 74 )
+parameters/Jump/5/playback = SubResource( 75 )
+parameters/Primary/playback = SubResource( 76 )
+parameters/Shoot/playback = SubResource( 77 )
+parameters/Shoot/NotEmpty/Blend2/blend_amount = 0
+parameters/Shoot/NotEmpty/Blend3/blend_amount = 0
+parameters/Shoot/NotEmpty/SwitchBlendModes/playback = SubResource( 78 )
+parameters/Start/playback = SubResource( 79 )
+script = ExtResource( 11 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../../AnimLayerMovement/neo_reference_skeleton")
+anims/Death_Stomach = ExtResource( 12 )
+anims/DefaultAnim = ExtResource( 13 )
+anims/ShootBeretta = ExtResource( 14 )
+anims/ShootBeretta_Down = ExtResource( 15 )
+anims/ShootBeretta_Up = ExtResource( 16 )
+__meta__ = {
+
+}

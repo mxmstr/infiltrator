@@ -21,7 +21,6 @@ func _evaluate():
 		
 			if exec.has_execute_failed():
 				
-				#print('aaaa ', owner.data.source)
 				prints(owner.owner.name, from.node_name, exec.get_error_text())
 			
 			return false

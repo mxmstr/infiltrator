@@ -1,0 +1,26 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Animations/Human/Action/Death/Death_Backward.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/Action/Death/Death_Forward.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/Action/Death/Death_Headshot.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/Action/Death/Death_Minimum.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/Action/Death/Death_Stomach.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/Action/Death/death_knees.tres" type="Animation" id=6]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=7]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/Death_Backward = ExtResource( 1 )
+anims/Death_Forward = ExtResource( 2 )
+anims/Death_Headshot = ExtResource( 3 )
+anims/Death_Minimum = ExtResource( 4 )
+anims/Death_Stomach = ExtResource( 5 )
+anims/death_knees = ExtResource( 6 )
+script = ExtResource( 7 )
+__meta__ = {
+
+}
+attributes = "{
+	\"death_knees\": {
+		\"speed\": 2.0
+	}
+}"

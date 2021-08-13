@@ -19,11 +19,7 @@ func _on_tree_root_post_process():
 
 func _on_tree_root_state_starting(sm_node_name):
 	
-#	if 'Hitbox' in owner.name:
-#		print(get_signal_connection_list('tree_root_state_started'))
 	emit_signal('tree_root_state_started', sm_node_name)
-#	if 'Shoulders' in owner.name:
-#		print(sm_node_name)
 
 
 func _start_state(_name, _data={}):
@@ -67,6 +63,5 @@ func _ready():
 	
 	var playback = get('parameters/playback')
 	playback.connect('state_starting', self, '_on_tree_root_state_starting')
-	#print(playback.get_signal_connection_list('state_starting'))
 	playback.connect('pre_process', self, '_on_tree_root_pre_process')
 	playback.connect('post_process', self, '_on_tree_root_post_process')

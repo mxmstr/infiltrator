@@ -118,7 +118,8 @@ func _get_files_recursive(root, begins_with='', ends_with='', actor_tags=null):
 						continue
 					
 					var file_stripped = file.trim_prefix(begins_with).trim_suffix(ends_with)
-					var file_tags = file_stripped.split('.')
+					var file_tags = Array(file_stripped.split('.'))
+					file_tags.erase('')
 					
 					if file_to_add == null:
 						file_to_add = '%s/%s' % [dir.get_current_dir(), file] 

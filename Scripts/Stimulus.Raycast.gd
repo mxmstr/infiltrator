@@ -79,7 +79,6 @@ func _on_before_move(velocity):
 		temp_raycast.force_raycast_update()
 
 		if temp_raycast.get_collider():
-			#print('asdf')
 			Meta.StimulateActor(temp_raycast.get_collider(), stim_type, owner, velocity.length(), temp_raycast.get_collision_point(), temp_raycast.get_collision_normal())
 		
 		temp_raycast.free()

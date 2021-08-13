@@ -13,7 +13,9 @@ var parameters
 var connections = []
 var advance = false
 
+var default_scale
 var animation_list = []
+var attributes = {}
 
 signal state_starting
 
@@ -22,6 +24,8 @@ func _load_animations():
 	
 	if not schema or schema == '':
 		return
+	
+	default_scale = scale
 	
 	
 	var animation_player = owner.get_node('AnimationPlayer')
@@ -33,8 +37,10 @@ func _load_animations():
 	var files = Meta._get_files_recursive(schemas_dir, schema, schemas_extension, owner_tags)
 	
 	var schema_animation_player = load(files[0]).instance()
-	var schema_speed = schema_animation_player.playback_speed
 	animation_list = Array(schema_animation_player.get_animation_list())
+	
+	if schema_animation_player.get('attributes'):
+		attributes = parse_json(schema_animation_player.attributes)
 	
 	for animation_name in animation_list:
 		
@@ -43,7 +49,9 @@ func _load_animations():
 	
 	
 	animation = animation_list[0]
-	scale *= schema_speed
+	
+	if attributes.has(animation):
+		scale = default_scale * attributes[animation].speed
 
 
 func _randomize_animation():
@@ -52,6 +60,9 @@ func _randomize_animation():
 		
 		animation_list.shuffle()
 		animation = animation_list[0]
+		
+		if attributes.has(animation):
+			scale = default_scale * attributes[animation].speed
 
 
 func _on_state_starting(new_name):

@@ -1,19 +1,18 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
-[sub_resource type="AnimationNodeAnimation" id=282]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=400]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=283]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=401]
 animation = "Land"
 script = ExtResource( 2 )
 __meta__ = {
@@ -22,37 +21,68 @@ __meta__ = {
 chain = true
 schema = "DecreaseHP"
 
-[sub_resource type="AnimationNodeAnimation" id=284]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=402]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=280]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=403]
+animation = "DefaultAnim"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = false
+schema = "GetKilled"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=529]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=530]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=531]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(STAMINA).hp == 0"
+arguments = {
+"STAMINA": "../Stamina"
+}
+wait_for_frame = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=532]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=281]
-resource_local_to_scene = true
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=285]
-resource_local_to_scene = true
-states/Damage/node = SubResource( 282 )
+[sub_resource type="AnimationNodeStateMachine" id=404]
+states/Damage/node = SubResource( 400 )
 states/Damage/position = Vector2( 283, 128 )
-states/DecreaseHP/node = SubResource( 283 )
-states/DecreaseHP/position = Vector2( 582, 128 )
-states/End/node = SubResource( 284 )
+states/DecreaseHP/node = SubResource( 401 )
+states/DecreaseHP/position = Vector2( 524, 128 )
+states/End/node = SubResource( 402 )
 states/End/position = Vector2( 909, 128 )
-transitions = [ "DecreaseHP", "End", SubResource( 280 ), "Damage", "DecreaseHP", SubResource( 281 ) ]
+states/GetKilled/node = SubResource( 403 )
+states/GetKilled/position = Vector2( 720, 63.9397 )
+transitions = [ "DecreaseHP", "End", SubResource( 529 ), "Damage", "DecreaseHP", SubResource( 530 ), "DecreaseHP", "GetKilled", SubResource( 531 ), "GetKilled", "End", SubResource( 532 ) ]
 start_node = "Damage"
 end_node = "End"
 graph_offset = Vector2( 0, 10.9397 )
@@ -62,16 +92,16 @@ __meta__ = {
 }
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=286]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 __meta__ = {
 
 }
 
 [node name="DamageResponse" type="AnimationTree"]
-tree_root = SubResource( 285 )
+tree_root = SubResource( 404 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 286 )
-script = ExtResource( 3 )
+parameters/playback = SubResource( 10 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
@@ -79,7 +109,7 @@ start_node = "Damage"
 end_node = "End"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 4 )
+anims/DefaultAnim = ExtResource( 5 )
 __meta__ = {
 
 }
