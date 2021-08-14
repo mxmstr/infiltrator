@@ -79,4 +79,8 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 func _process(delta):
 	
 	if update_mode == 'process':
+		
+#		if owner.owner.name == 'Infiltrator' and transition_expression in ['fdsa', 'asdf']:
+#			prints(transition_expression, not disabled)
+		
 		_update()

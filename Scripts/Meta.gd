@@ -25,7 +25,7 @@ enum DriverMode {
 
 var tree_count = 0
 
-var coop = false
+var coop = true
 var p1_mouse = -1
 var p1_keyboard = -1
 var p2_mouse = -1

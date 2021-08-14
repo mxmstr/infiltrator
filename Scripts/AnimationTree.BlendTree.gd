@@ -114,6 +114,8 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	
 	
 	_load_animations()
+	
+	
 
 
 func _process(delta):

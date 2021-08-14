@@ -3,6 +3,7 @@ extends AnimationNodeStateMachine
 
 const camera_rig_track_path = '../../Perspective'
 
+export(String) var statemachine
 export var chain = false
 
 var node_name
@@ -19,6 +20,9 @@ signal travel_starting
 func _on_state_starting(new_name):
 	
 	if node_name == new_name:
+#		if owner.name == 'Behavior' and owner.owner.name == 'Infiltrator':
+#			prints('meep ',new_name)
+		
 		advance = chain
 
 
@@ -197,4 +201,6 @@ func _process(delta):
 	
 	advance = false
 	
-	
+	if statemachine == 'rewq' and owner.owner.name == 'Infiltrator':
+		owner.advance(0.01)
+		prints(owner.get(parameters + 'playback').get_current_node())

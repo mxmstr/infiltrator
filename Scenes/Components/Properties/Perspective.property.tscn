@@ -1,51 +1,45 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Prop.Perspective.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource path="res://Scenes/Components/Properties/HUD.property.tscn" type="PackedScene" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-resource_local_to_scene = true
 animation = "AlignPlayerToCamera"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-resource_local_to_scene = true
 animation = "HalfYaw"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-resource_local_to_scene = true
 animation = "LockYaw"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
-resource_local_to_scene = true
 xfade_time = 0.1
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
-resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
-resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=7]
-resource_local_to_scene = true
 states/AlignPlayerToCamera/node = SubResource( 1 )
 states/AlignPlayerToCamera/position = Vector2( 640, 235 )
 states/HalfYaw/node = SubResource( 2 )
@@ -182,3 +176,5 @@ shadow_atlas_size = 1
 __meta__ = {
 
 }
+
+[node name="HUD" parent="Container/Viewport" instance=ExtResource( 4 )]

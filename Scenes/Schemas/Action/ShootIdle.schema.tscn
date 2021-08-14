@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Animations/Human/Action/ShootBerettaIdle.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/Action/ShootBerettaIdle_Down.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/Action/ShootBerettaIdle_Up.tres" type="Animation" id=3]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/ShootBerettaIdle = ExtResource( 1 )
+anims/ShootBerettaIdle_Down = ExtResource( 2 )
+anims/ShootBerettaIdle_Up = ExtResource( 3 )
+__meta__ = {
+
+}

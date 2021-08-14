@@ -5,12 +5,20 @@ var enable_abilities = true
 var target
 
 
-func _start_state(_name, data={}):
-	
+func _start_state(_name, _data={}):
+
+#	if owner.name == 'Infiltrator':
+#		print(OS.get_system_time_msecs(), _name, enable_abilities)
+
 	if not enable_abilities:
 		return
 	
-	._start_state(_name, data)
+	data = _data
+	
+	if tree_root.has_method('_start'):
+		tree_root._start(_name)
+	
+#	._start_state(_name, data)
 
 
 func _get_visible_interactions():
@@ -49,5 +57,5 @@ func _process(delta):
 	var playback = get('parameters/playback')
 	var current_node = playback.get_current_node()
 	
-#
-#		print(current_node)
+#	if owner.name == 'Infiltrator':
+#		prints(OS.get_system_time_msecs(), current_node, get('parameters/playback/pos_current'))

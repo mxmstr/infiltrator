@@ -68,3 +68,11 @@ func _process(delta):
 	if Engine.editor_hint: return
 	
 	emit_signal('on_process', delta)
+	
+	
+	
+#	if name == 'PrimaryActionInput':
+#		var playback = get('parameters/playback')
+#		var current_node = playback.get_current_node()
+#
+#		prints('asdf', current_node) 

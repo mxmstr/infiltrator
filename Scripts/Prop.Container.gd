@@ -50,7 +50,9 @@ func _has_item(item):
 
 
 func _has_item_with_tag(tag):
-	
+#
+#	prints(owner.name, name, items)
+#
 	for item in items:
 		if item._has_tag(tag):
 			return true

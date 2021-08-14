@@ -122,7 +122,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=12]
-resource_local_to_scene = true
 states/ClimbHigh/node = SubResource( 1 )
 states/ClimbHigh/position = Vector2( 574, 47 )
 states/ClimbLow/node = SubResource( 2 )
@@ -155,7 +154,6 @@ lock_movement = true
 camera_mode = "HalfYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
-resource_local_to_scene = true
 animation = "Climb.Exit"
 script = ExtResource( 4 )
 __meta__ = {
@@ -177,7 +175,6 @@ lock_movement = false
 camera_mode = "LockYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-resource_local_to_scene = true
 animation = "FindClimbTarget"
 script = ExtResource( 4 )
 __meta__ = {
@@ -390,7 +387,6 @@ __meta__ = {
 chain = false
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=33]
-resource_local_to_scene = true
 blend_point_0/node = SubResource( 15 )
 blend_point_0/pos = Vector2( -0.2, 0 )
 blend_point_1/node = SubResource( 16 )
@@ -436,20 +432,17 @@ lock_movement = true
 camera_mode = "HalfYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=34]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
-resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
-resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -458,7 +451,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
-resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 8 )
@@ -468,7 +460,6 @@ __meta__ = {
 transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
-resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 6 )
@@ -484,7 +475,6 @@ args = [  ]
 wait_for_frame = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=39]
-resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -493,7 +483,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
-resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 disabled = true
@@ -510,7 +499,6 @@ args = [  ]
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
-resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 8 )
@@ -520,7 +508,6 @@ __meta__ = {
 transition_priority = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
-resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -529,7 +516,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
-resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 __meta__ = {
@@ -537,7 +523,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=44]
-resource_local_to_scene = true
 states/Climb/node = SubResource( 12 )
 states/Climb/position = Vector2( 584, 231 )
 states/ClimbExit/node = SubResource( 13 )

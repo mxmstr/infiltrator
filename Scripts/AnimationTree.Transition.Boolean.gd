@@ -39,13 +39,14 @@ func _update():
 		
 		_args.append(arg)
 	
+	
 	disabled = not _evaluate(owner.owner.get_node(target).callv(method, _args))
 
 
 func _on_state_starting(new_name):
-
-	if from.get('node_name') == null:
-		return
+	
+#	if from.get('node_name') == null:
+#		return
 	
 	if from.node_name == new_name and update_mode == 'state_starting':
 		_update()
@@ -68,6 +69,10 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 		parent.connect('travel_starting', self, '_on_travel_starting')
 	
 	owner.connect('on_process', self, '_process')
+	
+#	if owner.name == 'Behavior' and target == 'RightHandContainer':
+#		prints(_owner.owner.name, self)
+
 
 
 func _process(delta):

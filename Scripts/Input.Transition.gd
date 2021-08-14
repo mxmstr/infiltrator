@@ -22,6 +22,7 @@ var last_status = -1
 
 func _ready(_owner, _parent, _parameters, _from, _to):
 	
+	
 	owner = _owner
 	parent = _parent
 	parameters = _parameters
@@ -46,5 +47,17 @@ func _process(delta):
 			status == state \
 			or (last_status != status and status + 2 == state)
 			)
+	
+	if not disabled:
+		owner.advance(0.01)
+
+	disabled = true
+	
+#	if owner.name == 'PrimaryActionInput':
+#		if (
+#			status == state \
+#			or (last_status != status and status + 2 == state)
+#			):
+#			prints(OS.get_system_time_msecs(), owner.owner.name, status)
 	
 	last_status = status

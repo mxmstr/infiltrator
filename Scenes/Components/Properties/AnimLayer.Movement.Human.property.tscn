@@ -105,7 +105,6 @@ value = 2.0
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
-resource_local_to_scene = true
 states/LeanLeft/node = SubResource( 1 )
 states/LeanLeft/position = Vector2( 465, 111 )
 states/LeanRight/node = SubResource( 2 )
@@ -119,10 +118,10 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-resource_local_to_scene = true
 animation = "StrafeLeft"
 script = ExtResource( 2 )
 __meta__ = {
@@ -132,7 +131,6 @@ chain = false
 schema = "RunLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
-resource_local_to_scene = true
 animation = "StrafeRight"
 script = ExtResource( 2 )
 __meta__ = {
@@ -142,7 +140,6 @@ chain = false
 schema = "RunRight"
 
 [sub_resource type="AnimationNodeAnimation" id=11]
-resource_local_to_scene = true
 animation = "WalkBackward"
 script = ExtResource( 2 )
 __meta__ = {
@@ -152,7 +149,6 @@ chain = false
 schema = "WalkBackward"
 
 [sub_resource type="AnimationNodeAnimation" id=12]
-resource_local_to_scene = true
 animation = "Walk"
 script = ExtResource( 2 )
 __meta__ = {
@@ -162,7 +158,6 @@ chain = false
 schema = "WalkForward"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
-resource_local_to_scene = true
 animation = "Run"
 script = ExtResource( 2 )
 __meta__ = {
@@ -172,7 +167,6 @@ chain = false
 schema = "RunForward"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-resource_local_to_scene = true
 animation = "WalkBackward"
 script = ExtResource( 2 )
 __meta__ = {
@@ -182,7 +176,6 @@ chain = false
 schema = "WalkBackward"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=15]
-resource_local_to_scene = true
 blend_point_0/node = SubResource( 8 )
 blend_point_0/pos = Vector2( 0, 0 )
 blend_point_1/node = SubResource( 9 )
@@ -314,7 +307,6 @@ value = 1.0
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachine" id=23]
-resource_local_to_scene = true
 states/Crouch/node = SubResource( 16 )
 states/Crouch/position = Vector2( 632, 106 )
 states/LeanLeft/node = SubResource( 17 )
@@ -328,10 +320,10 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeAnimation" id=24]
-resource_local_to_scene = true
 animation = "CrouchSideStepLeft"
 script = ExtResource( 2 )
 __meta__ = {
@@ -341,7 +333,6 @@ chain = false
 schema = "CrouchLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=25]
-resource_local_to_scene = true
 animation = "CrouchSidestepRight"
 script = ExtResource( 2 )
 __meta__ = {
@@ -351,7 +342,6 @@ chain = false
 schema = "CrouchRight"
 
 [sub_resource type="AnimationNodeAnimation" id=26]
-resource_local_to_scene = true
 animation = "CrouchForward"
 script = ExtResource( 2 )
 __meta__ = {
@@ -361,7 +351,6 @@ chain = false
 schema = "CrouchForward"
 
 [sub_resource type="AnimationNodeAnimation" id=27]
-resource_local_to_scene = true
 animation = "CrouchBackward"
 script = ExtResource( 2 )
 __meta__ = {
@@ -371,7 +360,6 @@ chain = false
 schema = "CrouchBackward"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=28]
-resource_local_to_scene = true
 blend_point_0/node = SubResource( 23 )
 blend_point_0/pos = Vector2( 0, 0 )
 blend_point_1/node = SubResource( 24 )
@@ -402,7 +390,6 @@ y_max_value = 2.75
 y_min_value = -2.75
 
 [sub_resource type="AnimationNodeBlendSpace1D" id=29]
-resource_local_to_scene = true
 blend_point_0/node = SubResource( 15 )
 blend_point_0/pos = 0.0
 blend_point_1/node = SubResource( 28 )
@@ -445,7 +432,7 @@ anim_player = NodePath("AnimationPlayer")
 parameters/blend_position = 0.00331675
 parameters/0/blend_position = Vector2( -0.994671, 0.017341 )
 parameters/0/0/playback = SubResource( 30 )
-parameters/1/blend_position = Vector2( -0.00443655, 0.00578034 )
+parameters/1/blend_position = Vector2( -0.000893652, 0.0404625 )
 parameters/1/0/playback = SubResource( 31 )
 script = ExtResource( 5 )
 __meta__ = {

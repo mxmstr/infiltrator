@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scenes/Actors/Humans/Dummy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Actors/Humans/Infiltrator.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Actors/Items/Pistol.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Links/Contains.link.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Links/Factory.link.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Links/LocalCoopPartner.link.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Actors/Humans/Infiltrator.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/Humans/Anderson.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Actor.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Actors/Items/Pistol.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Links/Contains.link.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Links/Factory.link.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Links/LocalCoopPartner.link.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=8]
 
 [node name="Mission" type="Spatial"]
 __meta__ = {
@@ -18,13 +19,16 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Dummy" parent="Actors" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.61873, 0.213079, -0.215309 )
-
-[node name="Infiltrator" parent="Actors" instance=ExtResource( 2 )]
+[node name="Infiltrator" parent="Actors" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.09859, 0.29421, -0.157249 )
 
-[node name="Pistol" parent="Actors" instance=ExtResource( 3 )]
+[node name="Anderson" parent="Actors" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.6101, 0.28685, 0 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 3 )
+
+[node name="Pistol" parent="Actors" instance=ExtResource( 4 )]
 
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {
@@ -36,20 +40,20 @@ __meta__ = {
 
 }
 
-[node name="InfContainsPistol" parent="Links" instance=ExtResource( 4 )]
+[node name="InfContainsPistol" parent="Links" instance=ExtResource( 5 )]
 from = NodePath("../../Actors/Infiltrator")
 to = NodePath("../../Actors/Pistol")
 container = "RightHandContainer"
 
-[node name="InfPistolAmmoFactory" parent="Links" instance=ExtResource( 5 )]
+[node name="InfPistolAmmoFactory" parent="Links" instance=ExtResource( 6 )]
 from = NodePath("../../Actors/Pistol")
 to = NodePath("../../Actors/Pistol")
 container = "Magazine"
 products = "target target_container << 1 Items/Mag9mm 
  Items/Mag9mm Container << 50 Items/Bullet9mm"
 
-[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 6 )]
-enabled = false
+[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 7 )]
+from = NodePath("../../Actors/Anderson")
 to = NodePath("../../Actors/Infiltrator")
 
 [node name="Static" type="Spatial" parent="."]
@@ -70,4 +74,4 @@ __meta__ = {
 
 }
 
-[node name="Map" parent="Static" instance=ExtResource( 7 )]
+[node name="Map" parent="Static" instance=ExtResource( 8 )]

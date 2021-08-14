@@ -1,4 +1,8 @@
-extends "res://Scripts/AnimationTree.Animation.gd"
+extends "res://Scripts/AnimationTree.BlendTree.gd"
+
+export(String, MULTILINE) var expression
+export(Dictionary) var arguments
+var exec_list = []
 
 export(Meta.Priority) var priority
 export(Meta.Visibility) var type
@@ -14,6 +18,23 @@ export var lock_movement = false
 export var camera_mode = 'LockYaw'
 
 
+func _evaluate():
+	
+	for exec in exec_list:
+		
+		var result = exec.execute(arguments.values(), owner)
+		
+		if not result:
+		
+			if exec.has_execute_failed():
+				
+				prints(owner.owner.name, exec.get_error_text())
+			
+			return false
+	
+	return true
+
+
 func _is_visible():
 	
 	return type != Meta.Visibility.INVISIBLE
@@ -23,10 +44,7 @@ func _on_state_starting(new_name):
 	
 	if node_name == new_name:
 		
-		if parent.get('statemachine') == 'qwer':
-			prints(new_name)
-		
-		var playback = owner.get(parameters + 'playback')
+		var playback = owner.get(parent.parameters + 'playback')
 		
 		if len(playback.get_travel_path()) == 0:
 			
@@ -43,5 +61,30 @@ func _on_state_starting(new_name):
 				owner.owner.get_node('Perspective')._start_state(camera_mode)
 			
 			if owner.owner.has_node('AnimLayerMovement'):
-				owner.owner.get_node('AnimLayerMovement').blend_mode = blend
 				owner.owner.get_node('AnimLayerMovement').cache_poses = cache_pose
+			
+	._on_state_starting(new_name)
+
+
+func _ready(_owner, _parent, _parameters, _node_name):
+	
+	._ready(_owner, _parent, _parameters, _node_name)
+	
+	for line in expression.split('\n'):
+		
+		var exec = Expression.new()
+		exec.parse(line, arguments.keys())
+		exec_list.append(exec)
+
+
+func _process(delta):
+	
+	if owner.owner.has_node('AnimLayerMovement'):
+		
+		if _evaluate():
+			owner.owner.get_node('AnimLayerMovement').blend_mode = Meta.Blend.LAYERED
+		else:
+			owner.owner.get_node('AnimLayerMovement').blend_mode = Meta.Blend.ACTION
+	
+	._process(delta)
+
