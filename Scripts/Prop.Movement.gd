@@ -5,6 +5,9 @@ var direction = Vector3()
 var velocity = Vector3()
 
 
+func _get_collisions(): return []
+
+
 func _get_speed(): pass
 
 

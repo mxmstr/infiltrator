@@ -10,6 +10,8 @@ func _ready():
 	if is_queued_for_deletion():
 		return
 	
+	yield(get_tree(), 'idle_frame')
+	
 	products = products.c_escape().replace('\\n', ' ')
 	
 	var new_product = {}

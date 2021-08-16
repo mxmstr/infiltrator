@@ -23,6 +23,7 @@ enum DriverMode {
 	Sidestep
 }
 
+var preloader
 var tree_count = 0
 
 var coop = true
@@ -104,13 +105,15 @@ func _get_files_recursive(root, begins_with='', ends_with='', actor_tags=null):
 				dir.list_dir_end()
 				break
 			
-			if dir.current_is_dir() and not file in ['.', '..']:
+			if file in ['.', '..']:
+				continue
+			
+			if dir.current_is_dir():
 				
 				dirs.append('%s/%s' % [dir.get_current_dir(), file])
 				continue
 			
-			
-			if file.begins_with(begins_with) and file.ends_with(ends_with):
+			if file.begins_with(begins_with) and (not ends_with.length() or file.ends_with(ends_with)):
 				
 				if actor_tags:
 					
@@ -162,9 +165,17 @@ func _get_children_recursive(node, children=[]):
 	return children
 
 
+func PreloadActors():
+	
+	var actors = _get_files_recursive('res://Scenes/Actors/', '', '.tscn')
+	
+	for actor in actors:
+		preloader.add_resource(actor, load(actor))
+
+
 func AddActor(actor_path, position=null, rotation=null, direction=null):
 	
-	var new_actor = load('res://Scenes/Actors/' + actor_path + '.tscn').instance()
+	var new_actor = preloader.get_resource('res://Scenes/Actors/' + actor_path + '.tscn').instance()
 	$'/root/Mission/Actors'.add_child(new_actor)
 	
 	if position:
@@ -196,10 +207,10 @@ func GetActorLinearVelocity(actor):
 func GetLinks(from, to, type, data={}):
 	
 	if from != null:
-		data.from = from.get_path()
+		data.from_node = from
 	
 	if to != null:
-		data.to = to.get_path()
+		data.to_node = to
 	
 	return LinkHub._get_links(type, data)
 
@@ -246,3 +257,11 @@ func CreateEvent(actor, event_name):
 	$'/root/Mission/Actors'.add_child(event)
 	
 	CreateLink(event, actor, 'EventMaster')
+
+
+func _enter_tree():
+	
+	preloader = ResourcePreloader.new()
+	
+	PreloadActors()
+	

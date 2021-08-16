@@ -21,6 +21,10 @@ func _ready():
 
 func _physics_process(delta):
 	
+	if get_node('../Collision').disabled:
+		return
+	
+	
 	var colliders = []
 	
 	for collision in collisions:
@@ -30,14 +34,19 @@ func _physics_process(delta):
 	var new_collisions = []
 	
 	if contact_type == ContactType.Collision:
-	
-		for index in range(owner.get_slide_count()):
-			
-			var collision = owner.get_slide_collision(index)
+		
+		for collision in $'../Movement'._get_collisions():
 			
 			if continuous or not collision.collider in colliders:
-				
-				Meta.StimulateActor(collision.collider, stim_type, owner, $'../Movement'._get_speed() * -1, collision.position, collision.normal * -1)
+				Meta.StimulateActor(
+					collision.collider, 
+					stim_type, 
+					
+					owner, 
+					$'../Movement'._get_speed() * -1, 
+					collision.position, 
+					collision.normal * -1
+					)
 			
 			new_collisions.append(collision)
 	

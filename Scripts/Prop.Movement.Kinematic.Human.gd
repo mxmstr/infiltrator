@@ -10,6 +10,16 @@ export var max_slides = 4
 signal move_and_slide
 
 
+func _get_collisions():
+	
+	var collisions = []
+	
+	for index in range(owner.get_slide_count()):
+		collisions.append(owner.get_slide_collision(index))
+	
+	return collisions
+
+
 func _get_speed():
 	
 	return velocity.length()

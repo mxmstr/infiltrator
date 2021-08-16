@@ -130,12 +130,7 @@ func _process(delta):
 	_move_item()
 
 
-func _destroy():
-	
-	if container_node != null:
-		container_node._remove_item(to_node)
-	
-	to_node.visible = true
+func _restore_collision():
 	
 	if to_node.has_node('Collision'):
 		to_node.get_node('Collision').disabled = false
@@ -147,8 +142,15 @@ func _destroy():
 		if to_node.has_node('Movement'):
 			to_node.get_node('Movement')._set_speed(container_node.release_speed)
 			to_node.get_node('Movement')._set_direction(container_node.release_direction, true)
+
+
+func _destroy():
 	
-#	if to_node.get('sleeping') != null:
-#		to_node.apply_impulse(Vector3(), Vector3(0, -10, 0))
+	if container_node != null:
+		container_node._remove_item(to_node)
+	
+	to_node.visible = true
+	
+	_restore_collision()
 	
 	._destroy()

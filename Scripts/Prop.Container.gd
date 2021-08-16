@@ -30,6 +30,9 @@ func _is_empty():
 
 func _add_item(item):
 	
+	if release_exclude_parent:
+		_exclude_recursive(item, owner)
+	
 	items.append(item)
 	
 	emit_signal('item_added', self, item)
@@ -50,9 +53,7 @@ func _has_item(item):
 
 
 func _has_item_with_tag(tag):
-#
-#	prints(owner.name, name, items)
-#
+	
 	for item in items:
 		if item._has_tag(tag):
 			return true
@@ -72,13 +73,15 @@ func _push_front_into_container(new_container):
 
 func _exclude_recursive(item, parent):
 	
-#	if item is Area:
-#		item
-#	else:
 	item.add_collision_exception_with(parent)
 	
+	if parent.has_node('Hitboxes'):
+		for hitbox in parent.get_node('Hitboxes').get_children():
+			item.add_collision_exception_with(hitbox)
+	
+	
 	for link in Meta.GetLinks(null, parent, 'Contains'):
-		_exclude_recursive(item, link.owner)
+		_exclude_recursive(item, link.from_node)
 
 
 func _release_front():
@@ -89,12 +92,7 @@ func _release_front():
 	var item = items[0]
 	
 	if factory_mode:
-		
 		return Meta.AddActor(item, root.global_transform.origin, root.rotation_degrees)
-	
-	
-	if release_exclude_parent:
-		_exclude_recursive(item, owner)
 	
 	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
 	
@@ -114,11 +112,17 @@ func _reset_root():
 
 func _ready():
 	
-	root = BoneAttachment.new()
-	root.name = name + 'Root'
-	get_node(path).call_deferred('add_child', root)
+	if path.is_empty():
+		
+		root = self
+		
+	else:
 	
-	if bone_name != '':
-		root.bone_name = bone_name
-	
-	_reset_root()
+		root = BoneAttachment.new()
+		root.name = name + 'Root'
+		get_node(path).call_deferred('add_child', root)
+		
+		if bone_name != '':
+			root.bone_name = bone_name
+		
+		_reset_root()

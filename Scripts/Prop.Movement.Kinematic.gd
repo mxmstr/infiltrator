@@ -4,10 +4,15 @@ export var gravity = -300.0
 export var accel = 3
 export var deaccel = 5
 export var ghost = false
-export var stop_on_slope = false
-export var max_slides = 4
+
+var kinematic_collision
 
 signal move_and_slide
+
+
+func _get_collisions():
+	
+	return [kinematic_collision] if kinematic_collision else []
 
 
 func _get_speed():
@@ -92,9 +97,10 @@ func _physics_process(delta):
 	
 	velocity.y += (delta * gravity)
 	
-	if ghost:
-		owner.move_and_slide(velocity, Vector3(0, 1, 0), stop_on_slope, max_slides)
-		emit_signal('move_and_slide', delta)
-	else:
-		velocity = owner.move_and_slide(velocity, Vector3(0, 1, 0), stop_on_slope, max_slides)
-		emit_signal('move_and_slide', delta)
+	kinematic_collision = owner.move_and_collide(velocity, true, true, ghost)
+	
+	if kinematic_collision:
+		velocity = kinematic_collision.remainder
+	
+	emit_signal('move_and_slide', delta)
+	

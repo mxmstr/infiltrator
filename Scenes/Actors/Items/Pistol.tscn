@@ -144,6 +144,7 @@ script = ExtResource( 9 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 priority = 0
 type = 0
@@ -167,6 +168,7 @@ script = ExtResource( 8 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=19]
@@ -247,6 +249,7 @@ script = ExtResource( 8 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = true
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=30]
@@ -269,6 +272,7 @@ script = ExtResource( 8 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=33]
@@ -307,6 +311,7 @@ script = ExtResource( 8 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=38]
@@ -314,7 +319,7 @@ __meta__ = {
 
 }
 
-[node name="Pistol" instance=ExtResource( 1 )]
+[node name="Pistol" index="0" instance=ExtResource( 1 )]
 tags = "Item Firearm 9mm One-handed Offset-position:neo_reference_skeleton:Gun:0.003,0.1,-0.023 Offset-rotation:neo_reference_skeleton:Gun:90,0,0"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
@@ -334,8 +339,10 @@ invisible = true
 required_tags = "Magazine 9mm"
 
 [node name="Chamber" parent="." index="3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0469382, 0.183973 )
 path = NodePath("..")
-release_speed = 500.0
+release_speed = 10.0
+release_exclude_parent = true
 max_quantity = 1
 invisible = true
 required_tags = "Bullet 9mm"

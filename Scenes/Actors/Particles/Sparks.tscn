@@ -1,36 +1,69 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/Actors/Particles/red_robot/laser/impact_effect/EmissionEmbers.tres" type="Material" id=1]
-[ext_resource path="res://Scripts/Particles.gd" type="Script" id=2]
+[sub_resource type="Shader" id=1]
+__meta__ = {
 
-[sub_resource type="SphereMesh" id=1]
+}
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+__meta__ = {
+
+}
+
+[sub_resource type="SphereMesh" id=3]
 radius = 0.01
 height = 0.1
 __meta__ = {
 
 }
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.123737, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 __meta__ = {
 
 }
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0.766756, 1 )
 colors = PoolColorArray( 1, 0, 0, 0, 0.921875, 0.270081, 0.31591, 1 )
 __meta__ = {
 
 }
 
+[sub_resource type="GDScript" id=6]
+script/source = "extends CPUParticles
+
+
+func _ready():
+	
+	emitting = true
+	
+	var time = (lifetime * 2) / speed_scale
+	get_tree().create_timer(time).connect('timeout', self, 'queue_free')
+
+#	yield(get_tree().create_timer(2.0), \"timeout\")
+#
+#	show()
+
+
+#func _process(delta):
+#
+#	if not emitting:
+#		yield(get_tree().create_timer(2.0), \"timeout\")
+#		queue_free()"
+__meta__ = {
+
+}
+
 [node name="Sparks" type="CPUParticles"]
 transform = Transform( 1, 3.70164e-10, 5.82077e-11, 3.66526e-10, 1, 9.31323e-10, 0, 1.86265e-09, 1, -1.39698e-09, 0, -1.47648 )
-material_override = ExtResource( 1 )
+material_override = SubResource( 2 )
 emitting = false
 amount = 10
 lifetime = 0.15
 one_shot = true
-mesh = SubResource( 1 )
+mesh = SubResource( 3 )
 flag_align_y = true
 spread = 180.0
 gravity = Vector3( 0, -9.8, 9.8 )
@@ -40,10 +73,10 @@ linear_accel = 1.0
 linear_accel_random = 1.0
 radial_accel = 40.0
 tangential_accel = 1.0
-scale_amount_curve = SubResource( 2 )
-color_ramp = SubResource( 3 )
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 5 )
 hue_variation_random = 0.87
-script = ExtResource( 2 )
+script = SubResource( 6 )
 __meta__ = {
 
 }

@@ -5,13 +5,13 @@
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -20,7 +20,7 @@ __meta__ = {
 chain = false
 schema = "Explode"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -29,7 +29,7 @@ __meta__ = {
 chain = false
 schema = "GetKilled"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -38,7 +38,7 @@ __meta__ = {
 chain = false
 schema = "HitFlesh"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -47,13 +47,13 @@ __meta__ = {
 chain = false
 schema = "TPToCollisionPoint"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 auto_advance = true
 disabled = true
 script = ExtResource( 2 )
@@ -69,28 +69,28 @@ arguments = {
 }
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 auto_advance = true
 disabled = true
 script = ExtResource( 2 )
@@ -106,27 +106,27 @@ arguments = {
 }
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=13]
-states/End/node = SubResource( 1 )
+[sub_resource type="AnimationNodeStateMachine" id=25]
+states/End/node = SubResource( 19 )
 states/End/position = Vector2( 992.613, 147 )
-states/Explode/node = SubResource( 2 )
+states/Explode/node = SubResource( 20 )
 states/Explode/position = Vector2( 386.613, 53 )
-states/GetKilled/node = SubResource( 3 )
+states/GetKilled/node = SubResource( 21 )
 states/GetKilled/position = Vector2( 802.951, 53 )
-states/HitFlesh/node = SubResource( 4 )
+states/HitFlesh/node = SubResource( 22 )
 states/HitFlesh/position = Vector2( 484.633, 147 )
-states/TPToCollisionPoint/node = SubResource( 5 )
+states/TPToCollisionPoint/node = SubResource( 23 )
 states/TPToCollisionPoint/position = Vector2( 602.951, 53 )
-states/Touch/node = SubResource( 6 )
+states/Touch/node = SubResource( 24 )
 states/Touch/position = Vector2( 231, 147 )
-transitions = [ "Touch", "Explode", SubResource( 7 ), "GetKilled", "End", SubResource( 8 ), "Explode", "TPToCollisionPoint", SubResource( 9 ), "TPToCollisionPoint", "GetKilled", SubResource( 10 ), "Touch", "HitFlesh", SubResource( 11 ), "HitFlesh", "GetKilled", SubResource( 12 ) ]
+transitions = [ "Touch", "Explode", SubResource( 13 ), "GetKilled", "End", SubResource( 14 ), "Explode", "TPToCollisionPoint", SubResource( 15 ), "TPToCollisionPoint", "GetKilled", SubResource( 16 ), "Touch", "HitFlesh", SubResource( 17 ), "HitFlesh", "GetKilled", SubResource( 18 ) ]
 start_node = "Touch"
 end_node = "End"
 graph_offset = Vector2( 57.6328, -7.99613 )
@@ -134,15 +134,15 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
 __meta__ = {
 
 }
 
 [node name="TouchResponse" type="AnimationTree"]
-tree_root = SubResource( 13 )
+tree_root = SubResource( 25 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 14 )
+parameters/playback = SubResource( 26 )
 script = ExtResource( 3 )
 __meta__ = {
 

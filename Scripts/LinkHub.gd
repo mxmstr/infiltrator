@@ -7,13 +7,16 @@ func _get_links(type, data={}):
 	
 	for link in $'/root/Mission/Links'.get_children():
 		
-		if not type in link.name:
+		#prints('aaaaaaa', type, link.base_name)
+		if not type == link.base_name:
 			continue
 		
 		
 		var props_match = true
 		
 		for prop in data:
+			
+#			prints(link.get(prop).name, data[prop].name)
 			
 			if link.get(prop) != data[prop]:
 				props_match = false
@@ -23,6 +26,7 @@ func _get_links(type, data={}):
 			continue
 		
 		
+#		prints('fwfdsafdsa', link.name)
 		links.append(link)
 	
 	return links
@@ -39,7 +43,7 @@ func _create(type, data):
 		if link._equals(new_link):
 			return
 	
-	$'/root/Mission/Links'.call_deferred('add_child', new_link)
+	$'/root/Mission/Links'.add_child(new_link)#.call_deferred('add_child', new_link)
 	
 	return new_link
 

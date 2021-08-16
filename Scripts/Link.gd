@@ -4,8 +4,15 @@ export var enabled = true
 export(NodePath) var from
 export(NodePath) var to
 
+var base_name
 var from_node
 var to_node
+
+
+func _notification(what):
+	
+	if what == NOTIFICATION_INSTANCED:
+		base_name = name
 
 
 func _equals(other):
