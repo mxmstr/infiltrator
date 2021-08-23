@@ -30,5 +30,7 @@ func _on_item_dequipped(container, item):
 
 func _ready():
 	
+	return
+	
 	get_node(right_hand_container).connect('item_added', self, '_on_item_equipped')
 	get_node(right_hand_container).connect('item_removed', self, '_on_item_dequipped')

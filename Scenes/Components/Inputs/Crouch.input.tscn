@@ -7,7 +7,6 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-resource_local_to_scene = true
 animation = "JumpOrClimb"
 script = ExtResource( 2 )
 __meta__ = {
@@ -17,7 +16,6 @@ chain = true
 schema = "CrouchInput"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-resource_local_to_scene = true
 animation = "JumpOrClimb"
 script = ExtResource( 2 )
 __meta__ = {
@@ -27,7 +25,6 @@ chain = true
 schema = "StandInput"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=3]
-resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
@@ -38,7 +35,6 @@ action = "Crouch"
 state = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
-resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
@@ -49,7 +45,6 @@ action = "Crouch"
 state = 0
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
-resource_local_to_scene = true
 states/Crouch/node = SubResource( 1 )
 states/Crouch/position = Vector2( 781, 192 )
 states/Stand/node = SubResource( 2 )
@@ -61,6 +56,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]

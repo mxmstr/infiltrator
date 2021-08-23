@@ -49,6 +49,11 @@ func _ready():
 	
 	if Engine.editor_hint: return
 	
+	if not has_node('../Model'):
+		set_process(false)
+		set_physics_process(false)
+		return
+	
 	if tree_root.has_method('_ready'):
 		tree_root._ready(self, null, 'parameters/', 'root')
 	

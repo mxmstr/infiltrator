@@ -3,6 +3,7 @@ extends 'res://Scripts/AnimationTree.gd'
 
 export var mouse_device = -1
 export var keyboard_device = -1
+export var gamepad_device = -1
 export var fp_offset = Vector3(0, 0, 0.1)
 export(String) var fp_root_bone
 export(String) var fp_shoulder_bone
@@ -82,8 +83,8 @@ func _init_fp_skeleton():
 
 func _init_viewport():
 	
-	$Container/Viewport.world = get_tree().root.world
-	$Container/Viewport.size = get_tree().root.size
+#	$Container/Viewport.world = get_tree().root.world
+#	$Container/Viewport.size = get_tree().root.size
 	
 	
 	for child in owner.get_children():
@@ -96,16 +97,13 @@ func _init_viewport():
 			child.connect('item_removed', self, '_on_item_released')
 	
 	
-	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
-	VisualServer.connect('viewport_post_draw', self, '_on_post_draw')
+#	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
+#	VisualServer.connect('viewport_post_draw', self, '_on_post_draw')
 
 
 func _ready():
 	
 	if Engine.editor_hint: return
-	
-#	if not has_meta('unique'):
-#		return
 	
 	yield(get_tree(), 'idle_frame')
 	

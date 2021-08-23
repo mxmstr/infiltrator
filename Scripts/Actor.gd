@@ -80,6 +80,19 @@ func _evaluate(expression, arguments):
 func _ready():
 	
 	yield(get_tree(), 'idle_frame')
+	
+#	set_physics_process_internal(false)
+#	set_process_internal(false)
+#	set_physics_process(false)
+#	set_process(false)
+	
+	for child in get_children():
+		
+		pass
+#		child.set_physics_process_internal(false)
+#		child.set_process_internal(false)
+#		child.set_physics_process(false)
+#		child.set_process(false)
 
 
 func _integrate_forces(state):

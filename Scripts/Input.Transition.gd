@@ -17,11 +17,11 @@ var connections = []
 var from
 var to
 
+var perspective
 var last_status = -1
 
 
 func _ready(_owner, _parent, _parameters, _from, _to):
-	
 	
 	owner = _owner
 	parent = _parent
@@ -29,16 +29,18 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	from = _from
 	to = _to
 	
+	perspective = owner.get_node_or_null('../Perspective')
+	
 	owner.connect('on_process', self, '_process')
 
 
 func _process(delta):
 	
-	if not owner.has_node('../Perspective'):
+	if not perspective:
 		return
 	
-	var mouse_device = owner.get_node('../Perspective').mouse_device
-	var keyboard_device = owner.get_node('../Perspective').keyboard_device
+	var mouse_device = perspective.mouse_device
+	var keyboard_device = perspective.keyboard_device
 	
 	
 	var status = RawInput._get_status(action, mouse_device, keyboard_device)

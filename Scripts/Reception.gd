@@ -24,6 +24,9 @@ func _on_tree_root_state_starting(sm_node_name):
 
 func _start_state(_name, _data={}):
 	
+	if not active:
+		return
+	
 	stims.append([_name, _data])
 
 	if len(stims) == 1:

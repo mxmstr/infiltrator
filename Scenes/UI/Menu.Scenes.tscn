@@ -5,8 +5,6 @@
 [ext_resource path="res://Scenes/UI/Menu.Checkbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
 
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 20
 font_data = ExtResource( 4 )
@@ -34,7 +32,7 @@ __meta__ = {
 
 [node name="Background" type="NinePatchRect" parent="."]
 margin_right = 660.0
-margin_bottom = 134.0
+margin_bottom = 163.0
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 512, 512 )
 patch_margin_left = 25
@@ -47,7 +45,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 660.0
-margin_bottom = 134.0
+margin_bottom = 163.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 custom_constants/margin_right = 30
@@ -62,24 +60,33 @@ __meta__ = {
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 630.0
-margin_bottom = 84.0
+margin_bottom = 113.0
 rect_min_size = Vector2( 600, 0 )
 __meta__ = {
 
 }
 
-[node name="Coop" parent="MarginContainer/ListContainer" instance=ExtResource( 3 )]
+[node name="Multi" parent="MarginContainer/ListContainer" instance=ExtResource( 3 )]
 margin_right = 600.0
 margin_bottom = 25.0
+
+[node name="CheckBox" parent="MarginContainer/ListContainer/Multi" index="0"]
+margin_right = 214.0
+text = "Enable Multiplayer"
+
+[node name="Coop" parent="MarginContainer/ListContainer" instance=ExtResource( 3 )]
+margin_top = 29.0
+margin_right = 600.0
+margin_bottom = 54.0
 
 [node name="CheckBox" parent="MarginContainer/ListContainer/Coop" index="0"]
 margin_right = 161.0
 text = "Enable Co-op"
 
 [node name="Hint" type="Label" parent="MarginContainer/ListContainer"]
-margin_top = 29.0
+margin_top = 58.0
 margin_right = 600.0
-margin_bottom = 54.0
+margin_bottom = 83.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 text = "Select a scene"
@@ -87,5 +94,7 @@ clip_text = true
 __meta__ = {
 
 }
+
+[editable path="MarginContainer/ListContainer/Multi"]
 
 [editable path="MarginContainer/ListContainer/Coop"]

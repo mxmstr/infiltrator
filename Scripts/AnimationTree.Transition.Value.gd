@@ -11,6 +11,8 @@ export(Array) var args
 export(float) var value
 export(float) var wait_for_frame
 
+var target_node
+
 
 func _evaluate(_value):
 	
@@ -61,11 +63,15 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	
 	._ready(_owner, _parent, _parameters, _from, _to)
 	
+	var target_node = owner.owner.get_node(target)
+	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
 		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	
 	if parent != null and parent.has_user_signal('travel_starting'):
 		parent.connect('travel_starting', self, '_on_travel_starting')
+	
+	#yield(owner.get_tree(), 'idle_frame')
 	
 	owner.connect('on_process', self, '_process')
 

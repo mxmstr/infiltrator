@@ -44,7 +44,7 @@ func _ready():
 
 func _process(delta):
 	
-	if root != null:
+	if root:
 		
 		global_transform.origin = root.global_transform.origin
 		global_transform.basis = root.global_transform.basis

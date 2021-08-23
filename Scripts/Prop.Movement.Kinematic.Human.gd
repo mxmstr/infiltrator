@@ -104,9 +104,13 @@ func _physics_process(delta):
 	
 	velocity.y += (delta * gravity)
 	
+	
 	if ghost:
+		
 		owner.move_and_slide(velocity, Vector3(0, 1, 0), stop_on_slope, max_slides)
 		emit_signal('move_and_slide', delta)
+		
 	else:
+		
 		velocity = owner.move_and_slide(velocity, Vector3(0, 1, 0), stop_on_slope, max_slides)
 		emit_signal('move_and_slide', delta)

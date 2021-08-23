@@ -39,7 +39,7 @@ func _unfilter_anim_events():
 
 func _load_animations():
 	
-	if schema == null or schema == '':
+	if schema == null or schema == '' or not owner.has_node('../Model'):
 		return
 	
 	
@@ -90,8 +90,8 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	parameters = _parameters
 	node_name = _node_name
 	
-#	if parent != null and owner.get(parent.parameters + 'playback') != null:
-#		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+	if parent != null and owner.get(parent.parameters + 'playback') != null:
+		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	
 	owner.connect('on_process', self, '_process')
 
@@ -114,8 +114,6 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	
 	
 	_load_animations()
-	
-	
 
 
 func _process(delta):

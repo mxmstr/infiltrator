@@ -13,6 +13,9 @@ export var max_distance = 0.0
 
 var collisions = []
 
+onready var collision = get_node_or_null('../Collision')
+onready var movement = get_node_or_null('../Movement')
+
 
 func _ready():
 	
@@ -21,7 +24,7 @@ func _ready():
 
 func _physics_process(delta):
 	
-	if get_node('../Collision').disabled:
+	if collision.disabled:
 		return
 	
 	
@@ -33,42 +36,42 @@ func _physics_process(delta):
 	
 	var new_collisions = []
 	
-	if contact_type == ContactType.Collision:
+#	if contact_type == ContactType.Collision:
+#
+	for collision in movement._get_collisions():
 		
-		for collision in $'../Movement'._get_collisions():
+		if continuous or not collision.collider in colliders:
 			
-			if continuous or not collision.collider in colliders:
-				Meta.StimulateActor(
-					collision.collider, 
-					stim_type, 
-					
-					owner, 
-					$'../Movement'._get_speed() * -1, 
-					collision.position, 
-					collision.normal * -1
-					)
-			
-			new_collisions.append(collision)
+			Meta.StimulateActor(
+				collision.collider,
+				stim_type,
+				owner,
+				movement._get_speed() * -1,
+				collision.position,
+				collision.normal * -1
+				)
+		
+		new_collisions.append(collision)
 	
-	else:
-		
-		for actor in $'/root/Mission/Actors'.get_children():
-			
-			if actor == owner:
-				continue
-			
-			var collision = { 'collider': actor }
-			var within_distance = max_distance == 0 or owner.global_transform.origin.distance_to(actor.global_transform.origin) < max_distance
-			
-			if within_distance and continuous or not collision.collider in colliders:
-				
-				var data
-				
-				Meta.StimulateActor(collision.collider, stim_type, owner)
-				
-				emit_signal('triggered', data)
-			
-			new_collisions.append(collision)
+#	else:
+#
+#		for actor in $'/root/Mission/Actors'.get_children():
+#
+#			if actor == owner:
+#				continue
+#
+#			var collision = { 'collider': actor }
+#			var within_distance = max_distance == 0 or owner.global_transform.origin.distance_to(actor.global_transform.origin) < max_distance
+#
+#			if within_distance and continuous or not collision.collider in colliders:
+#
+#				var data
+#
+#				Meta.StimulateActor(collision.collider, stim_type, owner)
+#
+#				emit_signal('triggered', data)
+#
+#			new_collisions.append(collision)
 	
 	
 	collisions = new_collisions

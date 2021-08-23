@@ -42,9 +42,9 @@ var lock_direction = false
 var lock_rotation = false
 var lock_movement = false
 
-onready var movement = $'../Movement' if has_node('../Movement') else null
-onready var collision = $'../Collision' if has_node('../Collision') else null
-onready var camera = $'../CameraRig/Camera' if has_node('../CameraRig/Camera') else null
+onready var movement = get_node_or_null('../Movement')
+onready var collision = get_node_or_null('../Collision')
+onready var camera = get_node_or_null('../CameraRig/Camera')
 
 
 func _rotate(delta):
@@ -96,14 +96,13 @@ func _align_to_camera():
 
 func _resize_collision():
 	
-	if collision == null:
-		return
-	
-#	if collision_height_mult == null:
-#		return
-	
-	collision.shape.extents.y = collision_height_mult
-	collision.translation.y = collision_height_mult
+	if collision:
+		
+	#	if collision_height_mult == null:
+	#		return
+		
+		collision.shape.extents.y = collision_height_mult
+		collision.translation.y = collision_height_mult
 
 
 func _physics_process(delta):
@@ -113,7 +112,7 @@ func _physics_process(delta):
 	if lock_movement:
 		return
 	
-	var velocity = Vector3(sidestep_speed, 0, forward_speed) * max_speed * speed_mult
+	var velocity = Vector3(sidestep_speed, 0, forward_speed).normalized() * max_speed * speed_mult
 	
 	movement._set_speed(velocity.length())
 	movement._set_direction(velocity.normalized(), true)

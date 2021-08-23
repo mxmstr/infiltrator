@@ -10,6 +10,8 @@ export(String) var method
 export(Array) var args
 export(float) var wait_for_frame
 
+var target_node
+
 
 func _evaluate(value):
 	
@@ -40,7 +42,7 @@ func _update():
 		_args.append(arg)
 	
 	
-	disabled = not _evaluate(owner.owner.get_node(target).callv(method, _args))
+	disabled = not _evaluate(target_node.callv(method, _args))
 
 
 func _on_state_starting(new_name):
@@ -61,6 +63,8 @@ func _on_travel_starting(new_name):
 func _ready(_owner, _parent, _parameters, _from, _to):
 	
 	._ready(_owner, _parent, _parameters, _from, _to)
+	
+	target_node = owner.owner.get_node(target)
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
 		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')

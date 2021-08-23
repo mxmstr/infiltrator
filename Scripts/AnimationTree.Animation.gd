@@ -22,7 +22,7 @@ signal state_starting
 
 func _load_animations():
 	
-	if not schema or schema == '':
+	if not schema or schema == '' or not owner.has_node('../Model'):
 		return
 	
 	default_scale = scale

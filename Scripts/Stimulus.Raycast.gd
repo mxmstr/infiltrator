@@ -10,8 +10,12 @@ export(NodePath) var path
 export(String) var bone_name
 export(String, MULTILINE) var required_tags
 
+var required_tags_dict = {}
 var root
 var selection
+
+onready var movement = get_node_or_null('../Movement')
+onready var reception = get_node_or_null('../Reception')
 
 signal selection_changed
 signal triggered
@@ -19,10 +23,10 @@ signal triggered
 
 func _has_selection():
 	
-	if get_collider() == null or get_collider().get('tags') == null:
+	if not get_collider() or not get_collider().get('tags'):
 		return false
 	
-	for item_tag in required_tags.split(' '):
+	for item_tag in required_tags_dict.keys():
 		
 		if item_tag.length() and not get_collider()._has_tag(item_tag):
 			return false
@@ -34,19 +38,14 @@ func _stimulate(stim_type_override=''):
 	
 	var new_stim = stim_type_override if stim_type_override != '' else stim_type
 	
-	if new_stim == '' or selection == null:
+	if not new_stim.length() or not selection:
 		return
 	
 	
-	var data
-	
 	if send_to_self:
-		Meta.StimulateActor(owner, new_stim, owner, $'../Movement'.velocity.length() * -1, get_collision_point(), get_collision_normal() * -1)
+		Meta.StimulateActor(owner, new_stim, owner, movement.velocity.length() * -1, get_collision_point(), get_collision_normal() * -1)
 	else:
-		Meta.StimulateActor(selection, new_stim, owner, $'../Movement'.velocity.length(), get_collision_point(), get_collision_normal())
-	
-	
-	emit_signal('triggered', data)
+		Meta.StimulateActor(selection, new_stim, owner, movement.velocity.length(), get_collision_point(), get_collision_normal())
 
 
 func _update_raycast_selection():
@@ -86,6 +85,14 @@ func _on_before_move(velocity):
 
 func _ready():
 	
+	for tag in required_tags.split(' '):
+		
+		var values = Array(tag.split(':'))
+		var key = values.pop_front()
+		
+		required_tags_dict[key] = values
+	
+	
 	if not path.is_empty():
 		
 		root = BoneAttachment.new()
@@ -98,12 +105,12 @@ func _ready():
 	
 	
 	if predict_collision:
-		get_node('../Movement').connect('before_move', self, '_on_before_move')
+		movement.connect('before_move', self, '_on_before_move')
 
 
 func _process(delta):
 	
-	if has_node('../Reception') and not get_node('../Reception').active:
+	if reception and not reception.active:
 		return
 	
 	if root:

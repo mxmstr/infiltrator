@@ -430,7 +430,7 @@ __meta__ = {
 tree_root = SubResource( 29 )
 anim_player = NodePath("AnimationPlayer")
 parameters/blend_position = 0.00331675
-parameters/0/blend_position = Vector2( -0.994671, 0.017341 )
+parameters/0/blend_position = Vector2( 0.00446033, 0.0635839 )
 parameters/0/0/playback = SubResource( 30 )
 parameters/1/blend_position = Vector2( -0.000893652, 0.0404625 )
 parameters/1/0/playback = SubResource( 31 )
@@ -438,7 +438,7 @@ script = ExtResource( 5 )
 __meta__ = {
 
 }
-root_bone = "Pelvis"
+root_bone = "Torso"
 movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

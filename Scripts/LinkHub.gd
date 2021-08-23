@@ -34,16 +34,16 @@ func _get_links(type, data={}):
 
 func _create(type, data):
 	
-	var new_link = load('res://scenes/Links/' + type + '.link.tscn').instance()
+	var new_link = Meta.preloader.get_resource('res://Scenes/Links/' + type + '.link.tscn').instance()
 	
 	for prop in data:
 		new_link.set(prop, data[prop])
 	
 	for link in $'/root/Mission/Links'.get_children():
-		if link._equals(new_link):
+		if weakref(link).get_ref() and link._equals(new_link):
 			return
 	
-	$'/root/Mission/Links'.add_child(new_link)#.call_deferred('add_child', new_link)
+	$'/root/Mission/Links'.add_child(new_link)
 	
 	return new_link
 

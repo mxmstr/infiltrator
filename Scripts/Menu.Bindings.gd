@@ -83,8 +83,6 @@ func wait_for_input(action_bind):
 
 func wait_for_rawinput(player_bind, is_keyboard=false):
 	
-	print('rawinput')
-	
 	selected_device = player_bind
 	awaiting_raw_type = RawInput.Type.KEYBOARD if is_keyboard else RawInput.Type.BUTTON
 	hint.text = 'Press a key to assign a keyboard to this player.' if is_keyboard else 'Press a mouse button to assign a mouse to this player.'
@@ -95,8 +93,6 @@ func wait_for_rawinput(player_bind, is_keyboard=false):
 
 
 func quit_wait_for_input():
-	
-	print('quit')
 	
 	hint.text = ''
 	awaiting_raw_type = null
@@ -111,7 +107,7 @@ func quit_wait_for_input():
 
 func _on_rawinput_device_activated(device_id, type):
 	
-	print([device_id, type])
+	#print([device_id, type])
 	
 	if type != awaiting_raw_type:
 		return

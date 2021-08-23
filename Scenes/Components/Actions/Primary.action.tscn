@@ -76,7 +76,7 @@ __meta__ = {
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=270]
 auto_advance = true
 __meta__ = {
 
@@ -87,7 +87,7 @@ states/NotEmpty/node = SubResource( 5 )
 states/NotEmpty/position = Vector2( 636, 95 )
 states/Start/node = SubResource( 6 )
 states/Start/position = Vector2( 360, 95 )
-transitions = [ "Start", "NotEmpty", SubResource( 7 ) ]
+transitions = [ "Start", "NotEmpty", SubResource( 270 ) ]
 start_node = "Start"
 script = ExtResource( 1 )
 __meta__ = {
@@ -195,20 +195,20 @@ __meta__ = {
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=280]
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeStateMachineTransition" id=281]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=282]
 auto_advance = true
 priority = 2
 __meta__ = {
@@ -222,7 +222,7 @@ states/NotEmpty/node = SubResource( 15 )
 states/NotEmpty/position = Vector2( 635, 41 )
 states/Start/node = SubResource( 16 )
 states/Start/position = Vector2( 360, 95 )
-transitions = [ "Start", "NotEmpty", SubResource( 17 ), "NotEmpty", "End", SubResource( 18 ), "Start", "End", SubResource( 19 ) ]
+transitions = [ "Start", "NotEmpty", SubResource( 280 ), "NotEmpty", "End", SubResource( 281 ), "Start", "End", SubResource( 282 ) ]
 start_node = "Start"
 end_node = "End"
 script = ExtResource( 1 )
@@ -250,7 +250,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=285]
 switch_mode = 2
 auto_advance = true
 priority = 3
@@ -258,19 +258,19 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=286]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+[sub_resource type="AnimationNodeStateMachineTransition" id=287]
 auto_advance = true
 priority = 2
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeStateMachineTransition" id=288]
 auto_advance = true
 disabled = true
 script = ExtResource( 4 )
@@ -285,12 +285,12 @@ method = "_has_item_with_tag"
 args = [ "Firearm" ]
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+[sub_resource type="AnimationNodeStateMachineTransition" id=289]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+[sub_resource type="AnimationNodeStateMachineTransition" id=290]
 auto_advance = true
 disabled = true
 script = ExtResource( 4 )
@@ -305,17 +305,17 @@ method = "_has_item_with_tag"
 args = [ "Firearm" ]
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=291]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=292]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+[sub_resource type="AnimationNodeStateMachineTransition" id=293]
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -332,7 +332,7 @@ method = "_has_item_with_tag"
 args = [ "Firearm" ]
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachine" id=30]
+[sub_resource type="AnimationNodeStateMachine" id=31]
 states/IdleAim/node = SubResource( 8 )
 states/IdleAim/position = Vector2( 406.951, 83.4567 )
 states/Primary/node = SubResource( 9 )
@@ -341,14 +341,9 @@ states/Shoot/node = SubResource( 20 )
 states/Shoot/position = Vector2( 406.951, 12 )
 states/Start/node = SubResource( 21 )
 states/Start/position = Vector2( 45, 139 )
-transitions = [ "Shoot", "Start", SubResource( 22 ), "Start", "Primary", SubResource( 23 ), "Primary", "Start", SubResource( 24 ), "Primary", "Shoot", SubResource( 25 ), "Shoot", "Primary", SubResource( 26 ), "Start", "IdleAim", SubResource( 27 ), "IdleAim", "Primary", SubResource( 28 ), "IdleAim", "Start", SubResource( 29 ), "Shoot", "IdleAim", SubResource( 34 ) ]
+transitions = [ "Shoot", "Start", SubResource( 285 ), "Start", "Primary", SubResource( 286 ), "Primary", "Start", SubResource( 287 ), "Primary", "Shoot", SubResource( 288 ), "Shoot", "Primary", SubResource( 289 ), "Start", "IdleAim", SubResource( 290 ), "IdleAim", "Primary", SubResource( 291 ), "IdleAim", "Start", SubResource( 292 ), "Shoot", "IdleAim", SubResource( 293 ) ]
 start_node = "Start"
 graph_offset = Vector2( -132.126, -28.5433 )
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 __meta__ = {
 
 }
@@ -363,13 +358,18 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
+__meta__ = {
+
+}
+
 [node name="PrimaryAction" type="AnimationTree"]
-tree_root = SubResource( 30 )
+tree_root = SubResource( 31 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 31 )
-parameters/IdleAim/playback = SubResource( 32 )
+parameters/playback = SubResource( 32 )
+parameters/IdleAim/playback = SubResource( 33 )
 parameters/IdleAim/NotEmpty/Blend3/blend_amount = 0
-parameters/Shoot/playback = SubResource( 33 )
+parameters/Shoot/playback = SubResource( 34 )
 parameters/Shoot/NotEmpty/Blend3/blend_amount = 0
 script = ExtResource( 5 )
 __meta__ = {

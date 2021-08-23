@@ -21,5 +21,3 @@ func _process(delta):
 	var closest_point = from.get_closest_point(owner.get(blend_position))
 	
 	from.get_node(closest_point)
-	
-	#disabled =

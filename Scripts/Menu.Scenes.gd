@@ -4,6 +4,11 @@ onready var list = find_node('ListContainer')
 onready var hint = find_node('Hint')
 
 
+func _on_multi_toggled(pressed):
+	
+	Meta.multi = pressed
+
+
 func _on_coop_toggled(pressed):
 	
 	Meta.coop = pressed
@@ -33,7 +38,13 @@ func _ready():
 			button.text = file.replace('.tres', '')
 			button.connect('pressed', get_tree(), 'change_scene', ['res://Scenes/' + file])
 	
+	var multi = list.get_node('Multi/CheckBox')
+	multi.connect('toggled', self, '_on_multi_toggled')
 	
 	var coop = list.get_node('Coop/CheckBox')
 	coop.connect('toggled', self, '_on_coop_toggled')
 	
+
+
+func set_visible(extra_arg_0):
+	pass # Replace with function body.

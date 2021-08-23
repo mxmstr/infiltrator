@@ -4,6 +4,12 @@ export(String) var container
 
 var container_node
 
+var movement
+var collision
+var reception
+var item_position_offset
+var item_rotation_offset
+
 
 func _is_container():
 	
@@ -18,8 +24,8 @@ func _is_container():
 
 func _try_container():
 	
-	for item_tag in container_node.required_tags.split(' '):
-		if not item_tag in to_node.tags:
+	for item_tag in container_node.required_tags_dict.keys():
+		if not item_tag in to_node.tags_dict.keys():
 			return false
 	
 	if len(container_node.items) >= container_node.max_quantity:
@@ -27,11 +33,11 @@ func _try_container():
 		
 	to_node.visible = not container_node.invisible
 	
-	if to_node.has_node('Collision'):
-		to_node.get_node('Collision').disabled = true
+	if collision:
+		collision.disabled = true
 	
-	if to_node.has_node('Reception'):
-		to_node.get_node('Reception').active = false
+	if reception:
+		reception.active = false
 	
 	container_node._add_item(to_node)
 	
@@ -89,18 +95,16 @@ func _get_item_rotation_offset(item):
 
 func _move_item():
 	
-	var item_position_offset = _get_item_position_offset(to_node)
-	var item_rotation_offset = _get_item_rotation_offset(to_node)
-	
-	#print(item_position_offset, item_rotation_offset)
-	var new_transform = container_node.root.global_transform.translated(item_position_offset)
-	
-	new_transform.basis = container_node.root.global_transform.basis
-	new_transform.basis = new_transform.basis.rotated(new_transform.basis.x, item_rotation_offset.x)
-	new_transform.basis = new_transform.basis.rotated(new_transform.basis.y, item_rotation_offset.y)
-	new_transform.basis = new_transform.basis.rotated(new_transform.basis.z, item_rotation_offset.z)
-	
-	to_node.get_node('Movement')._teleport(new_transform.origin, new_transform.basis) if to_node.has_node('Movement') else null
+	if movement:
+		
+		var new_transform = container_node.root.global_transform.translated(item_position_offset)
+		
+		new_transform.basis = container_node.root.global_transform.basis
+		new_transform.basis = new_transform.basis.rotated(new_transform.basis.x, item_rotation_offset.x)
+		new_transform.basis = new_transform.basis.rotated(new_transform.basis.y, item_rotation_offset.y)
+		new_transform.basis = new_transform.basis.rotated(new_transform.basis.z, item_rotation_offset.z)
+		
+		movement._teleport(new_transform.origin, new_transform.basis)
 
 
 func _ready():
@@ -108,6 +112,14 @@ func _ready():
 	if is_queued_for_deletion():
 		return
 	
+	movement = to_node.get_node_or_null('Movement')
+	collision = to_node.get_node_or_null('Collision')
+	reception = to_node.get_node_or_null('Reception')
+	item_position_offset = _get_item_position_offset(to_node)
+	item_rotation_offset = _get_item_rotation_offset(to_node)
+	
+#
+#	movement = to_node.get_node_or_null('Movement')
 	
 	if not container:
 		
@@ -132,16 +144,16 @@ func _process(delta):
 
 func _restore_collision():
 	
-	if to_node.has_node('Collision'):
-		to_node.get_node('Collision').disabled = false
+	if collision:
+		collision.disabled = false
 	
-	if to_node.has_node('Reception'):
-		to_node.get_node('Reception').active = true
+	if reception:
+		reception.active = true
 	
 	if container_node != null:
-		if to_node.has_node('Movement'):
-			to_node.get_node('Movement')._set_speed(container_node.release_speed)
-			to_node.get_node('Movement')._set_direction(container_node.release_direction, true)
+		if movement:
+			movement._set_speed(container_node.release_speed)
+			movement._set_direction(container_node.release_direction, true)
 
 
 func _destroy():

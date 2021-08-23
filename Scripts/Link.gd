@@ -4,6 +4,8 @@ export var enabled = true
 export(NodePath) var from
 export(NodePath) var to
 
+var check_nulls = true
+
 var base_name
 var from_node
 var to_node
@@ -26,12 +28,17 @@ func _enter_tree():
 		queue_free()
 		return
 	
-	if not has_node(from) or not has_node(to):
-		queue_free()
-		return
+	if check_nulls:
 	
-	from_node = get_node(from)
-	to_node = get_node(to)
+		if from.is_empty() or to.is_empty() or not has_node(from) or not has_node(to):
+			queue_free()
+			return
+	
+	if not from.is_empty():
+		from_node = get_node(from)
+	
+	if not to.is_empty():
+		to_node = get_node(to)
 	
 #	from_node.connect('tree_exited', self, 'queue_free')
 #	to_node.connect('tree_exited', self, 'queue_free')

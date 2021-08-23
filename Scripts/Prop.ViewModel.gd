@@ -12,15 +12,21 @@ var follow_camera_offset = Vector3()
 var model
 var container
 var container_root
+var item_position_offset
+var item_rotation_offset
+var world_skeleton
+var vm_skeleton
 
-onready var ContainsLink = load('res://Scripts/Link.Contains.gd')
+onready var contains_link = load('res://Scripts/Link.Contains.gd')
+onready var camera_rig = $'../CameraRig'
+onready var camera = $'../CameraRig/Camera'
 
 
 func _init_duplicate_meshes():
 	
 	transform = model.transform
 	
-	var viewmodel = model.get_child(0).duplicate()
+	var viewmodel = world_skeleton.duplicate()
 	
 	for child in viewmodel.get_children():
 		
@@ -33,8 +39,6 @@ func _init_duplicate_meshes():
 
 
 func _cull_mask_bits(world_mesh, view_mesh):
-	
-	var camera = $'../CameraRig/Camera'
 	
 	camera.set_cull_mask_bit(viewmodel_offset, false)
 	view_mesh.set_layer_mask_bit(viewmodel_offset, false)
@@ -55,7 +59,7 @@ func _cull_mask_bits(world_mesh, view_mesh):
 
 func _init_mesh_layers():
 	
-	for w_child in model.get_child(0).get_children():
+	for w_child in world_skeleton.get_children():
 		
 		if not w_child is MeshInstance:
 			continue
@@ -68,15 +72,13 @@ func _init_mesh_layers():
 
 func _uncull_mask_bits(world_mesh, view_mesh):
 	
-	var camera = $'../CameraRig/Camera'
-	
 	world_mesh.set_layer_mask_bit(0, true)
 	world_mesh.set_layer_mask_bit(worldmodel_offset + get_parent().player_index, false)
 
 
 func _revert_mesh_layers():
 	
-	for w_child in model.get_child(0).get_children():
+	for w_child in world_skeleton.get_children():
 		
 		if not w_child is MeshInstance:
 			continue
@@ -89,40 +91,40 @@ func _revert_mesh_layers():
 
 func _init_container():
 	
-	if container == null:
+	if not container:
 		return
 	
-	if container_root == null:
+	if not container_root:
 		container_root = container.root
 	
 	container_root.translation = container.position_offset
 	container_root.rotation_degrees = container.rotation_degrees_offset
+	
+	item_position_offset = _get_item_position_offset(model.owner)
+	item_rotation_offset = _get_item_rotation_offset(model.owner)
 
 
 func _blend_skeletons(s_world, s_view):
 	
-	var rig = $'../CameraRig'
-	
-	
 	for idx in range(s_world.get_bone_count()):
 		
 		var s_world_bone_name = s_world.get_bone_name(idx)
-		var p_world = s_world.get_bone_global_pose(idx)
+		var p_world = s_world.get_bone_pose(idx)
 		
-		s_view.set_bone_global_pose(idx, p_world)
+		s_view.set_bone_pose(idx, p_world)
 		
 		if s_world_bone_name in hidden_bones:
 			p_world = s_world.get_bone_pose(idx)
 			p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
 			s_view.set_bone_pose(idx, p_world)
-	
-	
-	if follow_camera_bone_id != null:
-		
+
+
+	if follow_camera_bone_id:
+
 		var pose_bone = s_view.get_bone_global_pose(follow_camera_bone_id).origin + follow_camera_offset
 		var bone_transform = owner.global_transform.basis.xform(pose_bone)
-		var rig_transform = rig.global_transform.origin - owner.global_transform.origin
-		
+		var rig_transform = camera_rig.global_transform.origin - owner.global_transform.origin
+
 		s_view.global_transform.origin = owner.global_transform.origin + rig_transform - bone_transform
 
 
@@ -164,12 +166,17 @@ func _get_item_rotation_offset(item):
 
 func _enter_tree():
 	
+	world_skeleton = model.get_child(0)
+#	world_skeleton.set_script(preload('res://Scripts/Skeleton.gd'))
+	
 	_init_duplicate_meshes()
+	
+	vm_skeleton = get_child(0)
 
 
 func _ready():
 	
-	if owner == null:
+	if not owner:
 		yield(get_tree(), 'idle_frame')
 	
 	owner.connect('player_index_changed', self, '_init_mesh_layers')
@@ -178,6 +185,8 @@ func _ready():
 	
 	_init_mesh_layers()
 	_init_container()
+	
+	
 
 
 func _exit_tree():
@@ -185,24 +194,21 @@ func _exit_tree():
 	_revert_mesh_layers()
 
 
-func _process(delta):
+func _physics_process(delta):
 	
-	if get_child_count() == 0:
+	if not get_child_count():
 		return
 	
-	
+#
 	if container_root != null:
-		
-		var item_position_offset = _get_item_position_offset(model.owner)
-		var item_rotation_offset = _get_item_rotation_offset(model.owner)
-		
+
 		global_transform = container_root.global_transform.translated(item_position_offset)
-		
+
 		global_transform.basis = container_root.global_transform.basis
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.x, item_rotation_offset.x)
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.y, item_rotation_offset.y)
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, item_rotation_offset.z)
-	
+#
 	
 	_blend_skeletons(model.get_child(0), get_child(0))
 	

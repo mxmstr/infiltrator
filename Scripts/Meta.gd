@@ -26,11 +26,21 @@ enum DriverMode {
 var preloader
 var tree_count = 0
 
-var coop = true
-var p1_mouse = -1
-var p1_keyboard = -1
-var p2_mouse = -1
-var p2_keyboard = -1
+var multi = false
+var coop = false
+var player_count = 1
+var player_data_default = {
+	'mouse': -1,
+	'keyboard': -1,
+	'gamepad': -1,
+	'character': 'Humans/Anderson'
+	}
+var player_data = [
+	player_data_default.duplicate(),
+	player_data_default.duplicate(),
+	player_data_default.duplicate(),
+	player_data_default.duplicate()
+]
 
 var cached_args = []
 
@@ -173,6 +183,14 @@ func PreloadActors():
 		preloader.add_resource(actor, load(actor))
 
 
+func PreloadLinks():
+	
+	var links = _get_files_recursive('res://Scenes/Links/', '', '.tscn')
+	
+	for link in links:
+		preloader.add_resource(link, load(link))
+
+
 func AddActor(actor_path, position=null, rotation=null, direction=null):
 	
 	var new_actor = preloader.get_resource('res://Scenes/Actors/' + actor_path + '.tscn').instance()
@@ -190,6 +208,14 @@ func AddActor(actor_path, position=null, rotation=null, direction=null):
 		new_actor.look_at(target, Vector3(0, 1, 0))
 	
 	return new_actor
+
+
+func AddLink(link_path):
+	
+	var new_link = preloader.get_resource('res://Scenes/Links/' + link_path + '.link.tscn').instance()
+	$'/root/Mission/Links'.add_child(new_link)
+	
+	return new_link
 
 
 func AddWayPoint(position):
@@ -264,4 +290,5 @@ func _enter_tree():
 	preloader = ResourcePreloader.new()
 	
 	PreloadActors()
+	PreloadLinks()
 	

@@ -13,6 +13,10 @@ export var lock_rotation = false
 export var lock_movement = false
 export var camera_mode = 'LockYaw'
 
+var stance
+var perspective
+var anim_layer_movement
+
 
 func _is_visible():
 	
@@ -23,25 +27,31 @@ func _on_state_starting(new_name):
 	
 	if node_name == new_name:
 		
-		if parent.get('statemachine') == 'qwer':
-			prints(new_name)
-		
 		var playback = owner.get(parameters + 'playback')
 		
 		if len(playback.get_travel_path()) == 0:
 			
 			owner.enable_abilities = enable_abilities
 			
-			if owner.owner.has_node('Stance'):
-				owner.owner.get_node('Stance').lock_stance = lock_stance
-				owner.owner.get_node('Stance').lock_speed = lock_speed
-				owner.owner.get_node('Stance').lock_direction = lock_direction
-				owner.owner.get_node('Stance').lock_rotation = lock_rotation
-				owner.owner.get_node('Stance').lock_movement = lock_movement
+			if stance:
+				stance.lock_stance = lock_stance
+				stance.lock_speed = lock_speed
+				stance.lock_direction = lock_direction
+				stance.lock_rotation = lock_rotation
+				stance.lock_movement = lock_movement
 			
-			if owner.owner.has_node('Perspective'):
-				owner.owner.get_node('Perspective')._start_state(camera_mode)
+			if perspective:
+				perspective._start_state(camera_mode)
 			
-			if owner.owner.has_node('AnimLayerMovement'):
-				owner.owner.get_node('AnimLayerMovement').blend_mode = blend
-				owner.owner.get_node('AnimLayerMovement').cache_poses = cache_pose
+			if anim_layer_movement:
+				anim_layer_movement.blend_mode = blend
+				anim_layer_movement.cache_poses = cache_pose
+
+
+func _ready(_owner, _parent, _parameters, _name):
+	
+	._ready(_owner, _parent, _parameters, _name)
+	
+	stance = owner.owner.get_node_or_null('Stance')
+	perspective = owner.owner.get_node_or_null('Perspective')
+	anim_layer_movement = owner.owner.get_node_or_null('AnimLayerMovement')

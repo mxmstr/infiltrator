@@ -2,8 +2,6 @@
 
 [ext_resource path="res://Scenes/Markers/Waypoint.tres" type="PrismMesh" id=1]
 
-
-
 [node name="Waypoint" type="Spatial"]
 __meta__ = {
 
@@ -16,7 +14,7 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="MeshPivot"]
-transform = Transform( 0.237027, 1.05745e-07, 0.440354, 3.18809e-08, -0.5, 1.02953e-07, 0.440354, -2.07195e-08, -0.237027, 0, 0, 0 )
+transform = Transform( 0.500093, 0, -2.18598e-08, -2.18598e-08, 9.55343e-16, -0.500093, 0, 0.5, 9.55521e-16, 0, 0, 0 )
 mesh = ExtResource( 1 )
 material/0 = null
 __meta__ = {

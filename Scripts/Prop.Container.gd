@@ -16,6 +16,7 @@ export(bool) var interactable
 export(String, MULTILINE) var required_tags
 
 var root
+var required_tags_dict = {}
 var items = []
 
 signal item_added
@@ -111,6 +112,14 @@ func _reset_root():
 
 
 func _ready():
+	
+	for tag in required_tags.split(' '):
+		
+		var values = Array(tag.split(':'))
+		var key = values.pop_front()
+		
+		required_tags_dict[key] = values
+	
 	
 	if path.is_empty():
 		

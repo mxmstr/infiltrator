@@ -28,7 +28,19 @@ var parameters
 var connections = []
 var advance = false
 
+var children = get_children()
+var animation_nodes = []
+var statemachine_nodes = []
+var is_2d
+var x_min
+var y_min
+var x_value_range
+var y_value_range
+
 var target_pos = Vector2()
+var animation_player
+var x_target_node
+var y_target_node
 
 
 func _on_state_starting(new_name):
@@ -45,79 +57,58 @@ func _filter_anim_events(is_action, filter_all=false):
 
 	var blend_position = parameters + 'blend_position'
 	var closest_point = call('get_closest_point', owner.get(blend_position))
-	var children = get_children()
 
-	for child_name in children:
-		
-		var child = children[child_name]
-		var is_closest = int(child_name) == closest_point
+#	for animation_node in animation_nodes:
+#
+#		var is_closest = int(animation_node) == closest_point
+#		var animation = animation_player.get_animation(children[animation_node].animation)
+#
+#		for track in animation.get_track_count():
+#
+#			var is_function_call = animation.track_get_type(track) == 2
+#			var is_camera_and_overriden = is_action and camera_rig_track_path in str(animation.track_get_path(track))
+#			animation.track_set_enabled(track, false if (is_function_call and (not is_closest or filter_all)) else true)# or is_camera_and_overriden else true)
 
-		if child is AnimationNodeAnimation:
 
-			var animation = owner.get_node('AnimationPlayer').get_animation(child.animation)
-
-			for track in animation.get_track_count():
-
-				var is_function_call = animation.track_get_type(track) == 2
-				var is_camera_and_overriden = is_action and camera_rig_track_path in str(animation.track_get_path(track))
-				animation.track_set_enabled(track, false if (is_function_call and (not is_closest or filter_all)) else true)# or is_camera_and_overriden else true)
-
-		
-		if child is AnimationNodeStateMachine or \
-			child is AnimationNodeBlendTree or \
-			child is AnimationNodeBlendSpace1D or \
-			child is AnimationNodeBlendSpace2D:
-			
-			if not child.has_method('_filter_anim_events'):
-				return
-			
-			child._filter_anim_events(is_action, filter_all) if is_closest else child._filter_anim_events(is_action, true)
+#	for statemachine_node in statemachine_nodes:
+#
+#		var is_closest = int(statemachine_node) == closest_point
+#
+#		children[statemachine_node]._filter_anim_events(is_action, filter_all) if is_closest else children[statemachine_node]._filter_anim_events(is_action, true)
 
 
 func _unfilter_anim_events():
 	
-	var children = get_children()
+#	for animation_node in animation_nodes:
+#
+#		var animation = animation_player.get_animation(children[animation_node].animation)
+#
+#		for track in animation.get_track_count():
+#
+#			for track in animation.get_track_count():
+#				animation.track_set_enabled(track, true)
 
-	for child_name in children:
-		
-		var child = children[child_name]
-		
-		if not child.has_method('_unfilter_anim_events'):
-			return
-		
-		if child is AnimationNodeAnimation:
 
-			var animation = owner.get_node('AnimationPlayer').get_animation(child.animation)
-
-			for track in animation.get_track_count():
-				animation.track_set_enabled(track, true)
+	for statemachine_node in statemachine_nodes:
 		
-		if child is AnimationNodeStateMachine or \
-			child is AnimationNodeBlendTree or \
-			child is AnimationNodeBlendSpace1D or \
-			child is AnimationNodeBlendSpace2D:
-			
-			child._unfilter_anim_events()
+		children[statemachine_node]._unfilter_anim_events()
 
 
 func _update():
 
 	var x_value = 0
 	var y_value = 0
-	var x_min = get('min_space').x if get_class() == 'AnimationNodeBlendSpace2D' else get('min_space')
-	var y_min = get('min_space').y if get_class() == 'AnimationNodeBlendSpace2D' else get('min_space')
-	var x_value_range = get('max_space').x - get('min_space').x if get_class() == 'AnimationNodeBlendSpace2D' else get('max_space') - get('min_space')
-	var y_value_range = get('max_space').y - get('min_space').y if get_class() == 'AnimationNodeBlendSpace2D' else get('max_space') - get('min_space')
 
-	if len(x_target) > 0:
-		x_value = owner.owner.get_node(x_target).callv(x_method, x_args)
+	if x_target_node:
+		x_value = x_target_node.callv(x_method, x_args)
 		x_value = (((x_value - x_min_value) / (x_max_value - x_min_value)) * x_value_range) + x_min
-
-	if len(y_target) > 0:
-		y_value = owner.owner.get_node(y_target).callv(y_method, y_args)
+		
+	if y_target_node:
+		y_value = y_target_node.callv(y_method, y_args)
 		y_value = (((y_value - y_min_value) / (y_max_value - y_min_value)) * y_value_range) + y_min
 
 	target_pos = Vector2(x_value, y_value)
+	
 
 
 func _ready(_owner, _parent, _parameters, _node_name):
@@ -127,14 +118,22 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	parameters = _parameters
 	node_name = _node_name
 	
+	animation_player = owner.get_node_or_null('AnimationPlayer')
+	x_target_node = owner.owner.get_node(x_target) if x_target.length() else null
+	y_target_node = owner.owner.get_node(y_target) if y_target.length() else null
+	
+	is_2d = get_class() == 'AnimationNodeBlendSpace2D'
+	x_min = get('min_space').x if is_2d else get('min_space')
+	y_min = get('min_space').y if is_2d else get('min_space')
+	x_value_range = get('max_space').x - get('min_space').x if is_2d else get('max_space') - get('min_space')
+	y_value_range = get('max_space').y - get('min_space').y if is_2d else get('max_space') - get('min_space')
+	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
 		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	
 	owner.connect('on_process', self, '_process')
 
-
-	var children = get_children()
-
+	
 	for child_name in children:
 		
 		var child = children[child_name]
@@ -148,6 +147,22 @@ func _ready(_owner, _parent, _parameters, _node_name):
 				child._ready(owner, self, parameters + child_name + '/', child_name)
 			else:
 				child._ready(owner, self, parameters, child_name)
+		
+		
+		
+		if child is AnimationNodeAnimation:
+
+			animation_nodes.append(child_name)
+
+		elif child is AnimationNodeStateMachine or \
+			child is AnimationNodeBlendTree or \
+			child is AnimationNodeBlendSpace1D or \
+			child is AnimationNodeBlendSpace2D:
+			
+			if not child.has_method('_filter_anim_events'):
+				continue
+			
+			statemachine_nodes.append(child_name)
 
 
 func _process(delta):
@@ -167,12 +182,12 @@ func _process(delta):
 	var blend_position = parameters + 'blend_position'
 
 	if speed > 0:
-		
-		var current_pos = owner.get(blend_position) if get_class() == 'AnimationNodeBlendSpace2D' else Vector2(owner.get(blend_position), 0)
+
+		var current_pos = owner.get(blend_position) if is_2d else Vector2(owner.get(blend_position), 0)
 		var new_pos = current_pos.linear_interpolate(target_pos, delta * speed)
-		
-		owner.set(blend_position, new_pos if get_class() == 'AnimationNodeBlendSpace2D' else new_pos.x)
+
+		owner.set(blend_position, new_pos if is_2d else new_pos.x)
 
 	else:
-
-		owner.set(blend_position, target_pos if get_class() == 'AnimationNodeBlendSpace2D' else target_pos.x)
+		
+		owner.set(blend_position, target_pos if is_2d else target_pos.x)
