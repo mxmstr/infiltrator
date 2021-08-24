@@ -72,21 +72,18 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=8]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=10]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 script = ExtResource( 8 )
 __meta__ = {
@@ -96,7 +93,6 @@ chain = false
 schema = ""
 
 [sub_resource type="AnimationNodeAnimation" id=11]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 script = ExtResource( 8 )
 __meta__ = {
@@ -106,14 +102,12 @@ chain = false
 schema = "Reflect"
 
 [sub_resource type="AnimationNodeAnimation" id=12]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
-resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 9 )
@@ -130,7 +124,6 @@ arguments = {
 wait_for_frame = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
-resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 __meta__ = {
@@ -138,7 +131,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
-resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 __meta__ = {
@@ -146,7 +138,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
-resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 __meta__ = {
@@ -154,7 +145,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=17]
-resource_local_to_scene = true
 states/Asdfasd/node = SubResource( 8 )
 states/Asdfasd/position = Vector2( 863.889, 90.0039 )
 states/End/node = SubResource( 9 )
@@ -179,21 +169,18 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=19]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=20]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=21]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 script = ExtResource( 8 )
 __meta__ = {
@@ -203,13 +190,11 @@ chain = true
 schema = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
-resource_local_to_scene = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
-resource_local_to_scene = true
 auto_advance = true
 priority = 32
 __meta__ = {
@@ -217,7 +202,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=24]
-resource_local_to_scene = true
 states/End/node = SubResource( 19 )
 states/End/position = Vector2( 887, 299.905 )
 states/Start/node = SubResource( 20 )
@@ -232,6 +216,7 @@ script = ExtResource( 11 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = true
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=25]

@@ -176,7 +176,7 @@ func on_loadmap_pressed():
 				
 				var body = model.get_child(0)
 				var collision = body.get_node('CollisionShape')
-				var receptor = load('res://Scenes/Components/Stimulus/R.Static.tscn').instance()
+				var receptor = load('res://Scenes/Components/Properties/Reception.property.tscn').instance()
 				
 				model.remove_child(body)
 				selected.add_child(body)

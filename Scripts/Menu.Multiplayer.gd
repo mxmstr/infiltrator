@@ -2,7 +2,7 @@ extends MarginContainer
 
 var characters = {
 	'Mr. Anderson': {
-		'scene': 'Humans/Anderson'
+		'scene': 'Humans/Anderson2'
 		},
 	'Trinity': {
 		'scene': 'Humans/Infiltrator'

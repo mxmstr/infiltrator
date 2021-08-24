@@ -58,9 +58,14 @@ func _filter_anim_events(is_action, filter_all=false):
 	var blend_position = parameters + 'blend_position'
 	var closest_point = call('get_closest_point', owner.get(blend_position))
 
-#	for animation_node in animation_nodes:
-#
-#		var is_closest = int(animation_node) == closest_point
+	for animation_node in animation_nodes:
+
+		var is_closest = int(animation_node) == closest_point
+		
+		if not is_closest or filter_all:
+			children[animation_node].call_methods = false  
+		else:
+			children[animation_node].call_methods = true
 #		var animation = animation_player.get_animation(children[animation_node].animation)
 #
 #		for track in animation.get_track_count():
@@ -70,16 +75,21 @@ func _filter_anim_events(is_action, filter_all=false):
 #			animation.track_set_enabled(track, false if (is_function_call and (not is_closest or filter_all)) else true)# or is_camera_and_overriden else true)
 
 
-#	for statemachine_node in statemachine_nodes:
-#
-#		var is_closest = int(statemachine_node) == closest_point
-#
-#		children[statemachine_node]._filter_anim_events(is_action, filter_all) if is_closest else children[statemachine_node]._filter_anim_events(is_action, true)
+	for statemachine_node in statemachine_nodes:
+
+		var is_closest = int(statemachine_node) == closest_point
+		
+		if is_closest:
+			children[statemachine_node]._filter_anim_events(is_action, filter_all)
+		else:
+			children[statemachine_node]._filter_anim_events(is_action, true)
 
 
 func _unfilter_anim_events():
 	
-#	for animation_node in animation_nodes:
+	for animation_node in animation_nodes:
+		
+		children[animation_node].call_methods = true
 #
 #		var animation = animation_player.get_animation(children[animation_node].animation)
 #

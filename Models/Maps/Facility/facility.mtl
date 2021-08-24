@@ -1,0 +1,247 @@
+# GOLDENEYE/FACILITY_CLASSIC/WHITEPLASTER
+newmtl material_0
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_0.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_VENTGRILL
+newmtl material_1
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_1.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_CONCRETE06
+newmtl material_2
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_2.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_CONCRETE01
+newmtl material_3
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_3.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/WHITEPLASTER_DARK
+newmtl material_4
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_4.tga
+
+# GOLDENEYE/ARCHIVES_CLASSIC/METALFLOOR
+newmtl material_5
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_5.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/BEIGEFLOOR
+newmtl material_6
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_6.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_STAIRRISER
+newmtl material_7
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_7.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/BLACK
+newmtl material_8
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_8.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_SLIDINGDOOR
+newmtl material_9
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_9.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/BLUEBRICK
+newmtl material_10
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_10.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/BEIGEWALL
+newmtl material_11
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_11.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/WALLTILE01
+newmtl material_12
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_12.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_GREENTILE01
+newmtl material_13
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_13.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_GREENTILE02
+newmtl material_14
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_14.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_CONCRETE03
+newmtl material_15
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_15.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_CONCRETE05
+newmtl material_16
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_16.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/CEILING_LABTILE2
+newmtl material_17
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_17.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/CEILINGTILE
+newmtl material_18
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_18.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_CONCRETE04
+newmtl material_19
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_19.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_BLUETRIM
+newmtl material_20
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_20.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/METALFLOOR_NOCULL
+newmtl material_21
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_21.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_CEILINGTILE2
+newmtl material_22
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_22.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_VENTDUCT02
+newmtl material_23
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_23.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/METALSTAIRS
+newmtl material_24
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_24.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_VENTDUCT01
+newmtl material_25
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_25.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_CORKBOARD
+newmtl material_26
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_26.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_VENTDUCT03
+newmtl material_27
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_27.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_RAILING
+newmtl material_28
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_28.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_VENTGRATE
+newmtl material_29
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_29.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_WINDOWGLASS
+newmtl material_30
+Kd 1.0000 1.0000 1.0000
+d 1.0000
+illum 0
+map_Kd facility_material_30.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/DOOR_STALL_HR
+newmtl material_31
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_31.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_TOILETSEAT
+newmtl material_32
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_32.tga
+
+# GOLDENEYE/FACILITY_CLASSIC/FC_WATER
+newmtl material_33
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_33.tga
+
+# models\props\facility_classic\fc_toilet
+newmtl material_34
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_34.tga
+
+# models\props\facility_classic\fc_quadtanks
+newmtl material_35
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_35.tga
+
+# models\props\facility_classic\fc_doubletanks
+newmtl material_36
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_36.tga
+
+# models\props\facility_classic\tankhall_arch01
+newmtl material_37
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_37.tga
+
+# models\props\facility_classic\fc_quadtanks_pipes
+newmtl material_38
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_38.tga
+
+# models\props\facility_classic\fc_sink
+newmtl material_39
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_39.tga
+
+# models\props\facility_classic\fc_urinal
+newmtl material_40
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd facility_material_40.tga
+

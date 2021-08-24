@@ -29,12 +29,12 @@ var model_blend_speed = 0.5
 
 func _on_pre_process():
 	
-	pass#tree_root._filter_anim_events(blend_mode == Meta.Blend.ACTION)
+	tree_root._filter_anim_events(blend_mode == Meta.Blend.ACTION)
 
 
 func _on_post_process():
 	
-	pass#tree_root._unfilter_anim_events()
+	tree_root._unfilter_anim_events()
 
 
 func _on_state_starting(_name):
@@ -211,9 +211,10 @@ func _physics_process(delta):
 	_blend_camera(delta)
 	#_blend_skeletons(delta)
 	
-#	if blend_mode == Meta.Blend.ACTION:
+	if blend_mode == Meta.Blend.ACTION:
+		pass#active = false
 #		behavior.blend_with_skeleton(model_skeleton, root_bone, bone_names)
-	if blend_mode == Meta.Blend.LAYERED:
+	elif blend_mode == Meta.Blend.LAYERED:
 #		behavior.blend_with_skeleton(model_skeleton, root_bone, bone_names)
 		blend_with_skeleton(model_skeleton, root_bone, movement_bones)
 	elif blend_mode == Meta.Blend.MOVEMENT:

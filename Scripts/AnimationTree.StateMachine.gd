@@ -41,9 +41,15 @@ func _filter_anim_events(is_action, filter_all=false):
 	var current_node = get_node(playback.get_current_node())
 	
 
-#	for animation_node in animation_nodes:
-#
-#		var is_playing = get_node(animation_node) == current_node
+	for animation_node in animation_nodes:
+
+		var is_playing = get_node(animation_node) == current_node
+		
+		if not is_playing or filter_all:
+			children[animation_node].call_methods = false  
+		else:
+			children[animation_node].call_methods = true
+		
 #		var animation = animation_player.get_animation(children[animation_node].animation)
 #
 #		for track in animation.get_track_count():
@@ -53,23 +59,23 @@ func _filter_anim_events(is_action, filter_all=false):
 #			animation.track_set_enabled(track, false if (is_function_call and (not is_playing or filter_all)) else true)# or is_camera_and_overriden else true)
 
 
-#	for statemachine_node in statemachine_nodes:
-#
-#		var is_playing = get_node(statemachine_node) == current_node
+	for statemachine_node in statemachine_nodes:
+
+		var is_playing = get_node(statemachine_node) == current_node
+		
+		if is_playing:
+			children[statemachine_node]._filter_anim_events(is_action, filter_all)
+		else:
+			children[statemachine_node]._filter_anim_events(is_action, true)
 #
 #		children[statemachine_node]._filter_anim_events(is_action, filter_all) if is_playing else children[statemachine_node]._filter_anim_events(is_action, true)
 
 
 func _unfilter_anim_events():
 	
-#	for animation_node in animation_nodes:
-#
-#		var animation = animation_player.get_animation(children[animation_node].animation)
-#
-#		for track in animation.get_track_count():
-#
-#			for track in animation.get_track_count():
-#				animation.track_set_enabled(track, true)
+	for animation_node in animation_nodes:
+		
+		children[animation_node].call_methods = true
 
 
 	for statemachine_node in statemachine_nodes:
