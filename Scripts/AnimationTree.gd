@@ -4,8 +4,9 @@ export(String, 'Action', 'Sound') var schema_type = 'Action'
 
 var make_unique = 0
 var advances = 0
-var data
+var data = {}
 
+signal on_input
 signal on_physics_process
 signal on_process
 signal travel_starting
@@ -34,12 +35,25 @@ func _on_post_call_method_track(_animation, track_index, key_index):
 	_animation.track_set_key_value(track_index, key_index, key)
 
 
+static func merge_dir(target, patch):
+	
+    for key in patch:
+        if target.has(key):
+            var tv = target[key]
+            if typeof(tv) == TYPE_DICTIONARY:
+                merge_dir(tv, patch[key])
+            else:
+                target[key] = patch[key]
+        else:
+            target[key] = patch[key]
+
+
 func _start_state(_name, _data={}):
 	
 	if not active:
 		return
 	
-	data = _data
+	merge_dir(data, _data)
 	
 	if tree_root.has_method('_travel'):
 		tree_root._travel(_name)
@@ -49,10 +63,10 @@ func _ready():
 	
 	if Engine.editor_hint: return
 	
-	if not has_node('../Model'):
-		set_process(false)
-		set_physics_process(false)
-		return
+#	if not has_node('../Model'):
+#		set_process(false)
+#		set_physics_process(false)
+#		return
 	
 	if tree_root.has_method('_ready'):
 		tree_root._ready(self, null, 'parameters/', 'root')
@@ -61,6 +75,11 @@ func _ready():
 	connect('post_call_method_track', self, '_on_post_call_method_track')
 	
 	active = true
+
+
+func _input(event):
+	
+	emit_signal('on_input', event)
 
 
 func _physics_process(delta):

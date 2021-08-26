@@ -66,6 +66,30 @@ func on_convert_pressed():
 	dir.list_dir_end()
 
 
+func on_revert_statemachines():
+	
+	var files = []
+	var dir = Directory.new()
+	dir.open(dock.get_node('RevertInput').text)
+	dir.list_dir_begin()
+	
+#	while true:
+#
+#		var file = dir.get_next()
+#
+#		if file == '':
+#			break
+#
+#		elif not file.begins_with('.') and file.ends_with('.tscn'):
+#
+#			var anim_player = load(dock.get_node('RevertInput').text + file).instance().find_node('AnimationPlayer')
+#			var anim_source = anim_player.get_animation(anim_player.get_animation_list()[0])
+#
+#			ResourceSaver.save(dock.get_node('RevertInput').text + file, anim_source)
+#
+#	dir.list_dir_end()
+
+
 func on_loadanim_pressed():
 	
 	if not selection.get_selected_nodes().empty():

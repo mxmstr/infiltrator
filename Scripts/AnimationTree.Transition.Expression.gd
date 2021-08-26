@@ -16,6 +16,8 @@ func _evaluate():
 	for exec in exec_list:
 		
 		var result = exec.execute(arguments.values(), owner)
+#		if 'Anderson' in owner.owner.name:
+#			print(owner.data.source._has_tag('Item'))
 		
 		if not result:
 		

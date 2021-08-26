@@ -6,7 +6,7 @@
 [ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=4]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "JumpOrClimb"
 script = ExtResource( 2 )
 __meta__ = {
@@ -15,7 +15,7 @@ __meta__ = {
 chain = true
 schema = "MoveRightInput"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "DefaultAnim"
 __meta__ = {
 
@@ -29,7 +29,8 @@ __meta__ = {
 
 }
 action = "Right"
-state = 3
+status = 1
+strength_multiplier = -1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
 switch_mode = 2
@@ -38,10 +39,10 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=5]
-states/MoveRight/node = SubResource( 1 )
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/MoveRight/node = SubResource( 5 )
 states/MoveRight/position = Vector2( 781, 192 )
-states/Start/node = SubResource( 2 )
+states/Start/node = SubResource( 6 )
 states/Start/position = Vector2( 388, 192 )
 transitions = [ "Start", "MoveRight", SubResource( 3 ), "MoveRight", "Start", SubResource( 4 ) ]
 start_node = "Start"
@@ -50,17 +51,18 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 __meta__ = {
 
 }
 
 [node name="MoveRightInput" type="AnimationTree"]
-tree_root = SubResource( 5 )
+tree_root = SubResource( 7 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 6 )
+parameters/playback = SubResource( 8 )
 script = ExtResource( 4 )
 __meta__ = {
 

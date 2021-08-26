@@ -2,28 +2,28 @@ extends MarginContainer
 
 var characters = {
 	'Mr. Anderson': {
-		'scene': 'Humans/Anderson2'
+		'scene': 'Humans/Players/Anderson'
 		},
 	'Trinity': {
-		'scene': 'Humans/Infiltrator'
+		'scene': 'Humans/Players/Infiltrator'
 		},
 	'Agent': {
-		'scene': 'Humans/Anderson2'
+		'scene': 'Humans/Players/Agent'
 		},
 	'Cop': {
-		'scene': 'Humans/Anderson3'
+		'scene': 'Humans/Players/Cop'
 		},
 	'Karen': {
-		'scene': 'Humans/Dawn'
+		'scene': 'Humans/Players/Dawn'
 		},
 	'Max': {
-		'scene': 'Humans/YoungMax'
+		'scene': 'Humans/Players/YoungMax'
 		},
 	'Scientist': {
-		'scene': 'Humans/Scientist'
+		'scene': 'Humans/Players/Scientist'
 		},
 	'SWAT': {
-		'scene': 'Humans/Swat'
+		'scene': 'Humans/Players/Swat'
 		}
 	}
 

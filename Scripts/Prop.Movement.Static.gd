@@ -1,16 +1,12 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
+export var process_movement = false
 export var gravity = 0
 export var accel = 0
 export var deaccel = 0
 
 signal before_move
 signal after_move
-
-
-func _get_speed():
-	
-	return velocity.length()
 
 
 func _get_forward_speed():
@@ -21,16 +17,6 @@ func _get_forward_speed():
 func _get_sidestep_speed():
 	
 	return owner.global_transform.basis.xform_inv(velocity).x
-
-
-func _set_speed(new_speed):
-	
-	speed = new_speed
-
-
-func _set_vertical_velocity(vertical):
-	
-	velocity.y = vertical
 
 
 func _set_direction(new_direction, local=false):
@@ -74,6 +60,10 @@ func _face(target, angle_delta=0.0):
 
 
 func _physics_process(delta):
+	
+	if not process_movement:
+		return
+	
 	
 	var new_velocity = direction * speed * delta
 	var factor

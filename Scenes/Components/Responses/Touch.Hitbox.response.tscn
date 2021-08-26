@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -14,13 +14,13 @@ __meta__ = {
 chain = false
 schema = "DamageOwner"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -29,7 +29,7 @@ __meta__ = {
 chain = false
 schema = "Reflect"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "DefaultAnim"
 __meta__ = {
 
@@ -65,14 +65,14 @@ arguments = {
 }
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/DamageOwner/node = SubResource( 1 )
-states/DamageOwner/position = Vector2( 478.951, 146 )
-states/End/node = SubResource( 2 )
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/DamageOwner/node = SubResource( 8 )
+states/DamageOwner/position = Vector2( 409.951, 146 )
+states/End/node = SubResource( 9 )
 states/End/position = Vector2( 990.613, 146 )
-states/Reflect/node = SubResource( 3 )
-states/Reflect/position = Vector2( 789.613, 146 )
-states/Touch/node = SubResource( 4 )
+states/Reflect/node = SubResource( 10 )
+states/Reflect/position = Vector2( 704.613, 146 )
+states/Touch/node = SubResource( 11 )
 states/Touch/position = Vector2( 154, 146 )
 transitions = [ "Reflect", "End", SubResource( 5 ), "DamageOwner", "Reflect", SubResource( 6 ), "Touch", "DamageOwner", SubResource( 7 ) ]
 start_node = "Touch"
@@ -82,15 +82,15 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 __meta__ = {
 
 }
 
 [node name="TouchResponse" type="AnimationTree"]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 12 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 13 )
 script = ExtResource( 3 )
 __meta__ = {
 

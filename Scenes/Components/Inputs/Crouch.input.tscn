@@ -32,7 +32,8 @@ __meta__ = {
 
 }
 action = "Crouch"
-state = 1
+status = 3
+strength_multiplier = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
 auto_advance = true
@@ -42,7 +43,8 @@ __meta__ = {
 
 }
 action = "Crouch"
-state = 0
+status = 2
+strength_multiplier = 1.0
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
 states/Crouch/node = SubResource( 1 )

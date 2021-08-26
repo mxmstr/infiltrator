@@ -112,7 +112,31 @@ func _physics_process(delta):
 	if lock_movement:
 		return
 	
-	var velocity = Vector3(sidestep_speed, 0, forward_speed).normalized() * max_speed * speed_mult
+	var velocity
+	var direction = Vector2(sidestep_speed, forward_speed)
+	
+#	if forward_speed > 0 and sidestep_speed > 0:
+#		direction = Vector2(sidestep_speed, 0).slerp(Vector2(0, forward_speed), 0.5)
+#	else:
+#		direction = Vector2(sidestep_speed, forward_speed)
+	
+	if direction.length():
+		var x2 = sidestep_speed * sidestep_speed
+		var y2 = forward_speed * forward_speed
+		if (x2 >= y2):
+			sidestep_speed = (sign(sidestep_speed) * x2 * 1.0/sqrt(x2 + y2))
+			forward_speed = (sign(sidestep_speed) * sidestep_speed * forward_speed * 1.0/sqrt(x2 + y2))
+			
+		if (x2 < y2):
+			sidestep_speed = (sign(forward_speed) * sidestep_speed * forward_speed * 1.0/sqrt(x2 + y2))
+			forward_speed = (sign(forward_speed) * y2 * 1.0/sqrt(x2 + y2))
+	
+#	if forward_speed > 0 and sidestep_speed > 0:
+#		velocity = Vector3(0, 0, forward_speed).linear_interpolate(Vector3(sidestep_speed, 0, 0), 0.5)
+#	else:
+	velocity = Vector3(sidestep_speed, 0, forward_speed)
+	
+	velocity *= max_speed * speed_mult
 	
 	movement._set_speed(velocity.length())
 	movement._set_direction(velocity.normalized(), true)

@@ -76,7 +76,7 @@ __meta__ = {
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=270]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 auto_advance = true
 __meta__ = {
 
@@ -87,7 +87,7 @@ states/NotEmpty/node = SubResource( 5 )
 states/NotEmpty/position = Vector2( 636, 95 )
 states/Start/node = SubResource( 6 )
 states/Start/position = Vector2( 360, 95 )
-transitions = [ "Start", "NotEmpty", SubResource( 270 ) ]
+transitions = [ "Start", "NotEmpty", SubResource( 7 ) ]
 start_node = "Start"
 script = ExtResource( 1 )
 __meta__ = {
@@ -195,20 +195,20 @@ __meta__ = {
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=280]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=281]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=282]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 auto_advance = true
 priority = 2
 __meta__ = {
@@ -222,7 +222,7 @@ states/NotEmpty/node = SubResource( 15 )
 states/NotEmpty/position = Vector2( 635, 41 )
 states/Start/node = SubResource( 16 )
 states/Start/position = Vector2( 360, 95 )
-transitions = [ "Start", "NotEmpty", SubResource( 280 ), "NotEmpty", "End", SubResource( 281 ), "Start", "End", SubResource( 282 ) ]
+transitions = [ "Start", "NotEmpty", SubResource( 17 ), "NotEmpty", "End", SubResource( 18 ), "Start", "End", SubResource( 19 ) ]
 start_node = "Start"
 end_node = "End"
 script = ExtResource( 1 )
@@ -250,7 +250,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=285]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 2
 auto_advance = true
 priority = 3
@@ -258,19 +258,19 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=286]
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=287]
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 auto_advance = true
 priority = 2
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=288]
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 auto_advance = true
 disabled = true
 script = ExtResource( 4 )
@@ -285,12 +285,12 @@ method = "_has_item_with_tag"
 args = [ "Firearm" ]
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=289]
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=290]
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
 auto_advance = true
 disabled = true
 script = ExtResource( 4 )
@@ -298,24 +298,24 @@ __meta__ = {
 
 }
 transition_boolean = ""
-update_mode = "state_starting"
+update_mode = "process"
 assertion = "True"
 target = "RightHandContainer"
 method = "_has_item_with_tag"
 args = [ "Firearm" ]
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=291]
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=292]
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=293]
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -341,7 +341,7 @@ states/Shoot/node = SubResource( 20 )
 states/Shoot/position = Vector2( 406.951, 12 )
 states/Start/node = SubResource( 21 )
 states/Start/position = Vector2( 45, 139 )
-transitions = [ "Shoot", "Start", SubResource( 285 ), "Start", "Primary", SubResource( 286 ), "Primary", "Start", SubResource( 287 ), "Primary", "Shoot", SubResource( 288 ), "Shoot", "Primary", SubResource( 289 ), "Start", "IdleAim", SubResource( 290 ), "IdleAim", "Primary", SubResource( 291 ), "IdleAim", "Start", SubResource( 292 ), "Shoot", "IdleAim", SubResource( 293 ) ]
+transitions = [ "Shoot", "Start", SubResource( 22 ), "Start", "Primary", SubResource( 23 ), "Primary", "Start", SubResource( 24 ), "Primary", "Shoot", SubResource( 25 ), "Shoot", "Primary", SubResource( 26 ), "Start", "IdleAim", SubResource( 27 ), "IdleAim", "Primary", SubResource( 28 ), "IdleAim", "Start", SubResource( 29 ), "Shoot", "IdleAim", SubResource( 30 ) ]
 start_node = "Start"
 graph_offset = Vector2( -132.126, -28.5433 )
 __meta__ = {

@@ -60,15 +60,15 @@ func _find_free_container():
 func _get_item_position_offset(item):
 	
 	if item._has_tag('Offset-position'):
-		
+
 		var item_data = item._get_tag('Offset-position')
-		
+
 		var item_parent_name = item_data[0]
 		var item_bone_name = item_data[1]
 		var item_offset = item_data[2].split(',')
-		
+
 		return Vector3(float(item_offset[0]), float(item_offset[1]), float(item_offset[2])) if (
-			(item_parent_name == '' or container_node.root.get_parent().name == item_parent_name) and \
+			(item_parent_name == '' or (container_node.root and container_node.root.get_parent().name == item_parent_name)) and \
 			(item_bone_name == '' or item_bone_name == container_node.bone_name)
 			) else Vector3()
 	
@@ -78,15 +78,15 @@ func _get_item_position_offset(item):
 func _get_item_rotation_offset(item):
 	
 	if item._has_tag('Offset-rotation'):
-		
+
 		var item_data = item._get_tag('Offset-rotation')
-		
+
 		var item_parent_name = item_data[0]
 		var item_bone_name = item_data[1]
 		var item_offset = item_data[2].split(',')
-		
+
 		return Vector3(deg2rad(float(item_offset[0])), deg2rad(float(item_offset[1])), deg2rad(float(item_offset[2]))) if (
-			(item_parent_name == '' or container_node.root.get_parent().name == item_parent_name) and \
+			(item_parent_name == '' or (container_node.root and container_node.root.get_parent().name == item_parent_name)) and \
 			(item_bone_name == '' or item_bone_name == container_node.bone_name)
 			) else Vector3()
 	
@@ -115,23 +115,25 @@ func _ready():
 	movement = to_node.get_node_or_null('Movement')
 	collision = to_node.get_node_or_null('Collision')
 	reception = to_node.get_node_or_null('Reception')
-	item_position_offset = _get_item_position_offset(to_node)
-	item_rotation_offset = _get_item_rotation_offset(to_node)
 	
-#
-#	movement = to_node.get_node_or_null('Movement')
-	
-	if not container:
+	if container == '':
 		
 		if not _find_free_container():
+			
 			queue_free()
+			return
 		
 	else:
 		
 		container_node = from_node.get_node(container)
 		
 		if not _try_container():
+			
 			queue_free()
+			return
+	
+	item_position_offset = _get_item_position_offset(to_node)
+	item_rotation_offset = _get_item_rotation_offset(to_node)
 
 
 func _process(delta):

@@ -35,7 +35,8 @@ __meta__ = {
 
 }
 action = "Primary"
-state = 3
+status = 3
+strength_multiplier = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
 switch_mode = 2

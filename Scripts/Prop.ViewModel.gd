@@ -6,6 +6,7 @@ const worldmodel_offset = 15
 var has_skeleton = false
 
 var hidden_bones = []
+var hidden_bone_ids = []
 var follow_camera_bone_id
 var follow_camera_offset = Vector3()
 
@@ -18,6 +19,7 @@ var world_skeleton
 var vm_skeleton
 
 onready var contains_link = load('res://Scripts/Link.Contains.gd')
+onready var behavior = get_node_or_null('../Behavior')
 onready var camera_rig = $'../CameraRig'
 onready var camera = $'../CameraRig/Camera'
 
@@ -106,13 +108,21 @@ func _init_container():
 
 func _blend_skeletons(s_world, s_view):
 	
+#	behavior.blend_with_skeleton(s_view, '', [])
+#
+#	for idx in hidden_bone_ids:
+#
+#		var p_world = s_world.get_bone_pose(idx)
+#		p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
+#		s_view.set_bone_pose(idx, p_world)
+	
 	for idx in range(s_world.get_bone_count()):
-		
+
 		var s_world_bone_name = s_world.get_bone_name(idx)
 		var p_world = s_world.get_bone_pose(idx)
-		
+
 		s_view.set_bone_pose(idx, p_world)
-		
+
 		if s_world_bone_name in hidden_bones:
 			p_world = s_world.get_bone_pose(idx)
 			p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
@@ -166,8 +176,13 @@ func _get_item_rotation_offset(item):
 
 func _enter_tree():
 	
+#	if model.get_child(0) is Skeleton:
+	
 	world_skeleton = model.get_child(0)
-#	world_skeleton.set_script(preload('res://Scripts/Skeleton.gd'))
+	
+	for idx in range(world_skeleton.get_bone_count()):
+		if world_skeleton.get_bone_name(idx) in hidden_bones:
+			hidden_bone_ids.append(idx)
 	
 	_init_duplicate_meshes()
 	
@@ -185,8 +200,6 @@ func _ready():
 	
 	_init_mesh_layers()
 	_init_container()
-	
-	
 
 
 func _exit_tree():
@@ -199,7 +212,7 @@ func _physics_process(delta):
 	if not get_child_count():
 		return
 	
-#
+
 	if container_root != null:
 
 		global_transform = container_root.global_transform.translated(item_position_offset)
@@ -208,7 +221,7 @@ func _physics_process(delta):
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.x, item_rotation_offset.x)
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.y, item_rotation_offset.y)
 		global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, item_rotation_offset.z)
-#
+
 	
-	_blend_skeletons(model.get_child(0), get_child(0))
+	_blend_skeletons(world_skeleton, vm_skeleton)
 	

@@ -30,28 +30,28 @@ func _physics_process(delta):
 	
 	var colliders = []
 	
-	for collision in collisions:
-		colliders.append(collision.collider)
+	for collision_ in collisions:
+		colliders.append(collision_.collider)
 	
 	
 	var new_collisions = []
 	
 #	if contact_type == ContactType.Collision:
 #
-	for collision in movement._get_collisions():
+	for collision_ in movement._get_collisions():
 		
-		if continuous or not collision.collider in colliders:
+		if continuous or not collision_.collider in colliders:
 			
 			Meta.StimulateActor(
-				collision.collider,
+				collision_.collider,
 				stim_type,
 				owner,
 				movement._get_speed() * -1,
-				collision.position,
-				collision.normal * -1
+				collision_.position,
+				collision_.normal * -1
 				)
 		
-		new_collisions.append(collision)
+		new_collisions.append(collision_)
 	
 #	else:
 #

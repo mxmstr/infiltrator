@@ -7,6 +7,8 @@ export var ghost = false
 export var stop_on_slope = false
 export var max_slides = 4
 
+onready var camera_rig = get_node_or_null('../CameraRig')
+
 signal move_and_slide
 
 
@@ -20,11 +22,6 @@ func _get_collisions():
 	return collisions
 
 
-func _get_speed():
-	
-	return velocity.length()
-
-
 func _get_forward_speed():
 	
 	return owner.global_transform.basis.xform_inv(velocity).z
@@ -33,16 +30,6 @@ func _get_forward_speed():
 func _get_sidestep_speed():
 	
 	return owner.global_transform.basis.xform_inv(velocity).x
-
-
-func _set_speed(new_speed):
-	
-	speed = new_speed
-
-
-func _set_vertical_velocity(vertical):
-	
-	velocity.y = vertical
 
 
 func _set_direction(new_direction, local=false):
@@ -65,6 +52,11 @@ func _teleport(new_position=null, new_rotation=null):
 func _turn(delta):
 	
 	owner.rotation.y += delta
+
+
+func _look(delta):
+	
+	camera_rig._rotate_camera(delta, 0)
 
 
 func _face(target, angle_delta=0.0):

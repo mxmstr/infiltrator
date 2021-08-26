@@ -7,7 +7,6 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-resource_local_to_scene = true
 animation = "JumpOrClimb"
 script = ExtResource( 2 )
 __meta__ = {
@@ -17,14 +16,12 @@ chain = true
 schema = "MoveLeftInput"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=3]
-resource_local_to_scene = true
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
@@ -32,10 +29,10 @@ __meta__ = {
 
 }
 action = "Left"
-state = 3
+status = 1
+strength_multiplier = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
-resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
 __meta__ = {
@@ -43,7 +40,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
-resource_local_to_scene = true
 states/MoveLeft/node = SubResource( 1 )
 states/MoveLeft/position = Vector2( 781, 192 )
 states/Start/node = SubResource( 2 )
@@ -55,6 +51,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]

@@ -6,7 +6,6 @@
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
-
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "JumpOrClimb"
 script = ExtResource( 2 )
@@ -14,7 +13,7 @@ __meta__ = {
 
 }
 chain = true
-schema_name = "JumpOrClimbInput"
+schema = ""
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
@@ -30,7 +29,8 @@ __meta__ = {
 
 }
 action = "Jump"
-state = 3
+status = 3
+strength_multiplier = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
 switch_mode = 2

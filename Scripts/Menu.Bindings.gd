@@ -163,18 +163,21 @@ func _ready():
 	
 	for action_name in INPUT_ACTIONS:
 		
-		var action = load('res://Scenes/UI/Menu.Inputs.Action.tscn').instance()
-		action.name = action_name
-		actions_list.add_child(action)
-		
 		var input_event = InputMap.get_action_list(action_name)[0]
-		var label = action.get_node('Label')
-		var button = action.get_node('Button')
 		
-		label.text = action_name
-		button.text = OS.get_scancode_string(input_event.scancode)
-		button.connect('pressed', self, 'wait_for_input', [action_name])
-		connect('disable_buttons', button, 'set_disabled')
+		if input_event is InputEventKey:
+		
+			var action = load('res://Scenes/UI/Menu.Inputs.Action.tscn').instance()
+			action.name = action_name
+			actions_list.add_child(action)
+			
+			var label = action.get_node('Label')
+			var button = action.get_node('Button')
+			
+			label.text = action_name
+			button.text = OS.get_scancode_string(input_event.scancode)
+			button.connect('pressed', self, 'wait_for_input', [action_name])
+			connect('disable_buttons', button, 'set_disabled')
 	
 	
 	set_process_input(false)

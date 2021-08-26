@@ -438,7 +438,7 @@ script = ExtResource( 5 )
 __meta__ = {
 
 }
-root_bone = "Torso"
+root_bone = "Pelvis"
 movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

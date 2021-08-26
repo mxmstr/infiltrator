@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Scenes/Actors/RigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Items/DD44/dd44.glb" type="PackedScene" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Components/Actions/LoadChamber.action.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Components/Stimuli/Contact.RigidBody.stimulus.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=10]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.2, 1, 1.5 )
@@ -140,7 +141,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=17]
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 __meta__ = {
 
 }
@@ -164,7 +165,7 @@ states/Start/node = SubResource( 17 )
 states/Start/position = Vector2( 623.453, 162 )
 start_node = "Start"
 graph_offset = Vector2( 10.4534, 38.6886 )
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 __meta__ = {
 
 }
@@ -245,7 +246,7 @@ transitions = [ "Start", "Touch", SubResource( 25 ), "Touch", "End", SubResource
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 188.905 )
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 __meta__ = {
 
 }
@@ -268,7 +269,7 @@ states/Start/node = SubResource( 31 )
 states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 __meta__ = {
 
 }
@@ -307,7 +308,7 @@ transitions = [ "Start", "End", SubResource( 36 ) ]
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 __meta__ = {
 
 }
@@ -319,7 +320,8 @@ __meta__ = {
 
 }
 
-[node name="Pistol" index="0" instance=ExtResource( 1 )]
+[node name="Pistol" instance=ExtResource( 1 )]
+collision_mask = 7
 tags = "Item Firearm 9mm One-handed Offset-position:neo_reference_skeleton:Gun:0.003,0.1,-0.023 Offset-rotation:neo_reference_skeleton:Gun:90,0,0"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
@@ -357,19 +359,22 @@ tree_root = SubResource( 15 )
 parameters/playback = SubResource( 16 )
 tree_node = NodePath("../Behavior")
 
-[node name="Behavior" parent="." index="7"]
+[node name="ContactStim" parent="." index="6" instance=ExtResource( 8 )]
+stim_type = "Touch"
+
+[node name="Behavior" parent="." index="8"]
 tree_root = SubResource( 18 )
 parameters/playback = SubResource( 19 )
 parameters/Start/playback = SubResource( 20 )
 
-[node name="Reception" parent="." index="8"]
+[node name="Reception" parent="." index="9"]
 tree_root = SubResource( 29 )
 parameters/playback = SubResource( 30 )
 
-[node name="Interface" parent="." index="9"]
+[node name="Interface" parent="." index="10"]
 tree_root = SubResource( 32 )
 parameters/playback = SubResource( 33 )
 
-[node name="Audio" parent="." index="10"]
+[node name="Audio" parent="." index="11"]
 tree_root = SubResource( 37 )
 parameters/playback = SubResource( 38 )

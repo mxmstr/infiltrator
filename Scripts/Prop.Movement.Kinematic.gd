@@ -15,11 +15,6 @@ func _get_collisions():
 	return [kinematic_collision] if kinematic_collision else []
 
 
-func _get_speed():
-	
-	return velocity.length()
-
-
 func _get_forward_speed():
 	
 	return owner.global_transform.basis.xform_inv(velocity).z
@@ -28,16 +23,6 @@ func _get_forward_speed():
 func _get_sidestep_speed():
 	
 	return owner.global_transform.basis.xform_inv(velocity).x
-
-
-func _set_speed(new_speed):
-	
-	speed = new_speed
-
-
-func _set_vertical_velocity(vertical):
-	
-	velocity.y = vertical
 
 
 func _set_direction(new_direction, local=false):
@@ -99,7 +84,7 @@ func _physics_process(delta):
 	
 	kinematic_collision = owner.move_and_collide(velocity, true, true, ghost)
 	
-	if kinematic_collision:
+	if kinematic_collision and not ghost:
 		velocity = kinematic_collision.remainder
 	
 	emit_signal('move_and_slide', delta)

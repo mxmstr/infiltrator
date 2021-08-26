@@ -2,11 +2,12 @@ extends Node
 
 export(PackedScene) var source
 
-var hitboxes = []
+var bone_attachments = []
+
+onready var skeleton = get_node('../Model').get_child(0)
 
 
 func _add_children():
-	
 	
 	for child in source.instance().get_child(0).get_children():
 		
@@ -34,6 +35,8 @@ func _add_children():
 					new_hitbox.set(prop, export_props[prop])
 				
 				new_hitbox.set_owner(owner)
+			
+			bone_attachments.append(new_child)
 
 
 func _enter_tree():
@@ -41,8 +44,8 @@ func _enter_tree():
 	_add_children()
 
 
-func _process(delta):
+func _physics_process(delta):
 
-	for hitbox in get_children():
-		
-		hitbox.global_transform = get_node('../Model').get_child(0).get_node(hitbox.name).global_transform
+	for i in range(get_child_count()):
+
+		get_child(i).global_transform = bone_attachments[i].global_transform#get_node('../Model').get_child(0).get_node(hitbox.name).global_transform

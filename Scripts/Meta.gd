@@ -33,7 +33,7 @@ var player_data_default = {
 	'mouse': -1,
 	'keyboard': -1,
 	'gamepad': -1,
-	'character': 'Humans/Anderson'
+	'character': 'Humans/Players/Anderson'
 	}
 var player_data = [
 	player_data_default.duplicate(),
@@ -41,6 +41,7 @@ var player_data = [
 	player_data_default.duplicate(),
 	player_data_default.duplicate()
 ]
+var rawinput = false
 
 var cached_args = []
 
@@ -286,6 +287,9 @@ func CreateEvent(actor, event_name):
 
 
 func _enter_tree():
+	
+	for i in range(4):
+		player_data[i].gamepad = i
 	
 	preloader = ResourcePreloader.new()
 	

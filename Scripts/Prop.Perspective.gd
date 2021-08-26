@@ -108,4 +108,4 @@ func _ready():
 	yield(get_tree(), 'idle_frame')
 	
 	_init_fp_skeleton()
-	_init_viewport()
+	#_init_viewport()

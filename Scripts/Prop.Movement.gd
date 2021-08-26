@@ -1,35 +1,55 @@
 extends Node
 
-var speed = 0.0
-var direction = Vector3()
+var speed = 0.0 setget _set_speed, _get_speed
+var direction = Vector3() setget _set_direction
 var velocity = Vector3()
+var pitch = 0.0
+var collisions setget _set_collisions, _get_collisions
 
 
-func _get_collisions(): return []
+func _set_collisions(new_collisions):
+	
+	collisions = new_collisions
 
 
-func _get_speed(): pass
+func _get_collisions():
+	
+	return []
 
 
-func _get_forward_speed(): pass
+func _set_speed(new_speed): 
+	
+	speed = new_speed
 
 
-func _get_sidestep_speed(): pass
+func _get_speed(): 
+	
+	return speed
 
 
-func _set_speed(new_speed): pass
+func _set_direction(new_direction, local=false):
+	
+	direction = new_direction
 
 
-func _set_vertical_velocity(vertical): pass
+func _get_forward_speed(): return 0
 
 
-func _set_direction(new_direction, local=false): pass
+func _get_sidestep_speed(): return 0
+
+
+func _set_vertical_velocity(vertical): 
+	
+	velocity.y = vertical
 
 
 func _teleport(new_position=null, new_rotation=null): pass
 
 
 func _turn(delta): pass
+
+
+func _look(delta): pass
 
 
 func _face(target, angle_delta=0.0): pass

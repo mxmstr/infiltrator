@@ -3,6 +3,9 @@
 [node name="Toolbox" type="VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+
+}
 
 [node name="Floor" type="Button" parent="."]
 margin_right = 119.0
@@ -18,6 +21,9 @@ margin_right = 119.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 0, 30 )
 text = "res://.raw/"
+__meta__ = {
+
+}
 
 [node name="ConvertOutput" type="TextEdit" parent="."]
 margin_top = 58.0
@@ -25,6 +31,9 @@ margin_right = 119.0
 margin_bottom = 88.0
 rect_min_size = Vector2( 0, 30 )
 text = "res://Animations/Human/"
+__meta__ = {
+
+}
 
 [node name="Convert" type="Button" parent="."]
 margin_top = 92.0
@@ -35,56 +44,87 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="LoadAnimInput" type="TextEdit" parent="."]
+[node name="RevertInput" type="TextEdit" parent="."]
 margin_top = 116.0
 margin_right = 119.0
 margin_bottom = 146.0
 rect_min_size = Vector2( 0, 30 )
-text = "res://Animations/Player/"
+text = "res://Scenes/Actors/Humans/Players/"
+__meta__ = {
 
-[node name="LoadAnim" type="Button" parent="."]
+}
+
+[node name="Revert" type="Button" parent="."]
 margin_top = 150.0
 margin_right = 119.0
 margin_bottom = 170.0
+text = "Convert"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LoadAnimInput" type="TextEdit" parent="."]
+margin_top = 174.0
+margin_right = 119.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 0, 30 )
+text = "res://Animations/Player/"
+__meta__ = {
+
+}
+
+[node name="LoadAnim" type="Button" parent="."]
+margin_top = 208.0
+margin_right = 119.0
+margin_bottom = 228.0
 text = "Load Animations"
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="LoadAudioInput" type="TextEdit" parent="."]
-margin_top = 174.0
-margin_right = 119.0
-margin_bottom = 204.0
-rect_min_size = Vector2( 0, 30 )
-text = "res://Sounds/"
-
-[node name="LoadAudioOutput" type="TextEdit" parent="."]
-margin_top = 208.0
-margin_right = 119.0
-margin_bottom = 238.0
-rect_min_size = Vector2( 0, 30 )
-text = "res://Animations/Audio/"
-
-[node name="LoadAudio" type="Button" parent="."]
-margin_top = 242.0
+margin_top = 232.0
 margin_right = 119.0
 margin_bottom = 262.0
+rect_min_size = Vector2( 0, 30 )
+text = "res://Sounds/"
+__meta__ = {
+
+}
+
+[node name="LoadAudioOutput" type="TextEdit" parent="."]
+margin_top = 266.0
+margin_right = 119.0
+margin_bottom = 296.0
+rect_min_size = Vector2( 0, 30 )
+text = "res://Animations/Audio/"
+__meta__ = {
+
+}
+
+[node name="LoadAudio" type="Button" parent="."]
+margin_top = 300.0
+margin_right = 119.0
+margin_bottom = 320.0
 text = "Load Audio"
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="LoadMapInput" type="TextEdit" parent="."]
-margin_top = 266.0
+margin_top = 324.0
 margin_right = 119.0
-margin_bottom = 296.0
+margin_bottom = 354.0
 rect_min_size = Vector2( 0, 30 )
 text = "res://Models/Maps/"
+__meta__ = {
+
+}
 
 [node name="LoadMap" type="Button" parent="."]
-margin_top = 300.0
+margin_top = 358.0
 margin_right = 119.0
-margin_bottom = 320.0
+margin_bottom = 378.0
 text = "Load Map"
 __meta__ = {
 "_edit_group_": true

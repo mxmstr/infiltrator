@@ -57,5 +57,5 @@ func _process(delta):
 	var playback = get('parameters/playback')
 	var current_node = playback.get_current_node()
 	
-#	if owner.name == 'Infiltrator':
-#		prints(OS.get_system_time_msecs(), current_node, get('parameters/playback/pos_current'))
+#	if 'Anderson' in owner.name:
+#		prints(OS.get_system_time_msecs(), current_node)
