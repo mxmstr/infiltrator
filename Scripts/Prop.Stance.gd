@@ -47,12 +47,20 @@ onready var collision = get_node_or_null('../Collision')
 onready var camera = get_node_or_null('../CameraRig/Camera')
 
 
-func _rotate(delta):
+func _turn(delta):
 	
 	if lock_rotation:
 		return
 	
-	owner.rotation.y += delta
+	movement._turn(delta)
+
+
+func _look(delta):
+	
+	if lock_rotation:
+		return
+	
+	movement._look(delta)
 
 
 func _set_stance(new_state):

@@ -1,16 +1,24 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Behavior.BlendTree.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=5]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=6]
+[ext_resource path="res://Scripts/AnimationTree.Blend3.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Behavior.BlendTree.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Boolean.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=6]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=7]
 
 [sub_resource type="AnimationNodeBlend3" id=1]
 sync = true
+script = ExtResource( 2 )
 __meta__ = {
 
+}
+blend3 = ""
+chain = false
+expression = "get_node(CAMERA).rotation_degrees.x / 90"
+arguments = {
+"CAMERA": "../CameraRig/Camera"
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
@@ -32,9 +40,9 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeBlendTree" id=5]
-graph_offset = Vector2( -303.966, 31.8907 )
+graph_offset = Vector2( -384.937, 147.975 )
 nodes/Blend3/node = SubResource( 1 )
-nodes/Blend3/position = Vector2( 180, 100 )
+nodes/Blend3/position = Vector2( 120, 100 )
 nodes/Default/node = SubResource( 2 )
 nodes/Default/position = Vector2( -160, 140 )
 nodes/Down/node = SubResource( 3 )
@@ -43,7 +51,7 @@ nodes/Up/node = SubResource( 4 )
 nodes/Up/position = Vector2( -160, 260 )
 nodes/output/position = Vector2( 460, 160 )
 node_connections = [ "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up", "output", 0, "Blend3" ]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 __meta__ = {
 
 }
@@ -69,7 +77,7 @@ camera_mode = "LockYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "DefaultAnim"
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
@@ -84,7 +92,7 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/NotEmpty/node = SubResource( 5 )
-states/NotEmpty/position = Vector2( 636, 95 )
+states/NotEmpty/position = Vector2( 648, 95 )
 states/Start/node = SubResource( 6 )
 states/Start/position = Vector2( 360, 95 )
 transitions = [ "Start", "NotEmpty", SubResource( 7 ) ]
@@ -110,7 +118,7 @@ camera_mode = "LockYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
 animation = "DefaultAnim"
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
@@ -125,8 +133,15 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeBlend3" id=11]
 sync = true
+script = ExtResource( 2 )
 __meta__ = {
 
+}
+blend3 = ""
+chain = false
+expression = "get_node(CAMERA).rotation_degrees.x / 90"
+arguments = {
+"CAMERA": "../CameraRig/Camera"
 }
 
 [sub_resource type="AnimationNodeAnimation" id=12]
@@ -162,7 +177,7 @@ nodes/Up/node = SubResource( 14 )
 nodes/Up/position = Vector2( -160, 260 )
 nodes/output/position = Vector2( 460, 160 )
 node_connections = [ "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up", "output", 0, "Blend3" ]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 __meta__ = {
 
 }
@@ -188,7 +203,7 @@ camera_mode = "LockYaw"
 
 [sub_resource type="AnimationNodeAnimation" id=16]
 animation = "DefaultAnim"
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
@@ -273,7 +288,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 auto_advance = true
 disabled = true
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 __meta__ = {
 
 }
@@ -293,7 +308,7 @@ __meta__ = {
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
 auto_advance = true
 disabled = true
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 __meta__ = {
 
 }
@@ -320,7 +335,7 @@ switch_mode = 2
 auto_advance = true
 priority = 2
 disabled = true
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 __meta__ = {
 
 }
@@ -371,13 +386,13 @@ parameters/IdleAim/playback = SubResource( 33 )
 parameters/IdleAim/NotEmpty/Blend3/blend_amount = 0
 parameters/Shoot/playback = SubResource( 34 )
 parameters/Shoot/NotEmpty/Blend3/blend_amount = 0
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 6 )
+anims/DefaultAnim = ExtResource( 7 )
 __meta__ = {
 
 }

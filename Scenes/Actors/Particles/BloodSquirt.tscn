@@ -47,6 +47,7 @@ __meta__ = {
 [node name="BloodSquirt" type="CPUParticles"]
 transform = Transform( 1, 3.70164e-10, 5.82077e-11, 3.66526e-10, 1, 9.31323e-10, 0, 1.86265e-09, 1, -1.39698e-09, 0, -1.47648 )
 material_override = SubResource( 1 )
+cast_shadow = 0
 emitting = false
 amount = 10
 lifetime = 0.11
@@ -55,6 +56,7 @@ mesh = SubResource( 2 )
 flag_align_y = true
 spread = 40.15
 initial_velocity = 3.0
+angular_velocity = 0.0
 linear_accel = 4.62
 scale_amount_curve = SubResource( 3 )
 script = SubResource( 4 )

@@ -22,6 +22,12 @@ __meta__ = {
 [node name="Pistol" parent="Actors" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.14734, 1.13931, -3.14831 )
 
+[node name="Pistol2" parent="Actors" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.97486, 1.13931, -3.14831 )
+
+[node name="Pistol3" parent="Actors" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.74752, 1.13931, -3.14831 )
+
 [node name="RespawnMarker1" parent="Actors" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6095, 0.772238, -7.05482 )
 
@@ -49,12 +55,26 @@ enabled = false
 to = NodePath("../../Actors/Pistol")
 container = "RightHandContainer"
 
-[node name="InfPistolAmmoFactory" parent="Links" instance=ExtResource( 4 )]
+[node name="PistolAmmoFactory" parent="Links" instance=ExtResource( 4 )]
 from = NodePath("../../Actors/Pistol")
 to = NodePath("../../Actors/Pistol")
 container = "Magazine"
 products = "target target_container << 1 Items/Mag9mm 
- Items/Mag9mm Container << 50 Items/Bullet9mm"
+Items/Mag9mm Container << 50 Items/Bullet9mm"
+
+[node name="Pistol2AmmoFactory" parent="Links" instance=ExtResource( 4 )]
+from = NodePath("../../Actors/Pistol2")
+to = NodePath("../../Actors/Pistol2")
+container = "Magazine"
+products = "target target_container << 1 Items/Mag9mm 
+Items/Mag9mm Container << 50 Items/Bullet9mm"
+
+[node name="Pistol3AmmoFactory" parent="Links" instance=ExtResource( 4 )]
+from = NodePath("../../Actors/Pistol3")
+to = NodePath("../../Actors/Pistol3")
+container = "Magazine"
+products = "target target_container << 1 Items/Mag9mm 
+Items/Mag9mm Container << 50 Items/Bullet9mm"
 
 [node name="LocalCoopPartner" parent="Links" instance=ExtResource( 5 )]
 enabled = false

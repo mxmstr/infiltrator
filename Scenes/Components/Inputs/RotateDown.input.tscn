@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=310]
+animation = "JumpOrClimb"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = true
+schema = "RotateDownInput"
+
+[sub_resource type="AnimationNodeAnimation" id=311]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=308]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+action = "RotateDown"
+status = 1
+strength_multiplier = -1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=309]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+action = "RotateDown"
+status = 0
+strength_multiplier = 1.0
+
+[sub_resource type="AnimationNodeStateMachine" id=312]
+states/RotateDown/node = SubResource( 310 )
+states/RotateDown/position = Vector2( 781, 192 )
+states/Start/node = SubResource( 311 )
+states/Start/position = Vector2( 388, 192 )
+transitions = [ "Start", "RotateDown", SubResource( 308 ), "RotateDown", "Start", SubResource( 309 ) ]
+start_node = "Start"
+graph_offset = Vector2( 113.391, 97.9739 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=313]
+__meta__ = {
+
+}
+
+[node name="RotateDownInput" type="AnimationTree"]
+tree_root = SubResource( 312 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 313 )
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 5 )
+__meta__ = {
+
+}

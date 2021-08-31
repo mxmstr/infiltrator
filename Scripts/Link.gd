@@ -47,5 +47,5 @@ func _enter_tree():
 func _destroy():
 	
 	set_process(false)
-	
+	set_physics_process(false)
 	queue_free()

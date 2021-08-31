@@ -31,14 +31,15 @@ func _input(event):
 	if event.is_action(action) and event.device == perspective.gamepad_device:
 		
 		var strength = event.get_action_strength(action)
-		owner.data['strength'] = strength * strength_multiplier
-		
 		var new_status = 1 if strength > 0 else 0
 		
 		disabled = not (
 			new_status == status \
 			or (last_status != new_status and new_status + 2 == status)
 			)
+		
+		if not disabled:
+			owner.data['strength'] = strength * strength_multiplier
 		
 		last_status = new_status
 

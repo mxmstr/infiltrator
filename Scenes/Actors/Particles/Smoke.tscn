@@ -115,6 +115,7 @@ __meta__ = {
 [node name="Smoke" type="CPUParticles"]
 transform = Transform( 0.5, 6.93889e-18, -3.03309e-25, 0, -2.18557e-08, -0.5, -6.93889e-18, 0.5, -2.18557e-08, 0, 0, 0 )
 material_override = SubResource( 4 )
+cast_shadow = 0
 emitting = false
 amount = 3
 lifetime = 1.5

@@ -7,6 +7,7 @@ export(String) var bone_name
 
 export var camera_max_x = 0.0
 export var camera_max_y = PI / 2
+export(Vector3) var camera_offset
 
 var root
 
@@ -40,6 +41,8 @@ func _ready():
 	
 	$Camera.set_viewport(get_node(viewport))
 	$Camera.current = true
+	
+	$Camera.translation = camera_offset
 
 
 func _process(delta):

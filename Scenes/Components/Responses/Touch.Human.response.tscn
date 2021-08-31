@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=231]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -14,19 +14,28 @@ __meta__ = {
 chain = false
 schema = "Contain"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=232]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=237]
+animation = "DefaultAnim"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+schema = "PoolAmmo"
+
+[sub_resource type="AnimationNodeAnimation" id=233]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=215]
+[sub_resource type="AnimationNodeStateMachineTransition" id=230]
 auto_advance = true
 disabled = true
 script = ExtResource( 2 )
@@ -42,21 +51,30 @@ arguments = {
 }
 wait_for_frame = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=216]
+[sub_resource type="AnimationNodeStateMachineTransition" id=238]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=6]
-states/Contain/node = SubResource( 1 )
-states/Contain/position = Vector2( 547.951, 146 )
-states/End/node = SubResource( 2 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=239]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=235]
+states/Contain/node = SubResource( 231 )
+states/Contain/position = Vector2( 416.951, 146 )
+states/End/node = SubResource( 232 )
 states/End/position = Vector2( 832.613, 146 )
-states/Touch/node = SubResource( 3 )
-states/Touch/position = Vector2( 255, 146 )
-transitions = [ "Touch", "Contain", SubResource( 215 ), "Contain", "End", SubResource( 216 ) ]
+states/PoolAmmo/node = SubResource( 237 )
+states/PoolAmmo/position = Vector2( 624.281, 146 )
+states/Touch/node = SubResource( 233 )
+states/Touch/position = Vector2( 211, 146 )
+transitions = [ "Touch", "Contain", SubResource( 230 ), "Contain", "PoolAmmo", SubResource( 238 ), "PoolAmmo", "End", SubResource( 239 ) ]
 start_node = "Touch"
 end_node = "End"
 graph_offset = Vector2( -55.7185, 40.1714 )
@@ -64,15 +82,15 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=236]
 __meta__ = {
 
 }
 
 [node name="TouchResponse" type="AnimationTree"]
-tree_root = SubResource( 6 )
+tree_root = SubResource( 235 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 7 )
+parameters/playback = SubResource( 236 )
 script = ExtResource( 3 )
 __meta__ = {
 

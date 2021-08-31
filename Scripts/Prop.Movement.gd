@@ -1,8 +1,11 @@
 extends Node
 
 var speed = 0.0 setget _set_speed, _get_speed
+var angular_speed = 0.05
 var direction = Vector3() setget _set_direction
 var velocity = Vector3()
+var angular_direction = Vector2()
+var angular_velocity = Vector2()
 var pitch = 0.0
 var collisions setget _set_collisions, _get_collisions
 

@@ -4,6 +4,7 @@ export(NodePath) var new_owner
 export(String, MULTILINE) var tags
 
 var base_name
+var system_path
 var tags_dict = {}
 var player_index = 0 setget _set_player_index
 
@@ -34,6 +35,7 @@ func _notification(what):
 	if what == NOTIFICATION_INSTANCED:
 		
 		base_name = name
+		system_path = filename.replace('.tscn', '').replace('res://Scenes/Actors/', '')
 
 
 func _enter_tree():

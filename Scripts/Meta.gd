@@ -247,18 +247,18 @@ func CreateLink(from, to, type, data={}):
 	data.from = from.get_path()
 	data.to = to.get_path()
 	
-	LinkHub._create(type, data)
+	return LinkHub._create(type, data)
 
 
 func DestroyLink(from, to, type, data={}):
 	
-	if from != null:
+	if from:
 		data.from = from.get_path()
 	
-	if to != null:
+	if to:
 		data.to = to.get_path()
 	
-	LinkHub._destroy(type, data)
+	return LinkHub._destroy(type, data)
 
 
 func StimulateActor(actor, stim, source=self, intensity=0.0, position=Vector3(), direction=Vector3()):

@@ -40,7 +40,7 @@ func _create(type, data):
 		new_link.set(prop, data[prop])
 	
 	for link in $'/root/Mission/Links'.get_children():
-		if weakref(link).get_ref() and link._equals(new_link):
+		if weakref(link).get_ref() and not link.is_queued_for_deletion() and link._equals(new_link):
 			return
 	
 	$'/root/Mission/Links'.add_child(new_link)
@@ -49,6 +49,8 @@ func _create(type, data):
 
 
 func _destroy(type, data={}):
+	
+	var freed = []
 	
 	for link in $'/root/Mission/Links'.get_children():
 		
@@ -69,3 +71,8 @@ func _destroy(type, data={}):
 		
 		
 		link._destroy()
+		
+		if not link.to_node in freed:
+			freed.append(link.to_node)
+	
+	return freed
