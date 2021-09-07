@@ -6,9 +6,10 @@ export(String, 'process', 'state_starting', 'travel_starting') var update_mode =
 
 export(String, MULTILINE) var expression
 export(Dictionary) var arguments
-export(float) var wait_for_frame
+export(float) var delay
 
 var exec_list = []
+var timeout = false
 
 
 func _evaluate():
@@ -23,7 +24,7 @@ func _evaluate():
 		
 			if exec.has_execute_failed():
 				
-				prints(owner.owner.name, from.node_name, exec.get_error_text())
+				prints(owner.owner.name, exec_list.find(exec), exec.get_error_text())
 			
 			return false
 	
@@ -31,6 +32,9 @@ func _evaluate():
 
 
 func _update():
+	
+	if delay > 0 and not timeout:
+		disabled = true
 	
 	var _args = []
 	
@@ -48,8 +52,13 @@ func _on_state_starting(new_name):
 	
 	var from_name = parent.get_node_name(from)
 	
-	if from_name == new_name and update_mode == 'state_starting':
-		_update()
+	if from_name == new_name:
+		
+		if delay > 0:
+			owner.get_tree().create_timer(delay).connect('timeout', self, 'set', ['timeout', true])
+		
+		if update_mode == 'state_starting':
+			_update()
 
 
 func _on_travel_starting(new_name):

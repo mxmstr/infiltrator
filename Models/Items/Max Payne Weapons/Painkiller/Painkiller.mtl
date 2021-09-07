@@ -1,0 +1,6 @@
+# models\banshee\maxpayne\weapons\sharedtextures\first_aid_V
+newmtl material_0
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd Painkiller_material_0.tga
+

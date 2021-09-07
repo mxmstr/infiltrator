@@ -1,0 +1,207 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=290]
+animation = "DoUseAction"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=291]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=330]
+animation = "ReflectEmptyReact"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=292]
+animation = "ReflectUseItemReact"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=293]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=318]
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "not get_node(CHAMBER)._is_empty()"
+arguments = {
+"CHAMBER": "../Chamber"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=287]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=328]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=329]
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=331]
+auto_advance = true
+disabled = true
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "get_node(CHAMBER)._is_empty() and get_node(MAGAZINE)._is_empty()"
+arguments = {
+"CHAMBER": "../Chamber",
+"MAGAZINE": "../Magazine"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=332]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=294]
+states/DoUseAction/node = SubResource( 290 )
+states/DoUseAction/position = Vector2( 483, 187 )
+states/End/node = SubResource( 291 )
+states/End/position = Vector2( 968, 244 )
+states/ReflectEmptyReact/node = SubResource( 330 )
+states/ReflectEmptyReact/position = Vector2( 483, 311.45 )
+states/ReflectUseItemReact/node = SubResource( 292 )
+states/ReflectUseItemReact/position = Vector2( 743, 187 )
+states/Use/node = SubResource( 293 )
+states/Use/position = Vector2( 278, 244 )
+transitions = [ "Use", "DoUseAction", SubResource( 318 ), "DoUseAction", "ReflectUseItemReact", SubResource( 287 ), "ReflectUseItemReact", "End", SubResource( 328 ), "Use", "End", SubResource( 329 ), "Use", "ReflectEmptyReact", SubResource( 331 ), "ReflectEmptyReact", "End", SubResource( 332 ) ]
+start_node = "Use"
+end_node = "End"
+graph_offset = Vector2( 29.0026, 110.45 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=295]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=296]
+resource_name = "DoUseAction"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "get_node(BEHAVIOR)._start_state(_get_tag(TAG)[0])", {
+"BEHAVIOR": "Behavior",
+"TAG": "UseAction"
+} ],
+"method": "_evaluate"
+} ]
+}
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=333]
+resource_name = "ReflectEmptyReact"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Reception")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "EmptyReact" ],
+"method": "_reflect"
+} ]
+}
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=297]
+resource_name = "ReflectUseItemReact"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Reception")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "UseReact" ],
+"method": "_reflect"
+} ]
+}
+__meta__ = {
+
+}
+
+[node name="UseResponse" type="AnimationTree"]
+tree_root = SubResource( 294 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 295 )
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+start_node = "Use"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 4 )
+anims/DoUseAction = SubResource( 296 )
+anims/ReflectEmptyReact = SubResource( 333 )
+anims/ReflectUseItemReact = SubResource( 297 )
+__meta__ = {
+
+}

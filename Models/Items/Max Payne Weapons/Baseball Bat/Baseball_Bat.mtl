@@ -1,0 +1,6 @@
+# models\banshee\maxpayne\weapons\sharedtextures\BaseballBat
+newmtl material_0
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd Baseball_Bat_material_0.tga
+

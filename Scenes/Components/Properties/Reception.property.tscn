@@ -1,33 +1,35 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Reception.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
-[sub_resource type="AnimationNodeAnimation" id=247]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=254]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=1]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=266]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=2]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=255]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=3]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=256]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=257]
 animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
@@ -36,63 +38,113 @@ __meta__ = {
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=245]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=258]
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=246]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=263]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=250]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=251]
 auto_advance = true
 priority = 32
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=248]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeStateMachineTransition" id=252]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=249]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeStateMachineTransition" id=253]
 auto_advance = true
 priority = 32
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=6]
-resource_local_to_scene = true
-states/Damage/node = SubResource( 247 )
-states/Damage/position = Vector2( 654, 346.905 )
-states/End/node = SubResource( 1 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=259]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=260]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=264]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=265]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=267]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=268]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=261]
+states/Damage/node = SubResource( 254 )
+states/Damage/position = Vector2( 654, 235.905 )
+states/EmptyReact/node = SubResource( 266 )
+states/EmptyReact/position = Vector2( 654, 427.073 )
+states/End/node = SubResource( 255 )
 states/End/position = Vector2( 887, 299.905 )
-states/Start/node = SubResource( 2 )
+states/Start/node = SubResource( 256 )
 states/Start/position = Vector2( 419, 299.905 )
-states/Touch/node = SubResource( 3 )
-states/Touch/position = Vector2( 654, 241.905 )
-transitions = [ "Start", "Touch", SubResource( 245 ), "Touch", "End", SubResource( 246 ), "Start", "Damage", SubResource( 248 ), "Damage", "End", SubResource( 249 ) ]
+states/Touch/node = SubResource( 257 )
+states/Touch/position = Vector2( 654, 169.905 )
+states/Use/node = SubResource( 258 )
+states/Use/position = Vector2( 654, 299.905 )
+states/UseReact/node = SubResource( 263 )
+states/UseReact/position = Vector2( 654, 366.573 )
+transitions = [ "Start", "Touch", SubResource( 250 ), "Touch", "End", SubResource( 251 ), "Start", "Damage", SubResource( 252 ), "Damage", "End", SubResource( 253 ), "Start", "Use", SubResource( 259 ), "Use", "End", SubResource( 260 ), "Start", "UseReact", SubResource( 264 ), "UseReact", "End", SubResource( 265 ), "Start", "EmptyReact", SubResource( 267 ), "EmptyReact", "End", SubResource( 268 ) ]
 start_node = "Start"
 end_node = "End"
-graph_offset = Vector2( 0, 188.905 )
+graph_offset = Vector2( 0, 183.073 )
 script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = true
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=262]
 __meta__ = {
 
 }
 
 [node name="Reception" type="AnimationTree"]
-tree_root = SubResource( 6 )
+tree_root = SubResource( 261 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 7 )
+parameters/playback = SubResource( 262 )
 script = ExtResource( 3 )
 __meta__ = {
 

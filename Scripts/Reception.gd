@@ -19,10 +19,13 @@ func _on_tree_root_post_process():
 
 func _on_tree_root_state_starting(sm_node_name):
 	
+	
 	emit_signal('tree_root_state_started', sm_node_name)
 
 
 func _start_state(_name, _data={}):
+	
+#	prints(owner.name, _name, active)
 	
 	if not active:
 		return
@@ -52,6 +55,8 @@ func _next_stim():
 
 
 func _reflect(reflected_stim=''):
+	
+#	prints(owner.name, 'reflect', reflected_stim)
 	
 	if not data:
 		return

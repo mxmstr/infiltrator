@@ -17,13 +17,14 @@ func _on_parameter_changed(base_path, p_name, p_value):
 func _ready():
 	
 	if Engine.editor_hint:
-		
 		connect('parameter_changed', self, '_on_parameter_changed')
-		
 		return
 	
 	if tree_root.get_transition_count() == 0:
 		return
+	
+	for animation in $AnimationPlayer.get_animation_list():
+		get_node(str(tree_node) + '/AnimationPlayer').add_animation(animation, $AnimationPlayer.get_animation(animation))
 	
 
 	var anim_names = [start_node, end_node]

@@ -244,6 +244,9 @@ func GetLinks(from, to, type, data={}):
 
 func CreateLink(from, to, type, data={}):
 	
+	if not from or not weakref(from).get_ref() or not to or not weakref(to).get_ref():
+		return
+	
 	data.from = from.get_path()
 	data.to = to.get_path()
 	

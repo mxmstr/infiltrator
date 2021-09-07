@@ -2,7 +2,8 @@
 
 [resource]
 resource_name = "PrimaryAction"
-length = 0.1
+length = 0.001
+loop = true
 tracks/0/type = "method"
 tracks/0/path = NodePath("../Behavior")
 tracks/0/interp = 1

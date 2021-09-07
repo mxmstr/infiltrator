@@ -2,7 +2,6 @@
 
 [resource]
 resource_name = "FireProjectile"
-length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("../../Chamber")
 tracks/0/interp = 1

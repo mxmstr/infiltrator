@@ -1,0 +1,12 @@
+# models\banshee\maxpayne\weapons\sharedtextures\pumpbarl
+newmtl material_0
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd Pump_Shotgun_material_0.tga
+
+# models\banshee\maxpayne\weapons\sharedtextures\pumpsg
+newmtl material_1
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd Pump_Shotgun_material_1.tga
+

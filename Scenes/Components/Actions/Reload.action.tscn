@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+clip_start = 0.05
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+schema = "Reload"
+priority = 0
+type = 0
+blend = 2
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/Reload/node = SubResource( 1 )
+states/Reload/position = Vector2( 667.951, 101 )
+states/Start/node = SubResource( 2 )
+states/Start/position = Vector2( 302, 101 )
+transitions = [ "Start", "Reload", SubResource( 3 ), "Reload", "Start", SubResource( 4 ) ]
+start_node = "Start"
+graph_offset = Vector2( -71.387, -7.99613 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "DefaultAnim"
+length = 0.001
+__meta__ = {
+
+}
+
+[node name="ReloadAction" type="AnimationTree"]
+tree_root = SubResource( 5 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 6 )
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = SubResource( 7 )
+__meta__ = {
+
+}

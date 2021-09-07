@@ -1,0 +1,6 @@
+# models\banshee\maxpayne\weapons\sharedtextures\Ingram02
+newmtl material_0
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd Ingram_material_0.tga
+

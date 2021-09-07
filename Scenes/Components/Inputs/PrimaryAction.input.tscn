@@ -1,33 +1,28 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=4]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=5]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=6]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=368]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=2]
-animation = "JumpOrClimb"
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
 
 }
 chain = false
-schema = "PrimaryActionInput"
+schema = "UseItem"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "JumpOrClimb"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+[sub_resource type="AnimationNodeStateMachineTransition" id=369]
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
@@ -35,39 +30,76 @@ __meta__ = {
 
 }
 action = "Primary"
-status = 3
+status = 1
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id=370]
 auto_advance = true
 disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+action = "Primary"
+status = 0
+strength_multiplier = 1.0
+
+[sub_resource type="AnimationNodeStateMachine" id=371]
+states/Start/node = SubResource( 368 )
+states/Start/position = Vector2( 380, 138 )
+states/UseItem/node = SubResource( 9 )
+states/UseItem/position = Vector2( 718, 138 )
+transitions = [ "Start", "UseItem", SubResource( 369 ), "UseItem", "Start", SubResource( 370 ) ]
+start_node = "Start"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeAnimation" id=365]
+animation = "JumpOrClimb"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id=372]
 auto_advance = true
+disabled = true
+script = ExtResource( 4 )
 __meta__ = {
 
 }
+transition_expression = ""
+update_mode = "process"
+expression = "not get_node(RIGHTHAND)._is_empty()"
+arguments = {
+"RIGHTHAND": "../RightHandContainer"
+}
+delay = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id=373]
 auto_advance = true
+disabled = true
+script = ExtResource( 4 )
 __meta__ = {
 
 }
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(RIGHTHAND)._is_empty()"
+arguments = {
+"RIGHTHAND": "../RightHandContainer"
+}
+delay = 0.0
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/DefaultAnim/node = SubResource( 1 )
-states/DefaultAnim/position = Vector2( 582.391, 285.974 )
-states/Primary/node = SubResource( 2 )
-states/Primary/position = Vector2( 781, 192 )
-states/Start/node = SubResource( 3 )
-states/Start/position = Vector2( 388, 192 )
-transitions = [ "Start", "Primary", SubResource( 4 ), "Primary", "Start", SubResource( 5 ), "Primary", "DefaultAnim", SubResource( 6 ), "DefaultAnim", "Start", SubResource( 7 ) ]
+[sub_resource type="AnimationNodeStateMachine" id=366]
+states/Primary/node = SubResource( 371 )
+states/Primary/position = Vector2( 903, 229 )
+states/Start/node = SubResource( 365 )
+states/Start/position = Vector2( 510, 229 )
+transitions = [ "Start", "Primary", SubResource( 372 ), "Primary", "Start", SubResource( 373 ) ]
 start_node = "Start"
 graph_offset = Vector2( 113.391, 97.9739 )
 script = ExtResource( 1 )
@@ -77,22 +109,28 @@ __meta__ = {
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=367]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=374]
 __meta__ = {
 
 }
 
 [node name="PrimaryActionInput" type="AnimationTree"]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 366 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 9 )
-script = ExtResource( 4 )
+parameters/playback = SubResource( 367 )
+parameters/Primary/playback = SubResource( 374 )
+script = ExtResource( 5 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 5 )
+anims/DefaultAnim = ExtResource( 6 )
 __meta__ = {
 
 }

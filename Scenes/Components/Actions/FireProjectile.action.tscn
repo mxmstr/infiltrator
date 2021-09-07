@@ -1,11 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=2]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource path="res://Scripts/AnimationTree.Animation.Scaled.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=287]
+animation = "EmptyMagazine"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=271]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -13,57 +20,172 @@ __meta__ = {
 }
 chain = false
 schema = "FireProjectile"
+expression = "1 / float(owner._get_tag(TAG)[0])"
+arguments = {
+"TAG": "FireRate"
+}
 
-[sub_resource type="AnimationNodeAnimation" id=2]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeAnimation" id=281]
+animation = "DefaultAnim"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = false
+schema = "LoadChamber"
+
+[sub_resource type="AnimationNodeAnimation" id=272]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=3]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeStateMachineTransition" id=269]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=4]
-resource_local_to_scene = true
+[sub_resource type="AnimationNodeStateMachineTransition" id=282]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(CHAMBER)._is_empty() and not get_node(MAGAZINE)._is_empty()
+not get_node(MAGAZINE).items[0].get_node(CONTAINER)._is_empty() "
+arguments = {
+"CHAMBER": "../Chamber",
+"CONTAINER": "Container",
+"MAGAZINE": "../Magazine"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=283]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=284]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(CHAMBER)._is_empty() and not get_node(MAGAZINE)._is_empty()
+not get_node(MAGAZINE).items[0].get_node(CONTAINER)._is_empty() "
+arguments = {
+"CHAMBER": "../Chamber",
+"CONTAINER": "Container",
+"MAGAZINE": "../Magazine"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=285]
+switch_mode = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=286]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=288]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "not get_node(MAGAZINE)._is_empty()
+get_node(MAGAZINE).items[0].get_node(CONTAINER)._is_empty() "
+arguments = {
+"CHAMBER": "../Chamber",
+"CONTAINER": "Container",
+"MAGAZINE": "../Magazine"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=289]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=5]
-resource_local_to_scene = true
-states/FireProjectile/node = SubResource( 1 )
-states/FireProjectile/position = Vector2( 594.613, 99 )
-states/Start/node = SubResource( 2 )
-states/Start/position = Vector2( 247, 99 )
-transitions = [ "Start", "FireProjectile", SubResource( 3 ), "FireProjectile", "Start", SubResource( 4 ) ]
+[sub_resource type="AnimationNodeStateMachine" id=273]
+states/Empty/node = SubResource( 287 )
+states/Empty/position = Vector2( 611.613, 279.004 )
+states/FireProjectile/node = SubResource( 271 )
+states/FireProjectile/position = Vector2( 611.613, 188 )
+states/LoadChamber/node = SubResource( 281 )
+states/LoadChamber/position = Vector2( 403.613, 74.0039 )
+states/Start/node = SubResource( 272 )
+states/Start/position = Vector2( 228, 188 )
+transitions = [ "Start", "FireProjectile", SubResource( 269 ), "Start", "LoadChamber", SubResource( 282 ), "LoadChamber", "Start", SubResource( 283 ), "FireProjectile", "LoadChamber", SubResource( 284 ), "LoadChamber", "FireProjectile", SubResource( 285 ), "FireProjectile", "Start", SubResource( 286 ), "FireProjectile", "Empty", SubResource( 288 ), "Empty", "Start", SubResource( 289 ) ]
 start_node = "Start"
-graph_offset = Vector2( -71.387, -7.99613 )
+graph_offset = Vector2( -71.387, 49.2647 )
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=274]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=290]
+resource_name = "EmptyMagazine"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "get_node(MAGAZINE)._release_front()", {
+"MAGAZINE": "Magazine"
+} ],
+"method": "_evaluate"
+} ]
+}
 __meta__ = {
 
 }
 
 [node name="FireProjectileAction" type="AnimationTree"]
-tree_root = SubResource( 5 )
+tree_root = SubResource( 273 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 6 )
-script = ExtResource( 2 )
+parameters/playback = SubResource( 274 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 3 )
+anims/DefaultAnim = ExtResource( 5 )
+anims/EmptyMagazine = SubResource( 290 )
 __meta__ = {
 
 }

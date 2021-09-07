@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=164]
 animation = "DefaultAnim"
 clip_start = 0.05
 script = ExtResource( 1 )
@@ -26,44 +26,44 @@ lock_rotation = false
 lock_movement = false
 camera_mode = "LockYaw"
 
-[sub_resource type="AnimationNodeAnimation" id=201]
+[sub_resource type="AnimationNodeAnimation" id=165]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=199]
+[sub_resource type="AnimationNodeStateMachineTransition" id=162]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=200]
+[sub_resource type="AnimationNodeStateMachineTransition" id=163]
 switch_mode = 2
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=202]
-states/Die/node = SubResource( 1 )
+[sub_resource type="AnimationNodeStateMachine" id=166]
+states/Die/node = SubResource( 164 )
 states/Die/position = Vector2( 667.951, 101 )
-states/Start/node = SubResource( 201 )
+states/Start/node = SubResource( 165 )
 states/Start/position = Vector2( 302, 101 )
-transitions = [ "Start", "Die", SubResource( 199 ), "Die", "Start", SubResource( 200 ) ]
+transitions = [ "Start", "Die", SubResource( 162 ), "Die", "Start", SubResource( 163 ) ]
 start_node = "Start"
 graph_offset = Vector2( -71.387, -7.99613 )
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=203]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=167]
 __meta__ = {
 
 }
 
 [node name="DieAction" type="AnimationTree"]
-tree_root = SubResource( 202 )
+tree_root = SubResource( 166 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 203 )
+parameters/playback = SubResource( 167 )
 script = ExtResource( 2 )
 __meta__ = {
 

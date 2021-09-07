@@ -38,8 +38,14 @@ func _input(event):
 			or (last_status != new_status and new_status + 2 == status)
 			)
 		
+#		if owner.name == 'PrimaryActionInput' and not disabled:
+#			prints('asdf')
+		
+		
 		if not disabled:
+			
 			owner.data['strength'] = strength * strength_multiplier
+#			owner.advance(0.01)
 		
 		last_status = new_status
 

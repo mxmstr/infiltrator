@@ -86,8 +86,8 @@ func _try_container(node):
 	if collision:
 		collision.disabled = true
 	
-	if reception:
-		reception.active = false
+#	if reception:
+#		reception.active = false
 	
 	node._add_item(to_node)
 	
@@ -210,8 +210,8 @@ func _restore_collision():
 		if collision:
 			collision.disabled = false
 		
-		if reception:
-			reception.active = true
+#		if reception:
+#			reception.active = true
 		
 		if container_node:
 			

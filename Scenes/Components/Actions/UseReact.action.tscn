@@ -1,0 +1,174 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.Blend3.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Behavior.BlendTree.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=275]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlend3" id=276]
+sync = true
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+blend3 = ""
+chain = false
+expression = "get_node(CAMERA).rotation_degrees.x / 90"
+arguments = {
+"CAMERA": "../CameraRig/Camera"
+}
+
+[sub_resource type="AnimationNodeAnimation" id=277]
+animation = "DefaultAnim"
+clip_start = 0.05
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=278]
+animation = "DefaultAnim"
+clip_start = 0.05
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=279]
+animation = "DefaultAnim"
+clip_start = 0.05
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendTree" id=280]
+graph_offset = Vector2( -238.809, 4.21986 )
+nodes/Blend3/node = SubResource( 276 )
+nodes/Blend3/position = Vector2( 180, 100 )
+nodes/Default/node = SubResource( 277 )
+nodes/Default/position = Vector2( -160, 140 )
+nodes/Down/node = SubResource( 278 )
+nodes/Down/position = Vector2( -160, 20 )
+nodes/Up/node = SubResource( 279 )
+nodes/Up/position = Vector2( -160, 260 )
+nodes/output/position = Vector2( 460, 160 )
+node_connections = [ "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up", "output", 0, "Blend3" ]
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = false
+schema = "Shoot"
+expression = "get_node(MOVEMENT)._get_speed() > 0.1 or get_node(STANCE).stance > 0"
+arguments = {
+"MOVEMENT": "../Movement",
+"STANCE": "../Stance"
+}
+priority = 0
+type = 0
+blend = 0
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+
+[sub_resource type="AnimationNodeAnimation" id=281]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=282]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=271]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=272]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=273]
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(RIGHTHAND)._has_item_with_tag(FIREARM)"
+arguments = {
+"FIREARM": "Firearm",
+"RIGHTHAND": "../RightHandContainer"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=274]
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=283]
+states/End/node = SubResource( 275 )
+states/End/position = Vector2( 933.874, 85 )
+states/ShootOneHand/node = SubResource( 280 )
+states/ShootOneHand/position = Vector2( 667.874, 29.5265 )
+states/Start/node = SubResource( 281 )
+states/Start/position = Vector2( 108, 85 )
+states/UseItemReact/node = SubResource( 282 )
+states/UseItemReact/position = Vector2( 380.874, 85 )
+transitions = [ "ShootOneHand", "End", SubResource( 271 ), "Start", "UseItemReact", SubResource( 272 ), "UseItemReact", "ShootOneHand", SubResource( 273 ), "UseItemReact", "End", SubResource( 274 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( -77.5673, -52.7779 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=284]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=285]
+resource_name = "DefaultAnim"
+length = 0.001
+__meta__ = {
+
+}
+
+[node name="UseReactAction" type="AnimationTree"]
+tree_root = SubResource( 283 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 284 )
+parameters/ShootOneHand/Blend3/blend_amount = 0
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = SubResource( 285 )
+__meta__ = {
+
+}

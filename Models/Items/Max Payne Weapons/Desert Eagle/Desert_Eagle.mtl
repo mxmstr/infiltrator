@@ -1,0 +1,6 @@
+# models\banshee\maxpayne\weapons\sharedtextures\d_eagle01
+newmtl material_0
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd Desert_Eagle_material_0.tga
+

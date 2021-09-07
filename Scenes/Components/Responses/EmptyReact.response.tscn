@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "EmptyReactResponse"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=451]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/EmptyReact/node = SubResource( 1 )
+states/EmptyReact/position = Vector2( 211, 146 )
+states/EmptyReactResponse/node = SubResource( 2 )
+states/EmptyReactResponse/position = Vector2( 525.951, 146 )
+states/End/node = SubResource( 3 )
+states/End/position = Vector2( 832.613, 146 )
+transitions = [ "EmptyReact", "EmptyReactResponse", SubResource( 451 ), "EmptyReactResponse", "End", SubResource( 5 ) ]
+start_node = "EmptyReact"
+end_node = "End"
+graph_offset = Vector2( -61.2908, 40.1714 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "DefaultAnim"
+length = 0.001
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "EmptyReactResponse"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Behavior")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Reload" ],
+"method": "_start_state"
+} ]
+}
+__meta__ = {
+
+}
+
+[node name="EmptyReactResponse" type="AnimationTree"]
+tree_root = SubResource( 6 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 7 )
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+start_node = "EmptyReact"
+end_node = "End"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = SubResource( 8 )
+anims/EmptyReactResponse = SubResource( 9 )
+__meta__ = {
+
+}

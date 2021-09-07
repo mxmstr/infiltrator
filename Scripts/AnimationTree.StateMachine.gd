@@ -202,6 +202,5 @@ func _process(delta):
 	
 	advance = false
 	
-#	if statemachine == 'rewq' and owner.owner.name == 'Infiltrator':
-#		owner.advance(0.01)
-#		prints(owner.get(parameters + 'playback').get_current_node())
+#	if statemachine == 'merrp':# and owner.owner.name == 'Infiltrator':
+#		prints(owner.get(parameters + 'playback').get_current_play_pos())

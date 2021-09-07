@@ -3,22 +3,32 @@ extends 'res://Scripts/AnimationTree.gd'
 var enable_abilities = true
 
 var target
+var last_node
 
 
 func _start_state(_name, _data={}):
 
-#	if owner.name == 'Infiltrator':
-#		print(OS.get_system_time_msecs(), _name, enable_abilities)
-
+#	prints(owner.name, _name)
+	
 	if not enable_abilities:
 		return
 	
-	data = _data
+#	if get('parameters/playback').get_travel_path().size():
+#		print('asdf')
+#		return
+	
+#	data = _data
+#
+#	if tree_root.has_method('_start'):
+#		tree_root._start(_name)
+	
+	._start_state(_name, data)
+
+
+func _stop_travel():
 	
 	if tree_root.has_method('_start'):
-		tree_root._start(_name)
-	
-#	._start_state(_name, data)
+		tree_root._start( get('parameters/playback').get_current_node())
 
 
 func _get_visible_interactions():
@@ -57,5 +67,6 @@ func _process(delta):
 	var playback = get('parameters/playback')
 	var current_node = playback.get_current_node()
 	
-#	if 'Anderson' in owner.name:
-#		prints(OS.get_system_time_msecs(), current_node)
+#	if 'Pistol' in owner.name and current_node != last_node:
+#		prints(OS.get_system_time_msecs(), current_node, playback.get_travel_path())
+#		last_node = current_node
