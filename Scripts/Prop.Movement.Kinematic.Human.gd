@@ -107,13 +107,13 @@ func _process(delta):
 	else:
 		angular_velocity.y = new_velocity.y
 	
-	#print(angular_velocity)
+#	print(angular_direction.length())
 	
 	owner.rotation.y += angular_velocity.x
 	camera_rig._rotate_camera(angular_velocity.y, 0)
 	
-#	angular_velocity.x = 0
-#	angular_velocity.y = 0
+#	angular_direction.x = 0
+#	angular_direction.y = 0
 
 
 func _physics_process(delta):

@@ -87,6 +87,40 @@ func _has_item_with_tag(tag):
 	return false
 
 
+func _has_item_with_tags(tags):
+	
+	for item in items:
+		
+		var tagged = true
+		
+		for tag in tags:
+			if not item._has_tag(tag):
+				tagged = false
+		
+		if not tagged:
+			continue
+		
+		return true
+	
+	return false
+
+
+func _get_item_with_tags(tags):
+	
+	for item in items:
+		
+		var tagged = true
+		
+		for tag in tags:
+			if not item._has_tag(tag):
+				tagged = false
+		
+		if tagged:
+			return item
+	
+	return null
+
+
 func _push_front_into_container(new_container):
 	
 	if not items.size():
@@ -120,6 +154,16 @@ func _release_front():
 	if factory_mode:
 		items.pop_front()
 		return Meta.AddActor(item, root.global_transform.origin, root.rotation_degrees)
+	
+	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
+	
+	return item
+
+
+func _release(item):
+	
+	if not items.size():
+		return
 	
 	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
 	

@@ -69,12 +69,17 @@ func _get_meta():
 
 func _evaluate(expression, arguments):
 	
+#	if 'Pistol' == name:
+#		prints(expression)
+	
 	var exec = Expression.new()
-	exec.parse(expression, arguments.keys())
+	if exec.parse(expression, arguments.keys()) > 0:
+		prints(expression, exec.get_error_text())
+	
 	var result = exec.execute(arguments.values(), self)
 	
 	if exec.has_execute_failed():
-		prints(exec.get_error_text())
+		prints(expression, exec.get_error_text())
 	
 	return result
 

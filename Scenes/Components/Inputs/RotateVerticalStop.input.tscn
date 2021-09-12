@@ -1,0 +1,113 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = true
+schema = "RotateVerticalStopInput"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+resource_local_to_scene = true
+animation = "JumpOrClimb"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=337]
+resource_local_to_scene = true
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+action = "RotateUp"
+status = 0
+strength_multiplier = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=338]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=339]
+resource_local_to_scene = true
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+action = "RotateDown"
+status = 0
+strength_multiplier = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=340]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=8]
+resource_local_to_scene = true
+states/NotDown/node = SubResource( 1 )
+states/NotDown/position = Vector2( 861.391, 192 )
+states/NotUp/node = SubResource( 2 )
+states/NotUp/position = Vector2( 557, 140 )
+states/Start/node = SubResource( 3 )
+states/Start/position = Vector2( 257, 192 )
+transitions = [ "Start", "NotUp", SubResource( 337 ), "NotUp", "Start", SubResource( 338 ), "NotUp", "NotDown", SubResource( 339 ), "NotDown", "Start", SubResource( 340 ) ]
+start_node = "Start"
+graph_offset = Vector2( -74.501, 65.4608 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+__meta__ = {
+
+}
+
+[node name="RotateVerticalStopInput" type="AnimationTree"]
+tree_root = SubResource( 8 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 9 )
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 5 )
+__meta__ = {
+
+}

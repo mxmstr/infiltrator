@@ -3,6 +3,7 @@
 [resource]
 resource_name = "RotateLeft"
 length = 0.001
+loop = true
 tracks/0/type = "method"
 tracks/0/path = NodePath("../Stance")
 tracks/0/interp = 1
@@ -14,7 +15,7 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "$data:strength" ],
-"method": "_turn"
+"method": "_set_turn_speed"
 } ]
 }
 __meta__ = {

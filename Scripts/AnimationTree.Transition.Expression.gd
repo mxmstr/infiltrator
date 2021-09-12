@@ -71,6 +71,9 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	
 	._ready(_owner, _parent, _parameters, _from, _to)
 	
+#	if owner.name == 'Behavior':
+#		prints(owner.owner.name, owner.name, self)
+	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
 		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	

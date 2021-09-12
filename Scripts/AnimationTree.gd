@@ -61,7 +61,10 @@ func _start_state(_name, _data={}):
 
 func _ready():
 	
-	if Engine.editor_hint: return
+	tree_root = tree_root.duplicate(true)
+	
+#	if name == 'Behavior' and 'Pistol' in owner.name:
+#		print(owner.name, tree_root.get_transition(0).duplicate(true))
 	
 #	if not has_node('../Model'):
 #		set_process(false)

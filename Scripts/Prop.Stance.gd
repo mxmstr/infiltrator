@@ -52,6 +52,8 @@ func _turn(delta):
 	if lock_rotation:
 		return
 	
+#	print(delta)
+	
 	movement._turn(delta)
 
 
@@ -93,6 +95,16 @@ func _set_forward_speed(new_speed):
 func _set_sidestep_speed(new_speed):
 	
 	sidestep_speed = new_speed
+
+
+func _set_turn_speed(new_speed):
+	
+	movement.angular_direction.x = new_speed
+
+
+func _set_look_speed(new_speed):
+	
+	movement.angular_direction.y = new_speed
 
 
 func _align_to_camera():

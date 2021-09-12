@@ -67,6 +67,6 @@ func _process(delta):
 	var playback = get('parameters/playback')
 	var current_node = playback.get_current_node()
 	
-#	if 'Pistol' in owner.name and current_node != last_node:
-#		prints(OS.get_system_time_msecs(), current_node, playback.get_travel_path())
+#	if 'Pistol' in owner.name:# and current_node != last_node:
+#		prints(OS.get_system_time_msecs(), current_node, playback.get_current_play_pos(), playback.get_current_length())
 #		last_node = current_node

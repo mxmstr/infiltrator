@@ -1,9 +1,8 @@
-[gd_resource type="Animation" format=2]
+[gd_scene load_steps=2 format=2]
 
-[resource]
-resource_name = "RotateUp"
+[sub_resource type="Animation" id=1]
+resource_name = "RotateVerticalStop"
 length = 0.001
-loop = true
 tracks/0/type = "method"
 tracks/0/path = NodePath("../Stance")
 tracks/0/interp = 1
@@ -14,10 +13,16 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "$data:strength" ],
+"args": [ 0.0 ],
 "method": "_set_look_speed"
 } ]
 }
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/RotateVerticalStop = SubResource( 1 )
 __meta__ = {
 
 }

@@ -20,6 +20,10 @@ func _ready():
 		connect('parameter_changed', self, '_on_parameter_changed')
 		return
 	
+	if tree_node.is_empty():
+		return
+	
+	
 	if tree_root.get_transition_count() == 0:
 		return
 	

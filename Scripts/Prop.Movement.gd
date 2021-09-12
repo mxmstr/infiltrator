@@ -1,7 +1,7 @@
 extends Node
 
 var speed = 0.0 setget _set_speed, _get_speed
-var angular_speed = 0.05
+var angular_speed = 0.075
 var direction = Vector3() setget _set_direction
 var velocity = Vector3()
 var angular_direction = Vector2()
