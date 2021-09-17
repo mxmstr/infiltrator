@@ -6,28 +6,28 @@
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=4]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
-[sub_resource type="AnimationNodeAnimation" id=400]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=401]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "Land"
 script = ExtResource( 2 )
 __meta__ = {
 
 }
-chain = true
+chain = false
 schema = "DecreaseHP"
 
-[sub_resource type="AnimationNodeAnimation" id=402]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=403]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
@@ -36,7 +36,7 @@ __meta__ = {
 chain = false
 schema = "GetKilled"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=529]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 switch_mode = 2
 auto_advance = true
 priority = 2
@@ -44,13 +44,13 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=530]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=531]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 switch_mode = 2
 auto_advance = true
 disabled = true
@@ -64,25 +64,25 @@ expression = "get_node(STAMINA).hp == 0"
 arguments = {
 "STAMINA": "../Stamina"
 }
-wait_for_frame = 0.0
+delay = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=532]
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=404]
-states/Damage/node = SubResource( 400 )
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/Damage/node = SubResource( 1 )
 states/Damage/position = Vector2( 283, 128 )
-states/DecreaseHP/node = SubResource( 401 )
+states/DecreaseHP/node = SubResource( 2 )
 states/DecreaseHP/position = Vector2( 524, 128 )
-states/End/node = SubResource( 402 )
+states/End/node = SubResource( 3 )
 states/End/position = Vector2( 909, 128 )
-states/GetKilled/node = SubResource( 403 )
+states/GetKilled/node = SubResource( 4 )
 states/GetKilled/position = Vector2( 720, 63.9397 )
-transitions = [ "DecreaseHP", "End", SubResource( 529 ), "Damage", "DecreaseHP", SubResource( 530 ), "DecreaseHP", "GetKilled", SubResource( 531 ), "GetKilled", "End", SubResource( 532 ) ]
+transitions = [ "DecreaseHP", "End", SubResource( 5 ), "Damage", "DecreaseHP", SubResource( 6 ), "DecreaseHP", "GetKilled", SubResource( 7 ), "GetKilled", "End", SubResource( 8 ) ]
 start_node = "Damage"
 end_node = "End"
 graph_offset = Vector2( 0, 10.9397 )
@@ -90,6 +90,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
@@ -98,7 +99,7 @@ __meta__ = {
 }
 
 [node name="DamageResponse" type="AnimationTree"]
-tree_root = SubResource( 404 )
+tree_root = SubResource( 9 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 10 )
 script = ExtResource( 4 )

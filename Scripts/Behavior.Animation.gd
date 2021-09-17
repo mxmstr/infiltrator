@@ -25,6 +25,8 @@ func _is_visible():
 
 func _on_state_starting(new_name):
 	
+	._on_state_starting(new_name)
+	
 	if node_name == new_name:
 		
 		var playback = owner.get(parameters + 'playback')

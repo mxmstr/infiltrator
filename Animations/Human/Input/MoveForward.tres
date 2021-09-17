@@ -13,8 +13,8 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "forward_speed", "$data:strength" ],
-"method": "set"
+"args": [ "$data:strength" ],
+"method": "_set_forward_speed"
 } ]
 }
 __meta__ = {

@@ -50,6 +50,9 @@ static func merge_dir(target, patch):
 
 func _start_state(_name, _data={}):
 	
+#	if name == 'Perspective':
+#		prints(owner.name, _name, true)
+	
 	if not active:
 		return
 	

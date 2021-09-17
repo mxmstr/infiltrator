@@ -223,6 +223,31 @@ func on_loadmap_pressed():
 				receptor.owner = get_tree().get_edited_scene_root()
 
 
+
+func _evaluate(node, expression, arguments):
+	
+	var exec = Expression.new()
+	
+	if exec.parse(expression, arguments.keys()) > 0:
+		prints(expression, exec.get_error_text())
+	
+	var result = exec.execute(arguments.values(), node)
+	
+	if exec.has_execute_failed():
+		prints(expression, exec.get_error_text())
+	
+	return result
+
+
+func on_evaluate_pressed():
+	
+	if not selection.get_selected_nodes().empty():
+		
+		var selected = selection.get_selected_nodes()[0]
+		print(selected.name, dock.get_node('ArgumentsInput').text)
+		print(_evaluate(selected, dock.get_node('ExpressionInput').text, parse_json(dock.get_node('ArgumentsInput').text)))
+
+
 func _ready():
 	
 	pass
@@ -236,6 +261,7 @@ func _enter_tree():
 	dock.get_node('LoadAnim').connect('button_down', self, 'on_loadanim_pressed')
 	dock.get_node('LoadAudio').connect('button_down', self, 'on_loadaudio_pressed')
 	dock.get_node('LoadMap').connect('button_down', self, 'on_loadmap_pressed')
+#	dock.get_node('Evaluate').connect('button_down', self, 'on_evaluate_pressed')
 	
 	selection = EditorPlugin.new().get_editor_interface().get_selection()
 	selection.connect('selection_changed', self, 'on_selection_changed')

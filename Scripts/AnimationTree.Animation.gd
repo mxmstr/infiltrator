@@ -72,7 +72,7 @@ func _on_state_starting(new_name):
 		advance = chain
 		
 		emit_signal('state_starting', node_name, owner.data)
-	
+		
 		_randomize_animation()
 
 

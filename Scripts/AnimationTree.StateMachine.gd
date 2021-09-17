@@ -92,8 +92,8 @@ func _travel(_name):
 	if not playback.is_playing():
 		prints('Not playing', owner.owner.name)
 	
-	owner.advance(0.01)
-	owner.emit_signal('on_process', 0)
+#	owner.advance(0.01)
+#	owner.emit_signal('on_process', 0)
 
 
 func _start(_name):
@@ -107,10 +107,12 @@ func _start(_name):
 	
 	owner.emit_signal('travel_starting', _name, get_node(_name))
 	
+#	prints('starting', owner.owner.name, _name, owner.active)
+	
 	playback.start(_name)
 	
-	owner.advance(0.01)
-	owner.emit_signal('on_process', 0)
+#	owner.advance(0.01)
+#	owner.emit_signal('on_process', 0)
 
 
 func _editor_ready(_owner, _parent, _parameters, _name):

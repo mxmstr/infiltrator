@@ -89,20 +89,32 @@ func _set_stance(new_state):
 
 func _set_forward_speed(new_speed):
 	
+	if lock_movement:
+		return
+	
 	forward_speed = new_speed
 
 
 func _set_sidestep_speed(new_speed):
+	
+	if lock_movement:
+		return
 	
 	sidestep_speed = new_speed
 
 
 func _set_turn_speed(new_speed):
 	
+	if lock_rotation:
+		return
+	
 	movement.angular_direction.x = new_speed
 
 
 func _set_look_speed(new_speed):
+	
+	if lock_rotation:
+		return
 	
 	movement.angular_direction.y = new_speed
 
@@ -130,7 +142,13 @@ func _physics_process(delta):
 	_resize_collision()
 	
 	if lock_movement:
+		movement.direction = Vector3()
 		return
+	
+	if lock_rotation:
+		movement.angulardirection = Vector3()
+		return
+	
 	
 	var velocity
 	var direction = Vector2(sidestep_speed, forward_speed)
@@ -155,7 +173,6 @@ func _physics_process(delta):
 #		velocity = Vector3(0, 0, forward_speed).linear_interpolate(Vector3(sidestep_speed, 0, 0), 0.5)
 #	else:
 	velocity = Vector3(sidestep_speed, 0, forward_speed)
-	
 	velocity *= max_speed * speed_mult
 	
 	movement._set_speed(velocity.length())

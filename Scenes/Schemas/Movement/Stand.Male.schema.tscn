@@ -1,10 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Animations/Human/Movement/Stand.tres" type="Animation" id=1]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-playback_speed = 0.5
 anims/Stand = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+attributes = "{
+	\"Stand\": {
+		\"speed\": 0.5
+	}
+}"

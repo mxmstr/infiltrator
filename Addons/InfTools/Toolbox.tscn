@@ -129,3 +129,31 @@ text = "Load Map"
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="ExpressionInput" type="TextEdit" parent="."]
+margin_top = 382.0
+margin_right = 119.0
+margin_bottom = 412.0
+rect_min_size = Vector2( 0, 30 )
+__meta__ = {
+
+}
+
+[node name="ArgumentsInput" type="TextEdit" parent="."]
+margin_top = 416.0
+margin_right = 119.0
+margin_bottom = 446.0
+rect_min_size = Vector2( 0, 30 )
+text = "{}"
+__meta__ = {
+
+}
+
+[node name="Evaluate" type="Button" parent="."]
+margin_top = 450.0
+margin_right = 119.0
+margin_bottom = 470.0
+text = "Evaluate"
+__meta__ = {
+"_edit_group_": true
+}

@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "ReflectDamage"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/End/node = SubResource( 1 )
+states/End/position = Vector2( 992.613, 147 )
+states/ReflectDamage/node = SubResource( 2 )
+states/ReflectDamage/position = Vector2( 698.633, 147 )
+states/Touch/node = SubResource( 3 )
+states/Touch/position = Vector2( 416, 147 )
+transitions = [ "Touch", "ReflectDamage", SubResource( 4 ), "ReflectDamage", "End", SubResource( 5 ) ]
+start_node = "Touch"
+end_node = "End"
+graph_offset = Vector2( 57.6328, -7.99613 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "ReflectDamage"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Damage" ],
+"method": "_reflect"
+} ]
+}
+__meta__ = {
+
+}
+
+[node name="TouchResponse" type="AnimationTree"]
+tree_root = SubResource( 6 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 7 )
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+start_node = "Touch"
+end_node = "End"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 3 )
+anims/ReflectDamage = SubResource( 8 )
+__meta__ = {
+
+}

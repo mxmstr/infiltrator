@@ -7,7 +7,7 @@ var last_node
 
 
 func _start_state(_name, _data={}):
-
+	
 #	prints(owner.name, _name)
 	
 	if not enable_abilities:
@@ -49,7 +49,7 @@ func _has_interaction(_name):
 
 func _set_skeleton():
 	
-	if not has_node('../Model'):
+	if not has_node('../Model') or not $'../Model'.get_child_count():
 		return
 	
 	
@@ -67,6 +67,6 @@ func _process(delta):
 	var playback = get('parameters/playback')
 	var current_node = playback.get_current_node()
 	
-#	if 'Pistol' in owner.name:# and current_node != last_node:
+#	if 'Anderson' in owner.name:# and current_node != last_node:
 #		prints(OS.get_system_time_msecs(), current_node, playback.get_current_play_pos(), playback.get_current_length())
 #		last_node = current_node

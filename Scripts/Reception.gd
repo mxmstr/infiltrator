@@ -2,6 +2,7 @@ extends 'res://Scripts/AnimationTree.gd'
 
 var stims = []
 var stim
+var last_node
 
 signal tree_root_state_started
 
@@ -73,3 +74,13 @@ func _ready():
 	playback.connect('state_starting', self, '_on_tree_root_state_starting')
 	playback.connect('pre_process', self, '_on_tree_root_pre_process')
 	playback.connect('post_process', self, '_on_tree_root_post_process')
+
+
+func _process(delta):
+	
+	var playback = get('parameters/playback')
+	var current_node = playback.get_current_node()
+	
+#	if 'InstaDeath' in owner.name and current_node != last_node:
+#		prints(OS.get_system_time_msecs(), current_node)
+#		last_node = current_node
