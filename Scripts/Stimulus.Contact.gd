@@ -36,8 +36,6 @@ func _physics_process(delta):
 	
 	var new_collisions = []
 	
-#	if contact_type == ContactType.Collision:
-#
 	for collision_ in movement._get_collisions():
 		
 		if continuous or not collision_.collider in colliders:
@@ -52,26 +50,5 @@ func _physics_process(delta):
 				)
 		
 		new_collisions.append(collision_)
-	
-#	else:
-#
-#		for actor in $'/root/Mission/Actors'.get_children():
-#
-#			if actor == owner:
-#				continue
-#
-#			var collision = { 'collider': actor }
-#			var within_distance = max_distance == 0 or owner.global_transform.origin.distance_to(actor.global_transform.origin) < max_distance
-#
-#			if within_distance and continuous or not collision.collider in colliders:
-#
-#				var data
-#
-#				Meta.StimulateActor(collision.collider, stim_type, owner)
-#
-#				emit_signal('triggered', data)
-#
-#			new_collisions.append(collision)
-	
 	
 	collisions = new_collisions

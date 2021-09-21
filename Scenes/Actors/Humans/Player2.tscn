@@ -11,7 +11,7 @@
 [ext_resource path="res://Scenes/Components/Stimuli/Raycast.stimulus.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Components/Properties/HUD.property.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Properties/CameraRig.property.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Components/Properties/Perspective.property.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Components/Properties/Prop.CameraMode.property.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Components/Behaviors/B.Human.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Behavior.StateMachine.gd" type="Script" id=15]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=25]
 [ext_resource path="res://Scenes/Components/Properties/InputMovement.property.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Components/Properties/InputRotation.property.tscn" type="PackedScene" id=27]
+
 
 
 

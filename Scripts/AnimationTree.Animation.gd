@@ -17,7 +17,7 @@ var default_scale
 var animation_list = []
 var attributes = {}
 
-signal state_starting
+signal playing
 
 
 func _load_animations():
@@ -71,7 +71,7 @@ func _on_state_starting(new_name):
 		
 		advance = chain
 		
-		emit_signal('state_starting', node_name, owner.data)
+		emit_signal('playing')
 		
 		_randomize_animation()
 

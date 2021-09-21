@@ -1,0 +1,386 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "AlignPlayerToCamera"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "BoneParent"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "BoneParentExit"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "HalfYaw"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "LockYaw"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+xfade_time = 0.1
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/AlignPlayerToCamera/node = SubResource( 1 )
+states/AlignPlayerToCamera/position = Vector2( 443, 58 )
+states/BoneParent/node = SubResource( 2 )
+states/BoneParent/position = Vector2( 863.167, 234 )
+states/BoneParentExit/node = SubResource( 3 )
+states/BoneParentExit/position = Vector2( 863.167, 133 )
+states/HalfYaw/node = SubResource( 4 )
+states/HalfYaw/position = Vector2( 637, 133 )
+states/LockYaw/node = SubResource( 5 )
+states/LockYaw/position = Vector2( 443, 234 )
+transitions = [ "LockYaw", "HalfYaw", SubResource( 6 ), "HalfYaw", "AlignPlayerToCamera", SubResource( 7 ), "HalfYaw", "BoneParent", SubResource( 8 ), "LockYaw", "BoneParent", SubResource( 9 ), "AlignPlayerToCamera", "LockYaw", SubResource( 10 ), "BoneParent", "BoneParentExit", SubResource( 11 ), "BoneParentExit", "HalfYaw", SubResource( 12 ), "BoneParentExit", "LockYaw", SubResource( 13 ) ]
+start_node = "LockYaw"
+graph_offset = Vector2( 142.167, 25.2439 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Stance")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_align_to_camera"
+} ]
+}
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CameraRig:cam_max_x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CameraRig:cam_max_y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "get_node(CAMERARIG).set( PATH, get_node(MODEL).get_child(0).get_path() )", {
+"CAMERARIG": "CameraRig",
+"MODEL": "Model",
+"PATH": "path"
+} ],
+"method": "_evaluate"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "get_node(CAMERARIG).set( BONENAME, HEAD )", {
+"BONENAME": "bone_name",
+"CAMERARIG": "CameraRig",
+"HEAD": "Head"
+} ],
+"method": "_evaluate"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../CameraRig:position_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../CameraRig:rotation_degrees_offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 180 ) ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("../CameraRig")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_reset_camera"
+} ]
+}
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "BoneParentExit"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "get_node(CAMERARIG).set( PATH, null )", {
+"CAMERARIG": "CameraRig",
+"PATH": "path"
+} ],
+"method": "_evaluate"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "get_node(CAMERARIG).set( BONENAME, BLANK )", {
+"BLANK": "",
+"BONENAME": "bone_name",
+"CAMERARIG": "CameraRig"
+} ],
+"method": "_evaluate"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../CameraRig:position_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../CameraRig:rotation_degrees_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("../CameraRig")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_reset_camera"
+} ]
+}
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CameraRig:cam_max_x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.57 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CameraRig:cam_max_y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.57 ]
+}
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CameraRig:cam_max_x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CameraRig:cam_max_y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.57 ]
+}
+__meta__ = {
+
+}
+
+[node name="CameraMode" type="AnimationTree"]
+tree_root = SubResource( 14 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 15 )
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AlignPlayerToCamera = SubResource( 16 )
+anims/BoneParent = SubResource( 17 )
+anims/BoneParentExit = SubResource( 18 )
+anims/DefaultAnim = ExtResource( 3 )
+anims/HalfYaw = SubResource( 19 )
+anims/LockYaw = SubResource( 20 )
+__meta__ = {
+
+}

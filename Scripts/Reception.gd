@@ -9,7 +9,7 @@ signal tree_root_state_started
 
 func _on_tree_root_pre_process():
 	
-	if data and not weakref(data.source).get_ref():
+	if data.has('source') and not weakref(data.source).get_ref():
 		_next_stim()
 
 
@@ -41,8 +41,8 @@ func _next_stim():
 	
 	if not stims.size():
 		
-		stim = null
-		data = null
+#		stim = null
+#		data = {}
 		
 		return
 	

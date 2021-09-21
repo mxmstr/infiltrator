@@ -34,9 +34,9 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_left = 212.0
-margin_top = 204.0
+margin_top = 484.0
 margin_right = 812.0
-margin_bottom = 229.0
+margin_bottom = 509.0
 rect_min_size = Vector2( 600, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -106,9 +106,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 182.0
-margin_top = 233.0
+margin_top = 513.0
 margin_right = 842.0
-margin_bottom = 396.0
+margin_bottom = 676.0
 
 [node name="Multiplayer" parent="VBoxContainer" instance=ExtResource( 3 )]
 visible = false
@@ -127,16 +127,16 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 182.0
-margin_top = 74.0
-margin_right = 842.0
-margin_bottom = 554.0
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Inputs" method="hide"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Multiplayer" method="hide"]
+margin_left = 176.0
+margin_top = 438.0
+margin_right = 848.0
+margin_bottom = 918.0
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Scenes" method="show"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Multiplayer" to="VBoxContainer/Inputs" method="hide"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Multiplayer" to="VBoxContainer/Multiplayer" method="show"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Multiplayer" method="hide"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Inputs" method="hide"]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Multiplayer" to="VBoxContainer/Scenes" method="hide"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Inputs" method="show"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Multiplayer" method="hide"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Multiplayer" to="VBoxContainer/Multiplayer" method="show"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Multiplayer" to="VBoxContainer/Inputs" method="hide"]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Scenes" method="hide"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Multiplayer" method="hide"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Inputs" method="show"]

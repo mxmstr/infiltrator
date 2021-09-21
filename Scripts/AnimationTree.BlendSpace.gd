@@ -42,6 +42,8 @@ var animation_player
 var x_target_node
 var y_target_node
 
+signal playing
+
 
 func _on_state_starting(new_name):
 	

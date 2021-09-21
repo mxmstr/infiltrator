@@ -9,18 +9,18 @@
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=2]
-animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
 
 }
 chain = false
 schema = "UseItem"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=3]
 auto_advance = true
@@ -45,11 +45,11 @@ status = 0
 strength_multiplier = 1.0
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
-states/Start/node = SubResource( 1 )
+states/Respawn/node = SubResource( 1 )
+states/Respawn/position = Vector2( 718, 138 )
+states/Start/node = SubResource( 2 )
 states/Start/position = Vector2( 380, 138 )
-states/UseItem/node = SubResource( 2 )
-states/UseItem/position = Vector2( 718, 138 )
-transitions = [ "Start", "UseItem", SubResource( 3 ), "UseItem", "Start", SubResource( 4 ) ]
+transitions = [ "Start", "Respawn", SubResource( 3 ), "Respawn", "Start", SubResource( 4 ) ]
 start_node = "Start"
 script = ExtResource( 1 )
 __meta__ = {
@@ -73,9 +73,9 @@ __meta__ = {
 }
 transition_expression = ""
 update_mode = "process"
-expression = "not get_node(RIGHTHAND)._is_empty()"
+expression = "get_node(STAMINA).hp > 0"
 arguments = {
-"RIGHTHAND": "../RightHandContainer"
+"STAMINA": "../Stamina"
 }
 delay = 0.0
 
@@ -95,11 +95,11 @@ arguments = {
 delay = 0.0
 
 [sub_resource type="AnimationNodeStateMachine" id=9]
-states/Primary/node = SubResource( 5 )
-states/Primary/position = Vector2( 903, 229 )
+states/RespawnInput/node = SubResource( 5 )
+states/RespawnInput/position = Vector2( 903, 229 )
 states/Start/node = SubResource( 6 )
 states/Start/position = Vector2( 510, 229 )
-transitions = [ "Start", "Primary", SubResource( 7 ), "Primary", "Start", SubResource( 8 ) ]
+transitions = [ "Start", "RespawnInput", SubResource( 7 ), "RespawnInput", "Start", SubResource( 8 ) ]
 start_node = "Start"
 graph_offset = Vector2( 113.391, 97.9739 )
 script = ExtResource( 1 )
@@ -119,11 +119,11 @@ __meta__ = {
 
 }
 
-[node name="PrimaryActionInput" type="AnimationTree"]
+[node name="RespawnInput" type="AnimationTree"]
 tree_root = SubResource( 9 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 10 )
-parameters/Primary/playback = SubResource( 11 )
+parameters/RespawnInput/playback = SubResource( 11 )
 script = ExtResource( 5 )
 __meta__ = {
 

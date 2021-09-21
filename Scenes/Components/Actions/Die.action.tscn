@@ -1,29 +1,10 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "DeathUIEffect"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "DeathUIEffectReset"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 clip_start = 0.05
 script = ExtResource( 1 )
@@ -44,147 +25,78 @@ lock_direction = true
 lock_rotation = true
 lock_movement = true
 camera_mode = "BoneParent"
+hud_mode = "Death"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "DefaultAnim"
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+priority = 0
+type = 0
+blend = 0
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = true
+lock_speed = true
+lock_direction = true
+lock_rotation = true
+lock_movement = true
+camera_mode = "BoneParent"
+hud_mode = "PostDeath"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
-switch_mode = 2
-auto_advance = true
-disabled = true
-script = ExtResource( 2 )
-__meta__ = {
-
-}
-transition_expression = ""
-update_mode = "process"
-expression = "get_node(STAMINA).hp > 0"
-arguments = {
-"STAMINA": "../Stamina"
-}
-delay = 0.0
-
-[sub_resource type="AnimationNodeStateMachine" id=5]
-states/DeathFadeout/node = SubResource( 7 )
-states/DeathFadeout/position = Vector2( 937.613, 49.0039 )
-states/DeathUIEffect/node = SubResource( 8 )
-states/DeathUIEffect/position = Vector2( 518.613, 49.0039 )
-states/DeathUIEffectReset/node = SubResource( 15 )
-states/DeathUIEffectReset/position = Vector2( 1193.61, 101 )
-states/Die/node = SubResource( 1 )
-states/Die/position = Vector2( 721.951, 49.0039 )
-states/Start/node = SubResource( 2 )
-states/Start/position = Vector2( 302, 101 )
-transitions = [ "Start", "DeathUIEffect", SubResource( 9 ), "DeathUIEffect", "Die", SubResource( 10 ), "Die", "DeathFadeout", SubResource( 11 ), "DeathUIEffectReset", "Start", SubResource( 16 ), "DeathFadeout", "DeathUIEffectReset", SubResource( 17 ) ]
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Die/node = SubResource( 4 )
+states/Die/position = Vector2( 699.951, 23.0039 )
+states/PostDeath/node = SubResource( 19 )
+states/PostDeath/position = Vector2( 899.906, 23.0039 )
+states/Start/node = SubResource( 5 )
+states/Start/position = Vector2( 511, 83.0039 )
+transitions = [ "Start", "Die", SubResource( 18 ), "Die", "PostDeath", SubResource( 20 ) ]
 start_node = "Start"
-graph_offset = Vector2( -71.387, -7.99613 )
+graph_offset = Vector2( 160.906, -7.99613 )
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
-__meta__ = {
-
-}
-
-[sub_resource type="Animation" id=18]
-resource_name = "DeathFadeout"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../../Perspective/Container/Viewport/HUD/Panel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
-}
-__meta__ = {
-
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "DeathUIEffect"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../../Perspective/Container/Viewport/HUD/Panel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 0, 0, 0.54902 ) ]
-}
-__meta__ = {
-
-}
-
-[sub_resource type="Animation" id=14]
-resource_name = "DeathUIEffectReset"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../../Perspective/Container/Viewport/HUD/Panel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 __meta__ = {
 
 }
 
 [node name="DieAction" type="AnimationTree"]
-tree_root = SubResource( 5 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 6 )
-script = ExtResource( 3 )
+parameters/playback = SubResource( 12 )
+script = ExtResource( 2 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DeathFadeout = SubResource( 18 )
-anims/DeathUIEffect = SubResource( 13 )
-anims/DeathUIEffectReset = SubResource( 14 )
-anims/DefaultAnim = ExtResource( 4 )
+anims/DefaultAnim = ExtResource( 3 )
 __meta__ = {
 
 }

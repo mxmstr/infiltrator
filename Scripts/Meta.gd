@@ -19,21 +19,33 @@ enum Priority {
 }
 
 enum DriverMode {
-	Steer
+	Steer,
 	Sidestep
+}
+
+enum Team {
+	None,
+	Red,
+	Blue,
+	Green,
+	Yellow
 }
 
 var preloader
 var tree_count = 0
 
+var menu_input = false
 var multi = false
+var multi_points_to_win = 5
 var coop = false
 var player_count = 1
 var player_data_default = {
 	'mouse': -1,
 	'keyboard': -1,
 	'gamepad': -1,
-	'character': 'Humans/Players/Anderson'
+	'character': 'Humans/Players/Anderson',
+	'hp': 100.0,
+	'team': Team.None
 	}
 var player_data = [
 	player_data_default.duplicate(),
@@ -271,12 +283,26 @@ func StimulateActor(actor, stim, source=self, intensity=0.0, position=Vector3(),
 	
 	if actor.has_node('Reception'):
 		
-		var data = {
-			'source': source,
-			'position': position,
-			'direction': direction,
-			'intensity': intensity
-			}
+		var data
+		
+		if source.get('tags') and source._has_tag('Shooter'):
+			
+			data = {
+				'source': source,
+				'shooter': source._get_tag('Shooter'),
+				'position': position,
+				'direction': direction,
+				'intensity': intensity
+				}
+		
+		else:
+			
+			data = {
+				'source': source,
+				'position': position,
+				'direction': direction,
+				'intensity': intensity
+				}
 		
 		actor.get_node('Reception')._start_state(stim, data)
 

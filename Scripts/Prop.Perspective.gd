@@ -1,5 +1,4 @@
-#tool
-extends 'res://Scripts/AnimationTree.gd'
+extends ViewportContainer
 
 export var mouse_device = -1
 export var keyboard_device = -1
@@ -102,8 +101,6 @@ func _init_viewport():
 
 
 func _ready():
-	
-	if Engine.editor_hint: return
 	
 	yield(get_tree(), 'idle_frame')
 	

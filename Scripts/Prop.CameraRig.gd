@@ -60,7 +60,10 @@ func _ready():
 
 func _process(delta):
 	
-	if root:
+	if root:# and position_offset and rotation_degrees_offset:
+		
+		if position_offset == null or rotation_degrees_offset == null:
+			return
 		
 #		root.rotation_degrees = Vector3(0, 180, 0)
 		

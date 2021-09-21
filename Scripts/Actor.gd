@@ -11,6 +11,7 @@ var player_index = 0 setget _set_player_index
 signal entered_tree
 signal integrate_forces
 signal player_index_changed
+signal on_input
 
 
 func _has_tag(tag):
@@ -21,6 +22,11 @@ func _has_tag(tag):
 func _get_tag(tag):
 	
 	return tags_dict[tag]
+
+
+func _set_tag(tag, value):
+	
+	tags_dict[tag] = value
 
 
 func _set_player_index(new_player_index):
@@ -84,7 +90,14 @@ func _evaluate(expression, arguments):
 	return result
 
 
+func _input(event):
+	
+	emit_signal('on_input', event)
+
+
 func _ready():
+	
+#	set_process_input(false)
 	
 	yield(get_tree(), 'idle_frame')
 	

@@ -8,8 +8,6 @@ var last_node
 
 func _start_state(_name, _data={}):
 	
-#	prints(owner.name, _name)
-	
 	if not enable_abilities:
 		return
 	
@@ -21,8 +19,10 @@ func _start_state(_name, _data={}):
 #
 #	if tree_root.has_method('_start'):
 #		tree_root._start(_name)
-	
-	._start_state(_name, data)
+#
+#	prints(owner.name, _name, _data)
+#
+	._start_state(_name, _data)
 
 
 func _stop_travel():

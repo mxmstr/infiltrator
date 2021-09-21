@@ -16,6 +16,7 @@ export(bool) var interactable
 export(String, MULTILINE) var required_tags
 
 var root
+var shooter
 var required_tags_dict = {}
 var items = []
 
@@ -134,6 +135,7 @@ func _push_front_into_container(new_container):
 func _exclude_recursive(item, parent):
 	
 	item.add_collision_exception_with(parent)
+	shooter = parent
 	
 	if parent.has_node('Hitboxes'):
 		for hitbox in parent.get_node('Hitboxes').get_children():
@@ -149,13 +151,18 @@ func _release_front():
 	if not items.size():
 		return
 	
-	var item = items[0]
+	var item
 	
 	if factory_mode:
-		items.pop_front()
-		return Meta.AddActor(item, root.global_transform.origin, root.rotation_degrees)
+		
+		item = Meta.AddActor(items.pop_front(), root.global_transform.origin, root.rotation_degrees)
 	
-	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
+	else:
+		
+		item = items[0]
+		Meta.DestroyLink(owner, item, 'Contains', {'container': name})
+	
+	item._set_tag('Shooter', shooter)
 	
 	return item
 
@@ -166,6 +173,8 @@ func _release(item):
 		return
 	
 	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
+	
+	item._set_tag('Shooter', owner)
 	
 	return item
 
@@ -299,6 +308,9 @@ func _reset_root():
 
 
 func _ready():
+	
+	shooter = owner
+	
 	
 	for tag in required_tags.split(' '):
 		

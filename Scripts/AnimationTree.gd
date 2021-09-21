@@ -35,23 +35,20 @@ func _on_post_call_method_track(_animation, track_index, key_index):
 	_animation.track_set_key_value(track_index, key_index, key)
 
 
-static func merge_dir(target, patch):
+func merge_dir(target, patch):
 	
-    for key in patch:
-        if target.has(key):
-            var tv = target[key]
-            if typeof(tv) == TYPE_DICTIONARY:
-                merge_dir(tv, patch[key])
-            else:
-                target[key] = patch[key]
-        else:
-            target[key] = patch[key]
+	for key in patch:
+		if target.has(key):
+			var tv = target[key]
+			if typeof(tv) == TYPE_DICTIONARY:
+				merge_dir(tv, patch[key])
+			else:
+				target[key] = patch[key]
+		else:
+			target[key] = patch[key]
 
 
 func _start_state(_name, _data={}):
-	
-#	if name == 'Perspective':
-#		prints(owner.name, _name, true)
 	
 	if not active:
 		return
@@ -60,6 +57,17 @@ func _start_state(_name, _data={}):
 	
 	if tree_root.has_method('_travel'):
 		tree_root._travel(_name)
+
+
+func _teleport_to_state(_name, _data={}):
+	
+	if not active:
+		return
+	
+	merge_dir(data, _data)
+	
+	if tree_root.has_method('_start'):
+		tree_root._start(_name)
 
 
 func _ready():

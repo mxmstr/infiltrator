@@ -21,10 +21,10 @@ func _evaluate():
 #			print(owner.data.source._has_tag('Item'))
 		
 		if not result:
-		
+			
 			if exec.has_execute_failed():
 				
-				prints(owner.owner.name, exec_list.find(exec), exec.get_error_text())
+				prints('transition_expression', owner.owner.name, owner.name, exec_list.find(exec), expression, exec.get_error_text())
 			
 			return false
 	

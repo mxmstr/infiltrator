@@ -13,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "Die" ],
+"args": [ "Die", "$data" ],
 "method": "_start_state"
 } ]
 }

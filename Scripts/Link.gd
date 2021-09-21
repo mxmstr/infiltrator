@@ -28,11 +28,11 @@ func _enter_tree():
 		queue_free()
 		return
 	
-	if check_nulls:
-	
-		if from.is_empty() or to.is_empty() or not has_node(from) or not has_node(to):
-			queue_free()
-			return
+#	if check_nulls:
+#
+#		if from.is_empty() or to.is_empty() or not has_node(from) or not has_node(to):
+#			queue_free()
+#			return
 	
 	if not from.is_empty():
 		from_node = get_node(from)

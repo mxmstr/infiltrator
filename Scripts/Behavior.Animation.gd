@@ -12,9 +12,11 @@ export var lock_direction = false
 export var lock_rotation = false
 export var lock_movement = false
 export var camera_mode = 'LockYaw'
+export var hud_mode = 'Default'
 
 var stance
-var perspective
+var camera_mode_node
+var hud_mode_node
 var anim_layer_movement
 
 
@@ -42,8 +44,11 @@ func _on_state_starting(new_name):
 				stance.lock_rotation = lock_rotation
 				stance.lock_movement = lock_movement
 			
-			if perspective:
-				perspective._start_state(camera_mode)
+			if camera_mode_node:
+				camera_mode_node._start_state(camera_mode)
+			
+			if hud_mode_node:
+				hud_mode_node._start_state(hud_mode)
 			
 			if anim_layer_movement:
 				anim_layer_movement.blend_mode = blend
@@ -55,5 +60,6 @@ func _ready(_owner, _parent, _parameters, _name):
 	._ready(_owner, _parent, _parameters, _name)
 	
 	stance = owner.owner.get_node_or_null('Stance')
-	perspective = owner.owner.get_node_or_null('Perspective')
+	camera_mode_node = owner.owner.get_node_or_null('CameraMode')
+	hud_mode_node = owner.owner.get_node_or_null('HUDMode')
 	anim_layer_movement = owner.owner.get_node_or_null('AnimLayerMovement')

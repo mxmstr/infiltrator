@@ -14,7 +14,7 @@ var advance = false
 
 var exec_list = []
 
-signal state_starting
+signal playing
 
 
 func _evaluate():

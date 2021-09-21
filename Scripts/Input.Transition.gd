@@ -61,7 +61,7 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	perspective = owner.get_node_or_null('../Perspective')
 	
 	owner.connect('on_process', self, '_process')
-	owner.connect('on_input', self, '_input')
+	owner.owner.connect('on_input', self, '_input')
 
 
 func _process(delta):
