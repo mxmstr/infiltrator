@@ -1,9 +1,90 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Link.PVPPlayerFactory.gd" type="Script" id=1]
+[ext_resource path="res://Sounds/Music/Multiplayer/Burly Brawl.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/Music/Multiplayer/FIGHT.wav" type="AudioStream" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 347.606
+loop = true
+tracks/0/type = "audio"
+tracks/0/path = NodePath("Music")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Music:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -5.0 ]
+}
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=2]
+length = 75.9775
+loop = true
+tracks/0/type = "audio"
+tracks/0/path = NodePath("Music")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Music:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+__meta__ = {
+
+}
 
 [node name="PVPPlayerFactory" type="Node"]
 script = ExtResource( 1 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Burly Brawl" = SubResource( 1 )
+anims/FIGHT = SubResource( 2 )
+__meta__ = {
+
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = "Music"
 __meta__ = {
 
 }

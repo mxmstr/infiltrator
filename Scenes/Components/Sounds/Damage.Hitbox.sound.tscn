@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AudioTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = false
+schema = "DamageSound"
+level = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+resource_local_to_scene = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
+resource_local_to_scene = true
+states/Damage/node = SubResource( 15 )
+states/Damage/position = Vector2( 572, 27.552 )
+states/End/node = SubResource( 16 )
+states/End/position = Vector2( 828, 27.552 )
+states/Start/node = SubResource( 17 )
+states/Start/position = Vector2( 333, 27.552 )
+transitions = [ "Start", "Damage", SubResource( 13 ), "Damage", "End", SubResource( 14 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( -13, -93.7663 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+__meta__ = {
+
+}
+
+[node name="DamageSound" type="AnimationTree"]
+tree_root = SubResource( 18 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 19 )
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+end_node = "End"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 4 )
+__meta__ = {
+
+}

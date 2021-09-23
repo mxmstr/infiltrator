@@ -32,6 +32,16 @@ func _on_player_died(player):
 				pass
 
 
+func _play_music():
+	
+	var animation_list = Array($AnimationPlayer.get_animation_list())
+	randomize()
+	animation_list.shuffle()
+	
+	$AnimationPlayer.play(animation_list[0])
+#	$Music.play()
+
+
 func _respawn(actor):
 	
 	spawn_links.shuffle()
@@ -105,6 +115,7 @@ func _ready():
 	
 	#yield(get_tree(), 'idle_frame')
 	
+	
 	spawn_links = Meta.GetLinks(self, null, 'PVPPlayerSpawn')
 	spawn_links.shuffle()
 	
@@ -125,6 +136,9 @@ func _ready():
 		actors.append(actor)
 	
 	
+	_play_music()
+	
+	
 	yield(get_tree(), 'idle_frame')
 	
 	for i in range(Meta.player_count):
@@ -133,4 +147,5 @@ func _ready():
 		
 #		actors[i].get_node('Stamina').connect('just_died', self, '_on_player_died', [actors[i]])
 		actors[i].get_node('Behavior').tree_root.get_node('Die').connect('playing', self, '_on_player_died', [actors[i]])
+	
 	

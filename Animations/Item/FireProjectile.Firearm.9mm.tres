@@ -16,6 +16,20 @@ tracks/0/keys = {
 "method": "_release_front"
 } ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath("../../Audio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "FireProjectile" ],
+"method": "_start_state"
+} ]
+}
 __meta__ = {
 
 }

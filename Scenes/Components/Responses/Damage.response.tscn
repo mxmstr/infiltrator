@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
@@ -13,6 +13,12 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DamageFX"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Land"
 script = ExtResource( 2 )
 __meta__ = {
@@ -21,13 +27,13 @@ __meta__ = {
 chain = false
 schema = "DecreaseHP"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
 script = ExtResource( 2 )
 __meta__ = {
@@ -36,21 +42,29 @@ __meta__ = {
 chain = false
 schema = "GetKilled"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
-switch_mode = 2
-auto_advance = true
-priority = 2
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
 auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(STAMINA).hp > 0"
+arguments = {
+"STAMINA": "../Stamina"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
 auto_advance = true
 disabled = true
@@ -66,23 +80,33 @@ arguments = {
 }
 delay = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=9]
+[sub_resource type="AnimationNodeStateMachine" id=11]
 states/Damage/node = SubResource( 1 )
-states/Damage/position = Vector2( 283, 128 )
-states/DecreaseHP/node = SubResource( 2 )
-states/DecreaseHP/position = Vector2( 524, 128 )
-states/End/node = SubResource( 3 )
+states/Damage/position = Vector2( 185, 128 )
+states/DamageFX/node = SubResource( 2 )
+states/DamageFX/position = Vector2( 558, 128 )
+states/DecreaseHP/node = SubResource( 3 )
+states/DecreaseHP/position = Vector2( 363, 128 )
+states/End/node = SubResource( 4 )
 states/End/position = Vector2( 909, 128 )
-states/GetKilled/node = SubResource( 4 )
+states/GetKilled/node = SubResource( 5 )
 states/GetKilled/position = Vector2( 720, 63.9397 )
-transitions = [ "DecreaseHP", "End", SubResource( 5 ), "Damage", "DecreaseHP", SubResource( 6 ), "DecreaseHP", "GetKilled", SubResource( 7 ), "GetKilled", "End", SubResource( 8 ) ]
+transitions = [ "Damage", "DecreaseHP", SubResource( 6 ), "GetKilled", "End", SubResource( 7 ), "DamageFX", "GetKilled", SubResource( 8 ), "DamageFX", "End", SubResource( 9 ), "DecreaseHP", "DamageFX", SubResource( 10 ) ]
 start_node = "Damage"
 end_node = "End"
 graph_offset = Vector2( 0, 10.9397 )
@@ -93,15 +117,36 @@ __meta__ = {
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "DamageFX"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../VoiceAudio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Oof" ],
+"method": "_start_state"
+} ]
+}
 __meta__ = {
 
 }
 
 [node name="DamageResponse" type="AnimationTree"]
-tree_root = SubResource( 9 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 10 )
+parameters/playback = SubResource( 12 )
 script = ExtResource( 4 )
 __meta__ = {
 
@@ -110,6 +155,7 @@ start_node = "Damage"
 end_node = "End"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DamageFX = SubResource( 13 )
 anims/DefaultAnim = ExtResource( 5 )
 __meta__ = {
 

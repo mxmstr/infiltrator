@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DamageFX"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -14,13 +20,13 @@ __meta__ = {
 chain = false
 schema = "DamageOwner"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 script = ExtResource( 1 )
 __meta__ = {
@@ -29,15 +35,8 @@ __meta__ = {
 chain = false
 schema = "Reflect"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
-switch_mode = 2
-auto_advance = true
 __meta__ = {
 
 }
@@ -65,16 +64,32 @@ arguments = {
 }
 delay = 0.0
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/DamageOwner/node = SubResource( 1 )
-states/DamageOwner/position = Vector2( 409.951, 146 )
-states/End/node = SubResource( 2 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=10]
+states/DamageFX/node = SubResource( 1 )
+states/DamageFX/position = Vector2( 589.373, 146 )
+states/DamageOwner/node = SubResource( 2 )
+states/DamageOwner/position = Vector2( 349.951, 146 )
+states/End/node = SubResource( 3 )
 states/End/position = Vector2( 990.613, 146 )
-states/Reflect/node = SubResource( 3 )
-states/Reflect/position = Vector2( 704.613, 146 )
-states/Touch/node = SubResource( 4 )
+states/Reflect/node = SubResource( 4 )
+states/Reflect/position = Vector2( 818.613, 146 )
+states/Touch/node = SubResource( 5 )
 states/Touch/position = Vector2( 154, 146 )
-transitions = [ "Reflect", "End", SubResource( 5 ), "DamageOwner", "Reflect", SubResource( 6 ), "Touch", "DamageOwner", SubResource( 7 ) ]
+transitions = [ "Reflect", "End", SubResource( 6 ), "Touch", "DamageOwner", SubResource( 7 ), "DamageOwner", "DamageFX", SubResource( 8 ), "DamageFX", "Reflect", SubResource( 9 ) ]
 start_node = "Touch"
 end_node = "End"
 graph_offset = Vector2( -28.6266, 40.1714 )
@@ -82,15 +97,36 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "DamageFX"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Audio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Damage" ],
+"method": "_start_state"
+} ]
+}
 __meta__ = {
 
 }
 
 [node name="TouchResponse" type="AnimationTree"]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 10 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 11 )
 script = ExtResource( 3 )
 __meta__ = {
 
@@ -99,6 +135,7 @@ start_node = "Touch"
 end_node = "End"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DamageFX = SubResource( 12 )
 anims/DefaultAnim = ExtResource( 4 )
 __meta__ = {
 

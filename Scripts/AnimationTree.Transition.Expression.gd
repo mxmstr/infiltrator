@@ -76,11 +76,12 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
 		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+		owner.get(parent.parameters + 'playback').connect('pre_process', self, '_process', [0])
 	
 	if parent != null and parent.has_user_signal('travel_starting'):
 		parent.connect('travel_starting', self, '_on_travel_starting')
 	
-	owner.connect('on_process', self, '_process')
+#	owner.connect('on_process', self, '_process')
 	
 	
 	for line in expression.split('\n'):

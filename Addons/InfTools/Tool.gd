@@ -141,6 +141,25 @@ func on_loadanim_pressed():
 #	dir.list_dir_end()
 
 
+func _load_stream(selected, file, anim_name):
+	
+	var stream = load(file)
+	file = file.replace('.wav', '')
+	
+	var anim = Animation.new()
+	#anim_data.resource_name = file
+	var track = anim.add_track(Animation.TYPE_AUDIO)
+	anim.length = stream.get_length()
+	anim.track_set_path(track, NodePath('AudioStreamPlayer3D'))
+	anim.audio_track_insert_key(track, 0, stream)
+	
+	selected.add_animation(anim_name, anim)
+#					ResourceSaver.save(
+#						dock.get_node('LoadAudioOutput').text + file + '.tres', 
+#						anim#selected.get_animation(file)
+#						)
+
+
 func on_loadaudio_pressed():
 	
 	if not selection.get_selected_nodes().empty():
@@ -148,6 +167,11 @@ func on_loadaudio_pressed():
 		var selected = selection.get_selected_nodes()[0]
 		
 		if selected is AnimationPlayer:
+			
+			if dock.get_node('LoadAudioInput').text.ends_with('.wav'):
+				_load_stream(selected, dock.get_node('LoadAudioInput').text, 'anim')
+				return
+			
 			
 			var files = []
 			var dir = Directory.new()
@@ -163,21 +187,7 @@ func on_loadaudio_pressed():
 					
 				elif not file.begins_with('.') and file.ends_with('.wav'):
 					
-					var stream = load(dock.get_node('LoadAudioInput').text + file)
-					file = file.replace('.wav', '')
-					
-					var anim = Animation.new()
-					#anim_data.resource_name = file
-					var track = anim.add_track(Animation.TYPE_AUDIO)
-					anim.length = stream.get_length()
-					anim.track_set_path(track, NodePath('AudioStreamPlayer3D'))
-					anim.audio_track_insert_key(track, 0, stream)
-					
-					selected.add_animation(file, anim)
-#					ResourceSaver.save(
-#						dock.get_node('LoadAudioOutput').text + file + '.tres', 
-#						anim#selected.get_animation(file)
-#						)
+					_load_stream(selected, dock.get_node('LoadAudioInput').text + file, file)
 
 			dir.list_dir_end()
 
