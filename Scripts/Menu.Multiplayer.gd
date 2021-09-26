@@ -121,7 +121,7 @@ func _on_outlines_toggled(enabled):
 	_save_to_config('Multiplayer', 'outlines', enabled)
 
 
-func _on_character_selected(char_index, player_index, selector):
+func _on_character_selected(char_index, player_index):
 	
 	var scene = characters[characters.keys()[char_index]].scene
 	Meta.player_data[player_index].character = scene
@@ -129,25 +129,25 @@ func _on_character_selected(char_index, player_index, selector):
 	_save_to_config('Player' + str(player_index), 'character', char_index)
 
 
-func _on_hp_changed(new_hp, player_index, spin_box):
+func _on_hp_changed(new_hp, player_index):
 	
 	Meta.player_data[player_index].hp = new_hp
 	
 	_save_to_config('Player' + str(player_index), 'hp', new_hp)
 
 
-func _on_team_selected(team_index, player_index, selector):
+func _on_team_selected(team_index, player_index):
 	
 	Meta.player_data[player_index].team = team_index
 	
 	_save_to_config('Player' + str(player_index), 'team', team_index)
 
 
-func _on_weapon_toggled(enabled, weapon_path, checkbox):
+func _on_weapon_toggled(enabled, weapon_name):
 	
-	weapons[weapon_path].enabled = enabled
+	weapons[weapon_name].enabled = enabled
 	
-	_save_to_config('Weapons', weapon_path, enabled)
+	_save_to_config('Weapons', weapon_name, enabled)
 
 
 func _ready():
@@ -160,38 +160,26 @@ func _ready():
 	
 	var player_count = find_node('NumberOfPlayers')
 	player_count.connect('value_changed', self, '_on_player_count_changed')
-	
-	if config.get_value('Multiplayer', 'player_count') == null:
-		player_count.emit_signal('value_changed', Meta.player_count)
-	else:
-		player_count.value = config.get_value('Multiplayer', 'player_count')
+	player_count.value = config.get_value('Multiplayer', 'player_count', Meta.player_count) 
+	_on_player_count_changed(player_count.value)
 	
 	
 	var max_points = find_node('MaxPoints')
 	max_points.connect('value_changed', self, '_on_max_points_changed')
-	
-	if config.get_value('Multiplayer', 'max_points') == null:
-		max_points.emit_signal('value_changed', Meta.multi_points_to_win)
-	else:
-		max_points.value = config.get_value('Multiplayer', 'max_points')
+	max_points.value = config.get_value('Multiplayer', 'max_points', Meta.multi_points_to_win)
+	_on_max_points_changed(max_points.value)
 	
 	
 	var radar = find_node('Radar').get_node('CheckBox')
 	radar.connect('toggled', self, '_on_radar_toggled')
-	
-	if config.get_value('Multiplayer', 'radar') == null:
-		radar.emit_signal('toggled', Meta.multi_radar)
-	else:
-		radar.pressed = config.get_value('Multiplayer', 'radar')
+	radar.pressed = config.get_value('Multiplayer', 'radar', Meta.multi_radar)
+	_on_radar_toggled(radar.pressed)
 	
 	
 	var outlines = find_node('Outlines').get_node('CheckBox')
 	outlines.connect('toggled', self, '_on_outlines_toggled')
-	
-	if config.get_value('Multiplayer', 'outlines') == null:
-		outlines.emit_signal('toggled', Meta.multi_outlines)
-	else:
-		outlines.pressed = config.get_value('Multiplayer', 'outlines')
+	outlines.pressed = config.get_value('Multiplayer', 'outlines',  Meta.multi_outlines)
+	_on_outlines_toggled(outlines.pressed)
 	
 	
 	var player_index = 0
@@ -206,31 +194,22 @@ func _ready():
 		for charname in characters.keys():
 			character_selector.add_item(charname)
 		
-		character_selector.connect('item_selected', self, '_on_character_selected', [player_index, character_selector])
-		
-		if config.get_value('Player' + str(player_index), 'character') == null:
-			character_selector.emit_signal('item_selected', 0)
-		else:
-			character_selector.selected = config.get_value('Player' + str(player_index), 'character')
+		character_selector.connect('item_selected', self, '_on_character_selected', [player_index])
+		character_selector.selected = config.get_value('Player' + str(player_index), 'character', 0)
+		_on_character_selected(character_selector.selected, player_index)
 		
 		
-		hp_selector.connect('value_changed', self, '_on_hp_changed', [player_index, hp_selector])
-		
-		if config.get_value('Player' + str(player_index), 'hp') == null:
-			hp_selector.emit_signal('value_changed', Meta.player_data_default.hp)
-		else:
-			hp_selector.value = config.get_value('Player' + str(player_index), 'hp')
+		hp_selector.connect('value_changed', self, '_on_hp_changed', [player_index])
+		hp_selector.value = config.get_value('Player' + str(player_index), 'hp', Meta.player_data_default.hp)
+		_on_hp_changed(hp_selector.value, player_index)
 		
 		
 		for team in Meta.Team.keys():
 			team_selector.add_item(team)
 		
-		team_selector.connect('item_selected', self, '_on_team_selected', [player_index, team_selector])
-		
-		if config.get_value('Player' + str(player_index), 'team') == null:
-			team_selector.emit_signal('item_selected', Meta.Team.keys()[Meta.player_data_default.team])
-		else:
-			team_selector.selected = config.get_value('Player' + str(player_index), 'team')
+		team_selector.connect('item_selected', self, '_on_team_selected', [player_index])
+		team_selector.selected = config.get_value('Player' + str(player_index), 'team', Meta.player_data_default.team)
+		_on_team_selected(team_selector.selected, player_index)
 		
 		
 		player_index += 1
@@ -244,10 +223,7 @@ func _ready():
 		weapons_grid.add_child(checkbox)
 		
 		checkbox.get_node('CheckBox').text = weapon_name
-		checkbox.get_node('CheckBox').connect('toggled', self, '_on_weapon_toggled', [weapon_name, checkbox.get_node('CheckBox')])
-		
-		if config.get_value('Weapons', weapon_name) == null:
-			checkbox.get_node('CheckBox').pressed = weapons[weapon_name].enabled
-		else:
-			checkbox.get_node('CheckBox').pressed = config.get_value('Weapons', weapon_name)
+		checkbox.get_node('CheckBox').connect('toggled', self, '_on_weapon_toggled', [weapon_name])
+		checkbox.get_node('CheckBox').pressed = config.get_value('Weapons', weapon_name, weapons[weapon_name].enabled)
+		_on_weapon_toggled(checkbox.get_node('CheckBox').pressed, weapon_name)
 		

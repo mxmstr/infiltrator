@@ -81,6 +81,7 @@ __meta__ = {
 [node name="HP" type="SpinBox" parent="HBoxContainer"]
 margin_right = 98.0
 margin_bottom = 35.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 2 )
 max_value = 400.0
