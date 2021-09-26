@@ -32,35 +32,45 @@ var characters = {
 	}
 
 var weapons = {
-	'Scenes/Items/Beretta': {
-		'enabled': true
+	'Beretta': {
+		'enabled': true,
+		'scene': 'Scenes/Items/Beretta'
 	},
-	'Scenes/Items/ColtCommando': {
-		'enabled': false
+	'ColtCommando': {
+		'enabled': false,
+		'scene': 'Scenes/Items/ColtCommando'
 	},
-	'Scenes/Items/DesertEagle': {
-		'enabled': false
+	'DesertEagle': {
+		'enabled': false,
+		'scene': 'Scenes/Items/DesertEagle'
 	},
-	'Scenes/Items/Ingram': {
-		'enabled': false
+	'Ingram': {
+		'enabled': false,
+		'scene': 'Scenes/Items/Ingram'
 	},
-	'Scenes/Items/Jackhammer': {
-		'enabled': false
+	'Jackhammer': {
+		'enabled': false,
+		'scene': 'Scenes/Items/Jackhammer'
 	},
-	'Scenes/Items/M79': {
-		'enabled': false
+	'M79': {
+		'enabled': false,
+		'scene': 'Scenes/Items/M79'
 	},
-	'Scenes/Items/MP5': {
-		'enabled': false
+	'MP5': {
+		'enabled': false,
+		'scene': 'Scenes/Items/MP5'
 	},
-	'Scenes/Items/PumpShotgun': {
-		'enabled': false
+	'PumpShotgun': {
+		'enabled': false,
+		'scene': 'Scenes/Items/PumpShotgun'
 	},
-	'Scenes/Items/SawedoffShotgun': {
-		'enabled': false
+	'SawedoffShotgun': {
+		'enabled': false,
+		'scene': 'Scenes/Items/SawedoffShotgun'
 	},
-	'Scenes/Items/Sniper': {
-		'enabled': false
+	'Sniper': {
+		'enabled': false,
+		'scene': 'Scenes/Items/Sniper'
 	}
 }
 
@@ -97,7 +107,6 @@ func _on_max_points_changed(value):
 	_save_to_config('Multiplayer', 'max_points', value)
 
 
-
 func _on_radar_toggled(enabled):
 	
 	Meta.multi_radar = enabled
@@ -114,10 +123,10 @@ func _on_outlines_toggled(enabled):
 
 func _on_character_selected(char_index, player_index, selector):
 	
-	var character = characters[characters.keys()[char_index]].scene
-	Meta.player_data[player_index].character = character
+	var scene = characters[characters.keys()[char_index]].scene
+	Meta.player_data[player_index].character = scene
 	
-	_save_to_config('Player' + str(player_index), 'character', character)
+	_save_to_config('Player' + str(player_index), 'character', char_index)
 
 
 func _on_hp_changed(new_hp, player_index, spin_box):
@@ -152,7 +161,7 @@ func _ready():
 	var player_count = find_node('NumberOfPlayers')
 	player_count.connect('value_changed', self, '_on_player_count_changed')
 	
-	if error:
+	if config.get_value('Multiplayer', 'player_count') == null:
 		player_count.emit_signal('value_changed', Meta.player_count)
 	else:
 		player_count.value = config.get_value('Multiplayer', 'player_count')
@@ -161,26 +170,26 @@ func _ready():
 	var max_points = find_node('MaxPoints')
 	max_points.connect('value_changed', self, '_on_max_points_changed')
 	
-	if error:
+	if config.get_value('Multiplayer', 'max_points') == null:
 		max_points.emit_signal('value_changed', Meta.multi_points_to_win)
 	else:
 		max_points.value = config.get_value('Multiplayer', 'max_points')
 	
 	
 	var radar = find_node('Radar').get_node('CheckBox')
-	radar.connect('value_changed', self, '_on_radar_toggled')
+	radar.connect('toggled', self, '_on_radar_toggled')
 	
-	if error:
-		radar.emit_signal('value_changed', Meta.multi_radar)
+	if config.get_value('Multiplayer', 'radar') == null:
+		radar.emit_signal('toggled', Meta.multi_radar)
 	else:
 		radar.pressed = config.get_value('Multiplayer', 'radar')
 	
 	
 	var outlines = find_node('Outlines').get_node('CheckBox')
-	outlines.connect('value_changed', self, '_on_outlines_toggled')
+	outlines.connect('toggled', self, '_on_outlines_toggled')
 	
-	if error:
-		outlines.emit_signal('value_changed', Meta.multi_outlines)
+	if config.get_value('Multiplayer', 'outlines') == null:
+		outlines.emit_signal('toggled', Meta.multi_outlines)
 	else:
 		outlines.pressed = config.get_value('Multiplayer', 'outlines')
 	
@@ -199,49 +208,46 @@ func _ready():
 		
 		character_selector.connect('item_selected', self, '_on_character_selected', [player_index, character_selector])
 		
-		if error:
-			character_selector.emit_signal('item_selected', Meta.player_data_default.character)
+		if config.get_value('Player' + str(player_index), 'character') == null:
+			character_selector.emit_signal('item_selected', 0)
 		else:
-			character_selector.value = config.get_value('Player' + str(player_index), 'character')
+			character_selector.selected = config.get_value('Player' + str(player_index), 'character')
 		
 		
 		hp_selector.connect('value_changed', self, '_on_hp_changed', [player_index, hp_selector])
 		
-		if error:
+		if config.get_value('Player' + str(player_index), 'hp') == null:
 			hp_selector.emit_signal('value_changed', Meta.player_data_default.hp)
 		else:
 			hp_selector.value = config.get_value('Player' + str(player_index), 'hp')
 		
 		
-		for team in Meta.Team.values():
+		for team in Meta.Team.keys():
 			team_selector.add_item(team)
 		
 		team_selector.connect('item_selected', self, '_on_team_selected', [player_index, team_selector])
 		
-		if error:
+		if config.get_value('Player' + str(player_index), 'team') == null:
 			team_selector.emit_signal('item_selected', Meta.Team.keys()[Meta.player_data_default.team])
 		else:
-			team_selector.value = config.get_value('Player' + str(player_index), 'team')
+			team_selector.selected = config.get_value('Player' + str(player_index), 'team')
 		
 		
 		player_index += 1
 	
 	
 	var weapons_grid = find_node('Weapons')
-	var rows
-	var column = 0
 	
-	for weapon_path in weapons:
+	for weapon_name in weapons:
 		
 		var checkbox = load('res://Scenes/UI/Menu.Checkbox.tscn').instance()
 		weapons_grid.add_child(checkbox)
 		
-		var weapon_node = Meta.preloader.get_resource('res://Scenes/Actors/' + weapon_path + '.tscn').instance()
-		checkbox.get_node('CheckBox').text = weapon_node._get_tag('DisplayName')
-		checkbox.get_node('CheckBox').connect('toggled', self, '_on_weapon_toggled', [weapon_path, checkbox.get_node('CheckBox')])
+		checkbox.get_node('CheckBox').text = weapon_name
+		checkbox.get_node('CheckBox').connect('toggled', self, '_on_weapon_toggled', [weapon_name, checkbox.get_node('CheckBox')])
 		
-		if error:
-			checkbox.get_node('CheckBox').pressed = weapons[weapon_path].enabled
+		if config.get_value('Weapons', weapon_name) == null:
+			checkbox.get_node('CheckBox').pressed = weapons[weapon_name].enabled
 		else:
-			checkbox.get_node('CheckBox').pressed = config.get_value('Weapons', weapon_path)
+			checkbox.get_node('CheckBox').pressed = config.get_value('Weapons', weapon_name)
 		

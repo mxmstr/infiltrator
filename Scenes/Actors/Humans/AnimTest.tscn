@@ -21,47 +21,47 @@
 [ext_resource path="res://Animations/Human/ShootSniper.tres" type="Animation" id=19]
 [ext_resource path="res://Animations/Human/shoot_coltcommando.tres" type="Animation" id=20]
 
-[sub_resource type="AnimationNodeAnimation" id=74]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=75]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "Run"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=76]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Walk"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=77]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "StrafeRight"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=78]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "StrafeLeft"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=79]
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
 auto_triangles = false
-blend_point_0/node = SubResource( 74 )
+blend_point_0/node = SubResource( 1 )
 blend_point_0/pos = Vector2( 0, 0 )
-blend_point_1/node = SubResource( 75 )
+blend_point_1/node = SubResource( 2 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 76 )
+blend_point_2/node = SubResource( 3 )
 blend_point_2/pos = Vector2( 0, 0.5 )
-blend_point_3/node = SubResource( 77 )
+blend_point_3/node = SubResource( 4 )
 blend_point_3/pos = Vector2( 0.4, 0 )
-blend_point_4/node = SubResource( 78 )
+blend_point_4/node = SubResource( 5 )
 blend_point_4/pos = Vector2( -0.4, 0 )
 triangles = PoolIntArray( 0, 2, 3, 1, 2, 3, 0, 2, 4, 1, 2, 4 )
 __meta__ = {
@@ -78,7 +78,6 @@ __meta__ = {
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
-bones/16/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model/neo_reference_skeleton" index="1"]
 transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
@@ -127,7 +126,7 @@ transform = Transform( 0.999539, -0.0259195, -0.0158152, 0.0158216, 2.51718e-05,
 visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 79 )
+tree_root = SubResource( 6 )
 anim_player = NodePath("AnimationPlayer")
 parameters/blend_position = Vector2( 0.000858426, 0.495601 )
 __meta__ = {

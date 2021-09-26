@@ -132,11 +132,11 @@ margin_top = 438.0
 margin_right = 848.0
 margin_bottom = 918.0
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Scenes" method="show"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Multiplayer" method="hide"]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Inputs" method="hide"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Scenes" to="VBoxContainer/Multiplayer" method="hide"]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Multiplayer" to="VBoxContainer/Scenes" method="hide"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Multiplayer" to="VBoxContainer/Multiplayer" method="show"]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Multiplayer" to="VBoxContainer/Inputs" method="hide"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Multiplayer" to="VBoxContainer/Multiplayer" method="show"]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Scenes" method="hide"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Multiplayer" method="hide"]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Inputs" method="show"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Inputs" to="VBoxContainer/Multiplayer" method="hide"]
