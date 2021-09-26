@@ -169,7 +169,10 @@ func on_loadaudio_pressed():
 		if selected is AnimationPlayer:
 			
 			if dock.get_node('LoadAudioInput').text.ends_with('.wav'):
-				_load_stream(selected, dock.get_node('LoadAudioInput').text, 'anim')
+				
+				_load_stream(selected, dock.get_node('LoadAudioInput').text, 
+					dock.get_node('LoadAudioInput').text.split('/')[-1].trim_suffix('.wav')
+					)
 				return
 			
 			
@@ -258,6 +261,15 @@ func on_evaluate_pressed():
 		print(_evaluate(selected, dock.get_node('ExpressionInput').text, parse_json(dock.get_node('ArgumentsInput').text)))
 
 
+func _on_print_transform():
+	
+	if not selection.get_selected_nodes().empty():
+		
+		var selected = selection.get_selected_nodes()[0]
+		print(selected.translation.x, ',', selected.translation.y, ',', selected.translation.z)
+		print(selected.rotation_degrees.x, ',', selected.rotation_degrees.y, ',', selected.rotation_degrees.z)
+
+
 func _ready():
 	
 	pass
@@ -272,6 +284,7 @@ func _enter_tree():
 	dock.get_node('LoadAudio').connect('button_down', self, 'on_loadaudio_pressed')
 	dock.get_node('LoadMap').connect('button_down', self, 'on_loadmap_pressed')
 #	dock.get_node('Evaluate').connect('button_down', self, 'on_evaluate_pressed')
+	dock.get_node('PrintTransform').connect('button_down', self, '_on_print_transform')
 	
 	selection = EditorPlugin.new().get_editor_interface().get_selection()
 	selection.connect('selection_changed', self, 'on_selection_changed')

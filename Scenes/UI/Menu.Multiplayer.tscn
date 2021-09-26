@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Menu.Multiplayer.gd" type="Script" id=1]
 [ext_resource path="res://Textures/panel.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Scenes/UI/Menu.Options.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UI/Menu.Checkbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UI/Menu.Multiplayer.Player.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -37,7 +38,7 @@ __meta__ = {
 }
 
 [node name="Background" type="NinePatchRect" parent="."]
-margin_right = 660.0
+margin_right = 884.0
 margin_bottom = 480.0
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 512, 512 )
@@ -50,7 +51,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 660.0
+margin_right = 884.0
 margin_bottom = 480.0
 custom_constants/margin_right = 30
 custom_constants/margin_top = 30
@@ -63,7 +64,7 @@ __meta__ = {
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 margin_left = 30.0
 margin_top = 30.0
-margin_right = 630.0
+margin_right = 854.0
 margin_bottom = 430.0
 rect_min_size = Vector2( 600, 400 )
 mouse_filter = 1
@@ -73,8 +74,8 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
-margin_right = 600.0
-margin_bottom = 221.0
+margin_right = 756.0
+margin_bottom = 399.0
 rect_min_size = Vector2( 600, 0 )
 custom_constants/separation = 25
 __meta__ = {
@@ -82,7 +83,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
-margin_right = 600.0
+margin_right = 756.0
 margin_bottom = 35.0
 __meta__ = {
 
@@ -112,17 +113,59 @@ __meta__ = {
 
 }
 
+[node name="Hint2" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/HBoxContainer"]
+margin_left = 310.0
+margin_right = 458.0
+margin_bottom = 35.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "Points to win: "
+align = 1
+max_lines_visible = 2
+__meta__ = {
+
+}
+
+[node name="MaxPoints" type="SpinBox" parent="MarginContainer/ScrollContainer/HBoxContainer/HBoxContainer"]
+margin_left = 462.0
+margin_right = 560.0
+margin_bottom = 35.0
+theme = SubResource( 2 )
+min_value = 1.0
+value = 5.0
+__meta__ = {
+
+}
+
+[node name="Radar" parent="MarginContainer/ScrollContainer/HBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 564.0
+margin_right = 647.0
+margin_bottom = 35.0
+
+[node name="CheckBox" parent="MarginContainer/ScrollContainer/HBoxContainer/HBoxContainer/Radar" index="0"]
+margin_right = 83.0
+text = "Radar"
+
+[node name="Outlines" parent="MarginContainer/ScrollContainer/HBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 651.0
+margin_right = 756.0
+margin_bottom = 35.0
+
+[node name="CheckBox" parent="MarginContainer/ScrollContainer/HBoxContainer/HBoxContainer/Outlines" index="0"]
+margin_right = 105.0
+text = "Outlines"
+
 [node name="CharacterList" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
 margin_top = 60.0
-margin_right = 600.0
-margin_bottom = 221.0
+margin_right = 756.0
+margin_bottom = 299.0
 rect_min_size = Vector2( 600, 0 )
 __meta__ = {
 
 }
 
 [node name="Hint" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList"]
-margin_right = 600.0
+margin_right = 756.0
 margin_bottom = 25.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
@@ -135,166 +178,139 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList"]
 margin_top = 29.0
-margin_right = 600.0
-margin_bottom = 93.0
+margin_right = 756.0
+margin_bottom = 132.0
 __meta__ = {
 
 }
 
-[node name="Player1" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer"]
-margin_right = 298.0
-margin_bottom = 64.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
+[node name="Player1" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer" instance=ExtResource( 5 )]
+margin_right = 376.0
+margin_bottom = 103.0
 
-}
+[node name="Name" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" index="0"]
+margin_right = 376.0
 
-[node name="Name" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1"]
-margin_right = 298.0
-margin_bottom = 25.0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 1 )
-text = "Player 1"
-autowrap = true
-max_lines_visible = 2
-__meta__ = {
+[node name="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" index="1"]
+margin_right = 376.0
 
-}
+[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" index="2"]
+margin_right = 376.0
 
-[node name="ViewportContainer" type="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1"]
-margin_top = 29.0
-margin_right = 298.0
-margin_bottom = 29.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
+[node name="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" index="3"]
+margin_right = 376.0
 
-}
+[node name="Team" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer" index="1"]
+margin_right = 376.0
 
-[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" instance=ExtResource( 4 )]
-margin_top = 33.0
-margin_right = 298.0
-margin_bottom = 64.0
-text = "Mr. Anderson"
+[node name="Player2" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 380.0
+margin_right = 756.0
+margin_bottom = 103.0
 
-[node name="Player2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer"]
-margin_left = 302.0
-margin_right = 600.0
-margin_bottom = 64.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-
-}
-
-[node name="Name" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2"]
-margin_right = 298.0
-margin_bottom = 25.0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 1 )
+[node name="Name" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" index="0"]
+margin_right = 376.0
 text = "Player 2"
-autowrap = true
-max_lines_visible = 2
-__meta__ = {
 
-}
+[node name="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" index="1"]
+margin_right = 376.0
 
-[node name="ViewportContainer" type="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2"]
-margin_top = 29.0
-margin_right = 298.0
-margin_bottom = 29.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
+[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" index="2"]
+margin_right = 376.0
 
-}
+[node name="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" index="3"]
+margin_right = 376.0
 
-[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" instance=ExtResource( 4 )]
-margin_top = 33.0
-margin_right = 298.0
-margin_bottom = 64.0
-text = "Trinity"
+[node name="Team" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer" index="1"]
+margin_right = 376.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList"]
-margin_top = 97.0
-margin_right = 600.0
-margin_bottom = 161.0
+margin_top = 136.0
+margin_right = 756.0
+margin_bottom = 239.0
 __meta__ = {
 
 }
 
-[node name="Player3" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2"]
-margin_right = 298.0
-margin_bottom = 64.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
+[node name="Player3" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2" instance=ExtResource( 5 )]
+margin_right = 376.0
+margin_bottom = 103.0
 
-}
-
-[node name="Name" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3"]
-margin_right = 298.0
-margin_bottom = 25.0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 1 )
+[node name="Name" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" index="0"]
+margin_right = 376.0
 text = "Player 3"
-autowrap = true
-max_lines_visible = 2
-__meta__ = {
 
-}
+[node name="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" index="1"]
+margin_right = 376.0
 
-[node name="ViewportContainer" type="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3"]
-margin_top = 29.0
-margin_right = 298.0
-margin_bottom = 29.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
+[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" index="2"]
+margin_right = 376.0
 
-}
+[node name="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" index="3"]
+margin_right = 376.0
 
-[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" instance=ExtResource( 4 )]
-margin_top = 33.0
-margin_right = 298.0
-margin_bottom = 64.0
-text = "Agent"
+[node name="Team" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer" index="1"]
+margin_right = 376.0
 
-[node name="Player4" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2"]
-margin_left = 302.0
-margin_right = 600.0
-margin_bottom = 64.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
+[node name="Player4" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2" instance=ExtResource( 5 )]
+margin_left = 380.0
+margin_right = 756.0
+margin_bottom = 103.0
 
-}
+[node name="Name" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" index="0"]
+margin_right = 376.0
+text = "Player 4"
 
-[node name="Name" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4"]
-margin_right = 298.0
-margin_bottom = 25.0
+[node name="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" index="1"]
+margin_right = 376.0
+
+[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" index="2"]
+margin_right = 376.0
+
+[node name="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" index="3"]
+margin_right = 376.0
+
+[node name="Team" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer" index="1"]
+margin_right = 376.0
+
+[node name="WeaponsLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+margin_top = 324.0
+margin_right = 756.0
+margin_bottom = 349.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
-text = "Player 4"
-autowrap = true
+text = "Weapons"
+align = 1
 max_lines_visible = 2
 __meta__ = {
 
 }
 
-[node name="ViewportContainer" type="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4"]
-margin_top = 29.0
-margin_right = 298.0
-margin_bottom = 29.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Weapons" type="GridContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+margin_top = 374.0
+margin_right = 756.0
+margin_bottom = 374.0
+columns = 3
 __meta__ = {
 
 }
 
-[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" instance=ExtResource( 4 )]
-margin_top = 33.0
-margin_right = 298.0
-margin_bottom = 64.0
-text = "Cop"
+[node name="Weapons2" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+margin_top = 399.0
+margin_right = 756.0
+margin_bottom = 399.0
+__meta__ = {
+
+}
+
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/HBoxContainer/Radar"]
+
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/HBoxContainer/Outlines"]
+
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1"]
+
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2"]
+
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3"]
+
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4"]

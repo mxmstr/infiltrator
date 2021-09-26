@@ -157,3 +157,12 @@ text = "Evaluate"
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="PrintTransform" type="Button" parent="."]
+margin_top = 474.0
+margin_right = 119.0
+margin_bottom = 494.0
+text = "Print Transform"
+__meta__ = {
+"_edit_group_": true
+}

@@ -1,105 +1,67 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Actors/Items/Pistol.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Backward.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Custom_Transitcop_Desk.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Fallback_ShootUpwards.tres" type="Animation" id=5]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Falling.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Fire.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Flip.tres" type="Animation" id=8]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Flybackward.tres" type="Animation" id=9]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Flybackward_Chesthit.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Forward.tres" type="Animation" id=11]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Headshot.tres" type="Animation" id=12]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Minimum.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Spin.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Staggerbackwards.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Stomach.tres" type="Animation" id=16]
-[ext_resource path="res://Animations/Human/Action/Death/Death_Woospin.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/Action/Death/Death_matrix.tres" type="Animation" id=18]
-[ext_resource path="res://Animations/Human/Action/Death/death_450flip.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/Action/Death/death_agent_knees.tres" type="Animation" id=20]
-[ext_resource path="res://Animations/Human/Action/Death/death_agent_mega.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/Action/Death/death_agent_spin.tres" type="Animation" id=22]
-[ext_resource path="res://Animations/Human/Action/Death/death_buttslide.tres" type="Animation" id=23]
-[ext_resource path="res://Animations/Human/Action/Death/death_buttslide2.tres" type="Animation" id=24]
-[ext_resource path="res://Animations/Human/Action/Death/death_decap.tres" type="Animation" id=25]
-[ext_resource path="res://Animations/Human/Action/Death/death_disarm01.tres" type="Animation" id=26]
-[ext_resource path="res://Animations/Human/Action/Death/death_disarm2.tres" type="Animation" id=27]
-[ext_resource path="res://Animations/Human/Action/Death/death_dodge.tres" type="Animation" id=28]
-[ext_resource path="res://Animations/Human/Action/Death/death_explosion_a.tres" type="Animation" id=29]
-[ext_resource path="res://Animations/Human/Action/Death/death_explosion_b.tres" type="Animation" id=30]
-[ext_resource path="res://Animations/Human/Action/Death/death_fire_b.tres" type="Animation" id=31]
-[ext_resource path="res://Animations/Human/Action/Death/death_flyback.tres" type="Animation" id=32]
-[ext_resource path="res://Animations/Human/Action/Death/death_frontslam.tres" type="Animation" id=33]
-[ext_resource path="res://Animations/Human/Action/Death/death_gutbomb.tres" type="Animation" id=34]
-[ext_resource path="res://Animations/Human/Action/Death/death_hardtrip.tres" type="Animation" id=35]
-[ext_resource path="res://Animations/Human/Action/Death/death_knees.tres" type="Animation" id=36]
-[ext_resource path="res://Animations/Human/Action/Death/death_neckbreak.tres" type="Animation" id=37]
-[ext_resource path="res://Animations/Human/Action/Death/death_neckbreak2.tres" type="Animation" id=38]
-[ext_resource path="res://Animations/Human/Action/Death/death_neckbreak3.tres" type="Animation" id=39]
-[ext_resource path="res://Animations/Human/Action/Death/death_neckbreak_new.tres" type="Animation" id=40]
-[ext_resource path="res://Animations/Human/Action/Death/death_shotgun_a.tres" type="Animation" id=41]
-[ext_resource path="res://Animations/Human/Action/Death/death_shotgun_b.tres" type="Animation" id=42]
-[ext_resource path="res://Animations/Human/Action/Death/death_spinning.tres" type="Animation" id=43]
-[ext_resource path="res://Animations/Human/Action/Death/death_spinning2.tres" type="Animation" id=44]
-[ext_resource path="res://Animations/Human/Action/Death/death_stabbered.tres" type="Animation" id=45]
-[ext_resource path="res://Animations/Human/Action/Death/death_stabbered2.tres" type="Animation" id=46]
-[ext_resource path="res://Animations/Human/Action/Death/death_stomp.tres" type="Animation" id=47]
-[ext_resource path="res://Animations/Human/Action/Death/death_stomp2.tres" type="Animation" id=48]
-[ext_resource path="res://Animations/Human/Action/Death/death_tekspin.tres" type="Animation" id=49]
-[ext_resource path="res://Animations/Human/Action/Death/death_trip.tres" type="Animation" id=50]
-[ext_resource path="res://Animations/Human/Action/Death/death_trip_kickflip.tres" type="Animation" id=51]
-[ext_resource path="res://Animations/Human/Action/Death/death_uppercut.tres" type="Animation" id=52]
-[ext_resource path="res://Animations/Human/Action/Death/death_wall_slump.tres" type="Animation" id=53]
-[ext_resource path="res://Animations/Human/Action/Death/death_wallknees.tres" type="Animation" id=54]
-[ext_resource path="res://Animations/Human/Action/Death/death_wallslam.tres" type="Animation" id=55]
-[ext_resource path="res://Animations/Human/Action/Death/death_wallslam2.tres" type="Animation" id=56]
-[ext_resource path="res://Animations/Human/Action/Death/deathslomo_450spin.tres" type="Animation" id=57]
-[ext_resource path="res://Animations/Human/Action/Death/deathslomo_tekspin.tres" type="Animation" id=58]
+[ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Actors/Items/ColtCommando.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Actors/Items/DesertEagle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Actors/Items/Ingram.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Actors/Items/Jackhammer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Actors/Items/M79.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Actors/Items/MP5.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Actors/Items/PumpShotgun.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Actors/Items/SawedoffShotgun.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Actors/Items/Sniper.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Animations/Human/ShootColt.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/Human/ShootDesertEagle.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/ShootIngram.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/ShootJackhammer.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/ShootMP5.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/ShootPumpShotgun.tres" type="Animation" id=17]
+[ext_resource path="res://Animations/Human/ShootSawedShotgun.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Human/ShootSniper.tres" type="Animation" id=19]
+[ext_resource path="res://Animations/Human/shoot_coltcommando.tres" type="Animation" id=20]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=74]
 animation = "Stand"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=75]
 animation = "Run"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=76]
 animation = "Walk"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=77]
 animation = "StrafeRight"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=78]
 animation = "StrafeLeft"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+[sub_resource type="AnimationNodeBlendSpace2D" id=79]
 auto_triangles = false
-blend_point_0/node = SubResource( 1 )
+blend_point_0/node = SubResource( 74 )
 blend_point_0/pos = Vector2( 0, 0 )
-blend_point_1/node = SubResource( 2 )
+blend_point_1/node = SubResource( 75 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 3 )
+blend_point_2/node = SubResource( 76 )
 blend_point_2/pos = Vector2( 0, 0.5 )
-blend_point_3/node = SubResource( 4 )
+blend_point_3/node = SubResource( 77 )
 blend_point_3/pos = Vector2( 0.4, 0 )
-blend_point_4/node = SubResource( 5 )
+blend_point_4/node = SubResource( 78 )
 blend_point_4/pos = Vector2( -0.4, 0 )
 triangles = PoolIntArray( 0, 2, 3, 1, 2, 3, 0, 2, 4, 1, 2, 4 )
 __meta__ = {
@@ -107,6 +69,7 @@ __meta__ = {
 }
 
 [node name="AnimTest" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.33534e-08, 1.17943e-07, -2.75671e-07 )
 __meta__ = {
 
 }
@@ -115,6 +78,7 @@ __meta__ = {
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+bones/16/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model/neo_reference_skeleton" index="1"]
 transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
@@ -123,11 +87,47 @@ __meta__ = {
 
 }
 
-[node name="Pistol" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 2 )]
-transform = Transform( 1, -2.1445e-08, 9.31323e-10, 5.58794e-09, -4.35393e-08, 1, -9.46147e-09, -1, -4.4005e-08, 0.003, 0.1, -0.023 )
+[node name="Beretta" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 2 )]
+transform = Transform( 0.995721, -0.0914473, 0.0132716, -0.014466, -0.0124059, 0.999818, -0.0912661, -0.995731, -0.0136759, 0.00988671, -0.022818, 0.0215178 )
+
+[node name="ColtCommando" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 3 )]
+transform = Transform( 0.99757, 0.0684788, 0.0128557, -0.0133609, 0.00692052, 0.999886, 0.0683821, -0.997628, 0.00781846, -0.0510388, -0.0117496, -0.000418305 )
+visible = false
+
+[node name="DesertEagle" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 4 )]
+transform = Transform( 0.999858, 0.00847453, 0.0145552, -0.0145556, 8.98819e-06, 0.999895, 0.00847373, -0.999964, 0.000132772, -7.75009e-05, -0.00444692, 0.00555587 )
+visible = false
+
+[node name="Ingram" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 5 )]
+transform = Transform( 0.995621, -0.0923885, 0.0142942, -0.0143271, 0.000304142, 0.999899, -0.0923832, -0.995723, -0.00102042, -0.0159863, 0.00621378, 0.0378718 )
+visible = false
+
+[node name="Jackhammer" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 6 )]
+transform = Transform( 0.980444, -0.140225, 0.138076, -0.134875, 0.0321162, 0.990342, -0.143305, -0.989598, 0.0125755, -0.0454581, -0.0218313, 0.0376763 )
+visible = false
+
+[node name="M79" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 7 )]
+transform = Transform( 0.999887, 0.0113544, -0.00985805, 0.00985797, 0.000112351, 0.999952, 0.0113556, -0.999935, 6.27711e-07, 0.000452742, -0.0388898, -0.0537509 )
+visible = false
+
+[node name="MP5" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 8 )]
+transform = Transform( 0.999793, -0.0201553, 0.00252092, -0.00251836, 0.000128504, 0.999996, -0.0201551, -0.999797, 7.77167e-05, 0.000176981, 0.019284, -0.00473142 )
+visible = false
+
+[node name="PumpShotgun" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 9 )]
+transform = Transform( 0.998257, 0.0590009, -0.000345156, 0.000341179, 8.13585e-05, 1, 0.0590015, -0.998257, 6.12261e-05, 0.000440001, 0.00774671, -0.00781965 )
+visible = false
+
+[node name="SawedoffShotgun" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 10 )]
+transform = Transform( 0.999873, -0.0143629, -0.00695815, 0.00695851, 1.35833e-05, 0.999976, -0.0143629, -0.999897, 0.0001137, -0.00044997, -0.0393684, -0.0285348 )
+visible = false
+
+[node name="Sniper" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 11 )]
+transform = Transform( 0.999539, -0.0259195, -0.0158152, 0.0158216, 2.51718e-05, 0.999875, -0.0259153, -0.999664, 0.000435773, -0.000452671, -0.0259263, -0.0154109 )
+visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 6 )
+tree_root = SubResource( 79 )
 anim_player = NodePath("AnimationPlayer")
 parameters/blend_position = Vector2( 0.000858426, 0.495601 )
 __meta__ = {
@@ -136,62 +136,15 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../../Model/neo_reference_skeleton")
-anims/Death_Backward = ExtResource( 3 )
-anims/Death_Custom_Transitcop_Desk = ExtResource( 4 )
-anims/Death_Fallback_ShootUpwards = ExtResource( 5 )
-anims/Death_Falling = ExtResource( 6 )
-anims/Death_Fire = ExtResource( 7 )
-anims/Death_Flip = ExtResource( 8 )
-anims/Death_Flybackward = ExtResource( 9 )
-anims/Death_Flybackward_Chesthit = ExtResource( 10 )
-anims/Death_Forward = ExtResource( 11 )
-anims/Death_Headshot = ExtResource( 12 )
-anims/Death_Minimum = ExtResource( 13 )
-anims/Death_Spin = ExtResource( 14 )
-anims/Death_Staggerbackwards = ExtResource( 15 )
-anims/Death_Stomach = ExtResource( 16 )
-anims/Death_Woospin = ExtResource( 17 )
-anims/Death_matrix = ExtResource( 18 )
-anims/death_450flip = ExtResource( 19 )
-anims/death_agent_knees = ExtResource( 20 )
-anims/death_agent_mega = ExtResource( 21 )
-anims/death_agent_spin = ExtResource( 22 )
-anims/death_buttslide = ExtResource( 23 )
-anims/death_buttslide2 = ExtResource( 24 )
-anims/death_decap = ExtResource( 25 )
-anims/death_disarm01 = ExtResource( 26 )
-anims/death_disarm2 = ExtResource( 27 )
-anims/death_dodge = ExtResource( 28 )
-anims/death_explosion_a = ExtResource( 29 )
-anims/death_explosion_b = ExtResource( 30 )
-anims/death_fire_b = ExtResource( 31 )
-anims/death_flyback = ExtResource( 32 )
-anims/death_frontslam = ExtResource( 33 )
-anims/death_gutbomb = ExtResource( 34 )
-anims/death_hardtrip = ExtResource( 35 )
-anims/death_knees = ExtResource( 36 )
-anims/death_neckbreak = ExtResource( 37 )
-anims/death_neckbreak2 = ExtResource( 38 )
-anims/death_neckbreak3 = ExtResource( 39 )
-anims/death_neckbreak_new = ExtResource( 40 )
-anims/death_shotgun_a = ExtResource( 41 )
-anims/death_shotgun_b = ExtResource( 42 )
-anims/death_spinning = ExtResource( 43 )
-anims/death_spinning2 = ExtResource( 44 )
-anims/death_stabbered = ExtResource( 45 )
-anims/death_stabbered2 = ExtResource( 46 )
-anims/death_stomp = ExtResource( 47 )
-anims/death_stomp2 = ExtResource( 48 )
-anims/death_tekspin = ExtResource( 49 )
-anims/death_trip = ExtResource( 50 )
-anims/death_trip_kickflip = ExtResource( 51 )
-anims/death_uppercut = ExtResource( 52 )
-anims/death_wall_slump = ExtResource( 53 )
-anims/death_wallknees = ExtResource( 54 )
-anims/death_wallslam = ExtResource( 55 )
-anims/death_wallslam2 = ExtResource( 56 )
-anims/deathslomo_450spin = ExtResource( 57 )
-anims/deathslomo_tekspin = ExtResource( 58 )
+anims/ShootColt = ExtResource( 12 )
+anims/ShootDesertEagle = ExtResource( 13 )
+anims/ShootIngram = ExtResource( 14 )
+anims/ShootJackhammer = ExtResource( 15 )
+anims/ShootMP5 = ExtResource( 16 )
+anims/ShootPumpShotgun = ExtResource( 17 )
+anims/ShootSawedShotgun = ExtResource( 18 )
+anims/ShootSniper = ExtResource( 19 )
+anims/shoot_coltcommando = ExtResource( 20 )
 __meta__ = {
 
 }

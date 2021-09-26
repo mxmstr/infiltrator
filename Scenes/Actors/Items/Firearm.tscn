@@ -1,0 +1,682 @@
+[gd_scene load_steps=84 format=2]
+
+[ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/Actions/FireProjectile.action.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/AnimationTree.Animation.Scaled.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Components/Responses/Use.Firearm.response.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Components/Sounds/FireProjectile.sound.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/AudioTree.Animation.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Components/Stimuli/Contact.RigidBody.stimulus.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Stimulus.Radius.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=18]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+chain = false
+schema = "LoadChamber"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "EmptyMagazine"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultAnim"
+script = ExtResource( 5 )
+__meta__ = {
+
+}
+chain = false
+schema = "FireProjectile"
+expression = "1 / float(owner._get_tag(TAG)[0])"
+arguments = {
+"TAG": "FireRate"
+}
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "DefaultAnim"
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(CHAMBER)._is_empty()
+not get_node(MAGAZINE)._is_empty()
+not get_node(MAGAZINE).items[0].get_node(CONTAINER)._is_empty() "
+arguments = {
+"CHAMBER": "../Chamber",
+"CONTAINER": "Container",
+"MAGAZINE": "../Magazine"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "get_node(CHAMBER)._is_empty() and not get_node(MAGAZINE)._is_empty()
+not get_node(MAGAZINE).items[0].get_node(CONTAINER)._is_empty() "
+arguments = {
+"CHAMBER": "../Chamber",
+"CONTAINER": "Container",
+"MAGAZINE": "../Magazine"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "not get_node(MAGAZINE)._is_empty()
+get_node(MAGAZINE).items[0].get_node(CONTAINER)._is_empty() "
+arguments = {
+"CHAMBER": "../Chamber",
+"CONTAINER": "Container",
+"MAGAZINE": "../Magazine"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "not get_node(CHAMBER)._is_empty()"
+arguments = {
+"CHAMBER": "../Chamber"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/DefaultAnim/node = SubResource( 1 )
+states/DefaultAnim/position = Vector2( 611.613, 74.0039 )
+states/Empty/node = SubResource( 2 )
+states/Empty/position = Vector2( 611.613, 279.004 )
+states/FireProjectile/node = SubResource( 3 )
+states/FireProjectile/position = Vector2( 611.613, 188 )
+states/LoadChamber/node = SubResource( 4 )
+states/LoadChamber/position = Vector2( 412.613, 74.0039 )
+states/Start/node = SubResource( 5 )
+states/Start/position = Vector2( 228, 188 )
+transitions = [ "Start", "FireProjectile", SubResource( 6 ), "Start", "LoadChamber", SubResource( 7 ), "FireProjectile", "LoadChamber", SubResource( 8 ), "FireProjectile", "Start", SubResource( 9 ), "FireProjectile", "Empty", SubResource( 10 ), "Empty", "Start", SubResource( 11 ), "LoadChamber", "DefaultAnim", SubResource( 12 ), "DefaultAnim", "Start", SubResource( 13 ) ]
+start_node = "Start"
+graph_offset = Vector2( -71.387, 27.2882 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "DoUseAction"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "ReflectEmptyReact"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "ReflectUseItemReact"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "not get_node(CHAMBER)._is_empty()"
+arguments = {
+"CHAMBER": "../Chamber"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+auto_advance = true
+priority = 2
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+auto_advance = true
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "state_starting"
+expression = "get_node(CHAMBER)._is_empty() and get_node(MAGAZINE)._is_empty()"
+arguments = {
+"CHAMBER": "../Chamber",
+"MAGAZINE": "../Magazine"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=27]
+states/DoUseAction/node = SubResource( 16 )
+states/DoUseAction/position = Vector2( 483, 187 )
+states/End/node = SubResource( 17 )
+states/End/position = Vector2( 968, 244 )
+states/ReflectEmptyReact/node = SubResource( 18 )
+states/ReflectEmptyReact/position = Vector2( 483, 311.45 )
+states/ReflectUseItemReact/node = SubResource( 19 )
+states/ReflectUseItemReact/position = Vector2( 743, 187 )
+states/Use/node = SubResource( 20 )
+states/Use/position = Vector2( 278, 244 )
+transitions = [ "Use", "DoUseAction", SubResource( 21 ), "DoUseAction", "ReflectUseItemReact", SubResource( 22 ), "ReflectUseItemReact", "End", SubResource( 23 ), "Use", "End", SubResource( 24 ), "Use", "ReflectEmptyReact", SubResource( 25 ), "ReflectEmptyReact", "End", SubResource( 26 ) ]
+start_node = "Use"
+end_node = "End"
+graph_offset = Vector2( 29.0026, 110.45 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+script = ExtResource( 10 )
+__meta__ = {
+
+}
+chain = false
+schema = "FireProjectileSound"
+level = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+resource_local_to_scene = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=34]
+resource_local_to_scene = true
+states/End/node = SubResource( 29 )
+states/End/position = Vector2( 828, 27.552 )
+states/FireProjectile/node = SubResource( 30 )
+states/FireProjectile/position = Vector2( 572, 27.552 )
+states/Start/node = SubResource( 31 )
+states/Start/position = Vector2( 333, 27.552 )
+transitions = [ "Start", "FireProjectile", SubResource( 32 ), "FireProjectile", "End", SubResource( 33 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( -13, -93.7663 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "DefaultAnim"
+script = ExtResource( 15 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+priority = 0
+type = 0
+blend = 1
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+hud_mode = "Default"
+
+[sub_resource type="AnimationNodeStateMachine" id=37]
+states/Start/node = SubResource( 36 )
+states/Start/position = Vector2( 612.453, 244.689 )
+start_node = "Start"
+graph_offset = Vector2( 10.4534, 38.6886 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=42]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=43]
+animation = "DefaultAnim"
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+chain = true
+schema = ""
+
+[sub_resource type="AnimationNodeAnimation" id=44]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+disabled = true
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+transition_expression = ""
+update_mode = "process"
+expression = "not get_node(COLLISION).disabled"
+arguments = {
+"COLLISION": "../Collision"
+}
+delay = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=56]
+states/Damage/node = SubResource( 39 )
+states/Damage/position = Vector2( 654, 235.905 )
+states/EmptyReact/node = SubResource( 40 )
+states/EmptyReact/position = Vector2( 654, 427.073 )
+states/End/node = SubResource( 41 )
+states/End/position = Vector2( 887, 299.905 )
+states/Start/node = SubResource( 42 )
+states/Start/position = Vector2( 419, 299.905 )
+states/Touch/node = SubResource( 43 )
+states/Touch/position = Vector2( 654, 169.905 )
+states/Use/node = SubResource( 44 )
+states/Use/position = Vector2( 654, 299.905 )
+states/UseReact/node = SubResource( 45 )
+states/UseReact/position = Vector2( 654, 366.573 )
+transitions = [ "Start", "Touch", SubResource( 46 ), "Touch", "End", SubResource( 47 ), "Start", "Damage", SubResource( 48 ), "Damage", "End", SubResource( 49 ), "Start", "Use", SubResource( 50 ), "Use", "End", SubResource( 51 ), "Start", "UseReact", SubResource( 52 ), "UseReact", "End", SubResource( 53 ), "Start", "EmptyReact", SubResource( 54 ), "EmptyReact", "End", SubResource( 55 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, 131.03 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = true
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=57]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=58]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=59]
+states/Start/node = SubResource( 58 )
+states/Start/position = Vector2( 624, 170 )
+start_node = "Start"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=60]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=61]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=62]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=64]
+states/End/node = SubResource( 61 )
+states/End/position = Vector2( 788, 177 )
+states/Start/node = SubResource( 62 )
+states/Start/position = Vector2( 333, 177 )
+transitions = [ "Start", "End", SubResource( 63 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 8 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=65]
+__meta__ = {
+
+}
+
+[node name="Firearm" type="RigidBody"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+tags = "Item Firearm UseAction:FireProjectile FireRate:0.1"
+
+[node name="Magazine" parent="." instance=ExtResource( 2 )]
+path = NodePath("..")
+max_quantity = 1
+invisible = true
+required_tags = "Magazine"
+
+[node name="Chamber" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0, 0 )
+path = NodePath("..")
+release_speed = 10.0
+release_exclude_parent = true
+max_quantity = 1
+invisible = true
+required_tags = "Bullet"
+
+[node name="FireProjectileAction" parent="." instance=ExtResource( 3 )]
+tree_root = SubResource( 14 )
+parameters/playback = SubResource( 15 )
+tree_node = NodePath("../Behavior")
+
+[node name="UseResponse" parent="." instance=ExtResource( 7 )]
+tree_root = SubResource( 27 )
+parameters/playback = SubResource( 28 )
+tree_node = NodePath("../Reception")
+
+[node name="FireProjectileSound" parent="." instance=ExtResource( 9 )]
+tree_root = SubResource( 34 )
+parameters/playback = SubResource( 35 )
+tree_node = NodePath("../Audio")
+
+[node name="ContactStim" parent="." instance=ExtResource( 11 )]
+stim_type = "Touch"
+
+[node name="PickupRadiusStim" type="RayCast" parent="."]
+cast_to = Vector3( 0, 0, 0 )
+script = ExtResource( 12 )
+__meta__ = {
+
+}
+stim_type = "Touch"
+max_distance = 2.0
+raycast = true
+required_tags = "Human"
+
+[node name="Movement" parent="." instance=ExtResource( 13 )]
+
+[node name="Behavior" parent="." instance=ExtResource( 14 )]
+tree_root = SubResource( 37 )
+parameters/playback = SubResource( 38 )
+
+[node name="Reception" parent="." instance=ExtResource( 16 )]
+tree_root = SubResource( 56 )
+parameters/playback = SubResource( 57 )
+
+[node name="Interface" parent="." instance=ExtResource( 17 )]
+tree_root = SubResource( 59 )
+parameters/playback = SubResource( 60 )
+
+[node name="Audio" parent="." instance=ExtResource( 18 )]
+tree_root = SubResource( 64 )
+parameters/playback = SubResource( 65 )

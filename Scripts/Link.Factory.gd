@@ -39,7 +39,7 @@ func _ready():
 		
 		if product.target == 'target':
 			
-			_create_product(get_node(from), container, product.amount, product.item)
+			_create_product(get_node(to), container, product.amount, product.item)
 
 
 func _create_product(target, target_container, amount, item):
