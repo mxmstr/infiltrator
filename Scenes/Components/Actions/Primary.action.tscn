@@ -40,7 +40,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeBlendTree" id=5]
-graph_offset = Vector2( -384.937, 71.975 )
+graph_offset = Vector2( -365.272, 0 )
 nodes/Blend3/node = SubResource( 1 )
 nodes/Blend3/position = Vector2( 120, 100 )
 nodes/Default/node = SubResource( 2 )
@@ -50,7 +50,7 @@ nodes/Down/position = Vector2( -160, 20 )
 nodes/Up/node = SubResource( 4 )
 nodes/Up/position = Vector2( -160, 260 )
 nodes/output/position = Vector2( 460, 160 )
-node_connections = [ "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up", "output", 0, "Blend3" ]
+node_connections = [ "output", 0, "Blend3", "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up" ]
 script = ExtResource( 3 )
 __meta__ = {
 
@@ -150,7 +150,7 @@ nodes/Down/position = Vector2( -160, 20 )
 nodes/Up/node = SubResource( 12 )
 nodes/Up/position = Vector2( -160, 260 )
 nodes/output/position = Vector2( 460, 160 )
-node_connections = [ "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up", "output", 0, "Blend3" ]
+node_connections = [ "output", 0, "Blend3", "Blend3", 0, "Down", "Blend3", 1, "Default", "Blend3", 2, "Up" ]
 script = ExtResource( 3 )
 __meta__ = {
 

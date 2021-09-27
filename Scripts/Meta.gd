@@ -39,6 +39,7 @@ var multi = false
 var multi_points_to_win = 5
 var multi_radar = true
 var multi_outlines = false
+var multi_loadout = ['Scenes/Items/Beretta']
 var coop = false
 var player_count = 1
 var player_data_default = {
@@ -149,10 +150,6 @@ func _get_files_recursive(root, begins_with='', ends_with='', actor_tags=null):
 					var file_tags = Array(file_stripped.split('.'))
 					file_tags.erase('')
 					
-					if file_to_add == null:
-						file_to_add = '%s/%s' % [dir.get_current_dir(), file] 
-						continue
-					
 					
 					var tag_count = 0
 					
@@ -165,7 +162,7 @@ func _get_files_recursive(root, begins_with='', ends_with='', actor_tags=null):
 							tag_count += 1
 					
 					
-					if tag_count > highest_tag_count:
+					if file_to_add == null or tag_count > highest_tag_count:
 						
 						file_to_add = '%s/%s' % [dir.get_current_dir(), file]
 						highest_tag_count = tag_count

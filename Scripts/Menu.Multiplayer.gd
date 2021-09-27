@@ -148,6 +148,12 @@ func _on_weapon_toggled(enabled, weapon_name):
 	weapons[weapon_name].enabled = enabled
 	
 	_save_to_config('Weapons', weapon_name, enabled)
+	
+	Meta.multi_loadout = []
+	
+	for weapon_name in weapons:
+		if weapons[weapon_name].enabled:
+			Meta.multi_loadout.append(weapons[weapon_name].scene)
 
 
 func _ready():

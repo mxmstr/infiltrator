@@ -34,6 +34,9 @@ func _load_animations():
 #	if owner.owner._has_tag(owner.schema_type):
 #		owner_tags = owner.owner._get_tag(owner.schema_type)
 	
+
+#	if schema != '':
+#		prints(owner.owner.name, owner.name, schema)
 	var files = Meta._get_files_recursive(schemas_dir, schema, schemas_extension, owner_tags)
 	
 	var schema_animation_player = load(files[0]).instance()

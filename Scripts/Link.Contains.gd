@@ -2,6 +2,7 @@ extends 'res://Scripts/Link.gd'
 
 export(String) var container
 
+var root
 var container_node
 var restore_collisions = true
 var merge = true
@@ -148,14 +149,48 @@ func _move_item():
 	
 	if movement:
 		
-		var new_transform = container_node.root.global_transform.translated(item_position_offset)
+		var new_transform = root.global_transform#.translated(item_position_offset)
+#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.x, item_rotation_offset.x)
+#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.y, item_rotation_offset.y)
+#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.z, item_rotation_offset.z)
+		#new_transform.
 		
-		new_transform.basis = container_node.root.global_transform.basis
-		new_transform.basis = new_transform.basis.rotated(new_transform.basis.x, item_rotation_offset.x)
-		new_transform.basis = new_transform.basis.rotated(new_transform.basis.y, item_rotation_offset.y)
-		new_transform.basis = new_transform.basis.rotated(new_transform.basis.z, item_rotation_offset.z)
+		#new_transform.basis = container_node.root.global_transform.basis
+#		new_transform = new_transform.rotated(new_transform.basis.x, item_rotation_offset.x)
+#		new_transform = new_transform.rotated(new_transform.basis.y, item_rotation_offset.y)
+#		new_transform = new_transform.rotated(new_transform.basis.z, item_rotation_offset.z)
+
+#		new_transform.basis = container_node.root.global_transform.basis
+#		new_transform.basis = new_transform.basis.rotated(Vector3(1, 0, 0), item_rotation_offset.x)
+#		new_transform.basis = new_transform.basis.rotated(Vector3(0, 1, 0), item_rotation_offset.y)
+#		new_transform.basis = new_transform.basis.rotated(Vector3(0, 0, 1), item_rotation_offset.z)
+		
+#		new_transform.rotated(Vector3(0, 0, ))
+		
+#		var target_pos = to_node.global_transform.origin - container_node.root.global_transform.basis.z
+#		new_transform = new_transform.looking_at(target_pos, container_node.root.global_transform.basis.y)
+#		new_transform.basis = new_transform.basis.rotated(Vector3(1, 0, 0), item_rotation_offset.x)
+#		new_transform.basis = new_transform.basis.rotated(Vector3(0, 1, 0), item_rotation_offset.y)
+#		new_transform.basis = new_transform.basis.rotated(Vector3(0, 0, 1), item_rotation_offset.z)
+#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.x, item_rotation_offset.x)
+#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.y, item_rotation_offset.y)
+#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.z, item_rotation_offset.z)
 		
 		movement._teleport(new_transform.origin, new_transform.basis)
+		
+#		to_node.rotate_x(item_rotation_offset.x)
+#		to_node.rotate_y(item_rotation_offset.y)
+#		to_node.rotate_z(item_rotation_offset.z)
+		
+#		to_node.global_transform.origin = container_node.root.global_transform.origin
+#		to_node.translate_object_local(item_position_offset)
+#
+#		var target_pos = to_node.global_transform.origin - container_node.root.global_transform.basis.z
+#		to_node.look_at(target_pos, container_node.root.global_transform.basis.y)
+#		to_node.rotate_x(deg2rad(90))
+#		to_node.rotate_x(item_rotation_offset.x)
+#		to_node.rotate_y(item_rotation_offset.y)
+#		to_node.rotate_z(item_rotation_offset.z)
 
 
 func _ready():
@@ -185,6 +220,11 @@ func _ready():
 	
 	item_position_offset = _get_item_position_offset(to_node)
 	item_rotation_offset = _get_item_rotation_offset(to_node)
+	
+	root = Spatial.new()
+	container_node.root.add_child(root)
+	root.translation = item_position_offset
+	root.rotation = item_rotation_offset
 
 
 func _process(delta):
@@ -199,6 +239,8 @@ func _process(delta):
 		_destroy()
 		return
 	
+#	if 'Pistol' == to_node.name:
+#		prints(to_node.name, item_position_offset, item_rotation_offset)
 	_move_item()
 
 
@@ -228,5 +270,7 @@ func _destroy():
 	
 	if restore_collisions:
 		_restore_collision()
+	
+	root.queue_free()
 	
 	._destroy()

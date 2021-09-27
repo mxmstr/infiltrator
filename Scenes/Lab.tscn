@@ -11,8 +11,6 @@
 [ext_resource path="res://Scenes/Links/PVPPlayerFactory.link.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=10]
 
-
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
 
