@@ -34,43 +34,43 @@ var characters = {
 var weapons = {
 	'Beretta': {
 		'enabled': true,
-		'scene': 'Scenes/Items/Beretta'
+		'scene': 'Items/Beretta'
 	},
 	'ColtCommando': {
 		'enabled': false,
-		'scene': 'Scenes/Items/ColtCommando'
+		'scene': 'Items/ColtCommando'
 	},
 	'DesertEagle': {
 		'enabled': false,
-		'scene': 'Scenes/Items/DesertEagle'
+		'scene': 'Items/DesertEagle'
 	},
 	'Ingram': {
 		'enabled': false,
-		'scene': 'Scenes/Items/Ingram'
+		'scene': 'Items/Ingram'
 	},
 	'Jackhammer': {
 		'enabled': false,
-		'scene': 'Scenes/Items/Jackhammer'
+		'scene': 'Items/Jackhammer'
 	},
 	'M79': {
 		'enabled': false,
-		'scene': 'Scenes/Items/M79'
+		'scene': 'Items/M79'
 	},
 	'MP5': {
 		'enabled': false,
-		'scene': 'Scenes/Items/MP5'
+		'scene': 'Items/MP5'
 	},
 	'PumpShotgun': {
 		'enabled': false,
-		'scene': 'Scenes/Items/PumpShotgun'
+		'scene': 'Items/PumpShotgun'
 	},
 	'SawedoffShotgun': {
 		'enabled': false,
-		'scene': 'Scenes/Items/SawedoffShotgun'
+		'scene': 'Items/SawedoffShotgun'
 	},
 	'Sniper': {
 		'enabled': false,
-		'scene': 'Scenes/Items/Sniper'
+		'scene': 'Items/Sniper'
 	}
 }
 

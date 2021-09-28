@@ -104,7 +104,7 @@ __meta__ = {
 
 }
 
-[node name="Beretta" index="0" instance=ExtResource( 1 )]
+[node name="Beretta" instance=ExtResource( 1 )]
 tags = "Item Firearm Beretta UseAction:FireProjectile FireRate:0.1 Offset-position:neo_reference_skeleton:Gun:-0.008487,0.005017,0.025809 Offset-rotation:neo_reference_skeleton:Gun:-90,0,0"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]

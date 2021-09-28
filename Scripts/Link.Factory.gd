@@ -4,6 +4,10 @@ export(String) var container
 export(String, MULTILINE) var products
 
 var products_list = []
+var outputs = []
+
+signal finished
+
 
 func _ready():
 	
@@ -40,6 +44,15 @@ func _ready():
 		if product.target == 'target':
 			
 			_create_product(get_node(to), container, product.amount, product.item)
+		
+		else:
+			
+			var output = Meta.AddActor(product.target)
+			outputs.append(output)
+			
+			_create_product(output, product.target_container, product.amount, product.item)
+	
+	emit_signal('finished')
 
 
 func _create_product(target, target_container, amount, item):

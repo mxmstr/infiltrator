@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Link.Factory.gd" type="Script" id=1]
+
+[node name="Factory" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+products = "Items/Beretta Magazine << 1 Items/Mag9mm 
+Items/Mag9mm Container << 12 Items/Bullet9mm"

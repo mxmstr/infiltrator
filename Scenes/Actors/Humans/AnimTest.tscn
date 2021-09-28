@@ -140,7 +140,7 @@ visible = false
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( 0.996329, -0.0156926, 0.0841616, 0.0841935, 0.00138348, -0.996449, 0.0155207, 0.999876, 0.00269966, 0.151721, 1.6121, 0.609517 )
+transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
 bone_name = "Gun"
 __meta__ = {
 
@@ -170,7 +170,7 @@ transform = Transform( 0.999887, 0.0113544, -0.00985805, 0.00985797, 0.000112351
 visible = false
 
 [node name="MP5" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 8 )]
-transform = Transform( 0.999793, -0.0201553, 0.00252092, -0.00251836, 0.000128504, 0.999996, -0.0201551, -0.999797, 7.77167e-05, 0.000176981, 0.019284, -0.00473142 )
+transform = Transform( 0.999793, -0.0201553, 0.00252092, -0.00251836, 0.000128504, 0.999996, -0.0201551, -0.999797, 7.77167e-05, 0.000176966, 0.019284, -0.00473142 )
 visible = false
 
 [node name="PumpShotgun" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 9 )]

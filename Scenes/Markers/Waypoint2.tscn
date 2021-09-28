@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/Markers/Waypoint.tres" type="PrismMesh" id=1]
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 1, 0, 0, 1 )
+roughness = 0.0
+__meta__ = {
+
+}
+
+[sub_resource type="PrismMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 0.5, 1, 0.1 )
+__meta__ = {
+
+}
 
 [node name="Waypoint" type="Spatial"]
 __meta__ = {
@@ -15,7 +27,7 @@ __meta__ = {
 
 [node name="MeshInstance" type="MeshInstance" parent="MeshPivot"]
 transform = Transform( 0.500093, 0, -2.18598e-08, -2.18598e-08, 9.55343e-16, -0.500093, 0, 0.5, 9.55521e-16, 0, 0, 0 )
-mesh = ExtResource( 1 )
+mesh = SubResource( 2 )
 material/0 = null
 __meta__ = {
 
