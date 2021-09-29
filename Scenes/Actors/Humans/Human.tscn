@@ -47,7 +47,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=99]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 __meta__ = {
 
 }
@@ -316,7 +316,6 @@ __meta__ = {
 }
 chain = false
 schema = ""
-node = ""
 level = -5.0
 
 [sub_resource type="AnimationNodeAnimation" id=40]
@@ -328,7 +327,6 @@ __meta__ = {
 }
 chain = false
 schema = ""
-node = ""
 level = -10.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
@@ -416,7 +414,6 @@ __meta__ = {
 }
 chain = false
 schema = "Oof"
-node = ""
 level = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=51]
@@ -828,51 +825,57 @@ __meta__ = {
 [node name="Human" instance=ExtResource( 1 )]
 tags = "Actor Human"
 
-[node name="CameraRig" parent="." index="0" instance=ExtResource( 2 )]
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="." index="0"]
+aabb = AABB( -0.315984, 0, -0.172642, 0.623968, 1.905, 0.337472 )
+__meta__ = {
+
+}
+
+[node name="CameraRig" parent="." index="1" instance=ExtResource( 2 )]
 viewport = NodePath("../Perspective/Viewport")
 camera_offset = Vector3( 0, 0, -0.25 )
 
-[node name="Stamina" type="Node" parent="." index="1"]
+[node name="Stamina" type="Node" parent="." index="2"]
 script = ExtResource( 3 )
 __meta__ = {
 
 }
 
-[node name="Stance" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Stance" parent="." index="3" instance=ExtResource( 4 )]
 
-[node name="ClimbingSkill" parent="." index="3" instance=ExtResource( 5 )]
+[node name="ClimbingSkill" parent="." index="4" instance=ExtResource( 5 )]
 
-[node name="RightHandContainer" parent="." index="4" instance=ExtResource( 6 )]
+[node name="RightHandContainer" parent="." index="5" instance=ExtResource( 6 )]
 
-[node name="InventoryContainer" parent="." index="5" instance=ExtResource( 6 )]
+[node name="InventoryContainer" parent="." index="6" instance=ExtResource( 6 )]
 invisible = true
 
-[node name="ContactStim" parent="." index="6" instance=ExtResource( 7 )]
+[node name="ContactStim" parent="." index="7" instance=ExtResource( 7 )]
 stim_type = "Touch"
 
-[node name="AirborneStim" parent="." index="7" instance=ExtResource( 8 )]
+[node name="AirborneStim" parent="." index="8" instance=ExtResource( 8 )]
 delay = 2.0
 
-[node name="CameraRaycastStim" parent="." index="8" instance=ExtResource( 9 )]
+[node name="CameraRaycastStim" parent="." index="9" instance=ExtResource( 9 )]
 cast_to = Vector3( 0, 0, -50 )
 collision_mask = 3
 path = NodePath("../CameraRig/Camera")
 required_tags = "Item Map"
 
-[node name="Perspective" parent="." index="9" instance=ExtResource( 10 )]
+[node name="Perspective" parent="." index="10" instance=ExtResource( 10 )]
 
-[node name="AnimLayerMovement" parent="." index="10" instance=ExtResource( 11 )]
+[node name="AnimLayerMovement" parent="." index="11" instance=ExtResource( 11 )]
 parameters/0/0/playback = SubResource( 1 )
 parameters/1/0/playback = SubResource( 2 )
 
-[node name="CameraMode" parent="." index="11" instance=ExtResource( 12 )]
+[node name="CameraMode" parent="." index="12" instance=ExtResource( 12 )]
 editor/display_folded = true
 parameters/playback = SubResource( 3 )
 
-[node name="HUDMode" parent="." index="12" instance=ExtResource( 13 )]
-parameters/playback = SubResource( 99 )
+[node name="HUDMode" parent="." index="13" instance=ExtResource( 13 )]
+parameters/playback = SubResource( 4 )
 
-[node name="JumpOrClimbAction" parent="." index="13" instance=ExtResource( 14 )]
+[node name="JumpOrClimbAction" parent="." index="14" instance=ExtResource( 14 )]
 parameters/playback = SubResource( 5 )
 parameters/Climb/playback = SubResource( 6 )
 parameters/Jump/3/playback = SubResource( 7 )
@@ -880,80 +883,78 @@ parameters/Jump/4/playback = SubResource( 8 )
 parameters/Jump/5/playback = SubResource( 9 )
 tree_node = NodePath("../Behavior")
 
-[node name="PrimaryAction" parent="." index="14" instance=ExtResource( 15 )]
+[node name="PrimaryAction" parent="." index="15" instance=ExtResource( 15 )]
 parameters/playback = SubResource( 10 )
 parameters/IdleAim/playback = SubResource( 11 )
 tree_node = NodePath("../Behavior")
 
-[node name="ReloadAction" parent="." index="15" instance=ExtResource( 16 )]
+[node name="ReloadAction" parent="." index="16" instance=ExtResource( 16 )]
 parameters/playback = SubResource( 12 )
 tree_node = NodePath("../Behavior")
 
-[node name="DieAction" parent="." index="16" instance=ExtResource( 17 )]
+[node name="DieAction" parent="." index="17" instance=ExtResource( 17 )]
 parameters/playback = SubResource( 13 )
 tree_node = NodePath("../Behavior")
 
-[node name="TouchResponse" parent="." index="17" instance=ExtResource( 18 )]
+[node name="TouchResponse" parent="." index="18" instance=ExtResource( 18 )]
 parameters/playback = SubResource( 14 )
 tree_node = NodePath("../Reception")
 
-[node name="UseReactResponse" parent="." index="18" instance=ExtResource( 19 )]
+[node name="UseReactResponse" parent="." index="19" instance=ExtResource( 19 )]
 parameters/playback = SubResource( 15 )
 tree_node = NodePath("../Reception")
 
-[node name="EmptyReactResponse" parent="." index="19" instance=ExtResource( 20 )]
+[node name="EmptyReactResponse" parent="." index="20" instance=ExtResource( 20 )]
 parameters/playback = SubResource( 16 )
 tree_node = NodePath("../Reception")
 
-[node name="DamageResponse" parent="." index="20" instance=ExtResource( 21 )]
+[node name="DamageResponse" parent="." index="21" instance=ExtResource( 21 )]
 parameters/playback = SubResource( 17 )
 tree_node = NodePath("../Reception")
 
-[node name="ImpactSound" parent="." index="21" instance=ExtResource( 22 )]
+[node name="ImpactSound" parent="." index="22" instance=ExtResource( 22 )]
 tree_root = SubResource( 28 )
 parameters/playback = SubResource( 29 )
 parameters/Impact/playback = SubResource( 30 )
 tree_node = NodePath("../FeetAudio")
 
-[node name="StepSound" parent="." index="22" instance=ExtResource( 26 )]
+[node name="StepSound" parent="." index="23" instance=ExtResource( 26 )]
 tree_root = SubResource( 46 )
 parameters/playback = SubResource( 47 )
 parameters/Step/playback = SubResource( 48 )
 tree_node = NodePath("../FeetAudio")
 
-[node name="OofSound" parent="." index="23" instance=ExtResource( 28 )]
+[node name="OofSound" parent="." index="24" instance=ExtResource( 28 )]
 tree_root = SubResource( 54 )
 parameters/playback = SubResource( 55 )
 tree_node = NodePath("../VoiceAudio")
 
-[node name="VoiceAudio" parent="." index="24" instance=ExtResource( 29 )]
+[node name="VoiceAudio" parent="." index="25" instance=ExtResource( 29 )]
 tree_root = SubResource( 59 )
 parameters/playback = SubResource( 60 )
 bus = "Voice"
 
-[node name="FoleyAudio" parent="." index="25" instance=ExtResource( 29 )]
+[node name="FoleyAudio" parent="." index="26" instance=ExtResource( 29 )]
 tree_root = SubResource( 63 )
 parameters/playback = SubResource( 64 )
-bus = "SFX"
 
-[node name="FeetAudio" parent="." index="26" instance=ExtResource( 29 )]
+[node name="FeetAudio" parent="." index="27" instance=ExtResource( 29 )]
 tree_root = SubResource( 67 )
 parameters/playback = SubResource( 68 )
-bus = "SFX"
 
-[node name="Behavior" parent="." index="28"]
+[node name="Behavior" parent="." index="29"]
 tree_root = SubResource( 70 )
 parameters/playback = SubResource( 71 )
 
-[node name="Reception" parent="." index="29"]
+[node name="Reception" parent="." index="30"]
 tree_root = SubResource( 89 )
 parameters/playback = SubResource( 90 )
 
-[node name="Interface" parent="." index="30"]
+[node name="Interface" parent="." index="31"]
 tree_root = SubResource( 92 )
 parameters/playback = SubResource( 93 )
 
-[node name="Audio" parent="." index="31"]
+[node name="Audio" parent="." index="32"]
 tree_root = SubResource( 97 )
 parameters/playback = SubResource( 98 )
 

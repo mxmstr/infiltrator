@@ -261,6 +261,15 @@ func _restore_collision():
 			if movement:
 				movement._set_speed(container_node.release_speed)
 				movement._set_direction(container_node.release_direction, true)
+				
+				if container_node.release_angular_spread.length():
+				
+					var spread_x = container_node.release_angular_spread.x
+					movement.angular_direction.x = rand_range(-spread_x, spread_x)
+					
+					var spread_y = container_node.release_angular_spread.y
+					movement.angular_direction.y = rand_range(-spread_y, spread_y)
+				
 
 
 func _destroy():

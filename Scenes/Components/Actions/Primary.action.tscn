@@ -16,9 +16,10 @@ __meta__ = {
 }
 blend3 = ""
 chain = false
-expression = "get_node(CAMERA).rotation_degrees.x / 90"
+expression = "( rad2deg( Vector3(0, -1, 0).angle_to( get_node(CAMERA).global_transform.origin.direction_to( get_node(CAMERARAYCASTTARGET).global_transform.origin ).normalized() ) ) - 90 ) / 90"
 arguments = {
-"CAMERA": "../CameraRig/Camera"
+"CAMERA": "../CameraRig/Camera",
+"CAMERARAYCASTTARGET": "../CameraRaycastStim/Target"
 }
 
 [sub_resource type="AnimationNodeAnimation" id=2]
@@ -113,9 +114,10 @@ __meta__ = {
 }
 blend3 = ""
 chain = false
-expression = "get_node(CAMERA).rotation_degrees.x / 90"
+expression = "( rad2deg( Vector3(0, -1, 0).angle_to( get_node(CAMERA).global_transform.origin.direction_to( get_node(CAMERARAYCASTTARGET).global_transform.origin ).normalized() ) ) - 90 ) / 90"
 arguments = {
-"CAMERA": "../CameraRig/Camera"
+"CAMERA": "../CameraRig/Camera",
+"CAMERARAYCASTTARGET": "../CameraRaycastStim/Target"
 }
 
 [sub_resource type="AnimationNodeAnimation" id=10]
@@ -140,7 +142,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeBlendTree" id=13]
-graph_offset = Vector2( -238.809, 4.21986 )
+graph_offset = Vector2( 0, 118.169 )
 nodes/Blend3/node = SubResource( 9 )
 nodes/Blend3/position = Vector2( 180, 100 )
 nodes/Default/node = SubResource( 10 )

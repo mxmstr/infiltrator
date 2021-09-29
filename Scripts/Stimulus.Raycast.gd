@@ -5,6 +5,7 @@ export var auto = true
 export var continuous = false
 export var send_to_self = false
 
+export var move_target = true
 export var predict_collision = false
 export(NodePath) var path
 export(String) var bone_name
@@ -49,8 +50,6 @@ func _stimulate(stim_type_override=''):
 
 
 func _update_raycast_selection():
-	
-	$Target.global_transform.origin = get_collision_point()
 	
 	if _has_selection():
 		
@@ -147,7 +146,11 @@ func _process(delta):
 #
 #			temp_raycast.free()
 	
-	_update_raycast_selection()
+	if move_target and get_collision_point():
+		$Target.global_transform.origin = get_collision_point()
+	
+	if enabled:
+		_update_raycast_selection()
 	
 	if auto:
 		_stimulate()

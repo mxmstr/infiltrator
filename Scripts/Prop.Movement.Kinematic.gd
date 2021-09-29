@@ -3,6 +3,9 @@ extends 'res://Scripts/Prop.Movement.gd'
 export var gravity = -300.0
 export var accel = 3
 export var deaccel = 5
+export var angular_accel = 1.0
+export var angular_deaccel = 1.0
+export var projectile = false
 export var ghost = false
 
 var kinematic_collision
@@ -63,6 +66,43 @@ func _face(target, angle_delta=0.0):
 		
 		turn_target = owner.global_transform.basis.z.linear_interpolate(turn_target, angle_delta / angle)
 		owner.global_transform.look_at(owner.global_transform.origin - turn_target)
+
+
+func _process(delta):
+	
+	var new_velocity = angular_direction * angular_speed
+	var deltax = new_velocity.x - angular_velocity.x
+	var deltay = new_velocity.y - angular_velocity.y
+	var factorx
+	var factory
+	
+	if (new_velocity.x > 0 and angular_velocity.x > 0) or (new_velocity.x < 0 and angular_velocity.x < 0):
+		factorx = angular_accel
+	else:
+		factorx = angular_deaccel
+	
+	if (new_velocity.y > 0 and angular_velocity.y > 0) or (new_velocity.y < 0 and angular_velocity.y < 0):
+		factory = angular_accel
+	else:
+		factory = angular_deaccel
+	
+	if factorx > 0:
+		angular_velocity.x = angular_velocity.x + (deltax * factorx * delta)
+	else:
+		angular_velocity.x = new_velocity.x
+	
+	if factory > 0:
+		angular_velocity.y = angular_velocity.y + (deltay * factory * delta)
+	else:
+		angular_velocity.y = new_velocity.y
+	
+#	print(angular_direction.length())
+	
+	owner.rotation.y += angular_velocity.x
+	owner.rotation.x += angular_velocity.y
+	
+	if projectile:
+		_set_direction(Vector3(0, 0, 1), true)
 
 
 func _physics_process(delta):

@@ -629,6 +629,7 @@ required_tags = "Magazine"
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0, 0 )
 path = NodePath("..")
 release_speed = 10.0
+release_angular_spread = Vector2( 1, 1 )
 release_exclude_parent = true
 max_quantity = 1
 invisible = true

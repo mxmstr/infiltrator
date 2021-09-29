@@ -143,6 +143,13 @@ func _on_team_selected(team_index, player_index):
 	_save_to_config('Player' + str(player_index), 'team', team_index)
 
 
+func _on_autoaim_toggled(enabled, player_index):
+	
+	Meta.player_data[player_index].auto_aim = enabled
+	
+	_save_to_config('Player' + str(player_index), 'autoaim', enabled)
+
+
 func _on_weapon_toggled(enabled, weapon_name):
 	
 	weapons[weapon_name].enabled = enabled
@@ -195,6 +202,7 @@ func _ready():
 		var character_selector = child.get_node('CharacterSelector/OptionButton')
 		var hp_selector = child.get_node('HBoxContainer/HP')
 		var team_selector = child.get_node('HBoxContainer/Team/OptionButton')
+		var auto_aim_checkbox = child.get_node('HBoxContainer2/AutoAim/CheckBox')
 		
 		
 		for charname in characters.keys():
@@ -217,6 +225,10 @@ func _ready():
 		team_selector.selected = config.get_value('Player' + str(player_index), 'team', Meta.player_data_default.team)
 		_on_team_selected(team_selector.selected, player_index)
 		
+		
+		auto_aim_checkbox.connect('toggled', self, '_on_autoaim_toggled', [player_index])
+		auto_aim_checkbox.pressed = config.get_value('Player' + str(player_index), 'autoaim', Meta.player_data_default.auto_aim)
+		_on_autoaim_toggled(auto_aim_checkbox.pressed, player_index)
 		
 		player_index += 1
 	

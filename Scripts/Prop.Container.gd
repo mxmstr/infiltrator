@@ -9,6 +9,7 @@ export(Vector3) var position_offset
 export(Vector3) var rotation_degrees_offset
 export(float) var release_speed
 export(Vector3) var release_direction
+export(Vector2) var release_angular_spread
 export var release_exclude_parent = false
 export(int) var max_quantity
 export(bool) var invisible

@@ -129,6 +129,7 @@ func _ready():
 		var actor = Meta.AddActor(data.character, marker.global_transform.origin, marker.rotation_degrees)
 		actor.player_index = i
 		actor.get_node('Stamina').hp = data.hp
+		actor.get_node('WeaponTargetLock').auto_aim = data.auto_aim
 		actor._set_tag('Team', str(data.team))
 		
 		_add_viewport(actor, data)
