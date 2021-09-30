@@ -44,6 +44,14 @@ func _enter_tree():
 #	to_node.connect('tree_exited', self, 'queue_free')
 
 
+func _process(delta):
+	
+	if from_node and (not weakref(from_node).get_ref() or from_node.is_queued_for_deletion()) or \
+		to_node and (not weakref(to_node).get_ref() or to_node.is_queued_for_deletion()):
+		_destroy()
+		return
+
+
 func _destroy():
 	
 	set_process(false)

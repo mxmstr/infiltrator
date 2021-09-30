@@ -5,7 +5,7 @@ export(String) var container
 var root
 var container_node
 var restore_collisions = true
-var merge = true
+var merge = false
 var movement
 var collision
 var reception
@@ -149,48 +149,8 @@ func _move_item():
 	
 	if movement:
 		
-		var new_transform = root.global_transform#.translated(item_position_offset)
-#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.x, item_rotation_offset.x)
-#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.y, item_rotation_offset.y)
-#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.z, item_rotation_offset.z)
-		#new_transform.
-		
-		#new_transform.basis = container_node.root.global_transform.basis
-#		new_transform = new_transform.rotated(new_transform.basis.x, item_rotation_offset.x)
-#		new_transform = new_transform.rotated(new_transform.basis.y, item_rotation_offset.y)
-#		new_transform = new_transform.rotated(new_transform.basis.z, item_rotation_offset.z)
-
-#		new_transform.basis = container_node.root.global_transform.basis
-#		new_transform.basis = new_transform.basis.rotated(Vector3(1, 0, 0), item_rotation_offset.x)
-#		new_transform.basis = new_transform.basis.rotated(Vector3(0, 1, 0), item_rotation_offset.y)
-#		new_transform.basis = new_transform.basis.rotated(Vector3(0, 0, 1), item_rotation_offset.z)
-		
-#		new_transform.rotated(Vector3(0, 0, ))
-		
-#		var target_pos = to_node.global_transform.origin - container_node.root.global_transform.basis.z
-#		new_transform = new_transform.looking_at(target_pos, container_node.root.global_transform.basis.y)
-#		new_transform.basis = new_transform.basis.rotated(Vector3(1, 0, 0), item_rotation_offset.x)
-#		new_transform.basis = new_transform.basis.rotated(Vector3(0, 1, 0), item_rotation_offset.y)
-#		new_transform.basis = new_transform.basis.rotated(Vector3(0, 0, 1), item_rotation_offset.z)
-#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.x, item_rotation_offset.x)
-#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.y, item_rotation_offset.y)
-#		new_transform.basis = new_transform.basis.rotated(new_transform.basis.z, item_rotation_offset.z)
-		
+		var new_transform = root.global_transform
 		movement._teleport(new_transform.origin, new_transform.basis)
-		
-#		to_node.rotate_x(item_rotation_offset.x)
-#		to_node.rotate_y(item_rotation_offset.y)
-#		to_node.rotate_z(item_rotation_offset.z)
-		
-#		to_node.global_transform.origin = container_node.root.global_transform.origin
-#		to_node.translate_object_local(item_position_offset)
-#
-#		var target_pos = to_node.global_transform.origin - container_node.root.global_transform.basis.z
-#		to_node.look_at(target_pos, container_node.root.global_transform.basis.y)
-#		to_node.rotate_x(deg2rad(90))
-#		to_node.rotate_x(item_rotation_offset.x)
-#		to_node.rotate_y(item_rotation_offset.y)
-#		to_node.rotate_z(item_rotation_offset.z)
 
 
 func _ready():
@@ -203,7 +163,7 @@ func _ready():
 	collision = to_node.get_node_or_null('Collision')
 	reception = to_node.get_node_or_null('Reception')
 	
-	if container == '':
+	if container == '' or container == null:
 		
 		if not _find_free_container():
 			
@@ -213,6 +173,11 @@ func _ready():
 	else:
 		
 		if _try_container(from_node.get_node(container)):
+			
+			if to_node.is_queued_for_deletion():
+				_destroy()
+				return
+			
 			container_node = from_node.get_node(container)
 		else:
 			queue_free()
@@ -232,12 +197,12 @@ func _process(delta):
 	if is_queued_for_deletion():
 		return
 	
+	if from_node and (not weakref(from_node).get_ref() or from_node.is_queued_for_deletion()) or \
+		to_node and (not weakref(to_node).get_ref() or to_node.is_queued_for_deletion()):
+		return
+	
 	if not container_node._has_item(to_node):
 		queue_free()
-	
-	if not weakref(from_node).get_ref() or not weakref(to_node).get_ref():
-		_destroy()
-		return
 	
 #	if 'Pistol' == to_node.name:
 #		prints(to_node.name, item_position_offset, item_rotation_offset)
@@ -246,7 +211,7 @@ func _process(delta):
 
 func _restore_collision():
 	
-	if weakref(to_node).get_ref():
+	if weakref(to_node).get_ref() and not to_node.is_queued_for_deletion():
 	
 		to_node.visible = true
 		
@@ -256,7 +221,7 @@ func _restore_collision():
 #		if reception:
 #			reception.active = true
 		
-		if container_node:
+		if container_node and weakref(container_node).get_ref():
 			
 			if movement:
 				movement._set_speed(container_node.release_speed)
@@ -274,12 +239,13 @@ func _restore_collision():
 
 func _destroy():
 	
-	if container_node != null:
+	if container_node and weakref(container_node).get_ref():
 		container_node._remove_item(to_node)
 	
 	if restore_collisions:
 		_restore_collision()
 	
-	root.queue_free()
+	if root and weakref(root).get_ref():
+		root.queue_free()
 	
 	._destroy()

@@ -188,6 +188,20 @@ func _get_children_recursive(node, children=[]):
 	return children
 
 
+func Evaluate(node, expression, arguments):
+	
+	var exec = Expression.new()
+	if exec.parse(expression, arguments.keys()) > 0:
+		prints(expression, exec.get_error_text())
+	
+	var result = exec.execute(arguments.values(), node)
+	
+	if exec.has_execute_failed():
+		prints(expression, exec.get_error_text())
+	
+	return result
+
+
 func PreloadActors():
 	
 	var actors = _get_files_recursive('res://Scenes/Actors/', '', '.tscn')

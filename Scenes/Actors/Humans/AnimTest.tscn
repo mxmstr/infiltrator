@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=2]
@@ -21,7 +21,11 @@
 [ext_resource path="res://Animations/Human/ShootPumpShotgun.tres" type="Animation" id=19]
 [ext_resource path="res://Animations/Human/ShootSawedShotgun.tres" type="Animation" id=20]
 [ext_resource path="res://Animations/Human/ShootSniper.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/shoot_coltcommando.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/agent_swatpunch.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/eleftspincombo.tres" type="Animation" id=23]
+[ext_resource path="res://Animations/Human/flur_b.tres" type="Animation" id=24]
+[ext_resource path="res://Animations/Human/rave_dance.tres" type="Animation" id=25]
+[ext_resource path="res://Animations/Human/shoot_coltcommando.tres" type="Animation" id=26]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
@@ -82,6 +86,7 @@ visible = false
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+bones/16/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model/neo_reference_skeleton" index="1"]
 transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
@@ -138,9 +143,10 @@ visible = false
 
 [node name="neo_reference_skeleton" parent="Model2" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+bones/16/bound_children = [ NodePath("BoneAttachment2") ]
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
+transform = Transform( -0.96603, 0.045733, 0.254353, 0.203817, 0.739938, 0.641055, -0.158888, 0.671119, -0.724123, 0.252587, 1.63472, 0.600087 )
 bone_name = "Gun"
 __meta__ = {
 
@@ -195,6 +201,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../../Model2/neo_reference_skeleton")
+playback_speed = 2.0
 anims/ShootBerettaIdle = ExtResource( 13 )
 anims/ShootColt = ExtResource( 14 )
 anims/ShootDesertEagle = ExtResource( 15 )
@@ -204,7 +211,11 @@ anims/ShootMP5 = ExtResource( 18 )
 anims/ShootPumpShotgun = ExtResource( 19 )
 anims/ShootSawedShotgun = ExtResource( 20 )
 anims/ShootSniper = ExtResource( 21 )
-anims/shoot_coltcommando = ExtResource( 22 )
+anims/agent_swatpunch = ExtResource( 22 )
+anims/eleftspincombo = ExtResource( 23 )
+anims/flur_b = ExtResource( 24 )
+anims/rave_dance = ExtResource( 25 )
+anims/shoot_coltcommando = ExtResource( 26 )
 __meta__ = {
 
 }

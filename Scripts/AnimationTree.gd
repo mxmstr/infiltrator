@@ -23,7 +23,11 @@ func _on_pre_call_method_track(_animation, track_index, key_index):
 		
 		if arg is String and arg.begins_with('$'):
 			
-			key.args[index] = get_indexed(arg.right(1))
+			if arg.right(1) == 'self':
+				key.args[index] = self
+			else:
+				key.args[index] = get_indexed(arg.right(1))
+			
 			_animation.track_set_key_value(track_index, key_index, key)
 
 

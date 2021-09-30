@@ -41,10 +41,12 @@ func _add_item(item):
 	if max_quantity > 0 and items.size() >= max_quantity:
 		return false
 	
-	if factory_mode and not item is String:
+	if factory_mode:
 		
-		item.queue_free()
-		item = item.system_path
+		if not item is String:
+		
+			item.queue_free()
+			item = item.system_path
 	
 	if release_exclude_parent:
 		_exclude_recursive(item, owner)
@@ -123,6 +125,32 @@ func _get_item_with_tags(tags):
 	return null
 
 
+func _transfer_items_to(to):
+	
+	if factory_mode and items.size():
+		
+		var dummy = Meta.AddActor(items[0])
+		var link = Meta.CreateLink(to, dummy, 'Contains')
+		
+		if link.container_node:
+			
+			while items.size():
+				
+				link.container_node._add_item(items.pop_front())
+			
+			link._destroy()
+		
+		dummy.queue_free()
+	
+	else:
+	
+		for item in _release_all():
+			
+			if Meta.CreateLink(to, item, 'Contains').is_queued_for_deletion():
+				print(item.name)
+				item.queue_free()
+
+
 func _push_front_into_container(new_container):
 	
 	if not items.size():
@@ -182,7 +210,32 @@ func _release(item):
 
 func _release_all():
 	
-	Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+	if factory_mode:
+		
+		var released = []
+		
+		for item in items:
+			released.append(Meta.AddActor(item, root.global_transform.origin, root.rotation_degrees))
+		
+		return released
+	
+	else:
+		
+		return Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+
+
+func _delete_all():
+	
+	if factory_mode:
+		
+		items.clear()
+	
+	else:
+		
+		for item in items:
+			
+			Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+			item.queue_free()
 
 
 func _pool_items(item_tags_string, dont_clone=false):

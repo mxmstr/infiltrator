@@ -725,7 +725,6 @@ __meta__ = {
 }
 chain = false
 schema = ""
-node = ""
 level = -5.0
 
 [sub_resource type="AnimationNodeAnimation" id=87]
@@ -737,7 +736,6 @@ __meta__ = {
 }
 chain = false
 schema = ""
-node = ""
 level = -10.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=88]
@@ -825,7 +823,6 @@ __meta__ = {
 }
 chain = false
 schema = "Oof"
-node = ""
 level = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=98]
@@ -1064,92 +1061,91 @@ __meta__ = {
 }
 right_hand_container = NodePath("../RightHandContainer")
 chamber_container = "Chamber"
-target = NodePath("../CameraRaycastStim/Target")
 
-[node name="CameraRaycastStim" parent="." index="23"]
+[node name="CameraRaycastStim" parent="." index="30"]
 editor/display_folded = true
 
 [node name="Target" parent="CameraRaycastStim" index="1"]
 editor/display_folded = true
 
-[node name="Perspective" parent="." index="24"]
+[node name="Perspective" parent="." index="31"]
 editor/display_folded = true
 
-[node name="AnimLayerMovement" parent="." index="25"]
+[node name="AnimLayerMovement" parent="." index="32"]
 parameters/0/0/playback = SubResource( 48 )
 parameters/1/0/playback = SubResource( 49 )
 
-[node name="CameraMode" parent="." index="26"]
+[node name="CameraMode" parent="." index="33"]
 parameters/playback = SubResource( 50 )
 
-[node name="HUDMode" parent="." index="27"]
+[node name="HUDMode" parent="." index="34"]
 parameters/playback = SubResource( 51 )
 
-[node name="JumpOrClimbAction" parent="." index="28"]
+[node name="JumpOrClimbAction" parent="." index="35"]
 parameters/playback = SubResource( 52 )
 parameters/Climb/playback = SubResource( 53 )
 parameters/Jump/3/playback = SubResource( 54 )
 parameters/Jump/4/playback = SubResource( 55 )
 parameters/Jump/5/playback = SubResource( 56 )
 
-[node name="PrimaryAction" parent="." index="29"]
+[node name="PrimaryAction" parent="." index="36"]
 parameters/playback = SubResource( 57 )
 parameters/IdleAim/playback = SubResource( 58 )
 
-[node name="ReloadAction" parent="." index="30"]
+[node name="ReloadAction" parent="." index="37"]
 parameters/playback = SubResource( 59 )
 
-[node name="DieAction" parent="." index="31"]
+[node name="DieAction" parent="." index="38"]
 parameters/playback = SubResource( 60 )
 
-[node name="TouchResponse" parent="." index="32"]
+[node name="TouchResponse" parent="." index="39"]
 parameters/playback = SubResource( 61 )
 
-[node name="UseReactResponse" parent="." index="33"]
+[node name="UseReactResponse" parent="." index="40"]
 parameters/playback = SubResource( 62 )
 
-[node name="EmptyReactResponse" parent="." index="34"]
+[node name="EmptyReactResponse" parent="." index="41"]
 parameters/playback = SubResource( 63 )
 
-[node name="DamageResponse" parent="." index="35"]
+[node name="DamageResponse" parent="." index="42"]
 parameters/playback = SubResource( 64 )
 
-[node name="ImpactSound" parent="." index="36"]
+[node name="ImpactSound" parent="." index="43"]
 tree_root = SubResource( 75 )
 parameters/playback = SubResource( 76 )
 parameters/Impact/playback = SubResource( 77 )
 
-[node name="StepSound" parent="." index="37"]
+[node name="StepSound" parent="." index="44"]
 tree_root = SubResource( 93 )
 parameters/playback = SubResource( 94 )
 parameters/Step/playback = SubResource( 95 )
 
-[node name="OofSound" parent="." index="38"]
+[node name="OofSound" parent="." index="45"]
 tree_root = SubResource( 101 )
 parameters/playback = SubResource( 102 )
 
-[node name="VoiceAudio" parent="." index="39"]
+[node name="VoiceAudio" parent="." index="46"]
 tree_root = SubResource( 106 )
 parameters/playback = SubResource( 107 )
 
-[node name="FoleyAudio" parent="." index="40"]
+[node name="FoleyAudio" parent="." index="47"]
 tree_root = SubResource( 110 )
 parameters/playback = SubResource( 111 )
 
-[node name="FeetAudio" parent="." index="41"]
+[node name="FeetAudio" parent="." index="48"]
 tree_root = SubResource( 114 )
 parameters/playback = SubResource( 115 )
 
-[node name="Behavior" parent="." index="43"]
+[node name="Behavior" parent="." index="50"]
 parameters/playback = SubResource( 116 )
 
-[node name="Reception" parent="." index="44"]
+[node name="Reception" parent="." index="51"]
 parameters/playback = SubResource( 117 )
 
-[node name="Interface" parent="." index="45"]
+[node name="Interface" parent="." index="52"]
 parameters/playback = SubResource( 118 )
 
-[node name="Audio" parent="." index="46"]
+[node name="Audio" parent="." index="53"]
 parameters/playback = SubResource( 119 )
 
 [editable path="CameraRig"]
