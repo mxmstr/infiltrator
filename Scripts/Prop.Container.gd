@@ -33,7 +33,7 @@ func _is_empty():
 
 func _is_full():
 	
-	return items.size() >= max_quantity
+	return max_quantity > 0 and items.size() >= max_quantity
 
 
 func _add_item(item):
@@ -131,14 +131,15 @@ func _transfer_items_to(to):
 		
 		var dummy = Meta.AddActor(items[0])
 		var link = Meta.CreateLink(to, dummy, 'Contains')
+		var container_node = link.container_node
 		
-		if link.container_node:
-			
-			while items.size():
-				
-				link.container_node._add_item(items.pop_front())
+		if container_node:
 			
 			link._destroy()
+			
+			while items.size() and not container_node._is_full():
+				
+				container_node._add_item(items.pop_front())
 		
 		dummy.queue_free()
 	
@@ -147,8 +148,69 @@ func _transfer_items_to(to):
 		for item in _release_all():
 			
 			if Meta.CreateLink(to, item, 'Contains').is_queued_for_deletion():
-				print(item.name)
 				item.queue_free()
+
+
+func _is_container(node):
+	
+	if node.get_script() != null:
+		
+		var script_name = node.get_script().get_path().get_file()
+		return script_name == 'Prop.Container.gd'
+	
+	return false
+
+
+func _can_transfer_items_from(from):
+	
+	for prop in from.get_children():
+		
+		if _is_container(prop):
+			
+			var valid = true
+			
+			for required_tag in required_tags_dict.keys():
+				
+				if not required_tag in prop.required_tags_dict.keys():
+					
+					valid = false
+					break
+			
+			if valid:
+				return true
+	
+	return false
+
+
+func _transfer_items_from(from):
+	
+	var from_container
+	var best_tag_count = 0
+	
+	for prop in from.get_children():
+		
+		if _is_container(prop):
+			
+			var tag_count = 0
+			
+			for required_tag in required_tags_dict.keys():
+				if required_tag in prop.required_tags_dict.keys():
+					tag_count += 1
+			
+			if tag_count > best_tag_count:
+				
+				from_container = prop
+				best_tag_count = tag_count
+	
+	if from_container:
+		
+		if factory_mode:
+			
+			while not _is_full() and from_container.items.size():
+				
+				var item = from_container.items.pop_front()
+				
+				_add_item(item)
 
 
 func _push_front_into_container(new_container):

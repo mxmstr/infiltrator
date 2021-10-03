@@ -13,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "get_node(STAMINA)._damage( int( get_node(RECEPTION).data.source._get_tag(DAMAGE)[0] ) )", {
+"args": [ "get_node(STAMINA)._damage( int( get_node(RECEPTION).data.source._get_tag(DAMAGE) ) )", {
 "DAMAGE": "Damage",
 "RECEPTION": "Reception",
 "STAMINA": "Stamina"

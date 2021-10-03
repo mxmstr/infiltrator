@@ -31,6 +31,7 @@ __meta__ = {
 }
 
 [node name="Background" type="NinePatchRect" parent="."]
+self_modulate = Color( 0.890196, 1, 0.698039, 1 )
 margin_right = 672.0
 margin_bottom = 480.0
 texture = ExtResource( 2 )

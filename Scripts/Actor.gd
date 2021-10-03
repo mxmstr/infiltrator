@@ -52,7 +52,10 @@ func _enter_tree():
 		var values = Array(tag.split(':'))
 		var key = values.pop_front()
 		
-		tags_dict[key] = values
+		if values.size() == 1:
+			tags_dict[key] = values[0]
+		else:
+			tags_dict[key] = values
 	
 	
 	for child in get_children():

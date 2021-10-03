@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
@@ -25,21 +24,11 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=451]
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
 auto_advance = true
-disabled = true
-script = ExtResource( 2 )
 __meta__ = {
 
 }
-transition_expression = ""
-update_mode = "state_starting"
-expression = "get_node(INVENTORY)._has_item_with_tags( data.source.get_node(MAGAZINE).required_tags_dict.keys() )"
-arguments = {
-"INVENTORY": "../InventoryContainer",
-"MAGAZINE": "Magazine"
-}
-delay = 0.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
 switch_mode = 2
@@ -48,21 +37,21 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=452]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 auto_advance = true
 priority = 2
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=6]
+[sub_resource type="AnimationNodeStateMachine" id=12]
 states/EmptyReact/node = SubResource( 1 )
 states/EmptyReact/position = Vector2( 211, 146 )
 states/EmptyReactResponse/node = SubResource( 2 )
 states/EmptyReactResponse/position = Vector2( 525.951, 89 )
 states/End/node = SubResource( 3 )
 states/End/position = Vector2( 832.613, 146 )
-transitions = [ "EmptyReact", "EmptyReactResponse", SubResource( 451 ), "EmptyReactResponse", "End", SubResource( 5 ), "EmptyReact", "End", SubResource( 452 ) ]
+transitions = [ "EmptyReact", "EmptyReactResponse", SubResource( 4 ), "EmptyReactResponse", "End", SubResource( 5 ), "EmptyReact", "End", SubResource( 11 ) ]
 start_node = "EmptyReact"
 end_node = "End"
 graph_offset = Vector2( -24.4477, 21.2765 )
@@ -70,27 +59,25 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "DefaultAnim"
+[sub_resource type="Animation" id=14]
 length = 0.001
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "EmptyReactResponse"
+[sub_resource type="Animation" id=10]
 length = 0.001
 tracks/0/type = "method"
 tracks/0/path = NodePath("..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -124,10 +111,10 @@ __meta__ = {
 }
 
 [node name="EmptyReactResponse" type="AnimationTree"]
-tree_root = SubResource( 6 )
+tree_root = SubResource( 12 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 7 )
-script = ExtResource( 3 )
+parameters/playback = SubResource( 13 )
+script = ExtResource( 2 )
 __meta__ = {
 
 }
@@ -135,8 +122,8 @@ start_node = "EmptyReact"
 end_node = "End"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = SubResource( 8 )
-anims/EmptyReactResponse = SubResource( 9 )
+anims/DefaultAnim = SubResource( 14 )
+anims/EmptyReactResponse = SubResource( 10 )
 __meta__ = {
 
 }

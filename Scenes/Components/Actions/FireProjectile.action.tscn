@@ -29,7 +29,7 @@ __meta__ = {
 }
 chain = false
 schema = "FireProjectile"
-expression = "1 / float(owner._get_tag(TAG)[0])"
+expression = "1 / float(owner._get_tag(TAG))"
 arguments = {
 "TAG": "FireRate"
 }
@@ -162,7 +162,7 @@ states/Start/node = SubResource( 5 )
 states/Start/position = Vector2( 228, 188 )
 transitions = [ "Start", "FireProjectile", SubResource( 6 ), "Start", "LoadChamber", SubResource( 7 ), "FireProjectile", "LoadChamber", SubResource( 8 ), "FireProjectile", "Start", SubResource( 9 ), "FireProjectile", "Empty", SubResource( 10 ), "Empty", "Start", SubResource( 11 ), "LoadChamber", "DefaultAnim", SubResource( 12 ), "DefaultAnim", "Start", SubResource( 13 ) ]
 start_node = "Start"
-graph_offset = Vector2( -71.387, 30.7307 )
+graph_offset = Vector2( -71.387, 134.521 )
 __meta__ = {
 
 }
@@ -179,7 +179,7 @@ tracks/0/path = NodePath("../..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),

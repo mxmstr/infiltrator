@@ -74,6 +74,11 @@ func _teleport_to_state(_name, _data={}):
 		tree_root._start(_name)
 
 
+func _stop():
+	
+	get('parameters/playback').stop()
+
+
 func _ready():
 	
 	tree_root = tree_root.duplicate(true)

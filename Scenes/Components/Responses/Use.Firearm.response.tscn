@@ -5,37 +5,37 @@
 [ext_resource path="res://Scripts/Prop.Action.gd" type="Script" id=3]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
 
-[sub_resource type="AnimationNodeAnimation" id=290]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DoUseAction"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=291]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=330]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "ReflectEmptyReact"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=292]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "ReflectUseItemReact"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=293]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=318]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 auto_advance = true
 disabled = true
 script = ExtResource( 2 )
@@ -50,28 +50,28 @@ arguments = {
 }
 delay = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=287]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=328]
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=329]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 auto_advance = true
 priority = 2
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=331]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 auto_advance = true
 disabled = true
 script = ExtResource( 2 )
@@ -80,35 +80,36 @@ __meta__ = {
 }
 transition_expression = ""
 update_mode = "state_starting"
-expression = "get_node(CHAMBER)._is_empty() and get_node(MAGAZINE)._is_empty()"
+expression = "get_node(CHAMBER)._is_empty() and get_node(MAGAZINE).items[0].get_node(CONTAINER)._is_empty()"
 arguments = {
 "CHAMBER": "../Chamber",
+"CONTAINER": "Container",
 "MAGAZINE": "../Magazine"
 }
 delay = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=332]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=294]
-states/DoUseAction/node = SubResource( 290 )
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/DoUseAction/node = SubResource( 1 )
 states/DoUseAction/position = Vector2( 483, 187 )
-states/End/node = SubResource( 291 )
+states/End/node = SubResource( 2 )
 states/End/position = Vector2( 968, 244 )
-states/ReflectEmptyReact/node = SubResource( 330 )
+states/ReflectEmptyReact/node = SubResource( 3 )
 states/ReflectEmptyReact/position = Vector2( 483, 311.45 )
-states/ReflectUseItemReact/node = SubResource( 292 )
+states/ReflectUseItemReact/node = SubResource( 4 )
 states/ReflectUseItemReact/position = Vector2( 743, 187 )
-states/Use/node = SubResource( 293 )
+states/Use/node = SubResource( 5 )
 states/Use/position = Vector2( 278, 244 )
-transitions = [ "Use", "DoUseAction", SubResource( 318 ), "DoUseAction", "ReflectUseItemReact", SubResource( 287 ), "ReflectUseItemReact", "End", SubResource( 328 ), "Use", "End", SubResource( 329 ), "Use", "ReflectEmptyReact", SubResource( 331 ), "ReflectEmptyReact", "End", SubResource( 332 ) ]
+transitions = [ "Use", "DoUseAction", SubResource( 6 ), "DoUseAction", "ReflectUseItemReact", SubResource( 7 ), "ReflectUseItemReact", "End", SubResource( 8 ), "Use", "End", SubResource( 9 ), "Use", "ReflectEmptyReact", SubResource( 10 ), "ReflectEmptyReact", "End", SubResource( 11 ) ]
 start_node = "Use"
 end_node = "End"
-graph_offset = Vector2( 29.0026, 110.45 )
+graph_offset = Vector2( 153.61, 124.758 )
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -116,12 +117,12 @@ __meta__ = {
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=295]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=296]
+[sub_resource type="Animation" id=14]
 resource_name = "DoUseAction"
 length = 0.001
 tracks/0/type = "method"
@@ -134,7 +135,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "get_node(BEHAVIOR)._start_state(_get_tag(TAG)[0])", {
+"args": [ "get_node(BEHAVIOR)._start_state(_get_tag(TAG))", {
 "BEHAVIOR": "Behavior",
 "TAG": "UseAction"
 } ],
@@ -145,7 +146,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=333]
+[sub_resource type="Animation" id=15]
 resource_name = "ReflectEmptyReact"
 length = 0.001
 tracks/0/type = "method"
@@ -166,7 +167,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=297]
+[sub_resource type="Animation" id=16]
 resource_name = "ReflectUseItemReact"
 length = 0.001
 tracks/0/type = "method"
@@ -188,9 +189,9 @@ __meta__ = {
 }
 
 [node name="UseResponse" type="AnimationTree"]
-tree_root = SubResource( 294 )
+tree_root = SubResource( 12 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 295 )
+parameters/playback = SubResource( 13 )
 script = ExtResource( 3 )
 __meta__ = {
 
@@ -199,9 +200,9 @@ start_node = "Use"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 4 )
-anims/DoUseAction = SubResource( 296 )
-anims/ReflectEmptyReact = SubResource( 333 )
-anims/ReflectUseItemReact = SubResource( 297 )
+anims/DoUseAction = SubResource( 14 )
+anims/ReflectEmptyReact = SubResource( 15 )
+anims/ReflectUseItemReact = SubResource( 16 )
 __meta__ = {
 
 }

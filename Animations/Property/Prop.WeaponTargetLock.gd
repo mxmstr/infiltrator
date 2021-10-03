@@ -102,8 +102,8 @@ func _ready():
 			
 			if actor != owner and actor.get('tags') and actor._has_tag('Team'):
 				
-				var their_team = int(actor._get_tag('Team')[0])
-				var my_team = int(owner._get_tag('Team')[0])
+				var their_team = int(actor._get_tag('Team'))
+				var my_team = int(owner._get_tag('Team'))
 				
 				if their_team == Meta.Team.None or their_team != my_team:
 					
@@ -122,7 +122,7 @@ func _process(delta):
 				targeted_enemy = null
 				return
 			
-			if camera_raycast.get_collider() and camera_raycast.get_collider() in enemies:
+			if camera_raycast.get_collider() and camera_raycast.get_collider().owner in enemies:
 				
 				camera_raycast.move_target = true
 			

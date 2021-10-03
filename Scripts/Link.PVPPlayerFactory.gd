@@ -4,42 +4,74 @@ var player_points = [0, 0, 0, 0]
 var player_deaths = [0, 0, 0, 0]
 var team_points = [0, 0, 0, 0, 0]
 var spawn_links
+var actors = []
+
+signal player_died
+signal player_scored
+signal player_won
+signal team_scored
+signal team_won
 
 
 func _on_player_died(player):
 	
 	player_deaths[player.player_index] += 1
+	emit_signal('player_died', player.player_index, player_deaths[player.player_index])
+	
 	
 	var behavior = player.get_node('Behavior')
 	
 	if behavior.data.has('shooter'):
 		
 		var shooter = behavior.data.shooter
-		var team = int(shooter._get_tag('Team'))
+		var shooter_team = int(shooter._get_tag('Team'))
+		var player_team = int(player._get_tag('Team'))
 		
-		if team > 0:
+		if shooter_team > 0 and shooter_team != player_team:
 			
-			team_points[team] += 1
+			team_points[shooter_team] += 1
+			emit_signal('team_scored', shooter_team, team_points[shooter_team])
 			
-			if team_points[team] >= Meta.multi_points_to_win:
-				pass
+			if team_points[shooter_team] >= Meta.multi_points_to_win:
+				
+				emit_signal('team_won', Meta.Team.keys()[shooter_team], team_points)
+				
+				_suspend_players()
+				_play_victory_music()
 			
 		else:
 			
 			player_points[shooter.player_index] += 1
+			emit_signal('player_scored', shooter.player_index, player_points[shooter.player_index])
 			
 			if player_points[shooter.player_index] >= Meta.multi_points_to_win:
-				pass
+				
+				emit_signal('player_won', shooter.name, player_points)
+				
+				_suspend_players()
+				_play_victory_music()
 
 
-func _play_music():
+func _play_fight_music():
 	
-	var animation_list = Array($AnimationPlayer.get_animation_list())
+	var animation_list = Array($FightMusic.get_animation_list())
 	randomize()
 	animation_list.shuffle()
 	
-	$AnimationPlayer.play(animation_list[0])
-#	$Music.play()
+	$FightMusic.play(animation_list[0])
+
+
+func _play_victory_music():
+	
+	$FightMusic.stop()
+	$VictoryMusic.play($VictoryMusic.get_animation_list()[0])
+
+
+func _suspend_players():
+	
+	for actor in actors:
+		
+		actor.get_node('HUDMode')._teleport_to_state('Victory')
 
 
 func _respawn(actor):
@@ -119,8 +151,6 @@ func _ready():
 	spawn_links = Meta.GetLinks(self, null, 'PVPPlayerSpawn')
 	spawn_links.shuffle()
 	
-	var actors = []
-	
 	for i in range(Meta.player_count):
 		
 		var data = Meta.player_data[i]
@@ -137,7 +167,7 @@ func _ready():
 		actors.append(actor)
 	
 	
-	_play_music()
+	_play_fight_music()
 	
 	
 	yield(get_tree(), 'idle_frame')

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=2]
@@ -12,20 +12,24 @@
 [ext_resource path="res://Scenes/Actors/Items/SawedoffShotgun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Actors/Items/Sniper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Models/Humans/Anderson.escn" type="PackedScene" id=12]
-[ext_resource path="res://Animations/Human/Action/ShootBerettaIdle.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/ShootColt.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/ShootDesertEagle.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/ShootIngram.tres" type="Animation" id=16]
-[ext_resource path="res://Animations/Human/ShootJackhammer.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/ShootMP5.tres" type="Animation" id=18]
-[ext_resource path="res://Animations/Human/ShootPumpShotgun.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/ShootSawedShotgun.tres" type="Animation" id=20]
-[ext_resource path="res://Animations/Human/ShootSniper.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/agent_swatpunch.tres" type="Animation" id=22]
-[ext_resource path="res://Animations/Human/eleftspincombo.tres" type="Animation" id=23]
-[ext_resource path="res://Animations/Human/flur_b.tres" type="Animation" id=24]
-[ext_resource path="res://Animations/Human/rave_dance.tres" type="Animation" id=25]
-[ext_resource path="res://Animations/Human/shoot_coltcommando.tres" type="Animation" id=26]
+[ext_resource path="res://Animations/Human/CARTLEFT.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/Action/ShootBerettaIdle.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/ShootColt.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/ShootDesertEagle.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/ShootIngram.tres" type="Animation" id=17]
+[ext_resource path="res://Animations/Human/ShootJackhammer.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Human/ShootMP5.tres" type="Animation" id=19]
+[ext_resource path="res://Animations/Human/ShootPumpShotgun.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Human/ShootSawedShotgun.tres" type="Animation" id=21]
+[ext_resource path="res://Animations/Human/ShootSniper.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/agent_swatpunch.tres" type="Animation" id=23]
+[ext_resource path="res://Animations/Human/bulletdodge_front.tres" type="Animation" id=24]
+[ext_resource path="res://Animations/Human/eleftspincombo.tres" type="Animation" id=25]
+[ext_resource path="res://Animations/Human/flur_b.tres" type="Animation" id=26]
+[ext_resource path="res://Animations/Human/flykick_law.tres" type="Animation" id=27]
+[ext_resource path="res://Animations/Human/rave_dance.tres" type="Animation" id=28]
+[ext_resource path="res://Animations/Human/shoot_coltcommando.tres" type="Animation" id=29]
+[ext_resource path="res://Animations/Human/twisting_kickchop2.tres" type="Animation" id=30]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
@@ -86,7 +90,6 @@ visible = false
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
-bones/16/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model/neo_reference_skeleton" index="1"]
 transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
@@ -142,18 +145,17 @@ visible = false
 [node name="Model2" parent="." instance=ExtResource( 12 )]
 
 [node name="neo_reference_skeleton" parent="Model2" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
-bones/16/bound_children = [ NodePath("BoneAttachment2") ]
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 1.69407e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( -0.96603, 0.045733, 0.254353, 0.203817, 0.739938, 0.641055, -0.158888, 0.671119, -0.724123, 0.252587, 1.63472, 0.600087 )
+transform = Transform( 0.73362, -0.446422, 0.512357, 0.469557, -0.212015, -0.857069, 0.491242, 0.869343, 0.0540821, 0.141304, 1.12355, 0.487748 )
 bone_name = "Gun"
 __meta__ = {
 
 }
 
 [node name="Beretta" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 2 )]
-transform = Transform( -4.37113e-08, 0.999998, 4.37113e-08, 0, -4.37113e-08, 0.999999, 0.999999, 4.37113e-08, 1.91068e-15, -0.00848666, 0.00501686, 0.0258089 )
+transform = Transform( 0.999999, 0, 0, 0, -4.37113e-08, 0.999999, 0, -0.999998, -4.37113e-08, -0.00848666, 0.00501686, 0.0258089 )
 
 [node name="ColtCommando" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 3 )]
 transform = Transform( 0.99757, 0.0684788, 0.0128557, -0.0133609, 0.00692052, 0.999886, 0.0683821, -0.997628, 0.00781846, -0.0510388, -0.0117496, -0.000418305 )
@@ -201,21 +203,24 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../../Model2/neo_reference_skeleton")
-playback_speed = 2.0
-anims/ShootBerettaIdle = ExtResource( 13 )
-anims/ShootColt = ExtResource( 14 )
-anims/ShootDesertEagle = ExtResource( 15 )
-anims/ShootIngram = ExtResource( 16 )
-anims/ShootJackhammer = ExtResource( 17 )
-anims/ShootMP5 = ExtResource( 18 )
-anims/ShootPumpShotgun = ExtResource( 19 )
-anims/ShootSawedShotgun = ExtResource( 20 )
-anims/ShootSniper = ExtResource( 21 )
-anims/agent_swatpunch = ExtResource( 22 )
-anims/eleftspincombo = ExtResource( 23 )
-anims/flur_b = ExtResource( 24 )
-anims/rave_dance = ExtResource( 25 )
-anims/shoot_coltcommando = ExtResource( 26 )
+anims/CARTLEFT = ExtResource( 13 )
+anims/ShootBerettaIdle = ExtResource( 14 )
+anims/ShootColt = ExtResource( 15 )
+anims/ShootDesertEagle = ExtResource( 16 )
+anims/ShootIngram = ExtResource( 17 )
+anims/ShootJackhammer = ExtResource( 18 )
+anims/ShootMP5 = ExtResource( 19 )
+anims/ShootPumpShotgun = ExtResource( 20 )
+anims/ShootSawedShotgun = ExtResource( 21 )
+anims/ShootSniper = ExtResource( 22 )
+anims/agent_swatpunch = ExtResource( 23 )
+anims/bulletdodge_front = ExtResource( 24 )
+anims/eleftspincombo = ExtResource( 25 )
+anims/flur_b = ExtResource( 26 )
+anims/flykick_law = ExtResource( 27 )
+anims/rave_dance = ExtResource( 28 )
+anims/shoot_coltcommando = ExtResource( 29 )
+anims/twisting_kickchop2 = ExtResource( 30 )
 __meta__ = {
 
 }

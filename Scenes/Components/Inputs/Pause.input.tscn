@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=4]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+chain = false
+schema = "PauseInput"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+resource_local_to_scene = true
+auto_advance = true
+disabled = true
+script = ExtResource( 3 )
+__meta__ = {
+
+}
+action = "Pause"
+status = 3
+strength_multiplier = 1.0
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+resource_local_to_scene = true
+states/Pause/node = SubResource( 1 )
+states/Pause/position = Vector2( 791.391, 192 )
+states/Start/node = SubResource( 2 )
+states/Start/position = Vector2( 300, 192 )
+transitions = [ "Pause", "Start", SubResource( 3 ), "Start", "Pause", SubResource( 4 ) ]
+start_node = "Start"
+graph_offset = Vector2( -74.501, 65.4608 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
+
+[node name="PauseInput" type="AnimationTree"]
+tree_root = SubResource( 5 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 6 )
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 5 )
+__meta__ = {
+
+}

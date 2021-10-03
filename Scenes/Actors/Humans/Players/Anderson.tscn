@@ -1,61 +1,60 @@
-[gd_scene load_steps=159 format=2]
+[gd_scene load_steps=164 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Players/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Actor.gd" type="Script" id=2]
-[ext_resource path="res://Models/Humans/Anderson.escn" type="PackedScene" id=3]
-[ext_resource path="res://Models/Humans/DefaultHumanCollision.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/AudioTree.StateMachine.gd" type="Script" id=10]
-[ext_resource path="res://Scripts/AudioTree.Animation.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=13]
+[ext_resource path="res://Models/Humans/Anderson.escn" type="PackedScene" id=2]
+[ext_resource path="res://Models/Humans/DefaultHumanCollision.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Input.Transition.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/AudioTree.StateMachine.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/AudioTree.Animation.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=12]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=7]
 resource_local_to_scene = true
 animation = "JumpOrClimb"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=8]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = "MoveSidestepStopInput"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=9]
 resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 __meta__ = {
 
 }
@@ -63,7 +62,7 @@ action = "Left"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -72,11 +71,11 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 __meta__ = {
 
 }
@@ -84,7 +83,7 @@ action = "Right"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -92,71 +91,71 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=10]
+[sub_resource type="AnimationNodeStateMachine" id=14]
 resource_local_to_scene = true
-states/NotLeft/node = SubResource( 3 )
+states/NotLeft/node = SubResource( 7 )
 states/NotLeft/position = Vector2( 557, 140 )
-states/NotRight/node = SubResource( 4 )
+states/NotRight/node = SubResource( 8 )
 states/NotRight/position = Vector2( 861.391, 192 )
-states/Start/node = SubResource( 5 )
+states/Start/node = SubResource( 9 )
 states/Start/position = Vector2( 257, 192 )
-transitions = [ "Start", "NotLeft", SubResource( 6 ), "NotLeft", "Start", SubResource( 7 ), "NotLeft", "NotRight", SubResource( 8 ), "NotRight", "Start", SubResource( 9 ) ]
+transitions = [ "Start", "NotLeft", SubResource( 10 ), "NotLeft", "Start", SubResource( 11 ), "NotLeft", "NotRight", SubResource( 12 ), "NotRight", "Start", SubResource( 13 ) ]
 start_node = "Start"
 graph_offset = Vector2( -74.501, 65.4608 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=18]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = "MoveForwardStopInput"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=19]
 resource_local_to_scene = true
 animation = "JumpOrClimb"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=20]
 resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 __meta__ = {
 
 }
@@ -164,7 +163,7 @@ action = "Forward"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -173,11 +172,11 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 __meta__ = {
 
 }
@@ -185,7 +184,7 @@ action = "Backward"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -193,71 +192,71 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=21]
+[sub_resource type="AnimationNodeStateMachine" id=25]
 resource_local_to_scene = true
-states/NotBackward/node = SubResource( 14 )
+states/NotBackward/node = SubResource( 18 )
 states/NotBackward/position = Vector2( 861.391, 192 )
-states/NotForward/node = SubResource( 15 )
+states/NotForward/node = SubResource( 19 )
 states/NotForward/position = Vector2( 553, 134 )
-states/Start/node = SubResource( 16 )
+states/Start/node = SubResource( 20 )
 states/Start/position = Vector2( 257, 192 )
-transitions = [ "Start", "NotForward", SubResource( 17 ), "NotForward", "Start", SubResource( 18 ), "NotForward", "NotBackward", SubResource( 19 ), "NotBackward", "Start", SubResource( 20 ) ]
+transitions = [ "Start", "NotForward", SubResource( 21 ), "NotForward", "Start", SubResource( 22 ), "NotForward", "NotBackward", SubResource( 23 ), "NotBackward", "Start", SubResource( 24 ) ]
 start_node = "Start"
 graph_offset = Vector2( 50.6835, 65.4608 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=29]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = "RotateVerticalStopInput"
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=30]
 resource_local_to_scene = true
 animation = "JumpOrClimb"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=31]
 resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 __meta__ = {
 
 }
@@ -265,7 +264,7 @@ action = "RotateUp"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -274,11 +273,11 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 __meta__ = {
 
 }
@@ -286,7 +285,7 @@ action = "RotateDown"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -294,71 +293,71 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=32]
+[sub_resource type="AnimationNodeStateMachine" id=36]
 resource_local_to_scene = true
-states/NotDown/node = SubResource( 25 )
+states/NotDown/node = SubResource( 29 )
 states/NotDown/position = Vector2( 861.391, 192 )
-states/NotUp/node = SubResource( 26 )
+states/NotUp/node = SubResource( 30 )
 states/NotUp/position = Vector2( 557, 140 )
-states/Start/node = SubResource( 27 )
+states/Start/node = SubResource( 31 )
 states/Start/position = Vector2( 257, 192 )
-transitions = [ "Start", "NotUp", SubResource( 28 ), "NotUp", "Start", SubResource( 29 ), "NotUp", "NotDown", SubResource( 30 ), "NotDown", "Start", SubResource( 31 ) ]
+transitions = [ "Start", "NotUp", SubResource( 32 ), "NotUp", "Start", SubResource( 33 ), "NotUp", "NotDown", SubResource( 34 ), "NotDown", "Start", SubResource( 35 ) ]
 start_node = "Start"
 graph_offset = Vector2( -74.501, 65.4608 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=40]
 resource_local_to_scene = true
 animation = "JumpOrClimb"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeAnimation" id=37]
+[sub_resource type="AnimationNodeAnimation" id=41]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = "RotateHorizontalStopInput"
 
-[sub_resource type="AnimationNodeAnimation" id=38]
+[sub_resource type="AnimationNodeAnimation" id=42]
 resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 __meta__ = {
 
 }
@@ -366,7 +365,7 @@ action = "RotateLeft"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -375,11 +374,11 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 __meta__ = {
 
 }
@@ -387,7 +386,7 @@ action = "RotateRight"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -395,43 +394,23 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=43]
+[sub_resource type="AnimationNodeStateMachine" id=47]
 resource_local_to_scene = true
-states/NotLeft/node = SubResource( 36 )
+states/NotLeft/node = SubResource( 40 )
 states/NotLeft/position = Vector2( 557, 140 )
-states/NotRight/node = SubResource( 37 )
+states/NotRight/node = SubResource( 41 )
 states/NotRight/position = Vector2( 861.391, 192 )
-states/Start/node = SubResource( 38 )
+states/Start/node = SubResource( 42 )
 states/Start/position = Vector2( 257, 192 )
-transitions = [ "Start", "NotLeft", SubResource( 39 ), "NotLeft", "Start", SubResource( 40 ), "NotLeft", "NotRight", SubResource( 41 ), "NotRight", "Start", SubResource( 42 ) ]
+transitions = [ "Start", "NotLeft", SubResource( 43 ), "NotLeft", "Start", SubResource( 44 ), "NotLeft", "NotRight", SubResource( 45 ), "NotRight", "Start", SubResource( 46 ) ]
 start_node = "Start"
 graph_offset = Vector2( -74.501, 65.4608 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 statemachine = ""
 chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=44]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=45]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=46]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=47]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=48]
 __meta__ = {
@@ -453,20 +432,58 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=52]
+[sub_resource type="AnimationNodeAnimation" id=52]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+script = ExtResource( 7 )
+__meta__ = {
+
+}
+chain = true
+schema = "PauseInput"
+
+[sub_resource type="AnimationNodeAnimation" id=53]
+resource_local_to_scene = true
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=53]
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=54]
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+resource_local_to_scene = true
+auto_advance = true
+disabled = true
+script = ExtResource( 8 )
 __meta__ = {
 
 }
+action = "Pause"
+status = 3
+strength_multiplier = 1.0
+
+[sub_resource type="AnimationNodeStateMachine" id=54]
+resource_local_to_scene = true
+states/Pause/node = SubResource( 52 )
+states/Pause/position = Vector2( 791.391, 192 )
+states/Start/node = SubResource( 53 )
+states/Start/position = Vector2( 300, 192 )
+transitions = [ "Pause", "Start", SubResource( 3 ), "Start", "Pause", SubResource( 4 ) ]
+start_node = "Start"
+graph_offset = Vector2( -74.501, 65.4608 )
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=55]
 __meta__ = {
@@ -518,51 +535,91 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=65]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=65]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=66]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=67]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=68]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=69]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=70]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=71]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=72]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=73]
 resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=66]
+[sub_resource type="AnimationNodeAnimation" id=74]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeAnimation" id=67]
+[sub_resource type="AnimationNodeAnimation" id=75]
 resource_local_to_scene = true
 animation = "FTROC_J"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeAnimation" id=68]
+[sub_resource type="AnimationNodeAnimation" id=76]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+[sub_resource type="AnimationNodeStateMachineTransition" id=77]
 resource_local_to_scene = true
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=70]
+[sub_resource type="AnimationNodeStateMachineTransition" id=78]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -570,88 +627,24 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=71]
+[sub_resource type="AnimationNodeStateMachine" id=79]
 resource_local_to_scene = true
-states/End/node = SubResource( 66 )
+states/End/node = SubResource( 74 )
 states/End/position = Vector2( 594.6, 99.8 )
-states/Rock/node = SubResource( 67 )
+states/Rock/node = SubResource( 75 )
 states/Rock/position = Vector2( 416.2, 99.32 )
-states/Start/node = SubResource( 68 )
+states/Start/node = SubResource( 76 )
 states/Start/position = Vector2( 241.8, 99.8 )
-transitions = [ "Start", "Rock", SubResource( 69 ), "Rock", "End", SubResource( 70 ) ]
+transitions = [ "Start", "Rock", SubResource( 77 ), "Rock", "End", SubResource( 78 ) ]
 start_node = "Start"
 end_node = "End"
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 __meta__ = {
 
 }
 statemachine = ""
 chain = true
 level = -5.0
-
-[sub_resource type="AnimationNodeAnimation" id=72]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=73]
-resource_local_to_scene = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=74]
-resource_local_to_scene = true
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=75]
-resource_local_to_scene = true
-states/End/node = SubResource( 65 )
-states/End/position = Vector2( 909, 27.552 )
-states/Impact/node = SubResource( 71 )
-states/Impact/position = Vector2( 585.384, 27.552 )
-states/Start/node = SubResource( 72 )
-states/Start/position = Vector2( 246, 27.552 )
-transitions = [ "Start", "Impact", SubResource( 73 ), "Impact", "End", SubResource( 74 ) ]
-start_node = "Start"
-end_node = "End"
-graph_offset = Vector2( -13, -93.7663 )
-script = ExtResource( 7 )
-__meta__ = {
-
-}
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=76]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=77]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=78]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=79]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=80]
 resource_local_to_scene = true
@@ -660,21 +653,13 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=81]
+[sub_resource type="AnimationNodeStateMachineTransition" id=81]
 resource_local_to_scene = true
-animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=82]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=83]
+[sub_resource type="AnimationNodeStateMachineTransition" id=82]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -682,70 +667,66 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=84]
+[sub_resource type="AnimationNodeStateMachine" id=83]
 resource_local_to_scene = true
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=85]
-resource_local_to_scene = true
-states/End/node = SubResource( 80 )
-states/End/position = Vector2( 618.6, 103.8 )
-states/Rock/node = SubResource( 81 )
-states/Rock/position = Vector2( 411, 103.8 )
-states/Start/node = SubResource( 82 )
-states/Start/position = Vector2( 202, 103.8 )
-transitions = [ "Start", "Rock", SubResource( 83 ), "Rock", "End", SubResource( 84 ) ]
+states/End/node = SubResource( 73 )
+states/End/position = Vector2( 909, 27.552 )
+states/Impact/node = SubResource( 79 )
+states/Impact/position = Vector2( 585.384, 27.552 )
+states/Start/node = SubResource( 80 )
+states/Start/position = Vector2( 246, 27.552 )
+transitions = [ "Start", "Impact", SubResource( 81 ), "Impact", "End", SubResource( 82 ) ]
 start_node = "Start"
 end_node = "End"
-script = ExtResource( 7 )
+graph_offset = Vector2( -13, -93.7663 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeAnimation" id=86]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-script = ExtResource( 11 )
+[sub_resource type="AnimationNodeStateMachinePlayback" id=84]
 __meta__ = {
 
 }
-chain = false
-schema = ""
-level = -5.0
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=85]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=86]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
 
 [sub_resource type="AnimationNodeAnimation" id=87]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-script = ExtResource( 11 )
-__meta__ = {
-
-}
-chain = false
-schema = ""
-level = -10.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=88]
-resource_local_to_scene = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=89]
+[sub_resource type="AnimationNodeAnimation" id=88]
 resource_local_to_scene = true
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=90]
+[sub_resource type="AnimationNodeAnimation" id=89]
 resource_local_to_scene = true
-switch_mode = 2
-auto_advance = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=90]
+resource_local_to_scene = true
+animation = "DefaultAnim"
 __meta__ = {
 
 }
@@ -768,64 +749,68 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachine" id=93]
 resource_local_to_scene = true
-states/End/node = SubResource( 78 )
-states/End/position = Vector2( 1123.44, 32.4137 )
-states/Start/node = SubResource( 79 )
-states/Start/position = Vector2( 286, 32.4137 )
-states/Step/node = SubResource( 85 )
-states/Step/position = Vector2( 893.896, 32.4137 )
-states/StepHeavy/node = SubResource( 86 )
-states/StepHeavy/position = Vector2( 592.48, -16.4263 )
-states/StepLight/node = SubResource( 87 )
-states/StepLight/position = Vector2( 592.48, 91.0137 )
-transitions = [ "Start", "StepHeavy", SubResource( 88 ), "Start", "StepLight", SubResource( 89 ), "StepHeavy", "Step", SubResource( 90 ), "StepLight", "Step", SubResource( 91 ), "Step", "End", SubResource( 92 ) ]
+states/End/node = SubResource( 88 )
+states/End/position = Vector2( 618.6, 103.8 )
+states/Rock/node = SubResource( 89 )
+states/Rock/position = Vector2( 411, 103.8 )
+states/Start/node = SubResource( 90 )
+states/Start/position = Vector2( 202, 103.8 )
+transitions = [ "Start", "Rock", SubResource( 91 ), "Rock", "End", SubResource( 92 ) ]
 start_node = "Start"
 end_node = "End"
-graph_offset = Vector2( 140.442, -93.7663 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=94]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=95]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=96]
+[sub_resource type="AnimationNodeAnimation" id=94]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=97]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-script = ExtResource( 11 )
+script = ExtResource( 10 )
 __meta__ = {
 
 }
 chain = false
-schema = "Oof"
-level = 0.0
+schema = ""
+level = -5.0
 
-[sub_resource type="AnimationNodeAnimation" id=98]
+[sub_resource type="AnimationNodeAnimation" id=95]
 resource_local_to_scene = true
 animation = "DefaultAnim"
+script = ExtResource( 10 )
+__meta__ = {
+
+}
+chain = false
+schema = ""
+level = -10.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+resource_local_to_scene = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=97]
+resource_local_to_scene = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=98]
+resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=99]
 resource_local_to_scene = true
+switch_mode = 2
+auto_advance = true
 __meta__ = {
 
 }
@@ -840,17 +825,21 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachine" id=101]
 resource_local_to_scene = true
-states/End/node = SubResource( 96 )
-states/End/position = Vector2( 828, 27.552 )
-states/Oof/node = SubResource( 97 )
-states/Oof/position = Vector2( 572, 27.552 )
-states/Start/node = SubResource( 98 )
-states/Start/position = Vector2( 333, 27.552 )
-transitions = [ "Start", "Oof", SubResource( 99 ), "Oof", "End", SubResource( 100 ) ]
+states/End/node = SubResource( 86 )
+states/End/position = Vector2( 1123.44, 32.4137 )
+states/Start/node = SubResource( 87 )
+states/Start/position = Vector2( 286, 32.4137 )
+states/Step/node = SubResource( 93 )
+states/Step/position = Vector2( 893.896, 32.4137 )
+states/StepHeavy/node = SubResource( 94 )
+states/StepHeavy/position = Vector2( 592.48, -16.4263 )
+states/StepLight/node = SubResource( 95 )
+states/StepLight/position = Vector2( 592.48, 91.0137 )
+transitions = [ "Start", "StepHeavy", SubResource( 96 ), "Start", "StepLight", SubResource( 97 ), "StepHeavy", "Step", SubResource( 98 ), "StepLight", "Step", SubResource( 99 ), "Step", "End", SubResource( 100 ) ]
 start_node = "Start"
 end_node = "End"
-graph_offset = Vector2( -13, -93.7663 )
-script = ExtResource( 7 )
+graph_offset = Vector2( 140.442, -93.7663 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
@@ -862,74 +851,76 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=103]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeStateMachinePlayback" id=103]
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=104]
+resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=105]
+[sub_resource type="AnimationNodeAnimation" id=105]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+script = ExtResource( 10 )
+__meta__ = {
+
+}
+chain = false
+schema = "Oof"
+level = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=106]
+resource_local_to_scene = true
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=107]
+resource_local_to_scene = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=108]
+resource_local_to_scene = true
+switch_mode = 2
 auto_advance = true
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=106]
-states/End/node = SubResource( 103 )
-states/End/position = Vector2( 788, 177 )
-states/Start/node = SubResource( 104 )
-states/Start/position = Vector2( 333, 177 )
-transitions = [ "Start", "End", SubResource( 105 ) ]
+[sub_resource type="AnimationNodeStateMachine" id=109]
+resource_local_to_scene = true
+states/End/node = SubResource( 104 )
+states/End/position = Vector2( 828, 27.552 )
+states/Oof/node = SubResource( 105 )
+states/Oof/position = Vector2( 572, 27.552 )
+states/Start/node = SubResource( 106 )
+states/Start/position = Vector2( 333, 27.552 )
+transitions = [ "Start", "Oof", SubResource( 107 ), "Oof", "End", SubResource( 108 ) ]
 start_node = "Start"
 end_node = "End"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 7 )
+graph_offset = Vector2( -13, -93.7663 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=107]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=110]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=108]
+[sub_resource type="AnimationNodeAnimation" id=111]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=109]
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=110]
-states/End/node = SubResource( 108 )
-states/End/position = Vector2( 788, 177 )
-states/Start/node = SubResource( 109 )
-states/Start/position = Vector2( 333, 177 )
-transitions = [ "Start", "End", SubResource( 105 ) ]
-start_node = "Start"
-end_node = "End"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 7 )
-__meta__ = {
-
-}
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=111]
 __meta__ = {
 
 }
@@ -940,22 +931,22 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=113]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeStateMachineTransition" id=113]
+auto_advance = true
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=114]
-states/End/node = SubResource( 112 )
+states/End/node = SubResource( 111 )
 states/End/position = Vector2( 788, 177 )
-states/Start/node = SubResource( 113 )
+states/Start/node = SubResource( 112 )
 states/Start/position = Vector2( 333, 177 )
-transitions = [ "Start", "End", SubResource( 105 ) ]
+transitions = [ "Start", "End", SubResource( 113 ) ]
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
@@ -969,7 +960,73 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=116]
 animation = "DefaultAnim"
-script = ExtResource( 12 )
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=117]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=118]
+states/End/node = SubResource( 116 )
+states/End/position = Vector2( 788, 177 )
+states/Start/node = SubResource( 117 )
+states/Start/position = Vector2( 333, 177 )
+transitions = [ "Start", "End", SubResource( 113 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=119]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=120]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=121]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=122]
+states/End/node = SubResource( 120 )
+states/End/position = Vector2( 788, 177 )
+states/Start/node = SubResource( 121 )
+states/Start/position = Vector2( 333, 177 )
+transitions = [ "Start", "End", SubResource( 113 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=123]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=124]
+animation = "DefaultAnim"
+script = ExtResource( 11 )
 __meta__ = {
 
 }
@@ -989,71 +1046,71 @@ lock_movement = false
 camera_mode = "LockYaw"
 hud_mode = "Default"
 
-[sub_resource type="AnimationNodeStateMachine" id=117]
-states/Start/node = SubResource( 116 )
+[sub_resource type="AnimationNodeStateMachine" id=125]
+states/Start/node = SubResource( 124 )
 states/Start/position = Vector2( 612.453, 244.689 )
 start_node = "Start"
 graph_offset = Vector2( 10.4534, 38.6886 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=118]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=126]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=119]
+[sub_resource type="AnimationNodeAnimation" id=127]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=120]
+[sub_resource type="AnimationNodeAnimation" id=128]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=121]
+[sub_resource type="AnimationNodeAnimation" id=129]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=122]
+[sub_resource type="AnimationNodeAnimation" id=130]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=123]
+[sub_resource type="AnimationNodeAnimation" id=131]
 animation = "DefaultAnim"
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 
 }
 chain = true
 schema = ""
 
-[sub_resource type="AnimationNodeAnimation" id=124]
+[sub_resource type="AnimationNodeAnimation" id=132]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=125]
+[sub_resource type="AnimationNodeAnimation" id=133]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=126]
+[sub_resource type="AnimationNodeStateMachineTransition" id=134]
 disabled = true
-script = ExtResource( 13 )
+script = ExtResource( 12 )
 __meta__ = {
 
 }
@@ -1065,54 +1122,6 @@ arguments = {
 }
 delay = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=127]
-auto_advance = true
-priority = 32
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=128]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=129]
-auto_advance = true
-priority = 32
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=130]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=131]
-auto_advance = true
-priority = 32
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=132]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=133]
-auto_advance = true
-priority = 32
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=134]
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=135]
 auto_advance = true
 priority = 32
@@ -1120,253 +1129,302 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=136]
-states/Damage/node = SubResource( 119 )
-states/Damage/position = Vector2( 654, 235.905 )
-states/EmptyReact/node = SubResource( 120 )
-states/EmptyReact/position = Vector2( 654, 427.073 )
-states/End/node = SubResource( 121 )
-states/End/position = Vector2( 887, 299.905 )
-states/Start/node = SubResource( 122 )
-states/Start/position = Vector2( 419, 299.905 )
-states/Touch/node = SubResource( 123 )
-states/Touch/position = Vector2( 654, 169.905 )
-states/Use/node = SubResource( 124 )
-states/Use/position = Vector2( 654, 299.905 )
-states/UseReact/node = SubResource( 125 )
-states/UseReact/position = Vector2( 654, 366.573 )
-transitions = [ "Start", "Touch", SubResource( 126 ), "Touch", "End", SubResource( 127 ), "Start", "Damage", SubResource( 128 ), "Damage", "End", SubResource( 129 ), "Start", "Use", SubResource( 130 ), "Use", "End", SubResource( 131 ), "Start", "UseReact", SubResource( 132 ), "UseReact", "End", SubResource( 133 ), "Start", "EmptyReact", SubResource( 134 ), "EmptyReact", "End", SubResource( 135 ) ]
-start_node = "Start"
-end_node = "End"
-graph_offset = Vector2( 0, 131.03 )
-script = ExtResource( 7 )
-__meta__ = {
-
-}
-statemachine = ""
-chain = true
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=137]
+[sub_resource type="AnimationNodeStateMachineTransition" id=136]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=138]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeStateMachineTransition" id=137]
+auto_advance = true
+priority = 32
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=139]
-states/Start/node = SubResource( 138 )
-states/Start/position = Vector2( 624, 170 )
-start_node = "Start"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 7 )
-__meta__ = {
-
-}
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=140]
+[sub_resource type="AnimationNodeStateMachineTransition" id=138]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=141]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeStateMachineTransition" id=139]
+auto_advance = true
+priority = 32
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=142]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeStateMachineTransition" id=140]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=141]
+auto_advance = true
+priority = 32
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=142]
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=143]
 auto_advance = true
+priority = 32
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=144]
-states/End/node = SubResource( 141 )
-states/End/position = Vector2( 788, 177 )
-states/Start/node = SubResource( 142 )
-states/Start/position = Vector2( 333, 177 )
-transitions = [ "Start", "End", SubResource( 143 ) ]
+states/Damage/node = SubResource( 127 )
+states/Damage/position = Vector2( 654, 235.905 )
+states/EmptyReact/node = SubResource( 128 )
+states/EmptyReact/position = Vector2( 654, 427.073 )
+states/End/node = SubResource( 129 )
+states/End/position = Vector2( 887, 299.905 )
+states/Start/node = SubResource( 130 )
+states/Start/position = Vector2( 419, 299.905 )
+states/Touch/node = SubResource( 131 )
+states/Touch/position = Vector2( 654, 169.905 )
+states/Use/node = SubResource( 132 )
+states/Use/position = Vector2( 654, 299.905 )
+states/UseReact/node = SubResource( 133 )
+states/UseReact/position = Vector2( 654, 366.573 )
+transitions = [ "Start", "Touch", SubResource( 134 ), "Touch", "End", SubResource( 135 ), "Start", "Damage", SubResource( 136 ), "Damage", "End", SubResource( 137 ), "Start", "Use", SubResource( 138 ), "Use", "End", SubResource( 139 ), "Start", "UseReact", SubResource( 140 ), "UseReact", "End", SubResource( 141 ), "Start", "EmptyReact", SubResource( 142 ), "EmptyReact", "End", SubResource( 143 ) ]
 start_node = "Start"
 end_node = "End"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 7 )
+graph_offset = Vector2( 0, 131.03 )
+script = ExtResource( 6 )
 __meta__ = {
 
 }
 statemachine = ""
-chain = false
+chain = true
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=145]
 __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeAnimation" id=146]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=147]
+states/Start/node = SubResource( 146 )
+states/Start/position = Vector2( 624, 170 )
+start_node = "Start"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=148]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=149]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=150]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=151]
+auto_advance = true
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachine" id=152]
+states/End/node = SubResource( 149 )
+states/End/position = Vector2( 788, 177 )
+states/Start/node = SubResource( 150 )
+states/Start/position = Vector2( 333, 177 )
+transitions = [ "Start", "End", SubResource( 151 ) ]
+start_node = "Start"
+end_node = "End"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=153]
+__meta__ = {
+
+}
+
 [node name="Anderson" instance=ExtResource( 1 )]
-collision_layer = 2
-collision_mask = 3
-script = ExtResource( 2 )
 tags = "Actor Human Male Team:0"
 
-[node name="Model" parent="." index="0" instance=ExtResource( 3 )]
+[node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
-[node name="Collision" parent="." index="1" instance=ExtResource( 4 )]
+[node name="Collision" parent="." index="1" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
-[node name="Hitboxes" parent="." index="2" instance=ExtResource( 5 )]
-source = ExtResource( 6 )
+[node name="Hitboxes" parent="." index="2" instance=ExtResource( 4 )]
+source = ExtResource( 5 )
 
 [node name="MoveRightInput" parent="." index="3"]
-parameters/playback = SubResource( 1 )
+parameters/playback = SubResource( 5 )
 
 [node name="MoveLeftInput" parent="." index="4"]
-parameters/playback = SubResource( 2 )
+parameters/playback = SubResource( 6 )
 
 [node name="MoveSidestepStopInput" parent="." index="5"]
-tree_root = SubResource( 10 )
-parameters/playback = SubResource( 11 )
+tree_root = SubResource( 14 )
+parameters/playback = SubResource( 15 )
 
 [node name="MoveForwardInput" parent="." index="6"]
-parameters/playback = SubResource( 12 )
+parameters/playback = SubResource( 16 )
 
 [node name="MoveBackwardInput" parent="." index="7"]
-parameters/playback = SubResource( 13 )
+parameters/playback = SubResource( 17 )
 
 [node name="MoveForwardStopInput" parent="." index="8"]
-tree_root = SubResource( 21 )
-parameters/playback = SubResource( 22 )
+tree_root = SubResource( 25 )
+parameters/playback = SubResource( 26 )
 
 [node name="RotateUpInput" parent="." index="9"]
-parameters/playback = SubResource( 23 )
+parameters/playback = SubResource( 27 )
 
 [node name="RotateDownInput" parent="." index="10"]
-parameters/playback = SubResource( 24 )
+parameters/playback = SubResource( 28 )
 
 [node name="RotateVerticalStopInput" parent="." index="11"]
-tree_root = SubResource( 32 )
-parameters/playback = SubResource( 33 )
+tree_root = SubResource( 36 )
+parameters/playback = SubResource( 37 )
 
 [node name="RotateLeftInput" parent="." index="12"]
-parameters/playback = SubResource( 34 )
+parameters/playback = SubResource( 38 )
 
 [node name="RotateRightInput" parent="." index="13"]
-parameters/playback = SubResource( 35 )
+parameters/playback = SubResource( 39 )
 
 [node name="RotateHorizontalStopInput" parent="." index="14"]
-tree_root = SubResource( 43 )
-parameters/playback = SubResource( 44 )
+tree_root = SubResource( 47 )
+parameters/playback = SubResource( 48 )
 
 [node name="CrouchInput" parent="." index="15"]
-parameters/playback = SubResource( 45 )
+parameters/playback = SubResource( 49 )
 
 [node name="PrimaryActionInput" parent="." index="16"]
-parameters/playback = SubResource( 46 )
-parameters/Primary/playback = SubResource( 47 )
+parameters/playback = SubResource( 50 )
+parameters/Primary/playback = SubResource( 51 )
 
-[node name="RightHandContainer" parent="." index="23"]
+[node name="PauseInput" parent="." index="17"]
+tree_root = SubResource( 54 )
+parameters/playback = SubResource( 55 )
+
+[node name="RightHandContainer" parent="." index="24"]
 path = NodePath("../Model/neo_reference_skeleton")
 bone_name = "Gun"
 max_quantity = 1
 required_tags = "Item"
 
-[node name="CameraRaycastStim" parent="." index="33"]
+[node name="CameraRaycastStim" parent="." index="34"]
 editor/display_folded = false
 path = NodePath("../../Anderson/CameraRig/Camera")
 
-[node name="AnimLayerMovement" parent="." index="35"]
-parameters/0/0/playback = SubResource( 48 )
-parameters/1/0/playback = SubResource( 49 )
+[node name="AnimLayerMovement" parent="." index="36"]
+parameters/0/0/playback = SubResource( 56 )
+parameters/1/0/playback = SubResource( 57 )
 
-[node name="CameraMode" parent="." index="36"]
-parameters/playback = SubResource( 50 )
+[node name="CameraMode" parent="." index="37"]
+parameters/playback = SubResource( 58 )
 
-[node name="HUDMode" parent="." index="37"]
-parameters/playback = SubResource( 51 )
-
-[node name="JumpOrClimbAction" parent="." index="38"]
-parameters/playback = SubResource( 52 )
-parameters/Climb/playback = SubResource( 53 )
-parameters/Jump/3/playback = SubResource( 54 )
-parameters/Jump/4/playback = SubResource( 55 )
-parameters/Jump/5/playback = SubResource( 56 )
-
-[node name="PrimaryAction" parent="." index="39"]
-parameters/playback = SubResource( 57 )
-parameters/IdleAim/playback = SubResource( 58 )
-
-[node name="ReloadAction" parent="." index="40"]
+[node name="HUDMode" parent="." index="38"]
 parameters/playback = SubResource( 59 )
 
-[node name="DieAction" parent="." index="41"]
+[node name="JumpOrClimbAction" parent="." index="39"]
 parameters/playback = SubResource( 60 )
+parameters/Climb/playback = SubResource( 61 )
+parameters/Jump/3/playback = SubResource( 62 )
+parameters/Jump/4/playback = SubResource( 63 )
+parameters/Jump/5/playback = SubResource( 64 )
 
-[node name="TouchResponse" parent="." index="42"]
-parameters/playback = SubResource( 61 )
+[node name="PrimaryAction" parent="." index="40"]
+parameters/playback = SubResource( 65 )
+parameters/IdleAim/playback = SubResource( 66 )
 
-[node name="UseReactResponse" parent="." index="43"]
-parameters/playback = SubResource( 62 )
+[node name="ReloadAction" parent="." index="41"]
+parameters/playback = SubResource( 67 )
 
-[node name="EmptyReactResponse" parent="." index="44"]
-parameters/playback = SubResource( 63 )
+[node name="DieAction" parent="." index="42"]
+parameters/playback = SubResource( 68 )
 
-[node name="DamageResponse" parent="." index="45"]
-parameters/playback = SubResource( 64 )
+[node name="TouchResponse" parent="." index="43"]
+parameters/playback = SubResource( 69 )
 
-[node name="ImpactSound" parent="." index="46"]
-tree_root = SubResource( 75 )
-parameters/playback = SubResource( 76 )
-parameters/Impact/playback = SubResource( 77 )
+[node name="UseReactResponse" parent="." index="44"]
+parameters/playback = SubResource( 70 )
 
-[node name="StepSound" parent="." index="47"]
-tree_root = SubResource( 93 )
-parameters/playback = SubResource( 94 )
-parameters/Step/playback = SubResource( 95 )
+[node name="EmptyReactResponse" parent="." index="45"]
+parameters/playback = SubResource( 71 )
 
-[node name="OofSound" parent="." index="48"]
+[node name="DamageResponse" parent="." index="46"]
+parameters/playback = SubResource( 72 )
+
+[node name="ImpactSound" parent="." index="47"]
+tree_root = SubResource( 83 )
+parameters/playback = SubResource( 84 )
+parameters/Impact/playback = SubResource( 85 )
+
+[node name="StepSound" parent="." index="48"]
 tree_root = SubResource( 101 )
 parameters/playback = SubResource( 102 )
+parameters/Step/playback = SubResource( 103 )
 
-[node name="VoiceAudio" parent="." index="49"]
-tree_root = SubResource( 106 )
-parameters/playback = SubResource( 107 )
+[node name="OofSound" parent="." index="49"]
+tree_root = SubResource( 109 )
+parameters/playback = SubResource( 110 )
 
-[node name="FoleyAudio" parent="." index="50"]
-tree_root = SubResource( 110 )
-parameters/playback = SubResource( 111 )
-
-[node name="FeetAudio" parent="." index="51"]
+[node name="VoiceAudio" parent="." index="50"]
 tree_root = SubResource( 114 )
 parameters/playback = SubResource( 115 )
 
-[node name="Behavior" parent="." index="53"]
-tree_root = SubResource( 117 )
-parameters/playback = SubResource( 118 )
+[node name="FoleyAudio" parent="." index="51"]
+tree_root = SubResource( 118 )
+parameters/playback = SubResource( 119 )
 
-[node name="Reception" parent="." index="54"]
-tree_root = SubResource( 136 )
-parameters/playback = SubResource( 137 )
+[node name="FeetAudio" parent="." index="52"]
+tree_root = SubResource( 122 )
+parameters/playback = SubResource( 123 )
 
-[node name="Interface" parent="." index="55"]
-tree_root = SubResource( 139 )
-parameters/playback = SubResource( 140 )
+[node name="Behavior" parent="." index="54"]
+tree_root = SubResource( 125 )
+parameters/playback = SubResource( 126 )
 
-[node name="Audio" parent="." index="56"]
+[node name="Reception" parent="." index="55"]
 tree_root = SubResource( 144 )
 parameters/playback = SubResource( 145 )
+
+[node name="Interface" parent="." index="56"]
+tree_root = SubResource( 147 )
+parameters/playback = SubResource( 148 )
+
+[node name="Audio" parent="." index="57"]
+tree_root = SubResource( 152 )
+parameters/playback = SubResource( 153 )
 
 [editable path="Model"]
 

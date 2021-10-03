@@ -43,8 +43,4 @@ func _ready():
 	
 	var coop = list.get_node('Coop/CheckBox')
 	coop.connect('toggled', self, '_on_coop_toggled')
-	
 
-
-func set_visible(extra_arg_0):
-	pass # Replace with function body.
