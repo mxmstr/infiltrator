@@ -6,16 +6,27 @@
 [ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=4]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "JumpOrClimb"
 script = ExtResource( 2 )
 __meta__ = {
 
 }
-chain = true
-schema = "MoveRightInput"
+chain = false
+schema = ""
+custom_script = "var node
+var stance
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+func _on_ready(_node): 
+	node = _node
+	stance = node.owner.get_node_or_null('../Stance')
+
+func _on_state_starting():
+	stance._set_sidestep_speed(node.owner.data.strength)
+
+func _on_process(): pass"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
 __meta__ = {
 
@@ -39,10 +50,10 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=7]
-states/MoveRight/node = SubResource( 5 )
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/MoveRight/node = SubResource( 1 )
 states/MoveRight/position = Vector2( 781, 192 )
-states/Start/node = SubResource( 6 )
+states/Start/node = SubResource( 2 )
 states/Start/position = Vector2( 388, 192 )
 transitions = [ "Start", "MoveRight", SubResource( 3 ), "MoveRight", "Start", SubResource( 4 ) ]
 start_node = "Start"
@@ -54,15 +65,15 @@ __meta__ = {
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 __meta__ = {
 
 }
 
 [node name="MoveRightInput" type="AnimationTree"]
-tree_root = SubResource( 7 )
+tree_root = SubResource( 5 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 8 )
+parameters/playback = SubResource( 6 )
 script = ExtResource( 4 )
 __meta__ = {
 

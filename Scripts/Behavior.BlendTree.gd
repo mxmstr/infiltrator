@@ -84,6 +84,8 @@ func _on_state_starting(new_name):
 
 func _ready(_owner, _parent, _parameters, _node_name):
 	
+	return
+	
 	._ready(_owner, _parent, _parameters, _node_name)
 	
 	stance = owner.owner.get_node_or_null('Stance')

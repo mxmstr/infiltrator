@@ -58,26 +58,26 @@ func _ready():
 	$Camera.translation = camera_offset
 
 
-func _process(delta):
-	
-	if root:# and position_offset and rotation_degrees_offset:
-		
-		if position_offset == null or rotation_degrees_offset == null:
-			return
-		
-#		root.rotation_degrees = Vector3(0, 180, 0)
-		
-		global_transform.origin = root.global_transform.origin
-		translate_object_local(position_offset)
-		
-		var target_pos = global_transform.origin - root.global_transform.basis.z
-		look_at(target_pos, root.global_transform.basis.y)
-		rotate_x(deg2rad(rotation_degrees_offset.x))
-		rotate_y(deg2rad(rotation_degrees_offset.y))
-		rotate_z(deg2rad(rotation_degrees_offset.z))
-		
-		#global_transform.basis = Basis(root.global_transform.basis.get_rotation_quat())#.rotated(root.global_transform.basis.y, deg2rad(180))
-#		global_transform.basis = root.global_transform.basis.rotated(root.global_transform.basis.z, deg2rad(180))
-	
-	
-	_clamp_camera()
+#func _process(delta):
+#
+#	if root:# and position_offset and rotation_degrees_offset:
+#
+#		if position_offset == null or rotation_degrees_offset == null:
+#			return
+#
+##		root.rotation_degrees = Vector3(0, 180, 0)
+#
+#		global_transform.origin = root.global_transform.origin
+#		translate_object_local(position_offset)
+#
+#		var target_pos = global_transform.origin - root.global_transform.basis.z
+#		look_at(target_pos, root.global_transform.basis.y)
+#		rotate_x(deg2rad(rotation_degrees_offset.x))
+#		rotate_y(deg2rad(rotation_degrees_offset.y))
+#		rotate_z(deg2rad(rotation_degrees_offset.z))
+#
+#		#global_transform.basis = Basis(root.global_transform.basis.get_rotation_quat())#.rotated(root.global_transform.basis.y, deg2rad(180))
+##		global_transform.basis = root.global_transform.basis.rotated(root.global_transform.basis.z, deg2rad(180))
+#
+#
+#	_clamp_camera()

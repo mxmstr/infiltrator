@@ -56,7 +56,6 @@ mesh = SubResource( 2 )
 flag_align_y = true
 spread = 40.15
 initial_velocity = 3.0
-angular_velocity = 0.0
 linear_accel = 4.62
 scale_amount_curve = SubResource( 3 )
 script = SubResource( 4 )

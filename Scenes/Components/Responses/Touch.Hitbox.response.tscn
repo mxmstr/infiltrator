@@ -18,7 +18,17 @@ __meta__ = {
 
 }
 chain = false
-schema = "DamageOwner"
+schema = ""
+custom_script = "var node
+
+func _on_ready(_node): 
+	node = _node
+
+func _on_state_starting(): 
+	Meta.StimulateActor(node.owner.owner, 'Damage', node.owner.data.source)
+
+func _on_process(): pass
+"
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
@@ -34,6 +44,7 @@ __meta__ = {
 }
 chain = false
 schema = "Reflect"
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
@@ -80,7 +91,7 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachine" id=10]
 states/DamageFX/node = SubResource( 1 )
-states/DamageFX/position = Vector2( 589.373, 146 )
+states/DamageFX/position = Vector2( 601.373, 146 )
 states/DamageOwner/node = SubResource( 2 )
 states/DamageOwner/position = Vector2( 349.951, 146 )
 states/End/node = SubResource( 3 )

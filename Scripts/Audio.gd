@@ -18,7 +18,7 @@ func _ready():
 	$AudioStreamPlayer3D.bus = bus
 
 
-func _process(delta):
-	
-	$AudioStreamPlayer3D.unit_db = level
-	$AudioStreamPlayer3D.global_transform.origin = owner.global_transform.origin
+#func _process(delta):
+#
+#	$AudioStreamPlayer3D.unit_db = level
+#	$AudioStreamPlayer3D.global_transform.origin = owner.global_transform.origin

@@ -229,6 +229,8 @@ func _enter_tree():
 
 func _ready():
 	
+	return
+	
 	behavior = get_node_or_null('../Behavior')
 	behavior_animation_player = get_node_or_null('../Behavior/AnimationPlayer')
 	
@@ -252,6 +254,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	
+	return
 	
 	if not model:
 		return

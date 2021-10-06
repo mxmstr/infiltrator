@@ -207,22 +207,22 @@ func _exit_tree():
 	_revert_mesh_layers()
 
 
-func _physics_process(delta):
-	
-	if not get_child_count():
-		return
-	
-
-	if container_root != null:
-
-		global_transform = container_root.global_transform.translated(item_position_offset)
-
-		global_transform.basis = container_root.global_transform.basis
-		global_transform.basis = global_transform.basis.rotated(global_transform.basis.x, item_rotation_offset.x)
-		global_transform.basis = global_transform.basis.rotated(global_transform.basis.y, item_rotation_offset.y)
-		global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, item_rotation_offset.z)
-
-	
-	_blend_skeletons(world_skeleton, vm_skeleton)
-	
-	rotation = model.rotation
+#func _physics_process(delta):
+#
+#	if not get_child_count():
+#		return
+#
+#
+#	if container_root != null:
+#
+#		global_transform = container_root.global_transform.translated(item_position_offset)
+#
+#		global_transform.basis = container_root.global_transform.basis
+#		global_transform.basis = global_transform.basis.rotated(global_transform.basis.x, item_rotation_offset.x)
+#		global_transform.basis = global_transform.basis.rotated(global_transform.basis.y, item_rotation_offset.y)
+#		global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, item_rotation_offset.z)
+#
+#
+#	_blend_skeletons(world_skeleton, vm_skeleton)
+#
+#	rotation = model.rotation

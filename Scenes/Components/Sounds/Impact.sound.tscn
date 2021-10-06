@@ -22,6 +22,7 @@ __meta__ = {
 }
 chain = true
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 resource_local_to_scene = true
@@ -32,6 +33,7 @@ __meta__ = {
 }
 chain = true
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 resource_local_to_scene = true
@@ -42,6 +44,7 @@ __meta__ = {
 }
 chain = true
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
 resource_local_to_scene = true
@@ -73,6 +76,7 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = true
 level = -5.0
 
@@ -98,7 +102,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=11]
-resource_local_to_scene = true
 states/End/node = SubResource( 1 )
 states/End/position = Vector2( 909, 27.552 )
 states/Impact/node = SubResource( 7 )
@@ -113,6 +116,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]

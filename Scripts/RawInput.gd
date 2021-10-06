@@ -130,7 +130,7 @@ func _ready():
 
 func _process(delta):
 	
-	if not RawInput:
+	if not Meta.rawinput:
 		return
 	
 	

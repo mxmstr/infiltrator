@@ -93,11 +93,6 @@ func _evaluate(expression, arguments):
 	return result
 
 
-func _input(event):
-	
-	emit_signal('on_input', event)
-
-
 func _ready():
 	
 #	set_process_input(false)

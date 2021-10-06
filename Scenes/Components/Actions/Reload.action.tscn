@@ -12,6 +12,23 @@ __meta__ = {
 }
 chain = false
 schema = "Reload"
+custom_script = "extends Resource
+var node
+var righthand
+
+func _on_ready(_node): 
+	node = _node
+	righthand = node.owner.get_node('../RightHandContainer')
+	node.owner.connect('message', self, '_message')
+
+func _on_state_starting(): pass
+
+func _on_process(): pass
+
+func _message(text):
+	if text == 'LoadAmmo':
+		righthand.items[0].get_node('Magazine').items[0].get_node('Container')._transfer_items_from( node.owner.owner )
+"
 priority = 0
 type = 0
 blend = 2

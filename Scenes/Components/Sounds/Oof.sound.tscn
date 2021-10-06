@@ -21,7 +21,7 @@ __meta__ = {
 }
 chain = false
 schema = "Oof"
-node = ""
+custom_script = ""
 level = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id=3]
@@ -46,7 +46,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=6]
-resource_local_to_scene = true
 states/End/node = SubResource( 1 )
 states/End/position = Vector2( 828, 27.552 )
 states/Oof/node = SubResource( 2 )
@@ -61,6 +60,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=7]

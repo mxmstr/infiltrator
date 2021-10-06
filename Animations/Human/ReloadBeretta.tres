@@ -4,21 +4,17 @@
 resource_name = "neo_reference_skeleton|neo_reference_skeleton|ReloadBerettakf2"
 length = 1.66667
 tracks/0/type = "method"
-tracks/0/path = NodePath("/root/Meta")
+tracks/0/path = NodePath("../../Behavior")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.8 ),
+"times": PoolRealArray( 1.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "$self", "get_node(RIGHTHAND).items[0].get_node(MAGAZINE).items[0].get_node(CONTAINER)._transfer_items_from( owner )", {
-"CONTAINER": "Container",
-"MAGAZINE": "Magazine",
-"RIGHTHAND": "../RightHandContainer"
-} ],
-"method": "Evaluate"
+"args": [ "LoadAmmo" ],
+"method": "_send_message"
 } ]
 }
 tracks/1/type = "transform"

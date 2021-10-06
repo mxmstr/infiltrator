@@ -48,7 +48,6 @@ func _on_state_starting(new_name):
 				camera_mode_node._start_state(camera_mode)
 			
 			if hud_mode_node:
-				print(hud_mode)
 				hud_mode_node._start_state(hud_mode)
 			
 			if anim_layer_movement:
@@ -57,6 +56,8 @@ func _on_state_starting(new_name):
 
 
 func _ready(_owner, _parent, _parameters, _name):
+	
+	return
 	
 	._ready(_owner, _parent, _parameters, _name)
 	

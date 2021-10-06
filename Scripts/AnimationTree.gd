@@ -10,6 +10,7 @@ signal on_input
 signal on_physics_process
 signal on_process
 signal travel_starting
+signal message
 
 
 func _on_pre_call_method_track(_animation, track_index, key_index):
@@ -79,6 +80,11 @@ func _stop():
 	get('parameters/playback').stop()
 
 
+func _send_message(text):
+	
+	emit_signal('message', text)
+
+
 func _ready():
 	
 	tree_root = tree_root.duplicate(true)
@@ -93,16 +99,11 @@ func _ready():
 	
 	if tree_root.has_method('_ready'):
 		tree_root._ready(self, null, 'parameters/', 'root')
-	
-	connect('pre_call_method_track', self, '_on_pre_call_method_track')
-	connect('post_call_method_track', self, '_on_post_call_method_track')
+
+#	connect('pre_call_method_track', self, '_on_pre_call_method_track')
+#	connect('post_call_method_track', self, '_on_post_call_method_track')
 	
 	active = true
-
-
-func _input(event):
-	
-	emit_signal('on_input', event)
 
 
 func _physics_process(delta):

@@ -71,6 +71,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeAnimation" id=9]
@@ -82,7 +83,7 @@ __meta__ = {
 }
 chain = false
 schema = ""
-node = ""
+custom_script = ""
 level = -5.0
 
 [sub_resource type="AnimationNodeAnimation" id=10]
@@ -94,7 +95,7 @@ __meta__ = {
 }
 chain = false
 schema = ""
-node = ""
+custom_script = ""
 level = -10.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
@@ -134,7 +135,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=16]
-resource_local_to_scene = true
 states/End/node = SubResource( 1 )
 states/End/position = Vector2( 1123.44, 32.4137 )
 states/Start/node = SubResource( 2 )
@@ -153,6 +153,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]

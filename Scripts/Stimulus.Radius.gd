@@ -35,7 +35,7 @@ func _physics_process(delta):
 	var new_colliders = []
 	var collide_actors = []
 	
-	for actor in actors.get_children():
+	for actor in actors.get_children() if actors else []:
 		
 		if not actor.get('tags'):
 			continue

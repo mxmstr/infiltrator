@@ -6,22 +6,33 @@
 [ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=4]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=5]
 
-[sub_resource type="AnimationNodeAnimation" id=310]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "JumpOrClimb"
 script = ExtResource( 2 )
 __meta__ = {
 
 }
 chain = true
-schema = "RotateDownInput"
+schema = ""
+custom_script = "var node
+var stance
 
-[sub_resource type="AnimationNodeAnimation" id=311]
+func _on_ready(_node): 
+	node = _node
+	stance = node.owner.get_node_or_null('../Stance')
+
+func _on_state_starting():
+	stance._set_look_speed(node.owner.data.strength)
+
+func _on_process(): pass"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=308]
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
@@ -32,7 +43,7 @@ action = "RotateDown"
 status = 1
 strength_multiplier = -1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=309]
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
 auto_advance = true
 disabled = true
 script = ExtResource( 3 )
@@ -43,12 +54,12 @@ action = "RotateDown"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachine" id=312]
-states/RotateDown/node = SubResource( 310 )
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/RotateDown/node = SubResource( 1 )
 states/RotateDown/position = Vector2( 781, 192 )
-states/Start/node = SubResource( 311 )
+states/Start/node = SubResource( 2 )
 states/Start/position = Vector2( 388, 192 )
-transitions = [ "Start", "RotateDown", SubResource( 308 ), "RotateDown", "Start", SubResource( 309 ) ]
+transitions = [ "Start", "RotateDown", SubResource( 3 ), "RotateDown", "Start", SubResource( 4 ) ]
 start_node = "Start"
 graph_offset = Vector2( 113.391, 97.9739 )
 script = ExtResource( 1 )
@@ -58,15 +69,15 @@ __meta__ = {
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=313]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 __meta__ = {
 
 }
 
 [node name="RotateDownInput" type="AnimationTree"]
-tree_root = SubResource( 312 )
+tree_root = SubResource( 5 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 313 )
+parameters/playback = SubResource( 6 )
 script = ExtResource( 4 )
 __meta__ = {
 

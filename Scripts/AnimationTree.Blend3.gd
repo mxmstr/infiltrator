@@ -38,6 +38,8 @@ func _evaluate():
 
 func _ready(_owner, _parent, _parameters, _name):
 	
+	return
+	
 	owner = _owner
 	parent = _parent
 	parameters = _parameters

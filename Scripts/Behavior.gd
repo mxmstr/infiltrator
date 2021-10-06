@@ -62,10 +62,10 @@ func _ready():
 	_set_skeleton()
 
 
-func _process(delta):
-	
-	var playback = get('parameters/playback')
-	var current_node = playback.get_current_node()
+#func _process(delta):
+#
+#	var playback = get('parameters/playback')
+#	var current_node = playback.get_current_node()
 	
 #	if 'Anderson' in owner.name:# and current_node != last_node:
 #		prints(OS.get_system_time_msecs(), current_node, playback.get_current_play_pos(), playback.get_current_length())

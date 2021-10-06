@@ -31,12 +31,18 @@ gdscript/warnings/enable=false
 
 [display]
 
-window/size/test_width=720
-window/size/test_height=480
+window/size/test_width=1920
+window/size/test_height=1080
+window/dpi/allow_hidpi=true
+window/vsync/use_vsync=false
 
 [editor_plugins]
 
 enabled=PoolStringArray( "InfTools" )
+
+[gui]
+
+theme/use_hidpi=true
 
 [importer_defaults]
 

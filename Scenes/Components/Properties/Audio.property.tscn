@@ -26,7 +26,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=4]
-resource_local_to_scene = true
 states/End/node = SubResource( 1 )
 states/End/position = Vector2( 788, 177 )
 states/Start/node = SubResource( 2 )

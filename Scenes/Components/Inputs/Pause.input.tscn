@@ -15,6 +15,7 @@ __meta__ = {
 }
 chain = false
 schema = "PauseInput"
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 resource_local_to_scene = true
@@ -44,7 +45,6 @@ status = 3
 strength_multiplier = 1.0
 
 [sub_resource type="AnimationNodeStateMachine" id=5]
-resource_local_to_scene = true
 states/Pause/node = SubResource( 1 )
 states/Pause/position = Vector2( 791.391, 192 )
 states/Start/node = SubResource( 2 )

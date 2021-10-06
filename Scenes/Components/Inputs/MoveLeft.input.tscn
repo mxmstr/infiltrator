@@ -12,8 +12,19 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
-chain = true
-schema = "MoveLeftInput"
+chain = false
+schema = ""
+custom_script = "var node
+var stance
+
+func _on_ready(_node): 
+	node = _node
+	stance = node.owner.get_node_or_null('../Stance')
+
+func _on_state_starting():
+	stance._set_sidestep_speed(node.owner.data.strength)
+
+func _on_process(): pass"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"

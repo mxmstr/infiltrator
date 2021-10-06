@@ -5,6 +5,7 @@ const schemas_extension = '.schema.tscn'
 
 export var chain = false
 export(String) var schema
+export(String, MULTILINE) var custom_script
 
 var node_name
 var owner
@@ -16,6 +17,7 @@ var advance = false
 var default_scale
 var animation_list = []
 var attributes = {}
+var custom_script_object
 
 signal playing
 
@@ -57,6 +59,23 @@ func _load_animations():
 		scale = default_scale * attributes[animation].speed
 
 
+func _load_script():
+	
+	if custom_script and custom_script != '':
+		
+		var new_script = GDScript.new()
+		new_script.source_code = custom_script
+		
+		var error = new_script.reload()
+		
+		if error:
+			prints(owner.name, error.keys()[error])
+		
+		custom_script_object = Resource.new()
+		custom_script_object.set_script(new_script)
+		custom_script_object._on_ready(self)
+
+
 func _randomize_animation():
 	
 	if len(animation_list) > 0:
@@ -70,11 +89,18 @@ func _randomize_animation():
 
 func _on_state_starting(new_name):
 	
+	print('state_starting ', new_name)
+	
 	if node_name == new_name:
 		
 		advance = chain
 		
 		emit_signal('playing')
+		
+		if owner.name == 'MoveSidestepStopInput':
+			print(custom_script_object)
+		if custom_script_object:
+			custom_script_object._on_state_starting()
 		
 		_randomize_animation()
 
@@ -94,9 +120,13 @@ func _ready(_owner, _parent, _parameters, _name):
 	owner.connect('on_process', self, '_process')
 	
 	_load_animations()
+	_load_script()
 
 
 func _process(delta):
+	
+	if custom_script_object:
+		custom_script_object._on_process()
 	
 	if advance:
 		owner.advance(0.01)

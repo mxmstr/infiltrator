@@ -14,7 +14,18 @@ __meta__ = {
 
 }
 chain = true
-schema = "RotateVerticalStopInput"
+schema = ""
+custom_script = "var node
+var stance
+
+func _on_ready(_node): 
+	node = _node
+	stance = node.owner.get_node_or_null('../Stance')
+
+func _on_state_starting():
+	stance._set_look_speed(0.0)
+
+func _on_process(): pass"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 resource_local_to_scene = true
@@ -25,6 +36,7 @@ __meta__ = {
 }
 chain = true
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 resource_local_to_scene = true
@@ -33,7 +45,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=337]
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
@@ -45,7 +57,7 @@ action = "RotateUp"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=338]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -54,7 +66,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=339]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
@@ -66,7 +78,7 @@ action = "RotateDown"
 status = 0
 strength_multiplier = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=340]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -75,14 +87,13 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
-resource_local_to_scene = true
 states/NotDown/node = SubResource( 1 )
 states/NotDown/position = Vector2( 861.391, 192 )
 states/NotUp/node = SubResource( 2 )
 states/NotUp/position = Vector2( 557, 140 )
 states/Start/node = SubResource( 3 )
 states/Start/position = Vector2( 257, 192 )
-transitions = [ "Start", "NotUp", SubResource( 337 ), "NotUp", "Start", SubResource( 338 ), "NotUp", "NotDown", SubResource( 339 ), "NotDown", "Start", SubResource( 340 ) ]
+transitions = [ "Start", "NotUp", SubResource( 4 ), "NotUp", "Start", SubResource( 5 ), "NotUp", "NotDown", SubResource( 6 ), "NotDown", "Start", SubResource( 7 ) ]
 start_node = "Start"
 graph_offset = Vector2( -74.501, 65.4608 )
 script = ExtResource( 1 )

@@ -85,6 +85,8 @@ func _editor_ready(_owner, _parent, _parameters, _name):
 
 func _ready(_owner, _parent, _parameters, _node_name):
 	
+	return
+	
 	owner = _owner
 	parent = _parent
 	parameters = _parameters

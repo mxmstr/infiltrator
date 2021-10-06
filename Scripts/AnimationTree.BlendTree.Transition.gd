@@ -15,6 +15,8 @@ func _evaluate(target, method, args):
 
 func _ready(_owner, _parent, _parameters):
 	
+	return
+	
 	owner = _owner
 	parent = _parent
 	parameters = _parameters

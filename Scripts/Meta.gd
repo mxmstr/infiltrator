@@ -41,7 +41,7 @@ var multi_radar = true
 var multi_outlines = false
 var multi_loadout = ['Items/Beretta']
 var coop = false
-var player_count = 1
+var player_count = 4
 var player_data_default = {
 	'mouse': -1,
 	'keyboard': -1,
@@ -60,6 +60,8 @@ var player_data = [
 var rawinput = false
 
 var cached_args = []
+
+signal on_input
 
 
 func _make_unique(old, new_owner=null):
@@ -327,6 +329,11 @@ func CreateEvent(actor, event_name):
 	$'/root/Mission/Actors'.add_child(event)
 	
 	CreateLink(event, actor, 'EventMaster')
+
+
+func _input(event):
+
+	emit_signal('on_input', event)
 
 
 func _enter_tree():

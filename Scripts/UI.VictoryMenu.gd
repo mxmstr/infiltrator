@@ -63,7 +63,11 @@ func _ready():
 	yield(get_tree(), 'idle_frame')
 	
 	
-	pvp = get_node('/root/Mission/Links/PVPPlayerFactory')
+	pvp = get_node_or_null('/root/Mission/Links/PVPPlayerFactory')
+	
+	if not pvp:
+		return
+	
 	pvp.connect('player_died', self, '_on_player_died')
 	pvp.connect('player_scored', self, '_on_player_scored')
 	pvp.connect('player_won', self, '_on_player_won')

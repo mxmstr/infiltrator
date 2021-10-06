@@ -13,8 +13,9 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
-chain = true
+chain = false
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 resource_local_to_scene = true
@@ -23,8 +24,20 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
-chain = true
-schema = "MoveSidestepStopInput"
+chain = false
+schema = ""
+custom_script = "var node
+var stance
+
+func _on_ready(_node): 
+	node = _node
+	stance = node.owner.get_node_or_null('../Stance')
+
+func _on_state_starting():
+	print('aaaaaaaaaaaa')
+	stance._set_sidestep_speed(0.0)
+
+func _on_process(): pass"
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 resource_local_to_scene = true
@@ -42,7 +55,8 @@ __meta__ = {
 
 }
 action = "Left"
-state = 0
+status = 0
+strength_multiplier = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
 resource_local_to_scene = true
@@ -62,7 +76,8 @@ __meta__ = {
 
 }
 action = "Right"
-state = 0
+status = 0
+strength_multiplier = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
 resource_local_to_scene = true
@@ -73,7 +88,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
-resource_local_to_scene = true
 states/NotLeft/node = SubResource( 1 )
 states/NotLeft/position = Vector2( 557, 140 )
 states/NotRight/node = SubResource( 2 )
@@ -87,6 +101,7 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
+statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]

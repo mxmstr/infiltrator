@@ -29,6 +29,7 @@ lock_direction = false
 lock_rotation = false
 lock_movement = false
 camera_mode = "LockYaw"
+hud_mode = "Default"
 
 [sub_resource type="AnimationNodeStateMachine" id=2]
 states/Start/node = SubResource( 1 )

@@ -12,13 +12,37 @@ __meta__ = {
 
 }
 chain = false
-schema = "Contain"
+schema = ""
+custom_script = "var node
+
+func _on_ready(_node): 
+	node = _node
+
+func _on_state_starting(): 
+	Meta.CreateLink(node.owner.owner, node.owner.data.source, 'Contains')
+
+func _on_process(): pass
+"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "ContainAmmo"
+animation = "DefaultAnim"
+script = ExtResource( 1 )
 __meta__ = {
 
 }
+chain = false
+schema = ""
+custom_script = "var node
+
+func _on_ready(_node): 
+	node = _node
+
+func _on_state_starting(): 
+	node.owner.data.source.get_node('Magazine').items[0].get_node('Container')._transfer_items_to(node.owner.owner)
+	node.owner.data.source.get_node('Chamber')._transfer_items_to(node.owner.owner)
+
+func _on_process(): pass
+"
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
@@ -27,10 +51,24 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=4]
-animation = "FreeItem"
+animation = "DefaultAnim"
+script = ExtResource( 1 )
 __meta__ = {
 
 }
+chain = false
+schema = ""
+custom_script = "var node
+
+func _on_ready(_node): 
+	node = _node
+
+func _on_state_starting(): 
+	node.owner.data.source.get_node('Magazine')._delete_all()
+	node.owner.data.source.queue_free()
+
+func _on_process(): pass
+"
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
@@ -40,6 +78,7 @@ __meta__ = {
 }
 chain = false
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "DefaultAnim"
@@ -125,7 +164,7 @@ states/Touch/position = Vector2( 211, 146 )
 transitions = [ "Touch", "Contain", SubResource( 7 ), "Contain", "PoolAmmo", SubResource( 8 ), "PoolAmmo", "End", SubResource( 9 ), "Touch", "ContainAmmo", SubResource( 10 ), "ContainAmmo", "FreeItem", SubResource( 11 ), "FreeItem", "End", SubResource( 12 ) ]
 start_node = "Touch"
 end_node = "End"
-graph_offset = Vector2( -55.7185, 40.1714 )
+graph_offset = Vector2( -122.856, 40.1714 )
 __meta__ = {
 
 }
