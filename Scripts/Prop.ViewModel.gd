@@ -129,13 +129,13 @@ func _blend_skeletons(s_world, s_view):
 			s_view.set_bone_pose(idx, p_world)
 
 
-	if follow_camera_bone_id:
-
-		var pose_bone = s_view.get_bone_global_pose(follow_camera_bone_id).origin + follow_camera_offset
-		var bone_transform = owner.global_transform.basis.xform(pose_bone)
-		var rig_transform = camera_rig.global_transform.origin - owner.global_transform.origin
-
-		s_view.global_transform.origin = owner.global_transform.origin + rig_transform - bone_transform
+#	if follow_camera_bone_id:
+#
+#		var pose_bone = s_view.get_bone_global_pose(follow_camera_bone_id).origin + follow_camera_offset
+#		var bone_transform = owner.global_transform.basis.xform(pose_bone)
+#		var rig_transform = camera_rig.global_transform.origin - owner.global_transform.origin
+#
+#		s_view.global_transform.origin = owner.global_transform.origin + rig_transform - bone_transform
 
 
 func _get_item_position_offset(item):
@@ -207,10 +207,10 @@ func _exit_tree():
 	_revert_mesh_layers()
 
 
-#func _physics_process(delta):
-#
-#	if not get_child_count():
-#		return
+func _physics_process(delta):
+	
+	if not get_child_count():
+		return
 #
 #
 #	if container_root != null:
@@ -223,6 +223,6 @@ func _exit_tree():
 #		global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, item_rotation_offset.z)
 #
 #
-#	_blend_skeletons(world_skeleton, vm_skeleton)
+	_blend_skeletons(world_skeleton, vm_skeleton)
 #
 #	rotation = model.rotation

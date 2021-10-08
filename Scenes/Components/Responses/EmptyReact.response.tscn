@@ -17,6 +17,7 @@ __meta__ = {
 }
 chain = false
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
@@ -37,21 +38,21 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 auto_advance = true
 priority = 2
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=12]
+[sub_resource type="AnimationNodeStateMachine" id=7]
 states/EmptyReact/node = SubResource( 1 )
 states/EmptyReact/position = Vector2( 211, 146 )
 states/EmptyReactResponse/node = SubResource( 2 )
 states/EmptyReactResponse/position = Vector2( 525.951, 89 )
 states/End/node = SubResource( 3 )
 states/End/position = Vector2( 832.613, 146 )
-transitions = [ "EmptyReact", "EmptyReactResponse", SubResource( 4 ), "EmptyReactResponse", "End", SubResource( 5 ), "EmptyReact", "End", SubResource( 11 ) ]
+transitions = [ "EmptyReact", "EmptyReactResponse", SubResource( 4 ), "EmptyReactResponse", "End", SubResource( 5 ), "EmptyReact", "End", SubResource( 6 ) ]
 start_node = "EmptyReact"
 end_node = "End"
 graph_offset = Vector2( -24.4477, 21.2765 )
@@ -59,12 +60,12 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=9]
 length = 0.001
 __meta__ = {
 
@@ -111,9 +112,9 @@ __meta__ = {
 }
 
 [node name="EmptyReactResponse" type="AnimationTree"]
-tree_root = SubResource( 12 )
+tree_root = SubResource( 7 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 13 )
+parameters/playback = SubResource( 8 )
 script = ExtResource( 2 )
 __meta__ = {
 
@@ -122,7 +123,7 @@ start_node = "EmptyReact"
 end_node = "End"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = SubResource( 14 )
+anims/DefaultAnim = SubResource( 9 )
 anims/EmptyReactResponse = SubResource( 10 )
 __meta__ = {
 

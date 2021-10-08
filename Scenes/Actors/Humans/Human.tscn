@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Scenes/Actors/KinematicBody.Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Properties/CameraRig.property.tscn" type="PackedScene" id=2]
@@ -18,10 +18,10 @@
 [ext_resource path="res://Scenes/Components/Actions/Reload.action.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Components/Actions/Die.action.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Components/Actions/Suspend.action.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Scenes/Components/Responses/Touch.Human.response.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scenes/Components/Responses/UseReact.response.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scenes/Components/Responses/EmptyReact.response.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Scenes/Components/Responses/Damage.response.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Components/Responses/Touch.Human.response2.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Components/Responses/UseReact.response2.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Components/Responses/EmptyReact.response2.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Components/Responses/Damage.response2.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Components/Sounds/Impact.sound.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Components/Sounds/Step.sound.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/Components/Sounds/Oof.sound.tscn" type="PackedScene" id=25]
@@ -93,26 +93,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
 __meta__ = {
 
 }
@@ -281,16 +261,16 @@ parameters/playback = SubResource( 13 )
 parameters/playback = SubResource( 14 )
 
 [node name="TouchResponse" parent="." index="25" instance=ExtResource( 19 )]
-parameters/playback = SubResource( 15 )
+tree_node = NodePath("../Reception")
 
 [node name="UseReactResponse" parent="." index="26" instance=ExtResource( 20 )]
-parameters/playback = SubResource( 16 )
+tree_node = NodePath("../Reception")
 
 [node name="EmptyReactResponse" parent="." index="27" instance=ExtResource( 21 )]
-parameters/playback = SubResource( 17 )
+tree_node = NodePath("../Reception")
 
 [node name="DamageResponse" parent="." index="28" instance=ExtResource( 22 )]
-parameters/playback = SubResource( 18 )
+tree_node = NodePath("../Reception")
 
 [node name="ImpactSound" parent="." index="29" instance=ExtResource( 23 )]
 parameters/playback = SubResource( 19 )

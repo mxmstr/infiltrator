@@ -1327,4 +1327,5 @@ limits/debugger_stdout/max_errors_per_frame=100
 
 [rendering]
 
+threads/thread_model=2
 environment/default_environment="res://default_env.tres"

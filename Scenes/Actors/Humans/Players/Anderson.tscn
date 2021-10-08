@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=2]
@@ -157,16 +157,6 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=60]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=61]
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id=62]
 __meta__ = {
 
@@ -237,7 +227,7 @@ __meta__ = {
 
 }
 
-[node name="Anderson" index="0" instance=ExtResource( 1 )]
+[node name="Anderson" instance=ExtResource( 1 )]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 2 )
@@ -326,54 +316,44 @@ parameters/Climb/playback = SubResource( 51 )
 parameters/Jump/3/playback = SubResource( 52 )
 parameters/Jump/4/playback = SubResource( 53 )
 parameters/Jump/5/playback = SubResource( 54 )
-tree_node = NodePath("../Behavior")
 
 [node name="PrimaryAction" parent="." index="40"]
 parameters/playback = SubResource( 55 )
 parameters/IdleAim/playback = SubResource( 56 )
-tree_node = NodePath("../Behavior")
 
 [node name="ReloadAction" parent="." index="41"]
 parameters/playback = SubResource( 57 )
-tree_node = NodePath("../Behavior")
 
 [node name="DieAction" parent="." index="42"]
 parameters/playback = SubResource( 58 )
-tree_node = NodePath("../Behavior")
 
 [node name="SuspendAction" parent="." index="43"]
 parameters/playback = SubResource( 59 )
-tree_node = NodePath("../Behavior")
 
 [node name="TouchResponse" parent="." index="44"]
-parameters/playback = SubResource( 60 )
-tree_node = NodePath("../Reception")
+tree_node = NodePath("")
 
 [node name="UseReactResponse" parent="." index="45"]
-parameters/playback = SubResource( 61 )
-tree_node = NodePath("../Reception")
+tree_node = NodePath("")
 
 [node name="EmptyReactResponse" parent="." index="46"]
 parameters/playback = SubResource( 62 )
-tree_node = NodePath("../Reception")
+tree_node = NodePath("")
 
 [node name="DamageResponse" parent="." index="47"]
 parameters/playback = SubResource( 63 )
-tree_node = NodePath("../Reception")
+tree_node = NodePath("")
 
 [node name="ImpactSound" parent="." index="48"]
 parameters/playback = SubResource( 75 )
 parameters/Impact/playback = SubResource( 76 )
-tree_node = NodePath("../FeetAudio")
 
 [node name="StepSound" parent="." index="49"]
 parameters/playback = SubResource( 93 )
 parameters/Step/playback = SubResource( 94 )
-tree_node = NodePath("../FeetAudio")
 
 [node name="OofSound" parent="." index="50"]
 parameters/playback = SubResource( 101 )
-tree_node = NodePath("../VoiceAudio")
 
 [node name="VoiceAudio" parent="." index="51"]
 parameters/playback = SubResource( 106 )

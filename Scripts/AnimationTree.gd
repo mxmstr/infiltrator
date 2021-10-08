@@ -87,7 +87,7 @@ func _send_message(text):
 
 func _ready():
 	
-	tree_root = tree_root.duplicate(true)
+#	tree_root = tree_root.duplicate(true)
 	
 #	if name == 'Behavior' and 'Pistol' in owner.name:
 #		print(owner.name, tree_root.get_transition(0).duplicate(true))
@@ -108,12 +108,16 @@ func _ready():
 
 func _physics_process(delta):
 	
+	return
+	
 	emit_signal('on_physics_process', delta)
 
 
 func _process(delta):
 	
 	if Engine.editor_hint: return
+	
+	return
 	
 	emit_signal('on_process', delta)
 	

@@ -26,6 +26,7 @@ __meta__ = {
 }
 chain = false
 schema = "DecreaseHP"
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
@@ -41,6 +42,7 @@ __meta__ = {
 }
 chain = false
 schema = "GetKilled"
+custom_script = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
 auto_advance = true

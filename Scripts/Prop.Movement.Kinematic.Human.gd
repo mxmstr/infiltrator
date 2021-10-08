@@ -110,7 +110,9 @@ func _process(delta):
 #	print(angular_direction.length())
 	
 	owner.rotation.y += angular_velocity.x
-	camera_rig._rotate_camera(angular_velocity.y, 0)
+	
+	if camera_rig:
+		camera_rig._rotate_camera(angular_velocity.y, 0)
 	
 #	angular_direction.x = 0
 #	angular_direction.y = 0

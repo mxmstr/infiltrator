@@ -28,6 +28,7 @@ __meta__ = {
 }
 chain = false
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 resource_local_to_scene = true
@@ -38,6 +39,7 @@ __meta__ = {
 }
 chain = false
 schema = "Reflect"
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 resource_local_to_scene = true
@@ -46,7 +48,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 resource_local_to_scene = true
 auto_advance = true
 disabled = true
@@ -61,9 +63,9 @@ arguments = {
 "SOURCE": "source",
 "TAG": "Bullet"
 }
-wait_for_frame = 0.0
+delay = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 resource_local_to_scene = true
 switch_mode = 2
 auto_advance = true
@@ -99,7 +101,7 @@ states/Reflect/node = SubResource( 4 )
 states/Reflect/position = Vector2( 675.613, 146 )
 states/Touch/node = SubResource( 5 )
 states/Touch/position = Vector2( 154, 146 )
-transitions = [ "Touch", "ImpactEffect", SubResource( 15 ), "ImpactEffect", "Reflect", SubResource( 16 ), "Reflect", "Asdfasd", SubResource( 8 ), "Asdfasd", "End", SubResource( 9 ) ]
+transitions = [ "Touch", "ImpactEffect", SubResource( 6 ), "ImpactEffect", "Reflect", SubResource( 7 ), "Reflect", "Asdfasd", SubResource( 8 ), "Asdfasd", "End", SubResource( 9 ) ]
 start_node = "Touch"
 end_node = "End"
 graph_offset = Vector2( 54.6817, -7.99613 )

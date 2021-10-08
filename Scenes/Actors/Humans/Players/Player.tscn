@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Inputs/MoveRight.input.tscn" type="PackedScene" id=2]
@@ -168,26 +168,6 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=52]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=53]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=54]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=55]
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id=67]
 __meta__ = {
 
@@ -342,18 +322,6 @@ parameters/playback = SubResource( 50 )
 
 [node name="SuspendAction" parent="." index="40"]
 parameters/playback = SubResource( 51 )
-
-[node name="TouchResponse" parent="." index="41"]
-parameters/playback = SubResource( 52 )
-
-[node name="UseReactResponse" parent="." index="42"]
-parameters/playback = SubResource( 53 )
-
-[node name="EmptyReactResponse" parent="." index="43"]
-parameters/playback = SubResource( 54 )
-
-[node name="DamageResponse" parent="." index="44"]
-parameters/playback = SubResource( 55 )
 
 [node name="ImpactSound" parent="." index="45"]
 parameters/playback = SubResource( 67 )

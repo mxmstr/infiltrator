@@ -138,8 +138,8 @@ func _add_viewport(actor, data):
 
 func _ready():
 	
-#	if is_queued_for_deletion():
-#		return
+	if is_queued_for_deletion():
+		return
 #
 #	if not Meta.multi:
 #		return

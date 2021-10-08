@@ -135,6 +135,8 @@ func _editor_ready(_owner, _parent, _parameters, _name):
 
 func _ready(_owner, _parent, _parameters, _node_name):
 	
+	return
+	
 	owner = _owner
 	parent = _parent
 	parameters = _parameters
@@ -148,7 +150,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 
 
 	var children = get_children()
-
+	
 	for child_name in children:
 		
 		var child = children[child_name]

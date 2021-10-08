@@ -24,7 +24,7 @@ func _ready():
 
 func _physics_process(delta):
 	
-	if collision.disabled:
+	if not collision or collision.disabled:
 		return
 	
 	
