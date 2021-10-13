@@ -5,7 +5,7 @@ export(Array, String) var movement_bones
 
 const camera_rig_track_path = '../../Perspective'
 
-var blend_mode = Meta.Blend.ACTION
+var blend_mode = Meta.BlendLayer.ACTION
 var cache_poses = true
 
 var model
@@ -29,7 +29,7 @@ var model_blend_speed = 0.5
 
 func _on_pre_process():
 	
-	tree_root._filter_anim_events(blend_mode == Meta.Blend.ACTION)
+	tree_root._filter_anim_events(blend_mode == Meta.BlendLayer.ACTION)
 
 
 func _on_post_process():
@@ -85,9 +85,9 @@ func _blend_skeletons(delta):
 	
 	var bones = range(model_skeleton.get_bone_count())
 	
-	var layered = blend_mode == Meta.Blend.LAYERED
-	var action_only = blend_mode == Meta.Blend.ACTION
-	var movement_only = blend_mode == Meta.Blend.MOVEMENT
+	var layered = blend_mode == Meta.BlendLayer.LAYERED
+	var action_only = blend_mode == Meta.BlendLayer.ACTION
+	var movement_only = blend_mode == Meta.BlendLayer.MOVEMENT
 	
 #	active = not action_only
 	
@@ -138,7 +138,8 @@ func _blend_skeletons(delta):
 			model_blend_amount = max(model_blend_amount, 0)
 		
 		
-		model_skeleton.set_bone_global_pose(idx, model_transform)
+		if bone_name in ['Pelvis', 'Torso']:
+			model_skeleton.set_bone_global_pose(idx, model_transform)
 	
 #	for idx in bones:
 #
@@ -229,8 +230,6 @@ func _enter_tree():
 
 func _ready():
 	
-	return
-	
 	behavior = get_node_or_null('../Behavior')
 	behavior_animation_player = get_node_or_null('../Behavior/AnimationPlayer')
 	
@@ -247,15 +246,13 @@ func _ready():
 	var playback = behavior.get('parameters/playback')
 	playback.connect('state_starting', self, '_on_state_starting')
 
-	connect('pre_process', self, '_on_pre_process')
-	connect('post_process', self, '_on_post_process')
+#	connect('pre_process', self, '_on_pre_process')
+#	connect('post_process', self, '_on_post_process')
 	
 	_set_skeleton()
 
 
 func _physics_process(delta):
-	
-	return
 	
 	if not model:
 		return
@@ -263,11 +260,11 @@ func _physics_process(delta):
 	_blend_camera(delta)
 	_blend_skeletons(delta)
 	
-#	if blend_mode == Meta.Blend.ACTION:
-#		pass#active = false
-##		behavior.blend_with_skeleton(model_skeleton, root_bone, bone_names)
-#	elif blend_mode == Meta.Blend.LAYERED:
-##		behavior.blend_with_skeleton(model_skeleton, root_bone, bone_names)
+#	if blend_mode == Meta.BlendLayer.ACTION:
+##		active = false
+#		behavior.blend_with_skeleton(model_skeleton, root_bone, bone_names)
+#	elif blend_mode == Meta.BlendLayer.LAYERED:
+#		behavior.blend_with_skeleton(model_skeleton, root_bone, bone_names)
 #		blend_with_skeleton(model_skeleton, root_bone, movement_bones)
-#	elif blend_mode == Meta.Blend.MOVEMENT:
+#	elif blend_mode == Meta.BlendLayer.MOVEMENT:
 #		blend_with_skeleton(model_skeleton, '', bone_names)

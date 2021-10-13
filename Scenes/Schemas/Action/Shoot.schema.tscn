@@ -1,13 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Animations/Human/Action/ShootBeretta.tres" type="Animation" id=1]
 [ext_resource path="res://Animations/Human/Action/ShootBeretta_Down.tres" type="Animation" id=2]
 [ext_resource path="res://Animations/Human/Action/ShootBeretta_Up.tres" type="Animation" id=3]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=4]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/ShootBeretta = ExtResource( 1 )
 anims/ShootBeretta_Down = ExtResource( 2 )
 anims/ShootBeretta_Up = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
 
 }
+attributes = "{
+	\"*\": {
+		\"layer\": \"MIXED\"
+	}
+}"

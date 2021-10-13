@@ -2,7 +2,7 @@ extends 'res://Scripts/AnimationTree.StateMachine.gd'
 
 export(Meta.Priority) var priority
 export(Meta.Visibility) var type
-export(Meta.Blend) var blend
+export(Meta.BlendLayer) var blend
 export var cache_pose = true
 export var distance = 0.0
 export var enable_abilities = true
@@ -56,8 +56,6 @@ func _on_state_starting(new_name):
 
 
 func _ready(_owner, _parent, _parameters, _name):
-	
-	return
 	
 	._ready(_owner, _parent, _parameters, _name)
 	

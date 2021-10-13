@@ -49,8 +49,6 @@ func _reset_camera():
 
 func _ready():
 	
-	return
-	
 	_reset_camera()
 	
 	yield(get_tree(), 'idle_frame')
@@ -61,8 +59,6 @@ func _ready():
 
 
 func _process(delta):
-
-	return
 
 	if root:# and position_offset and rotation_degrees_offset:
 

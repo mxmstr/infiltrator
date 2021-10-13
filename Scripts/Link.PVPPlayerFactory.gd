@@ -83,7 +83,7 @@ func _respawn(actor):
 	actor.global_transform.origin = marker.global_transform.origin
 	actor.rotation = marker.rotation
 	actor.get_node('Stamina').hp = data.hp
-	actor.get_node('Behavior')._teleport_to_state('Start')
+	actor.get_node('Behavior')._start_state('Default')#_teleport_to_state('Start')
 
 
 func _enter_tree():
@@ -177,6 +177,9 @@ func _ready():
 		var data = Meta.player_data[i]
 		
 #		actors[i].get_node('Stamina').connect('just_died', self, '_on_player_died', [actors[i]])
-		actors[i].get_node('Behavior').tree_root.get_node('Die').connect('playing', self, '_on_player_died', [actors[i]])
+		
+		if actors[i].get_node('Behavior').tree_root.has_node('Die'):
+			var die_node = actors[i].get_node('Behavior').tree_root.get_node('Die')
+			die_node.connect('playing', self, '_on_player_died', [actors[i]])
 	
 	

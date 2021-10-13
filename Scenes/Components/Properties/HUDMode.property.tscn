@@ -1,97 +1,9 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=2]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=1]
+[ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=2]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
-animation = "Death"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=2]
-animation = "Default"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "Pause"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "PostDeath"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "Victory"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
-xfade_time = 1.0
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=10]
-states/Death/node = SubResource( 1 )
-states/Death/position = Vector2( 691.167, 61.2439 )
-states/Default/node = SubResource( 2 )
-states/Default/position = Vector2( 779.167, 141.244 )
-states/Pause/node = SubResource( 3 )
-states/Pause/position = Vector2( 779.167, 242.244 )
-states/PostDeath/node = SubResource( 4 )
-states/PostDeath/position = Vector2( 888.167, 61.2439 )
-states/Victory/node = SubResource( 17 )
-states/Victory/position = Vector2( 968.167, 141.244 )
-transitions = [ "Default", "Death", SubResource( 5 ), "Death", "PostDeath", SubResource( 6 ), "PostDeath", "Default", SubResource( 7 ), "Default", "Pause", SubResource( 8 ), "Pause", "Default", SubResource( 9 ), "Default", "Victory", SubResource( 18 ) ]
-start_node = "Default"
-graph_offset = Vector2( 142.167, 25.2439 )
-script = ExtResource( 1 )
-__meta__ = {
-
-}
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
-__meta__ = {
-
-}
-
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
@@ -221,7 +133,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
@@ -351,7 +263,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
@@ -481,7 +393,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
@@ -611,7 +523,7 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=5]
 resource_name = "Victory"
 length = 0.001
 tracks/0/type = "value"
@@ -742,22 +654,21 @@ __meta__ = {
 
 }
 
-[node name="HUDMode" type="AnimationTree"]
-tree_root = SubResource( 10 )
-anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 11 )
+[node name="HUDMode" type="AnimationPlayer"]
+root_node = NodePath(".")
+anims/Death = SubResource( 1 )
+anims/Default = SubResource( 2 )
+anims/DefaultAnim = ExtResource( 1 )
+anims/Pause = SubResource( 3 )
+anims/PostDeath = SubResource( 4 )
+anims/Victory = SubResource( 5 )
 script = ExtResource( 2 )
 __meta__ = {
 
 }
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 12 )
-anims/Default = SubResource( 13 )
-anims/DefaultAnim = ExtResource( 3 )
-anims/Pause = SubResource( 14 )
-anims/PostDeath = SubResource( 15 )
-anims/Victory = SubResource( 16 )
-__meta__ = {
-
-}
+attributes = "{
+	\"PostDeath\": {
+		\"speed\": 1.0,
+		\"blend\": 1.0
+	}	
+}"

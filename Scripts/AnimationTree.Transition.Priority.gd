@@ -19,8 +19,6 @@ func _on_travel_starting(new_node_name, new_node):
 
 func _ready(_owner, _parent, _parameters, _from, _to):
 	
-	return
-	
 	._ready(_owner, _parent, _parameters, _from, _to)
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:

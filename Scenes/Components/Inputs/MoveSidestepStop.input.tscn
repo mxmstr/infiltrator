@@ -34,7 +34,6 @@ func _on_ready(_node):
 	stance = node.owner.get_node_or_null('../Stance')
 
 func _on_state_starting():
-	print('aaaaaaaaaaaa')
 	stance._set_sidestep_speed(0.0)
 
 func _on_process(): pass"

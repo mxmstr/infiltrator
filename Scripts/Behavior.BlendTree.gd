@@ -6,7 +6,7 @@ var exec_list = []
 
 export(Meta.Priority) var priority
 export(Meta.Visibility) var type
-export(Meta.Blend) var blend
+export(Meta.BlendLayer) var blend
 export var cache_pose = true
 export var distance = 0.0
 export var enable_abilities = true
@@ -84,8 +84,6 @@ func _on_state_starting(new_name):
 
 func _ready(_owner, _parent, _parameters, _node_name):
 	
-	return
-	
 	._ready(_owner, _parent, _parameters, _node_name)
 	
 	stance = owner.owner.get_node_or_null('Stance')
@@ -111,9 +109,9 @@ func _process(delta):
 			if anim_layer_movement:
 				
 				if _evaluate():
-					anim_layer_movement.blend_mode = Meta.Blend.LAYERED
+					anim_layer_movement.blend_mode = Meta.BlendLayer.LAYERED
 				else:
-					anim_layer_movement.blend_mode = Meta.Blend.ACTION
+					anim_layer_movement.blend_mode = Meta.BlendLayer.ACTION
 	
 	else:
 		

@@ -6,10 +6,10 @@ enum Visibility {
 	REMOTE
 }
 
-enum Blend {
+enum BlendLayer {
 	ACTION,
 	MOVEMENT,
-	LAYERED
+	MIXED
 }
 
 enum Priority {
@@ -62,6 +62,20 @@ var rawinput = false
 var cached_args = []
 
 signal on_input
+
+
+
+func _merge_dir(target, patch):
+	
+	for key in patch:
+		if target.has(key):
+			var tv = target[key]
+			if typeof(tv) == TYPE_DICTIONARY:
+				_merge_dir(tv, patch[key])
+			else:
+				target[key] = patch[key]
+		else:
+			target[key] = patch[key]
 
 
 func _make_unique(old, new_owner=null):

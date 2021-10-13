@@ -111,8 +111,6 @@ func _update():
 
 func _ready(_owner, _parent, _parameters, _node_name):
 
-	return
-
 	owner = _owner
 	parent = _parent
 	parameters = _parameters

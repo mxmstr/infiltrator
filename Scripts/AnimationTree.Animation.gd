@@ -103,8 +103,6 @@ func _on_state_starting(new_name):
 
 func _ready(_owner, _parent, _parameters, _name):
 	
-	return
-	
 	owner = _owner
 	parent = _parent
 	parameters = _parameters
@@ -117,7 +115,7 @@ func _ready(_owner, _parent, _parameters, _name):
 	
 	owner.connect('on_process', self, '_process')
 	
-	#_load_animations()
+	_load_animations()
 	_load_script()
 
 

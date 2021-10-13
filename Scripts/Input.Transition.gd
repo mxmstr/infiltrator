@@ -51,8 +51,6 @@ func _input(event):
 
 func _ready(_owner, _parent, _parameters, _from, _to):
 	
-	return
-	
 	owner = _owner
 	parent = _parent
 	parameters = _parameters

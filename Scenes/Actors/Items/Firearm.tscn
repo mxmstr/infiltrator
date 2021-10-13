@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=2]
@@ -7,17 +7,16 @@
 [ext_resource path="res://Scripts/AnimationTree.Animation.Scaled.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Components/Responses/Use.Firearm.response2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Sounds/FireProjectile.sound.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/AudioTree.Animation.gd" type="Script" id=10]
-[ext_resource path="res://Scenes/Components/Stimuli/Contact.RigidBody.stimulus.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scripts/Stimulus.Radius.gd" type="Script" id=12]
-[ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=15]
-[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Components/Actions/Sound.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Stimuli/Contact.RigidBody.stimulus.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Stimulus.Radius.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=17]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
@@ -188,73 +187,9 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=16]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-script = ExtResource( 10 )
-__meta__ = {
-
-}
-chain = false
-schema = "FireProjectileSound"
-custom_script = ""
-level = 0.0
-
-[sub_resource type="AnimationNodeAnimation" id=18]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-resource_local_to_scene = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-resource_local_to_scene = true
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=21]
-resource_local_to_scene = true
-states/End/node = SubResource( 16 )
-states/End/position = Vector2( 828, 27.552 )
-states/FireProjectile/node = SubResource( 17 )
-states/FireProjectile/position = Vector2( 572, 27.552 )
-states/Start/node = SubResource( 18 )
-states/Start/position = Vector2( 333, 27.552 )
-transitions = [ "Start", "FireProjectile", SubResource( 19 ), "FireProjectile", "End", SubResource( 20 ) ]
-start_node = "Start"
-end_node = "End"
-graph_offset = Vector2( -13, -93.7663 )
-script = ExtResource( 9 )
-__meta__ = {
-
-}
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
-__meta__ = {
-
-}
-
 [sub_resource type="AnimationNodeAnimation" id=23]
 animation = "DefaultAnim"
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 __meta__ = {
 
 }
@@ -280,7 +215,7 @@ states/Start/node = SubResource( 23 )
 states/Start/position = Vector2( 612.453, 244.689 )
 start_node = "Start"
 graph_offset = Vector2( 10.4534, 38.6886 )
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 __meta__ = {
 
 }
@@ -426,7 +361,7 @@ transitions = [ "Start", "Touch", SubResource( 33 ), "Touch", "End", SubResource
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 131.03 )
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 __meta__ = {
 
 }
@@ -449,7 +384,7 @@ states/Start/node = SubResource( 45 )
 states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 __meta__ = {
 
 }
@@ -488,7 +423,7 @@ transitions = [ "Start", "End", SubResource( 50 ) ]
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 __meta__ = {
 
 }
@@ -534,16 +469,15 @@ tree_node = NodePath("../Behavior")
 tree_node = NodePath("../Reception")
 
 [node name="FireProjectileSound" parent="." instance=ExtResource( 8 )]
-tree_root = SubResource( 21 )
-parameters/playback = SubResource( 22 )
-tree_node = NodePath("../Audio")
+tree = NodePath("../Audio")
+schema = "FireProjectileSound"
 
-[node name="ContactStim" parent="." instance=ExtResource( 11 )]
+[node name="ContactStim" parent="." instance=ExtResource( 9 )]
 stim_type = "Touch"
 
 [node name="PickupRadiusStim" type="RayCast" parent="."]
 cast_to = Vector3( 0, 0, 0 )
-script = ExtResource( 12 )
+script = ExtResource( 10 )
 __meta__ = {
 
 }
@@ -552,20 +486,20 @@ max_distance = 2.0
 raycast = true
 required_tags = "Human"
 
-[node name="Movement" parent="." instance=ExtResource( 13 )]
+[node name="Movement" parent="." instance=ExtResource( 11 )]
 
-[node name="Behavior" parent="." instance=ExtResource( 14 )]
+[node name="Behavior" parent="." instance=ExtResource( 12 )]
 tree_root = SubResource( 24 )
 parameters/playback = SubResource( 25 )
 
-[node name="Reception" parent="." instance=ExtResource( 16 )]
+[node name="Reception" parent="." instance=ExtResource( 15 )]
 tree_root = SubResource( 43 )
 parameters/playback = SubResource( 44 )
 
-[node name="Interface" parent="." instance=ExtResource( 17 )]
+[node name="Interface" parent="." instance=ExtResource( 16 )]
 tree_root = SubResource( 46 )
 parameters/playback = SubResource( 47 )
 
-[node name="Audio" parent="." instance=ExtResource( 18 )]
+[node name="Audio" parent="." instance=ExtResource( 17 )]
 tree_root = SubResource( 51 )
 parameters/playback = SubResource( 52 )

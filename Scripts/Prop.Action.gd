@@ -16,6 +16,8 @@ func _on_parameter_changed(base_path, p_name, p_value):
 
 func _ready():
 	
+	return
+	
 	if Engine.editor_hint:
 		connect('parameter_changed', self, '_on_parameter_changed')
 		return

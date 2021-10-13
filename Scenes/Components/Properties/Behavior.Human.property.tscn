@@ -1,0 +1,124 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tres" type="AnimationNodeBlendSpace1D" id=1]
+[ext_resource path="res://Scripts/Behavior.Human.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/Movement/Stand.tres" type="Animation" id=4]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlend3" id=9]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "DefaultAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeTransition" id=6]
+input_count = 2
+input_0/name = "Action"
+input_0/auto_advance = true
+input_0/data = {
+
+}
+input_1/name = "Movement"
+input_1/auto_advance = true
+input_1/data = {
+
+}
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeOneShot" id=12]
+filter_enabled = true
+filters = [ ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:Neck", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:shoulders" ]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendTree" id=3]
+graph_offset = Vector2( -29.2365, -105.331 )
+nodes/Action/node = SubResource( 1 )
+nodes/Action/position = Vector2( 80, -40 )
+nodes/ActionBlend/node = SubResource( 9 )
+nodes/ActionBlend/position = Vector2( 300, -60 )
+nodes/ActionDown/node = SubResource( 10 )
+nodes/ActionDown/position = Vector2( 80, -160 )
+nodes/ActionUp/node = SubResource( 11 )
+nodes/ActionUp/position = Vector2( 80, 80 )
+nodes/Layer/node = SubResource( 6 )
+nodes/Layer/position = Vector2( 720, 100 )
+nodes/Movement/node = ExtResource( 1 )
+nodes/Movement/position = Vector2( 80, 220 )
+nodes/Movement2/node = ExtResource( 1 )
+nodes/Movement2/position = Vector2( 420, 220 )
+nodes/OneShot/node = SubResource( 12 )
+nodes/OneShot/position = Vector2( 500, 0 )
+nodes/output/position = Vector2( 940, 100 )
+node_connections = [ "output", 0, "Layer", "Layer", 0, "OneShot", "Layer", 1, "Movement2", "OneShot", 0, "Movement", "OneShot", 1, "ActionBlend", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp" ]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+__meta__ = {
+
+}
+
+[node name="Behavior" type="AnimationTree"]
+tree_root = SubResource( 3 )
+anim_player = NodePath("AnimationPlayer")
+parameters/ActionBlend/blend_amount = 0
+parameters/Layer/current = 0
+parameters/Movement/blend_position = 0
+parameters/Movement/0/blend_position = Vector2( 0, 0 )
+parameters/Movement/0/0/playback = SubResource( 4 )
+parameters/Movement/1/blend_position = Vector2( 0, 0 )
+parameters/Movement/1/0/playback = SubResource( 5 )
+parameters/Movement2/blend_position = 0
+parameters/Movement2/0/blend_position = Vector2( 0, 0 )
+parameters/Movement2/0/0/playback = SubResource( 7 )
+parameters/Movement2/1/blend_position = Vector2( 0, 0 )
+parameters/Movement2/1/0/playback = SubResource( 8 )
+parameters/OneShot/active = false
+script = ExtResource( 2 )
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 3 )
+anims/Stand = ExtResource( 4 )
+__meta__ = {
+
+}

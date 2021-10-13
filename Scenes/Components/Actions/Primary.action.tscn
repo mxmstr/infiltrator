@@ -85,6 +85,7 @@ __meta__ = {
 }
 chain = true
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
 auto_advance = true
@@ -287,7 +288,7 @@ states/UseReact/node = SubResource( 15 )
 states/UseReact/position = Vector2( 364.874, -40.6256 )
 transitions = [ "Start", "IdleAim", SubResource( 16 ), "IdleAim", "Start", SubResource( 17 ), "Start", "UseReact", SubResource( 18 ), "UseReact", "ShootOneHand", SubResource( 19 ), "ShootOneHand", "IdleAim", SubResource( 20 ), "IdleAim", "UseReact", SubResource( 21 ), "UseReact", "Start", SubResource( 22 ), "ShootOneHand", "Start", SubResource( 23 ), "ShootOneHand", "UseReact", SubResource( 24 ) ]
 start_node = "Start"
-graph_offset = Vector2( -132.126, -86.6256 )
+graph_offset = Vector2( -196.535, -86.6256 )
 __meta__ = {
 
 }

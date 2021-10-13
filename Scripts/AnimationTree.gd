@@ -96,6 +96,12 @@ func _ready():
 #		set_process(false)
 #		set_physics_process(false)
 #		return
+#
+#	if name == 'Behavior':
+#		return
+	
+#	if 'Input' in name:
+#		return
 	
 	if tree_root.has_method('_ready'):
 		tree_root._ready(self, null, 'parameters/', 'root')
@@ -115,9 +121,9 @@ func _physics_process(delta):
 
 func _process(delta):
 	
-	if Engine.editor_hint: return
-	
 	return
+	
+	if Engine.editor_hint: return
 	
 	emit_signal('on_process', delta)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Inputs/MoveRight.input.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Scenes/Components/Inputs/PrimaryAction.input.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Components/Inputs/Pause.input.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Animations/Property/Prop.WeaponTargetLock.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=18]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
@@ -58,6 +59,46 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+__meta__ = {
+
+}
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 __meta__ = {
 
@@ -73,6 +114,46 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
+__meta__ = {
+
+}
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=28]
 __meta__ = {
 
@@ -83,152 +164,37 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
+[sub_resource type="AnimationNodeAnimation" id=30]
+resource_local_to_scene = true
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
+[sub_resource type="AnimationNodeStateMachine" id=31]
+resource_local_to_scene = true
+states/Start/node = SubResource( 30 )
+states/Start/position = Vector2( 624, 170 )
+start_node = "Start"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 18 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=32]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=40]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=42]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=43]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=44]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=45]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=46]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=47]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=48]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=49]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=50]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=51]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=67]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=68]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=85]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=86]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=93]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=98]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=102]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=106]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=107]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=108]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=109]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=110]
-__meta__ = {
-
-}
-
-[node name="Player" instance=ExtResource( 1 )]
+[node name="Player" index="0" instance=ExtResource( 1 )]
 
 [node name="MoveRightInput" parent="." index="0" instance=ExtResource( 2 )]
 parameters/playback = SubResource( 1 )
@@ -255,26 +221,26 @@ parameters/playback = SubResource( 7 )
 parameters/playback = SubResource( 8 )
 
 [node name="RotateVerticalStopInput" parent="." index="8" instance=ExtResource( 10 )]
-parameters/playback = SubResource( 17 )
+parameters/playback = SubResource( 9 )
 
 [node name="RotateLeftInput" parent="." index="9" instance=ExtResource( 11 )]
-parameters/playback = SubResource( 18 )
+parameters/playback = SubResource( 10 )
 
 [node name="RotateRightInput" parent="." index="10" instance=ExtResource( 12 )]
-parameters/playback = SubResource( 19 )
+parameters/playback = SubResource( 11 )
 
 [node name="RotateHorizontalStopInput" parent="." index="11" instance=ExtResource( 13 )]
-parameters/playback = SubResource( 28 )
+parameters/playback = SubResource( 12 )
 
 [node name="CrouchInput" parent="." index="12" instance=ExtResource( 14 )]
-parameters/playback = SubResource( 29 )
+parameters/playback = SubResource( 13 )
 
 [node name="PrimaryActionInput" parent="." index="13" instance=ExtResource( 15 )]
-parameters/playback = SubResource( 30 )
-parameters/Primary/playback = SubResource( 31 )
+parameters/playback = SubResource( 14 )
+parameters/Primary/playback = SubResource( 15 )
 
 [node name="PauseInput" parent="." index="14" instance=ExtResource( 16 )]
-parameters/playback = SubResource( 37 )
+parameters/playback = SubResource( 16 )
 
 [node name="WeaponTargetLock" type="Node" parent="." index="15"]
 script = ExtResource( 17 )
@@ -290,70 +256,43 @@ editor/display_folded = true
 [node name="Target" parent="CameraRaycastStim" index="1"]
 editor/display_folded = true
 
-[node name="Perspective" parent="." index="32"]
-editor/display_folded = true
+[node name="PrimaryAction" parent="." index="36"]
+parameters/playback = SubResource( 17 )
+parameters/IdleAim/playback = SubResource( 18 )
 
-[node name="AnimLayerMovement" parent="." index="33"]
-parameters/0/0/playback = SubResource( 38 )
-parameters/1/0/playback = SubResource( 39 )
+[node name="ReloadAction" parent="." index="37"]
+parameters/playback = SubResource( 19 )
 
-[node name="CameraMode" parent="." index="34"]
-parameters/playback = SubResource( 40 )
+[node name="DieAction" parent="." index="38"]
+parameters/playback = SubResource( 20 )
 
-[node name="HUDMode" parent="." index="35"]
-parameters/playback = SubResource( 41 )
+[node name="SuspendAction" parent="." index="39"]
+parameters/playback = SubResource( 21 )
 
-[node name="JumpOrClimbAction" parent="." index="36"]
-parameters/playback = SubResource( 42 )
-parameters/Climb/playback = SubResource( 43 )
-parameters/Jump/3/playback = SubResource( 44 )
-parameters/Jump/4/playback = SubResource( 45 )
-parameters/Jump/5/playback = SubResource( 46 )
+[node name="VoiceAudio" parent="." index="45"]
+parameters/playback = SubResource( 22 )
 
-[node name="PrimaryAction" parent="." index="37"]
-parameters/playback = SubResource( 47 )
-parameters/IdleAim/playback = SubResource( 48 )
+[node name="FoleyAudio" parent="." index="46"]
+parameters/playback = SubResource( 23 )
 
-[node name="ReloadAction" parent="." index="38"]
-parameters/playback = SubResource( 49 )
+[node name="FeetAudio" parent="." index="47"]
+parameters/playback = SubResource( 24 )
 
-[node name="DieAction" parent="." index="39"]
-parameters/playback = SubResource( 50 )
+[node name="Behavior" parent="." index="49"]
+parameters/Movement/0/0/playback = SubResource( 25 )
+parameters/Movement/1/0/playback = SubResource( 26 )
+parameters/Movement2/0/0/playback = SubResource( 27 )
+parameters/Movement2/1/0/playback = SubResource( 28 )
 
-[node name="SuspendAction" parent="." index="40"]
-parameters/playback = SubResource( 51 )
+[node name="Reception" parent="." index="50"]
+parameters/playback = SubResource( 29 )
 
-[node name="ImpactSound" parent="." index="45"]
-parameters/playback = SubResource( 67 )
-parameters/Impact/playback = SubResource( 68 )
+[node name="Interface" parent="." index="51"]
+tree_root = SubResource( 31 )
+parameters/playback = SubResource( 32 )
 
-[node name="StepSound" parent="." index="46"]
-parameters/playback = SubResource( 85 )
-parameters/Step/playback = SubResource( 86 )
-
-[node name="OofSound" parent="." index="47"]
-parameters/playback = SubResource( 93 )
-
-[node name="VoiceAudio" parent="." index="48"]
-parameters/playback = SubResource( 98 )
-
-[node name="FoleyAudio" parent="." index="49"]
-parameters/playback = SubResource( 102 )
-
-[node name="FeetAudio" parent="." index="50"]
-parameters/playback = SubResource( 106 )
-
-[node name="Behavior" parent="." index="52"]
-parameters/playback = SubResource( 107 )
-
-[node name="Reception" parent="." index="53"]
-parameters/playback = SubResource( 108 )
-
-[node name="Interface" parent="." index="54"]
-parameters/playback = SubResource( 109 )
-
-[node name="Audio" parent="." index="55"]
-parameters/playback = SubResource( 110 )
+[node name="Audio" parent="." index="52"]
+parameters/playback = SubResource( 33 )
 
 [editable path="CameraRig"]
 

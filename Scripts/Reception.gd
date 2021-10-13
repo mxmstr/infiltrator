@@ -35,8 +35,8 @@ func _start_state(_name, _data={}):
 	
 	stims.append([_name, _data])
 
-	if len(stims) == 1:
-		_next_stim()
+#	if len(stims) == 1:
+	_next_stim()
 
 
 func _next_stim():
@@ -54,6 +54,8 @@ func _next_stim():
 	data = next_stim[1]
 	
 	emit_signal('stimulate', stim, data)
+	
+	_next_stim()
 	
 #	if tree_root.has_method('_start'):
 #		tree_root._start(stim)

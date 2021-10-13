@@ -1,16 +1,24 @@
-extends 'res://Scripts/AnimationTree.gd'
+extends Node
 
 export(String) var bus
-export(float) var level
+
+var states = []
+
+signal action
 
 
-func _start_state(_name, data={}):
+func _start_state(_name, _data={}):
 	
-	if not active:
-		return
+	emit_signal('action', _name, _data)
 	
-	if tree_root.has_method('_start'):
-		tree_root._start(_name)
+#	if states.has(_name):
+#		states[_name]._start()
+	
+#	if not active:
+#		return
+	
+#	if tree_root.has_method('_start'):
+#		tree_root._start(_name)
 
 
 func _ready():

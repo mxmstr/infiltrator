@@ -1,11 +1,10 @@
-[gd_scene load_steps=38 format=2]
+[gd_resource type="AnimationNodeBlendSpace1D" load_steps=34 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/AnimationTree.BlendSpace.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Prop.AnimLayer.Movement.Human.gd" type="Script" id=5]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=6]
+[ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=5]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "LeanLeft"
@@ -405,7 +404,7 @@ y_args = [  ]
 y_max_value = 2.75
 y_min_value = -2.75
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=29]
+[resource]
 blend_point_0/node = SubResource( 15 )
 blend_point_0/pos = 0.0
 blend_point_1/node = SubResource( 28 )
@@ -413,7 +412,7 @@ blend_point_1/pos = 1.0
 min_space = 0.0
 max_space = 4.0
 snap = 1.0
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 __meta__ = {
 
 }
@@ -431,35 +430,16 @@ y_method = ""
 y_args = [  ]
 y_max_value = 0.0
 y_min_value = 0.0
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
-__meta__ = {
-
-}
-
-[node name="AnimLayerMovement" type="AnimationTree"]
-tree_root = SubResource( 29 )
-anim_player = NodePath("AnimationPlayer")
-parameters/blend_position = 0.00331675
-parameters/0/blend_position = Vector2( 0.00446033, 0.0635839 )
-parameters/0/0/playback = SubResource( 30 )
-parameters/1/blend_position = Vector2( -0.000893652, 0.0404625 )
-parameters/1/0/playback = SubResource( 31 )
-script = ExtResource( 5 )
-__meta__ = {
-
-}
-root_bone = "Pelvis"
-movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("")
-anims/DefaultAnim = ExtResource( 6 )
-__meta__ = {
-
-}
+priority = 0
+type = 0
+blend = 0
+cache_pose = true
+distance = 0.0
+enable_abilities = true
+lock_stance = false
+lock_speed = false
+lock_direction = false
+lock_rotation = false
+lock_movement = false
+camera_mode = "LockYaw"
+hud_mode = "Default"

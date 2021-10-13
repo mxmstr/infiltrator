@@ -1,11 +1,11 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Players/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Actor.gd" type="Script" id=2]
-[ext_resource path="res://Models/Humans/Anderson.escn" type="PackedScene" id=3]
-[ext_resource path="res://Models/Humans/DefaultHumanCollision.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Models/Humans/Anderson.escn" type="PackedScene" id=2]
+[ext_resource path="res://Models/Humans/DefaultHumanCollision.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=6]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
@@ -32,6 +32,46 @@ __meta__ = {
 
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+__meta__ = {
+
+}
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 __meta__ = {
 
@@ -43,6 +83,46 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 __meta__ = {
 
 }
@@ -62,187 +142,59 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=36]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
+[sub_resource type="AnimationNodeAnimation" id=30]
+resource_local_to_scene = true
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
+[sub_resource type="AnimationNodeStateMachine" id=31]
+resource_local_to_scene = true
+states/Start/node = SubResource( 30 )
+states/Start/position = Vector2( 624, 170 )
+start_node = "Start"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 6 )
+__meta__ = {
+
+}
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=32]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=45]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=46]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=47]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=48]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=49]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=50]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=51]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=52]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=53]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=54]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=55]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=56]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=57]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=58]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=59]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=62]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=63]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=75]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=76]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=93]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=94]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=101]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=106]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=110]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=114]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=117]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=136]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=139]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=144]
-__meta__ = {
-
-}
-
-[node name="Anderson" instance=ExtResource( 1 )]
-collision_layer = 2
-collision_mask = 3
-script = ExtResource( 2 )
+[node name="Anderson" index="0" instance=ExtResource( 1 )]
 tags = "Actor Human Male Team:0"
 
-[node name="Model" parent="." index="0" instance=ExtResource( 3 )]
+[node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
-[node name="Collision" parent="." index="1" instance=ExtResource( 4 )]
+[node name="Collision" parent="." index="1" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
-[node name="Hitboxes" parent="." index="2" instance=ExtResource( 5 )]
-source = ExtResource( 6 )
+[node name="Hitboxes" parent="." index="2" instance=ExtResource( 4 )]
+source = ExtResource( 5 )
 
 [node name="MoveRightInput" parent="." index="3"]
 parameters/playback = SubResource( 1 )
@@ -260,35 +212,35 @@ parameters/playback = SubResource( 4 )
 parameters/playback = SubResource( 5 )
 
 [node name="MoveForwardStopInput" parent="." index="8"]
-parameters/playback = SubResource( 14 )
+parameters/playback = SubResource( 6 )
 
 [node name="RotateUpInput" parent="." index="9"]
-parameters/playback = SubResource( 15 )
+parameters/playback = SubResource( 7 )
 
 [node name="RotateDownInput" parent="." index="10"]
-parameters/playback = SubResource( 16 )
+parameters/playback = SubResource( 8 )
 
 [node name="RotateVerticalStopInput" parent="." index="11"]
-parameters/playback = SubResource( 25 )
+parameters/playback = SubResource( 9 )
 
 [node name="RotateLeftInput" parent="." index="12"]
-parameters/playback = SubResource( 26 )
+parameters/playback = SubResource( 10 )
 
 [node name="RotateRightInput" parent="." index="13"]
-parameters/playback = SubResource( 27 )
+parameters/playback = SubResource( 11 )
 
 [node name="RotateHorizontalStopInput" parent="." index="14"]
-parameters/playback = SubResource( 36 )
+parameters/playback = SubResource( 12 )
 
 [node name="CrouchInput" parent="." index="15"]
-parameters/playback = SubResource( 37 )
+parameters/playback = SubResource( 13 )
 
 [node name="PrimaryActionInput" parent="." index="16"]
-parameters/playback = SubResource( 38 )
-parameters/Primary/playback = SubResource( 39 )
+parameters/playback = SubResource( 14 )
+parameters/Primary/playback = SubResource( 15 )
 
 [node name="PauseInput" parent="." index="17"]
-parameters/playback = SubResource( 45 )
+parameters/playback = SubResource( 16 )
 
 [node name="RightHandContainer" parent="." index="24"]
 path = NodePath("../Model/neo_reference_skeleton")
@@ -300,81 +252,55 @@ required_tags = "Item"
 editor/display_folded = false
 path = NodePath("../../Anderson/CameraRig/Camera")
 
-[node name="AnimLayerMovement" parent="." index="36"]
-parameters/0/0/playback = SubResource( 46 )
-parameters/1/0/playback = SubResource( 47 )
+[node name="PrimaryAction" parent="." index="39"]
+parameters/playback = SubResource( 17 )
+parameters/IdleAim/playback = SubResource( 18 )
 
-[node name="CameraMode" parent="." index="37"]
-parameters/playback = SubResource( 48 )
+[node name="ReloadAction" parent="." index="40"]
+parameters/playback = SubResource( 19 )
 
-[node name="HUDMode" parent="." index="38"]
-parameters/playback = SubResource( 49 )
+[node name="DieAction" parent="." index="41"]
+parameters/playback = SubResource( 20 )
 
-[node name="JumpOrClimbAction" parent="." index="39"]
-parameters/playback = SubResource( 50 )
-parameters/Climb/playback = SubResource( 51 )
-parameters/Jump/3/playback = SubResource( 52 )
-parameters/Jump/4/playback = SubResource( 53 )
-parameters/Jump/5/playback = SubResource( 54 )
+[node name="SuspendAction" parent="." index="42"]
+parameters/playback = SubResource( 21 )
 
-[node name="PrimaryAction" parent="." index="40"]
-parameters/playback = SubResource( 55 )
-parameters/IdleAim/playback = SubResource( 56 )
-
-[node name="ReloadAction" parent="." index="41"]
-parameters/playback = SubResource( 57 )
-
-[node name="DieAction" parent="." index="42"]
-parameters/playback = SubResource( 58 )
-
-[node name="SuspendAction" parent="." index="43"]
-parameters/playback = SubResource( 59 )
-
-[node name="TouchResponse" parent="." index="44"]
+[node name="TouchResponse" parent="." index="43"]
 tree_node = NodePath("")
 
-[node name="UseReactResponse" parent="." index="45"]
+[node name="UseReactResponse" parent="." index="44"]
 tree_node = NodePath("")
 
-[node name="EmptyReactResponse" parent="." index="46"]
-parameters/playback = SubResource( 62 )
+[node name="EmptyReactResponse" parent="." index="45"]
 tree_node = NodePath("")
 
-[node name="DamageResponse" parent="." index="47"]
-parameters/playback = SubResource( 63 )
+[node name="DamageResponse" parent="." index="46"]
 tree_node = NodePath("")
 
-[node name="ImpactSound" parent="." index="48"]
-parameters/playback = SubResource( 75 )
-parameters/Impact/playback = SubResource( 76 )
+[node name="VoiceAudio" parent="." index="48"]
+parameters/playback = SubResource( 22 )
 
-[node name="StepSound" parent="." index="49"]
-parameters/playback = SubResource( 93 )
-parameters/Step/playback = SubResource( 94 )
+[node name="FoleyAudio" parent="." index="49"]
+parameters/playback = SubResource( 23 )
 
-[node name="OofSound" parent="." index="50"]
-parameters/playback = SubResource( 101 )
+[node name="FeetAudio" parent="." index="50"]
+parameters/playback = SubResource( 24 )
 
-[node name="VoiceAudio" parent="." index="51"]
-parameters/playback = SubResource( 106 )
+[node name="Behavior" parent="." index="52"]
+parameters/Movement/0/0/playback = SubResource( 25 )
+parameters/Movement/1/0/playback = SubResource( 26 )
+parameters/Movement2/0/0/playback = SubResource( 27 )
+parameters/Movement2/1/0/playback = SubResource( 28 )
 
-[node name="FoleyAudio" parent="." index="52"]
-parameters/playback = SubResource( 110 )
+[node name="Reception" parent="." index="53"]
+parameters/playback = SubResource( 29 )
 
-[node name="FeetAudio" parent="." index="53"]
-parameters/playback = SubResource( 114 )
+[node name="Interface" parent="." index="54"]
+tree_root = SubResource( 31 )
+parameters/playback = SubResource( 32 )
 
-[node name="Behavior" parent="." index="55"]
-parameters/playback = SubResource( 117 )
-
-[node name="Reception" parent="." index="56"]
-parameters/playback = SubResource( 136 )
-
-[node name="Interface" parent="." index="57"]
-parameters/playback = SubResource( 139 )
-
-[node name="Audio" parent="." index="58"]
-parameters/playback = SubResource( 144 )
+[node name="Audio" parent="." index="55"]
+parameters/playback = SubResource( 33 )
 
 [editable path="Model"]
 

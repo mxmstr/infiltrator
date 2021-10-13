@@ -12,7 +12,8 @@ __meta__ = {
 
 }
 chain = false
-schema = ""
+schema = "DefaultAction"
+custom_script = ""
 priority = 0
 type = 0
 blend = 1
@@ -31,7 +32,7 @@ hud_mode = "Default"
 states/Start/node = SubResource( 1 )
 states/Start/position = Vector2( 612.453, 244.689 )
 start_node = "Start"
-graph_offset = Vector2( 10.4534, 38.6886 )
+graph_offset = Vector2( 10.4534, 130.437 )
 script = ExtResource( 1 )
 __meta__ = {
 

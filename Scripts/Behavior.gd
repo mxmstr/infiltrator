@@ -1,15 +1,17 @@
-extends 'res://Scripts/AnimationTree.gd'
+extends AnimationTree
 
 var enable_abilities = true
-
 var target
-var last_node
+
+signal action
 
 
 func _start_state(_name, _data={}):
 	
 	if not enable_abilities:
 		return
+	
+	emit_signal('action', _name, _data)
 	
 #	if get('parameters/playback').get_travel_path().size():
 #		print('asdf')
@@ -22,29 +24,29 @@ func _start_state(_name, _data={}):
 #
 #	prints(owner.name, _name, _data)
 #
-	._start_state(_name, _data)
+#	._start_state(_name, _data)
 
 
-func _stop_travel():
-	
-	if tree_root.has_method('_start'):
-		tree_root._start( get('parameters/playback').get_current_node())
+#func _stop_travel():
+#
+#	if tree_root.has_method('_start'):
+#		tree_root._start( get('parameters/playback').get_current_node())
 
 
-func _get_visible_interactions():
-	
-	var interactions = []
-	
-	for node in tree_root.nodes:
-		if node.has_method('_is_visible') and node._is_visible():# and tree_root.can_travel(node.node_name):
-			interactions.append(node.node_name)
-	
-	return interactions
+#func _get_visible_interactions():
+#
+#	var interactions = []
+#
+#	for node in tree_root.nodes:
+#		if node.has_method('_is_visible') and node._is_visible():# and tree_root.can_travel(node.node_name):
+#			interactions.append(node.node_name)
+#
+#	return interactions
 
 
-func _has_interaction(_name):
-	
-	return false#has_node(_name)
+#func _has_interaction(_name):
+#
+#	return false#has_node(_name)
 
 
 func _set_skeleton():
@@ -60,6 +62,13 @@ func _set_skeleton():
 func _ready():
 	
 	_set_skeleton()
+	
+	tree_root = tree_root.duplicate(true)
+	
+#	if tree_root.has_method('_ready'):
+#		tree_root._ready(self, null, 'parameters/', 'root')
+	
+	active = true
 
 
 #func _process(delta):

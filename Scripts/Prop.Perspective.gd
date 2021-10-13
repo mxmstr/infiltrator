@@ -102,9 +102,7 @@ func _init_viewport():
 
 func _ready():
 	
-	return
-	
 	yield(get_tree(), 'idle_frame')
 	
 	_init_fp_skeleton()
-	#_init_viewport()
+	_init_viewport()
