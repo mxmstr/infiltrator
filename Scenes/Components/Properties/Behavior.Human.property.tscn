@@ -52,7 +52,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeBlendTree" id=3]
-graph_offset = Vector2( -29.2365, -105.331 )
+graph_offset = Vector2( -29.2365, 166.116 )
 nodes/Action/node = SubResource( 1 )
 nodes/Action/position = Vector2( 80, -40 )
 nodes/ActionBlend/node = SubResource( 9 )
@@ -70,7 +70,7 @@ nodes/Movement2/position = Vector2( 420, 220 )
 nodes/OneShot/node = SubResource( 12 )
 nodes/OneShot/position = Vector2( 500, 0 )
 nodes/output/position = Vector2( 940, 100 )
-node_connections = [ "output", 0, "Layer", "Layer", 0, "OneShot", "Layer", 1, "Movement2", "OneShot", 0, "Movement", "OneShot", 1, "ActionBlend", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp" ]
+node_connections = [ "output", 0, "OneShot", "Layer", 1, "Movement2", "OneShot", 0, "Movement", "OneShot", 1, "ActionBlend", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp" ]
 __meta__ = {
 
 }
@@ -99,7 +99,7 @@ __meta__ = {
 tree_root = SubResource( 3 )
 anim_player = NodePath("AnimationPlayer")
 parameters/ActionBlend/blend_amount = 0
-parameters/Layer/current = 0
+parameters/Layer/current = 1
 parameters/Movement/blend_position = 0
 parameters/Movement/0/blend_position = Vector2( 0, 0 )
 parameters/Movement/0/0/playback = SubResource( 4 )
@@ -108,7 +108,7 @@ parameters/Movement/1/0/playback = SubResource( 5 )
 parameters/Movement2/blend_position = 0
 parameters/Movement2/0/blend_position = Vector2( 0, 0 )
 parameters/Movement2/0/0/playback = SubResource( 7 )
-parameters/Movement2/1/blend_position = Vector2( 0, 0 )
+parameters/Movement2/1/blend_position = Vector2( -0.00832564, 0.0125175 )
 parameters/Movement2/1/0/playback = SubResource( 8 )
 parameters/OneShot/active = false
 script = ExtResource( 2 )

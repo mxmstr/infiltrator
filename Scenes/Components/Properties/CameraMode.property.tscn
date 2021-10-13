@@ -279,6 +279,7 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+start = "LockYaw"
 attributes = "{
 	\"BoneParent\": {
 		\"speed\": 1.0,

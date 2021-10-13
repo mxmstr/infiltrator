@@ -1,5 +1,6 @@
 extends AnimationPlayer
 
+export(String) var start
 export(String, MULTILINE) var attributes
 
 var attributes_dict = {}
@@ -23,6 +24,28 @@ func _ready():
 	attributes_dict = parse_json(attributes)
 	
 	connect('animation_finished', self, '_on_animation_finished')
+	
+	if start != '':
+		_start_state(start)
+
+
+func _play(_animation):
+	
+	if attributes_dict.has(_animation):
+		
+		var blend = -1.0
+		var speed = 1.0
+		
+		if attributes_dict[_animation].has('blend'):
+			blend = attributes_dict[_animation].blend
+		
+		if attributes_dict[_animation].has('speed'):
+			blend = attributes_dict[_animation].speed
+		
+		play(_animation, blend, speed)
+	
+	else:
+		play(_animation)
 
 
 func _start_state(_name, _data={}):
@@ -31,17 +54,9 @@ func _start_state(_name, _data={}):
 		
 		next = _name
 		
-		var current = attributes_dict[current_animation]
-		
-		if attributes_dict.has(current):
-			play(current, attributes_dict[current].blend, attributes_dict[current].speed)
-		else:
-			play(current)
+		_play(attributes_dict[current_animation].next)
 		
 		return
 	
 	
-	if attributes_dict.has(_name):
-		play(_name, attributes_dict[_name].blend, attributes_dict[_name].speed)
-	else:
-		play(_name)
+	_play(_name)

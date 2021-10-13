@@ -5,6 +5,8 @@ var action
 var action_up
 var action_down
 
+signal on_process
+
 
 func _set_layer(layer):
 	
@@ -61,5 +63,7 @@ func _ready():
 	action = tree_root.get_node('Action')
 	action_up = tree_root.get_node('ActionUp')
 	action_down = tree_root.get_node('ActionDown')
+	
+	tree_root.get_node('Movement')._ready(self, null, 'parameters/', 'root')
 	
 	emit_signal('action', 'Default', {})

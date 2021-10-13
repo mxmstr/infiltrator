@@ -666,6 +666,7 @@ script = ExtResource( 2 )
 __meta__ = {
 
 }
+start = "Default"
 attributes = "{
 	\"PostDeath\": {
 		\"speed\": 1.0,
