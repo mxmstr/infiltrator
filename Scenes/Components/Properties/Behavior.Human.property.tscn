@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tres" type="AnimationNodeBlendSpace1D" id=1]
 [ext_resource path="res://Scripts/Behavior.Human.gd" type="Script" id=2]
@@ -6,24 +6,30 @@
 [ext_resource path="res://Animations/Human/Movement/Stand.tres" type="Animation" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "DefaultAnim"
+animation = "DefaultHumanAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeBlend3" id=9]
+[sub_resource type="AnimationNodeBlend3" id=2]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "DefaultHumanAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=11]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "DefaultHumanAnim"
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "DefaultHumanAnim"
 __meta__ = {
 
 }
@@ -44,81 +50,107 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeOneShot" id=12]
-filter_enabled = true
-filters = [ ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:Neck", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:shoulders" ]
+[sub_resource type="AnimationNodeOneShot" id=7]
+filters = [ ".", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:Neck", ".:Pelvis", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:shoulders" ]
+fadein_time = 2.0
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeBlendTree" id=3]
-graph_offset = Vector2( -29.2365, 166.116 )
+[sub_resource type="AnimationNodeBlendTree" id=8]
+graph_offset = Vector2( 0, -13.698 )
 nodes/Action/node = SubResource( 1 )
 nodes/Action/position = Vector2( 80, -40 )
-nodes/ActionBlend/node = SubResource( 9 )
+nodes/ActionBlend/node = SubResource( 2 )
 nodes/ActionBlend/position = Vector2( 300, -60 )
-nodes/ActionDown/node = SubResource( 10 )
+nodes/ActionDown/node = SubResource( 3 )
 nodes/ActionDown/position = Vector2( 80, -160 )
-nodes/ActionUp/node = SubResource( 11 )
+nodes/ActionUp/node = SubResource( 4 )
 nodes/ActionUp/position = Vector2( 80, 80 )
+nodes/Animation/node = SubResource( 5 )
+nodes/Animation/position = Vector2( 260, 180 )
 nodes/Layer/node = SubResource( 6 )
 nodes/Layer/position = Vector2( 720, 100 )
 nodes/Movement/node = ExtResource( 1 )
-nodes/Movement/position = Vector2( 80, 220 )
-nodes/Movement2/node = ExtResource( 1 )
-nodes/Movement2/position = Vector2( 420, 220 )
-nodes/OneShot/node = SubResource( 12 )
+nodes/Movement/position = Vector2( 80, 260 )
+nodes/OneShot/node = SubResource( 7 )
 nodes/OneShot/position = Vector2( 500, 0 )
 nodes/output/position = Vector2( 940, 100 )
-node_connections = [ "output", 0, "OneShot", "Layer", 1, "Movement2", "OneShot", 0, "Movement", "OneShot", 1, "ActionBlend", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp" ]
+node_connections = [ "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "Layer", 1, "Movement", "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "output", 0, "OneShot" ]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="Animation" id=11]
+resource_name = "DefaultHumanAnim"
+length = 0.001
+tracks/0/type = "transform"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, -1, 3.30012e-15, 4.37114e-08, 7.54979e-08, -1, -1, -1, 9.16667, 1, 0, 0, 0, -1, 3.30012e-15, 4.37114e-08, 7.54979e-08, -1, -1, -1 )
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 __meta__ = {
 
 }
 
 [node name="Behavior" type="AnimationTree"]
-tree_root = SubResource( 3 )
+tree_root = SubResource( 8 )
 anim_player = NodePath("AnimationPlayer")
+process_mode = 2
 parameters/ActionBlend/blend_amount = 0
-parameters/Layer/current = 1
+parameters/Layer/current = 0
 parameters/Movement/blend_position = 0
 parameters/Movement/0/blend_position = Vector2( 0, 0 )
-parameters/Movement/0/0/playback = SubResource( 4 )
+parameters/Movement/0/0/playback = SubResource( 9 )
 parameters/Movement/1/blend_position = Vector2( 0, 0 )
-parameters/Movement/1/0/playback = SubResource( 5 )
-parameters/Movement2/blend_position = 0
-parameters/Movement2/0/blend_position = Vector2( 0, 0 )
-parameters/Movement2/0/0/playback = SubResource( 7 )
-parameters/Movement2/1/blend_position = Vector2( -0.00832564, 0.0125175 )
-parameters/Movement2/1/0/playback = SubResource( 8 )
+parameters/Movement/1/0/playback = SubResource( 10 )
 parameters/OneShot/active = false
 script = ExtResource( 2 )
 __meta__ = {
 
 }
+root_bone = "Torso"
+action_bones = [ "shoulders", "Neck", "Head", "UpArm-L", "UpArm-R", "LoArm-L", "LoArm-R", "Hand-L", "Hand-R", "Gun" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 3 )
+anims/DefaultHumanAnim = SubResource( 11 )
 anims/Stand = ExtResource( 4 )
+__meta__ = {
+
+}
+
+[node name="Movement" type="AnimationTree" parent="."]
+tree_root = ExtResource( 1 )
+anim_player = NodePath("../AnimationPlayer")
+process_mode = 2
+parameters/blend_position = 0
+parameters/0/blend_position = Vector2( 0, 1 )
+parameters/0/0/playback = SubResource( 12 )
+parameters/1/blend_position = Vector2( 0, 0 )
+parameters/1/0/playback = SubResource( 13 )
 __meta__ = {
 
 }

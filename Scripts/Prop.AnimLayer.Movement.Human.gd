@@ -85,9 +85,9 @@ func _blend_skeletons(delta):
 	
 	var bones = range(model_skeleton.get_bone_count())
 	
-	var layered = blend_mode == Meta.BlendLayer.LAYERED
-	var action_only = blend_mode == Meta.BlendLayer.ACTION
-	var movement_only = blend_mode == Meta.BlendLayer.MOVEMENT
+#	var layered = blend_mode == Meta.BlendLayer.LAYERED
+#	var action_only = blend_mode == Meta.BlendLayer.ACTION
+#	var movement_only = blend_mode == Meta.BlendLayer.MOVEMENT
 	
 #	active = not action_only
 	
@@ -97,64 +97,19 @@ func _blend_skeletons(delta):
 		var bone_name = model_skeleton.get_bone_name(idx)
 		var model_transform = model_skeleton.get_bone_global_pose(idx)
 		var move_transform = move_skeleton.get_bone_global_pose(idx)
-		var action_transform = action_skeleton.get_bone_global_pose(idx)
-		
-		
-		if movement_only or (layered and bone_name in movement_bones):
-			
-			if bone_name == root_bone:
-				model_transform = move_transform
-			else:
-				model_transform.basis = move_transform.basis
-				
-		else:
-			
-			if action_blend_amount > 0:
-
-				action_transform = action_transform.interpolate_with(cached_action_pose[idx], action_blend_amount)
-
-				action_blend_amount -= delta * action_blend_speed
-				action_blend_amount = max(action_blend_amount, 0)
-			
-			
-			if bone_name == root_bone:
-				model_transform = action_transform
-			else:
-				model_transform.basis = action_transform.basis
-		
-		
-		if model_blend_amount > 0:
-			
-			var blended_transform
-			
-			blended_transform = model_transform.interpolate_with(cached_model_pose[idx], model_blend_amount)
-
-			if bone_name == root_bone:
-				model_transform = blended_transform
-			else:
-				model_transform.basis = blended_transform.basis
-
-			model_blend_amount -= delta * model_blend_speed
-			model_blend_amount = max(model_blend_amount, 0)
-		
-		
-		if bone_name in ['Pelvis', 'Torso']:
-			model_skeleton.set_bone_global_pose(idx, model_transform)
-	
-#	for idx in bones:
-#
-#		var bone_name = model_skeleton.get_bone_name(idx)
-#		var model_transform = model_skeleton.get_bone_global_pose(idx)
-#		var move_transform = move_skeleton.get_bone_global_pose(idx)
 #		var action_transform = action_skeleton.get_bone_global_pose(idx)
-#
-#
+		
+		
+		if bone_name in movement_bones:
+			model_skeleton.set_bone_global_pose(idx, move_transform)
+		
+		
 #		if movement_only or (layered and bone_name in movement_bones):
 #
-##			if bone_name == root_bone:
-##				model_transform = move_transform
-##			else:
-#			model_transform.basis = move_transform.basis
+#			if bone_name == root_bone:
+#				model_transform = move_transform
+#			else:
+#				model_transform.basis = move_transform.basis
 #
 #		else:
 #
@@ -166,10 +121,10 @@ func _blend_skeletons(delta):
 #				action_blend_amount = max(action_blend_amount, 0)
 #
 #
-#				if bone_name == root_bone:
-#					model_transform = action_transform
-#				else:
-#					model_transform.basis = action_transform.basis
+#			if bone_name == root_bone:
+#				model_transform = action_transform
+#			else:
+#				model_transform.basis = action_transform.basis
 #
 #
 #		if model_blend_amount > 0:
@@ -187,7 +142,8 @@ func _blend_skeletons(delta):
 #			model_blend_amount = max(model_blend_amount, 0)
 #
 #
-#		model_skeleton.set_bone_global_pose(idx, model_transform)
+#		if bone_name in movement_bones:
+#			model_skeleton.set_bone_global_pose(idx, model_transform)
 
 
 func _set_skeleton():
@@ -196,11 +152,11 @@ func _set_skeleton():
 		return
 	
 	
-	add_child(action_skeleton)
+#	add_child(action_skeleton)
 	add_child(move_skeleton)
 	
-	behavior_animation_player.root_node = behavior_animation_player.get_path_to(action_skeleton)
-	animation_player.root_node = animation_player.get_path_to(move_skeleton)
+#	behavior_animation_player.root_node = behavior_animation_player.get_path_to(action_skeleton)
+	animation_player.root_node = animation_player.get_path_to(model_skeleton)#move_skeleton)
 	
 	
 	active = true
@@ -216,15 +172,14 @@ func _enter_tree():
 	
 	
 	model_skeleton = model.get_child(0)
-	animation_player.root_node = animation_player.get_path_to(model_skeleton)
 	
 	for idx in range(model_skeleton.get_bone_count()):
 		bone_names.append(model_skeleton.get_bone_name(idx))
 	
-	action_skeleton = model_skeleton.duplicate()
+#	action_skeleton = model_skeleton.duplicate()
 	move_skeleton = model_skeleton.duplicate()
 	
-	for child in move_skeleton.get_children() + action_skeleton.get_children():
+	for child in move_skeleton.get_children():# + action_skeleton.get_children():
 		child.queue_free()
 
 
@@ -243,8 +198,8 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	var playback = behavior.get('parameters/playback')
-	playback.connect('state_starting', self, '_on_state_starting')
+#	var playback = behavior.get('parameters/playback')
+#	playback.connect('state_starting', self, '_on_state_starting')
 
 #	connect('pre_process', self, '_on_pre_process')
 #	connect('post_process', self, '_on_post_process')
@@ -252,7 +207,7 @@ func _ready():
 	_set_skeleton()
 
 
-func _physics_process(delta):
+func _process(delta):
 	
 	if not model:
 		return

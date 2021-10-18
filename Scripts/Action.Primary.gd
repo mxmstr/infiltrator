@@ -20,14 +20,13 @@ func _ready():
 
 func _on_action(state, data):
 	
+	._on_action(state, data)
+	
 	if state == 'UseReact':
 		
 		if righthand._has_item_with_tag('Firearm'):
 			
-			_set_animation(shoot_animation_list[0])
-			_set_animation(shoot_animation_list[1], -1)
-			_set_animation(shoot_animation_list[1], 1)
-			_start_action()
+			_play(shoot_animation_list[0], shoot_animation_list[1], shoot_animation_list[2])
 
 
 func _process(delta):

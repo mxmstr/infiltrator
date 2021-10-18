@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=2]
@@ -12,24 +12,82 @@
 [ext_resource path="res://Scenes/Actors/Items/SawedoffShotgun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Actors/Items/Sniper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Models/Humans/Anderson.escn" type="PackedScene" id=12]
-[ext_resource path="res://Animations/Human/CARTLEFT.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/Action/ShootBerettaIdle.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/ShootColt.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/ShootDesertEagle.tres" type="Animation" id=16]
-[ext_resource path="res://Animations/Human/ShootIngram.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/ShootJackhammer.tres" type="Animation" id=18]
-[ext_resource path="res://Animations/Human/ShootMP5.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/ShootPumpShotgun.tres" type="Animation" id=20]
-[ext_resource path="res://Animations/Human/ShootSawedShotgun.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/ShootSniper.tres" type="Animation" id=22]
-[ext_resource path="res://Animations/Human/agent_swatpunch.tres" type="Animation" id=23]
-[ext_resource path="res://Animations/Human/bulletdodge_front.tres" type="Animation" id=24]
-[ext_resource path="res://Animations/Human/eleftspincombo.tres" type="Animation" id=25]
-[ext_resource path="res://Animations/Human/flur_b.tres" type="Animation" id=26]
-[ext_resource path="res://Animations/Human/flykick_law.tres" type="Animation" id=27]
-[ext_resource path="res://Animations/Human/rave_dance.tres" type="Animation" id=28]
-[ext_resource path="res://Animations/Human/shoot_coltcommando.tres" type="Animation" id=29]
-[ext_resource path="res://Animations/Human/twisting_kickchop2.tres" type="Animation" id=30]
+[ext_resource path="res://Animations/Human/Action/Kick/BACKKICK.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/Action/Kick/BB_bigkick.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/Action/Kick/BB_bigkick_new.tres" type="Animation" id=15]
+[ext_resource path="res://Animations/Human/Action/Kick/FLYKICK.tres" type="Animation" id=16]
+[ext_resource path="res://Animations/Human/Action/Kick/Front_hardkick.tres" type="Animation" id=17]
+[ext_resource path="res://Animations/Human/Action/Kick/JUMPKICK.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Human/Action/Kick/KICK3.tres" type="Animation" id=19]
+[ext_resource path="res://Animations/Human/Action/Kick/KICK4.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Human/Action/Kick/SIDEKICK.tres" type="Animation" id=21]
+[ext_resource path="res://Animations/Human/Action/Kick/SNAPKICK.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/Action/Kick/backhandspringkick.tres" type="Animation" id=23]
+[ext_resource path="res://Animations/Human/Action/Kick/backthrustkick.tres" type="Animation" id=24]
+[ext_resource path="res://Animations/Human/Action/Kick/backthrustkickA.tres" type="Animation" id=25]
+[ext_resource path="res://Animations/Human/Action/Kick/backthrustkickB.tres" type="Animation" id=26]
+[ext_resource path="res://Animations/Human/Action/Block/block_q01.tres" type="Animation" id=27]
+[ext_resource path="res://Animations/Human/Action/Block/block_q01_2.tres" type="Animation" id=28]
+[ext_resource path="res://Animations/Human/Action/Kick/butterflykick.tres" type="Animation" id=29]
+[ext_resource path="res://Animations/Human/Action/Kick/ceiling_kick.tres" type="Animation" id=30]
+[ext_resource path="res://Animations/Human/Action/Kick/ceilingkick.tres" type="Animation" id=31]
+[ext_resource path="res://Animations/Human/Action/Kick/doublesidekick.tres" type="Animation" id=32]
+[ext_resource path="res://Animations/Human/Action/Kick/doublesidekick5.tres" type="Animation" id=33]
+[ext_resource path="res://Animations/Human/Action/Kick/doublespinkick.tres" type="Animation" id=34]
+[ext_resource path="res://Animations/Human/Action/Kick/doublespinkickA.tres" type="Animation" id=35]
+[ext_resource path="res://Animations/Human/Action/Kick/doubleturningkick.tres" type="Animation" id=36]
+[ext_resource path="res://Animations/Human/Action/Kick/enemy_kick1.tres" type="Animation" id=37]
+[ext_resource path="res://Animations/Human/Action/Kick/flykick_law.tres" type="Animation" id=38]
+[ext_resource path="res://Animations/Human/Action/Kick/frontdoublekick.tres" type="Animation" id=39]
+[ext_resource path="res://Animations/Human/Action/Kick/frontdoublekick_quick.tres" type="Animation" id=40]
+[ext_resource path="res://Animations/Human/Action/Kick/frontsnapkick.tres" type="Animation" id=41]
+[ext_resource path="res://Animations/Human/Action/Kick/frontsnapkick2.tres" type="Animation" id=42]
+[ext_resource path="res://Animations/Human/Action/Kick/fsnapkick_counter.tres" type="Animation" id=43]
+[ext_resource path="res://Animations/Human/Action/Kick/groundkick.tres" type="Animation" id=44]
+[ext_resource path="res://Animations/Human/Action/Kick/jumpdoublekick.tres" type="Animation" id=45]
+[ext_resource path="res://Animations/Human/Action/Kick/jumpspinkick.tres" type="Animation" id=46]
+[ext_resource path="res://Animations/Human/Action/Kick/jumpspinkick_new.tres" type="Animation" id=47]
+[ext_resource path="res://Animations/Human/Action/Kick/jumpspinkickup.tres" type="Animation" id=48]
+[ext_resource path="res://Animations/Human/Action/Kick/jumpspinkickup_new.tres" type="Animation" id=49]
+[ext_resource path="res://Animations/Human/Action/Kick/kick3A.tres" type="Animation" id=50]
+[ext_resource path="res://Animations/Human/Action/Kick/kick3B.tres" type="Animation" id=51]
+[ext_resource path="res://Animations/Human/Action/Kick/leftjumpspinkick.tres" type="Animation" id=52]
+[ext_resource path="res://Animations/Human/Action/Kick/leftroundhkick.tres" type="Animation" id=53]
+[ext_resource path="res://Animations/Human/Action/Kick/leftroundhkickA.tres" type="Animation" id=54]
+[ext_resource path="res://Animations/Human/Action/Kick/lobby_kick.tres" type="Animation" id=55]
+[ext_resource path="res://Animations/Human/Action/Kick/lobby_kick_2006.tres" type="Animation" id=56]
+[ext_resource path="res://Animations/Human/Action/Kick/lobby_kick_custom.tres" type="Animation" id=57]
+[ext_resource path="res://Animations/Human/Action/Kick/m_sweepkick.tres" type="Animation" id=58]
+[ext_resource path="res://Animations/Human/Action/Kick/matrix_jumpkick.tres" type="Animation" id=59]
+[ext_resource path="res://Animations/Human/Action/Kick/neotriplekick.tres" type="Animation" id=60]
+[ext_resource path="res://Animations/Human/Action/Kick/neotriplekick_new.tres" type="Animation" id=61]
+[ext_resource path="res://Animations/Human/Action/Kick/one_frontquadkick.tres" type="Animation" id=62]
+[ext_resource path="res://Animations/Human/Action/Kick/rightroundhkick.tres" type="Animation" id=63]
+[ext_resource path="res://Animations/Human/Action/Kick/rightroundhkickA.tres" type="Animation" id=64]
+[ext_resource path="res://Animations/Human/Action/Kick/rspinkick.tres" type="Animation" id=65]
+[ext_resource path="res://Animations/Human/Action/Kick/rspinkickA.tres" type="Animation" id=66]
+[ext_resource path="res://Animations/Human/Action/Kick/split_kick.tres" type="Animation" id=67]
+[ext_resource path="res://Animations/Human/Action/Kick/splitkick.tres" type="Animation" id=68]
+[ext_resource path="res://Animations/Human/Action/Kick/sportacus_kick.tres" type="Animation" id=69]
+[ext_resource path="res://Animations/Human/Action/Kick/stab_kick.tres" type="Animation" id=70]
+[ext_resource path="res://Animations/Human/Action/Kick/stick_forwardkick.tres" type="Animation" id=71]
+[ext_resource path="res://Animations/Human/Action/Kick/sweepkick.tres" type="Animation" id=72]
+[ext_resource path="res://Animations/Human/Action/Kick/sweepkickcounter.tres" type="Animation" id=73]
+[ext_resource path="res://Animations/Human/Action/Kick/sweepkickcounter2.tres" type="Animation" id=74]
+[ext_resource path="res://Animations/Human/Action/Kick/sweepkickcounterT.tres" type="Animation" id=75]
+[ext_resource path="res://Animations/Human/Action/Kick/t_backkick.tres" type="Animation" id=76]
+[ext_resource path="res://Animations/Human/Action/Kick/trin_frontkick.tres" type="Animation" id=77]
+[ext_resource path="res://Animations/Human/Action/Kick/trinity_kick.tres" type="Animation" id=78]
+[ext_resource path="res://Animations/Human/Action/Kick/trinity_kick_ingame.tres" type="Animation" id=79]
+[ext_resource path="res://Animations/Human/Action/Kick/trinitykick.tres" type="Animation" id=80]
+[ext_resource path="res://Animations/Human/Action/Kick/trinkick.tres" type="Animation" id=81]
+[ext_resource path="res://Animations/Human/Action/Kick/trinkick_t.tres" type="Animation" id=82]
+[ext_resource path="res://Animations/Human/Action/Kick/trinkick_t2.tres" type="Animation" id=83]
+[ext_resource path="res://Animations/Human/Action/Kick/twist_kick.tres" type="Animation" id=84]
+[ext_resource path="res://Animations/Human/Action/Kick/twisting_kickchop.tres" type="Animation" id=85]
+[ext_resource path="res://Animations/Human/Action/Kick/twisting_kickchop2.tres" type="Animation" id=86]
+[ext_resource path="res://Animations/Human/Action/Kick/wallkickleft.tres" type="Animation" id=87]
+[ext_resource path="res://Animations/Human/Action/Kick/wallkickright.tres" type="Animation" id=88]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
@@ -79,7 +137,7 @@ __meta__ = {
 }
 
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.33534e-08, 1.17943e-07, -2.75671e-07 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5 )
 __meta__ = {
 
 }
@@ -89,7 +147,7 @@ editor/display_folded = true
 visible = false
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 3.38813e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model/neo_reference_skeleton" index="1"]
 transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
@@ -145,10 +203,10 @@ visible = false
 [node name="Model2" parent="." instance=ExtResource( 12 )]
 
 [node name="neo_reference_skeleton" parent="Model2" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 1.69407e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( 0.73362, -0.446422, 0.512357, 0.469557, -0.212015, -0.857069, 0.491242, 0.869343, 0.0540821, 0.141304, 1.12355, 0.487748 )
+transform = Transform( -0.123166, 0.566011, 0.815146, 0.846915, 0.488094, -0.21095, -0.517268, 0.664377, -0.539479, 0.537411, 1.17673, -0.0816152 )
 bone_name = "Gun"
 __meta__ = {
 
@@ -156,6 +214,7 @@ __meta__ = {
 
 [node name="Beretta" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 2 )]
 transform = Transform( 0.999999, 0, 0, 0, -4.37113e-08, 0.999999, 0, -0.999998, -4.37113e-08, -0.00848666, 0.00501686, 0.0258089 )
+visible = false
 
 [node name="ColtCommando" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 3 )]
 transform = Transform( 0.99757, 0.0684788, 0.0128557, -0.0133609, 0.00692052, 0.999886, 0.0683821, -0.997628, 0.00781846, -0.0510388, -0.0117496, -0.000418305 )
@@ -196,37 +255,96 @@ visible = false
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 6 )
 anim_player = NodePath("AnimationPlayer")
-parameters/blend_position = Vector2( 0.000858426, 0.495601 )
+root_motion_track = NodePath("../..")
+parameters/blend_position = Vector2( -0.00462532, 0.0520232 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../../Model2/neo_reference_skeleton")
-anims/CARTLEFT = ExtResource( 13 )
-anims/ShootBerettaIdle = ExtResource( 14 )
-anims/ShootColt = ExtResource( 15 )
-anims/ShootDesertEagle = ExtResource( 16 )
-anims/ShootIngram = ExtResource( 17 )
-anims/ShootJackhammer = ExtResource( 18 )
-anims/ShootMP5 = ExtResource( 19 )
-anims/ShootPumpShotgun = ExtResource( 20 )
-anims/ShootSawedShotgun = ExtResource( 21 )
-anims/ShootSniper = ExtResource( 22 )
-anims/agent_swatpunch = ExtResource( 23 )
-anims/bulletdodge_front = ExtResource( 24 )
-anims/eleftspincombo = ExtResource( 25 )
-anims/flur_b = ExtResource( 26 )
-anims/flykick_law = ExtResource( 27 )
-anims/rave_dance = ExtResource( 28 )
-anims/shoot_coltcommando = ExtResource( 29 )
-anims/twisting_kickchop2 = ExtResource( 30 )
+anims/BACKKICK = ExtResource( 13 )
+anims/BB_bigkick = ExtResource( 14 )
+anims/BB_bigkick_new = ExtResource( 15 )
+anims/FLYKICK = ExtResource( 16 )
+anims/Front_hardkick = ExtResource( 17 )
+anims/JUMPKICK = ExtResource( 18 )
+anims/KICK3 = ExtResource( 19 )
+anims/KICK4 = ExtResource( 20 )
+anims/SIDEKICK = ExtResource( 21 )
+anims/SNAPKICK = ExtResource( 22 )
+anims/backhandspringkick = ExtResource( 23 )
+anims/backthrustkick = ExtResource( 24 )
+anims/backthrustkickA = ExtResource( 25 )
+anims/backthrustkickB = ExtResource( 26 )
+anims/block_q01 = ExtResource( 27 )
+anims/block_q01_2 = ExtResource( 28 )
+anims/butterflykick = ExtResource( 29 )
+anims/ceiling_kick = ExtResource( 30 )
+anims/ceilingkick = ExtResource( 31 )
+anims/doublesidekick = ExtResource( 32 )
+anims/doublesidekick5 = ExtResource( 33 )
+anims/doublespinkick = ExtResource( 34 )
+anims/doublespinkickA = ExtResource( 35 )
+anims/doubleturningkick = ExtResource( 36 )
+anims/enemy_kick1 = ExtResource( 37 )
+anims/flykick_law = ExtResource( 38 )
+anims/frontdoublekick = ExtResource( 39 )
+anims/frontdoublekick_quick = ExtResource( 40 )
+anims/frontsnapkick = ExtResource( 41 )
+anims/frontsnapkick2 = ExtResource( 42 )
+anims/fsnapkick_counter = ExtResource( 43 )
+anims/groundkick = ExtResource( 44 )
+anims/jumpdoublekick = ExtResource( 45 )
+anims/jumpspinkick = ExtResource( 46 )
+anims/jumpspinkick_new = ExtResource( 47 )
+anims/jumpspinkickup = ExtResource( 48 )
+anims/jumpspinkickup_new = ExtResource( 49 )
+anims/kick3A = ExtResource( 50 )
+anims/kick3B = ExtResource( 51 )
+anims/leftjumpspinkick = ExtResource( 52 )
+anims/leftroundhkick = ExtResource( 53 )
+anims/leftroundhkickA = ExtResource( 54 )
+anims/lobby_kick = ExtResource( 55 )
+anims/lobby_kick_2006 = ExtResource( 56 )
+anims/lobby_kick_custom = ExtResource( 57 )
+anims/m_sweepkick = ExtResource( 58 )
+anims/matrix_jumpkick = ExtResource( 59 )
+anims/neotriplekick = ExtResource( 60 )
+anims/neotriplekick_new = ExtResource( 61 )
+anims/one_frontquadkick = ExtResource( 62 )
+anims/rightroundhkick = ExtResource( 63 )
+anims/rightroundhkickA = ExtResource( 64 )
+anims/rspinkick = ExtResource( 65 )
+anims/rspinkickA = ExtResource( 66 )
+anims/split_kick = ExtResource( 67 )
+anims/splitkick = ExtResource( 68 )
+anims/sportacus_kick = ExtResource( 69 )
+anims/stab_kick = ExtResource( 70 )
+anims/stick_forwardkick = ExtResource( 71 )
+anims/sweepkick = ExtResource( 72 )
+anims/sweepkickcounter = ExtResource( 73 )
+anims/sweepkickcounter2 = ExtResource( 74 )
+anims/sweepkickcounterT = ExtResource( 75 )
+anims/t_backkick = ExtResource( 76 )
+anims/trin_frontkick = ExtResource( 77 )
+anims/trinity_kick = ExtResource( 78 )
+anims/trinity_kick_ingame = ExtResource( 79 )
+anims/trinitykick = ExtResource( 80 )
+anims/trinkick = ExtResource( 81 )
+anims/trinkick_t = ExtResource( 82 )
+anims/trinkick_t2 = ExtResource( 83 )
+anims/twist_kick = ExtResource( 84 )
+anims/twisting_kickchop = ExtResource( 85 )
+anims/twisting_kickchop2 = ExtResource( 86 )
+anims/wallkickleft = ExtResource( 87 )
+anims/wallkickright = ExtResource( 88 )
 __meta__ = {
 
 }
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.696552, 3.1245 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.68692, 0 )
 __meta__ = {
 
 }

@@ -1,7 +1,7 @@
 extends AnimationTree
 
 var enable_abilities = true
-var target
+var current_state = ''
 
 signal action
 
@@ -12,7 +12,11 @@ func _start_state(_name, _data={}):
 		return
 	
 	emit_signal('action', _name, _data)
-	
+
+
+func _play(new_state, animation, attributes): pass
+
+
 #	if get('parameters/playback').get_travel_path().size():
 #		print('asdf')
 #		return
@@ -67,6 +71,8 @@ func _ready():
 	
 #	if tree_root.has_method('_ready'):
 #		tree_root._ready(self, null, 'parameters/', 'root')
+	
+	root_motion_track = NodePath('../../')
 	
 	active = true
 

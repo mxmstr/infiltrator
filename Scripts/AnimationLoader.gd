@@ -23,14 +23,27 @@ func _load_animations(_schema):
 	var schema_animation_player = load(files[0]).instance()
 	
 	var _animation_list = Array(schema_animation_player.get_animation_list())
+	var _attributes
 	
 	if schema_animation_player.get('attributes'):
-		Meta._merge_dir(attributes, parse_json(schema_animation_player.attributes))
+		_attributes = parse_json(schema_animation_player.attributes)#Meta._merge_dir(attributes, parse_json(schema_animation_player.attributes))
+	
 	
 	for animation_name in _animation_list:
 		
 		var animation_res = schema_animation_player.get_animation(animation_name)
 		animation_player.add_animation(animation_name, animation_res)
+		
+		if _attributes:
+		
+			if not attributes.has(animation_name):
+				attributes[animation_name] = {}
+			
+			if _attributes.has(animation_name):
+				Meta._merge_dir(attributes[animation_name], _attributes[animation_name])
+			
+			if '*' in _attributes.keys():
+				Meta._merge_dir(attributes[animation_name], _attributes['*'])
 	
 	
 	animation = _animation_list[0]
@@ -42,6 +55,7 @@ func _randomize_animation():
 	
 	if len(animation_list) > 0:
 		
+		randomize()
 		animation_list.shuffle()
 		animation = animation_list[0]
 
@@ -55,15 +69,6 @@ func _ready():
 	animation_player = tree_node.get_node('AnimationPlayer')
 	
 	animation_list = _load_animations(schema)
-	
-	if '*' in attributes.keys():
-		
-		for _animation in animation_list:
-			
-			if not attributes.has(_animation):
-				attributes[_animation] = {}
-			
-			Meta._merge_dir(attributes[_animation], attributes['*'])
 
 
 func _play(_animation):

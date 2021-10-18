@@ -3,8 +3,8 @@ extends 'res://Scripts/Prop.Movement.gd'
 export var gravity = -300.0
 export var accel = 3.0
 export var deaccel = 5.0
-export var angular_accel = 0.75
-export var angular_deaccel = 10.0
+export var angular_accel = 0.5
+export var angular_deaccel = 10
 export var ghost = false
 export var stop_on_slope = false
 export var max_slides = 4
@@ -40,6 +40,11 @@ func _set_direction(new_direction, local=false):
 		direction = owner.global_transform.basis.xform(new_direction)
 	else:
 		direction = new_direction
+
+
+func _apply_root_transform(root_transform):
+	
+	owner.global_transform *= root_transform
 
 
 func _teleport(new_position=null, new_rotation=null):
@@ -81,7 +86,7 @@ func _face(target, angle_delta=0.0):
 
 func _process(delta):
 	
-	var new_velocity = angular_direction * angular_speed
+	var new_velocity = angular_direction * angular_speed * delta
 	var deltax = new_velocity.x - angular_velocity.x
 	var deltay = new_velocity.y - angular_velocity.y
 	var factorx
@@ -97,15 +102,17 @@ func _process(delta):
 	else:
 		factory = angular_deaccel
 	
-	if factorx > 0:
-		angular_velocity.x = angular_velocity.x + (deltax * factorx * delta)
-	else:
-		angular_velocity.x = new_velocity.x
+#	prints(deltax)
+#	if deltax > 0:
 	
-	if factory > 0:
-		angular_velocity.y = angular_velocity.y + (deltay * factory * delta)
-	else:
-		angular_velocity.y = new_velocity.y
+	angular_velocity.x = angular_velocity.linear_interpolate(new_velocity, factorx * delta).x
+#	else:
+#		angular_velocity.x = new_velocity.x
+	
+#	if deltay > 0:
+	angular_velocity.y = angular_velocity.linear_interpolate(new_velocity, factory * delta).y
+#	else:
+#		angular_velocity.y = new_velocity.y
 	
 #	print(angular_direction.length())
 	
