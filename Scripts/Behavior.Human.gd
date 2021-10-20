@@ -14,6 +14,7 @@ var switch_mode = 'Immediate'
 var cached_action_pose
 
 onready var movement = get_node_or_null('../Movement')
+onready var anim_layer_movement = get_node_or_null('../AnimLayerMovement')
 
 signal on_process
 
@@ -166,10 +167,10 @@ func _ready():
 	action_up = tree_root.get_node('ActionUp')
 	action_down = tree_root.get_node('ActionDown')
 	
-#	tree_root.get_node('Movement')._ready(self, null, 'parameters/', 'root')
-	
-	$Movement.tree_root._ready(self, null, 'parameters/', 'root')
-#	$Movement.tree_root.set_filter_path('.:Pelvis', true)
+	anim_layer_movement.anim_player = anim_layer_movement.get_path_to($AnimationPlayer)
+	anim_layer_movement.tree_root = anim_layer_movement.tree_root.duplicate(true)
+	anim_layer_movement.tree_root._ready(anim_layer_movement, null, 'parameters/', 'root')
+	anim_layer_movement.active = true
 	
 	oneshot.connect('finished', self, '_on_action_finished')
 	
@@ -186,10 +187,13 @@ func _process(delta):
 		_cache_action_pose()
 	
 	if layer != Meta.BlendLayer.ACTION:
-		$Movement.advance(delta)
+		anim_layer_movement.advance(delta)
 	
 	if layer != Meta.BlendLayer.MOVEMENT:
 		_apply_action_pose()
 	
 	if owner.name == 'Anderson':
 		movement._apply_root_transform(get_root_motion_transform())
+	
+	
+	skeleton.scale = Vector3(-1, -1, -1)

@@ -10,12 +10,14 @@ export(Vector3) var rotation_degrees_offset
 export(float) var release_speed
 export(Vector3) var release_direction
 export(Vector2) var release_angular_spread
+export(float) var release_lifetime
 export var release_exclude_parent = false
 export(int) var max_quantity
 export(bool) var invisible
 export(bool) var interactable
 export(String, MULTILINE) var required_tags
 
+var movement
 var root
 var shooter
 var required_tags_dict = {}
@@ -237,6 +239,31 @@ func _exclude_recursive(item, parent):
 		_exclude_recursive(item, link.from_node)
 
 
+func _apply_launch_attributes(item):
+	
+	var item_movement = item.get_node_or_null('Movement')
+	
+	if item_movement:
+		item_movement._set_speed(release_speed)
+		item_movement._set_direction(release_direction, true)
+		
+		if release_angular_spread.length():
+		
+			var spread_x = release_angular_spread.x
+			item_movement.angular_direction.x = rand_range(-spread_x, spread_x)
+			
+			var spread_y = release_angular_spread.y
+			item_movement.angular_direction.y = rand_range(-spread_y, spread_y)
+
+
+func _create_and_launch_item(item_path):
+	
+	var item = Meta.AddActor(item_path, root.global_transform.origin, root.rotation_degrees)
+	item._set_tag('Shooter', shooter)
+	
+	_apply_launch_attributes(item)
+
+
 func _release_front():
 	
 	if not items.size():
@@ -424,6 +451,8 @@ func _reset_root():
 
 
 func _ready():
+	
+	movement = get_node_or_null('../Movement')
 	
 	shooter = owner
 	

@@ -1,14 +1,6 @@
 extends Node
 
-enum Status {
-	RELEASED,
-	PRESSED,
-	JUST_RELEASED,
-	JUST_PRESSED
-}
-
 export(String) var action
-export(Status) var status
 export var strength_multiplier = 1.0
 
 var active
@@ -18,10 +10,16 @@ var last_status = -1
 onready var perspective = get_node_or_null('../Perspective')
 
 
+func _on_just_activated(): pass
+
+
 func _on_active(): pass
 
 
-func _on_deactive(): pass
+func _on_just_deactivated(): pass
+
+
+func _on_deactivated(): pass
 
 
 func _input(event):
@@ -33,41 +31,25 @@ func _input(event):
 	if event.is_action(action) and event.device == perspective.gamepad_device:
 		
 		strength = event.get_action_strength(action)
-		var new_status = 1 if strength > 0 else 0
-		
-		active = (
-			new_status == status \
-			or (last_status != new_status and new_status + 2 == status)
-			)
-		
+		active = 1 if strength > 0 else 0
+		strength *= strength_multiplier
 		
 		if active:
 			
-#			owner.data['strength'] = strength * strength_multiplier
-			_on_active()
+			if last_status != active:
+				_on_just_activated()
+			else:
+				_on_active()
 		
 		else:
 			
-			_on_deactive()
+			_on_just_deactivated()
 		
-		last_status = new_status
+		last_status = active
 
 
 func _process(delta):
 	
-	if not Meta.rawinput or not perspective:
-		return
-
-	var mouse_device = perspective.mouse_device
-	var keyboard_device = perspective.keyboard_device
-	var gamepad_device = perspective.gamepad_device
-
-
-	var new_status = RawInput._get_status(action, mouse_device, keyboard_device)
-
-	active = (
-			new_status == status \
-			or (last_status != new_status and new_status + 2 == status)
-			)
-
-	last_status = new_status
+	if not active:
+		
+		_on_deactivated()

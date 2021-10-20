@@ -96,7 +96,7 @@ func _update():
 
 	var x_value = 0
 	var y_value = 0
-
+	
 	if x_target_node:
 		x_value = x_target_node.callv(x_method, x_args)
 		x_value = (((x_value - x_min_value) / (x_max_value - x_min_value)) * x_value_range) + x_min
@@ -106,7 +106,6 @@ func _update():
 		y_value = (((y_value - y_min_value) / (y_max_value - y_min_value)) * y_value_range) + y_min
 
 	target_pos = Vector2(x_value, y_value)
-	
 
 
 func _ready(_owner, _parent, _parameters, _node_name):

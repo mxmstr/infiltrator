@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Components/Inputs/Input.RotateVertical.gd" type="Script" id=1]
+
+[node name="RotateDownInput" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+action = "RotateDown"
+strength_multiplier = -1.0

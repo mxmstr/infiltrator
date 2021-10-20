@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Input.Crouch.gd" type="Script" id=1]
+
+[node name="CrouchInput" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+action = "Crouch"

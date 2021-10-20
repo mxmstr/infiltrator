@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tres" type="AnimationNodeBlendSpace1D" id=1]
 [ext_resource path="res://Scripts/Behavior.Human.gd" type="Script" id=2]
@@ -76,7 +76,7 @@ nodes/Movement/position = Vector2( 80, 260 )
 nodes/OneShot/node = SubResource( 7 )
 nodes/OneShot/position = Vector2( 500, 0 )
 nodes/output/position = Vector2( 940, 100 )
-node_connections = [ "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "Layer", 1, "Movement", "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "output", 0, "OneShot" ]
+node_connections = [ "output", 0, "OneShot", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "Layer", 1, "Movement", "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend" ]
 __meta__ = {
 
 }
@@ -105,16 +105,6 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
-__meta__ = {
-
-}
-
 [node name="Behavior" type="AnimationTree"]
 tree_root = SubResource( 8 )
 anim_player = NodePath("AnimationPlayer")
@@ -138,19 +128,6 @@ action_bones = [ "shoulders", "Neck", "Head", "UpArm-L", "UpArm-R", "LoArm-L", "
 anims/DefaultAnim = ExtResource( 3 )
 anims/DefaultHumanAnim = SubResource( 11 )
 anims/Stand = ExtResource( 4 )
-__meta__ = {
-
-}
-
-[node name="Movement" type="AnimationTree" parent="."]
-tree_root = ExtResource( 1 )
-anim_player = NodePath("../AnimationPlayer")
-process_mode = 2
-parameters/blend_position = 0
-parameters/0/blend_position = Vector2( 0, 1 )
-parameters/0/0/playback = SubResource( 12 )
-parameters/1/blend_position = Vector2( 0, 0 )
-parameters/1/0/playback = SubResource( 13 )
 __meta__ = {
 
 }

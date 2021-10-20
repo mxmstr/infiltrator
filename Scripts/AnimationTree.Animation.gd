@@ -30,7 +30,7 @@ func _load_animations():
 	default_scale = scale
 	
 	
-	var animation_player = owner.get_node('AnimationPlayer')
+	var animation_player = owner.get_node(owner.anim_player)
 	var owner_tags = owner.owner.tags_dict.keys()#[]
 	
 #	if owner.owner._has_tag(owner.schema_type):
