@@ -1,17 +1,16 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Markers/Waypoint2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Responses/Touch.InstaDeath.response.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Markers/Waypoint3.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Links/Contains.link.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Links/Factory.link.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Links/LocalCoopPartner.link.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Links/PVPPlayerSpawn.link.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Links/PVPPlayerFactory.link.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Links/PVPPickupFactory.link.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Markers/Waypoint3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Links/Contains.link.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Links/Factory.link.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Links/LocalCoopPartner.link.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Links/PVPPlayerSpawn.link.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Links/PVPPlayerFactory.link.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Links/PVPPickupFactory.link.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=11]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
@@ -39,11 +38,6 @@ __meta__ = {
 }
 
 [sub_resource type="SphereShape" id=6]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 __meta__ = {
 
 }
@@ -80,7 +74,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.66832, 0.772238, -7.05482 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.78309, 0.772238, -4.38297 )
 
 [node name="InstaDeath" parent="Actors" instance=ExtResource( 3 )]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.24905, 0.245763, -5.59196 )
 new_owner = NodePath(".")
 tags = "Damage:1000"
@@ -110,11 +103,7 @@ __meta__ = {
 
 }
 
-[node name="TouchResponse" parent="Actors/InstaDeath" instance=ExtResource( 4 )]
-parameters/playback = SubResource( 7 )
-tree_node = NodePath("../Reception")
-
-[node name="PickupMarker1" parent="Actors" instance=ExtResource( 5 )]
+[node name="PickupMarker1" parent="Actors" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9455, 0.247506, -2.72442 )
 
 [node name="Markers" type="Spatial" parent="."]
@@ -127,54 +116,54 @@ __meta__ = {
 
 }
 
-[node name="InfContainsPistol" parent="Links" instance=ExtResource( 6 )]
+[node name="InfContainsPistol" parent="Links" instance=ExtResource( 5 )]
 enabled = false
 container = "RightHandContainer"
 
-[node name="PistolAmmoFactory" parent="Links" instance=ExtResource( 7 )]
+[node name="PistolAmmoFactory" parent="Links" instance=ExtResource( 6 )]
 to = NodePath("../../Actors/Pistol")
 container = "Magazine"
 products = "target target_container << 1 Items/Mag9mm 
 Items/Mag9mm Container << 12 Items/Bullet9mm"
 
-[node name="Pistol2AmmoFactory" parent="Links" instance=ExtResource( 7 )]
+[node name="Pistol2AmmoFactory" parent="Links" instance=ExtResource( 6 )]
 to = NodePath("../../Actors/Pistol2")
 container = "Magazine"
 products = "target target_container << 1 Items/Mag9mm 
 Items/Mag9mm Container << 12 Items/Bullet9mm"
 
-[node name="Pistol3AmmoFactory" parent="Links" instance=ExtResource( 7 )]
+[node name="Pistol3AmmoFactory" parent="Links" instance=ExtResource( 6 )]
 to = NodePath("../../Actors/Pistol3")
 container = "Magazine"
 products = "target target_container << 1 Items/Mag9mm 
 Items/Mag9mm Container << 12 Items/Bullet9mm"
 
-[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 8 )]
+[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 7 )]
 enabled = false
 
-[node name="PVPPlayerSpawn1" parent="Links" instance=ExtResource( 9 )]
+[node name="PVPPlayerSpawn1" parent="Links" instance=ExtResource( 8 )]
 from = NodePath("../PVPPlayerFactory")
 to = NodePath("../../Actors/RespawnMarker1")
 
-[node name="PVPPlayerSpawn2" parent="Links" instance=ExtResource( 9 )]
+[node name="PVPPlayerSpawn2" parent="Links" instance=ExtResource( 8 )]
 from = NodePath("../PVPPlayerFactory")
 to = NodePath("../../Actors/RespawnMarker2")
 
-[node name="PVPPlayerSpawn3" parent="Links" instance=ExtResource( 9 )]
+[node name="PVPPlayerSpawn3" parent="Links" instance=ExtResource( 8 )]
 from = NodePath("../PVPPlayerFactory")
 to = NodePath("../../Actors/RespawnMarker3")
 
-[node name="PVPPlayerSpawn4" parent="Links" instance=ExtResource( 9 )]
+[node name="PVPPlayerSpawn4" parent="Links" instance=ExtResource( 8 )]
 from = NodePath("../PVPPlayerFactory")
 to = NodePath("../../Actors/RespawnMarker4")
 
-[node name="PVPPlayerFactory" parent="Links" instance=ExtResource( 10 )]
+[node name="PVPPlayerFactory" parent="Links" instance=ExtResource( 9 )]
 
-[node name="PVPPickupSpawn1" parent="Links" instance=ExtResource( 9 )]
+[node name="PVPPickupSpawn1" parent="Links" instance=ExtResource( 8 )]
 from = NodePath("../PVPPickupFactory")
 to = NodePath("../../Actors/PickupMarker1")
 
-[node name="PVPPickupFactory" parent="Links" instance=ExtResource( 11 )]
+[node name="PVPPickupFactory" parent="Links" instance=ExtResource( 10 )]
 
 [node name="Static" type="Spatial" parent="."]
 __meta__ = {
@@ -194,6 +183,6 @@ __meta__ = {
 
 }
 
-[node name="Map" parent="Static" instance=ExtResource( 12 )]
+[node name="Map" parent="Static" instance=ExtResource( 11 )]
 
 [editable path="Actors/InstaDeath"]

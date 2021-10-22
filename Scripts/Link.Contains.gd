@@ -4,8 +4,10 @@ export(String) var container
 
 var root
 var container_node
+var human = false
 var restore_collisions = true
 var merge = false
+var from_behavior
 var movement
 var collision
 var reception
@@ -81,16 +83,18 @@ func _try_container(node):
 	
 	if node.max_quantity > 0 and len(node.items) >= node.max_quantity:
 		return false
-		
+	
 	to_node.visible = not node.invisible
 	
 	if collision:
 		collision.disabled = true
 	
-#	if reception:
-#		reception.active = false
-	
 	node._add_item(to_node)
+	
+	if from_behavior.get_script().has_script_signal('pre_advance'):
+		
+		from_behavior.connect('pre_advance', self, '_move_item')
+		human = true
 	
 	return true
 
@@ -147,6 +151,9 @@ func _get_item_rotation_offset(item):
 
 func _move_item():
 	
+	if is_queued_for_deletion() or _is_invalid():
+		return
+	
 	if movement:
 		
 		var new_transform = root.global_transform
@@ -155,10 +162,10 @@ func _move_item():
 
 func _ready():
 	
-	
 	if is_queued_for_deletion():
 		return
 	
+	from_behavior = from_node.get_node_or_null('Behavior')
 	movement = to_node.get_node_or_null('Movement')
 	collision = to_node.get_node_or_null('Collision')
 	reception = to_node.get_node_or_null('Reception')
@@ -194,19 +201,14 @@ func _ready():
 
 func _process(delta):
 	
-	if is_queued_for_deletion():
-		return
-	
-	if from_node and (not weakref(from_node).get_ref() or from_node.is_queued_for_deletion()) or \
-		to_node and (not weakref(to_node).get_ref() or to_node.is_queued_for_deletion()):
+	if is_queued_for_deletion() or _is_invalid():
 		return
 	
 	if not container_node._has_item(to_node):
 		queue_free()
 	
-#	if 'Pistol' == to_node.name:
-#		prints(to_node.name, item_position_offset, item_rotation_offset)
-	_move_item()
+	if not human:
+		_move_item()
 
 
 func _restore_collision():
@@ -217,10 +219,6 @@ func _restore_collision():
 		
 		if collision:
 			collision.disabled = false
-		
-#		if reception:
-#			reception.active = true
-		
 		
 		
 		if container_node and weakref(container_node).get_ref():

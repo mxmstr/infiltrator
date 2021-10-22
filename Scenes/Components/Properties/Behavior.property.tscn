@@ -1,61 +1,49 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Behavior.Animation.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=3]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=4]
+[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=1]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
-script = ExtResource( 2 )
 __meta__ = {
 
 }
-chain = false
-schema = "DefaultAction"
-custom_script = ""
-priority = 0
-type = 0
-blend = 1
-cache_pose = true
-distance = 0.0
-enable_abilities = true
-lock_stance = false
-lock_speed = false
-lock_direction = false
-lock_rotation = false
-lock_movement = false
-camera_mode = "LockYaw"
-hud_mode = "Default"
 
-[sub_resource type="AnimationNodeStateMachine" id=2]
-states/Start/node = SubResource( 1 )
-states/Start/position = Vector2( 612.453, 244.689 )
-start_node = "Start"
-graph_offset = Vector2( 10.4534, 130.437 )
-script = ExtResource( 1 )
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "DefaultAnim"
 __meta__ = {
 
 }
-statemachine = ""
-chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeOneShot" id=3]
+__meta__ = {
+
+}
+
+[sub_resource type="AnimationNodeBlendTree" id=4]
+nodes/Action/node = SubResource( 1 )
+nodes/Action/position = Vector2( 300, 20 )
+nodes/Animation/node = SubResource( 2 )
+nodes/Animation/position = Vector2( 300, 140 )
+nodes/OneShot/node = SubResource( 3 )
+nodes/OneShot/position = Vector2( 540, 20 )
+nodes/output/position = Vector2( 780, 80 )
+node_connections = [ "output", 0, "OneShot", "OneShot", 0, "Animation", "OneShot", 1, "Action" ]
 __meta__ = {
 
 }
 
 [node name="Behavior" type="AnimationTree"]
-tree_root = SubResource( 2 )
+tree_root = SubResource( 4 )
 anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 3 )
-script = ExtResource( 3 )
+parameters/OneShot/active = false
+script = ExtResource( 1 )
 __meta__ = {
 
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 4 )
+anims/DefaultAnim = ExtResource( 2 )
 __meta__ = {
 
 }

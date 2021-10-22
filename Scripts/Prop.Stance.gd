@@ -154,8 +154,10 @@ func _physics_process(delta):
 	var direction = Vector2(sidestep_speed, forward_speed)
 	
 	if direction.length():
+		
 		var x2 = sidestep_speed * sidestep_speed
 		var y2 = forward_speed * forward_speed
+		
 		if (x2 >= y2):
 			velocity.x = (sign(sidestep_speed) * x2 * 1.0/sqrt(x2 + y2))
 			velocity.z = (sign(sidestep_speed) * sidestep_speed * forward_speed * 1.0/sqrt(x2 + y2))
@@ -163,6 +165,7 @@ func _physics_process(delta):
 		if (x2 < y2):
 			velocity.x = (sign(forward_speed) * sidestep_speed * forward_speed * 1.0/sqrt(x2 + y2))
 			velocity.z = (sign(forward_speed) * y2 * 1.0/sqrt(x2 + y2))
+	
 	
 	velocity *= max_speed * speed_mult
 	

@@ -11,7 +11,7 @@ func _ready():
 	tree_node.connect('action', self, '_on_action')
 
 
-func _play(_animation, _up=null, _down=null):
+func _play(_animation, _down=null, _up=null):
 	
 	if _up and _down:
 		tree_node._play(state, _animation, attributes[_animation], _up, _down)

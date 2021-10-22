@@ -28,15 +28,18 @@ func _on_tree_root_state_starting(sm_node_name):
 
 func _start_state(_name, _data={}):
 	
-#	prints(owner.name, _name, active)
+	stim = _name
+	data = _data
+	
+	emit_signal('stimulate', stim, data)
 	
 #	if not active:
 #		return
 	
-	stims.append([_name, _data])
-
-#	if len(stims) == 1:
-	_next_stim()
+#	stims.append([_name, _data])
+#
+##	if len(stims) == 1:
+#	_next_stim()
 
 
 func _next_stim():

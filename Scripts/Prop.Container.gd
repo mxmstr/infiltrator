@@ -9,7 +9,7 @@ export(Vector3) var position_offset
 export(Vector3) var rotation_degrees_offset
 export(float) var release_speed
 export(Vector3) var release_direction
-export(Vector2) var release_angular_spread
+export(Vector2) var release_angular_spread = Vector2(0, 0)
 export(float) var release_lifetime
 export var release_exclude_parent = false
 export(int) var max_quantity
@@ -244,16 +244,21 @@ func _apply_launch_attributes(item):
 	var item_movement = item.get_node_or_null('Movement')
 	
 	if item_movement:
+		
 		item_movement._set_speed(release_speed)
 		item_movement._set_direction(release_direction, true)
 		
 		if release_angular_spread.length():
-		
+
 			var spread_x = release_angular_spread.x
 			item_movement.angular_direction.x = rand_range(-spread_x, spread_x)
-			
+
 			var spread_y = release_angular_spread.y
 			item_movement.angular_direction.y = rand_range(-spread_y, spread_y)
+	
+	
+	if release_lifetime > 0:
+		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')
 
 
 func _create_and_launch_item(item_path):
@@ -407,41 +412,6 @@ func _pool_items(item_tags_string, dont_clone=false):
 		
 		for clone in item_clones:
 			Meta.CreateLink(owner, clone, 'Contains', { 'container': '' }).is_queued_for_deletion()
-		
-#	var item_tags = item_tags_string.split(' ')
-#
-#	for item in items:
-#
-#		var tagged = true
-#
-#		for item_tag in item_tags:
-#			if not item_tag in item.tags_dict.keys():
-#				tagged = false
-#				break
-#
-#		if not tagged:
-#			continue
-#
-#		prints('pooled', item.name)
-#		Meta.DestroyLink(null, item, 'Contains')
-#
-#		var contained = false
-#
-#		for other in items:
-#
-#			if item == other:
-#				continue
-#
-#			if not Meta.CreateLink(other, item, 'Contains', { 'container': '' }).is_queued_for_deletion():
-#				contained = true
-#				break
-#
-#		prints('pooled2', item.name, contained)
-#		if not contained and fallback_actor_path:
-#
-#			var fallback = Meta.AddActor(fallback_actor_path)
-#			print(Meta.CreateLink(fallback, item, 'Contains', { 'container': '' }).container)
-#			print(Meta.CreateLink(owner, fallback, 'Contains', { 'container': '' }).container)
 
 
 func _reset_root():

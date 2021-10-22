@@ -44,8 +44,8 @@ func _enter_tree():
 	_add_children()
 
 
-#func _physics_process(delta):
-#
-#	for i in range(get_child_count()):
-#
-#		get_child(i).global_transform = bone_attachments[i].global_transform#get_node('../Model').get_child(0).get_node(hitbox.name).global_transform
+func _physics_process(delta):
+
+	for i in range(get_child_count()):
+
+		get_child(i).global_transform = bone_attachments[i].global_transform#get_node('../Model').get_child(0).get_node(hitbox.name).global_transform

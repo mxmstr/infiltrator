@@ -10,16 +10,16 @@ func _on_stimulate(stim, data):
 		
 		if data.source._has_tag('Map'):
 			
-			owner.global_transform.origin = data.position
+			owner.translation = data.position
 			
-			Meta.AddActor('Particles/Smoke', owner.position)
-			Meta.AddActor('Particles/Sparks', owner.position, null, data.direction)
+			Meta.AddActor('Particles/Smoke', owner.translation)
+			Meta.AddActor('Particles/Sparks', owner.translation, null, data.direction)
 			
 			owner.queue_free()
 		
 		elif data.source._has_tag('Hitbox'):
 			
-			Meta.AddActor('Particles/BloodSquirt', owner.position, null, data.direction)
+			Meta.AddActor('Particles/BloodSquirt', owner.translation, null, data.direction)
 			
 			owner.queue_free()
 			

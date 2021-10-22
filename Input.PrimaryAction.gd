@@ -15,7 +15,9 @@ func _on_just_activated():
 		if not kick_timer and behavior.current_state == 'PunchIdle':
 			kick_timer = get_tree().create_timer(0.75)
 	
-	#_get_meta().StimulateActor( get_node(CONTAINER).items[0], STIM, self )
+	else:
+		
+		Meta.StimulateActor(righthand.items[0], 'Use', owner)
 
 
 func _on_just_deactivated():

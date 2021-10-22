@@ -12,19 +12,16 @@ func _on_action(state, data):
 	._on_action(state, data)
 	
 	if state == 'PunchIdle':
-
-#		print('punchidle')
+		
 		_play(animation_list_idle[0])
 	
 	if state == 'Punch':
 		
-#		print('punch')
 		_play(animation_list[0])
 		_randomize_animation()
 	
 	elif state == 'Kick':
-
-#		print('kick')
+		
 		_play(animation_list_kick[0])
 
 

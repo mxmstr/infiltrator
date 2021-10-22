@@ -44,6 +44,10 @@ func _load_animations(_schema):
 			
 			if '*' in _attributes.keys():
 				Meta._merge_dir(attributes[animation_name], _attributes['*'])
+		
+		else:
+			
+			attributes[animation_name] = {}
 	
 	
 	animation = _animation_list[0]

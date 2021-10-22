@@ -10,5 +10,4 @@ func _on_stimulate(stim, data):
 		
 		if data.source._has_tag('Bullet'):
 			
-			Meta.AddActor('Particles/BloodSquirt', data.position, null, data.direction)
 			reception._reflect()

@@ -3,30 +3,16 @@ extends "res://Scripts/Behavior.gd"
 export(String) var root_bone
 export(Array, String) var action_bones
 
-var skeleton
-var oneshot
-var action
+var layer = Meta.BlendLayer.MOVEMENT
+var cached_action_pose
+
 var action_up
 var action_down
-var layer = Meta.BlendLayer.MOVEMENT
-var next = 'Default'
-var switch_mode = 'Immediate'
-var cached_action_pose
 
 onready var movement = get_node_or_null('../Movement')
 onready var anim_layer_movement = get_node_or_null('../AnimLayerMovement')
 
-signal on_process
-
-
-func _on_action_finished():
-	
-#	prints('finished', action.animation, next)
-
-	if action.animation == 'Default':
-		return
-
-	call_deferred('emit_signal', 'action', next, {})
+signal pre_advance
 
 
 func _can_switch():
@@ -42,16 +28,6 @@ func _set_layer(_layer):
 func _set_action_blend(blend):
 	
 	set('parameters/ActionBlend/blend_amount', blend)
-
-
-func _set_animation(animation, scale, clip_start, clip_end):
-	
-#	prints(animation, scale, clip_start, clip_end)
-	
-	action.scale = scale
-	action.clip_start = clip_start
-	action.clip_end = clip_end
-	action.animation = animation
 
 
 func _set_animation_up(animation, scale, clip_start, clip_end):
@@ -70,65 +46,6 @@ func _set_animation_down(animation, scale, clip_start, clip_end):
 	action_down.animation = animation
 
 
-func _is_oneshot_active():
-	
-	return get('parameters/OneShot/active')
-
-
-func _set_oneshot_active(enabled):
-	
-	set('parameters/OneShot/active', enabled)
-
-
-func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
-	
-	if not _can_switch():
-		return
-	
-	current_state = new_state
-	
-	_set_oneshot_active(false)
-	advance(0)
-	
-	
-	var scale = 1.0
-	var clip_start = 0
-	var clip_end = 0
-	next = 'Default'
-	
-	if attributes.has('layer'):
-		_set_layer(Meta.BlendLayer[attributes.layer])
-	
-	if attributes.has('speed'):
-		scale = attributes.speed
-	
-	if attributes.has('clip_start'):
-		clip_start = attributes.clip_start
-	
-	if attributes.has('clip_end'):
-		clip_end = attributes.clip_end
-	
-	if attributes.has('next'):
-		next = attributes.next
-	
-	if attributes.has('switch_mode'):
-		switch_mode = attributes.switch_mode
-	
-	_set_animation(animation, scale, clip_start, clip_end)
-	
-	if up_animation:
-		_set_animation_up(up_animation, scale, clip_start, clip_end)
-	
-	if down_animation:
-		_set_animation_down(down_animation, scale, clip_start, clip_end)
-	
-	
-	if current_state == 'Default':
-		return
-	
-	_set_oneshot_active(true)
-
-
 func _cache_action_pose():
 	
 	cached_action_pose = []
@@ -141,6 +58,30 @@ func _cache_action_pose():
 			cached_action_pose.append(skeleton.get_bone_global_pose(idx))
 		else:
 			cached_action_pose.append(skeleton.get_bone_pose(idx))
+
+
+
+func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
+	
+	if not _can_switch():
+		return
+	
+	._play(new_state, animation, attributes)
+	
+	if attributes.has('layer'):
+		_set_layer(Meta.BlendLayer[attributes.layer])
+	
+	_set_action_blend(0)
+	
+	if up_animation:
+		_set_animation_up(up_animation, action.scale, action.clip_start, action.clip_end)
+	else:
+		_set_animation_up('DefaultAnim', action.scale, action.clip_start, action.clip_end)
+	
+	if down_animation:
+		_set_animation_down(down_animation, action.scale, action.clip_start, action.clip_end)
+	else:
+		_set_animation_down('DefaultAnim', action.scale, action.clip_start, action.clip_end)
 
 
 func _apply_action_pose():
@@ -161,9 +102,6 @@ func _apply_action_pose():
 
 func _ready():
 	
-	skeleton = $AnimationPlayer.get_node($AnimationPlayer.root_node)
-	oneshot = tree_root.get_node('OneShot')
-	action = tree_root.get_node('Action')
 	action_up = tree_root.get_node('ActionUp')
 	action_down = tree_root.get_node('ActionDown')
 	
@@ -171,13 +109,11 @@ func _ready():
 	anim_layer_movement.tree_root = anim_layer_movement.tree_root.duplicate(true)
 	anim_layer_movement.tree_root._ready(anim_layer_movement, null, 'parameters/', 'root')
 	anim_layer_movement.active = true
-	
-	oneshot.connect('finished', self, '_on_action_finished')
-	
-	emit_signal('action', next, {})
 
 
 func _process(delta):
+	
+	emit_signal('pre_advance')
 	
 	oneshot.filter_enabled = layer == Meta.BlendLayer.MIXED
 	
@@ -185,15 +121,15 @@ func _process(delta):
 		
 		advance(delta)
 		_cache_action_pose()
-	
+
 	if layer != Meta.BlendLayer.ACTION:
 		anim_layer_movement.advance(delta)
-	
+
 	if layer != Meta.BlendLayer.MOVEMENT:
 		_apply_action_pose()
+
+	movement._apply_root_transform(get_root_motion_transform())
 	
-	if owner.name == 'Anderson':
-		movement._apply_root_transform(get_root_motion_transform())
-	
-	
+#	if owner.name == 'Anderson':
+#		print(actionup)
 	skeleton.scale = Vector3(-1, -1, -1)

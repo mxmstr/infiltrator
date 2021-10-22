@@ -6,7 +6,7 @@
 [ext_resource path="res://Animations/Human/Movement/Stand.tres" type="Animation" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "DefaultHumanAnim"
+animation = "DefaultAnim"
 __meta__ = {
 
 }
@@ -17,19 +17,19 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-animation = "DefaultHumanAnim"
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=4]
-animation = "DefaultHumanAnim"
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
 [sub_resource type="AnimationNodeAnimation" id=5]
-animation = "DefaultHumanAnim"
+animation = "DefaultAnim"
 __meta__ = {
 
 }
@@ -58,7 +58,7 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeBlendTree" id=8]
-graph_offset = Vector2( 0, -13.698 )
+graph_offset = Vector2( 0, -149.799 )
 nodes/Action/node = SubResource( 1 )
 nodes/Action/position = Vector2( 80, -40 )
 nodes/ActionBlend/node = SubResource( 2 )
@@ -109,7 +109,7 @@ __meta__ = {
 tree_root = SubResource( 8 )
 anim_player = NodePath("AnimationPlayer")
 process_mode = 2
-parameters/ActionBlend/blend_amount = 0
+parameters/ActionBlend/blend_amount = 0.0
 parameters/Layer/current = 0
 parameters/Movement/blend_position = 0
 parameters/Movement/0/blend_position = Vector2( 0, 0 )

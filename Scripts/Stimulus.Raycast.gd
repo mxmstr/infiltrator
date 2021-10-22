@@ -109,9 +109,6 @@ func _ready():
 
 func _process(delta):
 	
-	if reception and not reception.active:
-		return
-	
 	if root:
 		
 		global_transform.origin = root.global_transform.origin

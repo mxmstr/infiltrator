@@ -14,6 +14,7 @@ __meta__ = {
 }
 chain = false
 schema = "LoadChamber"
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "EmptyMagazine"
@@ -29,6 +30,7 @@ __meta__ = {
 }
 chain = false
 schema = "FireProjectile"
+custom_script = ""
 expression = "1 / float(owner._get_tag(TAG))"
 arguments = {
 "TAG": "FireRate"
@@ -42,6 +44,7 @@ __meta__ = {
 }
 chain = false
 schema = ""
+custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
@@ -162,7 +165,7 @@ states/Start/node = SubResource( 5 )
 states/Start/position = Vector2( 228, 188 )
 transitions = [ "Start", "FireProjectile", SubResource( 6 ), "Start", "LoadChamber", SubResource( 7 ), "FireProjectile", "LoadChamber", SubResource( 8 ), "FireProjectile", "Start", SubResource( 9 ), "FireProjectile", "Empty", SubResource( 10 ), "Empty", "Start", SubResource( 11 ), "LoadChamber", "DefaultAnim", SubResource( 12 ), "DefaultAnim", "Start", SubResource( 13 ) ]
 start_node = "Start"
-graph_offset = Vector2( -71.387, 134.521 )
+graph_offset = Vector2( -71.387, 123.401 )
 __meta__ = {
 
 }
