@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/3D Outline/Outline.shader" type="Shader" id=1]
+
+[sub_resource type="SphereMesh" id=1]
+__meta__ = {
+
+}
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+__meta__ = {
+
+}
+
+[sub_resource type="SpatialMaterial" id=3]
+next_pass = SubResource( 2 )
+__meta__ = {
+
+}
+
+[node name="MeshInstance" type="MeshInstance"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+__meta__ = {
+
+}

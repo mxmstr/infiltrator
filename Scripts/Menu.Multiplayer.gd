@@ -121,6 +121,13 @@ func _on_outlines_toggled(enabled):
 	_save_to_config('Multiplayer', 'outlines', enabled)
 
 
+func _on_xray_toggled(enabled):
+	
+	Meta.multi_xray = enabled
+	
+	_save_to_config('Multiplayer', 'xray', enabled)
+
+
 func _on_character_selected(char_index, player_index):
 	
 	var scene = characters[characters.keys()[char_index]].scene
@@ -193,6 +200,12 @@ func _ready():
 	outlines.connect('toggled', self, '_on_outlines_toggled')
 	outlines.pressed = config.get_value('Multiplayer', 'outlines',  Meta.multi_outlines)
 	_on_outlines_toggled(outlines.pressed)
+	
+	
+	var xray = find_node('Xray').get_node('CheckBox')
+	xray.connect('toggled', self, '_on_xray_toggled')
+	xray.pressed = config.get_value('Multiplayer', 'xray',  Meta.multi_xray)
+	_on_xray_toggled(xray.pressed)
 	
 	
 	var player_index = 0

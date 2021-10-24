@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Prop.HUD.gd" type="Script" id=1]
 [ext_resource path="res://Textures/UI/Crosshair.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/UI/HUD.CenterMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/roboto.font" type="BitmapFont" id=4]
 [ext_resource path="res://Scripts/FPS.gd" type="Script" id=5]
+[ext_resource path="res://Textures/UI/Radar.png" type="Texture" id=6]
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=1]
 __meta__ = {
 
 }
@@ -28,7 +29,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Crosshair"]
-material = SubResource( 3 )
+material = SubResource( 1 )
 margin_left = 505.0
 margin_right = 518.0
 margin_bottom = 600.0
@@ -49,6 +50,25 @@ custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "FPS"
 script = ExtResource( 5 )
+__meta__ = {
+
+}
+
+[node name="Radar" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -300.0
+margin_bottom = 300.0
+__meta__ = {
+
+}
+
+[node name="TextureRect" type="TextureRect" parent="Radar"]
+margin_right = 300.0
+margin_bottom = 300.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 6 )
 __meta__ = {
 
 }

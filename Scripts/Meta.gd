@@ -39,6 +39,7 @@ var multi = false
 var multi_points_to_win = 5
 var multi_radar = true
 var multi_outlines = false
+var multi_xray = false
 var multi_loadout = ['Items/Beretta']
 var coop = false
 var player_count = 4
