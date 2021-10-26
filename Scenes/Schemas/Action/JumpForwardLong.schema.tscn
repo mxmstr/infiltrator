@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Animations/Human/Action/JumpLong.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/Action/Jump/JumpLong.tres" type="Animation" id=1]
+
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/JumpLong = ExtResource( 1 )

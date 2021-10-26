@@ -8,3 +8,4 @@ __meta__ = {
 
 }
 schema = "FireProjectile"
+state = "FireProjectile"

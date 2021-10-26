@@ -154,7 +154,7 @@ func _move_item():
 	if is_queued_for_deletion() or _is_invalid():
 		return
 	
-	if movement and not weakref(movement).get_ref() or movement.is_queued_for_deletion():
+	if movement and weakref(movement).get_ref() and not movement.is_queued_for_deletion():
 		
 		var new_transform = root.global_transform
 		movement._teleport(new_transform.origin, new_transform.basis)

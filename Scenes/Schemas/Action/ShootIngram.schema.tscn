@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Animations/Human/Action/Shoot/Ingram/ShootIngram.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/Action/Shoot/Ingram/ShootIngram_Down.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/Action/Shoot/Ingram/ShootIngram_Up.tres" type="Animation" id=3]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=4]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/ShootIngram = ExtResource( 1 )
+anims/ShootIngram_Down = ExtResource( 2 )
+anims/ShootIngram_Up = ExtResource( 3 )
+script = ExtResource( 4 )
+__meta__ = {
+
+}
+attributes = "{
+	\"*\": {
+		\"clip_start\": 0.05,
+		\"layer\": \"MIXED\"
+	}
+}"

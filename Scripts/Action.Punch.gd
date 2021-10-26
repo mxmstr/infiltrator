@@ -7,20 +7,20 @@ var animation_list_idle = []
 var animation_list_kick = []
 
 
-func _on_action(state, data):
+func _on_action(_state, data):
 	
-	._on_action(state, data)
+	state = _state
 	
-	if state == 'PunchIdle':
+	if _state == 'PunchIdle':
 		
 		_play(animation_list_idle[0])
 	
-	if state == 'Punch':
+	if _state == 'Punch':
 		
 		_play(animation_list[0])
 		_randomize_animation()
 	
-	elif state == 'Kick':
+	elif _state == 'Kick':
 		
 		_play(animation_list_kick[0])
 

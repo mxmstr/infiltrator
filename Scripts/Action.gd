@@ -1,6 +1,6 @@
 extends "res://Scripts/AnimationLoader.gd"
 
-var state
+export(String) var state
 
 
 func _ready():
@@ -21,4 +21,5 @@ func _play(_animation, _down=null, _up=null):
 
 func _on_action(_state, data): 
 	
-	state = _state
+	if _state == state:
+		_play(animation_list[0])

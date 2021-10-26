@@ -41,7 +41,7 @@ func _get_forward_speed(): return 0
 func _get_sidestep_speed(): return 0
 
 
-func _set_vertical_velocity(vertical): 
+func _set_vertical_velocity(vertical):
 	
 	velocity.y = vertical
 

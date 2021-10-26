@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Inputs/PrimaryAction.input2.tscn" type="PackedScene" id=2]
@@ -15,9 +15,10 @@
 [ext_resource path="res://Scenes/Components/Inputs/RotateRight.input2.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Components/Inputs/RotateHorizontalStop.input2.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Components/Inputs/Crouch.input2.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Scenes/Components/Inputs/Pause.input2.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Animations/Property/Prop.WeaponTargetLock.gd" type="Script" id=17]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/Components/Inputs/Jump.input2.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Components/Inputs/Pause.input2.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Animations/Property/Prop.WeaponTargetLock.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=19]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
@@ -87,7 +88,7 @@ states/Start/node = SubResource( 12 )
 states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 18 )
+script = ExtResource( 19 )
 __meta__ = {
 
 }
@@ -134,56 +135,58 @@ __meta__ = {
 
 [node name="CrouchInput" parent="." index="13" instance=ExtResource( 15 )]
 
-[node name="PauseInput" parent="." index="14" instance=ExtResource( 16 )]
+[node name="JumpInput" parent="." index="14" instance=ExtResource( 16 )]
 
-[node name="WeaponTargetLock" type="Node" parent="." index="15"]
-script = ExtResource( 17 )
+[node name="PauseInput" parent="." index="15" instance=ExtResource( 17 )]
+
+[node name="WeaponTargetLock" type="Node" parent="." index="16"]
+script = ExtResource( 18 )
 __meta__ = {
 
 }
 right_hand_container = NodePath("../RightHandContainer")
 chamber_container = "Chamber"
 
-[node name="CameraRaycastStim" parent="." index="35"]
+[node name="CameraRaycastStim" parent="." index="36"]
 editor/display_folded = true
 
 [node name="Target" parent="CameraRaycastStim" index="1"]
 editor/display_folded = true
 
-[node name="ReloadAction" parent="." index="42"]
+[node name="ReloadAction" parent="." index="47"]
 parameters/playback = SubResource( 1 )
 
-[node name="DieAction" parent="." index="43"]
+[node name="DieAction" parent="." index="48"]
 parameters/playback = SubResource( 2 )
 
-[node name="SuspendAction" parent="." index="44"]
+[node name="SuspendAction" parent="." index="49"]
 parameters/playback = SubResource( 3 )
 
-[node name="AnimLayerMovement" parent="." index="45"]
+[node name="AnimLayerMovement" parent="." index="50"]
 parameters/0/0/playback = SubResource( 4 )
 parameters/1/0/playback = SubResource( 5 )
 
-[node name="VoiceAudio" parent="." index="51"]
+[node name="VoiceAudio" parent="." index="56"]
 parameters/playback = SubResource( 6 )
 
-[node name="FoleyAudio" parent="." index="52"]
+[node name="FoleyAudio" parent="." index="57"]
 parameters/playback = SubResource( 7 )
 
-[node name="FeetAudio" parent="." index="53"]
+[node name="FeetAudio" parent="." index="58"]
 parameters/playback = SubResource( 8 )
 
-[node name="Behavior" parent="." index="55"]
+[node name="Behavior" parent="." index="60"]
 parameters/Movement/0/0/playback = SubResource( 9 )
 parameters/Movement/1/0/playback = SubResource( 10 )
 
-[node name="Reception" parent="." index="56"]
+[node name="Reception" parent="." index="61"]
 parameters/playback = SubResource( 11 )
 
-[node name="Interface" parent="." index="57"]
+[node name="Interface" parent="." index="62"]
 tree_root = SubResource( 13 )
 parameters/playback = SubResource( 14 )
 
-[node name="Audio" parent="." index="58"]
+[node name="Audio" parent="." index="63"]
 parameters/playback = SubResource( 15 )
 
 [editable path="CameraRig"]

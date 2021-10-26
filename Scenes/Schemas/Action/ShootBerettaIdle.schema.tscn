@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Animations/Human/Action/ShootBerettaIdle.tres" type="Animation" id=1]
-[ext_resource path="res://Animations/Human/Action/ShootBerettaIdle_Down.tres" type="Animation" id=2]
-[ext_resource path="res://Animations/Human/Action/ShootBerettaIdle_Up.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBerettaIdle.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBerettaIdle_Down.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBerettaIdle_Up.tres" type="Animation" id=3]
 [ext_resource path="res://Scripts/Schema.gd" type="Script" id=4]
+
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/ShootBerettaIdle = ExtResource( 1 )

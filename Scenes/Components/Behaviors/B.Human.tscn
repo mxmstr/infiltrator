@@ -19,17 +19,20 @@
 [ext_resource path="res://Animations/Human/Action/Fall.tres" type="Animation" id=17]
 [ext_resource path="res://Animations/Human/Action/Climb.Enter.tres" type="Animation" id=18]
 [ext_resource path="res://Animations/Human/Action/Grab.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/Action/HOPBACK.tres" type="Animation" id=20]
-[ext_resource path="res://Animations/Human/Action/Jump.Exit.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/Action/JumpLong.tres" type="Animation" id=22]
-[ext_resource path="res://Animations/Human/Action/JumpUp.tres" type="Animation" id=23]
+[ext_resource path="res://Animations/Human/Action/Jump/HOPBACK.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Human/Action/Jump/Jump.Exit.tres" type="Animation" id=21]
+[ext_resource path="res://Animations/Human/Action/Jump/JumpLong.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/Action/Jump/JumpUp.tres" type="Animation" id=23]
 [ext_resource path="res://Animations/Human/Action/Land.tres" type="Animation" id=24]
 [ext_resource path="res://Animations/Human/Action/Land.Exit.tres" type="Animation" id=25]
-[ext_resource path="res://Animations/Human/Action/jumpForward.tres" type="Animation" id=26]
-[ext_resource path="res://Animations/Human/Action/jumpForwardLeft.tres" type="Animation" id=27]
-[ext_resource path="res://Animations/Human/Action/jumpForwardRight.tres" type="Animation" id=28]
-[ext_resource path="res://Animations/Human/Action/sidestepleft.tres" type="Animation" id=29]
-[ext_resource path="res://Animations/Human/Action/sidestepright.tres" type="Animation" id=30]
+[ext_resource path="res://Animations/Human/Action/Jump/jumpForward.tres" type="Animation" id=26]
+[ext_resource path="res://Animations/Human/Action/Jump/jumpForwardLeft.tres" type="Animation" id=27]
+[ext_resource path="res://Animations/Human/Action/Jump/jumpForwardRight.tres" type="Animation" id=28]
+[ext_resource path="res://Animations/Human/Action/Jump/sidestepleft.tres" type="Animation" id=29]
+[ext_resource path="res://Animations/Human/Action/Jump/sidestepright.tres" type="Animation" id=30]
+
+
+
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Climb.Exit"

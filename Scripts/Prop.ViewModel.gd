@@ -127,6 +127,9 @@ func _blend_skeletons(s_world, s_view):
 			p_world = s_world.get_bone_pose(idx)
 			p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
 			s_view.set_bone_pose(idx, p_world)
+	
+	
+	s_view.transform = s_world.transform
 
 
 #	if follow_camera_bone_id:
@@ -207,7 +210,7 @@ func _exit_tree():
 	_revert_mesh_layers()
 
 
-func _physics_process(delta):
+func _process(delta):
 	
 	if not get_child_count():
 		return

@@ -3,6 +3,8 @@ extends Control
 export(NodePath) var viewport
 
 var radar_dots = []
+var radius_x
+var radius_y
 
 onready var radar = get_node('Radar')#.find_node('Sprite')
 onready var radar_dot = load('res://Scenes/UI/HUD.RadarDot.tscn')
@@ -19,16 +21,25 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
+	radius_x = radar.rect_size.x / 2
+	radius_y = radar.rect_size.y / 2
+	
 	#set_viewport(get_node(viewport))
 	
-	for actor in $'/root/Mission/Actors'.get_children():
+	if Meta.multi_radar:
 		
-		if actor != owner.owner and actor.get('tags') and actor._has_tag('Human'):
+		for actor in $'/root/Mission/Actors'.get_children():
 			
-			var dot = radar_dot.instance()
-			dot.modulate = Color.red
-			add_child(dot)
-			radar_dots.append([dot, actor])
+			if actor != owner.owner and actor.get('tags') and actor._has_tag('Human'):
+				
+				var dot = radar_dot.instance()
+				dot.modulate = Color.red
+				add_child(dot)
+				radar_dots.append([dot, actor])
+	
+	else:
+		
+		radar.get_node('TextureRect').hide()
 
 
 func _process(delta):
@@ -42,18 +53,12 @@ func _process(delta):
 		
 		var distance_to = owner.owner.translation.distance_to(actor.translation)
 		var direction_to = owner.owner.translation.direction_to(actor.translation) * -distance_to
-		direction_to = owner.owner.transform.basis.xform_inv(direction_to) * 10.0
-		var actor_position = Vector2((radar.rect_size.x / 2) + direction_to.x, (radar.rect_size.y / 2) + direction_to.z)
-#
-#		var translation = (actor.translation - owner.owner.translation) * 0.1
-#		var dot_position = Vector2((rect_size.x / 2) + translation.x, (rect_size.y / 2) + translation.z)
+		direction_to = owner.owner.transform.basis.xform_inv(direction_to) * 20.0
+		direction_to.y = 0
 		
-#		var radar_scale = radar.rect_size / get_viewport_rect().size * 50
-#		var obj_pos = Vector2(direction_to.x, direction_to.z) * radar_scale + radar.rect_size / 2
+		if direction_to.length() > radius_x:
+			direction_to = direction_to.normalized() * radius_x
 		
-		var radar_center = radar.rect_global_position# - (radar.rect_size / 2)# - (radar_texture.rect_size / 2)
-		dot.position = actor_position + radar_center
-#		print(actor.name, dot_position)
+		var actor_position = Vector2(radius_x + direction_to.x, radius_y + direction_to.z)
 		
-	
-	#radar_texture
+		dot.position = radar.rect_global_position + actor_position

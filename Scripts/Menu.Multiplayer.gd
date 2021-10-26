@@ -38,7 +38,7 @@ var weapons = {
 	},
 	'ColtCommando': {
 		'enabled': false,
-		'scene': 'Items/ColtCommando'
+		'scene': 'Items/Colt'
 	},
 	'DesertEagle': {
 		'enabled': false,
