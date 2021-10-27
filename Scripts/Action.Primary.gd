@@ -26,9 +26,11 @@ func _ready():
 
 
 func _on_action(_state, data):
-
-	if _state == state:
-
+	
+	new_state = _state
+	
+	if new_state == state:
+		
 		if righthand._has_item_with_tag('Firearm'):
 			
 			var item_name = righthand.items[0].name
@@ -39,18 +41,17 @@ func _on_action(_state, data):
 
 
 func _process(delta):
-
+	
 	if righthand._has_item_with_tag('Firearm') and tree_node.current_state == 'Default':
-
-		state = 'ShootIdle'
-		var item_name = righthand.items[0].name
+		
+		new_state = 'ShootIdle'
+		var item_name = righthand.items[0].base_name
 		
 		if shoot_idle_animations.has(item_name):
-			
 			_play(shoot_idle_animations[item_name][0], shoot_idle_animations[item_name][1], shoot_idle_animations[item_name][2])
 
 
-	if tree_node.current_state in ['UseReact', 'ShootIdle']:
+	if tree_node.current_state in [state, 'ShootIdle']:
 
 		var target_pos = camera_raycast_target.global_transform.origin
 		var look_direction = camera_raycast.global_transform.origin.direction_to(target_pos).normalized()

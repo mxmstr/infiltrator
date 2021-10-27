@@ -38,7 +38,8 @@ __meta__ = {
 }
 
 [node name="Magazine" parent="." index="2"]
-required_tags = "Magazine Colt"
+max_quantity = 30
+required_tags = "Bullet Rifle"
 
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.0817747, 0.614824 )

@@ -3,8 +3,8 @@ extends 'res://Scripts/Link.gd'
 var player_points = [0, 0, 0, 0]
 var player_deaths = [0, 0, 0, 0]
 var team_points = [0, 0, 0, 0, 0]
-var spawn_links
 var actors = []
+var markers = []
 
 signal player_died
 signal player_scored
@@ -76,9 +76,9 @@ func _suspend_players():
 
 func _respawn(actor):
 	
-	spawn_links.shuffle()
+	var marker_idx = randi() % markers.size()
+	var marker = markers[marker_idx]
 	var data = Meta.player_data[actor.player_index]
-	var marker = spawn_links[0].to_node
 	
 	actor.global_transform.origin = marker.global_transform.origin
 	actor.rotation = marker.rotation
@@ -147,14 +147,15 @@ func _ready():
 	
 	#yield(get_tree(), 'idle_frame')
 	
+	for child in get_children():
+		if 'RespawnMarker' in child.name:
+			markers.append(child)
 	
-	spawn_links = Meta.GetLinks(self, null, 'PVPPlayerSpawn')
-	spawn_links.shuffle()
 	
 	for i in range(Meta.player_count):
 		
 		var data = Meta.player_data[i]
-		var marker = spawn_links[i].to_node
+		var marker = markers[i]
 		
 		var actor = Meta.AddActor(data.character, marker.global_transform.origin, marker.rotation_degrees)
 		actor.player_index = i

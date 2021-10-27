@@ -86,7 +86,7 @@ func _face(target, angle_delta=0.0):
 
 func _process(delta):
 	
-	var new_velocity = angular_direction * angular_speed * delta
+	var new_velocity = angular_direction * delta
 	var deltax = new_velocity.x - angular_velocity.x
 	var deltay = new_velocity.y - angular_velocity.y
 	var factorx
@@ -102,27 +102,14 @@ func _process(delta):
 	else:
 		factory = angular_deaccel
 	
-#	prints(deltax)
-#	if deltax > 0:
-	
 	angular_velocity.x = angular_velocity.linear_interpolate(new_velocity, factorx * delta).x
-#	else:
-#		angular_velocity.x = new_velocity.x
-	
-#	if deltay > 0:
 	angular_velocity.y = angular_velocity.linear_interpolate(new_velocity, factory * delta).y
-#	else:
-#		angular_velocity.y = new_velocity.y
 	
-#	print(angular_direction.length())
 	
 	owner.rotation.y += angular_velocity.x
 	
 	if camera_rig:
 		camera_rig._rotate_camera(angular_velocity.y, 0)
-	
-#	angular_direction.x = 0
-#	angular_direction.y = 0
 
 
 func _physics_process(delta):

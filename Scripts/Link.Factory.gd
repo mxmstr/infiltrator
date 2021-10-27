@@ -16,27 +16,32 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	products = products.c_escape().replace('\\n', ' ')
+#	products = products.c_escape().replace('\\n', ' ')
 	
 	var new_product = {}
 	var i = 0
 	
-	for param in products.split(' ', false):
+	for product in products.c_escape().split('\\n'):
+	
+		for param in product.split(' ', false):
+			
+			if i == 0:
+				new_product.target = param
+			if i == 1:
+				new_product.target_container = param
+			if i == 3:
+				new_product.amount = param
+			if i == 4:
+				new_product.item = param
+				products_list.append(new_product.duplicate())
+				new_product = {}
+				i = 0
+				continue
+			
+			i = i + 1
 		
-		if i == 0:
-			new_product.target = param
-		if i == 1:
-			new_product.target_container = param
-		if i == 3:
-			new_product.amount = param
-		if i == 4:
-			new_product.item = param
-		
-		i = i + 1 
-		if i > 4:
-			i = 0
-			products_list.append(new_product.duplicate())
-			new_product = {}
+		new_product = {}
+		i = 0
 	
 	
 	for product in products_list:

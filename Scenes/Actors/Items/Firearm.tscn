@@ -7,7 +7,7 @@
 [ext_resource path="res://Scenes/Components/Responses/Use.Firearm.response2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Sounds/FireProjectile.sound2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Components/Stimuli/Contact.RigidBody.stimulus.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scripts/Stimulus.Radius.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Components/Stimuli/Radius.stimulus.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=11]
@@ -235,9 +235,10 @@ __meta__ = {
 tags = "Item Firearm UseAction:FireProjectile FireRate:0.1"
 
 [node name="Magazine" parent="." instance=ExtResource( 2 )]
+factory_mode = true
 max_quantity = 1
 invisible = true
-required_tags = "Magazine"
+required_tags = "Bullet"
 
 [node name="Chamber" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -262,12 +263,7 @@ schema = "FireProjectileSound"
 [node name="ContactStim" parent="." instance=ExtResource( 7 )]
 stim_type = "Touch"
 
-[node name="PickupRadiusStim" type="RayCast" parent="."]
-cast_to = Vector3( 0, 0, 0 )
-script = ExtResource( 8 )
-__meta__ = {
-
-}
+[node name="PickupRadiusStim" parent="." instance=ExtResource( 8 )]
 stim_type = "Touch"
 max_distance = 1.0
 raycast = true

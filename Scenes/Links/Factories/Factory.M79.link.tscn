@@ -7,5 +7,5 @@ script = ExtResource( 1 )
 __meta__ = {
 
 }
-products = "Items/M79 Magazine << 1 Items/Mag9mm 
-Items/Mag9mm Container << 12 Items/Bullet9mm"
+products = "Items/M79 Magazine << 12 Items/BulletM79
+Items/AmmoBoxM79"

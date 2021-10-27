@@ -1,105 +1,25 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Actors/Items/Firearm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Items/Max Payne Weapons/Desert Eagle/Desert Eagle.obj" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/AudioTree.Animation.gd" type="Script" id=4]
 
-[sub_resource type="BoxShape" id=45]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.0227914, 0.0918072, 0.155839 )
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeAnimation" id=36]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=37]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-script = ExtResource( 4 )
-__meta__ = {
-
-}
-chain = false
-schema = "FireProjectileSound"
-level = 0.0
-
-[sub_resource type="AnimationNodeAnimation" id=38]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
-resource_local_to_scene = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-resource_local_to_scene = true
-switch_mode = 2
-auto_advance = true
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=39]
-resource_local_to_scene = true
-states/End/node = SubResource( 36 )
-states/End/position = Vector2( 828, 27.552 )
-states/FireProjectile/node = SubResource( 37 )
-states/FireProjectile/position = Vector2( 572, 27.552 )
-states/Start/node = SubResource( 38 )
-states/Start/position = Vector2( 333, 27.552 )
-transitions = [ "Start", "FireProjectile", SubResource( 32 ), "FireProjectile", "End", SubResource( 33 ) ]
-start_node = "Start"
-end_node = "End"
-graph_offset = Vector2( -13, -93.7663 )
-script = ExtResource( 3 )
-__meta__ = {
-
-}
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=40]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=42]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=43]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=44]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 __meta__ = {
 
 }
@@ -112,32 +32,20 @@ transform = Transform( 5.55116e-17, 1.09278e-09, -0.025, 0.025, -1.09278e-09, 7.
 
 [node name="Collision" type="CollisionShape" parent="." index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0305072, 0.103516 )
-shape = SubResource( 45 )
+shape = SubResource( 1 )
 __meta__ = {
 
 }
 
 [node name="Magazine" parent="." index="2"]
-required_tags = "Magazine DesertEagle"
+max_quantity = 8
+required_tags = "Bullet Magnum"
 
-[node name="FireProjectileAction" parent="." index="4"]
-parameters/playback = SubResource( 34 )
+[node name="Reception" parent="." index="12"]
+parameters/playback = SubResource( 2 )
 
-[node name="UseResponse" parent="." index="5"]
-parameters/playback = SubResource( 35 )
+[node name="Interface" parent="." index="13"]
+parameters/playback = SubResource( 3 )
 
-[node name="FireProjectileSound" parent="." index="6"]
-tree_root = SubResource( 39 )
-parameters/playback = SubResource( 40 )
-
-[node name="Behavior" parent="." index="10"]
-parameters/playback = SubResource( 41 )
-
-[node name="Reception" parent="." index="11"]
-parameters/playback = SubResource( 42 )
-
-[node name="Interface" parent="." index="12"]
-parameters/playback = SubResource( 43 )
-
-[node name="Audio" parent="." index="13"]
-parameters/playback = SubResource( 44 )
+[node name="Audio" parent="." index="14"]
+parameters/playback = SubResource( 4 )

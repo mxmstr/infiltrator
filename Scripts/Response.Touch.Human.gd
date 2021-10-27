@@ -15,7 +15,8 @@ func _on_stimulate(stim, data):
 				
 			else:
 				
-				data.source.get_node('Magazine').items[0].get_node('Container')._transfer_items_to(owner)
+				data.source.get_node('Magazine')._transfer_items_to(owner)
 				data.source.get_node('Chamber')._transfer_items_to(owner)
 				data.source.get_node('Magazine')._delete_all()
+				data.source.get_node('Chamber')._delete_all()
 				data.source.queue_free()

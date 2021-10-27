@@ -52,7 +52,6 @@ func _stimulate(stim_type_override=''):
 func _update_raycast_selection():
 	
 	if _has_selection():
-		
 		selection = get_collider()
 	
 	emit_signal('selection_changed', selection)
@@ -84,6 +83,13 @@ func _on_before_move(velocity):
 
 func _ready():
 	
+#	yield(get_tree(), 'idle_frame')
+	
+	if owner.has_node('Hitboxes'):
+		for hitbox in owner.get_node('Hitboxes').get_children():
+			add_exception(hitbox)
+	
+	
 	for tag in required_tags.split(' '):
 		
 		var values = Array(tag.split(':'))
@@ -113,35 +119,6 @@ func _process(delta):
 		
 		global_transform.origin = root.global_transform.origin
 		global_transform.basis = root.global_transform.basis
-	
-#	elif predict_collision:
-#
-#		var velocity = get_node('../Movement').velocity
-#
-#		if velocity.length() > 0:# cast_to.length():
-#
-#			var origin = owner.global_transform.origin
-#			var next_origin = owner.global_transform.translated(velocity).origin
-#			var temp_raycast = duplicate()
-#
-#			owner.add_child(temp_raycast)
-#			temp_raycast.cast_to = Vector3(0, 0, -origin.distance_to(next_origin))
-#			temp_raycast.force_raycast_update()
-#
-##			add_child(temp_raycast)
-##			temp_raycast.collide_with_areas = true
-##			temp_raycast.collision_mask = collision_mask
-##			temp_raycast.global_transform.origin = origin
-##
-##			#temp_raycast.look_at(next_origin, Vector3(0, 1, 0))
-##			temp_raycast.cast_to = Vector3(0, 0, -origin.distance_to(next_origin))
-##			temp_raycast.force_raycast_update()
-#
-#			if temp_raycast.get_collider():
-#				print('asdf')
-#				Meta.StimulateActor(temp_raycast.get_collider(), stim_type, owner, velocity.length(), temp_raycast.get_collision_point(), temp_raycast.get_collision_normal())
-#
-#			temp_raycast.free()
 	
 	if move_target and get_collision_point():
 		$Target.global_transform.origin = get_collision_point()

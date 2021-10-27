@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/Actors/Items/Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Actors/Items/AmmoBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=2]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
@@ -38,15 +38,15 @@ __meta__ = {
 
 }
 
-[node name="Bullet9mm" instance=ExtResource( 1 )]
-tags = "Actor Bullet 9mm Damage:10 Force:10"
+[node name="AmmoBoxShotgun" index="0" instance=ExtResource( 1 )]
+tags = "Actor Ammo Kind:Items/BulletShotgun Amount:10"
 
-[node name="Reception" parent="." index="7"]
+[node name="Reception" parent="." index="3"]
 parameters/playback = SubResource( 1 )
 
-[node name="Interface" parent="." index="8"]
+[node name="Interface" parent="." index="4"]
 tree_root = SubResource( 3 )
 parameters/playback = SubResource( 4 )
 
-[node name="Audio" parent="." index="9"]
+[node name="Audio" parent="." index="5"]
 parameters/playback = SubResource( 5 )

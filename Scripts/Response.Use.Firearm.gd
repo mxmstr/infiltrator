@@ -15,6 +15,6 @@ func _on_stimulate(stim, data):
 			behavior._start_state(owner._get_tag('UseAction'))
 			reception._reflect('UseReact')
 		
-		elif magazine.items[0].get_node('Container')._is_empty():
+		elif magazine._is_empty():
 			
 			reception._reflect('EmptyReact')

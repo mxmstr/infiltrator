@@ -76,7 +76,7 @@ nodes/Movement/position = Vector2( 80, 260 )
 nodes/OneShot/node = SubResource( 7 )
 nodes/OneShot/position = Vector2( 500, 0 )
 nodes/output/position = Vector2( 940, 100 )
-node_connections = [ "output", 0, "OneShot", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "Layer", 1, "Movement", "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend" ]
+node_connections = [ "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "Layer", 1, "Movement", "output", 0, "OneShot" ]
 __meta__ = {
 
 }

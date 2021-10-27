@@ -1,16 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Markers/Waypoint2.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Markers/Waypoint3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Links/Contains.link.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Links/Factory.link.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Links/LocalCoopPartner.link.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Links/PVPPlayerSpawn.link.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Links/PVPPlayerFactory.link.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Links/PVPPickupFactory.link.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Links/PVPPlayerFactory.link.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Markers/Waypoint2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Links/PVPPickupFactory.link.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Markers/Waypoint3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=6]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
@@ -47,28 +42,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Pistol" parent="Actors" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.38733, 0.410202, -7.556 )
-
-[node name="Pistol2" parent="Actors" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.38733, 0.410202, -5.34614 )
-
-[node name="Pistol3" parent="Actors" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.38733, 0.410202, -3.15302 )
-
-[node name="RespawnMarker1" parent="Actors" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6095, 0.772238, -7.05482 )
-
-[node name="RespawnMarker2" parent="Actors" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.6095, 0.772238, -4.38297 )
-
-[node name="RespawnMarker3" parent="Actors" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.66832, 0.772238, -7.05482 )
-
-[node name="RespawnMarker4" parent="Actors" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.78309, 0.772238, -4.38297 )
-
-[node name="InstaDeath" parent="Actors" instance=ExtResource( 3 )]
+[node name="InstaDeath" parent="Actors" instance=ExtResource( 1 )]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.24905, 0.245763, -5.59196 )
 new_owner = NodePath(".")
@@ -96,9 +70,6 @@ __meta__ = {
 
 }
 
-[node name="PickupMarker1" parent="Actors" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14176, 0.247506, -0.114431 )
-
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
@@ -109,54 +80,33 @@ __meta__ = {
 
 }
 
-[node name="InfContainsPistol" parent="Links" instance=ExtResource( 5 )]
-enabled = false
-container = "RightHandContainer"
+[node name="PVPPlayerFactory" parent="Links" instance=ExtResource( 2 )]
 
-[node name="PistolAmmoFactory" parent="Links" instance=ExtResource( 6 )]
-to = NodePath("../../Actors/Pistol")
-container = "Magazine"
-products = "target target_container << 1 Items/Mag9mm 
-Items/Mag9mm Container << 12 Items/Bullet9mm"
+[node name="RespawnMarker1" parent="Links/PVPPlayerFactory" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6095, 0.772238, -7.05482 )
 
-[node name="Pistol2AmmoFactory" parent="Links" instance=ExtResource( 6 )]
-to = NodePath("../../Actors/Pistol2")
-container = "Magazine"
-products = "target target_container << 1 Items/Mag9mm 
-Items/Mag9mm Container << 12 Items/Bullet9mm"
+[node name="RespawnMarker2" parent="Links/PVPPlayerFactory" instance=ExtResource( 3 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.6095, 0.772238, -4.38297 )
 
-[node name="Pistol3AmmoFactory" parent="Links" instance=ExtResource( 6 )]
-to = NodePath("../../Actors/Pistol3")
-container = "Magazine"
-products = "target target_container << 1 Items/Mag9mm 
-Items/Mag9mm Container << 12 Items/Bullet9mm"
+[node name="RespawnMarker3" parent="Links/PVPPlayerFactory" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.66832, 0.772238, -7.05482 )
 
-[node name="LocalCoopPartner" parent="Links" instance=ExtResource( 7 )]
-enabled = false
+[node name="RespawnMarker4" parent="Links/PVPPlayerFactory" instance=ExtResource( 3 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.78309, 0.772238, -4.38297 )
 
-[node name="PVPPlayerSpawn1" parent="Links" instance=ExtResource( 8 )]
-from = NodePath("../PVPPlayerFactory")
-to = NodePath("../../Actors/RespawnMarker1")
+[node name="PVPPickupFactory" parent="Links" instance=ExtResource( 4 )]
 
-[node name="PVPPlayerSpawn2" parent="Links" instance=ExtResource( 8 )]
-from = NodePath("../PVPPlayerFactory")
-to = NodePath("../../Actors/RespawnMarker2")
+[node name="PickupMarker1" parent="Links/PVPPickupFactory" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33128, 0.247506, -0.613188 )
 
-[node name="PVPPlayerSpawn3" parent="Links" instance=ExtResource( 8 )]
-from = NodePath("../PVPPlayerFactory")
-to = NodePath("../../Actors/RespawnMarker3")
+[node name="PickupMarker2" parent="Links/PVPPickupFactory" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05615, 0.247506, 1.8806 )
 
-[node name="PVPPlayerSpawn4" parent="Links" instance=ExtResource( 8 )]
-from = NodePath("../PVPPlayerFactory")
-to = NodePath("../../Actors/RespawnMarker4")
+[node name="PickupMarker3" parent="Links/PVPPickupFactory" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.13182, 0.247506, 2.04685 )
 
-[node name="PVPPlayerFactory" parent="Links" instance=ExtResource( 9 )]
-
-[node name="PVPPickupSpawn1" parent="Links" instance=ExtResource( 8 )]
-from = NodePath("../PVPPickupFactory")
-to = NodePath("../../Actors/PickupMarker1")
-
-[node name="PVPPickupFactory" parent="Links" instance=ExtResource( 10 )]
+[node name="PickupMarker4" parent="Links/PVPPickupFactory" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3945, 0.247506, 1.25715 )
 
 [node name="Static" type="Spatial" parent="."]
 __meta__ = {
@@ -176,6 +126,6 @@ __meta__ = {
 
 }
 
-[node name="Map" parent="Static" instance=ExtResource( 11 )]
+[node name="Map" parent="Static" instance=ExtResource( 6 )]
 
 [editable path="Actors/InstaDeath"]

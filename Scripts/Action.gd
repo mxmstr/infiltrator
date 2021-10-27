@@ -2,6 +2,8 @@ extends "res://Scripts/AnimationLoader.gd"
 
 export(String) var state
 
+var new_state = ''
+
 
 func _ready():
 	
@@ -14,12 +16,14 @@ func _ready():
 func _play(_animation, _down=null, _up=null):
 	
 	if _up and _down:
-		tree_node._play(state, _animation, attributes[_animation], _up, _down)
+		tree_node._play(new_state, _animation, attributes[_animation], _up, _down)
 	else:
-		tree_node._play(state, _animation, attributes[_animation])
+		tree_node._play(new_state, _animation, attributes[_animation])
 
 
 func _on_action(_state, data): 
 	
-	if _state == state:
+	new_state = _state
+	
+	if new_state == state:
 		_play(animation_list[0])

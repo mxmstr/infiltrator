@@ -1,7 +1,6 @@
 extends Node
 
 var speed = 0.0 setget _set_speed, _get_speed
-export var angular_speed = 3.0
 export var direction = Vector3() setget _set_direction
 var velocity = Vector3()
 export var angular_direction = Vector2()

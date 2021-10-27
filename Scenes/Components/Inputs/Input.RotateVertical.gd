@@ -5,7 +5,7 @@ var stance
 
 func _on_just_activated():
 	
-	stance._set_look_speed(strength)
+	stance._set_look_speed(strength * Meta.rotate_sensitivity)
 
 
 func _ready():
