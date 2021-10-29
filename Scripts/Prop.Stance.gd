@@ -105,16 +105,10 @@ func _set_sidestep_speed(new_speed):
 
 func _set_turn_speed(new_speed):
 	
-	if lock_rotation:
-		return
-	
 	movement.angular_direction.x = new_speed
 
 
 func _set_look_speed(new_speed):
-	
-	if lock_rotation:
-		return
 	
 	movement.angular_direction.y = new_speed
 
@@ -145,9 +139,9 @@ func _physics_process(delta):
 		movement.direction = Vector3()
 		return
 	
-	if lock_rotation:
-		movement.angulardirection = Vector3()
-		return
+#	if lock_rotation:
+#		movement.angulardirection = Vector3()
+#		return
 	
 	
 	var velocity = Vector3()

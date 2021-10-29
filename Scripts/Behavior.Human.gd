@@ -10,14 +10,12 @@ var action_up
 var action_down
 
 onready var movement = get_node_or_null('../Movement')
+onready var stance = get_node_or_null('../Stance')
+onready var camera_mode = get_node_or_null('../CameraMode')
+onready var hud_mode = get_node_or_null('../HUDMode')
 onready var anim_layer_movement = get_node_or_null('../AnimLayerMovement')
 
 signal pre_advance
-
-
-func _can_switch():
-	
-	return switch_mode == 'Immediate' or not _is_oneshot_active()
 
 
 func _set_layer(_layer):
@@ -60,16 +58,47 @@ func _cache_action_pose():
 			cached_action_pose.append(skeleton.get_bone_pose(idx))
 
 
-
 func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
 	
-	if not _can_switch():
-		return
+	if not ._play(new_state, animation, attributes):
+		return false
 	
-	._play(new_state, animation, attributes)
+	enable_abilities = true
+	layer = Meta.BlendLayer.MOVEMENT
+	
+	var lock_stance = false
+	var lock_movement = false
+	var lock_rotation = false
+	var camera_mode_state = 'Default'
+	var hud_mode_state = 'Default'
 	
 	if attributes.has('layer'):
-		_set_layer(Meta.BlendLayer[attributes.layer])
+		layer = Meta.BlendLayer[attributes.layer]
+	
+	if attributes.has('enable_abilities'):
+		enable_abilities = false
+	
+	if attributes.has('lock_stance'):
+		lock_stance = attributes.lock_stance
+	
+	if attributes.has('lock_rotation'):
+		lock_rotation = attributes.lock_rotation
+	
+	if attributes.has('lock_movement'):
+		lock_movement = attributes.lock_movement
+	
+	if attributes.has('camera_mode'):
+		camera_mode_state = attributes.camera_mode
+	
+	if attributes.has('hud_mode'):
+		hud_mode_state = attributes.hud_mode
+	
+	stance.lock_stance = lock_stance
+	stance.lock_rotation = lock_rotation
+	stance.lock_movement = lock_movement
+	camera_mode._start_state(camera_mode_state)
+	hud_mode._start_state(hud_mode_state)
+	
 	
 	_set_action_blend(0)
 	
@@ -82,6 +111,8 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 		_set_animation_down(down_animation, action.scale, action.clip_start, action.clip_end)
 	else:
 		_set_animation_down('DefaultAnim', action.scale, action.clip_start, action.clip_end)
+	
+	return true
 
 
 func _apply_action_pose():

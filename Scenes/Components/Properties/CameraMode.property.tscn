@@ -25,37 +25,13 @@ __meta__ = {
 
 [sub_resource type="Animation" id=2]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../CameraRig:cam_max_x")
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../CameraRig:cam_max_y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -67,13 +43,13 @@ tracks/2/keys = {
 "method": "_evaluate"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath("..")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -85,8 +61,32 @@ tracks/3/keys = {
 "method": "_evaluate"
 } ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("../CameraRig:position_offset")
+tracks/2/type = "value"
+tracks/2/path = NodePath("../CameraRig:position_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../CameraRig:rotation_degrees_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 180 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("../CameraRig")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -94,11 +94,13 @@ tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ) ]
+"values": [ {
+"args": [  ],
+"method": "_reset_camera"
+} ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("../CameraRig:rotation_degrees_offset")
+tracks/5/type = "method"
+tracks/5/path = NodePath("../Movement")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -106,8 +108,10 @@ tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 180, 180 ) ]
+"values": [ {
+"args": [ "rotate_x_camera", false ],
+"method": "set"
+} ]
 }
 tracks/6/type = "method"
 tracks/6/path = NodePath("../CameraRig")
@@ -119,8 +123,22 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "_reset_camera"
+"args": [ "cam_max_x", 0.0 ],
+"method": "set"
+} ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("../CameraRig")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cam_max_y", 1.57 ],
+"method": "set"
 } ]
 }
 __meta__ = {
@@ -207,10 +225,11 @@ __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
+resource_name = "Default"
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../CameraRig:cam_max_x")
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Movement")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -218,11 +237,13 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.57 ]
+"values": [ {
+"args": [ "rotate_x_camera", false ],
+"method": "set"
+} ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("../CameraRig:cam_max_y")
+tracks/1/type = "method"
+tracks/1/path = NodePath("../CameraRig")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -230,17 +251,33 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.57 ]
+"values": [ {
+"args": [ "cam_max_x", 0.0 ],
+"method": "set"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../CameraRig")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cam_max_y", 1.57 ],
+"method": "set"
+} ]
 }
 __meta__ = {
 
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../CameraRig:cam_max_x")
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Movement")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -248,11 +285,13 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
+"values": [ {
+"args": [ "rotate_x_camera", true ],
+"method": "set"
+} ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("../CameraRig:cam_max_y")
+tracks/1/type = "method"
+tracks/1/path = NodePath("../CameraRig")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -260,8 +299,24 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.57 ]
+"values": [ {
+"args": [ "cam_max_x", 1.57 ],
+"method": "set"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../CameraRig")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cam_max_y", 1.57 ],
+"method": "set"
+} ]
 }
 __meta__ = {
 
@@ -272,14 +327,14 @@ root_node = NodePath(".")
 anims/AlignPlayerToCamera = SubResource( 1 )
 anims/BoneParent = SubResource( 2 )
 anims/BoneParentExit = SubResource( 3 )
+anims/Default = SubResource( 5 )
 anims/DefaultAnim = ExtResource( 1 )
 anims/HalfYaw = SubResource( 4 )
-anims/LockYaw = SubResource( 5 )
 script = ExtResource( 2 )
 __meta__ = {
 
 }
-start = "LockYaw"
+start = "Default"
 attributes = "{
 	\"BoneParent\": {
 		\"speed\": 1.0,

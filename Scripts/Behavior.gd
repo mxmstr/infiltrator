@@ -16,7 +16,7 @@ signal action
 
 func _can_switch():
 	
-	return switch_mode == 'Immediate' or not animation_player.is_playing()
+	return switch_mode == 'Immediate' or not _is_oneshot_active()
 
 
 func _on_action_finished():
@@ -58,7 +58,7 @@ func _set_oneshot_active(enabled):
 func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
 	
 	if not _can_switch():
-		return
+		return false
 	
 	current_state = new_state
 	
@@ -91,9 +91,11 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	
 	
 	if current_state == 'Default':
-		return
+		return true
 	
 	_set_oneshot_active(true)
+	
+	return true
 
 
 func _set_skeleton():

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Animations/Human/Action/Jump/JumpUp.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/Action/Reload/ReloadJackhammer.tres" type="Animation" id=1]
 [ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-anims/JumpUp = ExtResource( 1 )
+anims/ReloadJackhammer = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 
@@ -12,8 +12,7 @@ __meta__ = {
 attributes = "{
 	\"*\": {
 		\"clip_start\": 0.05,
-		\"clip_end\": 0.9,
-		\"layer\": \"ACTION\",
+		\"layer\": \"MIXED\",
 		\"switch_mode\": \"End\"
 	}
 }"

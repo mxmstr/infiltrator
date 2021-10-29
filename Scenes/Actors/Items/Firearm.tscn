@@ -258,7 +258,6 @@ tree_node = NodePath("../Reception")
 
 [node name="FireProjectileSound" parent="." instance=ExtResource( 6 )]
 tree = NodePath("../Audio")
-schema = "FireProjectileSound"
 
 [node name="ContactStim" parent="." instance=ExtResource( 7 )]
 stim_type = "Touch"

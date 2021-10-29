@@ -18,11 +18,15 @@ func _ready():
 	
 #	products = products.c_escape().replace('\\n', ' ')
 	
-	var new_product = {}
-	var i = 0
+	
 	
 	for product in products.c_escape().split('\\n'):
-	
+		
+		var new_product = {}
+		var i = 0
+		
+		products_list.append(new_product)
+		
 		for param in product.split(' ', false):
 			
 			if i == 0:
@@ -33,29 +37,33 @@ func _ready():
 				new_product.amount = param
 			if i == 4:
 				new_product.item = param
-				products_list.append(new_product.duplicate())
 				new_product = {}
+				products_list.append(new_product)
 				i = 0
 				continue
 			
 			i = i + 1
 		
+		if products_list[-1].empty():
+			products_list.pop_back()
+		
 		new_product = {}
-		i = 0
 	
 	
 	for product in products_list:
 		
 		if product.target == 'target':
 			
-			_create_product(get_node(to), container, product.amount, product.item)
+			if product.has('item'):
+				_create_product(get_node(to), container, product.amount, product.item)
 		
 		else:
 			
 			var output = Meta.AddActor(product.target)
 			outputs.append(output)
 			
-			_create_product(output, product.target_container, product.amount, product.item)
+			if product.has('item'):
+				_create_product(output, product.target_container, product.amount, product.item)
 	
 	emit_signal('finished')
 

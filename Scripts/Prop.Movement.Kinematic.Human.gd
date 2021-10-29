@@ -1,6 +1,6 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
-export var gravity = -300.0
+export var gravity = -9.8
 export var accel = 3.0
 export var deaccel = 5.0
 export var angular_accel = 0.5
@@ -8,6 +8,9 @@ export var angular_deaccel = 10
 export var ghost = false
 export var stop_on_slope = false
 export var max_slides = 4
+
+var rotate_x_camera = false
+var rotate_y_camera = true
 
 onready var camera_rig = get_node_or_null('../CameraRig')
 
@@ -105,15 +108,16 @@ func _process(delta):
 	angular_velocity.x = angular_velocity.linear_interpolate(new_velocity, factorx * delta).x
 	angular_velocity.y = angular_velocity.linear_interpolate(new_velocity, factory * delta).y
 	
-	
-	owner.rotation.y += angular_velocity.x
-	
-	if camera_rig:
-		camera_rig._rotate_camera(angular_velocity.y, 0)
+	if rotate_x_camera:
+		camera_rig._rotate_camera(angular_velocity.y, angular_velocity.x)
+	else:
+		owner.rotation.y += angular_velocity.x
+		camera_rig._rotate_camera(angular_velocity.y, 0.0)
 
 
 func _physics_process(delta):
 	
+	var vertical = velocity.y + (delta * gravity)
 	var horizontal = Vector3(velocity.x, 0, velocity.z)
 	
 	var new_velocity = direction * speed
@@ -129,7 +133,7 @@ func _physics_process(delta):
 	else:
 		velocity = new_velocity
 	
-	velocity.y += (delta * gravity)
+	velocity.y = vertical
 	
 	
 	if ghost:

@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Scripts/Action.gd" type="Script" id=1]
 
-[node name="FireProjectileSound" type="Node"]
+[node name="DieAction" type="Node"]
 script = ExtResource( 1 )
 __meta__ = {
 
 }
-schema = "FireProjectileSound"
-state = "FireProjectile"
+schema = "Die"
+state = "Die"

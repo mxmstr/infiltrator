@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=2]
@@ -17,12 +17,12 @@
 [ext_resource path="res://Animations/Human/Action/Jump/Jump.Exit.tres" type="Animation" id=15]
 [ext_resource path="res://Animations/Human/Action/Jump/JumpLong.tres" type="Animation" id=16]
 [ext_resource path="res://Animations/Human/Action/Jump/JumpUp.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/Action/Jump/jumpForward.tres" type="Animation" id=18]
-[ext_resource path="res://Animations/Human/Action/Jump/jumpForwardLeft.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/Action/Jump/jumpForwardRight.tres" type="Animation" id=20]
-[ext_resource path="res://Animations/Human/Action/Jump/sidestepleft.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/Action/Jump/sidestepright.tres" type="Animation" id=22]
-
+[ext_resource path="res://Animations/Human/Action/Shoot/PumpShotgun/ShootPumpShotgun.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Human/Action/Jump/jumpForward.tres" type="Animation" id=19]
+[ext_resource path="res://Animations/Human/Action/Jump/jumpForwardLeft.tres" type="Animation" id=20]
+[ext_resource path="res://Animations/Human/Action/Jump/jumpForwardRight.tres" type="Animation" id=21]
+[ext_resource path="res://Animations/Human/Action/Jump/sidestepleft.tres" type="Animation" id=22]
+[ext_resource path="res://Animations/Human/Action/Jump/sidestepright.tres" type="Animation" id=23]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
@@ -72,7 +72,7 @@ __meta__ = {
 }
 
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0737305 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.157895, 0, 0 )
 __meta__ = {
 
 }
@@ -141,7 +141,7 @@ visible = false
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( 0.912783, 0.407761, -0.0236216, 0.21819, -0.53568, -0.815746, -0.345283, 0.739445, -0.577929, 0.359177, 0.794167, 0.125241 )
+transform = Transform( 0.559759, 0.822838, 0.0980193, 0.567131, -0.294164, -0.769305, -0.60418, 0.486215, -0.631318, 0.415004, 0.967199, -0.204037 )
 bone_name = "Gun"
 __meta__ = {
 
@@ -204,11 +204,12 @@ anims/HOPBACK = ExtResource( 14 )
 anims/Jump.Exit = ExtResource( 15 )
 anims/JumpLong = ExtResource( 16 )
 anims/JumpUp = ExtResource( 17 )
-anims/jumpForward = ExtResource( 18 )
-anims/jumpForwardLeft = ExtResource( 19 )
-anims/jumpForwardRight = ExtResource( 20 )
-anims/sidestepleft = ExtResource( 21 )
-anims/sidestepright = ExtResource( 22 )
+anims/ShootPumpShotgun = ExtResource( 18 )
+anims/jumpForward = ExtResource( 19 )
+anims/jumpForwardLeft = ExtResource( 20 )
+anims/jumpForwardRight = ExtResource( 21 )
+anims/sidestepleft = ExtResource( 22 )
+anims/sidestepright = ExtResource( 23 )
 __meta__ = {
 
 }

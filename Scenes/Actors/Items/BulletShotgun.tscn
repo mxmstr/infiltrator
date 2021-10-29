@@ -38,8 +38,8 @@ __meta__ = {
 
 }
 
-[node name="BulletRifle" instance=ExtResource( 1 )]
-tags = "Actor Bullet Rifle Damage:10 Force:10"
+[node name="Bullet9mm" instance=ExtResource( 1 )]
+tags = "Actor Bullet Shotgun Damage:10 Force:10"
 
 [node name="Reception" parent="." index="7"]
 parameters/playback = SubResource( 1 )

@@ -28,7 +28,7 @@ func _on_just_activated():
 	
 	elif not forward.active and left.active:
 		
-		behavior._start_state('JumpRight')
+		behavior._start_state('JumpLeft')
 	
 	elif not forward.active and right.active:
 		

@@ -10,12 +10,12 @@ var next
 func _on_animation_finished(current):
 	
 	if next:
-		
-		if attributes.has(next):
+
+		if attributes_dict.has(next):
 			play(next, attributes_dict[next].blend, attributes_dict[next].speed)
 		else:
 			play(next)
-		
+
 		next = null
 
 
@@ -50,13 +50,11 @@ func _play(_animation):
 
 func _start_state(_name, _data={}):
 	
-	if attributes_dict.has(current_animation) and attributes_dict[current_animation].has('next'):
+	if attributes_dict.has(assigned_animation) and attributes_dict[assigned_animation].has('next'):
 		
 		next = _name
-		
-		_play(attributes_dict[current_animation].next)
+		_play(attributes_dict[assigned_animation].next)
 		
 		return
-	
 	
 	_play(_name)

@@ -15,8 +15,14 @@ func _on_timeout():
 
 func _on_factory_finished(link, marker):
 	
-	link.outputs[0].translation = marker.translation
-	link.outputs[0].rotation = marker.rotation
+	var offset = Vector3()
+	
+	for output in link.outputs:
+		
+		output.translation = marker.translation + offset
+		output.rotation = marker.rotation
+		
+		offset += Vector3(0, 1, 0)
 
 
 func _refresh_spawn(marker):

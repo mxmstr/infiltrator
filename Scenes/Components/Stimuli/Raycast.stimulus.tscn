@@ -36,6 +36,7 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Target"]
+visible = false
 mesh = SubResource( 2 )
 material/0 = null
 __meta__ = {

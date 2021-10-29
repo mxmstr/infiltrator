@@ -20,3 +20,14 @@ func _on_stimulate(stim, data):
 				data.source.get_node('Magazine')._delete_all()
 				data.source.get_node('Chamber')._delete_all()
 				data.source.queue_free()
+		
+		elif data.source._has_tag('Ammo'):
+			
+			var kind = data.source._get_tag('Kind')
+			var path = data.source._get_tag('Path')
+			var amount = int(data.source._get_tag('Amount'))
+			
+			for i in range(amount):
+				owner.get_node(kind + 'Container')._add_item(kind)
+			
+			data.source.queue_free()

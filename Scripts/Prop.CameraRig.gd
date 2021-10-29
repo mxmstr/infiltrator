@@ -16,6 +16,7 @@ var root
 
 func _clamp_camera():
 	
+#	prints(cam_max_x, cam_max_y)
 	$Camera.rotation.x = clamp($Camera.rotation.x, -cam_max_y, cam_max_y)
 	$Camera.rotation.y = clamp($Camera.rotation.y, -cam_max_x, cam_max_x)
 

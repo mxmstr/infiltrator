@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Animations/Human/Action/Jump/sidestepright.tres" type="Animation" id=1]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/sidestepright = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 
 }
+attributes = "{
+	\"*\": {
+		\"speed\": 1.25,
+		\"clip_start\": 0.05,
+		\"layer\": \"ACTION\",
+		\"switch_mode\": \"End\",
+		\"lock_movement\": true,
+		\"camera_mode\": \"HalfYaw\"
+	}
+}"

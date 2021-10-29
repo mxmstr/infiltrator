@@ -66,6 +66,8 @@ func _physics_process(delta):
 				look_at(actor.global_transform.origin, Vector3(0, 1, 0))
 				force_raycast_update()
 				
+				print(actor.name, get_collider())
+				
 				if not get_collider():
 					Meta.StimulateActor(actor, stim_type, owner)
 				

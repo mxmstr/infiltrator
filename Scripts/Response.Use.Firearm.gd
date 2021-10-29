@@ -13,7 +13,6 @@ func _on_stimulate(stim, data):
 		if not chamber._is_empty():
 			
 			behavior._start_state(owner._get_tag('UseAction'))
-			reception._reflect('UseReact')
 		
 		elif magazine._is_empty():
 			
