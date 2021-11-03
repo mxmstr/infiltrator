@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Movement.Kinematic.Human.property.tscn" type="PackedScene" id=2]
@@ -13,31 +13,16 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=2]
 resource_local_to_scene = true
 animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=6]
+[sub_resource type="AnimationNodeStateMachine" id=3]
 resource_local_to_scene = true
-states/Start/node = SubResource( 5 )
+states/Start/node = SubResource( 2 )
 states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
@@ -48,12 +33,12 @@ __meta__ = {
 statemachine = ""
 chain = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 __meta__ = {
 
 }
@@ -68,21 +53,16 @@ __meta__ = {
 tags = "Actor"
 
 [node name="Movement" parent="." instance=ExtResource( 2 )]
+stop_on_slope = true
 
 [node name="Behavior" parent="." instance=ExtResource( 3 )]
-parameters/playback = SubResource( 1 )
-parameters/Start/blend_position = 0
-parameters/Start/0/blend_position = Vector2( 0, 0 )
-parameters/Start/0/0/playback = SubResource( 9 )
-parameters/Start/1/blend_position = Vector2( 0, 0 )
-parameters/Start/1/0/playback = SubResource( 10 )
 
 [node name="Reception" parent="." instance=ExtResource( 4 )]
-parameters/playback = SubResource( 4 )
+parameters/playback = SubResource( 1 )
 
 [node name="Interface" parent="." instance=ExtResource( 5 )]
-tree_root = SubResource( 6 )
-parameters/playback = SubResource( 7 )
+tree_root = SubResource( 3 )
+parameters/playback = SubResource( 4 )
 
 [node name="Audio" parent="." instance=ExtResource( 7 )]
-parameters/playback = SubResource( 8 )
+parameters/playback = SubResource( 5 )

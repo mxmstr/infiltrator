@@ -4,10 +4,12 @@ export(String) var stim_type
 export var continuous = false
 export var max_distance = 0.0
 export var raycast = false
+export var use_hitbox = false
 export(String, MULTILINE) var required_tags
 
 var required_tags_dict = {}
 var colliders = []
+var shooter
 
 onready var actors = get_node_or_null('/root/Mission/Actors')
 onready var collision = get_node_or_null('../Collision')
@@ -24,11 +26,36 @@ func _ready():
 		required_tags_dict[key] = values
 	
 	cast_to = Vector3(0, 0, -max_distance)
+	
+	if owner._has_tag('Shooter'):
+		shooter = owner._get_tag('Shooter')
+
+
+func _validate_within_radius(actor):
+	
+	var within_distance = max_distance == 0 or owner.global_transform.origin.distance_to(actor.global_transform.origin) < max_distance
+				
+	if within_distance:
+		
+		if raycast:
+			
+			look_at(actor.global_transform.origin, Vector3(0, 1, 0))
+			force_raycast_update()
+			
+			if not get_collider():
+				Meta.StimulateActor(actor, stim_type, owner)
+			
+		else:
+			Meta.StimulateActor(actor, stim_type, owner)
+		
+		return true
+	
+	return false
 
 
 func _physics_process(delta):
 	
-	if collision.disabled:
+	if collision and collision.disabled:
 		return
 	
 	
@@ -37,7 +64,7 @@ func _physics_process(delta):
 	
 	for actor in actors.get_children() if actors else []:
 		
-		if not actor.get('tags'):
+		if not actor.get('tags') or (use_hitbox and not actor.has_node('Hitboxes')):
 			continue
 		
 		var tagged = true
@@ -54,27 +81,23 @@ func _physics_process(delta):
 	
 	for actor in collide_actors:
 		
-		if actor == owner:
+		if actor in [owner, shooter]:
 			continue
 		
-		var within_distance = max_distance == 0 or owner.global_transform.origin.distance_to(actor.global_transform.origin) < max_distance
+		if not continuous and actor in colliders:
+			return
 		
-		if within_distance and (continuous or not actor in colliders):
+		if use_hitbox:
 			
-			if raycast:
+			for hitbox in actor.get_node('Hitboxes').get_children():
 				
-				look_at(actor.global_transform.origin, Vector3(0, 1, 0))
-				force_raycast_update()
-				
-				print(actor.name, get_collider())
-				
-				if not get_collider():
-					Meta.StimulateActor(actor, stim_type, owner)
-				
-			else:
-				Meta.StimulateActor(actor, stim_type, owner)
+				if _validate_within_radius(hitbox):
+					new_colliders.append(actor)
+		
+		else:
 			
-			new_colliders.append(actor)
+			if _validate_within_radius(actor):
+				new_colliders.append(actor)
 	
 	
 	colliders = new_colliders

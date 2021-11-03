@@ -24,8 +24,25 @@ func _equals(other):
 
 func _is_invalid():
 	
-	return (from_node and (not weakref(from_node).get_ref() or from_node.is_queued_for_deletion())) or \
-		(to_node and (not weakref(to_node).get_ref() or to_node.is_queued_for_deletion()))
+	if not from_node:
+		return true
+	
+	if not is_instance_valid(from_node):
+		return true
+	
+	if from_node.is_queued_for_deletion():
+		return true
+	
+	if not to_node:
+		return true
+	
+	if not is_instance_valid(to_node):
+		return true
+	
+	if to_node.is_queued_for_deletion():
+		return true
+	
+	return false
 
 
 func _enter_tree():

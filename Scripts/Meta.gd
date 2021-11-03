@@ -58,7 +58,7 @@ var player_data = [
 	player_data_default.duplicate(),
 	player_data_default.duplicate()
 ]
-var rotate_sensitivity = 3.0
+var rotate_sensitivity = 4.0
 var rawinput = false
 
 var cached_args = []
@@ -170,6 +170,7 @@ func _get_files_recursive(root, begins_with='', ends_with='', actor_tags=null):
 					file_tags.erase('')
 					
 					
+					var tagged = true
 					var tag_count = 0
 					
 					for file_tag in file_tags:
@@ -179,6 +180,12 @@ func _get_files_recursive(root, begins_with='', ends_with='', actor_tags=null):
 						
 						if file_tag in actor_tags:
 							tag_count += 1
+						else:
+							tagged = false
+							break
+					
+					if not tagged:
+						continue
 					
 					
 					if file_to_add == null or tag_count > highest_tag_count:
@@ -236,9 +243,11 @@ func PreloadLinks():
 		preloader.add_resource(link, load(link))
 
 
-func AddActor(actor_path, position=null, rotation=null, direction=null):
+func AddActor(actor_path, position=null, rotation=null, direction=null, tags={}):
 	
 	var new_actor = preloader.get_resource('res://Scenes/Actors/' + actor_path + '.tscn').instance()
+	
+	_merge_dir(new_actor.tags_dict, tags)
 	$'/root/Mission/Actors'.add_child(new_actor)
 	
 	if position:
@@ -249,8 +258,10 @@ func AddActor(actor_path, position=null, rotation=null, direction=null):
 	
 	if direction:
 		
-		var target = new_actor.global_transform.origin - direction
-		new_actor.look_at(target, Vector3(0, 1, 0))
+		var target = new_actor.transform.origin - direction
+		
+		if Vector3.UP.cross(target - new_actor.transform.origin) != Vector3():
+			new_actor.look_at(target, Vector3.UP)
 	
 	return new_actor
 
@@ -288,7 +299,7 @@ func GetLinks(from, to, type, data={}):
 
 func CreateLink(from, to, type, data={}):
 	
-	if not from or not weakref(from).get_ref() or not to or not weakref(to).get_ref():
+	if not from or not is_instance_valid(from) or not to or not is_instance_valid(to):
 		return
 	
 	data.from = from.get_path()
@@ -310,7 +321,7 @@ func DestroyLink(from, to, type, data={}):
 
 func StimulateActor(actor, stim, source=self, intensity=0.0, position=Vector3(), direction=Vector3()):
 	
-	if not weakref(actor).get_ref() or not weakref(source).get_ref():
+	if not is_instance_valid(actor) or not is_instance_valid(source):
 		return
 	
 	if actor.has_node('Reception'):

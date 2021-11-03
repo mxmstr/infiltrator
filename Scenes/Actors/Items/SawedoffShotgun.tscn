@@ -25,7 +25,7 @@ __meta__ = {
 }
 
 [node name="SawedoffShotgun" index="0" instance=ExtResource( 1 )]
-tags = "Item Firearm SawedoffShotgun UseAction:FireProjectile FireRate:0.1 Offset-position:neo_reference_skeleton:Gun:-0.00045,-0.039368,-0.028535
+tags = "Item Firearm Shotgun SawedoffShotgun UseAction:FireProjectile FireRate:0.1 Offset-position:neo_reference_skeleton:Gun:-0.00045,-0.039368,-0.028535
  Offset-rotation:neo_reference_skeleton:Gun:-89.601395,-89.065186,89.888168
 "
 

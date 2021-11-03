@@ -45,9 +45,24 @@ func _set_direction(new_direction, local=false):
 		direction = new_direction
 
 
-func _apply_root_transform(root_transform):
+func _apply_root_transform(root_transform, delta):
 	
-	owner.global_transform *= root_transform
+	pass
+#	root_transform.origin *= 8
+#	owner.translate(root_transform.origin)
+	owner.transform *= root_transform
+	
+#	var h_velocity = root_transform.origin / delta
+#	velocity.x = h_velocity.x
+#	velocity.z = h_velocity.z
+#	velocity.y += gravity * delta
+#	owner.move_and_slide(h_velocity, Vector3.UP)
+	
+#	root_transform.origin = Vector3() # Clear accumulated root motion displacement (was applied to speed).
+#	root_transform = root_transform.orthonormalized() # Orthonormalize orientation.
+#
+#	owner.transform.basis = root_transform.basis
+
 
 
 func _teleport(new_position=null, new_rotation=null):
@@ -145,3 +160,7 @@ func _physics_process(delta):
 		
 		velocity = owner.move_and_slide(velocity, Vector3(0, 1, 0), stop_on_slope, max_slides)
 		emit_signal('move_and_slide', delta)
+	
+#	var root_motion = $'../Behavior'.get_root_motion_transform()
+#	root_motion.origin /= delta
+#	owner.transform *= root_motion

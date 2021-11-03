@@ -15,10 +15,17 @@ func _ready():
 
 func _play(_animation, _down=null, _up=null):
 	
+	var result
+	
 	if _up and _down:
-		return tree_node._play(new_state, _animation, attributes[_animation], _up, _down)
+		result = tree_node._play(new_state, _animation, attributes[_animation], _up, _down)
 	else:
-		return tree_node._play(new_state, _animation, attributes[_animation])
+		result = tree_node._play(new_state, _animation, attributes[_animation])
+	
+	if random:
+		_randomize_animation()
+	
+	return result
 
 
 func _on_action(_state, data): 

@@ -13,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 1.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "Items/BulletPunch" ],
+"args": [ "Items/Punch" ],
 "method": "_create_and_launch_item"
 } ]
 }
@@ -27,7 +27,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "Items/BulletPunch" ],
+"args": [ "Items/Punch" ],
 "method": "_create_and_launch_item"
 } ]
 }

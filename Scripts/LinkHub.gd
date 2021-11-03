@@ -40,7 +40,7 @@ func _create(type, data):
 		new_link.set(prop, data[prop])
 	
 	for link in $'/root/Mission/Links'.get_children():
-		if weakref(link).get_ref() and not link.is_queued_for_deletion() and link._equals(new_link):
+		if is_instance_valid(link) and not link.is_queued_for_deletion() and link._equals(new_link):
 			return
 	
 	$'/root/Mission/Links'.add_child(new_link)

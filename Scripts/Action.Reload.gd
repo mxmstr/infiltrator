@@ -34,7 +34,8 @@ func _on_action(_state, data):
 			
 			var item_name = righthand.items[0].base_name
 			
-			if animations.has(item_name):
+			if animations.has(item_name) and righthand.items[0].get_node('Magazine')._can_transfer_items_from(owner):
 				
+				righthand.items[0].get_node('Audio')._start_state('Reload')
 				_play(animations[item_name][0])
 	

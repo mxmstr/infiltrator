@@ -50,9 +50,6 @@ func _add_item(item):
 			item.queue_free()
 			item = item.system_path
 	
-	if release_exclude_parent:
-		_exclude_recursive(item, owner)
-	
 	items.append(item)
 	
 	emit_signal('item_added', self, item)
@@ -169,6 +166,9 @@ func _can_transfer_items_from(from):
 		
 		if _is_container(prop):
 			
+			if prop._is_empty():
+				continue
+			
 			var valid = true
 			
 			for required_tag in required_tags_dict.keys():
@@ -256,17 +256,20 @@ func _apply_launch_attributes(item):
 			var spread_y = release_angular_spread.y
 			item_movement.angular_direction.y = rand_range(-spread_y, spread_y)
 	
+	if release_exclude_parent:
+		_exclude_recursive(item, owner)
 	
-	if release_lifetime > 0:
-		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')
+#	if release_lifetime > 0:
+#		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')
 
 
 func _create_and_launch_item(item_path):
 	
-	var item = Meta.AddActor(item_path, root.global_transform.origin, root.rotation_degrees)
-	item._set_tag('Shooter', shooter)
+	var item = Meta.AddActor(item_path, root.global_transform.origin, root.rotation_degrees, null, { 'Shooter': shooter })
 	
 	_apply_launch_attributes(item)
+	
+	return item
 
 
 func _release_front():

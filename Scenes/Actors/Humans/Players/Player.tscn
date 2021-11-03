@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Inputs/PrimaryAction.input2.tscn" type="PackedScene" id=2]
@@ -17,8 +17,10 @@
 [ext_resource path="res://Scenes/Components/Inputs/Crouch.input2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Components/Inputs/Jump.input2.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Components/Inputs/Pause.input2.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Animations/Property/Prop.WeaponTargetLock.gd" type="Script" id=18]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/Components/Inputs/Input.input2.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Components/Inputs/Inventory.input2.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Animations/Property/Prop.WeaponTargetLock.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=21]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
@@ -50,15 +52,25 @@ __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeAnimation" id=7]
+resource_local_to_scene = true
+animation = "DefaultAnim"
 __meta__ = {
 
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeStateMachine" id=8]
+resource_local_to_scene = true
+states/Start/node = SubResource( 7 )
+states/Start/position = Vector2( 624, 170 )
+start_node = "Start"
+graph_offset = Vector2( 0, 75.2147 )
+script = ExtResource( 21 )
 __meta__ = {
 
 }
+statemachine = ""
+chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 __meta__ = {
@@ -66,41 +78,6 @@ __meta__ = {
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeAnimation" id=12]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=13]
-resource_local_to_scene = true
-states/Start/node = SubResource( 12 )
-states/Start/position = Vector2( 624, 170 )
-start_node = "Start"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 19 )
-__meta__ = {
-
-}
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 __meta__ = {
 
 }
@@ -139,55 +116,50 @@ __meta__ = {
 
 [node name="PauseInput" parent="." index="15" instance=ExtResource( 17 )]
 
-[node name="WeaponTargetLock" type="Node" parent="." index="16"]
-script = ExtResource( 18 )
+[node name="InvNextInput" parent="." index="16" instance=ExtResource( 18 )]
+action = "ScrollUp"
+
+[node name="InvPrevInput" parent="." index="17" instance=ExtResource( 18 )]
+action = "ScrollDown"
+
+[node name="InventoryInput" parent="." index="18" instance=ExtResource( 19 )]
+
+[node name="WeaponTargetLock" type="Node" parent="." index="19"]
+script = ExtResource( 20 )
 __meta__ = {
 
 }
 right_hand_container = NodePath("../RightHandContainer")
 chamber_container = "Chamber"
 
-[node name="CameraRaycastStim" parent="." index="36"]
+[node name="CameraRaycastStim" parent="." index="39"]
 editor/display_folded = true
 
 [node name="Target" parent="CameraRaycastStim" index="1"]
 editor/display_folded = true
 
-[node name="ReloadAction" parent="." index="47"]
-parameters/playback = SubResource( 1 )
+[node name="AnimLayerMovement" parent="." index="52"]
+parameters/0/0/playback = SubResource( 1 )
+parameters/1/0/playback = SubResource( 2 )
 
-[node name="DieAction" parent="." index="48"]
-parameters/playback = SubResource( 2 )
-
-[node name="SuspendAction" parent="." index="49"]
+[node name="VoiceAudio" parent="." index="60"]
 parameters/playback = SubResource( 3 )
 
-[node name="AnimLayerMovement" parent="." index="50"]
-parameters/0/0/playback = SubResource( 4 )
-parameters/1/0/playback = SubResource( 5 )
+[node name="FoleyAudio" parent="." index="61"]
+parameters/playback = SubResource( 4 )
 
-[node name="VoiceAudio" parent="." index="56"]
+[node name="FeetAudio" parent="." index="62"]
+parameters/playback = SubResource( 5 )
+
+[node name="Reception" parent="." index="65"]
 parameters/playback = SubResource( 6 )
 
-[node name="FoleyAudio" parent="." index="57"]
-parameters/playback = SubResource( 7 )
+[node name="Interface" parent="." index="66"]
+tree_root = SubResource( 8 )
+parameters/playback = SubResource( 9 )
 
-[node name="FeetAudio" parent="." index="58"]
-parameters/playback = SubResource( 8 )
-
-[node name="Behavior" parent="." index="60"]
-parameters/Movement/0/0/playback = SubResource( 9 )
-parameters/Movement/1/0/playback = SubResource( 10 )
-
-[node name="Reception" parent="." index="61"]
-parameters/playback = SubResource( 11 )
-
-[node name="Interface" parent="." index="62"]
-tree_root = SubResource( 13 )
-parameters/playback = SubResource( 14 )
-
-[node name="Audio" parent="." index="63"]
-parameters/playback = SubResource( 15 )
+[node name="Audio" parent="." index="67"]
+parameters/playback = SubResource( 10 )
 
 [editable path="CameraRig"]
 

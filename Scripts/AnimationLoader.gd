@@ -5,6 +5,7 @@ const schemas_extension = '.schema.tscn'
 
 export(NodePath) var tree
 export(String) var schema
+export var random = false
 
 var tree_node
 var animation_player
@@ -49,6 +50,9 @@ func _load_animations(_schema):
 			
 			attributes[animation_name] = {}
 	
+	if random:
+		randomize()
+		_animation_list.shuffle()
 	
 	animation = _animation_list[0]
 	
@@ -92,6 +96,9 @@ func _play(_animation):
 	
 	else:
 		animation_player.play(_animation)
+	
+	if random:
+		_randomize_animation()
 
 
 func _start():

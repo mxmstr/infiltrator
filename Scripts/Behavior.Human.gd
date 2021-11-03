@@ -58,6 +58,22 @@ func _cache_action_pose():
 			cached_action_pose.append(skeleton.get_bone_pose(idx))
 
 
+func _apply_action_pose():
+	
+	for idx in range(skeleton.get_bone_count()):
+		
+		var bone_name = skeleton.get_bone_name(idx)
+		
+		if bone_name == root_bone:
+			
+			cached_action_pose[idx].origin = skeleton.get_bone_global_pose(idx).origin
+			skeleton.set_bone_global_pose(idx, cached_action_pose[idx])
+			
+		elif bone_name in action_bones:
+			
+			skeleton.set_bone_pose(idx, cached_action_pose[idx])
+
+
 func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
 	
 	if not ._play(new_state, animation, attributes):
@@ -115,22 +131,6 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	return true
 
 
-func _apply_action_pose():
-	
-	for idx in range(skeleton.get_bone_count()):
-		
-		var bone_name = skeleton.get_bone_name(idx)
-		
-		if bone_name == root_bone:
-			
-			cached_action_pose[idx].origin = skeleton.get_bone_global_pose(idx).origin
-			skeleton.set_bone_global_pose(idx, cached_action_pose[idx])
-			
-		elif bone_name in action_bones:
-			
-			skeleton.set_bone_pose(idx, cached_action_pose[idx])
-
-
 func _ready():
 	
 	action_up = tree_root.get_node('ActionUp')
@@ -146,20 +146,22 @@ func _process(delta):
 	
 	emit_signal('pre_advance')
 	
-	oneshot.filter_enabled = layer == Meta.BlendLayer.MIXED
+	#oneshot.filter_enabled = layer == Meta.BlendLayer.MIXED
 	
 	if layer != Meta.BlendLayer.MOVEMENT:
 		
 		advance(delta)
-		_cache_action_pose()
+		movement._apply_root_transform(get_root_motion_transform(), delta)
+		
+		if layer == Meta.BlendLayer.MIXED:
+			_cache_action_pose()
 
 	if layer != Meta.BlendLayer.ACTION:
 		anim_layer_movement.advance(delta)
 
-	if layer != Meta.BlendLayer.MOVEMENT:
+	if layer == Meta.BlendLayer.MIXED:
 		_apply_action_pose()
 
-	movement._apply_root_transform(get_root_motion_transform())
 	
 #	if owner.name == 'Anderson':
 #		print(actionup)

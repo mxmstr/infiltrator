@@ -11,8 +11,9 @@ __meta__ = {
 }
 attributes = "{
 	\"*\": {
+		\"speed\": 1.25,
 		\"clip_start\": 0.05,
-		\"clip_end\": 0.9,
+		\"clip_end\": 1.1,
 		\"layer\": \"ACTION\",
 		\"switch_mode\": \"End\"
 	}

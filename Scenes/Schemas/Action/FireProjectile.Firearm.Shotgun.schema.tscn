@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "FireProjectile.Shotgun"
+tracks/0/type = "method"
+tracks/0/path = NodePath("../../FireProjectileAction")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 8 ],
+"method": "_shoot_array"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../../Audio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "FireProjectile" ],
+"method": "_start_state"
+} ]
+}
+__meta__ = {
+
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/FireProjectile.Shotgun = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+
+}
+attributes = "{
+	\"*\": {
+		\"switch_mode\": \"End\"
+	}
+}"

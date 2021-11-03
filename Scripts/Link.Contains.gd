@@ -154,10 +154,12 @@ func _move_item():
 	if is_queued_for_deletion() or _is_invalid():
 		return
 	
-	if movement and weakref(movement).get_ref() and not movement.is_queued_for_deletion():
+	if movement and is_instance_valid(movement) and not movement.is_queued_for_deletion():
 		
 		var new_transform = root.global_transform
-		movement._teleport(new_transform.origin, new_transform.basis)
+		
+		if movement.has_method('_teleport'):
+			movement._teleport(new_transform.origin, new_transform.basis)
 
 
 func _ready():
@@ -213,7 +215,7 @@ func _process(delta):
 
 func _restore_collision():
 	
-	if weakref(to_node).get_ref() and not to_node.is_queued_for_deletion():
+	if is_instance_valid(to_node) and not to_node.is_queued_for_deletion():
 	
 		to_node.visible = true
 		
@@ -221,20 +223,20 @@ func _restore_collision():
 			collision.disabled = false
 		
 		
-		if container_node and weakref(container_node).get_ref():
+		if container_node and is_instance_valid(container_node):
 			
 			container_node._apply_launch_attributes(to_node)
 			
 
 func _destroy():
 	
-	if container_node and weakref(container_node).get_ref():
+	if container_node and is_instance_valid(container_node):
 		container_node._remove_item(to_node)
 	
 	if restore_collisions:
 		_restore_collision()
 	
-	if root and weakref(root).get_ref():
+	if root and is_instance_valid(root):
 		root.queue_free()
 	
 	._destroy()

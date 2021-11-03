@@ -14,6 +14,14 @@ onready var camera_raycast = get_node_or_null('../CameraRig/Camera')
 onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
 
 
+
+func _cock_weapon():
+	
+	if righthand._has_item_with_tag('Firearm'):
+		
+		righthand.items[0].get_node('Audio')._start_state('FireProjectileCock')
+
+
 func _ready():
 	
 	if tree.is_empty():
@@ -42,13 +50,21 @@ func _on_action(_state, data):
 
 func _process(delta):
 	
-	if righthand._has_item_with_tag('Firearm') and tree_node.current_state == 'Default':
+	if righthand._has_item_with_tag('Firearm'):
 		
-		new_state = 'ShootIdle'
-		var item_name = righthand.items[0].base_name
+		if tree_node.current_state == 'Default':
+			
+			new_state = 'ShootIdle'
+			var item_name = righthand.items[0].base_name
+			
+			if shoot_idle_animations.has(item_name):
+				_play(shoot_idle_animations[item_name][0], shoot_idle_animations[item_name][1], shoot_idle_animations[item_name][2])
+	
+	else:
 		
-		if shoot_idle_animations.has(item_name):
-			_play(shoot_idle_animations[item_name][0], shoot_idle_animations[item_name][1], shoot_idle_animations[item_name][2])
+		if tree_node.current_state == 'ShootIdle':
+			
+			tree_node._start_state('Default')
 
 
 	if tree_node.current_state in ['UseReact', 'ShootIdle']:

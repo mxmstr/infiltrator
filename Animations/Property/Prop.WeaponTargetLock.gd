@@ -118,7 +118,7 @@ func _process(delta):
 		
 		if targeted_enemy:
 			
-			if not weakref(targeted_enemy).get_ref() or targeted_enemy.get_node('Stamina').hp == 0:
+			if not is_instance_valid(targeted_enemy) or targeted_enemy.get_node('Stamina').hp == 0:
 				targeted_enemy = null
 				return
 			

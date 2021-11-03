@@ -72,7 +72,7 @@ __meta__ = {
 }
 
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.157895, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157895, 0, 0 )
 __meta__ = {
 
 }
@@ -216,6 +216,11 @@ __meta__ = {
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.68692, 0 )
+__meta__ = {
+
+}
+
+[node name="RootMotionView" type="RootMotionView" parent="."]
 __meta__ = {
 
 }

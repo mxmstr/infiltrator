@@ -9,6 +9,11 @@ var last_status = -1
 
 onready var perspective = get_node_or_null('../Perspective')
 
+signal just_activated
+signal active
+signal just_deactivated
+signal deactivated
+
 
 func _on_just_activated(): pass
 
@@ -38,12 +43,15 @@ func _input(event):
 			
 			if last_status != active:
 				_on_just_activated()
+				emit_signal('just_activated')
 			else:
 				_on_active()
+				emit_signal('active')
 		
 		else:
 			
 			_on_just_deactivated()
+			emit_signal('just_deactivated')
 		
 		last_status = active
 
@@ -53,3 +61,4 @@ func _process(delta):
 	if not active:
 		
 		_on_deactivated()
+		emit_signal('deactivated')

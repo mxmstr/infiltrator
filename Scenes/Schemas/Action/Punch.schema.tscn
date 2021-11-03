@@ -16,10 +16,10 @@ attributes = "{
 		\"switch_mode\": \"End\"
 	},
 	\"punch_seraph_right\": {
-		\"clip_start\": 0.05,
 		\"clip_end\": 0.9
 	},
 	\"punch_seraph_left\": {
-		\"clip_start\": 0.9
+		\"clip_start\": 0.9,
+		\"clip_end\": 1.8
 	}
 }"

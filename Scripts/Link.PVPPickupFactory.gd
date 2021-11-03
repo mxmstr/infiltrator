@@ -22,7 +22,7 @@ func _on_factory_finished(link, marker):
 		output.translation = marker.translation + offset
 		output.rotation = marker.rotation
 		
-		offset += Vector3(0, 1, 0)
+		offset += Vector3(0, 2, 0)
 
 
 func _refresh_spawn(marker):

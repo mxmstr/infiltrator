@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=3]
 
 [sub_resource type="BoxShape" id=6]
-extents = Vector3( 0.1962, 0.13227, 0.159379 )
+extents = Vector3( 0.193722, 0.129446, 0.156228 )
 __meta__ = {
 
 }
@@ -45,7 +45,7 @@ __meta__ = {
 
 }
 
-[node name="AmmoBoxRifle" instance=ExtResource( 1 )]
+[node name="AmmoBoxRifle" index="0" instance=ExtResource( 1 )]
 tags = "Actor Ammo Kind:BulletRifle Path:Items/BulletRifle Amount:30"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]

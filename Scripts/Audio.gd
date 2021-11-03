@@ -1,5 +1,6 @@
 extends Node
 
+export var default_state = 'Default'
 export(String) var bus
 
 onready var animation_player = $AnimationPlayer
@@ -45,6 +46,8 @@ func _play(new_state, animation, attributes):
 func _ready():
 	
 	audio_stream.bus = bus
+	
+	emit_signal('action', default_state, {})
 
 
 func _process(delta):
