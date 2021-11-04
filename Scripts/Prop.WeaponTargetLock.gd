@@ -12,7 +12,7 @@ var perspective
 var enemies = []
 var visible_enemies = []
 var targeted_enemy
-var target_pos
+var targeted_enemy_bone
 var auto_aim = false
 
 
@@ -80,7 +80,7 @@ func _select_target():
 			closest_enemy = enemy
 	
 	targeted_enemy = closest_enemy
-	target_pos = targeted_enemy.get_node('Hitboxes').find_node('Shoulders').global_transform.origin
+	targeted_enemy_bone = targeted_enemy.get_node('Hitboxes').find_node('Shoulders')
 
 
 func _ready():
@@ -120,6 +120,7 @@ func _process(delta):
 			
 			if not is_instance_valid(targeted_enemy) or targeted_enemy.get_node('Stamina').hp == 0:
 				targeted_enemy = null
+				targeted_enemy_bone = null
 				return
 			
 			if camera_raycast.get_collider() and camera_raycast.get_collider().owner in enemies:
@@ -127,9 +128,10 @@ func _process(delta):
 				camera_raycast.move_target = true
 			
 			else:
+				
+				var target_pos = targeted_enemy_bone.global_transform.origin
 			
 				camera_raycast.move_target = false
-				
 				camera_raycast_target.global_transform.origin = target_pos
 				
 				var target_pos_horizontal = Vector3(target_pos.x, model.global_transform.origin.y, target_pos.z)

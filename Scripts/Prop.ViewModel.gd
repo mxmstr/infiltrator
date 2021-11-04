@@ -228,4 +228,4 @@ func _process(delta):
 #
 	_blend_skeletons(world_skeleton, vm_skeleton)
 #
-#	rotation = model.rotation
+	rotation = model.rotation

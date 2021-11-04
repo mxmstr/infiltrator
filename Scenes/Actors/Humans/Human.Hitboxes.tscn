@@ -51,80 +51,62 @@ __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=10]
+[sub_resource type="BoxShape" id=9]
 extents = Vector3( 0.0678842, 0.204714, 0.0812455 )
 __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=11]
+[sub_resource type="BoxShape" id=10]
 extents = Vector3( 0.0528998, 0.158159, 0.0461735 )
 __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=12]
+[sub_resource type="BoxShape" id=11]
 extents = Vector3( 0.0478788, 0.0721255, 0.0461735 )
 __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=13]
+[sub_resource type="BoxShape" id=12]
 extents = Vector3( 0.0850227, 0.284208, 0.090615 )
+__meta__ = {
+
+}
+
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 0.070083, 0.19884, 0.0824842 )
 __meta__ = {
 
 }
 
 [sub_resource type="BoxShape" id=14]
-extents = Vector3( 0.070083, 0.19884, 0.0824842 )
+extents = Vector3( 0.0767665, 0.0481098, 0.156947 )
 __meta__ = {
 
 }
 
 [sub_resource type="BoxShape" id=15]
-extents = Vector3( 0.0767665, 0.0481098, 0.156947 )
-__meta__ = {
-
-}
-
-[sub_resource type="BoxShape" id=16]
 extents = Vector3( 0.0850227, 0.284208, 0.090615 )
 __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=17]
+[sub_resource type="BoxShape" id=16]
 extents = Vector3( 0.070083, 0.19884, 0.0824842 )
 __meta__ = {
 
 }
 
-[sub_resource type="BoxShape" id=18]
+[sub_resource type="BoxShape" id=17]
 extents = Vector3( 0.0767665, 0.0481098, 0.156947 )
 __meta__ = {
 
 }
 
-[node name="Hitboxes" index="0" instance=ExtResource( 1 )]
+[node name="Hitboxes" instance=ExtResource( 1 )]
 transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, 0, 0, 0 )
-
-[node name="neo_reference_skeleton" parent="." index="0"]
-bones/1/bound_children = [ NodePath("Torso") ]
-bones/2/bound_children = [ NodePath("Neck") ]
-bones/3/bound_children = [ NodePath("Head") ]
-bones/4/bound_children = [ NodePath("Shoulders") ]
-bones/13/bound_children = [ NodePath("UpArm-R") ]
-bones/14/bound_children = [ NodePath("LoArm-R") ]
-bones/15/bound_children = [ NodePath("Hand-R") ]
-bones/17/bound_children = [ NodePath("UpArm-L") ]
-bones/18/bound_children = [ NodePath("LoArm-L") ]
-bones/19/bound_children = [ NodePath("Hand-L") ]
-bones/20/bound_children = [ NodePath("UpLeg-R") ]
-bones/21/bound_children = [ NodePath("LoLeg-R") ]
-bones/22/bound_children = [ NodePath("Foot-R") ]
-bones/24/bound_children = [ NodePath("UpLeg-L") ]
-bones/25/bound_children = [ NodePath("LoLeg-L") ]
-bones/26/bound_children = [ NodePath("Foot-L") ]
 
 [node name="Pelvis" type="BoneAttachment" parent="neo_reference_skeleton" index="1"]
 __meta__ = {
@@ -184,6 +166,7 @@ __meta__ = {
 
 [node name="Hitbox" parent="neo_reference_skeleton/Neck" index="0" instance=ExtResource( 2 )]
 new_owner = NodePath(".")
+tags = "Hitbox DamageMult:10.0"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Neck/Hitbox" index="5"]
 transform = Transform( 1, 9.28637e-21, 0, 9.28641e-21, 1, 0, 0, 0, 1, 1.36424e-09, 0, 0.00418824 )
@@ -201,6 +184,7 @@ __meta__ = {
 
 [node name="Hitbox" parent="neo_reference_skeleton/Head" index="0" instance=ExtResource( 2 )]
 new_owner = NodePath(".")
+tags = "Hitbox DamageMult:10.0"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Head/Hitbox" index="5"]
 transform = Transform( 1, 9.26452e-21, 0, 9.26456e-21, 1, 0, 0, 0, 1, 1.58398e-08, -0.123415, 0.0154985 )
@@ -217,6 +201,7 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/UpArm-R" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.5"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/UpArm-R/Hitbox" index="6"]
 transform = Transform( 0.990267, -0.139185, -2.31947e-08, 0.139185, 0.990267, -4.09716e-08, 2.86714e-08, 3.73446e-08, 1, 0.0190169, 0.0954772, 9.31323e-09 )
@@ -233,6 +218,7 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/LoArm-R" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.5"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/LoArm-R/Hitbox" index="6"]
 transform = Transform( 0.996966, -0.0705284, -0.0329505, 0.0658293, 0.98975, -0.126738, 0.0415514, 0.124184, 0.991389, 0.0106147, 0.162134, -0.0153592 )
@@ -249,6 +235,7 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/Hand-R" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.25"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Hand-R/Hitbox" index="6"]
 transform = Transform( 1, 2.40207e-13, 0, 2.40207e-13, 1, 1.42109e-14, 0, 0, 1, 0.00400835, 0.0685644, 1.95578e-08 )
@@ -265,10 +252,11 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/UpArm-L" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.5"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/UpArm-L/Hitbox" index="6"]
 transform = Transform( 0.990266, 0.13919, 0, -0.13919, 0.990266, 0, 0, 0, 1, -0.019, 0.095, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 __meta__ = {
 
 }
@@ -281,10 +269,11 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/LoArm-L" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.5"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/LoArm-L/Hitbox" index="6"]
 transform = Transform( 0.997524, 0.0621228, -0.032957, -0.0658259, 0.98975, -0.126736, 0.0247461, 0.128591, 0.991389, -0.011, 0.162, -0.015 )
-shape = SubResource( 11 )
+shape = SubResource( 10 )
 __meta__ = {
 
 }
@@ -297,10 +286,11 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/Hand-L" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.25"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Hand-L/Hitbox" index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004, 0.069, 0 )
-shape = SubResource( 12 )
+shape = SubResource( 11 )
 __meta__ = {
 
 }
@@ -313,10 +303,11 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/UpLeg-R" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.5"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/UpLeg-R/Hitbox" index="6"]
 transform = Transform( 0.999996, -4.81736e-05, -0.00290194, -4.81087e-05, 0.99945, -0.0331694, 0.00290194, 0.0331694, 0.999445, 0.0217799, 0.18194, 0.00664775 )
-shape = SubResource( 13 )
+shape = SubResource( 12 )
 __meta__ = {
 
 }
@@ -329,10 +320,11 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/LoLeg-R" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.5"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/LoLeg-R/Hitbox" index="6"]
 transform = Transform( 0.999974, 0.00576633, 0.00438672, -0.00613825, 0.995911, 0.090133, -0.00384905, -0.0901576, 0.99592, 0.00119206, 0.235038, -0.020776 )
-shape = SubResource( 14 )
+shape = SubResource( 13 )
 __meta__ = {
 
 }
@@ -345,10 +337,11 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/Foot-R" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.25"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Foot-R/Hitbox" index="6"]
 transform = Transform( 1, 8.28632e-16, 4.9738e-14, 8.28613e-16, 1, 0, -4.9738e-14, 0, 1, -0.0134692, 0.0374144, 0.0553734 )
-shape = SubResource( 15 )
+shape = SubResource( 14 )
 __meta__ = {
 
 }
@@ -361,10 +354,11 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/UpLeg-L" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.5"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/UpLeg-L/Hitbox" index="6"]
 transform = Transform( 0.999996, -0.000148456, -0.00289565, 5.23323e-05, 0.99945, -0.0331726, 0.00289898, 0.0331723, 0.999445, -0.022, 0.182, 0.007 )
-shape = SubResource( 16 )
+shape = SubResource( 15 )
 __meta__ = {
 
 }
@@ -377,10 +371,11 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/LoLeg-L" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.5"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/LoLeg-L/Hitbox" index="6"]
 transform = Transform( 0.999969, -0.00655731, 0.00438032, 0.0061359, 0.995911, 0.0901285, -0.00495341, -0.0900988, 0.995921, -0.001, 0.235, -0.021 )
-shape = SubResource( 17 )
+shape = SubResource( 16 )
 __meta__ = {
 
 }
@@ -393,10 +388,11 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="neo_reference_skeleton/Foot-L" index="0" instance=ExtResource( 2 )]
+tags = "Hitbox DamageMult:0.25"
 
 [node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Foot-L/Hitbox" index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013, 0.037, 0.055 )
-shape = SubResource( 18 )
+shape = SubResource( 17 )
 __meta__ = {
 
 }

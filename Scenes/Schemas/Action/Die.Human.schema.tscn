@@ -20,6 +20,13 @@ __meta__ = {
 
 }
 attributes = "{
+	\"*\": {
+		\"clip_start\": 0.05,
+		\"layer\": \"ACTION\",
+		\"switch_mode\": \"End\",
+		\"lock_movement\": true,
+		\"camera_mode\": \"BoneParent\"
+	},
 	\"death_knees\": {
 		\"speed\": 2.0
 	}

@@ -55,7 +55,7 @@ func _validate_within_radius(actor):
 
 func _physics_process(delta):
 	
-	if collision and collision.disabled:
+	if owner.is_queued_for_deletion() or (collision and collision.disabled):
 		return
 	
 	

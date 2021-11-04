@@ -10,15 +10,14 @@ func _on_stimulate(stim, data):
 	
 	if stim == 'Push' and stamina.hp > 0:
 		
-		var force = float(data.source._get_tag('Force'))
-		var direction = data.source.transform.basis.z
+		var force = float(data.intensity)#data.source._get_tag('Force'))
 		
-		movement.velocity += force * Vector3(direction.x, 0, direction.y)
+		movement.velocity += force * Vector3(data.direction.x, 0, data.direction.z)
 	
 	
 	if stim == 'Damage' and stamina.hp > 0:
 		
-		var damage = int(data.source._get_tag('Damage'))
+		var damage = int(data.intensity)#data.source._get_tag('Damage'))
 		stamina._damage(damage)
 		
 		voice_audio._start_state('Oof')

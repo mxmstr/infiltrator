@@ -41,9 +41,6 @@ __meta__ = {
 [node name="BulletShotgun" instance=ExtResource( 1 )]
 tags = "Actor Bullet Shotgun Damage:10 Force:10"
 
-[node name="TouchResponse" parent="." index="4"]
-tree_node = NodePath("../../BulletShotgun/Reception")
-
 [node name="Reception" parent="." index="7"]
 parameters/playback = SubResource( 1 )
 

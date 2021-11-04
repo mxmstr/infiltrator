@@ -1,16 +1,15 @@
 extends 'res://Scripts/Link.gd'
 
+var respawn_time = 10.0
 var pickup_idx = 0
 
 
 func _on_timeout():
 	
 	_refresh_spawn(get_child(pickup_idx))
+	get_child(pickup_idx).get_node('RespawnSound').playing = true
 	
-	pickup_idx += 1
-	
-	if pickup_idx >= get_child_count():
-		pickup_idx = 0
+	pickup_idx = randi() % get_child_count()
 
 
 func _on_factory_finished(link, marker):
@@ -50,3 +49,7 @@ func _ready():
 	
 	for marker in get_children():
 		_refresh_spawn(marker)
+	
+	pickup_idx = randi() % get_child_count()
+	
+	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout')

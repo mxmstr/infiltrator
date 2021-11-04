@@ -259,8 +259,8 @@ func _apply_launch_attributes(item):
 	if release_exclude_parent:
 		_exclude_recursive(item, owner)
 	
-#	if release_lifetime > 0:
-#		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')
+	if release_lifetime > 0:
+		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')
 
 
 func _create_and_launch_item(item_path):

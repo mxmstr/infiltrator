@@ -25,7 +25,7 @@ __meta__ = {
 
 }
 
-[node name="PumpShotgun" index="0" instance=ExtResource( 1 )]
+[node name="PumpShotgun" instance=ExtResource( 1 )]
 tags = "Item Firearm Shotgun PumpShotgun UseAction:FireProjectile FireRate:2.0 Offset-position:neo_reference_skeleton:Gun:0.00044,0.007747,-0.00782 Offset-rotation:neo_reference_skeleton:Gun:-89.980209,-79.970055,76.587555"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
@@ -43,7 +43,7 @@ tree = NodePath("../Audio")
 
 [node name="Magazine" parent="." index="3"]
 max_quantity = 8
-required_tags = "Bullet 9mm"
+required_tags = "Bullet Shotgun"
 
 [node name="Chamber" parent="." index="4"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, -0.000244141, 0.0875522, 0.906064 )

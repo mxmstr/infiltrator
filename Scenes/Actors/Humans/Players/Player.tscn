@@ -19,8 +19,9 @@
 [ext_resource path="res://Scenes/Components/Inputs/Pause.input2.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Components/Inputs/Input.input2.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Components/Inputs/Inventory.input2.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Animations/Property/Prop.WeaponTargetLock.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Prop.WeaponTargetLock.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=21]
+
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 __meta__ = {
