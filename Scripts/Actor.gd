@@ -71,11 +71,6 @@ func _enter_tree():
 #				Meta._make_unique(child, get_node(new_owner))
 
 
-func _get_meta():
-	
-	return Meta
-
-
 func _evaluate(expression, arguments):
 	
 #	if 'Pistol' == name:

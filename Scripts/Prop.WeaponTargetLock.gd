@@ -15,6 +15,8 @@ var targeted_enemy
 var targeted_enemy_bone
 var auto_aim = false
 
+onready var stamina = get_node_or_null('../Stamina')
+
 
 func _on_fire(container, projectile):
 	
@@ -114,11 +116,15 @@ func _ready():
 
 func _process(delta):
 	
-	if auto_aim:
+	var dead = stamina.hp == 0
+	
+	if not dead and auto_aim:
 		
 		if targeted_enemy:
 			
-			if not is_instance_valid(targeted_enemy) or targeted_enemy.get_node('Stamina').hp == 0:
+			var target_dead = targeted_enemy.get_node('Stamina').hp == 0
+			
+			if not is_instance_valid(targeted_enemy) or target_dead:
 				targeted_enemy = null
 				targeted_enemy_bone = null
 				return

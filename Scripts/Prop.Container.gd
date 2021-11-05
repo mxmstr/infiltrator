@@ -12,6 +12,7 @@ export(Vector3) var release_direction
 export(Vector2) var release_angular_spread = Vector2(0, 0)
 export(float) var release_lifetime
 export var release_exclude_parent = false
+export var release_exclude_parent_lifetime = 0.0
 export(int) var max_quantity
 export(bool) var invisible
 export(bool) var interactable
@@ -227,7 +228,10 @@ func _push_front_into_container(new_container):
 
 func _exclude_recursive(item, parent):
 	
+	var parent_list = []
+	
 	item.add_collision_exception_with(parent)
+	parent_list.append(parent)
 	shooter = parent
 	
 	if parent.has_node('Hitboxes'):
@@ -236,7 +240,20 @@ func _exclude_recursive(item, parent):
 	
 	
 	for link in Meta.GetLinks(null, parent, 'Contains'):
-		_exclude_recursive(item, link.from_node)
+		parent_list += _exclude_recursive(item, link.from_node)
+	
+	return parent_list
+
+
+func _remove_exclusions(item, parent_list):
+	
+	for parent in parent_list:
+		
+		item.remove_collision_exception_with(parent)
+		
+		if parent.has_node('Hitboxes'):
+			for hitbox in parent.get_node('Hitboxes').get_children():
+				item.remove_collision_exception_with(hitbox)
 
 
 func _apply_launch_attributes(item):
@@ -257,7 +274,11 @@ func _apply_launch_attributes(item):
 			item_movement.angular_direction.y = rand_range(-spread_y, spread_y)
 	
 	if release_exclude_parent:
-		_exclude_recursive(item, owner)
+		
+		var parent_list = _exclude_recursive(item, owner)
+		
+		if release_exclude_parent_lifetime > 0:
+			get_tree().create_timer(release_exclude_parent_lifetime).connect('timeout', self, '_remove_exclusions', [item, parent_list])
 	
 	if release_lifetime > 0:
 		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')

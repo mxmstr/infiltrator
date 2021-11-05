@@ -21,12 +21,12 @@
 [ext_resource path="res://Scenes/Components/Actions/JumpRight.action2.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/Components/Actions/Reload.action2.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/Components/Actions/Die.action2.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.property.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Scenes/Components/Responses/Touch.Human.response2.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Scenes/Components/Responses/UseReact.response2.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Scenes/Components/Responses/EmptyReact.response2.tscn" type="PackedScene" id=25]
-[ext_resource path="res://Scenes/Components/Responses/Damage.response2.tscn" type="PackedScene" id=26]
-[ext_resource path="res://Scenes/Components/Sounds/Action.action2.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/Components/Sounds/Action.action2.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.property.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Components/Responses/Touch.Human.response2.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/Components/Responses/UseReact.response2.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/Components/Responses/EmptyReact.response2.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Scenes/Components/Responses/Damage.response2.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=29]
 
@@ -90,7 +90,7 @@ __meta__ = {
 
 }
 
-[node name="Human" index="0" instance=ExtResource( 1 )]
+[node name="Human" instance=ExtResource( 1 )]
 tags = "Actor Human"
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="." index="0"]
@@ -114,6 +114,8 @@ __meta__ = {
 [node name="ClimbingSkill" parent="." index="4" instance=ExtResource( 5 )]
 
 [node name="RightHandContainer" parent="." index="5" instance=ExtResource( 6 )]
+release_exclude_parent = true
+release_exclude_parent_lifetime = 2.0
 
 [node name="RightPunchContainer" parent="." index="6" instance=ExtResource( 6 )]
 factory_mode = true
@@ -215,56 +217,61 @@ tree = NodePath("../Behavior")
 [node name="DieAction" parent="." index="31" instance=ExtResource( 21 )]
 tree = NodePath("../Behavior")
 
-[node name="AnimLayerMovement" parent="." index="32" instance=ExtResource( 22 )]
+[node name="PostDeathAction" parent="." index="32" instance=ExtResource( 22 )]
+tree = NodePath("../Behavior")
+schema = "PostDeath"
+state = "PostDeath"
+
+[node name="AnimLayerMovement" parent="." index="33" instance=ExtResource( 23 )]
 parameters/0/0/playback = SubResource( 1 )
 parameters/1/0/playback = SubResource( 2 )
 
-[node name="TouchResponse" parent="." index="33" instance=ExtResource( 23 )]
+[node name="TouchResponse" parent="." index="34" instance=ExtResource( 24 )]
 tree_node = NodePath("../Reception")
 
-[node name="UseReactResponse" parent="." index="34" instance=ExtResource( 24 )]
+[node name="UseReactResponse" parent="." index="35" instance=ExtResource( 25 )]
 tree_node = NodePath("../Reception")
 
-[node name="EmptyReactResponse" parent="." index="35" instance=ExtResource( 25 )]
+[node name="EmptyReactResponse" parent="." index="36" instance=ExtResource( 26 )]
 tree_node = NodePath("../Reception")
 
-[node name="DamageResponse" parent="." index="36" instance=ExtResource( 26 )]
+[node name="DamageResponse" parent="." index="37" instance=ExtResource( 27 )]
 tree_node = NodePath("../Reception")
 
-[node name="OofSound" parent="." index="37" instance=ExtResource( 27 )]
+[node name="OofSound" parent="." index="38" instance=ExtResource( 22 )]
 tree = NodePath("../VoiceAudio")
 schema = "Oof"
 random = true
 state = "Oof"
 
-[node name="PickupWeaponSound" parent="." index="38" instance=ExtResource( 27 )]
+[node name="PickupWeaponSound" parent="." index="39" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PickupWeaponSound"
 state = "PickupWeapon"
 
-[node name="PickupAmmoSound" parent="." index="39" instance=ExtResource( 27 )]
+[node name="PickupAmmoSound" parent="." index="40" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PickupAmmoSound"
 state = "PickupAmmo"
 
-[node name="VoiceAudio" parent="." index="40" instance=ExtResource( 28 )]
+[node name="VoiceAudio" parent="." index="41" instance=ExtResource( 28 )]
 parameters/playback = SubResource( 3 )
 bus = "Voice"
 
-[node name="FoleyAudio" parent="." index="41" instance=ExtResource( 28 )]
+[node name="FoleyAudio" parent="." index="42" instance=ExtResource( 28 )]
 parameters/playback = SubResource( 4 )
 
-[node name="FeetAudio" parent="." index="42" instance=ExtResource( 28 )]
+[node name="FeetAudio" parent="." index="43" instance=ExtResource( 28 )]
 parameters/playback = SubResource( 5 )
 
-[node name="Reception" parent="." index="45"]
+[node name="Reception" parent="." index="46"]
 parameters/playback = SubResource( 6 )
 
-[node name="Interface" parent="." index="46"]
+[node name="Interface" parent="." index="47"]
 tree_root = SubResource( 8 )
 parameters/playback = SubResource( 9 )
 
-[node name="Audio" parent="." index="47"]
+[node name="Audio" parent="." index="48"]
 parameters/playback = SubResource( 10 )
 
 [editable path="CameraRig"]

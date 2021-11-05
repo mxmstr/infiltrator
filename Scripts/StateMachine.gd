@@ -42,7 +42,7 @@ func _play(_animation):
 		if attributes_dict[_animation].has('speed'):
 			blend = attributes_dict[_animation].speed
 		
-		play(_animation, blend, speed)
+		play(_animation)#, blend, speed)
 	
 	else:
 		play(_animation)

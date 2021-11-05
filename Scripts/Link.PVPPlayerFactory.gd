@@ -13,6 +13,13 @@ signal team_scored
 signal team_won
 
 
+func _on_action(state, player):
+	
+	if state == 'Die':
+		
+		_on_player_died(player)
+
+
 func _on_player_died(player):
 	
 	player_deaths[player.player_index] += 1
@@ -177,10 +184,12 @@ func _ready():
 		
 		var data = Meta.player_data[i]
 		
+		actors[i].get_node('Behavior').connect('action', self, '_on_action', [actors[i]])
+		
 #		actors[i].get_node('Stamina').connect('just_died', self, '_on_player_died', [actors[i]])
 		
-		if actors[i].get_node('Behavior').tree_root.has_node('Die'):
-			var die_node = actors[i].get_node('Behavior').tree_root.get_node('Die')
-			die_node.connect('playing', self, '_on_player_died', [actors[i]])
+#		if actors[i].get_node('Behavior').tree_root.has_node('Die'):
+#			var die_node = actors[i].get_node('Behavior').tree_root.get_node('Die')
+#			die_node.connect('playing', self, '_on_player_died', [actors[i]])
 	
 	

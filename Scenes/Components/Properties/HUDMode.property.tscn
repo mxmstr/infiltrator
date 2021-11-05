@@ -400,12 +400,12 @@ tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
+"values": [ Color( 0, 0, 0, 0.521569 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("../Perspective/Viewport/HUD")
@@ -668,8 +668,4 @@ __meta__ = {
 }
 start = "Default"
 attributes = "{
-	\"PostDeath\": {
-		\"speed\": 1.0,
-		\"blend\": 1.0
-	}	
 }"

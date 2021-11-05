@@ -40,13 +40,12 @@ __meta__ = {
 }
 
 [node name="AmmoBox" index="0" instance=ExtResource( 1 )]
-collision_mask = 1
+collision_layer = 4
 tags = "Actor Ammo Kind:None Amount:0"
 
 [node name="PickupRadiusStim" parent="." index="0" instance=ExtResource( 2 )]
 stim_type = "Touch"
 max_distance = 1.0
-raycast = true
 required_tags = "Human"
 
 [node name="Reception" parent="." index="3"]

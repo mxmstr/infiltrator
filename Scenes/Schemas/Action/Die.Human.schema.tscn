@@ -25,7 +25,9 @@ attributes = "{
 		\"layer\": \"ACTION\",
 		\"switch_mode\": \"End\",
 		\"lock_movement\": true,
-		\"camera_mode\": \"BoneParent\"
+		\"camera_mode\": \"BoneParent\",
+		\"hud_mode\": \"Death\",
+		\"next\": \"PostDeath\"
 	},
 	\"death_knees\": {
 		\"speed\": 2.0

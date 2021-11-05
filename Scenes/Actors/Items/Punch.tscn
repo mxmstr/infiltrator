@@ -29,7 +29,7 @@ collision_layer = 0
 collision_mask = 0
 tags = "Actor Punch Damage:20 Force:0.5 DisarmChance:0.5"
 
-[node name="CollisionShape" type="CollisionShape" parent="." index="0"]
+[node name="Collision" type="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
 __meta__ = {
 

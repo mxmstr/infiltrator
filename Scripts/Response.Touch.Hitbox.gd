@@ -36,6 +36,6 @@ func _on_stimulate(stim, data):
 			audio._start_state('Damage')
 			
 			if randf() < disarm_chance:
-				owner.owner.get_node('Behavior')._start_state('Drop')
+				owner.owner.get_node('RightHandContainer')._release_front()
 			
 			data.source.queue_free()

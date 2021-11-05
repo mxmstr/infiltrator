@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=2]
@@ -7,16 +7,15 @@
 [ext_resource path="res://Scenes/Components/Responses/Use.Firearm.response2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Sounds/FireProjectile.sound2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Components/Sounds/Action.action2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Stimuli/Contact.RigidBody.stimulus.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Components/Stimuli/Radius.stimulus.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=14]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=15]
-[ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Components/Stimuli/Radius.stimulus.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=16]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
@@ -44,7 +43,7 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 
 }
@@ -66,7 +65,7 @@ __meta__ = {
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 disabled = true
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 __meta__ = {
 
 }
@@ -152,7 +151,7 @@ transitions = [ "Start", "Touch", SubResource( 8 ), "Touch", "End", SubResource(
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 131.03 )
-script = ExtResource( 13 )
+script = ExtResource( 12 )
 __meta__ = {
 
 }
@@ -175,7 +174,7 @@ states/Start/node = SubResource( 20 )
 states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 13 )
+script = ExtResource( 12 )
 __meta__ = {
 
 }
@@ -214,7 +213,7 @@ transitions = [ "Start", "End", SubResource( 25 ) ]
 start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 13 )
+script = ExtResource( 12 )
 __meta__ = {
 
 }
@@ -229,6 +228,7 @@ __meta__ = {
 [node name="Firearm" type="RigidBody"]
 collision_layer = 4
 collision_mask = 3
+continuous_cd = true
 script = ExtResource( 1 )
 __meta__ = {
 
@@ -266,27 +266,23 @@ schema = "ReloadSound"
 random = true
 state = "Reload"
 
-[node name="ContactStim" parent="." instance=ExtResource( 8 )]
-stim_type = "Touch"
-
-[node name="PickupRadiusStim" parent="." instance=ExtResource( 9 )]
+[node name="PickupRadiusStim" parent="." instance=ExtResource( 8 )]
 stim_type = "Touch"
 max_distance = 1.0
-raycast = true
 required_tags = "Human"
 
-[node name="Movement" parent="." instance=ExtResource( 10 )]
+[node name="Movement" parent="." instance=ExtResource( 9 )]
 
-[node name="Behavior" parent="." instance=ExtResource( 11 )]
+[node name="Behavior" parent="." instance=ExtResource( 10 )]
 
-[node name="Reception" parent="." instance=ExtResource( 12 )]
+[node name="Reception" parent="." instance=ExtResource( 11 )]
 tree_root = SubResource( 18 )
 parameters/playback = SubResource( 19 )
 
-[node name="Interface" parent="." instance=ExtResource( 16 )]
+[node name="Interface" parent="." instance=ExtResource( 15 )]
 tree_root = SubResource( 21 )
 parameters/playback = SubResource( 22 )
 
-[node name="Audio" parent="." instance=ExtResource( 17 )]
+[node name="Audio" parent="." instance=ExtResource( 16 )]
 tree_root = SubResource( 26 )
 parameters/playback = SubResource( 27 )

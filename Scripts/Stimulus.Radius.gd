@@ -34,7 +34,7 @@ func _ready():
 func _validate_within_radius(actor):
 	
 	var within_distance = max_distance == 0 or owner.global_transform.origin.distance_to(actor.global_transform.origin) < max_distance
-				
+	
 	if within_distance:
 		
 		if raycast:
@@ -46,6 +46,7 @@ func _validate_within_radius(actor):
 				Meta.StimulateActor(actor, stim_type, owner)
 			
 		else:
+			
 			Meta.StimulateActor(actor, stim_type, owner)
 		
 		return true
@@ -57,7 +58,6 @@ func _physics_process(delta):
 	
 	if owner.is_queued_for_deletion() or (collision and collision.disabled):
 		return
-	
 	
 	var new_colliders = []
 	var collide_actors = []
@@ -93,6 +93,7 @@ func _physics_process(delta):
 				
 				if _validate_within_radius(hitbox):
 					new_colliders.append(actor)
+					break
 		
 		else:
 			

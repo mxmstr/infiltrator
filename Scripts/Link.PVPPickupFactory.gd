@@ -1,6 +1,7 @@
 extends 'res://Scripts/Link.gd'
 
-var respawn_time = 10.0
+var spawn_chance = 1.0#0.8
+var respawn_time = 6000.0#30.0
 var pickup_idx = 0
 
 
@@ -21,13 +22,12 @@ func _on_factory_finished(link, marker):
 		output.translation = marker.translation + offset
 		output.rotation = marker.rotation
 		
-		offset += Vector3(0, 2, 0)
+		offset += Vector3(0, 0.5, 0)
 
 
 func _refresh_spawn(marker):
 	
 	var weapon_path = Meta.multi_loadout[randi() % Meta.multi_loadout.size()]
-	
 	var node_name = Meta.preloader.get_resource('res://Scenes/Actors/' + weapon_path + '.tscn').instance().name
 	
 	for file in Meta._get_files_recursive('res://Scenes/Links/Factories/', 'Factory', '.link.tscn', [node_name]):
@@ -47,8 +47,14 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
+	var count = 4
 	for marker in get_children():
-		_refresh_spawn(marker)
+		if count > 0 and randf() < spawn_chance:
+			_refresh_spawn(marker)
+			count -= 1
+	
+	if get_child_count() == 0:
+		return
 	
 	pickup_idx = randi() % get_child_count()
 	

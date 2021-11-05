@@ -10,6 +10,8 @@ export var ghost = false
 
 var kinematic_collision
 
+onready var collision = get_node_or_null('../Collision')
+
 signal move_and_slide
 
 
@@ -70,6 +72,9 @@ func _face(target, angle_delta=0.0):
 
 func _process(delta):
 	
+	if collision.disabled:
+		return
+	
 	var new_velocity = angular_direction * delta
 	var deltax = new_velocity.x - angular_velocity.x
 	var deltay = new_velocity.y - angular_velocity.y
@@ -99,6 +104,9 @@ func _process(delta):
 
 func _physics_process(delta):
 	
+	if collision.disabled:
+		return
+	
 	var new_velocity = direction * speed * delta
 	var factor
 	
@@ -115,9 +123,9 @@ func _physics_process(delta):
 	velocity.y += (delta * gravity)
 	
 	kinematic_collision = owner.move_and_collide(velocity, true, true, ghost)
-	
+
 	if kinematic_collision and not ghost:
 		velocity = kinematic_collision.remainder
-	
+
 	emit_signal('move_and_slide', delta)
 	
