@@ -36,6 +36,7 @@ func _input(event):
 	if event.is_action(action) and event.device == perspective.gamepad_device:
 		
 		strength = event.get_action_strength(action)
+		
 		active = 1 if strength > 0 else 0
 		strength *= strength_multiplier
 		

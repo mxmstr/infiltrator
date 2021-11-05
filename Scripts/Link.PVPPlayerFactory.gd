@@ -13,7 +13,7 @@ signal team_scored
 signal team_won
 
 
-func _on_action(state, player):
+func _on_action(state, data, player):
 	
 	if state == 'Die':
 		

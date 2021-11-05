@@ -1,4 +1,4 @@
-extends Node
+extends RayCast
 
 export(NodePath) var right_hand_container
 export(String) var chamber_container
@@ -13,6 +13,7 @@ var enemies = []
 var visible_enemies = []
 var targeted_enemy
 var targeted_enemy_bone
+var shoulder_bone
 var auto_aim = false
 
 onready var stamina = get_node_or_null('../Stamina')
@@ -83,6 +84,7 @@ func _select_target():
 	
 	targeted_enemy = closest_enemy
 	targeted_enemy_bone = targeted_enemy.get_node('Hitboxes').find_node('Shoulders')
+	shoulder_bone = owner.get_node('Hitboxes').find_node('Shoulders')
 
 
 func _ready():
@@ -136,12 +138,24 @@ func _process(delta):
 			else:
 				
 				var target_pos = targeted_enemy_bone.global_transform.origin
-			
+				
+				global_transform.origin = shoulder_bone.global_transform.origin
+				
+				var space_state = get_world().direct_space_state
+				var result = space_state.intersect_ray(
+					shoulder_bone.global_transform.origin, target_pos, [owner], collision_mask
+					)
+				
+				if result:
+					camera_raycast.move_target = true
+					model.rotation = Vector3(0, 0, 0)
+					return
+				
 				camera_raycast.move_target = false
 				camera_raycast_target.global_transform.origin = target_pos
 				
 				var target_pos_horizontal = Vector3(target_pos.x, model.global_transform.origin.y, target_pos.z)
-				model.look_at(target_pos_horizontal, Vector3(0, 1, 0))
+				model.look_at(target_pos_horizontal, Vector3.UP)
 				model.rotate_y(deg2rad(180))
 			
 		else:

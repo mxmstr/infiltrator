@@ -127,7 +127,8 @@ action = "ScrollDown"
 
 [node name="InventoryInput" parent="." index="19" instance=ExtResource( 20 )]
 
-[node name="WeaponTargetLock" type="Node" parent="." index="20"]
+[node name="WeaponTargetLock" type="RayCast" parent="." index="20"]
+cast_to = Vector3( 50, 0, 0 )
 script = ExtResource( 21 )
 __meta__ = {
 
@@ -141,27 +142,27 @@ editor/display_folded = true
 [node name="Target" parent="CameraRaycastStim" index="1"]
 editor/display_folded = true
 
-[node name="AnimLayerMovement" parent="." index="53"]
+[node name="AnimLayerMovement" parent="." index="54"]
 parameters/0/0/playback = SubResource( 1 )
 parameters/1/0/playback = SubResource( 2 )
 
-[node name="VoiceAudio" parent="." index="61"]
+[node name="VoiceAudio" parent="." index="62"]
 parameters/playback = SubResource( 3 )
 
-[node name="FoleyAudio" parent="." index="62"]
+[node name="FoleyAudio" parent="." index="63"]
 parameters/playback = SubResource( 4 )
 
-[node name="FeetAudio" parent="." index="63"]
+[node name="FeetAudio" parent="." index="64"]
 parameters/playback = SubResource( 5 )
 
-[node name="Reception" parent="." index="66"]
+[node name="Reception" parent="." index="67"]
 parameters/playback = SubResource( 6 )
 
-[node name="Interface" parent="." index="67"]
+[node name="Interface" parent="." index="68"]
 tree_root = SubResource( 8 )
 parameters/playback = SubResource( 9 )
 
-[node name="Audio" parent="." index="68"]
+[node name="Audio" parent="." index="69"]
 parameters/playback = SubResource( 10 )
 
 [editable path="CameraRig"]

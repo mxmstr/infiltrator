@@ -37,7 +37,7 @@ __meta__ = {
 
 [node name="RadiusStim" parent="." index="1" instance=ExtResource( 2 )]
 stim_type = "Touch"
-max_distance = 0.5
+max_distance = 1.0
 raycast = true
 use_hitbox = true
 required_tags = "Human"
