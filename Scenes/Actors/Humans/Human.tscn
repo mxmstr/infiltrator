@@ -90,7 +90,7 @@ __meta__ = {
 
 }
 
-[node name="Human" instance=ExtResource( 1 )]
+[node name="Human" index="0" instance=ExtResource( 1 )]
 tags = "Actor Human"
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="." index="0"]

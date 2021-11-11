@@ -47,7 +47,7 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	var count = 4
+	var count = 6
 	for marker in get_children():
 		if count > 0 and randf() < spawn_chance:
 			_refresh_spawn(marker)

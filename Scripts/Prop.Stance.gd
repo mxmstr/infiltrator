@@ -25,7 +25,7 @@ export(StanceType) var stance = StanceType.STANDING setget _set_stance
 export(SpeedType) var speed = SpeedType.RUNNING
 export(LeanDirection) var lean = LeanDirection.DEFAULT
 
-export var max_speed = 2.75
+export var max_speed = 3.0
 export var walk_mult = 0.3
 export var crouch_mult = 0.25
 export var crawl_mult = 0.15

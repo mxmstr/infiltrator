@@ -17,10 +17,10 @@ func _on_action(state, data, player):
 	
 	if state == 'Die':
 		
-		_on_player_died(player)
+		_on_player_died(player, data)
 
 
-func _on_player_died(player):
+func _on_player_died(player, data):
 	
 	player_deaths[player.player_index] += 1
 	emit_signal('player_died', player.player_index, player_deaths[player.player_index])
@@ -28,9 +28,9 @@ func _on_player_died(player):
 	
 	var behavior = player.get_node('Behavior')
 	
-	if behavior.data.has('shooter'):
+	if data.has('shooter'):
 		
-		var shooter = behavior.data.shooter
+		var shooter = data.shooter
 		var shooter_team = int(shooter._get_tag('Team'))
 		var player_team = int(player._get_tag('Team'))
 		
@@ -78,7 +78,8 @@ func _suspend_players():
 	
 	for actor in actors:
 		
-		actor.get_node('HUDMode')._teleport_to_state('Victory')
+		pass
+		#actor.get_node('HUDMode')._teleport_to_state('Victory')
 
 
 func _respawn(actor):

@@ -247,6 +247,9 @@ func _exclude_recursive(item, parent):
 
 func _remove_exclusions(item, parent_list):
 	
+	if not is_instance_valid(item):
+		return
+	
 	for parent in parent_list:
 		
 		item.remove_collision_exception_with(parent)

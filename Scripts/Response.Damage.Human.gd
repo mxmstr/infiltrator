@@ -24,4 +24,4 @@ func _on_stimulate(stim, data):
 		
 		if stamina.hp == 0:
 		
-			behavior._start_state('Die')
+			behavior._start_state('Die', { 'shooter': data.shooter })
