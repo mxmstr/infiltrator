@@ -14,7 +14,6 @@ onready var camera_raycast = get_node_or_null('../CameraRig/Camera')
 onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
 
 
-
 func _cock_weapon():
 	
 	if righthand._has_item_with_tag('Firearm'):
@@ -30,14 +29,20 @@ func _ready():
 	for item_name in item_names:
 		shoot_animations[item_name] = _load_animations('Shoot' + item_name)
 		shoot_idle_animations[item_name] = _load_animations('Shoot' + item_name + 'Idle')
-	
 
 
 func _on_action(_state, data):
 	
 	new_state = _state
 	
-	if new_state == 'UseReact':
+	if new_state == 'UseItem':
+		
+		if not righthand._is_empty() and tree_node.current_state in ['Default', 'UseReact', 'ShootIdle']:
+		
+			Meta.StimulateActor(righthand.items[0], 'Use', owner)
+	
+	
+	elif new_state == 'UseReact':
 		
 		if righthand._has_item_with_tag('Firearm'):
 			

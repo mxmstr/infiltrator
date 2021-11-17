@@ -92,7 +92,7 @@ func _ready():
 	
 #	set_process_input(false)
 	
-	yield(get_tree(), 'idle_frame')
+#	yield(get_tree(), 'idle_frame')
 	
 #	set_physics_process_internal(false)
 #	set_process_internal(false)

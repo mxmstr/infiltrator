@@ -3,7 +3,7 @@ extends ViewportContainer
 export var mouse_device = -1
 export var keyboard_device = -1
 export var gamepad_device = -1
-export var fp_offset = Vector3(0, 0, 0.1)
+export var fp_offset = Vector3(0, 0, 0)
 export(String) var fp_root_bone
 export(String) var fp_shoulder_bone
 export(Array, String) var fp_hidden_bones

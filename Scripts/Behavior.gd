@@ -124,7 +124,5 @@ func _ready():
 	
 	active = true
 	
-	yield(get_tree(), 'idle_frame')
-	
-	emit_signal('action', 'Default', {})
+	call_deferred('emit_signal', 'action', 'Default', {})
 	

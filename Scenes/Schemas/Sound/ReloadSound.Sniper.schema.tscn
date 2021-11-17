@@ -19,18 +19,13 @@ tracks/0/keys = {
 } ],
 "times": PoolRealArray( 0 )
 }
-__meta__ = {
-
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/reload_sniper = SubResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
+		\"switch_mode\": \"End\",
 		\"level\": 0
 	}
 }"

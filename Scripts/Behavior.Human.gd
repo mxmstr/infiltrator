@@ -1,6 +1,6 @@
 extends "res://Scripts/Behavior.gd"
 
-export(String) var root_bone
+export(String) var torso_bone
 export(Array, String) var action_bones
 
 var layer = Meta.BlendLayer.MOVEMENT
@@ -52,8 +52,8 @@ func _cache_action_pose():
 		
 		var bone_name = skeleton.get_bone_name(idx)
 		
-		if bone_name == root_bone:
-			cached_action_pose.append(skeleton.get_bone_global_pose(idx))
+		if bone_name == torso_bone:
+			cached_action_pose.append(skeleton.get_bone_global_pose_no_override(idx))
 		else:
 			cached_action_pose.append(skeleton.get_bone_pose(idx))
 
@@ -64,10 +64,10 @@ func _apply_action_pose():
 		
 		var bone_name = skeleton.get_bone_name(idx)
 		
-		if bone_name == root_bone:
+		if bone_name == torso_bone:
 			
-			cached_action_pose[idx].origin = skeleton.get_bone_global_pose(idx).origin
-			skeleton.set_bone_global_pose(idx, cached_action_pose[idx])
+			cached_action_pose[idx].origin = skeleton.get_bone_global_pose_no_override(idx).origin
+			skeleton.set_bone_global_pose_override(idx, cached_action_pose[idx], 1.0, true)
 			
 		elif bone_name in action_bones:
 			
@@ -146,23 +146,26 @@ func _process(delta):
 	
 	emit_signal('pre_advance')
 	
-	#oneshot.filter_enabled = layer == Meta.BlendLayer.MIXED
+	var is_action = layer == Meta.BlendLayer.ACTION
+	var is_movement = layer == Meta.BlendLayer.MOVEMENT
+	var is_mixed = layer == Meta.BlendLayer.MIXED
 	
-	if layer != Meta.BlendLayer.MOVEMENT:
+	if is_action or is_movement:
+		skeleton.clear_bones_global_pose_override()
+	
+	if not is_movement:
 		
 		advance(delta)
 		movement._apply_root_transform(get_root_motion_transform(), delta)
 		
-		if layer == Meta.BlendLayer.MIXED:
+		if is_mixed:
 			_cache_action_pose()
 
-	if layer != Meta.BlendLayer.ACTION:
+	if not is_action:
 		anim_layer_movement.advance(delta)
 
-	if layer == Meta.BlendLayer.MIXED:
+	if is_mixed:
 		_apply_action_pose()
 
 	
-#	if owner.name == 'Anderson':
-#		print(actionup)
 	skeleton.scale = Vector3(-1, -1, -1)

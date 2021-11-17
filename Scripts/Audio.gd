@@ -3,6 +3,8 @@ extends Node
 export var default_state = 'Default'
 export(String) var bus
 
+var switch_mode = 'Immediate'
+
 onready var animation_player = $AnimationPlayer
 onready var audio_stream = $AudioStreamPlayer3D
 
@@ -16,7 +18,15 @@ func _start_state(_name, _data={}):
 	emit_signal('action', _name, _data)
 
 
+func _can_switch():
+	
+	return switch_mode == 'Immediate' or not animation_player.is_playing()
+
+
 func _play(new_state, animation, attributes):
+	
+	if not _can_switch():
+		return
 	
 	current_state = new_state
 	
@@ -24,6 +34,7 @@ func _play(new_state, animation, attributes):
 	var scale = 1.0
 	var clip_start = 0
 	var clip_end = 0
+	switch_mode = 'Immediate'
 	
 	if attributes.has('level'):
 		level = attributes.level
@@ -36,6 +47,9 @@ func _play(new_state, animation, attributes):
 	
 	if attributes.has('clip_end'):
 		clip_end = attributes.clip_end
+	
+	if attributes.has('switch_mode'):
+		switch_mode = attributes.switch_mode
 	
 	
 	audio_stream.unit_db = level

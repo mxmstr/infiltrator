@@ -88,8 +88,10 @@ func _get_mousemotion(device):
 
 func _ready():
 	
-	if not RawInput:
-		return
+	return
+	
+#	if not RawInput:
+#		return
 	
 	
 	var devices = Input.get_device_count()
@@ -129,6 +131,8 @@ func _ready():
 
 
 func _process(delta):
+	
+	return
 	
 	if not Meta.rawinput:
 		return

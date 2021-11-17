@@ -19,56 +19,32 @@
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "DefaultAnim"
 script = ExtResource( 13 )
-__meta__ = {
-
-}
 chain = true
 schema = ""
 custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=7]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 disabled = true
 script = ExtResource( 14 )
-__meta__ = {
-
-}
 transition_expression = ""
 update_mode = "process"
 expression = "not get_node(COLLISION).disabled"
@@ -80,57 +56,30 @@ delay = 0.0
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 auto_advance = true
 priority = 32
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 auto_advance = true
 priority = 32
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 auto_advance = true
 priority = 32
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 auto_advance = true
 priority = 32
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 auto_advance = true
 priority = 32
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=18]
 states/Damage/node = SubResource( 1 )
@@ -152,22 +101,13 @@ start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 131.03 )
 script = ExtResource( 12 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = true
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=19]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=21]
 states/Start/node = SubResource( 20 )
@@ -175,34 +115,19 @@ states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 12 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=22]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=23]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=24]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 auto_advance = true
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=26]
 states/End/node = SubResource( 23 )
@@ -214,25 +139,16 @@ start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 12 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=27]
-__meta__ = {
-
-}
 
 [node name="Firearm" type="RigidBody"]
 collision_layer = 4
 collision_mask = 3
 continuous_cd = true
 script = ExtResource( 1 )
-__meta__ = {
-
-}
 tags = "Item Firearm UseAction:FireProjectile FireRate:0.1"
 
 [node name="Magazine" parent="." instance=ExtResource( 2 )]
@@ -263,8 +179,12 @@ tree = NodePath("../Audio")
 [node name="ReloadSound" parent="." instance=ExtResource( 7 )]
 tree = NodePath("../Audio")
 schema = "ReloadSound"
-random = true
 state = "Reload"
+
+[node name="EmptySound" parent="." instance=ExtResource( 7 )]
+tree = NodePath("../Audio")
+schema = "EmptySound"
+state = "Empty"
 
 [node name="PickupRadiusStim" parent="." instance=ExtResource( 8 )]
 stim_type = "Touch"

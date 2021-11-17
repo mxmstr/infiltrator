@@ -17,7 +17,7 @@ func _on_just_activated():
 	
 	else:
 		
-		Meta.StimulateActor(righthand.items[0], 'Use', owner)
+		behavior._start_state('UseItem')
 
 
 func _on_just_deactivated():

@@ -5,27 +5,15 @@
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.3, 1, 1.5 )
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-__meta__ = {
-
-}
 
 [node name="Beretta" instance=ExtResource( 1 )]
-tags = "Item Firearm Beretta UseAction:FireProjectile FireRate:5.0 Offset-position:neo_reference_skeleton:Gun:-0.008487,0.005017,0.025809 Offset-rotation:neo_reference_skeleton:Gun:-90,0,0"
+tags = "Item Firearm Beretta UseAction:FireProjectile FireRate:8.0 Offset-position:neo_reference_skeleton:Gun:-0.008487,0.005017,0.025809 Offset-rotation:neo_reference_skeleton:Gun:-90,0,0"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 5.55112e-17, 1.09278e-09, -0.025, 0.025, -1.09278e-09, 0, -1.09278e-09, -0.025, -1.09278e-09, 0, 0, 0 )
@@ -33,9 +21,6 @@ transform = Transform( 5.55112e-17, 1.09278e-09, -0.025, 0.025, -1.09278e-09, 0,
 [node name="Collision" type="CollisionShape" parent="." index="1"]
 transform = Transform( 0.1, 0, 4.1631e-18, 0, 0.1, 0, -1.43166e-17, 0, 0.1, 0, 0.0278902, 0.104032 )
 shape = SubResource( 1 )
-__meta__ = {
-
-}
 
 [node name="Magazine" parent="." index="2"]
 max_quantity = 12
@@ -43,13 +28,14 @@ required_tags = "Bullet 9mm"
 
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.102109, 0.268156 )
+release_speed = 20.0
 release_angular_spread = Vector2( 0.002, 0.002 )
 
-[node name="Reception" parent="." index="12"]
+[node name="Reception" parent="." index="13"]
 parameters/playback = SubResource( 2 )
 
-[node name="Interface" parent="." index="13"]
+[node name="Interface" parent="." index="14"]
 parameters/playback = SubResource( 3 )
 
-[node name="Audio" parent="." index="14"]
+[node name="Audio" parent="." index="15"]
 parameters/playback = SubResource( 4 )

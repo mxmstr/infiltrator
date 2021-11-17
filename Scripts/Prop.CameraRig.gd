@@ -39,7 +39,7 @@ func _reset_camera():
 		root.queue_free()
 		root = null
 	
-	if path != null:
+	if path and not path.is_empty():
 		
 		root = BoneAttachment.new()
 		get_node(path).add_child(root)#.call_deferred('add_child', root)

@@ -8,9 +8,6 @@ ground_bottom_color = Color( 0.101961, 0.145098, 0.188235, 1 )
 ground_horizon_color = Color( 1, 1, 1, 1 )
 ground_curve = 0.01
 sun_energy = 12.26
-__meta__ = {
-
-}
 
 [resource]
 background_mode = 2
@@ -18,6 +15,3 @@ background_sky = SubResource( 1 )
 ambient_light_color = Color( 0.254902, 1, 0, 1 )
 ambient_light_energy = 1.45
 ambient_light_sky_contribution = 0.87
-__meta__ = {
-
-}

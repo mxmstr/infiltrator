@@ -1,37 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tres" type="AnimationNodeBlendSpace1D" id=1]
 [ext_resource path="res://Scripts/Prop.AnimLayer.Movement.Human.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-__meta__ = {
-
-}
-
 [node name="AnimLayerMovement" type="AnimationTree"]
 tree_root = ExtResource( 1 )
 anim_player = NodePath("AnimationPlayer")
 parameters/blend_position = 0.00331675
-parameters/0/blend_position = Vector2( 0.00446033, 0.0635839 )
-parameters/0/0/playback = SubResource( 1 )
+parameters/0/blend_position = Vector2( -0.00451672, -0.017341 )
 parameters/1/blend_position = Vector2( -0.000893652, 0.0404625 )
-parameters/1/0/playback = SubResource( 2 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 root_bone = "Pelvis"
 movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("")
 anims/DefaultAnim = ExtResource( 3 )
-__meta__ = {
-
-}

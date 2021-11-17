@@ -63,21 +63,21 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 	Meta.connect('on_input', self, '_input')
 
 
-func _process(delta):
-	
-	if not Meta.rawinput or not perspective:
-		return
-
-	var mouse_device = perspective.mouse_device
-	var keyboard_device = perspective.keyboard_device
-	var gamepad_device = perspective.gamepad_device
-
-
-	var new_status = RawInput._get_status(action, mouse_device, keyboard_device)
-
-	disabled = not (
-			new_status == status \
-			or (last_status != new_status and new_status + 2 == status)
-			)
-
-	last_status = new_status
+#func _process(delta):
+#
+#	if not Meta.rawinput or not perspective:
+#		return
+#
+#	var mouse_device = perspective.mouse_device
+#	var keyboard_device = perspective.keyboard_device
+#	var gamepad_device = perspective.gamepad_device
+#
+#
+#	var new_status = RawInput._get_status(action, mouse_device, keyboard_device)
+#
+#	disabled = not (
+#			new_status == status \
+#			or (last_status != new_status and new_status + 2 == status)
+#			)
+#
+#	last_status = new_status

@@ -1,5 +1,6 @@
 extends 'res://Scripts/Response.gd'
 
+onready var audio = get_node_or_null('../Audio')
 onready var behavior = get_node_or_null('../Behavior')
 onready var reception = get_node_or_null('../Reception')
 onready var chamber = get_node_or_null('../Chamber')
@@ -16,4 +17,5 @@ func _on_stimulate(stim, data):
 		
 		elif magazine._is_empty():
 			
+			audio._start_state('Empty')
 			reception._reflect('EmptyReact')

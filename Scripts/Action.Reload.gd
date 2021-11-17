@@ -10,6 +10,11 @@ onready var camera_raycast = get_node_or_null('../CameraRig/Camera')
 onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
 
 
+func _play_reload_sound():
+	
+	righthand.items[0].get_node('Audio')._start_state('Reload')
+
+
 func _load_ammo():
 	
 	righthand.items[0].get_node('Magazine')._transfer_items_from(owner)
@@ -36,6 +41,5 @@ func _on_action(_state, data):
 			
 			if animations.has(item_name) and righthand.items[0].get_node('Magazine')._can_transfer_items_from(owner):
 				
-				righthand.items[0].get_node('Audio')._start_state('Reload')
 				_play(animations[item_name][0])
 	

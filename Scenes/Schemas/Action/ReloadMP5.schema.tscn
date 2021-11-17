@@ -6,9 +6,6 @@
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/ReloadMP5 = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
 		\"clip_start\": 0.05,

@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Sounds/Payne/weapons/reload_beretta.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sounds/Payne/weapons/shoot_empty.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
-length = 1.82041
+length = 0.0577778
 tracks/0/type = "audio"
 tracks/0/path = NodePath("AudioStreamPlayer3D")
 tracks/0/interp = 1
@@ -21,11 +21,10 @@ tracks/0/keys = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-anims/reload_beretta = SubResource( 1 )
+anims/shoot_empty = SubResource( 1 )
 script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
-		\"switch_mode\": \"End\",
 		\"level\": 0
 	}
 }"

@@ -119,13 +119,20 @@ func _blend_skeletons(s_world, s_view):
 	for idx in range(s_world.get_bone_count()):
 
 		var s_world_bone_name = s_world.get_bone_name(idx)
-		var p_world = s_world.get_bone_pose(idx)
+		
+		if s_world_bone_name == 'Torso':
+			
+			var p_world = s_world.get_bone_global_pose(idx)
+			
+			s_view.set_bone_global_pose_override(idx, p_world, 1.0, true)
 
-		s_view.set_bone_pose(idx, p_world)
-
-		if s_world_bone_name in hidden_bones:
-			p_world = s_world.get_bone_pose(idx)
-			p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
+		else:
+			
+			var p_world = s_world.get_bone_pose(idx)
+			
+			if s_world_bone_name in hidden_bones:
+				p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
+			
 			s_view.set_bone_pose(idx, p_world)
 	
 	

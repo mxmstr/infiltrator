@@ -31,15 +31,15 @@ func update_waypoint_path(waypoint):
 			
 			$NavGeometry.clear()
 			
-			for path in paths.values():
-				
-				$NavGeometry.begin(Mesh.PRIMITIVE_LINE_STRIP, null)
-				$NavGeometry.set_color(Color(1, 1, 1, 1))
-				
-				for vertex in path:
-					$NavGeometry.add_vertex(vertex + Vector3(0, 0.5, 0))
-				
-				$NavGeometry.end()
+#			for path in paths.values():
+#
+#				$NavGeometry.begin(Mesh.PRIMITIVE_LINE_STRIP, null)
+#				$NavGeometry.set_color(Color(1, 1, 1, 1))
+#
+#				for vertex in path:
+#					$NavGeometry.add_vertex(vertex + Vector3(0, 0.5, 0))
+#
+#				$NavGeometry.end()
 
 
 func _ready():

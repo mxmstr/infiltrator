@@ -101,7 +101,7 @@ func _blend_skeletons(delta):
 		
 		
 		if bone_name in movement_bones:
-			model_skeleton.set_bone_global_pose(idx, move_transform)
+			model_skeleton.set_bone_global_pose_override(idx, move_transform, 1.0, true)
 		
 		
 #		if movement_only or (layered and bone_name in movement_bones):

@@ -21,11 +21,12 @@ onready var stamina = get_node_or_null('../Stamina')
 
 func _on_fire(container, projectile):
 	
-	var target_pos = (projectile.global_transform.origin - 
-		projectile.global_transform.origin.direction_to(camera_raycast_target.global_transform.origin)
-	)
+#	var target_pos = (projectile.global_transform.origin - 
+#		projectile.global_transform.origin.direction_to(camera_raycast_target.global_transform.origin)
+#	)
+	#var target_pos = projectile.global_transform.origin.direction_to(camera_raycast_target.global_transform.origin)
 	
-	projectile.look_at(target_pos, Vector3(0, 1, 0))
+	projectile.look_at(camera_raycast_target.global_transform.origin, Vector3.UP)
 
 
 func _on_camera_entered(_camera, actor):
@@ -120,45 +121,43 @@ func _process(delta):
 	
 	var dead = stamina.hp == 0
 	
-	if not dead and auto_aim:
+	if not dead and auto_aim and targeted_enemy:
 		
-		if targeted_enemy:
-			
-			var target_dead = targeted_enemy.get_node('Stamina').hp == 0
-			
-			if not is_instance_valid(targeted_enemy) or target_dead:
-				targeted_enemy = null
-				targeted_enemy_bone = null
-				return
-			
-			if camera_raycast.get_collider() and camera_raycast.get_collider().owner in enemies:
-				
-				camera_raycast.move_target = true
-			
-			else:
-				
-				var target_pos = targeted_enemy_bone.global_transform.origin
-				
-				global_transform.origin = shoulder_bone.global_transform.origin
-				
-				var space_state = get_world().direct_space_state
-				var result = space_state.intersect_ray(
-					shoulder_bone.global_transform.origin, target_pos, [owner], collision_mask
-					)
-				
-				if result:
-					camera_raycast.move_target = true
-					model.rotation = Vector3(0, 0, 0)
-					return
-				
-				camera_raycast.move_target = false
-				camera_raycast_target.global_transform.origin = target_pos
-				
-				var target_pos_horizontal = Vector3(target_pos.x, model.global_transform.origin.y, target_pos.z)
-				model.look_at(target_pos_horizontal, Vector3.UP)
-				model.rotate_y(deg2rad(180))
-			
-		else:
+		var target_dead = targeted_enemy.get_node('Stamina').hp == 0
+		
+		if not is_instance_valid(targeted_enemy) or target_dead:
+			targeted_enemy = null
+			targeted_enemy_bone = null
+			return
+		
+		if camera_raycast.get_collider() and camera_raycast.get_collider().owner in enemies:
 			
 			camera_raycast.move_target = true
-			model.rotation = Vector3(0, 0, 0)
+		
+		else:
+			
+			var target_pos = targeted_enemy_bone.global_transform.origin
+			
+			global_transform.origin = shoulder_bone.global_transform.origin
+			
+			var space_state = get_world().direct_space_state
+			var result = space_state.intersect_ray(
+				shoulder_bone.global_transform.origin, target_pos, [owner], collision_mask
+				)
+			
+			if result:
+				camera_raycast.move_target = true
+				model.rotation = Vector3(0, 0, 0)
+				return
+			
+			camera_raycast.move_target = false
+			camera_raycast_target.global_transform.origin = target_pos
+			
+			var target_pos_horizontal = Vector3(target_pos.x, model.global_transform.origin.y, target_pos.z)
+			model.look_at(target_pos_horizontal, Vector3.UP)
+			model.rotate_y(deg2rad(180))
+			
+	else:
+		
+		camera_raycast.move_target = true
+		model.rotation = Vector3(0, 0, 0)

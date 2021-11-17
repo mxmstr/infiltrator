@@ -7,23 +7,14 @@
 [sub_resource type="AnimationNodeAnimation" id=1]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=3]
 resource_local_to_scene = true
 auto_advance = true
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=4]
 states/End/node = SubResource( 1 )
@@ -35,34 +26,19 @@ start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 1 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
-__meta__ = {
-
-}
 
 [node name="Audio" type="AnimationTree"]
 tree_root = SubResource( 4 )
 anim_player = NodePath("AnimationPlayer")
 parameters/playback = SubResource( 5 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 3 )
-__meta__ = {
-
-}
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-__meta__ = {
-
-}

@@ -1,47 +1,23 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Actors/Items/AmmoBox9mm.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Actors/Items/PumpShotgun.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Actors/Items/AmmoBoxShotgun.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Actors/Items/Colt.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Actors/Items/AmmoBoxRifle.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Actors/Items/Ingram.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Markers/PickupMarker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Links/PVPPlayerFactory.link.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Markers/Waypoint2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Links/PVPPickupFactory.link.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=12]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-__meta__ = {
-
-}
 
 [sub_resource type="SphereMesh" id=4]
-__meta__ = {
-
-}
 
 [sub_resource type="SphereShape" id=5]
-__meta__ = {
-
-}
 
 [node name="Mission" type="Spatial"]
-__meta__ = {
-
-}
 
 [node name="Actors" type="Spatial" parent="."]
 __meta__ = {
@@ -49,7 +25,6 @@ __meta__ = {
 }
 
 [node name="InstaDeath" parent="Actors" instance=ExtResource( 1 )]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.24905, 0.245763, -5.59196 )
 new_owner = NodePath(".")
 tags = "Damage:1000"
@@ -66,45 +41,9 @@ parameters/playback = SubResource( 3 )
 [node name="Model" type="MeshInstance" parent="Actors/InstaDeath"]
 mesh = SubResource( 4 )
 material/0 = null
-__meta__ = {
-
-}
 
 [node name="Collision" type="CollisionShape" parent="Actors/InstaDeath"]
 shape = SubResource( 5 )
-__meta__ = {
-
-}
-
-[node name="Beretta" parent="Actors" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.20019, 0.693112, -3.07968 )
-mode = 1
-continuous_cd = true
-
-[node name="AmmoBox9mm" parent="Actors" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.80114, 0.282082, -2.90134 )
-
-[node name="PumpShotgun" parent="Actors" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3356, 0.687521, -3.86028 )
-continuous_cd = true
-
-[node name="AmmoBoxShotgun" parent="Actors" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4204, 0.217193, -2.5267 )
-
-[node name="Colt" parent="Actors" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6314, 0.649223, -2.39428 )
-continuous_cd = true
-
-[node name="AmmoBoxRifle" parent="Actors" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5787, 0.204814, -2.17768 )
-
-[node name="Ingram" parent="Actors" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94885, 0.776795, -2.11484 )
-mode = 1
-continuous_cd = true
-
-[node name="AmmoBox9mm2" parent="Actors" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4109, 0.363615, -1.88231 )
 
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {
@@ -112,9 +51,6 @@ __meta__ = {
 }
 
 [node name="Links" type="Node" parent="."]
-__meta__ = {
-
-}
 
 [node name="PVPPlayerFactory" parent="Links" instance=ExtResource( 9 )]
 
@@ -132,6 +68,18 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.7830
 
 [node name="PVPPickupFactory" parent="Links" instance=ExtResource( 11 )]
 
+[node name="PickupMarker1" parent="Links/PVPPickupFactory" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3988, 0.238943, -2.28007 )
+
+[node name="PickupMarker2" parent="Links/PVPPickupFactory" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.93, 0.238943, -2.28007 )
+
+[node name="PickupMarker3" parent="Links/PVPPickupFactory" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.01974, 0.238943, -2.28007 )
+
+[node name="PickupMarker4" parent="Links/PVPPickupFactory" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.89097, 0.238943, -2.28007 )
+
 [node name="Static" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
@@ -145,10 +93,6 @@ shadow_bias = 0.05
 shadow_contact = 0.1
 directional_shadow_normal_bias = 0.1
 directional_shadow_depth_range = 1
-directional_shadow_max_distance = 100.0
-__meta__ = {
-
-}
 
 [node name="Map" parent="Static" instance=ExtResource( 12 )]
 

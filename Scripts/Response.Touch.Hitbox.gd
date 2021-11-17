@@ -12,8 +12,8 @@ func _on_stimulate(stim, data):
 			
 			var damage_mult = 1.0
 			
-			if data.source._has_tag('DamageMult'):
-				damage_mult = float(data.source._get_tag('DamageMult'))
+			if owner._has_tag('DamageMult'):
+				damage_mult = float(owner._get_tag('DamageMult'))
 			
 			var damage = float(data.source._get_tag('Damage')) * damage_mult
 			var force = float(data.source._get_tag('Force'))
