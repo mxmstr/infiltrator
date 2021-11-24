@@ -6,9 +6,6 @@
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/JumpUp = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
 		\"speed\": 1.25,

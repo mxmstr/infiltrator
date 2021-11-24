@@ -6,9 +6,6 @@
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/sidestepleft = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
 		\"speed\": 1.75,

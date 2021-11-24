@@ -66,7 +66,8 @@ func _apply_action_pose():
 		
 		if bone_name == torso_bone:
 			
-			cached_action_pose[idx].origin = skeleton.get_bone_global_pose_no_override(idx).origin
+			var global_pose = skeleton.get_bone_global_pose_no_override(idx)
+			cached_action_pose[idx] = Transform(cached_action_pose[idx].basis, global_pose.origin)
 			skeleton.set_bone_global_pose_override(idx, cached_action_pose[idx], 1.0, true)
 			
 		elif bone_name in action_bones:

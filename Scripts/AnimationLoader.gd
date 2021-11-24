@@ -81,21 +81,26 @@ func _ready():
 
 func _play(_animation):
 	
-	if attributes.has(_animation):
-		
-		var blend = -1.0
-		var speed = 1.0
-		
-		if attributes[_animation].has('blend'):
-			blend = attributes[_animation].blend
-		
-		if attributes[_animation].has('speed'):
-			blend = attributes[_animation].speed
-		
-		animation_player.play(_animation, blend, speed)
+	var anim_attr = attributes[_animation]
 	
-	else:
-		animation_player.play(_animation)
+	var speed = 1.0
+	var blend = -1.0
+	var clip_start = 0
+	var clip_end = 0
+	
+	if anim_attr.has('speed'):
+		speed = anim_attr.speed
+	
+	if anim_attr.has('blend'):
+		blend = anim_attr.blend
+	
+	if anim_attr.has('clip_start'):
+		clip_start = anim_attr.clip_start
+	
+	if anim_attr.has('clip_end'):
+		clip_end = anim_attr.clip_end
+	
+	animation_player.play(_animation, blend, speed)
 	
 	if random:
 		_randomize_animation()

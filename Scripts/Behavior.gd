@@ -4,6 +4,7 @@ var enable_abilities = true
 var current_state = ''
 var next = 'Default'
 var switch_mode = 'Immediate'
+var priority = 0
 
 var skeleton
 var oneshot
@@ -14,9 +15,9 @@ onready var animation_player = $AnimationPlayer
 signal action
 
 
-func _can_switch():
+func _can_switch(new_priority):
 	
-	return switch_mode == 'Immediate' or not _is_oneshot_active()
+	return new_priority > priority or switch_mode == 'Immediate' or not _is_oneshot_active()
 
 
 func _on_action_finished():
@@ -57,7 +58,12 @@ func _set_oneshot_active(enabled):
 
 func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
 	
-	if not _can_switch():
+	var new_priority = 0
+	
+	if attributes.has('priority'):
+		new_priority = attributes.priority
+	
+	if not _can_switch(new_priority):
 		return false
 	
 	current_state = new_state
@@ -71,6 +77,7 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	var clip_end = 0
 	next = 'Default'
 	switch_mode = 'Immediate'
+	priority = new_priority
 	
 	if attributes.has('speed'):
 		scale = attributes.speed

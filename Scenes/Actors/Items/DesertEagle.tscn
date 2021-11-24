@@ -5,27 +5,15 @@
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.0227914, 0.0918072, 0.155839 )
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-__meta__ = {
 
-}
-
-[node name="DesertEagle" index="0" instance=ExtResource( 1 )]
-tags = "Item Firearm DesertEagle UseAction:FireProjectile FireRate:0.1 Offset-position:neo_reference_skeleton:Gun:0,-0.004,0.006 Offset-rotation:neo_reference_skeleton:Gun:-89.1,89.4,-89.9"
+[node name="DesertEagle" instance=ExtResource( 1 )]
+tags = "Item Firearm DesertEagle UseAction:FireProjectile FireRate:6.0 Offset-position:neo_reference_skeleton:Gun:0,-0.004,0.006 Offset-rotation:neo_reference_skeleton:Gun:-89.1,89.4,-89.9"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 5.55116e-17, 1.09278e-09, -0.025, 0.025, -1.09278e-09, 7.74447e-18, -1.09278e-09, -0.025, -1.09278e-09, 0, 0, 0 )
@@ -33,19 +21,16 @@ transform = Transform( 5.55116e-17, 1.09278e-09, -0.025, 0.025, -1.09278e-09, 7.
 [node name="Collision" type="CollisionShape" parent="." index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0305072, 0.103516 )
 shape = SubResource( 1 )
-__meta__ = {
-
-}
 
 [node name="Magazine" parent="." index="2"]
 max_quantity = 8
 required_tags = "Bullet Magnum"
 
-[node name="Reception" parent="." index="12"]
+[node name="Reception" parent="." index="13"]
 parameters/playback = SubResource( 2 )
 
-[node name="Interface" parent="." index="13"]
+[node name="Interface" parent="." index="14"]
 parameters/playback = SubResource( 3 )
 
-[node name="Audio" parent="." index="14"]
+[node name="Audio" parent="." index="15"]
 parameters/playback = SubResource( 4 )

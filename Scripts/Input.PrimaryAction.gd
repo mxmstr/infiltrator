@@ -39,3 +39,9 @@ func _process(delta):
 			
 			behavior._start_state('Kick')
 			kick_timer = null
+	
+	else:
+		
+		if active and righthand.items[0]._has_tag('AutoFire'):
+			
+			behavior._start_state('UseItem')

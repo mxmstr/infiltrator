@@ -5,27 +5,15 @@
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.0761936, 0.134374, 0.378023 )
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-__meta__ = {
 
-}
-
-[node name="Jackhammer" index="0" instance=ExtResource( 1 )]
-tags = "Item Firearm Jackhammer UseAction:FireProjectile FireRate:0.1 Offset-position:neo_reference_skeleton:Gun:-0.045458,-0.021831,0.037676 Offset-rotation:neo_reference_skeleton:Gun:-82.030472,84.796127,-76.606339"
+[node name="Jackhammer" instance=ExtResource( 1 )]
+tags = "Item Firearm Jackhammer UseAction:FireProjectile FireRate:4.0 Offset-position:neo_reference_skeleton:Gun:-0.045458,-0.021831,0.037676 Offset-rotation:neo_reference_skeleton:Gun:-82.030472,84.796127,-76.606339"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 5.68248e-10, -8.58031e-17, 0.013, -1.96295e-09, -0.013, 3.44107e-24, 0.013, -1.96295e-09, -5.68248e-10, 0, 0, 0 )
@@ -33,9 +21,6 @@ transform = Transform( 5.68248e-10, -8.58031e-17, 0.013, -1.96295e-09, -0.013, 3
 [node name="Collision" type="CollisionShape" parent="." index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0717434, 0.0932846, 0.0855361 )
 shape = SubResource( 1 )
-__meta__ = {
-
-}
 
 [node name="Magazine" parent="." index="2"]
 max_quantity = 15
@@ -44,11 +29,11 @@ required_tags = "Bullet Jackhammer"
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.123176, 0.479872 )
 
-[node name="Reception" parent="." index="12"]
+[node name="Reception" parent="." index="13"]
 parameters/playback = SubResource( 2 )
 
-[node name="Interface" parent="." index="13"]
+[node name="Interface" parent="." index="14"]
 parameters/playback = SubResource( 3 )
 
-[node name="Audio" parent="." index="14"]
+[node name="Audio" parent="." index="15"]
 parameters/playback = SubResource( 4 )

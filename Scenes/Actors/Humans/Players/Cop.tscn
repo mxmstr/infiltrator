@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Players/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=2]
+[ext_resource path="res://Models/Humans/Cop.escn" type="PackedScene" id=2]
 [ext_resource path="res://Models/Humans/DefaultHumanCollision.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/Properties/Outline.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=5]
@@ -123,8 +123,8 @@ chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=28]
 
-[node name="Infiltrator" instance=ExtResource( 1 )]
-tags = "Actor Human Female Team:0"
+[node name="Cop" instance=ExtResource( 1 )]
+tags = "Actor Human Male Team:0"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 
@@ -152,9 +152,6 @@ bone_name = "Foot-R"
 
 [node name="LeftKickContainer" parent="." index="34"]
 bone_name = "Foot-R"
-
-[node name="Panel" parent="Perspective/Viewport" index="0"]
-modulate = Color( 1, 0, 0, 0.54902 )
 
 [node name="VoiceAudio" parent="." index="69"]
 parameters/playback = SubResource( 3 )

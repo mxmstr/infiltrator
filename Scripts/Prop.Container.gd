@@ -185,7 +185,7 @@ func _can_transfer_items_from(from):
 	return false
 
 
-func _transfer_items_from(from):
+func _transfer_items_from(from, limit=0):
 	
 	var from_container
 	var best_tag_count = 0
@@ -209,11 +209,22 @@ func _transfer_items_from(from):
 		
 		if factory_mode:
 			
+			var count = 0
+			
 			while not _is_full() and from_container.items.size():
 				
-				var item = from_container.items.pop_front()
+				var item = from_container._release_front()
 				
 				_add_item(item)
+				
+				count += 1
+				
+				if limit > 0 and count == limit:
+					break
+			
+			return from_container.items.size()
+	
+	return 0
 
 
 func _push_front_into_container(new_container):
@@ -305,7 +316,7 @@ func _release_front():
 	
 	if factory_mode:
 		
-		item = Meta.AddActor(items.pop_front(), root.global_transform.origin, root.rotation_degrees)
+		item = Meta.AddActor(_remove_item(items[0]), root.global_transform.origin, root.rotation_degrees)
 	
 	else:
 		
@@ -336,7 +347,7 @@ func _release_all():
 		var released = []
 		
 		for item in items:
-			released.append(Meta.AddActor(item, root.global_transform.origin, root.rotation_degrees))
+			released.append(Meta.AddActor(_remove_item(item), root.global_transform.origin, root.rotation_degrees))
 		
 		return released
 	

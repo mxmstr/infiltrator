@@ -15,9 +15,20 @@ func _play_reload_sound():
 	righthand.items[0].get_node('Audio')._start_state('Reload')
 
 
-func _load_ammo():
+func _load_magazine():
 	
 	righthand.items[0].get_node('Magazine')._transfer_items_from(owner)
+
+
+func _load_shotgun_shell():
+	
+	var item = righthand.items[0]
+	var remaining = item.get_node('Magazine')._transfer_items_from(owner, 1)
+	var is_full = item.get_node('Magazine')._is_full()
+	var item_name = item.base_name
+	
+	if animations.has(item_name) and not is_full and remaining > 0:
+		_play(animations[item_name][0])
 
 
 func _ready():
@@ -36,6 +47,11 @@ func _on_action(_state, data):
 	if new_state == state:
 		
 		if righthand._has_item_with_tag('Firearm'):
+			
+#			if righthand._has_item_with_tag('Shotgun'):
+#
+#
+#			else:
 			
 			var item_name = righthand.items[0].base_name
 			

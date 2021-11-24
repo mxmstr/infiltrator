@@ -27,7 +27,7 @@ var characters = {
 		'scene': 'Humans/Players/Scientist'
 		},
 	'SWAT': {
-		'scene': 'Humans/Players/Swat'
+		'scene': 'Humans/Players/SWAT'
 		}
 	}
 

@@ -5,9 +5,96 @@ export(NodePath) var viewport
 var radar_dots = []
 var radius_x
 var radius_y
+var ammo_container
 
 onready var radar = get_node('Radar')#.find_node('Sprite')
 onready var radar_dot = load('res://Scenes/UI/HUD.RadarDot.tscn')
+
+onready var ammo = get_node('Ammo')
+onready var righthand = owner.get_node('../RightHandContainer')
+
+
+func _on_ammo_added(container, item):
+	
+	_refresh_ammo()
+
+
+func _on_ammo_removed(container, item):
+	
+	_refresh_ammo()
+
+
+func _on_item_added(container, item):
+	
+	if item._has_tag('Firearm'):
+		
+		ammo.show()
+		
+		if ammo_container:
+			ammo_container.disconnect('item_added', self, '_on_ammo_added')
+			ammo_container.disconnect('item_removed', self, '_on_ammo_removed')
+			ammo_container = null
+		
+		_refresh_ammo()
+
+
+func _on_item_removed(container, item):
+	
+	if ammo_container:
+		ammo_container.disconnect('item_added', self, '_on_ammo_added')
+		ammo_container.disconnect('item_removed', self, '_on_ammo_removed')
+		ammo_container = null
+	
+	ammo.hide()
+
+
+func _is_container(node):
+	
+	if node.get_script() != null:
+		
+		var script_name = node.get_script().get_path().get_file()
+		return script_name == 'Prop.Container.gd'
+	
+	return false
+
+
+func _get_ammo_container(item):
+	
+	var required_tags = item.get_node('Magazine').required_tags_dict.keys()
+	var container
+	var best_tag_count = 0
+	
+	for prop in owner.owner.get_children():
+		
+		if _is_container(prop):
+			
+			var tag_count = 0
+			
+			for required_tag in required_tags:
+				if required_tag in prop.required_tags_dict.keys():
+					tag_count += 1
+			
+			if tag_count > best_tag_count:
+				
+				container = prop
+				best_tag_count = tag_count
+	
+	return container
+
+
+func _refresh_ammo():
+	
+	if not ammo_container:
+		ammo_container = _get_ammo_container(righthand.items[0])
+		ammo_container.connect('item_added', self, '_on_ammo_added')
+		ammo_container.connect('item_removed', self, '_on_ammo_removed')
+		righthand.items[0].get_node('Chamber').connect('item_removed', self, '_on_ammo_removed')
+	
+	var inv_ammo = ammo_container.items.size()
+	var chamber_ammo = righthand.items[0].get_node('Chamber').items.size()
+	var mag_ammo = righthand.items[0].get_node('Magazine').items.size()
+	
+	ammo.text = str(chamber_ammo + mag_ammo) + ' | ' + str(inv_ammo)
 
 
 func _notification(what):
@@ -40,6 +127,11 @@ func _ready():
 	else:
 		
 		radar.get_node('TextureRect').hide()
+	
+	
+	ammo.hide()
+	righthand.connect('item_added', self, '_on_item_added')
+	righthand.connect('item_removed', self, '_on_item_removed')
 
 
 func _process(delta):

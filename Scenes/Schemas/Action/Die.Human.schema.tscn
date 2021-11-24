@@ -16,12 +16,10 @@ anims/Death_Minimum = ExtResource( 4 )
 anims/Death_Stomach = ExtResource( 5 )
 anims/death_knees = ExtResource( 6 )
 script = ExtResource( 7 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
 		\"clip_start\": 0.05,
+		\"priority\": 1,
 		\"layer\": \"ACTION\",
 		\"switch_mode\": \"End\",
 		\"lock_movement\": true,
