@@ -7,15 +7,13 @@
 anims/punch_seraph_left = ExtResource( 1 )
 anims/punch_seraph_right = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
 		\"layer\": \"MIXED\",
 		\"switch_mode\": \"End\"
 	},
 	\"punch_seraph_right\": {
+		\"clip_start\": 0.01,
 		\"clip_end\": 0.9
 	},
 	\"punch_seraph_left\": {

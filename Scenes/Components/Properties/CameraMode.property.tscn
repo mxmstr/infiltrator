@@ -19,9 +19,6 @@ tracks/0/keys = {
 "method": "_align_to_camera"
 } ]
 }
-__meta__ = {
-
-}
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -141,9 +138,6 @@ tracks/7/keys = {
 "method": "set"
 } ]
 }
-__meta__ = {
-
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "BoneParentExit"
@@ -221,9 +215,6 @@ tracks/4/keys = {
 "method": "_reset_camera"
 } ]
 }
-__meta__ = {
-
-}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Default"
@@ -270,9 +261,6 @@ tracks/2/keys = {
 "method": "set"
 } ]
 }
-__meta__ = {
-
-}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -318,9 +306,6 @@ tracks/2/keys = {
 "method": "set"
 } ]
 }
-__meta__ = {
-
-}
 
 [node name="CameraMode" type="AnimationPlayer"]
 root_node = NodePath(".")
@@ -331,19 +316,12 @@ anims/Default = SubResource( 5 )
 anims/DefaultAnim = ExtResource( 1 )
 anims/HalfYaw = SubResource( 4 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 start = "Default"
-attributes = "{
+statemachine_attributes = "{
 	\"BoneParent\": {
-		\"speed\": 1.0,
-		\"blend\": -1.0,
 		\"next\": \"BoneParentExit\"
 	},
 	\"HalfYaw\": {
-		\"speed\": 1.0,
-		\"blend\": -1.0,
 		\"next\": \"AlignPlayerToCamera\"
 	}
 }"

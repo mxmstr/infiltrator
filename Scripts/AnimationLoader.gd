@@ -70,43 +70,42 @@ func _randomize_animation():
 
 func _ready():
 	
-	if tree.is_empty():
-		return
-	
-	tree_node = get_node(tree)
-	animation_player = tree_node.get_node('AnimationPlayer')
+	if not tree.is_empty():
+		
+		tree_node = get_node(tree)
+		animation_player = tree_node.get_node('AnimationPlayer')
 	
 	animation_list = _load_animations(schema)
 
 
-func _play(_animation):
-	
-	var anim_attr = attributes[_animation]
-	
-	var speed = 1.0
-	var blend = -1.0
-	var clip_start = 0
-	var clip_end = 0
-	
-	if anim_attr.has('speed'):
-		speed = anim_attr.speed
-	
-	if anim_attr.has('blend'):
-		blend = anim_attr.blend
-	
-	if anim_attr.has('clip_start'):
-		clip_start = anim_attr.clip_start
-	
-	if anim_attr.has('clip_end'):
-		clip_end = anim_attr.clip_end
-	
-	animation_player.play(_animation, blend, speed)
-	
-	if random:
-		_randomize_animation()
+#func _play(_animation):
+#
+#	var anim_attr = attributes[_animation]
+#
+#	var speed = 1.0
+#	var blend = -1.0
+#	var clip_start = 0
+#	var clip_end = 0
+#
+#	if anim_attr.has('speed'):
+#		speed = anim_attr.speed
+#
+#	if anim_attr.has('blend'):
+#		blend = anim_attr.blend
+#
+#	if anim_attr.has('clip_start'):
+#		clip_start = anim_attr.clip_start
+#
+#	if anim_attr.has('clip_end'):
+#		clip_end = anim_attr.clip_end
+#
+#	animation_player.play(_animation, blend, speed)
+#
+#	if random:
+#		_randomize_animation()
 
 
-func _start():
-	
-	_play(animation)
-	_randomize_animation()
+#func _start():
+#
+#	_play(animation)
+#	_randomize_animation()

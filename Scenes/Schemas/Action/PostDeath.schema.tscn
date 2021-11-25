@@ -5,16 +5,10 @@
 [sub_resource type="Animation" id=1]
 resource_name = "PostDeath"
 length = 0.001
-__meta__ = {
-
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/PostDeath = SubResource( 1 )
 script = ExtResource( 1 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
 		\"layer\": \"ACTION\",

@@ -129,9 +129,6 @@ tracks/8/keys = {
 "method": "hide"
 } ]
 }
-__meta__ = {
-
-}
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -258,9 +255,6 @@ tracks/8/keys = {
 "args": [  ],
 "method": "hide"
 } ]
-}
-__meta__ = {
-
 }
 
 [sub_resource type="Animation" id=3]
@@ -389,23 +383,20 @@ tracks/8/keys = {
 "method": "hide"
 } ]
 }
-__meta__ = {
-
-}
 
 [sub_resource type="Animation" id=4]
-length = 0.001
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0.521569 ) ]
+"values": [ Color( 0, 0, 0, 1 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("../Perspective/Viewport/HUD")
@@ -518,9 +509,6 @@ tracks/8/keys = {
 "args": [  ],
 "method": "hide"
 } ]
-}
-__meta__ = {
-
 }
 
 [sub_resource type="Animation" id=5]
@@ -650,9 +638,6 @@ tracks/8/keys = {
 "method": "show"
 } ]
 }
-__meta__ = {
-
-}
 
 [node name="HUDMode" type="AnimationPlayer"]
 root_node = NodePath(".")
@@ -663,9 +648,9 @@ anims/Pause = SubResource( 3 )
 anims/PostDeath = SubResource( 4 )
 anims/Victory = SubResource( 5 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 start = "Default"
-attributes = "{
+statemachine_attributes = "{
+	\"PostDeath\": {
+		\"blend\": 3.0
+	}
 }"

@@ -26,6 +26,9 @@ shape = SubResource( 1 )
 max_quantity = 8
 required_tags = "Bullet Magnum"
 
+[node name="Chamber" parent="." index="3"]
+release_speed = 20.0
+
 [node name="Reception" parent="." index="13"]
 parameters/playback = SubResource( 2 )
 

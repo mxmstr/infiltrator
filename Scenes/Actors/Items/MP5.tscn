@@ -28,6 +28,7 @@ required_tags = "Bullet 9mm"
 
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.108228, 0.698247 )
+release_speed = 20.0
 
 [node name="Reception" parent="." index="13"]
 parameters/playback = SubResource( 2 )

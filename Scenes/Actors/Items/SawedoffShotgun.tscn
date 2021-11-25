@@ -30,6 +30,7 @@ required_tags = "Bullet Shotgun"
 
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.0576052, 0.745377 )
+release_speed = 20.0
 
 [node name="Reception" parent="." index="13"]
 parameters/playback = SubResource( 2 )

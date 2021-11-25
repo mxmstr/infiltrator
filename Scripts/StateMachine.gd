@@ -1,27 +1,37 @@
-extends AnimationPlayer
+extends 'res://Scripts/AnimationLoader.gd'
 
 export(String) var start
-export(String, MULTILINE) var attributes
+export(String, MULTILINE) var statemachine_attributes
 
-var attributes_dict = {}
 var next
 
 
 func _on_animation_finished(current):
 	
 	if next:
-
-		if attributes_dict.has(next):
-			play(next, attributes_dict[next].blend, attributes_dict[next].speed)
-		else:
-			play(next)
-
+		
+		_play(next)
 		next = null
 
 
 func _ready():
 	
-	attributes_dict = parse_json(attributes)
+	attributes = parse_json(statemachine_attributes)
+	
+	for animation_name in call('get_animation_list'):
+		
+		if attributes:
+		
+			if not attributes.has(animation_name):
+				attributes[animation_name] = {}
+			
+			if '*' in attributes.keys():
+				Meta._merge_dir(attributes[animation_name], attributes['*'])
+		
+		else:
+			
+			attributes[animation_name] = {}
+	
 	
 	connect('animation_finished', self, '_on_animation_finished')
 	
@@ -30,30 +40,38 @@ func _ready():
 
 
 func _play(_animation):
-	
-	if attributes_dict.has(_animation):
-		
-		var blend = -1.0
-		var speed = 1.0
-		
-		if attributes_dict[_animation].has('blend'):
-			blend = attributes_dict[_animation].blend
-		
-		if attributes_dict[_animation].has('speed'):
-			blend = attributes_dict[_animation].speed
-		
-		play(_animation)#, blend, speed)
-	
-	else:
-		play(_animation)
+
+	var anim_attr = attributes[_animation]
+
+	var speed = 1.0
+	var blend = -1.0
+	var clip_start = 0
+	var clip_end = 0
+
+	if anim_attr.has('speed'):
+		speed = anim_attr.speed
+
+	if anim_attr.has('blend'):
+		blend = anim_attr.blend
+
+	if anim_attr.has('clip_start'):
+		clip_start = anim_attr.clip_start
+
+	if anim_attr.has('clip_end'):
+		clip_end = anim_attr.clip_end
+
+	call('play', _animation, blend, speed)
+
+	if random:
+		_randomize_animation()
 
 
 func _start_state(_name, _data={}):
 	
-	if attributes_dict.has(assigned_animation) and attributes_dict[assigned_animation].has('next'):
+	if get('assigned_animation').length() and attributes[get('assigned_animation')].has('next'):
 		
 		next = _name
-		_play(attributes_dict[assigned_animation].next)
+		_play(attributes[get('assigned_animation')].next)
 		
 		return
 	
