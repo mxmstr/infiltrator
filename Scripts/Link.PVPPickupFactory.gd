@@ -1,16 +1,23 @@
 extends 'res://Scripts/Link.gd'
 
 var spawn_chance = 1.0#0.8
-var respawn_time = 6000.0#30.0
-var pickup_idx = 0
+var spawn_count = 4
+var respawn_time = 30.0
 
 
 func _on_timeout():
 	
-	_refresh_spawn(get_child(pickup_idx))
-	get_child(pickup_idx).get_node('RespawnSound').playing = true
+	randomize()
+	var markers = get_children()
+	markers.shuffle()
 	
-	pickup_idx = randi() % get_child_count()
+	_refresh_spawn(markers[0])
+	markers[0].get_node('RespawnSound').playing = true
+
+
+func _on_stimulate():
+	
+	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout')
 
 
 func _on_factory_finished(link, marker):
@@ -23,6 +30,20 @@ func _on_factory_finished(link, marker):
 		output.rotation = marker.rotation
 		
 		offset += Vector3(0, 0.5, 0)
+	
+	for output in link.outputs:
+		
+		if output.has_node('PickupRadiusStim'):
+			
+			output.get_node('PickupRadiusStim').connect(
+				'stimulate',
+				self,
+				'_on_stimulate',
+				[],
+				CONNECT_ONESHOT
+				)
+			
+			break
 
 
 func _refresh_spawn(marker):
@@ -47,15 +68,16 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	var count = 6
-	for marker in get_children():
-		if count > 0 and randf() < spawn_chance:
-			_refresh_spawn(marker)
-			count -= 1
-	
 	if get_child_count() == 0:
 		return
 	
-	pickup_idx = randi() % get_child_count()
+	randomize()
+	var markers = get_children()
+	markers.shuffle()
 	
-	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout')
+	for i in range(spawn_count):
+		_refresh_spawn(markers[i])
+	
+#	pickup_idx = randi() % get_child_count()
+#
+#	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout')

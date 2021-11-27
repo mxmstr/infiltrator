@@ -5,24 +5,12 @@
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.5
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-__meta__ = {
-
-}
 
 [node name="Punch" instance=ExtResource( 1 )]
 collision_layer = 0
@@ -31,15 +19,13 @@ tags = "Actor Punch Damage:20 Force:0.5 DisarmChance:0.5"
 
 [node name="Collision" type="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
-__meta__ = {
-
-}
 
 [node name="RadiusStim" parent="." index="1" instance=ExtResource( 2 )]
 stim_type = "Touch"
 max_distance = 1.0
 raycast = true
 use_hitbox = true
+stim_hitbox = true
 required_tags = "Human"
 
 [node name="Reception" parent="." index="4"]

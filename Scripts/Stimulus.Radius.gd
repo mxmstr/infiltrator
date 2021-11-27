@@ -5,6 +5,7 @@ export var continuous = false
 export var max_distance = 0.0
 export var raycast = false
 export var use_hitbox = false
+export var stim_hitbox = false
 export(String, MULTILINE) var required_tags
 
 var required_tags_dict = {}
@@ -14,6 +15,8 @@ var shooter
 onready var actors = get_node_or_null('/root/Mission/Actors')
 onready var collision = get_node_or_null('../Collision')
 onready var movement = get_node_or_null('../Movement')
+
+signal stimulate
 
 
 func _ready():
@@ -62,10 +65,15 @@ func _physics_process(delta):
 	
 	for actor in actors.get_children() if actors else []:
 		
-		if not actor.get('tags') or \
+		if actor in [owner, shooter] or \
+			not actor.get('tags') or \
 			(use_hitbox and not actor.has_node('Hitboxes')) or \
 			actor in owner.get_collision_exceptions():
 			continue
+		
+		if not continuous and actor in colliders:
+			return
+		
 		
 		var tagged = true
 		
@@ -76,30 +84,30 @@ func _physics_process(delta):
 		if not tagged:
 			continue
 		
+		
 		if use_hitbox:
 			
 			for hitbox in actor.get_node('Hitboxes').get_children():
 				
 				if _validate_within_radius(hitbox):
-					collide_actors.append(actor)
+					
+					if stim_hitbox:
+						Meta.StimulateActor(hitbox, stim_type, owner)
+					else:
+						Meta.StimulateActor(actor, stim_type, owner)
+					emit_signal('stimulate')
+					
+					new_colliders.append(actor)
 					break
 		
 		else:
 			
 			if _validate_within_radius(actor):
-				collide_actors.append(actor)
-	
-	
-	for actor in collide_actors:
-		
-		if actor in [owner, shooter]:
-			continue
-		
-		if not continuous and actor in colliders:
-			return
-		
-		Meta.StimulateActor(actor, stim_type, owner)
-		new_colliders.append(actor)
+				
+				Meta.StimulateActor(actor, stim_type, owner)
+				emit_signal('stimulate')
+				
+				new_colliders.append(actor)
 	
 	
 	colliders = new_colliders

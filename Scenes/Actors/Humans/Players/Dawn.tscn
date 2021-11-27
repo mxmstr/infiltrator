@@ -153,24 +153,24 @@ bone_name = "Foot-R"
 [node name="LeftKickContainer" parent="." index="34"]
 bone_name = "Foot-R"
 
-[node name="VoiceAudio" parent="." index="69"]
+[node name="VoiceAudio" parent="." index="71"]
 parameters/playback = SubResource( 3 )
 
-[node name="FoleyAudio" parent="." index="70"]
+[node name="FoleyAudio" parent="." index="72"]
 parameters/playback = SubResource( 4 )
 
-[node name="FeetAudio" parent="." index="71"]
+[node name="FeetAudio" parent="." index="73"]
 parameters/playback = SubResource( 5 )
 
-[node name="Reception" parent="." index="74"]
+[node name="Reception" parent="." index="76"]
 tree_root = SubResource( 23 )
 parameters/playback = SubResource( 24 )
 
-[node name="Interface" parent="." index="75"]
+[node name="Interface" parent="." index="77"]
 tree_root = SubResource( 26 )
 parameters/playback = SubResource( 27 )
 
-[node name="Audio" parent="." index="76"]
+[node name="Audio" parent="." index="78"]
 parameters/playback = SubResource( 28 )
 
 [editable path="CameraRig"]

@@ -6,6 +6,8 @@ onready var audio = get_node_or_null('../Audio')
 
 func _on_stimulate(stim, data):
 	
+	prints(owner, stim)
+	
 	if stim == 'Touch':
 		
 		if data.source._has_tag('Bullet'):

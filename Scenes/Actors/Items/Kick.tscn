@@ -25,6 +25,7 @@ stim_type = "Touch"
 max_distance = 1.5
 raycast = true
 use_hitbox = true
+stim_hitbox = true
 required_tags = "Human"
 
 [node name="Reception" parent="." index="4"]
