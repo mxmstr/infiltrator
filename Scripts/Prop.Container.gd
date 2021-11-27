@@ -294,6 +294,7 @@ func _apply_launch_attributes(item):
 		if release_exclude_parent_lifetime > 0:
 			get_tree().create_timer(release_exclude_parent_lifetime).connect('timeout', self, '_remove_exclusions', [item, parent_list])
 	
+	
 	if release_lifetime > 0:
 		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')
 

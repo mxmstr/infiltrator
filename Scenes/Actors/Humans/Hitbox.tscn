@@ -8,55 +8,31 @@
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "DefaultAnim"
 script = ExtResource( 5 )
-__meta__ = {
-
-}
 chain = true
 schema = ""
 custom_script = ""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
 auto_advance = true
 priority = 32
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 auto_advance = true
 priority = 32
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=9]
 states/Damage/node = SubResource( 1 )
@@ -72,22 +48,13 @@ start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 188.905 )
 script = ExtResource( 4 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = true
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=11]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=12]
 states/Start/node = SubResource( 11 )
@@ -95,34 +62,19 @@ states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 4 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=13]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=15]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 auto_advance = true
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=17]
 states/End/node = SubResource( 14 )
@@ -134,16 +86,10 @@ start_node = "Start"
 end_node = "End"
 graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 4 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=18]
-__meta__ = {
-
-}
 
 [node name="Hitbox" instance=ExtResource( 1 )]
 collision_layer = 16
@@ -158,14 +104,19 @@ tree = NodePath("../Audio")
 schema = "DamageSound"
 state = "Damage"
 
-[node name="Reception" parent="." index="4"]
+[node name="PunchHitSound" parent="." index="2" instance=ExtResource( 3 )]
+tree = NodePath("../Audio")
+schema = "PunchHitSound"
+state = "PunchHit"
+
+[node name="Reception" parent="." index="5"]
 tree_root = SubResource( 9 )
 parameters/playback = SubResource( 10 )
 
-[node name="Interface" parent="." index="5"]
+[node name="Interface" parent="." index="6"]
 tree_root = SubResource( 12 )
 parameters/playback = SubResource( 13 )
 
-[node name="Audio" parent="." index="6"]
+[node name="Audio" parent="." index="7"]
 tree_root = SubResource( 17 )
 parameters/playback = SubResource( 18 )

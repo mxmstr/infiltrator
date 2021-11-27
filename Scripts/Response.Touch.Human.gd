@@ -3,11 +3,12 @@ extends 'res://Scripts/Response.gd'
 onready var righthand = get_node_or_null('../RightHandContainer')
 onready var inventory = get_node_or_null('../InventoryContainer')
 onready var foley_audio = get_node_or_null('../FoleyAudio')
+onready var stamina = get_node_or_null('../Stamina')
 
 
 func _on_stimulate(stim, data):
 	
-	if stim == 'Touch':
+	if stim == 'Touch' and stamina.hp > 0:
 		
 		if data.source._has_tag('Item'):
 			

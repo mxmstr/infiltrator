@@ -85,10 +85,13 @@ func _get_ammo_container(item):
 func _refresh_ammo():
 	
 	if not ammo_container:
+		
 		ammo_container = _get_ammo_container(righthand.items[0])
 		ammo_container.connect('item_added', self, '_on_ammo_added')
 		ammo_container.connect('item_removed', self, '_on_ammo_removed')
-		righthand.items[0].get_node('Chamber').connect('item_removed', self, '_on_ammo_removed')
+		
+		if not righthand.items[0].get_node('Chamber').is_connected('item_removed', self, '_on_ammo_removed'):
+			righthand.items[0].get_node('Chamber').connect('item_removed', self, '_on_ammo_removed')
 	
 	var inv_ammo = ammo_container.items.size()
 	var chamber_ammo = righthand.items[0].get_node('Chamber').items.size()

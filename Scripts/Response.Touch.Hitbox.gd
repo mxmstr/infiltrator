@@ -33,7 +33,8 @@ func _on_stimulate(stim, data):
 			
 			Meta.StimulateActor(owner.owner, 'Damage', data.source, damage, data.position, direction)
 			Meta.StimulateActor(owner.owner, 'Push', data.source, force, data.position, direction)
-			audio._start_state('Damage')
+			
+			audio._start_state('PunchHit')
 			
 			if randf() < disarm_chance:
 				owner.owner.get_node('RightHandContainer')._release_front()

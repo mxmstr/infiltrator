@@ -98,6 +98,9 @@ release_lifetime = 0.1
 required_tags = "Punch"
 
 [node name="InventoryContainer" parent="." index="10" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+release_exclude_parent = true
+release_exclude_parent_lifetime = 2.0
 invisible = true
 required_tags = "Firearm"
 
@@ -212,40 +215,50 @@ schema = "JumpBackwardSound"
 random = true
 state = "JumpBackward"
 
-[node name="OofSound" parent="." index="41" instance=ExtResource( 22 )]
+[node name="PunchSound" parent="." index="41" instance=ExtResource( 22 )]
+tree = NodePath("../FoleyAudio")
+schema = "PunchSound"
+state = "Punch"
+
+[node name="KickSound" parent="." index="42" instance=ExtResource( 22 )]
+tree = NodePath("../FoleyAudio")
+schema = "KickSound"
+state = "Kick"
+
+[node name="OofSound" parent="." index="43" instance=ExtResource( 22 )]
 tree = NodePath("../VoiceAudio")
 schema = "Oof"
 random = true
 state = "Oof"
 
-[node name="PickupWeaponSound" parent="." index="42" instance=ExtResource( 22 )]
+[node name="PickupWeaponSound" parent="." index="44" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PickupWeaponSound"
 state = "PickupWeapon"
 
-[node name="PickupAmmoSound" parent="." index="43" instance=ExtResource( 22 )]
+[node name="PickupAmmoSound" parent="." index="45" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PickupAmmoSound"
 state = "PickupAmmo"
 
-[node name="VoiceAudio" parent="." index="44" instance=ExtResource( 28 )]
+[node name="VoiceAudio" parent="." index="46" instance=ExtResource( 28 )]
 parameters/playback = SubResource( 3 )
 bus = "Voice"
 
-[node name="FoleyAudio" parent="." index="45" instance=ExtResource( 28 )]
+[node name="FoleyAudio" parent="." index="47" instance=ExtResource( 28 )]
 parameters/playback = SubResource( 4 )
 
-[node name="FeetAudio" parent="." index="46" instance=ExtResource( 28 )]
+[node name="FeetAudio" parent="." index="48" instance=ExtResource( 28 )]
 parameters/playback = SubResource( 5 )
 
-[node name="Reception" parent="." index="49"]
+[node name="Reception" parent="." index="51"]
 parameters/playback = SubResource( 6 )
 
-[node name="Interface" parent="." index="50"]
+[node name="Interface" parent="." index="52"]
 tree_root = SubResource( 8 )
 parameters/playback = SubResource( 9 )
 
-[node name="Audio" parent="." index="51"]
+[node name="Audio" parent="." index="53"]
 parameters/playback = SubResource( 10 )
 
 [editable path="CameraRig"]

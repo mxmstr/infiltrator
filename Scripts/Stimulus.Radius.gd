@@ -43,13 +43,11 @@ func _validate_within_radius(actor):
 			force_raycast_update()
 			
 			if not get_collider():
-				Meta.StimulateActor(actor, stim_type, owner)
+				return true
 			
 		else:
 			
-			Meta.StimulateActor(actor, stim_type, owner)
-		
-		return true
+			return true
 	
 	return false
 
@@ -64,7 +62,9 @@ func _physics_process(delta):
 	
 	for actor in actors.get_children() if actors else []:
 		
-		if not actor.get('tags') or (use_hitbox and not actor.has_node('Hitboxes')):
+		if not actor.get('tags') or \
+			(use_hitbox and not actor.has_node('Hitboxes')) or \
+			actor in owner.get_collision_exceptions():
 			continue
 		
 		var tagged = true
@@ -76,7 +76,18 @@ func _physics_process(delta):
 		if not tagged:
 			continue
 		
-		collide_actors.append(actor)
+		if use_hitbox:
+			
+			for hitbox in actor.get_node('Hitboxes').get_children():
+				
+				if _validate_within_radius(hitbox):
+					collide_actors.append(actor)
+					break
+		
+		else:
+			
+			if _validate_within_radius(actor):
+				collide_actors.append(actor)
 	
 	
 	for actor in collide_actors:
@@ -87,18 +98,8 @@ func _physics_process(delta):
 		if not continuous and actor in colliders:
 			return
 		
-		if use_hitbox:
-			
-			for hitbox in actor.get_node('Hitboxes').get_children():
-				
-				if _validate_within_radius(hitbox):
-					new_colliders.append(actor)
-					break
-		
-		else:
-			
-			if _validate_within_radius(actor):
-				new_colliders.append(actor)
+		Meta.StimulateActor(actor, stim_type, owner)
+		new_colliders.append(actor)
 	
 	
 	colliders = new_colliders

@@ -3,6 +3,14 @@ extends 'res://Scripts/Response.gd'
 onready var behavior = get_node_or_null('../Behavior')
 onready var movement = get_node_or_null('../Movement')
 onready var stamina = get_node_or_null('../Stamina')
+onready var right_hand = get_node_or_null('../RightHandContainer')
+onready var inventory = get_node_or_null('../InventoryContainer')
+onready var inv_9mm = get_node_or_null('../Bullet9mmContainer')
+onready var inv_rifle = get_node_or_null('../BulletRifleContainer')
+onready var inv_magnum = get_node_or_null('../BulletMagnumContainer')
+onready var inv_shotgun = get_node_or_null('../BulletShotgunContainer')
+onready var inv_sniper = get_node_or_null('../BulletSniperContainer')
+onready var inv_grenade = get_node_or_null('../BulletGrenadeContainer')
 onready var voice_audio = get_node_or_null('../VoiceAudio')
 
 
@@ -23,5 +31,22 @@ func _on_stimulate(stim, data):
 		voice_audio._start_state('Oof')
 		
 		if stamina.hp == 0:
-		
+			
+			right_hand._release_front()
+			inventory._release_all()
+			
+			for data in [[inv_9mm, 'Items/AmmoBox9mm'],
+					[inv_rifle, 'Items/AmmoBoxRifle'],
+					[inv_magnum, 'Items/AmmoBoxMagnum'],
+					[inv_shotgun, 'Items/AmmoBoxShotgun'],
+					[inv_sniper, 'Items/AmmoBoxSniper']]:
+				
+				if not data[0]._is_empty():
+					
+					var ammo_box = Meta.AddActor(data[1], inventory.translation, inventory.rotation_degrees)
+					ammo_box._set_tag('amount', data[0].items.size())
+					inventory._exclude_recursive(ammo_box, owner)
+					
+					data[0]._delete_all()
+			
 			behavior._start_state('Die', { 'shooter': data.shooter })

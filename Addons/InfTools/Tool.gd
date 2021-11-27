@@ -191,7 +191,7 @@ func on_loadaudio_pressed():
 				elif not file.begins_with('.') and file.ends_with('.wav'):
 					
 					_load_stream(selected, dock.get_node('LoadAudioInput').text + file, file)
-
+			
 			dir.list_dir_end()
 
 
