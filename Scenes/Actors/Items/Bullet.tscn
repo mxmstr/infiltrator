@@ -7,21 +7,12 @@
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
-__meta__ = {
-
-}
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.016 ), -2.94591, 0.0, 0, 0 ]
-__meta__ = {
-
-}
 
 [sub_resource type="CurveTexture" id=3]
 curve = SubResource( 2 )
-__meta__ = {
-
-}
 
 [sub_resource type="ParticlesMaterial" id=4]
 flag_align_y = true
@@ -30,36 +21,21 @@ angular_velocity = 7.46892e-43
 radial_accel = 10.0
 tangential_accel = 1.0
 scale_curve = SubResource( 3 )
-__meta__ = {
-
-}
 
 [sub_resource type="SphereMesh" id=5]
 radius = 0.025
 height = 0.05
 radial_segments = 4
 rings = 1
-__meta__ = {
-
-}
 
 [sub_resource type="SphereShape" id=6]
 radius = 0.1
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=7]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=9]
 resource_local_to_scene = true
@@ -68,23 +44,14 @@ states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 5 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
-__meta__ = {
 
-}
-
-[node name="Bullet" index="0" instance=ExtResource( 1 )]
+[node name="Bullet" instance=ExtResource( 1 )]
 collision_layer = 8
 collision_mask = 17
 tags = "Actor Bullet Damage:0 Force:0"
@@ -102,15 +69,9 @@ lifetime = 0.41
 visibility_aabb = AABB( -0.193909, -0.932309, -0.371607, 0.387815, 1.86463, 0.743204 )
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 5 )
-__meta__ = {
-
-}
 
 [node name="Collision" type="CollisionShape" parent="." index="2"]
 shape = SubResource( 6 )
-__meta__ = {
-
-}
 
 [node name="ContactStim" parent="." index="3" instance=ExtResource( 3 )]
 stim_type = "Touch"

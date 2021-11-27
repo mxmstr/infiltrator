@@ -26,6 +26,7 @@ var items = []
 
 signal item_added
 signal item_removed
+signal item_released
 signal released
 
 
@@ -305,6 +306,8 @@ func _create_and_launch_item(item_path):
 	
 	_apply_launch_attributes(item)
 	
+	emit_signal('item_released', item)
+	
 	return item
 
 
@@ -326,6 +329,8 @@ func _release_front():
 	
 	item._set_tag('Shooter', shooter)
 	
+	emit_signal('item_released', item)
+	
 	return item
 
 
@@ -338,23 +343,27 @@ func _release(item):
 	
 	item._set_tag('Shooter', owner)
 	
+	emit_signal('item_released', item)
+	
 	return item
 
 
 func _release_all():
 	
+	var released = []
+	
 	if factory_mode:
-		
-		var released = []
 		
 		for item in items:
 			released.append(Meta.AddActor(_remove_item(item), root.global_transform.origin, root.rotation_degrees))
-		
-		return released
 	
 	else:
 		
-		return Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+		released = Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+	
+#	emit_signal('item_released')
+	
+	return released
 
 
 func _delete_all():

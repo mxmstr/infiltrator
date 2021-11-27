@@ -1,6 +1,5 @@
 extends RayCast
 
-export(NodePath) var right_hand_container
 export(String) var chamber_container
 
 var model
@@ -15,8 +14,14 @@ var targeted_enemy
 var targeted_enemy_bone
 var shoulder_bone
 var auto_aim = false
+var equipped = false
 
 onready var stamina = get_node_or_null('../Stamina')
+onready var right_hand = get_node_or_null('../RightHandContainer')
+onready var right_punch = get_node_or_null('../RightPunchContainer')
+onready var left_punch = get_node_or_null('../LeftPunchContainer')
+onready var right_kick = get_node_or_null('../RightKickContainer')
+onready var left_kick = get_node_or_null('../LeftKickContainer')
 
 
 func _on_fire(container, projectile):
@@ -29,9 +34,14 @@ func _on_fire(container, projectile):
 	projectile.look_at(camera_raycast_target.global_transform.origin, Vector3.UP)
 
 
+func _on_punch(projectile):
+	
+	projectile.rotation = owner.rotation
+
+
 func _on_camera_entered(_camera, actor):
 	
-	if _camera == camera and actor.get_node('Stamina').hp > 0:
+	if equipped and _camera == camera and actor.get_node('Stamina').hp > 0:
 		
 		visible_enemies.append(actor)
 		
@@ -40,7 +50,7 @@ func _on_camera_entered(_camera, actor):
 
 func _on_camera_exited(_camera, actor):
 	
-	if _camera == camera:
+	if equipped and _camera == camera:
 		
 		visible_enemies.erase(actor)
 		
@@ -52,6 +62,7 @@ func _on_item_equipped(container, item):
 	if item._has_tag('Firearm'):
 		
 		item.get_node(chamber_container).connect('item_removed', self, '_on_fire')
+		equipped = true
 
 
 func _on_item_dequipped(container, item):
@@ -59,6 +70,10 @@ func _on_item_dequipped(container, item):
 	if item._has_tag('Firearm'):
 		
 		item.get_node(chamber_container).disconnect('item_removed', self, '_on_fire')
+	
+	equipped = false
+	targeted_enemy = null
+	targeted_enemy_bone = null
 
 
 func _select_target():
@@ -96,8 +111,12 @@ func _ready():
 	camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
 	perspective = get_node_or_null('../Perspective')
 	
-	get_node(right_hand_container).connect('item_added', self, '_on_item_equipped')
-	get_node(right_hand_container).connect('item_removed', self, '_on_item_dequipped')
+	right_hand.connect('item_added', self, '_on_item_equipped')
+	right_hand.connect('item_removed', self, '_on_item_dequipped')
+	right_punch.connect('item_released', self, '_on_punch')
+	left_punch.connect('item_released', self, '_on_punch')
+	right_kick.connect('item_released', self, '_on_punch')
+	left_kick.connect('item_released', self, '_on_punch')
 	
 	yield(get_tree(), 'idle_frame')
 	

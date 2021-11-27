@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=2]
@@ -23,36 +23,22 @@
 [ext_resource path="res://Animations/Human/Action/Jump/jumpForwardRight.tres" type="Animation" id=21]
 [ext_resource path="res://Animations/Human/Action/Jump/sidestepleft.tres" type="Animation" id=22]
 [ext_resource path="res://Animations/Human/Action/Jump/sidestepright.tres" type="Animation" id=23]
+[ext_resource path="res://Animations/Human/Action/Kick/SNAPKICK.tres" type="Animation" id=24]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "Run"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Walk"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "StrafeRight"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "StrafeLeft"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=6]
 auto_triangles = false
@@ -67,18 +53,11 @@ blend_point_3/pos = Vector2( 0.4, 0 )
 blend_point_4/node = SubResource( 5 )
 blend_point_4/pos = Vector2( -0.4, 0 )
 triangles = PoolIntArray( 0, 2, 3, 1, 2, 3, 0, 2, 4, 1, 2, 4 )
-__meta__ = {
-
-}
 
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157895, 0, 0 )
-__meta__ = {
-
-}
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55461e-08, 2.19973e-08, 0.813492 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
 visible = false
 
 [node name="neo_reference_skeleton" parent="Model" index="0"]
@@ -87,9 +66,6 @@ transform = Transform( -1, 1.32005e-14, 8.74228e-08, 3.38813e-21, 1, -1.50996e-0
 [node name="BoneAttachment" type="BoneAttachment" parent="Model/neo_reference_skeleton" index="1"]
 transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
 bone_name = "Gun"
-__meta__ = {
-
-}
 
 [node name="Beretta" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 2 )]
 transform = Transform( 0.995721, -0.0914473, 0.0132716, -0.014466, -0.0124059, 0.999818, -0.0912661, -0.995731, -0.0136759, 0.00988671, -0.022818, 0.0215178 )
@@ -138,14 +114,11 @@ visible = false
 [node name="Model2" parent="." instance=ExtResource( 12 )]
 
 [node name="neo_reference_skeleton" parent="Model2" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.5411e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( 0.559759, 0.822838, 0.0980193, 0.567131, -0.294164, -0.769305, -0.60418, 0.486215, -0.631318, 0.415004, 0.967199, -0.204037 )
+transform = Transform( 0.203221, 0.601007, -0.772976, 0.716776, -0.629128, -0.300716, -0.667033, -0.492939, -0.55864, -0.306164, 0.78256, -0.401917 )
 bone_name = "Gun"
-__meta__ = {
-
-}
 
 [node name="Beretta" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 2 )]
 transform = Transform( 0.999999, 0, 0, 0, -4.37113e-08, 0.999999, 0, -0.999998, -4.37113e-08, -0.00848666, 0.00501686, 0.0258089 )
@@ -194,9 +167,6 @@ tree_root = SubResource( 6 )
 anim_player = NodePath("AnimationPlayer")
 root_motion_track = NodePath("../..")
 parameters/blend_position = Vector2( -0.00462532, 0.0520232 )
-__meta__ = {
-
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../../Model2/neo_reference_skeleton")
@@ -204,27 +174,18 @@ anims/HOPBACK = ExtResource( 14 )
 anims/Jump.Exit = ExtResource( 15 )
 anims/JumpLong = ExtResource( 16 )
 anims/JumpUp = ExtResource( 17 )
+anims/SNAPKICK = ExtResource( 24 )
 anims/ShootPumpShotgun = ExtResource( 18 )
 anims/jumpForward = ExtResource( 19 )
 anims/jumpForwardLeft = ExtResource( 20 )
 anims/jumpForwardRight = ExtResource( 21 )
 anims/sidestepleft = ExtResource( 22 )
 anims/sidestepright = ExtResource( 23 )
-__meta__ = {
-
-}
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.68692, 0 )
-__meta__ = {
-
-}
 
 [node name="RootMotionView" type="RootMotionView" parent="."]
-__meta__ = {
-
-}
 
 [editable path="Model"]
-
 [editable path="Model2"]

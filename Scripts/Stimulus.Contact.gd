@@ -1,14 +1,7 @@
 extends Node
 
-enum ContactType {
-	Collision,
-	Radius
-}
-
 export(String) var stim_type
 export var continuous = false
-
-export(ContactType) var contact_type = ContactType.Collision
 export var max_distance = 0.0
 
 var collisions = []
