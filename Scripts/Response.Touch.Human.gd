@@ -6,6 +6,33 @@ onready var foley_audio = get_node_or_null('../FoleyAudio')
 onready var stamina = get_node_or_null('../Stamina')
 
 
+func _is_container(node):
+	
+	if node.get_script():
+		return 'Prop.Container.gd' == node.get_script().get_path().get_file()
+	
+	return false
+
+
+func _get_ammo_container(magazine, target):
+	
+	for prop in target.get_children():
+		
+		if _is_container(prop):
+			
+			var valid = true
+			
+			for required_tag in magazine.required_tags_dict.keys():
+				if not required_tag in prop.required_tags_dict.keys():
+					valid = false
+					break
+			
+			if valid:
+				return prop
+	
+	return null
+
+
 func _on_stimulate(stim, data):
 	
 	if stim == 'Touch' and stamina.hp > 0:
@@ -24,8 +51,20 @@ func _on_stimulate(stim, data):
 			
 			if exists:
 				
-				data.source.get_node('Magazine')._transfer_items_to(owner)
-				data.source.get_node('Chamber')._transfer_items_to(owner)
+				var item_magazine = data.source.get_node('Magazine')
+				var item_chamber = data.source.get_node('Chamber')
+				var ammo_container = _get_ammo_container(item_magazine, owner)
+				
+				if not item_magazine._is_empty():
+					
+					var item_path = item_magazine.items[0]
+					
+					for i in range(item_magazine.items.size()):
+						ammo_container._add_item(item_path)
+				
+					if not data.source.get_node('Chamber')._is_empty():
+						ammo_container._add_item(item_path)
+				
 				data.source.get_node('Magazine')._delete_all()
 				data.source.get_node('Chamber')._delete_all()
 				data.source.queue_free()

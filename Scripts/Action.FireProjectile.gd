@@ -8,26 +8,42 @@ onready var magazine = get_node_or_null('../Magazine')
 
 func _clone_and_shoot(item, i):
 
-	if i == 0:
-		return
+#	if i == 0:
+#		return
 	
-#	var item_clone = chamber._create_and_launch_item(item.system_path)#item.duplicate()
+	var item_clone = chamber._create_and_launch_item(item.system_path)#item.duplicate()
 #
 #	item_clone.rotation = item.rotation
 #	item_clone.translation = item.translation
-	var item_clone = item.duplicate()
-	item_clone._set_tag('Shooter', item._get_tag('Shooter'))
-	actors.add_child(item_clone)
-	chamber._apply_launch_attributes(item_clone)
+#	var item_clone = item.duplicate()
+#	item_clone._set_tag('Shooter', item._get_tag('Shooter'))
+#	actors.add_child(item_clone)
+#	chamber._apply_launch_attributes(item_clone)
 	
-	call_deferred('_clone_and_shoot', item, i - 1)
+#	_clone_and_shoot(item, i - 1)
+#	call_deferred('_clone_and_shoot', item, i - 1)
 
 
-func _shoot_array(count):
+func _shoot_array_threaded(count):
 	
 	var item = chamber._release_front()
 	
-	call_deferred('_clone_and_shoot', item, count - 1)
+	for i in range(count):
+		
+		var thread = Thread.new()
+		thread.start(self, '_shoot_array', [item.system_path])
+		
+		Meta.threads.append(thread)
+
+
+func _shoot_array(userdata):
+	
+	var system_path = userdata[0]
+#	var item = chamber._release_front()
+#
+#	_clone_and_shoot(item, count - 1)
+	
+	var item_clone = chamber._create_and_launch_item(system_path)
 
 
 func _on_action(_state, data): 

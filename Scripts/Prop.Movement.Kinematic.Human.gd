@@ -5,12 +5,12 @@ export var accel = 3.0
 export var deaccel = 5.0
 export var angular_accel = 0.5
 export var angular_deaccel = 10
-export var ghost = false
 export var stop_on_slope = false
 export var max_slides = 4
 
 var rotate_x_camera = false
 var rotate_y_camera = true
+var snap = Vector3()
 
 onready var camera_rig = get_node_or_null('../CameraRig')
 
@@ -47,22 +47,7 @@ func _set_direction(new_direction, local=false):
 
 func _apply_root_transform(root_transform, delta):
 	
-	pass
-#	root_transform.origin *= 8
-#	owner.translate(root_transform.origin)
 	owner.transform *= root_transform
-	
-#	var h_velocity = root_transform.origin / delta
-#	velocity.x = h_velocity.x
-#	velocity.z = h_velocity.z
-#	velocity.y += gravity * delta
-#	owner.move_and_slide(h_velocity, Vector3.UP)
-	
-#	root_transform.origin = Vector3() # Clear accumulated root motion displacement (was applied to speed).
-#	root_transform = root_transform.orthonormalized() # Orthonormalize orientation.
-#
-#	owner.transform.basis = root_transform.basis
-
 
 
 func _teleport(new_position=null, new_rotation=null):
@@ -132,7 +117,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	
-	var vertical = velocity.y + (delta * gravity)
+	var vertical = velocity.y# + (delta * gravity)
 	var horizontal = Vector3(velocity.x, 0, velocity.z)
 	
 	var new_velocity = direction * speed
@@ -151,16 +136,20 @@ func _physics_process(delta):
 	velocity.y = vertical
 	
 	
-	if ghost:
-		
-		owner.move_and_slide(velocity, Vector3(0, 1, 0), stop_on_slope, max_slides)
-		emit_signal('move_and_slide', delta)
-		
+	if owner.is_on_floor() and velocity.y <= 0:
+		var length = Vector3(velocity.x, 0, velocity.z).length()
+		velocity = velocity.normalized() * length
 	else:
-		
-		velocity = owner.move_and_slide(velocity, Vector3(0, 1, 0), stop_on_slope, max_slides)
-		emit_signal('move_and_slide', delta)
+		velocity = Vector3(velocity.x, velocity.y + (gravity * delta), velocity.z)
 	
-#	var root_motion = $'../Behavior'.get_root_motion_transform()
-#	root_motion.origin /= delta
-#	owner.transform *= root_motion
+	# Calc snap value
+	if owner.is_on_floor() and velocity.y <= 0:    
+		snap = -owner.get_floor_normal() - owner.get_floor_velocity() * delta
+	else:
+		snap = Vector3.ZERO
+
+	# Apply velocity
+	velocity = owner.move_and_slide_with_snap(velocity, snap, Vector3.UP, stop_on_slope)
+	
+	
+	emit_signal('move_and_slide', delta)

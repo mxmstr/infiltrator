@@ -77,9 +77,7 @@ func _play_victory_music():
 func _suspend_players():
 	
 	for actor in actors:
-		
-		pass
-		#actor.get_node('HUDMode')._teleport_to_state('Victory')
+		actor.get_node('Behavior')._start_state('Suspend')
 
 
 func _respawn(actor):
@@ -184,13 +182,5 @@ func _ready():
 	for i in range(Meta.player_count):
 		
 		var data = Meta.player_data[i]
-		
 		actors[i].get_node('Behavior').connect('action', self, '_on_action', [actors[i]])
-		
-#		actors[i].get_node('Stamina').connect('just_died', self, '_on_player_died', [actors[i]])
-		
-#		if actors[i].get_node('Behavior').tree_root.has_node('Die'):
-#			var die_node = actors[i].get_node('Behavior').tree_root.get_node('Die')
-#			die_node.connect('playing', self, '_on_player_died', [actors[i]])
-	
 	

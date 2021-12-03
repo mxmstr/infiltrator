@@ -4,6 +4,7 @@ export var process_movement = false
 export var gravity = 0
 export var accel = 0
 export var deaccel = 0
+export var projectile = false
 
 signal before_move
 signal after_move
@@ -57,6 +58,12 @@ func _face(target, angle_delta=0.0):
 		
 		turn_target = owner.global_transform.basis.z.linear_interpolate(turn_target, angle_delta / angle)
 		owner.global_transform.look_at(owner.global_transform.origin - turn_target)
+
+
+func _process(delta):
+	
+	if projectile:
+		_set_direction(Vector3(0, 0, 1), true)
 
 
 func _physics_process(delta):

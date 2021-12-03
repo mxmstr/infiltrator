@@ -6,9 +6,6 @@
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/FireProjectile = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
 		\"switch_mode\": \"End\"

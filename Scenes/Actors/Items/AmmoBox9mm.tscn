@@ -6,21 +6,12 @@
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.1962, 0.186247, 0.104123 )
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=4]
 resource_local_to_scene = true
@@ -29,24 +20,15 @@ states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 3 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
-__meta__ = {
 
-}
-
-[node name="AmmoBox9mm" index="0" instance=ExtResource( 1 )]
-tags = "Actor Ammo Kind:Bullet9mm Path:Items/Bullet9mm Amount:12"
+[node name="AmmoBox9mm" instance=ExtResource( 1 )]
+tags = "Actor Ammo Kind:Bullet9mm Path:Items/Bullet2 Amount:12"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0 )
@@ -54,9 +36,6 @@ transform = Transform( 0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0 )
 [node name="Collision" type="CollisionShape" parent="." index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.185621, 0 )
 shape = SubResource( 1 )
-__meta__ = {
-
-}
 
 [node name="Reception" parent="." index="5"]
 parameters/playback = SubResource( 2 )

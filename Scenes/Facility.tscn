@@ -7,9 +7,6 @@
 [ext_resource path="res://Scenes/Maps/Facility.map.tscn" type="PackedScene" id=5]
 
 [node name="Mission" type="Spatial"]
-__meta__ = {
-
-}
 
 [node name="Actors" type="Spatial" parent="."]
 __meta__ = {
@@ -22,9 +19,6 @@ __meta__ = {
 }
 
 [node name="Links" type="Node" parent="."]
-__meta__ = {
-
-}
 
 [node name="PVPPlayerFactory" parent="Links" instance=ExtResource( 1 )]
 

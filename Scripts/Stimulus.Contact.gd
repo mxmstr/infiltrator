@@ -31,6 +31,11 @@ func _physics_process(delta):
 	
 	for collision_ in movement._get_collisions():
 		
+		
+		if 'AmmoBox' in owner.name:
+			prints(collision_.collider)
+		
+		
 		if continuous or not collision_.collider in colliders:
 			
 			Meta.StimulateActor(

@@ -4,16 +4,10 @@
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=2]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 resource_local_to_scene = true
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachine" id=3]
 resource_local_to_scene = true
@@ -22,21 +16,12 @@ states/Start/position = Vector2( 624, 170 )
 start_node = "Start"
 graph_offset = Vector2( 0, 75.2147 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
-__meta__ = {
-
-}
 
 [node name="BulletShotgun" instance=ExtResource( 1 )]
 tags = "Actor Bullet Shotgun Damage:10 Force:2"

@@ -60,7 +60,7 @@ var player_data = [
 ]
 var rotate_sensitivity = 6.0
 var rawinput = false
-
+var threads = []
 var cached_args = []
 
 signal on_input
@@ -372,4 +372,9 @@ func _enter_tree():
 	
 	PreloadActors()
 	PreloadLinks()
+
+
+func _exit_tree():
 	
+	for thread in threads:
+		thread.wait_to_finish()

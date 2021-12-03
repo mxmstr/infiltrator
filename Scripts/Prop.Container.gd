@@ -126,32 +126,6 @@ func _get_item_with_tags(tags):
 	return null
 
 
-func _transfer_items_to(to):
-	
-	if factory_mode and items.size():
-		
-		var dummy = Meta.AddActor(items[0])
-		var link = Meta.CreateLink(to, dummy, 'Contains')
-		var container_node = link.container_node
-		
-		if container_node:
-			
-			link._destroy()
-			
-			while items.size() and not container_node._is_full():
-				
-				container_node._add_item(items.pop_front())
-		
-		dummy.queue_free()
-	
-	else:
-	
-		for item in _release_all():
-			
-			if Meta.CreateLink(to, item, 'Contains').is_queued_for_deletion():
-				item.queue_free()
-
-
 func _is_container(node):
 	
 	if node.get_script() != null:
@@ -242,14 +216,25 @@ func _exclude_recursive(item, parent):
 	
 	var parent_list = []
 	
-	item.add_collision_exception_with(parent)
+	if item is PhysicsBody:
+		
+		item.add_collision_exception_with(parent)
+		
+		if parent.has_node('Hitboxes'):
+			for hitbox in parent.get_node('Hitboxes').get_children():
+				item.add_collision_exception_with(hitbox)
+	
+	if item is Area:
+		
+		item.get_node('Movement').collision_exceptions.append(parent)
+		
+		if parent.has_node('Hitboxes'):
+			for hitbox in parent.get_node('Hitboxes').get_children():
+				item.get_node('Movement').collision_exceptions.append(hitbox)
+	
+	
 	parent_list.append(parent)
 	shooter = parent
-	
-	if parent.has_node('Hitboxes'):
-		for hitbox in parent.get_node('Hitboxes').get_children():
-			item.add_collision_exception_with(hitbox)
-	
 	
 	for link in Meta.GetLinks(null, parent, 'Contains'):
 		parent_list += _exclude_recursive(item, link.from_node)
@@ -264,11 +249,21 @@ func _remove_exclusions(item, parent_list):
 	
 	for parent in parent_list:
 		
-		item.remove_collision_exception_with(parent)
+		if item is PhysicsBody:
+			
+			item.remove_collision_exception_with(parent)
+			
+			if parent.has_node('Hitboxes'):
+				for hitbox in parent.get_node('Hitboxes').get_children():
+					item.remove_collision_exception_with(hitbox)
 		
-		if parent.has_node('Hitboxes'):
-			for hitbox in parent.get_node('Hitboxes').get_children():
-				item.remove_collision_exception_with(hitbox)
+		if item is Area:
+			
+			item.get_node('Movement').collision_exceptions.erase(parent)
+			
+			if parent.has_node('Hitboxes'):
+				for hitbox in parent.get_node('Hitboxes').get_children():
+					item.get_node('Movement').collision_exceptions.erase(hitbox)
 
 
 func _apply_launch_attributes(item):
@@ -281,12 +276,13 @@ func _apply_launch_attributes(item):
 		item_movement._set_direction(release_direction, true)
 		
 		if release_angular_spread.length():
-
+			
 			var spread_x = release_angular_spread.x
 			item_movement.angular_direction.x = rand_range(-spread_x, spread_x)
 
 			var spread_y = release_angular_spread.y
 			item_movement.angular_direction.y = rand_range(-spread_y, spread_y)
+	
 	
 	if release_exclude_parent:
 		
@@ -311,7 +307,15 @@ func _create_and_launch_item(item_path):
 	return item
 
 
-func _release_front():
+func _release_front_threaded():
+	
+	var thread = Thread.new()
+	thread.start(self, '_release_front')
+	
+	Meta.threads.append(thread)
+
+
+func _release_front(data=null):
 	
 	if not items.size():
 		return
@@ -497,3 +501,10 @@ func _ready():
 			root.bone_name = bone_name
 		
 		_reset_root()
+
+
+func _process(delta):
+	
+	for item in items.duplicate():
+		if not item is String and not is_instance_valid(item):
+			items.erase(item)
