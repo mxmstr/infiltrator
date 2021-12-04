@@ -6,6 +6,8 @@ export var accel = 0
 export var deaccel = 0
 export var projectile = false
 
+onready var collision = get_node_or_null('../Collision')
+
 signal before_move
 signal after_move
 
@@ -62,13 +64,21 @@ func _face(target, angle_delta=0.0):
 
 func _process(delta):
 	
+	if collision.disabled:
+		return
+	
+	angular_velocity = angular_direction * delta
+	
+	owner.rotation.y += angular_velocity.x
+	owner.rotation.x += angular_velocity.y
+	
 	if projectile:
 		_set_direction(Vector3(0, 0, 1), true)
 
 
 func _physics_process(delta):
 	
-	if not process_movement:
+	if not process_movement or collision.disabled:
 		return
 	
 	

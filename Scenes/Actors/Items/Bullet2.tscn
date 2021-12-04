@@ -82,6 +82,7 @@ tree_node = NodePath("../Reception")
 
 [node name="Movement" parent="." index="5"]
 process_movement = true
+projectile = true
 
 [node name="Reception" parent="." index="7"]
 parameters/playback = SubResource( 7 )

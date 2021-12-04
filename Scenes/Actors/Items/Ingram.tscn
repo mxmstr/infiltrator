@@ -13,7 +13,7 @@ extents = Vector3( 8, 7, 1 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
 [node name="Ingram" instance=ExtResource( 1 )]
-tags = "Item Firearm Ingram UseAction:FireProjectile FireRate:9.0 Offset-position:neo_reference_skeleton:Gun:-0.015986,0.006214,0.037872
+tags = "Item Firearm Ingram AutoFire UseAction:FireProjectile FireRate:9.0 Offset-position:neo_reference_skeleton:Gun:-0.015986,0.006214,0.037872
  Offset-rotation:neo_reference_skeleton:Gun:-89.179077,94.08503,-88.78389"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
@@ -30,6 +30,7 @@ required_tags = "Bullet 9mm"
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.126944, 0.281379 )
 release_speed = 20.0
+release_angular_spread = Vector2( 0.1, 0.1 )
 
 [node name="Reception" parent="." index="13"]
 parameters/playback = SubResource( 2 )

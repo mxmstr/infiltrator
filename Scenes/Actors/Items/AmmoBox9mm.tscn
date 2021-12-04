@@ -28,7 +28,7 @@ chain = false
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
 [node name="AmmoBox9mm" instance=ExtResource( 1 )]
-tags = "Actor Ammo Kind:Bullet9mm Path:Items/Bullet2 Amount:12"
+tags = "Actor Ammo Kind:Bullet9mm Path:Items/Bullet9mm Amount:12"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0 )

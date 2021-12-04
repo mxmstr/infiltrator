@@ -33,7 +33,7 @@ required_tags = "Bullet Shotgun"
 [node name="Chamber" parent="." index="4"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, -0.000244141, 0.0875522, 0.906064 )
 release_speed = 20.0
-release_angular_spread = Vector2( 0.5, 0.5 )
+release_angular_spread = Vector2( 0.25, 0.25 )
 
 [node name="Reception" parent="." index="14"]
 parameters/playback = SubResource( 2 )

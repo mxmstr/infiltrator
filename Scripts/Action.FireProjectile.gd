@@ -36,14 +36,16 @@ func _shoot_array_threaded(count):
 		Meta.threads.append(thread)
 
 
-func _shoot_array(userdata):
+func _shoot_array(count):
 	
-	var system_path = userdata[0]
-#	var item = chamber._release_front()
+#	var system_path = userdata[0]
+	var item = chamber._release_front()
 #
 #	_clone_and_shoot(item, count - 1)
 	
-	var item_clone = chamber._create_and_launch_item(system_path)
+	for i in range(count):
+		
+		var item_clone = chamber._create_and_launch_item(item.system_path)
 
 
 func _on_action(_state, data): 

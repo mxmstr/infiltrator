@@ -14,8 +14,8 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ 8 ],
-"method": "_shoot_array_threaded"
+"args": [ 5 ],
+"method": "_shoot_array"
 } ]
 }
 tracks/1/type = "method"
