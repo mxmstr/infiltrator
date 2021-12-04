@@ -5,6 +5,7 @@ var current_state = ''
 var next = 'Default'
 var switch_mode = 'Immediate'
 var priority = 0
+var endless = false
 
 var skeleton
 var oneshot
@@ -17,7 +18,9 @@ signal action
 
 func _can_switch(new_priority):
 	
-	return new_priority > priority or switch_mode == 'Immediate' or not _is_oneshot_active()
+	return (not endless and not _is_oneshot_active()) or \
+		new_priority > priority or \
+		(new_priority == priority and switch_mode == 'Immediate')
 
 
 func _on_action_finished():
@@ -78,6 +81,7 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	next = 'Default'
 	switch_mode = 'Immediate'
 	priority = new_priority
+	endless = false
 	
 	if attributes.has('speed'):
 		scale = attributes.speed

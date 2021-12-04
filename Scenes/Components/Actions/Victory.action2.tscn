@@ -2,5 +2,6 @@
 
 [ext_resource path="res://Scripts/Action.Suspend.gd" type="Script" id=1]
 
-[node name="SuspendAction" type="Node"]
+[node name="VictoryAction" type="Node"]
 script = ExtResource( 1 )
+state = "Victory"

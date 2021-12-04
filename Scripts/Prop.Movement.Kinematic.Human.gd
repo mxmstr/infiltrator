@@ -3,7 +3,7 @@ extends 'res://Scripts/Prop.Movement.gd'
 export var gravity = -9.8
 export var accel = 3.0
 export var deaccel = 5.0
-export var angular_accel = 0.5
+export var angular_accel = 0.25
 export var angular_deaccel = 10
 export var stop_on_slope = false
 export var max_slides = 4

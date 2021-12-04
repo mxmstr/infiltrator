@@ -17,7 +17,7 @@ func _on_action(state, data, player):
 	
 	if state == 'Die':
 		
-		_on_player_died(player, data)
+		call_deferred('_on_player_died', player, data)
 
 
 func _on_player_died(player, data):
@@ -53,7 +53,7 @@ func _on_player_died(player, data):
 			
 			if player_points[shooter.player_index] >= Meta.multi_points_to_win:
 				
-				emit_signal('player_won', shooter.name, player_points)
+				emit_signal('player_won', shooter.base_name, player_points)
 				
 				_suspend_players()
 				_play_victory_music()
@@ -77,7 +77,7 @@ func _play_victory_music():
 func _suspend_players():
 	
 	for actor in actors:
-		actor.get_node('Behavior')._start_state('Suspend')
+		actor.get_node('Behavior')._start_state('Victory')
 
 
 func _respawn(actor):

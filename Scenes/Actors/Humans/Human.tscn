@@ -29,7 +29,7 @@
 [ext_resource path="res://Scenes/Components/Responses/Damage.response2.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=29]
-[ext_resource path="res://Scenes/Components/Actions/Suspend.action2.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scenes/Components/Actions/Victory.action2.tscn" type="PackedScene" id=30]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
@@ -192,9 +192,8 @@ tree = NodePath("../Behavior")
 schema = "PostDeath"
 state = "PostDeath"
 
-[node name="SuspendAction" parent="." index="33" instance=ExtResource( 30 )]
+[node name="VictoryAction" parent="." index="33" instance=ExtResource( 30 )]
 tree = NodePath("../Behavior")
-state = "Suspend"
 
 [node name="AnimLayerMovement" parent="." index="34" instance=ExtResource( 23 )]
 

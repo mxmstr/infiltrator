@@ -93,7 +93,7 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 		layer = Meta.BlendLayer[attributes.layer]
 	
 	if attributes.has('enable_abilities'):
-		enable_abilities = false
+		enable_abilities = attributes.enable_abilities
 	
 	if attributes.has('lock_stance'):
 		lock_stance = attributes.lock_stance

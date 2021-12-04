@@ -84,6 +84,12 @@ func _get_ammo_container(item):
 
 func _refresh_ammo():
 	
+	if righthand._is_empty():
+		
+		ammo.hide()
+		return
+	
+	
 	if not ammo_container:
 		
 		ammo_container = _get_ammo_container(righthand.items[0])

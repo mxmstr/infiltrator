@@ -43,7 +43,7 @@ func _on_stimulate(stim, data):
 			
 			var source_name = data.source.base_name
 			var exists = false
-			var items_list = inventory.items + ([righthand.items[0]] if not righthand._is_empty() else [])
+			var items_list = inventory.items + righthand.items
 			
 			for item in items_list:
 				if item.base_name == source_name:

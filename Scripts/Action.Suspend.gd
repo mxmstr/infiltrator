@@ -21,5 +21,6 @@ func _on_action(_state, data):
 		
 		tree_node.current_state = state
 		tree_node.priority = 2
+		tree_node.endless = true
 		tree_node.camera_mode._start_state('Default')
 		tree_node.hud_mode._start_state('Victory')
