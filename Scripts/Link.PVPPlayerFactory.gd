@@ -89,7 +89,8 @@ func _respawn(actor):
 	actor.global_transform.origin = marker.global_transform.origin
 	actor.rotation = marker.rotation
 	actor.get_node('Stamina').hp = data.hp
-	actor.get_node('Behavior')._start_state('Default')#_teleport_to_state('Start')
+	actor.get_node('Behavior').endless = false
+	actor.get_node('Behavior')._start_state('Default')
 
 
 func _enter_tree():

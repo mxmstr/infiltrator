@@ -7,7 +7,7 @@ export var angular_direction = Vector2()
 var angular_velocity = Vector2()
 var pitch = 0.0
 var collisions setget _set_collisions, _get_collisions
-var collision_exceptions = []
+var collision_exceptions = [] setget _set_collision_exceptions, _get_collision_exceptions
 
 
 func _set_collisions(new_collisions):
@@ -18,6 +18,20 @@ func _set_collisions(new_collisions):
 func _get_collisions():
 	
 	return []
+
+
+func _set_collision_exceptions(new_exceptions):
+	
+	collision_exceptions = new_exceptions 
+
+
+func _get_collision_exceptions():
+	
+	for exception in collision_exceptions:
+		if not is_instance_valid(exception):
+			collision_exceptions.erase(exception)
+	
+	return collision_exceptions
 
 
 func _set_speed(new_speed): 

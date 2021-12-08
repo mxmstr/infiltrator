@@ -1,5 +1,6 @@
 extends 'res://Scripts/Response.gd'
 
+onready var owner_righthand = owner.owner.get_node_or_null('RightHandContainer')
 onready var reception = get_node_or_null('../Reception')
 onready var audio = get_node_or_null('../Audio')
 
@@ -24,19 +25,20 @@ func _on_stimulate(stim, data):
 			audio._start_state('Damage')
 			reception._reflect()
 		
-		if data.source._has_tag('Punch'):
+		elif data.source._has_tag('Melee'):
 			
 			var disarm_chance = float(data.source._get_tag('DisarmChance'))
 			var damage = float(data.source._get_tag('Damage'))
 			var force = float(data.source._get_tag('Force'))
+			var hitsound = data.source._get_tag('HitSound')
 			var direction = data.source._get_tag('Shooter').transform.basis.z.normalized()
 			
 			Meta.StimulateActor(owner.owner, 'Damage', data.source, damage, data.position, direction)
 			Meta.StimulateActor(owner.owner, 'Push', data.source, force, data.position, direction)
 			
-			audio._start_state('PunchHit')
+			audio._start_state(hitsound)
 			
 			if randf() < disarm_chance:
-				owner.owner.get_node('RightHandContainer')._release_front()
+				owner_righthand._release_front()
 			
 			data.source.queue_free()

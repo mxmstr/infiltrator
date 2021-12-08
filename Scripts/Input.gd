@@ -29,7 +29,7 @@ func _on_deactivated(): pass
 
 func _input(event):
 	
-	if Meta.rawinput or not perspective:
+	if not owner.is_processing_input() or Meta.rawinput or not perspective:
 		return
 	
 	
@@ -58,6 +58,9 @@ func _input(event):
 
 
 func _process(delta):
+	
+	if not owner.is_processing_input():
+		return
 	
 	if not active:
 		

@@ -71,6 +71,10 @@ var weapons = {
 	'Sniper': {
 		'enabled': false,
 		'scene': 'Items/Sniper'
+	},
+	'Sword': {
+		'enabled': false,
+		'scene': 'Items/Sword'
 	}
 }
 

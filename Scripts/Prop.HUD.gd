@@ -96,11 +96,11 @@ func _refresh_ammo():
 		ammo_container.connect('item_added', self, '_on_ammo_added')
 		ammo_container.connect('item_removed', self, '_on_ammo_removed')
 		
-		if not righthand.items[0].get_node('Chamber').is_connected('item_removed', self, '_on_ammo_removed'):
-			righthand.items[0].get_node('Chamber').connect('item_removed', self, '_on_ammo_removed')
+		if not righthand.items[0].get_node('Magazine').is_connected('item_removed', self, '_on_ammo_removed'):
+			righthand.items[0].get_node('Magazine').connect('item_removed', self, '_on_ammo_removed')
 	
 	var inv_ammo = ammo_container.items.size()
-	var chamber_ammo = righthand.items[0].get_node('Chamber').items.size()
+	var chamber_ammo = 1 if righthand.items[0].get_node('Chamber').items.size() else 0
 	var mag_ammo = righthand.items[0].get_node('Magazine').items.size()
 	
 	ammo.text = str(chamber_ammo + mag_ammo) + ' | ' + str(inv_ammo)

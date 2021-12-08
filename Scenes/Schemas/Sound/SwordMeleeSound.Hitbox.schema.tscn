@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sounds/Thief/sfx/swordoh1.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/Thief/sfx/swordoh2.wav" type="AudioStream" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 0.240227
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.281043
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/swordoh1 = SubResource( 1 )
+anims/swordoh2 = SubResource( 2 )
+script = ExtResource( 2 )
+attributes = "{
+	\"*\": {
+		\"level\": -5
+	}
+}"

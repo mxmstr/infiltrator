@@ -109,14 +109,19 @@ tree = NodePath("../Audio")
 schema = "PunchHitSound"
 state = "PunchHit"
 
-[node name="Reception" parent="." index="5"]
+[node name="SwordHitSound" parent="." index="3" instance=ExtResource( 3 )]
+tree = NodePath("../Audio")
+schema = "SwordHitSound"
+state = "SwordHit"
+
+[node name="Reception" parent="." index="6"]
 tree_root = SubResource( 9 )
 parameters/playback = SubResource( 10 )
 
-[node name="Interface" parent="." index="6"]
+[node name="Interface" parent="." index="7"]
 tree_root = SubResource( 12 )
 parameters/playback = SubResource( 13 )
 
-[node name="Audio" parent="." index="7"]
+[node name="Audio" parent="." index="8"]
 tree_root = SubResource( 17 )
 parameters/playback = SubResource( 18 )

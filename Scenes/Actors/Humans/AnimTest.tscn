@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=2]
@@ -24,6 +24,18 @@
 [ext_resource path="res://Animations/Human/Action/Jump/sidestepleft.tres" type="Animation" id=22]
 [ext_resource path="res://Animations/Human/Action/Jump/sidestepright.tres" type="Animation" id=23]
 [ext_resource path="res://Animations/Human/Action/Kick/SNAPKICK.tres" type="Animation" id=24]
+[ext_resource path="res://Scenes/Actors/Items/Sword.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Animations/Human/BAT1.tres" type="Animation" id=26]
+[ext_resource path="res://Animations/Human/right_strike.tres" type="Animation" id=27]
+[ext_resource path="res://Animations/Human/stick_right.tres" type="Animation" id=28]
+[ext_resource path="res://Animations/Human/wushu2_front.tres" type="Animation" id=29]
+[ext_resource path="res://Animations/Human/stick_rightbat_new.tres" type="Animation" id=30]
+[ext_resource path="res://Animations/Human/2strike.tres" type="Animation" id=31]
+[ext_resource path="res://Animations/Human/Action/Punch/punch2.tres" type="Animation" id=32]
+[ext_resource path="res://Animations/Human/forward_strike.tres" type="Animation" id=33]
+[ext_resource path="res://Animations/Human/wild_strikes.tres" type="Animation" id=34]
+[ext_resource path="res://Animations/Human/2_1.tres" type="Animation" id=35]
+[ext_resource path="res://Animations/Human/360_strike.tres" type="Animation" id=36]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
@@ -55,7 +67,6 @@ blend_point_4/pos = Vector2( -0.4, 0 )
 triangles = PoolIntArray( 0, 2, 3, 1, 2, 3, 0, 2, 4, 1, 2, 4 )
 
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55461e-08, 2.19973e-08, 0.813492 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -114,10 +125,10 @@ visible = false
 [node name="Model2" parent="." instance=ExtResource( 12 )]
 
 [node name="neo_reference_skeleton" parent="Model2" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.5411e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( 0.203221, 0.601007, -0.772976, 0.716776, -0.629128, -0.300716, -0.667033, -0.492939, -0.55864, -0.306164, 0.78256, -0.401917 )
+transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 2 )]
@@ -162,6 +173,13 @@ visible = false
 
 [node name="BulletPunch" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 13 )]
 
+[node name="BoneAttachment" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="2"]
+transform = Transform( 0.951057, -0.309017, -3.2592e-07, -0.309017, -0.951057, 0, -3.09969e-07, 1.00715e-07, -1, -0.467092, 0.884827, 0.00483319 )
+bone_name = "Hand-L"
+
+[node name="Sword" parent="Model2/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 25 )]
+transform = Transform( 0.983877, -0.160835, 0.0782049, -0.0472179, 0.188154, 0.981004, -0.172495, -0.96888, 0.177527, 0.0340234, 0.026457, 0.23843 )
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 6 )
 anim_player = NodePath("AnimationPlayer")
@@ -170,17 +188,28 @@ parameters/blend_position = Vector2( -0.00462532, 0.0520232 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../../Model2/neo_reference_skeleton")
+anims/2_1 = ExtResource( 35 )
+anims/2strike = ExtResource( 31 )
+anims/360_strike = ExtResource( 36 )
+anims/BAT1 = ExtResource( 26 )
 anims/HOPBACK = ExtResource( 14 )
 anims/Jump.Exit = ExtResource( 15 )
 anims/JumpLong = ExtResource( 16 )
 anims/JumpUp = ExtResource( 17 )
 anims/SNAPKICK = ExtResource( 24 )
 anims/ShootPumpShotgun = ExtResource( 18 )
+anims/forward_strike = ExtResource( 33 )
 anims/jumpForward = ExtResource( 19 )
 anims/jumpForwardLeft = ExtResource( 20 )
 anims/jumpForwardRight = ExtResource( 21 )
+anims/punch2 = ExtResource( 32 )
+anims/right_strike = ExtResource( 27 )
 anims/sidestepleft = ExtResource( 22 )
 anims/sidestepright = ExtResource( 23 )
+anims/stick_right = ExtResource( 28 )
+anims/stick_rightbat_new = ExtResource( 30 )
+anims/wild_strikes = ExtResource( 34 )
+anims/wushu2_front = ExtResource( 29 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.68692, 0 )

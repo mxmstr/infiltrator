@@ -6,22 +6,20 @@ onready var chamber = get_node_or_null('../Chamber')
 onready var magazine = get_node_or_null('../Magazine')
 
 
-func _clone_and_shoot(item, i):
-
-#	if i == 0:
-#		return
+func _clone_and_shoot():
 	
-	var item_clone = chamber._create_and_launch_item(item.system_path)#item.duplicate()
-#
-#	item_clone.rotation = item.rotation
-#	item_clone.translation = item.translation
+	if chamber._is_empty():
+		return
+	
+	var item = chamber.items[0]
+	var item_clone = chamber._create_and_launch_item(item.system_path)
 #	var item_clone = item.duplicate()
-#	item_clone._set_tag('Shooter', item._get_tag('Shooter'))
 #	actors.add_child(item_clone)
+#	item_clone.transform.origin = item.transform.origin
+#	item_clone.transform.basis = item.transform.basis
 #	chamber._apply_launch_attributes(item_clone)
-	
-#	_clone_and_shoot(item, i - 1)
-#	call_deferred('_clone_and_shoot', item, i - 1)
+#	item_clone._set_tag('Shooter', item._get_tag('Shooter'))
+	prints('clone', chamber.root)
 
 
 func _shoot_array_threaded(count):

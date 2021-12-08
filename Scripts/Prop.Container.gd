@@ -298,8 +298,8 @@ func _apply_launch_attributes(item):
 
 func _create_and_launch_item(item_path):
 	
-	var item = Meta.AddActor(item_path, null, null, null, { 'Shooter': shooter })
-	item.get_node('Movement')._teleport(root.global_transform.origin, root.global_transform.basis)
+	var item = Meta.AddActor(item_path, root.global_transform.origin, root.global_transform.basis.get_euler(), null, { 'Shooter': shooter })
+#	item.get_node('Movement')._teleport(root.global_transform.origin, root.global_transform.basis)
 	
 	_apply_launch_attributes(item)
 	
@@ -346,7 +346,7 @@ func _release(item):
 	
 	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
 	
-	item._set_tag('Shooter', owner)
+	item._set_tag('Shooter', shooter)
 	
 	emit_signal('item_released', item)
 	
@@ -366,7 +366,10 @@ func _release_all():
 		
 		released = Meta.DestroyLink(owner, null, 'Contains', {'container': name})
 	
-#	emit_signal('item_released')
+	for item in released:
+		
+		item._set_tag('Shooter', shooter)
+		emit_signal('item_released', item)
 	
 	return released
 
@@ -379,92 +382,12 @@ func _delete_all():
 	
 	else:
 		
-		for item in items:
-			
-			Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+		var removed = items.duplicate()
+		
+		Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+		
+		for item in removed:
 			item.queue_free()
-
-
-func _pool_items(item_tags_string, dont_clone=false):
-	
-	if _is_empty():
-		return
-	
-	var item_tags = item_tags_string.split(' ')
-	var items_grouped = {}
-	
-	for item in items:
-
-		var tagged = true
-
-		for item_tag in item_tags:
-			if not item_tag in item.tags_dict.keys():
-				tagged = false
-				break
-
-		if not tagged:
-			continue
-		
-		if 'Firearm' in item_tags:
-			
-			for firearm_item in Meta.DestroyLink(item, null, 'Contains', { 'container': 'Chamber' }):
-				
-				var magazine = item.get_node('Magazine')
-				
-				if magazine._is_empty():
-					firearm_item.queue_free()
-					continue
-				
-				if Meta.CreateLink(magazine.items[0], firearm_item, 'Contains', { 'container': '' }).is_queued_for_deletion():
-					pass
-#					print('Noooooooooooooooooooooo')
-#				else:
-#					print('Yaaaaaaaaaaaaaaaaaaaaa')
-			
-			
-			var right_hand = get_node_or_null('../RightHandContainer')
-			
-			if right_hand and not right_hand._is_empty() and right_hand.items[0].system_path == item.system_path:
-				
-				for firearm_item in Meta.DestroyLink(item, null, 'Contains', { 'container': 'Magazine' }):
-					Meta.CreateLink(owner, firearm_item, 'Contains', { 'container': '' })
-				
-				item.queue_free()
-				
-				continue
-		
-		
-		
-		if not items_grouped.has(item.system_path):
-			items_grouped[item.system_path] = [item]
-		else:
-			items_grouped[item.system_path].append(item)
-	
-	
-	for group in items_grouped.keys():
-		
-		if items_grouped[group].size() < 2:
-			continue
-		
-		var item_clones = [Meta.AddActor(group)]
-		
-		for item in items_grouped[group]:
-			
-			for prop in item.get_children():
-				
-				if prop.get_script() and prop.get_script().get_path().get_file() == 'Prop.Container.gd':
-					
-					for removed_item in prop._remove_all_items():
-						
-						if not item_clones[0].get_node(prop.name)._add_item(removed_item):
-							
-							item_clones.push_front(Meta.AddActor(group))
-							item_clones[0].get_node(prop.name)._add_item(removed_item)
-			
-			Meta.DestroyLink(owner, item, 'Contains')
-		
-		for clone in item_clones:
-			Meta.CreateLink(owner, clone, 'Contains', { 'container': '' }).is_queued_for_deletion()
 
 
 func _reset_root():
@@ -504,8 +427,8 @@ func _ready():
 		_reset_root()
 
 
-func _process(delta):
-	
-	for item in items.duplicate():
-		if not item is String and not is_instance_valid(item):
-			items.erase(item)
+#func _process(delta):
+#
+#	for item in items.duplicate():
+#		if not item is String and not is_instance_valid(item):
+#			items.erase(item)

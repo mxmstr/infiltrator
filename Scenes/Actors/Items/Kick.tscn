@@ -30,7 +30,7 @@ chain = false
 [node name="Kick" instance=ExtResource( 1 )]
 collision_layer = 8
 collision_mask = 17
-tags = "Actor Punch Kick Damage:40 Force:1.0 DisarmChance:0.75"
+tags = "Actor Melee Punch Kick Damage:40 Force:1.0 DisarmChance:0.75 HitSound:PunchHit"
 
 [node name="Collision" type="CollisionShape" parent="." index="0"]
 shape = SubResource( 7 )

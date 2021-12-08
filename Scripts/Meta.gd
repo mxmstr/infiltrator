@@ -251,7 +251,7 @@ func AddActor(actor_path, position=null, rotation=null, direction=null, tags={})
 	$'/root/Mission/Actors'.add_child(new_actor)
 	
 	if position:
-		new_actor.global_transform.origin = position
+		new_actor.transform.origin = position
 	
 	if rotation:
 		new_actor.rotation_degrees = rotation

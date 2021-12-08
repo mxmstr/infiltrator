@@ -62,10 +62,25 @@ func _face(target, angle_delta=0.0):
 		owner.global_transform.look_at(owner.global_transform.origin - turn_target)
 
 
-func _process(delta):
+#func _process(delta):
+#
+#	if collision.disabled:
+#		return
+#
+#	angular_velocity = angular_direction * delta
+#
+#	owner.rotation.y += angular_velocity.x
+#	owner.rotation.x += angular_velocity.y
+#
+#	if projectile:
+#		_set_direction(Vector3(0, 0, 1), true)
+
+
+func _physics_process(delta):
 	
-	if collision.disabled:
+	if not process_movement or collision.disabled:
 		return
+	
 	
 	angular_velocity = angular_direction * delta
 	
@@ -74,12 +89,7 @@ func _process(delta):
 	
 	if projectile:
 		_set_direction(Vector3(0, 0, 1), true)
-
-
-func _physics_process(delta):
 	
-	if not process_movement or collision.disabled:
-		return
 	
 	
 	var new_velocity = direction * speed * delta
@@ -99,7 +109,8 @@ func _physics_process(delta):
 	
 	emit_signal('before_move', velocity)
 	
-	owner.global_translate(velocity)
+	owner.transform.origin += velocity
+	#owner.global_translate(velocity)
 	
 	emit_signal('after_move', velocity)
 	

@@ -25,9 +25,9 @@ func _can_switch(new_priority):
 
 func _on_action_finished():
 	
-	if current_state == 'Default':
+	if endless or current_state == 'Default':
 		return
-
+	
 	call_deferred('emit_signal', 'action', next, {})
 
 
@@ -97,6 +97,9 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	
 	if attributes.has('switch_mode'):
 		switch_mode = attributes.switch_mode
+	
+	if attributes.has('endless'):
+		endless = attributes.endless
 	
 	_set_animation(animation, scale, clip_start, clip_end)
 	
