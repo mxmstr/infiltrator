@@ -37,6 +37,10 @@ func _on_just_activated():
 		
 		behavior._start_state('JumpLeft')
 	
+	elif vertical < -0.2:
+		
+		behavior._start_state('JumpBackward')
+	
 	else:
 		
 		behavior._start_state('JumpUp')

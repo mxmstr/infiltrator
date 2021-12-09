@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Action.SwordMelee.gd" type="Script" id=1]
+
+[node name="SwordMeleeAction" type="Node"]
+script = ExtResource( 1 )
+schema = "SwordMelee"
+random = true
+state = "SwordMelee"

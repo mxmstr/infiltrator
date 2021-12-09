@@ -125,10 +125,10 @@ visible = false
 [node name="Model2" parent="." instance=ExtResource( 12 )]
 
 [node name="neo_reference_skeleton" parent="Model2" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 3.38813e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
+transform = Transform( 0.760392, -0.10707, -0.640578, -0.365376, 0.744908, -0.558224, 0.53694, 0.658521, 0.527301, 0.100893, 1.35389, 0.586635 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 2 )]
@@ -174,7 +174,7 @@ visible = false
 [node name="BulletPunch" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 13 )]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="2"]
-transform = Transform( 0.951057, -0.309017, -3.2592e-07, -0.309017, -0.951057, 0, -3.09969e-07, 1.00715e-07, -1, -0.467092, 0.884827, 0.00483319 )
+transform = Transform( -0.132385, -0.240293, -0.961631, -0.840294, -0.487359, 0.237462, -0.52572, 0.839488, -0.137397, 0.0198524, 1.38671, 0.548654 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 25 )]

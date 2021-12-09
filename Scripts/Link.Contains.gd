@@ -25,60 +25,11 @@ func _is_container(node):
 	return false
 
 
-func _merge_with_existing(other_container, other_item):
-	
-	for prop in to_node.get_children():
-		
-		if _is_container(prop):
-			
-			var items
-			
-			if prop.factory_mode:
-				
-				items = prop.items
-				var new_container = other_container
-				
-				for item in items:
-					
-					if not new_container._add_item(item):
-						
-						var other_item_clone = Meta.AddActor(other_item.system_path)
-						other_item_clone.get_node(prop.name)._add_item(item)
-						Meta.CreateLink(from_node, other_item_clone, 'Contains', { 'container': '', 'merge': false }).is_queued_for_deletion()
-						
-						new_container = other_item_clone.get_node(prop.name)
-						new_container._add_item(item)
-				
-				
-			else:
-				
-				items = Meta.DestroyLink(to_node, null, 'Contains', { 'container': prop.name })
-				
-				for item in items:
-					if Meta.CreateLink(other_item, item, 'Contains', { 'container': '' }).is_queued_for_deletion():
-						Meta.CreateLink(from_node, item, 'Contains', { 'container': '' })
-	
-	
-	to_node.queue_free()
-
-
 func _try_container(node):
 	
 	for item_tag in node.required_tags_dict.keys():
 		if item_tag.length() and not item_tag in to_node.tags_dict.keys():
 			return false
-	
-	
-	if merge and to_node._has_tag('MergeWithSimilar'):
-		
-		for item in node.items:
-			
-			if item.base_name == to_node.base_name:
-				
-				_merge_with_existing(node, item)
-				queue_free()
-				
-				return true
 	
 	
 	if node.max_quantity > 0 and len(node.items) >= node.max_quantity:
@@ -90,6 +41,11 @@ func _try_container(node):
 		collision.disabled = true
 	
 	node._add_item(to_node)
+	
+	if to_node._has_tag('AttachBone'):
+		node.root.bone_name = to_node._get_tag('AttachBone')
+	else:
+		node.root.bone_name = node.bone_name
 	
 	if from_behavior.get_script().has_script_signal('pre_advance'):
 		
@@ -125,7 +81,7 @@ func _get_item_position_offset(item):
 
 		return Vector3(float(item_offset[0]), float(item_offset[1]), float(item_offset[2])) if (
 			(item_parent_name == '' or (container_node.root and container_node.root.get_parent().name == item_parent_name)) and \
-			(item_bone_name == '' or item_bone_name == container_node.bone_name)
+			(item_bone_name == '' or item_bone_name == container_node.root.bone_name)
 			) else Vector3()
 	
 	return Vector3()
@@ -143,7 +99,7 @@ func _get_item_rotation_offset(item):
 
 		return Vector3(deg2rad(float(item_offset[0])), deg2rad(float(item_offset[1])), deg2rad(float(item_offset[2]))) if (
 			(item_parent_name == '' or (container_node.root and container_node.root.get_parent().name == item_parent_name)) and \
-			(item_bone_name == '' or item_bone_name == container_node.bone_name)
+			(item_bone_name == '' or item_bone_name == container_node.root.bone_name)
 			) else Vector3()
 	
 	return Vector3()
@@ -188,6 +144,7 @@ func _ready():
 				return
 			
 			container_node = from_node.get_node(container)
+			
 		else:
 			queue_free()
 			return
@@ -231,7 +188,11 @@ func _restore_collision():
 func _destroy():
 	
 	if container_node and is_instance_valid(container_node):
+		
 		container_node._remove_item(to_node)
+		
+		if to_node._has_tag('AttachBone'):
+			container_node.root.bone_name = container_node.bone_name
 	
 	if restore_collisions:
 		_restore_collision()

@@ -8,7 +8,7 @@ anims/HOPBACK = ExtResource( 1 )
 script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
-		\"speed\": 1.5,
+		\"speed\": 1.75,
 		\"clip_start\": 0.05,
 		\"layer\": \"ACTION\",
 		\"switch_mode\": \"End\",

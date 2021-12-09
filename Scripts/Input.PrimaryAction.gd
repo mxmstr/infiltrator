@@ -17,7 +17,13 @@ func _on_just_activated():
 	
 	else:
 		
-		behavior._start_state('UseItem')
+		if righthand.items[0]._has_tag('Sword'):
+			
+			behavior._start_state('SwordMelee')
+		
+		else:
+		
+			behavior._start_state('UseItem')
 
 
 func _on_just_deactivated():

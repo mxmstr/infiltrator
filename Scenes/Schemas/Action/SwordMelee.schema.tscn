@@ -1,25 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Animations/Human/Action/Punch/punch_seraph.tres" type="Animation" id=1]
 [ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
 [ext_resource path="res://Animations/Human/wild_strikes.tres" type="Animation" id=3]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-anims/punch_seraph_left = ExtResource( 1 )
-anims/punch_seraph_right = ExtResource( 1 )
-anims/wild_strikes = ExtResource( 3 )
+anims/wild_strikes_left = ExtResource( 3 )
+anims/wild_strikes_right = ExtResource( 3 )
 script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
 		\"layer\": \"MIXED\",
 		\"switch_mode\": \"End\"
 	},
-	\"punch_seraph_right\": {
-		\"clip_start\": 0.01,
+	\"wild_strikes_right\": {
+		\"clip_start\": 0.5,
 		\"clip_end\": 0.9
 	},
-	\"punch_seraph_left\": {
-		\"clip_start\": 0.9,
-		\"clip_end\": 1.8
+	\"wild_strikes_left\": {
+		\"clip_start\": 1.0,
+		\"clip_end\": 1.4
 	}
 }"

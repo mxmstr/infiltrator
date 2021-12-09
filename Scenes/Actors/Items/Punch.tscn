@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Components/Stimuli/Contact.stimulus.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=5]
-extents = Vector3( 0.868489, 0.194551, 0.536201 )
+extents = Vector3( 0.466771, 0.194551, 0.559168 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
@@ -30,7 +30,7 @@ chain = false
 [node name="Punch" instance=ExtResource( 1 )]
 collision_layer = 8
 collision_mask = 17
-tags = "Actor Melee Punch Damage:20 Force:0.5 DisarmChance:0.5 HitSound:PunchHit"
+tags = "Actor Melee Punch Damage:20 Force:1.0 DisarmChance:0.5 HitSound:PunchHit"
 
 [node name="Collision" type="CollisionShape" parent="." index="0"]
 shape = SubResource( 5 )

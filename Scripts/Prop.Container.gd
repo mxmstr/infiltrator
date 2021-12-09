@@ -298,8 +298,8 @@ func _apply_launch_attributes(item):
 
 func _create_and_launch_item(item_path):
 	
-	var item = Meta.AddActor(item_path, root.global_transform.origin, root.global_transform.basis.get_euler(), null, { 'Shooter': shooter })
-#	item.get_node('Movement')._teleport(root.global_transform.origin, root.global_transform.basis)
+	var item = Meta.AddActor(item_path, null, null, null, { 'Shooter': shooter })
+	item.get_node('Movement')._teleport(root.global_transform.origin, root.global_transform.basis)
 	
 	_apply_launch_attributes(item)
 	
