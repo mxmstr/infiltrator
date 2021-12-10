@@ -87,7 +87,7 @@ func _face(target, angle_delta=0.0):
 		owner.global_transform.look_at(owner.global_transform.origin - turn_target)
 
 
-func _process(delta):
+func _apply_rotation(delta):
 	
 	var new_velocity = angular_direction * delta
 	var deltax = new_velocity.x - angular_velocity.x
@@ -116,6 +116,9 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	
+	_apply_rotation(delta)
+	
 	
 	var vertical = velocity.y# + (delta * gravity)
 	var horizontal = Vector3(velocity.x, 0, velocity.z)
