@@ -4,13 +4,10 @@
 
 [node name="CameraRig" type="Spatial"]
 script = ExtResource( 1 )
-__meta__ = {
-
-}
 
 [node name="Camera" type="Camera" parent="."]
 cull_mask = 1047583
 current = true
 __meta__ = {
-
+"_editor_description_": ""
 }

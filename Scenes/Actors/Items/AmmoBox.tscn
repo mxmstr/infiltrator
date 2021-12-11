@@ -1,30 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Actors/KinematicBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Stimuli/Area.stimulus.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=3]
 
 [sub_resource type="SphereShape" id=6]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
-
-[sub_resource type="AnimationNodeAnimation" id=2]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeStateMachine" id=3]
-resource_local_to_scene = true
-states/Start/node = SubResource( 2 )
-states/Start/position = Vector2( 624, 170 )
-start_node = "Start"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 3 )
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [node name="AmmoBox" instance=ExtResource( 1 )]
 collision_layer = 4
@@ -36,13 +15,3 @@ collision_mask = 2
 
 [node name="Collision" type="CollisionShape" parent="AreaStim" index="0"]
 shape = SubResource( 6 )
-
-[node name="Reception" parent="." index="3"]
-parameters/playback = SubResource( 1 )
-
-[node name="Interface" parent="." index="4"]
-tree_root = SubResource( 3 )
-parameters/playback = SubResource( 4 )
-
-[node name="Audio" parent="." index="5"]
-parameters/playback = SubResource( 5 )

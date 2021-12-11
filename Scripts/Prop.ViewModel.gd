@@ -21,7 +21,7 @@ var vm_skeleton
 onready var contains_link = load('res://Scripts/Link.Contains.gd')
 onready var behavior = get_node_or_null('../Behavior')
 onready var camera_rig = $'../CameraRig'
-onready var camera = $'../CameraRig/Camera'
+onready var camera = camera_rig.get_node('Camera')
 
 
 func _init_duplicate_meshes():

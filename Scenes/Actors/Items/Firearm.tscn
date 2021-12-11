@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=2]
@@ -12,101 +12,10 @@
 [ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=16]
 
 [sub_resource type="SphereShape" id=28]
-
-[sub_resource type="AnimationNodeAnimation" id=1]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=2]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "DefaultAnim"
-script = ExtResource( 13 )
-chain = true
-schema = ""
-custom_script = ""
-
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-disabled = true
-script = ExtResource( 14 )
-transition_expression = ""
-update_mode = "process"
-expression = "not get_node(COLLISION).disabled"
-arguments = {
-"COLLISION": "../Collision"
-}
-delay = 0.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachine" id=18]
-states/Damage/node = SubResource( 1 )
-states/Damage/position = Vector2( 654, 235.905 )
-states/EmptyReact/node = SubResource( 2 )
-states/EmptyReact/position = Vector2( 654, 427.073 )
-states/End/node = SubResource( 3 )
-states/End/position = Vector2( 887, 299.905 )
-states/Start/node = SubResource( 4 )
-states/Start/position = Vector2( 419, 299.905 )
-states/Touch/node = SubResource( 5 )
-states/Touch/position = Vector2( 654, 169.905 )
-states/Use/node = SubResource( 6 )
-states/Use/position = Vector2( 654, 299.905 )
-states/UseReact/node = SubResource( 7 )
-states/UseReact/position = Vector2( 654, 366.573 )
-transitions = [ "Start", "Touch", SubResource( 8 ), "Touch", "End", SubResource( 9 ), "Start", "Damage", SubResource( 10 ), "Damage", "End", SubResource( 11 ), "Start", "Use", SubResource( 12 ), "Use", "End", SubResource( 13 ), "Start", "UseReact", SubResource( 14 ), "UseReact", "End", SubResource( 15 ), "Start", "EmptyReact", SubResource( 16 ), "EmptyReact", "End", SubResource( 17 ) ]
-start_node = "Start"
-end_node = "End"
-graph_offset = Vector2( 0, 131.03 )
-script = ExtResource( 12 )
-statemachine = ""
-chain = true
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "DefaultAnim"
@@ -121,30 +30,6 @@ statemachine = ""
 chain = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=22]
-
-[sub_resource type="AnimationNodeAnimation" id=23]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=24]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachine" id=26]
-states/End/node = SubResource( 23 )
-states/End/position = Vector2( 788, 177 )
-states/Start/node = SubResource( 24 )
-states/Start/position = Vector2( 333, 177 )
-transitions = [ "Start", "End", SubResource( 25 ) ]
-start_node = "Start"
-end_node = "End"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 12 )
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
 
 [node name="Firearm" type="RigidBody"]
 collision_layer = 4
@@ -200,13 +85,9 @@ shape = SubResource( 28 )
 [node name="Behavior" parent="." instance=ExtResource( 10 )]
 
 [node name="Reception" parent="." instance=ExtResource( 11 )]
-tree_root = SubResource( 18 )
-parameters/playback = SubResource( 19 )
 
 [node name="Interface" parent="." instance=ExtResource( 15 )]
 tree_root = SubResource( 21 )
 parameters/playback = SubResource( 22 )
 
 [node name="Audio" parent="." instance=ExtResource( 16 )]
-tree_root = SubResource( 26 )
-parameters/playback = SubResource( 27 )

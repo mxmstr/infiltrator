@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scenes/Actors/KinematicBody.Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Properties/CameraRig.property.tscn" type="PackedScene" id=2]
@@ -28,35 +28,8 @@
 [ext_resource path="res://Scenes/Components/Responses/EmptyReact.response2.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Components/Responses/Damage.response2.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=28]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=29]
 [ext_resource path="res://Scenes/Components/Actions/Victory.action2.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scenes/Components/Actions/SwordMelee.action2.tscn" type="PackedScene" id=31]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeStateMachine" id=8]
-resource_local_to_scene = true
-states/Start/node = SubResource( 7 )
-states/Start/position = Vector2( 624, 170 )
-start_node = "Start"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 29 )
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [node name="Human" instance=ExtResource( 1 )]
 tags = "Actor Human"
@@ -64,16 +37,16 @@ tags = "Actor Human"
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="." index="0"]
 aabb = AABB( -0.119958, 0.162489, -0.0613593, 0.231916, 1.58002, 0.114907 )
 
-[node name="CameraRig" parent="." index="1" instance=ExtResource( 2 )]
-viewport = NodePath("../Perspective/Viewport")
-camera_offset = Vector3( 0, 0, -0.25 )
-
-[node name="Stamina" type="Node" parent="." index="2"]
+[node name="Stamina" type="Node" parent="." index="1"]
 script = ExtResource( 3 )
 
-[node name="Stance" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Stance" parent="." index="2" instance=ExtResource( 4 )]
 
-[node name="ClimbingSkill" parent="." index="4" instance=ExtResource( 5 )]
+[node name="ClimbingSkill" parent="." index="3" instance=ExtResource( 5 )]
+
+[node name="CameraRig" parent="." index="4" instance=ExtResource( 2 )]
+viewport = NodePath("../Perspective/Viewport")
+camera_offset = Vector3( 0, 0, -0.25 )
 
 [node name="RightHandContainer" parent="." index="5" instance=ExtResource( 6 )]
 release_exclude_parent = true
@@ -264,24 +237,11 @@ schema = "PickupAmmoSound"
 state = "PickupAmmo"
 
 [node name="VoiceAudio" parent="." index="49" instance=ExtResource( 28 )]
-parameters/playback = SubResource( 3 )
 bus = "Voice"
 
 [node name="FoleyAudio" parent="." index="50" instance=ExtResource( 28 )]
-parameters/playback = SubResource( 4 )
 
 [node name="FeetAudio" parent="." index="51" instance=ExtResource( 28 )]
-parameters/playback = SubResource( 5 )
-
-[node name="Reception" parent="." index="54"]
-parameters/playback = SubResource( 6 )
-
-[node name="Interface" parent="." index="55"]
-tree_root = SubResource( 8 )
-parameters/playback = SubResource( 9 )
-
-[node name="Audio" parent="." index="56"]
-parameters/playback = SubResource( 10 )
 
 [editable path="CameraRig"]
 [editable path="Perspective"]

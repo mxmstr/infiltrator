@@ -1,40 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Audio.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=2]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=3]
-resource_local_to_scene = true
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachine" id=4]
-states/End/node = SubResource( 1 )
-states/End/position = Vector2( 788, 177 )
-states/Start/node = SubResource( 2 )
-states/Start/position = Vector2( 333, 177 )
-transitions = [ "Start", "End", SubResource( 3 ) ]
-start_node = "Start"
-end_node = "End"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 1 )
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
-
-[node name="Audio" type="AnimationTree"]
-tree_root = SubResource( 4 )
-anim_player = NodePath("AnimationPlayer")
-parameters/playback = SubResource( 5 )
+[node name="Audio" type="Node"]
 script = ExtResource( 2 )
 bus = "SFX"
 

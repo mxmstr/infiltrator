@@ -13,8 +13,7 @@ var worldmodel_offset = 15
 
 var rig_translated = false
 var rig_rotated = false
-
-onready var rig = $'../CameraRig'
+onready var rig = get_node_or_null('../CameraRig')
 onready var camera = rig.get_node('Camera')
 
 

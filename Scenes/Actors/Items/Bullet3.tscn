@@ -1,0 +1,104 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Components/Properties/Movement.Static.property.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Audio.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Behavior.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Reception.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Response.Touch.Bullet.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Stimulus.Contact.Area.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Components/Responses/Touch.Bullet.response2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Components/Stimuli/Contact.Area.stimulus.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Textures/particle.png" type="Texture" id=13]
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 13 )
+
+[sub_resource type="Curve" id=15]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.213636 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+gravity = Vector3( 0, -2, 0 )
+scale_curve = SubResource( 16 )
+
+[sub_resource type="QuadMesh" id=14]
+size = Vector2( 0.1, 0.1 )
+
+[sub_resource type="SphereShape" id=6]
+radius = 0.1
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "DefaultAnim"
+
+[sub_resource type="AnimationNodeOneShot" id=8]
+
+[sub_resource type="AnimationNodeBlendTree" id=9]
+nodes/Action/node = SubResource( 11 )
+nodes/Action/position = Vector2( 300, 20 )
+nodes/Animation/node = SubResource( 7 )
+nodes/Animation/position = Vector2( 300, 140 )
+nodes/OneShot/node = SubResource( 8 )
+nodes/OneShot/position = Vector2( 540, 20 )
+nodes/output/position = Vector2( 780, 80 )
+node_connections = [ "output", 0, "OneShot", "OneShot", 0, "Animation", "OneShot", 1, "Action" ]
+
+[node name="Bullet3" type="Area"]
+collision_layer = 8
+collision_mask = 17
+monitoring = false
+monitorable = false
+script = ExtResource( 1 )
+tags = "Actor Bullet Shotgun Damage:0 Force:0"
+
+[node name="Model" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+material_override = SubResource( 12 )
+cast_shadow = 0
+lifetime = 0.8
+visibility_aabb = AABB( -0.193909, -0.932309, -0.371607, 0.387815, 1.86463, 0.743204 )
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 14 )
+
+[node name="Collision" type="CollisionShape" parent="."]
+shape = SubResource( 6 )
+
+[node name="ContactStim" type="Node" parent="." instance=ExtResource( 12 )]
+script = ExtResource( 10 )
+stim_type = "Touch"
+raycast = true
+
+[node name="TouchResponse" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 9 )
+tree_node = NodePath("../Reception")
+
+[node name="Movement" parent="." instance=ExtResource( 2 )]
+
+[node name="Behavior" type="AnimationTree" parent="." instance=ExtResource( 7 )]
+tree_root = SubResource( 9 )
+anim_player = NodePath("AnimationPlayer")
+process_mode = 2
+parameters/OneShot/active = false
+script = ExtResource( 4 )
+
+[node name="Reception" type="Node" parent="." instance=ExtResource( 6 )]
+script = ExtResource( 5 )
+
+[node name="Audio" type="Node" parent="." instance=ExtResource( 8 )]
+script = ExtResource( 3 )
+bus = "SFX"

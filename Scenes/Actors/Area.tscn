@@ -1,32 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Movement.Static.property.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=7]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-
-[sub_resource type="AnimationNodeAnimation" id=6]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeStateMachine" id=7]
-resource_local_to_scene = true
-states/Start/node = SubResource( 6 )
-states/Start/position = Vector2( 624, 170 )
-start_node = "Start"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 7 )
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [node name="Area" type="Area"]
 collision_layer = 16
@@ -39,11 +17,5 @@ tags = "Area"
 [node name="Behavior" parent="." instance=ExtResource( 2 )]
 
 [node name="Reception" parent="." instance=ExtResource( 3 )]
-parameters/playback = SubResource( 3 )
-
-[node name="Interface" parent="." instance=ExtResource( 4 )]
-tree_root = SubResource( 7 )
-parameters/playback = SubResource( 4 )
 
 [node name="Audio" parent="." instance=ExtResource( 5 )]
-parameters/playback = SubResource( 5 )

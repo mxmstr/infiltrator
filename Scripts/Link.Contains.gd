@@ -179,11 +179,9 @@ func _restore_collision():
 		if collision:
 			collision.disabled = false
 		
-		
 		if container_node and is_instance_valid(container_node):
-			
 			container_node._apply_launch_attributes(to_node)
-			
+
 
 func _destroy():
 	

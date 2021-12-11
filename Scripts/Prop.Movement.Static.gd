@@ -36,7 +36,7 @@ func _teleport(new_position=null, new_rotation=null):
 		owner.global_transform.origin = new_position
 	
 	if new_rotation != null:
-		owner.global_transform.basis = new_rotation
+		owner.global_transform.basis = Basis(new_rotation.get_euler())
 
 
 func _turn(delta):

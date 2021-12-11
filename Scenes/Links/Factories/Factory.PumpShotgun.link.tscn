@@ -4,8 +4,5 @@
 
 [node name="Factory" type="Node"]
 script = ExtResource( 1 )
-__meta__ = {
-
-}
 products = "Items/PumpShotgun Magazine << 12 Items/BulletShotgun
 Items/AmmoBoxShotgun"

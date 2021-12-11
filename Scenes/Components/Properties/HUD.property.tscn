@@ -70,6 +70,7 @@ margin_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 custom_colors/font_color = Color( 0, 1, 0.462745, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "0 | 0"
 align = 2

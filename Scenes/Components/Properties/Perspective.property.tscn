@@ -19,6 +19,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 stretch = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 fp_root_bone = "Pelvis"
 fp_hidden_bones = [ "Head", "Neck" ]
 

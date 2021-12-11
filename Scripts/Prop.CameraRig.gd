@@ -13,18 +13,20 @@ export var rotation_degrees_offset = Vector3()
 
 var root
 
+onready var camera = $Camera#get_node_or_null('../Perspective/Viewport/Camera')
+
 
 func _clamp_camera():
 	
 #	prints(cam_max_x, cam_max_y)
-	$Camera.rotation.x = clamp($Camera.rotation.x, -cam_max_y, cam_max_y)
-	$Camera.rotation.y = clamp($Camera.rotation.y, -cam_max_x, cam_max_x)
+	camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)
+	camera.rotation.y = clamp(camera.rotation.y, -cam_max_x, cam_max_x)
 
 
 func _rotate_camera(delta_x, delta_y):
 	
-	$Camera.rotation.x += delta_x
-	$Camera.rotation.y += delta_y
+	camera.rotation.x += delta_x
+	camera.rotation.y += delta_y
 	
 	_clamp_camera()
 
@@ -55,8 +57,8 @@ func _ready():
 	yield(get_tree(), 'idle_frame')
 	
 	$Camera.set_viewport(get_node(viewport))
-	$Camera.current = true
-	$Camera.translation = camera_offset
+	camera.current = true
+	camera.translation = camera_offset
 
 
 func _process(delta):
@@ -79,6 +81,5 @@ func _process(delta):
 
 		#global_transform.basis = Basis(root.global_transform.basis.get_rotation_quat())#.rotated(root.global_transform.basis.y, deg2rad(180))
 #		global_transform.basis = root.global_transform.basis.rotated(root.global_transform.basis.z, deg2rad(180))
-
-
+	
 #	_clamp_camera()

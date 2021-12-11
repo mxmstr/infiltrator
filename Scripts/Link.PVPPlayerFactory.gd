@@ -103,7 +103,7 @@ func _add_viewport(actor, data):
 	var perspective = actor.get_node('Perspective')
 	
 	if Meta.player_count > 2:
-		
+
 		var width = get_tree().root.size.x / 2
 		var height = get_tree().root.size.y / 2
 
@@ -121,22 +121,22 @@ func _add_viewport(actor, data):
 		perspective.rect_size.x = width
 		perspective.get_node('Viewport').size.x = width
 		perspective.get_node('Viewport').size.y = height
-		
+
 	else:
-		
+
 		var width = get_tree().root.size.x
 		var height = get_tree().root.size.y / 2
-		
+
 		if actor.player_index == 0:
 			perspective.rect_position.y = 0
 		else:
 			perspective.rect_position.y = height
-		
+
 		perspective.rect_size.y = height
 		perspective.get_node('Viewport').size.x = width
 		perspective.get_node('Viewport').size.y = height
 
-	#control.get_node('Container/Viewport').world = get_tree().root.world
+#	perspective.get_node('Viewport').world = get_tree().root.world
 
 	perspective.mouse_device = data.mouse
 	perspective.keyboard_device = data.keyboard

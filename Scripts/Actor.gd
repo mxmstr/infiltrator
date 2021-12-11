@@ -111,3 +111,10 @@ func _ready():
 func _integrate_forces(state):
 
 	emit_signal('integrate_forces', state)
+
+
+#func _process(delta):
+#
+#	if has_node('Particles'):
+#		if not get_node('Particles').visible:
+#			prints('asdf')
