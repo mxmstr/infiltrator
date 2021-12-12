@@ -3,8 +3,8 @@ extends Node
 export(String) var action
 export var strength_multiplier = 1.0
 
-var active
-var strength
+var active = 0
+var strength = 0
 var last_status = -1
 
 onready var perspective = get_node_or_null('../Perspective')

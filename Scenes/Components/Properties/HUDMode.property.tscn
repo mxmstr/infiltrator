@@ -6,7 +6,7 @@
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
+tracks/0/path = NodePath("../UI/Viewport/Control/Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 0.54902 ) ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../Perspective/Viewport/HUD")
+tracks/1/path = NodePath("../UI/Viewport/Control/HUD")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -46,7 +46,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/3/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -60,7 +60,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/4/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -74,7 +74,7 @@ tracks/4/keys = {
 } ]
 }
 tracks/5/type = "method"
-tracks/5/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/5/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -88,7 +88,7 @@ tracks/5/keys = {
 } ]
 }
 tracks/6/type = "method"
-tracks/6/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/6/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -102,7 +102,7 @@ tracks/6/keys = {
 } ]
 }
 tracks/7/type = "method"
-tracks/7/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/7/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -116,7 +116,7 @@ tracks/7/keys = {
 } ]
 }
 tracks/8/type = "method"
-tracks/8/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/8/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -133,7 +133,7 @@ tracks/8/keys = {
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
+tracks/0/path = NodePath("../UI/Viewport/Control/Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -145,7 +145,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ) ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../Perspective/Viewport/HUD")
+tracks/1/path = NodePath("../UI/Viewport/Control/HUD")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -173,7 +173,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/3/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -187,7 +187,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/4/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -201,7 +201,7 @@ tracks/4/keys = {
 } ]
 }
 tracks/5/type = "method"
-tracks/5/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/5/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -215,7 +215,7 @@ tracks/5/keys = {
 } ]
 }
 tracks/6/type = "method"
-tracks/6/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/6/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -229,7 +229,7 @@ tracks/6/keys = {
 } ]
 }
 tracks/7/type = "method"
-tracks/7/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/7/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -243,7 +243,7 @@ tracks/7/keys = {
 } ]
 }
 tracks/8/type = "method"
-tracks/8/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/8/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -260,7 +260,7 @@ tracks/8/keys = {
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
+tracks/0/path = NodePath("../UI/Viewport/Control/Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -272,7 +272,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../Perspective/Viewport/HUD")
+tracks/1/path = NodePath("../UI/Viewport/Control/HUD")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -286,7 +286,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/2/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -314,7 +314,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/4/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -328,7 +328,7 @@ tracks/4/keys = {
 } ]
 }
 tracks/5/type = "method"
-tracks/5/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/5/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -342,7 +342,7 @@ tracks/5/keys = {
 } ]
 }
 tracks/6/type = "method"
-tracks/6/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/6/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -356,7 +356,7 @@ tracks/6/keys = {
 } ]
 }
 tracks/7/type = "method"
-tracks/7/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/7/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -370,7 +370,7 @@ tracks/7/keys = {
 } ]
 }
 tracks/8/type = "method"
-tracks/8/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/8/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -387,7 +387,7 @@ tracks/8/keys = {
 [sub_resource type="Animation" id=4]
 length = 4.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
+tracks/0/path = NodePath("../UI/Viewport/Control/Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -399,7 +399,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../Perspective/Viewport/HUD")
+tracks/1/path = NodePath("../UI/Viewport/Control/HUD")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -413,7 +413,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/2/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -441,7 +441,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/4/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -455,7 +455,7 @@ tracks/4/keys = {
 } ]
 }
 tracks/5/type = "method"
-tracks/5/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/5/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -469,7 +469,7 @@ tracks/5/keys = {
 } ]
 }
 tracks/6/type = "method"
-tracks/6/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/6/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -483,7 +483,7 @@ tracks/6/keys = {
 } ]
 }
 tracks/7/type = "method"
-tracks/7/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/7/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -497,7 +497,7 @@ tracks/7/keys = {
 } ]
 }
 tracks/8/type = "method"
-tracks/8/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/8/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -515,7 +515,7 @@ tracks/8/keys = {
 resource_name = "Victory"
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Perspective/Viewport/Panel:modulate")
+tracks/0/path = NodePath("../UI/Viewport/Control/Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -527,7 +527,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../Perspective/Viewport/HUD")
+tracks/1/path = NodePath("../UI/Viewport/Control/HUD")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -555,7 +555,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/3/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -569,7 +569,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/4/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -583,7 +583,7 @@ tracks/4/keys = {
 } ]
 }
 tracks/5/type = "method"
-tracks/5/path = NodePath("../Perspective/Viewport/PauseMenu")
+tracks/5/path = NodePath("../UI/Viewport/Control/PauseMenu")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -597,7 +597,7 @@ tracks/5/keys = {
 } ]
 }
 tracks/6/type = "method"
-tracks/6/path = NodePath("../Perspective/Viewport/RespawnMenu")
+tracks/6/path = NodePath("../UI/Viewport/Control/RespawnMenu")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -611,7 +611,7 @@ tracks/6/keys = {
 } ]
 }
 tracks/7/type = "method"
-tracks/7/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/7/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -625,7 +625,7 @@ tracks/7/keys = {
 } ]
 }
 tracks/8/type = "method"
-tracks/8/path = NodePath("../Perspective/Viewport/VictoryMenu")
+tracks/8/path = NodePath("../UI/Viewport/Control/VictoryMenu")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false

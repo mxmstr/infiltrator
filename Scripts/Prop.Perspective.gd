@@ -13,6 +13,9 @@ var worldmodel_offset = 15
 
 var rig_translated = false
 var rig_rotated = false
+
+onready var viewport = get_node('Viewport2D')
+onready var ui = get_node('../UI')
 onready var rig = get_node_or_null('../CameraRig')
 onready var camera = rig.get_node('Camera')
 
@@ -81,18 +84,78 @@ func _init_fp_skeleton():
 
 func _init_viewport():
 	
+	if Meta.player_count > 2:
+
+		var width = get_tree().root.size.x / 2
+		var height = get_tree().root.size.y / 2
+
+		if owner.player_index in [0, 2]:
+			ui.rect_position.x = 0
+			rect_position.x = 0
+		else:
+			ui.rect_position.x = width
+			rect_position.x = width
+
+		if owner.player_index in [0, 1]:
+			ui.rect_position.y = 0
+			rect_position.y = 0
+		else:
+			ui.rect_position.y = height
+			rect_position.y = height
+
+		ui.rect_size.y = height
+		ui.rect_size.x = width
+		ui.get_node('Viewport').size.y = height
+		ui.get_node('Viewport').size.x = width
+		ui.get_node('Viewport/Control').rect_size.y = height
+		ui.get_node('Viewport/Control').rect_size.x = width
+		rect_size.y = height
+		rect_size.x = width
+#			viewport.size.x = 1920#width
+#			viewport.size.y = 1080#height
+
+	else:
+
+		var width = get_tree().root.size.x
+		var height = get_tree().root.size.y / 2
+
+		if owner.player_index == 0:
+			ui.rect_position.y = 0
+			rect_position.y = 0
+		else:
+			ui.rect_position.y = height
+			rect_position.y = height
+
+		ui.rect_size.y = height
+		ui.rect_size.x = width
+		ui.get_node('Viewport').size.y = height
+		ui.get_node('Viewport').size.x = width
+		ui.get_node('Viewport/Control').rect_size.y = height
+		ui.get_node('Viewport/Control').rect_size.x = width
+		rect_size.y = height
+		rect_size.x = width
+#		ui.rect_size.y = height
+#		ui.get_node('Viewport').size.y = height
+#		ui.get_node('Viewport/Control').rect_size.y = height
+#		rect_size.y = height
+#			viewport.size.x = 1920#width
+#			viewport.size.y = 1080#height
+
+#
+	
+	
 #	$Container/Viewport.world = get_tree().root.world
 #	$Container/Viewport.size = get_tree().root.size
 	
 	
-	for child in owner.get_children():
-
-		var script_name = child.get_script().get_path().get_file() if child.get_script() != null else ''
-
-		if script_name == 'Prop.Container.gd' and child.bone_name != '':
-
-			child.connect('item_added', self, '_on_item_contained')
-			child.connect('item_removed', self, '_on_item_released')
+#	for child in owner.get_children():
+#
+#		var script_name = child.get_script().get_path().get_file() if child.get_script() != null else ''
+#
+#		if script_name == 'Prop.Container.gd' and child.bone_name != '':
+#
+#			child.connect('item_added', self, '_on_item_contained')
+#			child.connect('item_removed', self, '_on_item_released')
 	
 	
 #	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
@@ -104,4 +167,6 @@ func _ready():
 	yield(get_tree(), 'idle_frame')
 	
 	_init_fp_skeleton()
-	#_init_viewport()
+	_init_viewport()
+	
+	get_tree().root.connect('size_changed', self, '_init_viewport')

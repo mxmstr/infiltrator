@@ -31,7 +31,6 @@ gdscript/warnings/enable=false
 [display]
 
 window/dpi/allow_hidpi=true
-window/vsync/use_vsync=false
 
 [editor_plugins]
 

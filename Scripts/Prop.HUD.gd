@@ -64,7 +64,7 @@ func _get_ammo_container(item):
 	var container
 	var best_tag_count = 0
 	
-	for prop in owner.owner.get_children():
+	for prop in owner.get_children():
 		
 		if _is_container(prop):
 			
@@ -147,6 +147,7 @@ func _process(delta):
 	
 #	radar_texture.position = rect_size - ((radar_texture.texture.get_size() / 2))
 	
+	return
 	for dot_info in radar_dots:
 		
 		var dot = dot_info[0]

@@ -98,44 +98,17 @@ func _enter_tree():
 	check_nulls = false
 
 
+
+
+
 func _add_viewport(actor, data):
 	
 	var perspective = actor.get_node('Perspective')
+	var ui = actor.get_node('UI')
+	var viewport = perspective.get_node('Viewport2D')
 	
-	if Meta.player_count > 2:
-
-		var width = get_tree().root.size.x / 2
-		var height = get_tree().root.size.y / 2
-
-		if actor.player_index in [0, 2]:
-			perspective.rect_position.x = 0
-		else:
-			perspective.rect_position.x = width
-
-		if actor.player_index in [0, 1]:
-			perspective.rect_position.y = 0
-		else:
-			perspective.rect_position.y = height
-
-		perspective.rect_size.y = height
-		perspective.rect_size.x = width
-		perspective.get_node('Viewport').size.x = width
-		perspective.get_node('Viewport').size.y = height
-
-	else:
-
-		var width = get_tree().root.size.x
-		var height = get_tree().root.size.y / 2
-
-		if actor.player_index == 0:
-			perspective.rect_position.y = 0
-		else:
-			perspective.rect_position.y = height
-
-		perspective.rect_size.y = height
-		perspective.get_node('Viewport').size.x = width
-		perspective.get_node('Viewport').size.y = height
-
+	perspective._init_viewport()
+	
 #	perspective.get_node('Viewport').world = get_tree().root.world
 
 	perspective.mouse_device = data.mouse

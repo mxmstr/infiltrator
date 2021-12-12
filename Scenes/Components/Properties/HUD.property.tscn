@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Prop.HUD.gd" type="Script" id=1]
 [ext_resource path="res://Textures/UI/Crosshair.png" type="Texture" id=2]
@@ -13,6 +13,12 @@
 [sub_resource type="DynamicFont" id=2]
 size = 40
 font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.796078, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.556863 )
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -47,16 +53,33 @@ custom_fonts/font = ExtResource( 4 )
 text = "FPS"
 script = ExtResource( 5 )
 
-[node name="Radar" type="MarginContainer" parent="."]
-anchor_left = 1.0
+[node name="Radar" type="GridContainer" parent="."]
 anchor_right = 1.0
-margin_left = -300.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+size_flags_vertical = 4
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Control" type="Control" parent="Radar"]
+margin_right = 676.0
 margin_bottom = 300.0
+size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="Radar"]
-margin_right = 300.0
+margin_left = 684.0
+margin_right = 984.0
 margin_bottom = 300.0
-size_flags_horizontal = 0
+size_flags_horizontal = 8
 size_flags_vertical = 0
 texture = ExtResource( 6 )
 
@@ -75,6 +98,43 @@ custom_fonts/font = SubResource( 2 )
 text = "0 | 0"
 align = 2
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Health" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+size_flags_vertical = 4
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="Health"]
+margin_top = 511.0
+margin_right = 150.0
+margin_bottom = 560.0
+rect_min_size = Vector2( 150, 0 )
+mouse_filter = 2
+size_flags_horizontal = 0
+custom_colors/font_color = Color( 0, 1, 0.462745, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+step = 1.0
+value = 50.0
+rounded = true
 __meta__ = {
 "_editor_description_": ""
 }
