@@ -43,8 +43,8 @@ func _on_stimulate(stim, data):
 				
 				if not data[0]._is_empty():
 					
-					var ammo_box = Meta.AddActor(data[1], inventory.translation, inventory.rotation_degrees)
-					ammo_box._set_tag('amount', data[0].items.size())
+					var ammo_box = Meta.AddActor(data[1], inventory.global_transform.origin)
+					ammo_box._set_tag('amount', str(data[0].items.size()))
 					inventory._exclude_recursive(ammo_box, owner)
 					
 					data[0]._delete_all()

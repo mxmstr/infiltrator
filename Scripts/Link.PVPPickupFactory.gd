@@ -1,7 +1,7 @@
 extends 'res://Scripts/Link.gd'
 
 var spawn_chance = 1.0#0.8
-var spawn_count = 4
+var spawn_count = 8
 var respawn_time = 30.0
 
 
@@ -74,6 +74,8 @@ func _ready():
 	randomize()
 	var markers = get_children()
 	markers.shuffle()
+	
+	spawn_count = int(markers.size())
 	
 	for i in range(spawn_count):
 		_refresh_spawn(markers[i])

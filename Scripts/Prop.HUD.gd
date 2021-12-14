@@ -11,7 +11,14 @@ onready var radar = get_node('Radar')#.find_node('Sprite')
 onready var radar_dot = load('res://Scenes/UI/HUD.RadarDot.tscn')
 
 onready var ammo = get_node('Ammo')
+onready var health = get_node('Health/ProgressBar')
 onready var righthand = owner.get_node('../RightHandContainer')
+onready var stamina = owner.get_node('../Stamina')
+
+
+func _on_damaged(hp):
+	
+	health.value = hp
 
 
 func _on_ammo_added(container, item):
@@ -64,7 +71,7 @@ func _get_ammo_container(item):
 	var container
 	var best_tag_count = 0
 	
-	for prop in owner.get_children():
+	for prop in owner.owner.get_children():
 		
 		if _is_container(prop):
 			
@@ -115,6 +122,9 @@ func _notification(what):
 
 func _ready():
 	
+	stamina.connect('damaged', self, '_on_damaged')
+	health.value = stamina.hp
+	
 	yield(get_tree(), 'idle_frame')
 	
 	radius_x = radar.rect_size.x / 2
@@ -147,7 +157,6 @@ func _process(delta):
 	
 #	radar_texture.position = rect_size - ((radar_texture.texture.get_size() / 2))
 	
-	return
 	for dot_info in radar_dots:
 		
 		var dot = dot_info[0]

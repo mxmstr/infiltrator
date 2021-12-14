@@ -18,7 +18,7 @@ var characters = {
 		'scene': 'Humans/Players/Cop'
 		},
 	'Karen': {
-		'scene': 'Humans/Players/Dawn'
+		'scene': 'Humans/Players/Karen'
 		},
 	'Max': {
 		'scene': 'Humans/Players/YoungMax'

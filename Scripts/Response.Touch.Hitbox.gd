@@ -23,7 +23,11 @@ func _on_stimulate(stim, data):
 			Meta.StimulateActor(owner.owner, 'Damage', data.source, damage, data.position, direction)
 			Meta.StimulateActor(owner.owner, 'Push', data.source, force, data.position, direction)
 			audio._start_state('Damage')
-			reception._reflect()
+			
+			var blood = Meta.AddActor('Particles/BloodSquirt', data.source.translation, data.source.rotation)
+			blood.rotate_y(deg2rad(180))
+			
+			data.source.queue_free()
 		
 		elif data.source._has_tag('Melee'):
 			

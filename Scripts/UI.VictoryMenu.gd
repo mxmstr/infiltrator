@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Control
 
 var pvp
 var rank_names = ['1st', '2nd', '3rd', '4th']

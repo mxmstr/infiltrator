@@ -254,7 +254,7 @@ func AddActor(actor_path, position=null, rotation=null, direction=null, tags={})
 		new_actor.transform.origin = position
 	
 	if rotation:
-		new_actor.rotation_degrees = rotation
+		new_actor.rotation = rotation
 	
 	if direction:
 		

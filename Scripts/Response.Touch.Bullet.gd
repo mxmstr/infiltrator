@@ -6,13 +6,15 @@ onready var audio = get_node_or_null('../Audio')
 
 func _on_stimulate(stim, data):
 	
+	return
+	
 	if stim == 'Touch':
 		
 		if data.source._has_tag('Map'):
 			
 			owner.translation = data.position
 			
-			Meta.AddActor('Particles/Smoke', owner.translation)
+			#Meta.AddActor('Particles/Smoke', owner.translation)
 			Meta.AddActor('Particles/Sparks', owner.translation, null, data.direction)
 			
 			owner.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Humans/YoungMax.escn" type="PackedScene" id=2]
@@ -6,174 +6,55 @@
 [ext_resource path="res://Scenes/Components/Properties/Outline.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Expression.gd" type="Script" id=9]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
-
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=9]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "DefaultAnim"
-script = ExtResource( 8 )
-chain = true
-schema = ""
-custom_script = ""
-
-[sub_resource type="AnimationNodeAnimation" id=11]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-disabled = true
-script = ExtResource( 9 )
-transition_expression = ""
-update_mode = "process"
-expression = "not get_node(COLLISION).disabled"
-arguments = {
-"COLLISION": "../Collision"
-}
-delay = 0.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-auto_advance = true
-priority = 32
-
-[sub_resource type="AnimationNodeStateMachine" id=23]
-states/Damage/node = SubResource( 6 )
-states/Damage/position = Vector2( 654, 235.905 )
-states/EmptyReact/node = SubResource( 7 )
-states/EmptyReact/position = Vector2( 654, 427.073 )
-states/End/node = SubResource( 8 )
-states/End/position = Vector2( 887, 299.905 )
-states/Start/node = SubResource( 9 )
-states/Start/position = Vector2( 419, 299.905 )
-states/Touch/node = SubResource( 10 )
-states/Touch/position = Vector2( 654, 169.905 )
-states/Use/node = SubResource( 11 )
-states/Use/position = Vector2( 654, 299.905 )
-states/UseReact/node = SubResource( 12 )
-states/UseReact/position = Vector2( 654, 366.573 )
-transitions = [ "Start", "Touch", SubResource( 13 ), "Touch", "End", SubResource( 14 ), "Start", "Damage", SubResource( 15 ), "Damage", "End", SubResource( 16 ), "Start", "Use", SubResource( 17 ), "Use", "End", SubResource( 18 ), "Start", "UseReact", SubResource( 19 ), "UseReact", "End", SubResource( 20 ), "Start", "EmptyReact", SubResource( 21 ), "EmptyReact", "End", SubResource( 22 ) ]
-start_node = "Start"
-end_node = "End"
-graph_offset = Vector2( 0, 198.255 )
-script = ExtResource( 7 )
-statemachine = ""
-chain = true
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
-
-[sub_resource type="AnimationNodeAnimation" id=25]
-resource_local_to_scene = true
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeStateMachine" id=26]
-resource_local_to_scene = true
-states/Start/node = SubResource( 25 )
-states/Start/position = Vector2( 624, 170 )
-start_node = "Start"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 7 )
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+[ext_resource path="res://Scripts/Actor.gd" type="Script" id=8]
 
 [node name="Max" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 8 )
 tags = "Actor Human Male Team:0"
 
-[node name="Model" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Model" parent="." index="1" instance=ExtResource( 2 )]
 
-[node name="Collision" parent="." index="1" instance=ExtResource( 3 )]
+[node name="Collision" parent="." index="2" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941735, 0 )
 
-[node name="Outline" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Outline" parent="." index="3" instance=ExtResource( 4 )]
 
-[node name="Hitboxes" parent="." index="3" instance=ExtResource( 5 )]
+[node name="Hitboxes" parent="." index="4" instance=ExtResource( 5 )]
 source = ExtResource( 6 )
 
 [node name="RightHandContainer" parent="." index="30"]
+path = NodePath("../Model/neo_reference_skeleton")
 bone_name = "Gun"
 max_quantity = 1
 required_tags = "Item"
 
 [node name="RightPunchContainer" parent="." index="31"]
+path = NodePath("../Model/neo_reference_skeleton")
 bone_name = "Hand-R"
 
 [node name="LeftPunchContainer" parent="." index="32"]
+path = NodePath("../Model/neo_reference_skeleton")
 bone_name = "Hand-L"
 
 [node name="RightKickContainer" parent="." index="33"]
+path = NodePath("../Model/neo_reference_skeleton")
 bone_name = "Foot-R"
 
 [node name="LeftKickContainer" parent="." index="34"]
-bone_name = "Foot-R"
+path = NodePath("../Model/neo_reference_skeleton")
+bone_name = "Foot-L"
 
-[node name="VoiceAudio" parent="." index="69"]
-parameters/playback = SubResource( 3 )
+[node name="VoiceAudio" parent="." index="75"]
+bus = "Voice"
 
-[node name="FoleyAudio" parent="." index="70"]
-parameters/playback = SubResource( 4 )
+[node name="FeetAudio" parent="." index="77"]
+bus = "SFX"
 
-[node name="FeetAudio" parent="." index="71"]
-parameters/playback = SubResource( 5 )
-
-[node name="Reception" parent="." index="74"]
-tree_root = SubResource( 23 )
-parameters/playback = SubResource( 24 )
-
-[node name="Interface" parent="." index="75"]
-tree_root = SubResource( 26 )
-parameters/playback = SubResource( 27 )
-
-[node name="Audio" parent="." index="76"]
-parameters/playback = SubResource( 28 )
-
+[editable path="Model"]
 [editable path="CameraRig"]
 [editable path="CameraRaycastStim"]
 [editable path="Perspective"]
-[editable path="Perspective/Viewport/HUD"]
+[editable path="Perspective/Viewport2D/HUD"]
+[editable path="Control/HUD"]

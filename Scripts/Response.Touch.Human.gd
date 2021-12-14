@@ -52,7 +52,7 @@ func _on_stimulate(stim, data):
 			if exists:
 				
 				if data.source._has_tag('Firearm'):
-				
+					
 					var item_magazine = data.source.get_node('Magazine')
 					var item_chamber = data.source.get_node('Chamber')
 					var ammo_container = _get_ammo_container(item_magazine, owner)

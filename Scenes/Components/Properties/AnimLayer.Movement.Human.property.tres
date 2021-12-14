@@ -5,6 +5,7 @@
 [ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=3]
+scale = 1.25
 animation = "StrafeLeft"
 script = ExtResource( 2 )
 chain = false
@@ -12,6 +13,7 @@ schema = "RunLeft"
 custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=4]
+scale = 1.25
 animation = "StrafeRight"
 script = ExtResource( 2 )
 chain = false
@@ -19,6 +21,7 @@ schema = "RunRight"
 custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=5]
+scale = 1.25
 animation = "WalkBackward"
 script = ExtResource( 2 )
 chain = false
@@ -26,6 +29,7 @@ schema = "WalkBackward"
 custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=6]
+scale = 1.25
 animation = "Walk"
 script = ExtResource( 2 )
 chain = false
@@ -33,6 +37,7 @@ schema = "WalkForward"
 custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=7]
+scale = 1.25
 animation = "Run"
 script = ExtResource( 2 )
 chain = false
@@ -40,6 +45,7 @@ schema = "RunForward"
 custom_script = ""
 
 [sub_resource type="AnimationNodeAnimation" id=8]
+scale = 1.25
 animation = "WalkBackward"
 script = ExtResource( 2 )
 chain = false
@@ -76,13 +82,13 @@ speed = 0.0
 x_target = "Movement"
 x_method = "_get_sidestep_speed"
 x_args = [  ]
-x_max_value = -2.75
-x_min_value = 2.75
+x_max_value = -3.5
+x_min_value = 3.5
 y_target = "Movement"
 y_method = "_get_forward_speed"
 y_args = [  ]
-y_max_value = 2.75
-y_min_value = -2.75
+y_max_value = 3.5
+y_min_value = -3.5
 
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "CrouchSideStepLeft"
@@ -138,13 +144,13 @@ speed = 0.0
 x_target = "Movement"
 x_method = "_get_sidestep_speed"
 x_args = [  ]
-x_max_value = -2.75
-x_min_value = 2.75
+x_max_value = -3.5
+x_min_value = 3.5
 y_target = "Movement"
 y_method = "_get_forward_speed"
 y_args = [  ]
-y_max_value = 2.75
-y_min_value = -2.75
+y_max_value = 3.5
+y_min_value = -3.5
 
 [resource]
 blend_point_0/node = SubResource( 9 )

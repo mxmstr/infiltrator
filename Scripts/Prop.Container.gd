@@ -325,7 +325,7 @@ func _release_front(data=null):
 	
 	if factory_mode:
 		
-		item = Meta.AddActor(_remove_item(items[0]), root.global_transform.origin, root.rotation_degrees)
+		item = Meta.AddActor(_remove_item(items[0]), root.global_transform.origin, root.rotation)
 	
 	else:
 		
@@ -360,7 +360,7 @@ func _release_all():
 	if factory_mode:
 		
 		for item in items:
-			released.append(Meta.AddActor(_remove_item(item), root.global_transform.origin, root.rotation_degrees))
+			released.append(Meta.AddActor(_remove_item(item), root.global_transform.origin, root.rotation))
 	
 	else:
 		

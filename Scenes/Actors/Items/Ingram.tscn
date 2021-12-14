@@ -26,7 +26,7 @@ required_tags = "Bullet 9mm"
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.126944, 0.281379 )
 release_speed = 20.0
-release_angular_spread = Vector2( 0.1, 0.1 )
+release_angular_spread = Vector2( 0.2, 0.2 )
 
 [node name="Interface" parent="." index="14"]
 parameters/playback = SubResource( 3 )

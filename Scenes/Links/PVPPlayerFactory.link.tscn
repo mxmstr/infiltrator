@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Link.PVPPlayerFactory.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/Music/Multiplayer/Burly Brawl.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Music/Multiplayer/FIGHT.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Music/Rage.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Music/DEATH.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 length = 347.606
@@ -22,21 +23,6 @@ tracks/0/keys = {
 } ],
 "times": PoolRealArray( 0 )
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Music:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -5.0 ]
-}
-__meta__ = {
-
-}
 
 [sub_resource type="Animation" id=2]
 length = 75.9775
@@ -54,21 +40,6 @@ tracks/0/keys = {
 "stream": ExtResource( 3 )
 } ],
 "times": PoolRealArray( 0 )
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Music:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-__meta__ = {
-
 }
 
 [sub_resource type="Animation" id=3]
@@ -99,32 +70,54 @@ tracks/1/keys = {
 "update": 0,
 "values": [ -5.0 ]
 }
-__meta__ = {
 
+[sub_resource type="Animation" id=4]
+length = 4.0
+tracks/0/type = "audio"
+tracks/0/path = NodePath("./Death")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 15.0,
+"start_offset": 7.45,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Music:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -15.0, -15.0, -5.0 ]
 }
 
 [node name="PVPPlayerFactory" type="Node"]
 script = ExtResource( 1 )
-__meta__ = {
-
-}
 
 [node name="FightMusic" type="AnimationPlayer" parent="."]
 "anims/Burly Brawl" = SubResource( 1 )
 anims/FIGHT = SubResource( 2 )
-__meta__ = {
-
-}
 
 [node name="VictoryMusic" type="AnimationPlayer" parent="."]
 anims/Rage = SubResource( 3 )
-__meta__ = {
 
-}
+[node name="DeathSound" type="AnimationPlayer" parent="."]
+anims/DEATH = SubResource( 4 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = -5.0
 bus = "Music"
-__meta__ = {
 
-}
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Music"

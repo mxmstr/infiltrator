@@ -40,20 +40,22 @@ func _on_punch(projectile):
 
 func _on_camera_entered(_camera, actor):
 	
-	if equipped and _camera == camera and actor.get_node('Stamina').hp > 0:
+	if _camera == camera and actor.get_node('Stamina').hp > 0:
 		
 		visible_enemies.append(actor)
 		
-		_select_target()
+		if equipped:
+			_select_target()
 
 
 func _on_camera_exited(_camera, actor):
 	
-	if equipped and _camera == camera:
+	if _camera == camera:
 		
 		visible_enemies.erase(actor)
 		
-		_select_target()
+		if equipped:
+			_select_target()
 
 
 func _on_item_equipped(container, item):
@@ -62,6 +64,8 @@ func _on_item_equipped(container, item):
 		
 		item.get_node(chamber_container).connect('item_released', self, '_on_fire')
 		equipped = true
+		
+		_select_target()
 
 
 func _on_item_dequipped(container, item):

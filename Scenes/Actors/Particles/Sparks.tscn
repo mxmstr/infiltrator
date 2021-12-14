@@ -4,76 +4,51 @@
 [ext_resource path="res://Scenes/Components/Properties/Particles.property.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Action.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Textures/spark.png" type="Texture" id=5]
 
-[sub_resource type="ShaderMaterial" id=1]
-__meta__ = {
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 1, 0.968627, 0.384314, 1 )
+albedo_texture = ExtResource( 5 )
 
-}
-
-[sub_resource type="SphereMesh" id=2]
-radius = 0.01
-height = 0.1
-__meta__ = {
-
-}
+[sub_resource type="QuadMesh" id=6]
+size = Vector2( 0.2, 0.2 )
 
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.123737, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-__meta__ = {
-
-}
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.766756, 1 )
 colors = PoolColorArray( 1, 0, 0, 0, 0.921875, 0.270081, 0.31591, 1 )
-__meta__ = {
-
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
-__meta__ = {
-
-}
 
 [node name="Sparks" type="CPUParticles"]
-transform = Transform( 1, 3.70164e-10, 5.82077e-11, 3.66526e-10, 1, 9.31323e-10, 0, 1.86265e-09, 1, -1.39698e-09, 0, -1.47648 )
-material_override = SubResource( 1 )
+transform = Transform( 1, 3.70164e-10, 5.82077e-11, 3.66526e-10, 1, 9.31323e-10, 0, 1.86265e-09, 1, 0, 0, 0 )
+material_override = SubResource( 5 )
 cast_shadow = 0
-emitting = false
-amount = 10
-lifetime = 0.15
-one_shot = true
-mesh = SubResource( 2 )
+amount = 5
+lifetime = 0.1
+mesh = SubResource( 6 )
 flag_align_y = true
-spread = 180.0
-gravity = Vector3( 0, -9.8, 9.8 )
-initial_velocity = 0.01
-angular_velocity = -0.38
-linear_accel = 1.0
-linear_accel_random = 1.0
-radial_accel = 40.0
-tangential_accel = 1.0
+flag_rotate_y = true
+direction = Vector3( 0, 0, 1 )
+spread = 90.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 7.62
+radial_accel = 41.06
 scale_amount_curve = SubResource( 3 )
 color_ramp = SubResource( 4 )
-hue_variation_random = 0.87
 script = ExtResource( 1 )
-__meta__ = {
-
-}
 tags = "Paticles"
 
 [node name="Particles" parent="." instance=ExtResource( 2 )]
 
 [node name="BulletHitSound" type="Node" parent="."]
 script = ExtResource( 3 )
-__meta__ = {
-
-}
 tree = NodePath("../Audio")
 schema = "BulletHitSound"
 random = true
 state = "BulletHit"
 
 [node name="Audio" parent="." instance=ExtResource( 4 )]
-parameters/playback = SubResource( 5 )
 default_state = "BulletHit"

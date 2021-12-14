@@ -17,6 +17,7 @@ func _on_action(state, data, player):
 	
 	if state == 'Die':
 		
+		$DeathSound.play('DEATH')
 		call_deferred('_on_player_died', player, data)
 
 
@@ -98,9 +99,6 @@ func _enter_tree():
 	check_nulls = false
 
 
-
-
-
 func _add_viewport(actor, data):
 	
 	var perspective = actor.get_node('Perspective')
@@ -137,7 +135,7 @@ func _ready():
 		var data = Meta.player_data[i]
 		var marker = markers[i]
 		
-		var actor = Meta.AddActor(data.character, marker.global_transform.origin, marker.rotation_degrees)
+		var actor = Meta.AddActor(data.character, marker.global_transform.origin, marker.rotation)
 		actor.player_index = i
 		actor.get_node('Stamina').hp = data.hp
 		actor.get_node('WeaponTargetLock').auto_aim = data.auto_aim

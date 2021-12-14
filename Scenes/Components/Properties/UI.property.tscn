@@ -65,15 +65,5 @@ align = 1
 valign = 1
 
 [node name="PauseMenu" parent="Viewport/Control" instance=ExtResource( 7 )]
-visible = false
-margin_left = 206.0
-margin_top = 237.5
-margin_right = 866.0
-margin_bottom = 423.5
 
 [node name="VictoryMenu" parent="Viewport/Control" instance=ExtResource( 8 )]
-visible = false
-margin_left = -286.0
-margin_top = -58.5
-margin_right = 374.0
-margin_bottom = 217.5
