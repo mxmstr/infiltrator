@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Humans/Scientist.escn" type="PackedScene" id=2]
@@ -6,12 +6,8 @@
 [ext_resource path="res://Scenes/Components/Properties/Outline.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/Actor.gd" type="Script" id=8]
 
 [node name="Scientist" instance=ExtResource( 1 )]
-collision_layer = 2
-collision_mask = 3
-script = ExtResource( 8 )
 tags = "Actor Human Male Team:0"
 
 [node name="Model" parent="." index="1" instance=ExtResource( 2 )]
@@ -46,15 +42,7 @@ bone_name = "Foot-R"
 path = NodePath("../Model/neo_reference_skeleton")
 bone_name = "Foot-L"
 
-[node name="VoiceAudio" parent="." index="75"]
-bus = "Voice"
-
-[node name="FeetAudio" parent="." index="77"]
-bus = "SFX"
-
 [editable path="Model"]
 [editable path="CameraRig"]
 [editable path="CameraRaycastStim"]
 [editable path="Perspective"]
-[editable path="Perspective/Viewport2D/HUD"]
-[editable path="Control/HUD"]

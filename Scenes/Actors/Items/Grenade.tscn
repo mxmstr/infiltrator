@@ -1,19 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Actors/Items/Firearm.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Models/Items/Max Payne Weapons/Grenade/Grenade.obj" type="PackedScene" id=2]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+[sub_resource type="SphereShape" id=1]
+radius = 0.109011
 
 [node name="Grenade" instance=ExtResource( 1 )]
+tags = "Item Grenade UseAction:FireProjectile FireRate:0.1 Offset-position:neo_reference_skeleton:Gun:-0.023118,0.000963,0.024605 Offset-rotation:neo_reference_skeleton:Gun:-72.911118,-4.245605,-10.726698"
 
-[node name="Magazine" parent="." index="0"]
-path = NodePath("../../MicroSMG")
+[node name="Model" parent="." index="0" instance=ExtResource( 2 )]
+transform = Transform( 0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0 )
 
-[node name="Chamber" parent="." index="1"]
-path = NodePath("../../MicroSMG")
+[node name="Collision" type="CollisionShape" parent="." index="1"]
+shape = SubResource( 1 )
 
-[node name="UseResponse" parent="." index="4"]
-tree_node = NodePath("../../MicroSMG/Reception")
+[node name="Magazine" parent="." index="2"]
+max_quantity = 0
 
-[node name="Interface" parent="." index="12"]
-parameters/playback = SubResource( 12 )
+[node name="Chamber" parent="." index="3"]
+max_quantity = 0

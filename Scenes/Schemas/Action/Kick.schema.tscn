@@ -8,7 +8,7 @@ anims/SNAPKICK = ExtResource( 1 )
 script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
-		\"speed\": 1.5,
+		\"speed\": 1.75,
 		\"clip_start\": 0.05,
 		\"clip_end\": 1.0,
 		\"layer\": \"ACTION\",

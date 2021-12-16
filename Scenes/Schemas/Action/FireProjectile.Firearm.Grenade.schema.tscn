@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "FireProjectile.Grenade"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("../../Audio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "FireProjectile" ],
+"method": "_start_state"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../../FireProjectileAction")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Projectiles/Explosion1" ],
+"method": "_fire_effect"
+} ]
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/FireProjectile.Grenade = SubResource( 1 )
+script = ExtResource( 1 )
+attributes = "{
+	\"*\": {
+		\"switch_mode\": \"End\"
+	}
+}"

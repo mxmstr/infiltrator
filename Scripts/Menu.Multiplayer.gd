@@ -72,6 +72,10 @@ var weapons = {
 		'enabled': false,
 		'scene': 'Items/Sniper'
 	},
+	'Grenade': {
+		'enabled': false,
+		'scene': 'Items/Grenade'
+	},
 	'Sword': {
 		'enabled': false,
 		'scene': 'Items/Sword'

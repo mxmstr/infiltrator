@@ -47,7 +47,7 @@ script = ExtResource( 3 )
 
 [node name="CameraRig" parent="." index="4" instance=ExtResource( 2 )]
 viewport = NodePath("../Perspective/Viewport2D")
-camera_offset = Vector3( 0, 0, -0.2 )
+camera_offset = Vector3( 0, 0, -0.3 )
 
 [node name="RightHandContainer" parent="." index="5" instance=ExtResource( 6 )]
 release_exclude_parent = true

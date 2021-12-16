@@ -13,7 +13,7 @@ func _on_just_activated():
 		behavior._start_state('PunchIdle')
 		
 		if not kick_timer and behavior.current_state == 'PunchIdle':
-			kick_timer = get_tree().create_timer(0.75)
+			kick_timer = get_tree().create_timer(0.5)
 	
 	else:
 		

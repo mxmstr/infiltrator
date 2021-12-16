@@ -9,6 +9,7 @@ anims/punch_seraph_right = ExtResource( 1 )
 script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
+		\"speed\": 1.25,
 		\"layer\": \"MIXED\",
 		\"switch_mode\": \"End\"
 	},

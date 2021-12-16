@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Actors/Particles/Explosion/material.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Components/Properties/Particles.property.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ParticlesMaterial" id=1]
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 10.28
+linear_accel = -1.0
+angle_random = 1.0
+
+[sub_resource type="QuadMesh" id=2]
+size = Vector2( 8, 8 )
+
+[node name="Explosion1" type="Spatial"]
+
+[node name="Particles" parent="." instance=ExtResource( 2 )]
+material_override = ExtResource( 1 )
+emitting = false
+amount = 1
+lifetime = 2.13
+one_shot = true
+explosiveness = 0.91
+randomness = 0.84
+fixed_fps = 30
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 2 )
+
+[node name="Action" parent="." instance=ExtResource( 3 )]
+tree = NodePath("../Audio")
+schema = "ExplosionSound"
+state = "Explosion"
+
+[node name="Audio" parent="." instance=ExtResource( 4 )]

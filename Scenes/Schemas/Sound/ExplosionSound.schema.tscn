@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sounds/Matrix/dynamic/explosion/explosion_medium_A.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sounds/Matrix/dynamic/explosion/explosion_medium_C.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/Matrix/dynamic/explosion/explosion_medium_B.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=9]
+
+[sub_resource type="Animation" id=1]
+length = 1.58553
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=2]
+length = 1.63977
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=3]
+length = 1.38181
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/explosion_medium_A = SubResource( 1 )
+anims/explosion_medium_B = SubResource( 2 )
+anims/explosion_medium_C = SubResource( 3 )
+script = ExtResource( 9 )
+attributes = "{
+	\"*\": {
+		\"level\": 0
+	}
+}"

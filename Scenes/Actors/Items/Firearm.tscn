@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=2]
@@ -11,25 +11,9 @@
 [ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=12]
-[ext_resource path="res://Scenes/Components/Properties/Interface.property.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=16]
 
 [sub_resource type="SphereShape" id=28]
-
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "DefaultAnim"
-
-[sub_resource type="AnimationNodeStateMachine" id=21]
-states/Start/node = SubResource( 20 )
-states/Start/position = Vector2( 624, 170 )
-start_node = "Start"
-graph_offset = Vector2( 0, 75.2147 )
-script = ExtResource( 12 )
-statemachine = ""
-chain = false
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 
 [node name="Firearm" type="RigidBody"]
 collision_layer = 4
@@ -85,9 +69,5 @@ shape = SubResource( 28 )
 [node name="Behavior" parent="." instance=ExtResource( 10 )]
 
 [node name="Reception" parent="." instance=ExtResource( 11 )]
-
-[node name="Interface" parent="." instance=ExtResource( 15 )]
-tree_root = SubResource( 21 )
-parameters/playback = SubResource( 22 )
 
 [node name="Audio" parent="." instance=ExtResource( 16 )]

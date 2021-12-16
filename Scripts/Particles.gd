@@ -1,9 +1,9 @@
-extends Node
+extends Particles
 
 
 func _ready():
 
-	owner.emitting = true
+	emitting = true
 
-	var time = (owner.lifetime * 2) / owner.speed_scale
+	var time = (lifetime * 2) / speed_scale
 	get_tree().create_timer(time).connect('timeout', owner, 'queue_free')
