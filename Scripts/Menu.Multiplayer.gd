@@ -21,13 +21,13 @@ var characters = {
 		'scene': 'Humans/Players/Karen'
 		},
 	'Max': {
-		'scene': 'Humans/Players/YoungMax'
+		'scene': 'Humans/Players/Max'
 		},
 	'Scientist': {
 		'scene': 'Humans/Players/Scientist'
 		},
 	'SWAT': {
-		'scene': 'Humans/Players/SWAT'
+		'scene': 'Humans/Players/Swat'
 		}
 	}
 

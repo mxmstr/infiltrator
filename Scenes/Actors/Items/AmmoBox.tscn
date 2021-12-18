@@ -15,3 +15,6 @@ collision_mask = 2
 
 [node name="Collision" type="CollisionShape" parent="AreaStim" index="0"]
 shape = SubResource( 6 )
+
+[node name="Movement" parent="." index="1"]
+process_movement = false

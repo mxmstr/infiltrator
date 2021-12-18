@@ -3,7 +3,7 @@ extends 'res://Scripts/Prop.Movement.gd'
 export var gravity = -9.8
 export var accel = 3.0
 export var deaccel = 5.0
-export var angular_accel = 0.25
+export var angular_accel = 0.1
 export var angular_deaccel = 10
 export var stop_on_slope = false
 export var max_slides = 4
@@ -94,19 +94,27 @@ func _apply_rotation(delta):
 	var deltay = new_velocity.y - angular_velocity.y
 	var factorx
 	var factory
+	var factor
 	
-	if (new_velocity.x > 0 and angular_velocity.x > 0) or (new_velocity.x < 0 and angular_velocity.x < 0):
-		factorx = angular_accel
-	else:
+	if Vector2(new_velocity.x, 0).dot(Vector2(angular_velocity.x, 0)) <= 0:# or (new_velocity.x > 0 and angular_velocity.x < 0) or (new_velocity.x < 0 and angular_velocity.x > 0):
 		factorx = angular_deaccel
-	
-	if (new_velocity.y > 0 and angular_velocity.y > 0) or (new_velocity.y < 0 and angular_velocity.y < 0):
-		factory = angular_accel
 	else:
+		factorx = angular_accel
+
+	if Vector2(0, new_velocity.y).dot(Vector2(0, angular_velocity.y)) <= 0:# or (new_velocity.y > 0 and angular_velocity.y < 0) or (new_velocity.y < 0 and angular_velocity.y > 0):
 		factory = angular_deaccel
-	
+	else:
+		factory = angular_accel
+
 	angular_velocity.x = angular_velocity.linear_interpolate(new_velocity, factorx * delta).x
 	angular_velocity.y = angular_velocity.linear_interpolate(new_velocity, factory * delta).y
+	
+#	if new_velocity.dot(angular_velocity) > 0:
+#		factor = angular_accel
+#	else:
+#		factor = angular_deaccel
+#
+#	angular_velocity = angular_velocity.linear_interpolate(new_velocity, factor * delta)
 	
 	if rotate_x_camera:
 		camera_rig._rotate_camera(angular_velocity.y, angular_velocity.x)

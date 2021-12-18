@@ -86,7 +86,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 release_exclude_parent = true
 release_exclude_parent_lifetime = 2.0
 invisible = true
-required_tags = "Firearm"
+required_tags = "Item"
 
 [node name="Bullet9mmContainer" parent="." index="11" instance=ExtResource( 6 )]
 factory_mode = true

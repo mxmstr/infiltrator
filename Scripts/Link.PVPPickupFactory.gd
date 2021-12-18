@@ -33,9 +33,9 @@ func _on_factory_finished(link, marker):
 	
 	for output in link.outputs:
 		
-		if output.has_node('PickupRadiusStim'):
+		if output.has_node('AreaStim'):
 			
-			output.get_node('PickupRadiusStim').connect(
+			output.get_node('AreaStim').connect(
 				'stimulate',
 				self,
 				'_on_stimulate',
@@ -79,7 +79,7 @@ func _ready():
 	
 	for i in range(spawn_count):
 		_refresh_spawn(markers[i])
-	
-#	pickup_idx = randi() % get_child_count()
 #
+#	pickup_idx = randi() % get_child_count()
+
 #	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout')

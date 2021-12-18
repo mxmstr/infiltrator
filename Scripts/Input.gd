@@ -59,10 +59,14 @@ func _input(event):
 
 func _process(delta):
 	
-	if not owner.is_processing_input():
-		return
-	
-	if not active:
+	if owner.is_processing_input():
 		
-		_on_deactivated()
-		emit_signal('deactivated')
+		if not active:
+			
+			_on_deactivated()
+			emit_signal('deactivated')
+	
+	else:
+		
+		active = 0
+		strength = 0

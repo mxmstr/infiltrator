@@ -10,10 +10,13 @@ var ammo_container
 onready var radar = get_node('Radar')#.find_node('Sprite')
 onready var radar_dot = load('res://Scenes/UI/HUD.RadarDot.tscn')
 
+onready var crosshair = get_node('Radar/TextureRect')
 onready var ammo = get_node('Ammo')
 onready var health = get_node('Health/ProgressBar')
 onready var righthand = owner.get_node('../RightHandContainer')
 onready var stamina = owner.get_node('../Stamina')
+onready var camera = owner.get_node('../CameraRig/Camera')
+onready var camera_raycast_target = owner.get_node('../CameraRaycastStim/Target')
 
 
 func _on_damaged(hp):
@@ -173,3 +176,9 @@ func _process(delta):
 		var actor_position = Vector2(radius_x + direction_to.x, radius_y + direction_to.z)
 		
 		dot.position = radar.rect_global_position + actor_position
+	
+	
+	var screen_pos = camera.unproject_position(camera_raycast_target.translation)
+	prints(screen_pos)
+	#crosshair.rect_position = screen_pos
+	

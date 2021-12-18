@@ -1,5 +1,6 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
+export var process_movement = true
 export var gravity = -9.8
 export var accel = 3
 export var deaccel = 5
@@ -72,7 +73,7 @@ func _face(target, angle_delta=0.0):
 
 func _process(delta):
 	
-	if collision.disabled:
+	if not process_movement or (collision and collision.disabled):
 		return
 	
 	var new_velocity = angular_direction * delta
@@ -104,7 +105,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	
-	if collision.disabled:
+	if not process_movement or (collision and collision.disabled):
 		return
 	
 	var new_velocity = direction * speed * delta
