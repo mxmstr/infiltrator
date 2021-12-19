@@ -30,9 +30,11 @@ __meta__ = {
 
 [node name="Crosshair" type="TextureRect" parent="."]
 material = SubResource( 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_stretch_ratio = 0.0
+margin_right = 13.0
+margin_bottom = 13.0
+rect_pivot_offset = Vector2( 6, 6 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource( 2 )
 stretch_mode = 4
 __meta__ = {

@@ -14,6 +14,7 @@ export(String, MULTILINE) var required_tags
 var required_tags_dict = {}
 var root
 var selection
+var rotation_offset = Vector2()
 
 onready var movement = get_node_or_null('../Movement')
 onready var reception = get_node_or_null('../Reception')
@@ -119,6 +120,10 @@ func _process(delta):
 		
 		global_transform.origin = root.global_transform.origin
 		global_transform.basis = root.global_transform.basis
+		
+		if rotation_offset.length():
+			rotate_y(rotation_offset.x)
+			rotate_x(rotation_offset.y)
 	
 	if move_target and get_collision_point():
 		$Target.global_transform.origin = get_collision_point()

@@ -48,11 +48,6 @@ func _on_action(_state, data):
 		
 		if righthand._has_item_with_tag('Firearm'):
 			
-#			if righthand._has_item_with_tag('Shotgun'):
-#
-#
-#			else:
-			
 			var item_name = righthand.items[0].base_name
 			
 			if animations.has(item_name) and righthand.items[0].get_node('Magazine')._can_transfer_items_from(owner):

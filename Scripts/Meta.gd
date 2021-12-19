@@ -58,7 +58,7 @@ var player_data = [
 	player_data_default.duplicate(),
 	player_data_default.duplicate()
 ]
-var rotate_sensitivity = 10.0
+var rotate_sensitivity = 12.0
 var rawinput = false
 var threads = []
 var cached_args = []

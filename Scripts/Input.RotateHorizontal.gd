@@ -3,6 +3,11 @@ extends "res://Scripts/Input.gd"
 var stance
 
 
+func _on_just_activated():
+	
+	stance._set_turn_speed(strength * Meta.rotate_sensitivity)
+
+
 func _on_active():
 	
 	stance._set_turn_speed(strength * Meta.rotate_sensitivity)

@@ -86,7 +86,7 @@ func _has_item(item):
 func _has_item_with_tag(tag):
 	
 	for item in items:
-		if item._has_tag(tag):
+		if is_instance_valid(item) and  item._has_tag(tag):
 			return true
 	
 	return false
@@ -95,6 +95,9 @@ func _has_item_with_tag(tag):
 func _has_item_with_tags(tags):
 	
 	for item in items:
+		
+		if not is_instance_valid(item):
+			continue
 		
 		var tagged = true
 		

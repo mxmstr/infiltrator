@@ -1,13 +1,13 @@
 extends RayCast
 
-export(String) var chamber_container
-
 var model
 var camera
 var camera_raycast
 var camera_raycast_target
 var perspective
 
+var aim_offset_range = 0.3
+var aim_offset_sensitivity = 7.0
 var enemies = []
 var visible_enemies = []
 var targeted_enemy
@@ -16,6 +16,7 @@ var shoulder_bone
 var auto_aim = false
 var equipped = false
 
+onready var movement = get_node_or_null('../Movement')
 onready var stamina = get_node_or_null('../Stamina')
 onready var right_hand = get_node_or_null('../RightHandContainer')
 onready var right_punch = get_node_or_null('../RightPunchContainer')
@@ -62,7 +63,7 @@ func _on_item_equipped(container, item):
 	
 	if item._has_tag('Firearm'):
 		
-		item.get_node(chamber_container).connect('item_released', self, '_on_fire')
+		item.get_node('Chamber').connect('item_released', self, '_on_fire')
 		equipped = true
 		
 		_select_target()
@@ -72,7 +73,7 @@ func _on_item_dequipped(container, item):
 	
 	if item._has_tag('Firearm'):
 		
-		item.get_node(chamber_container).disconnect('item_released', self, '_on_fire')
+		item.get_node('Chamber').disconnect('item_released', self, '_on_fire')
 	
 	equipped = false
 	targeted_enemy = null
@@ -103,7 +104,6 @@ func _select_target():
 	
 	targeted_enemy = closest_enemy
 	targeted_enemy_bone = targeted_enemy.get_node('Hitboxes').find_node('Shoulders')
-	shoulder_bone = owner.get_node('Hitboxes').find_node('Shoulders')
 
 
 func _ready():
@@ -122,6 +122,8 @@ func _ready():
 	left_kick.connect('item_released', self, '_on_punch')
 	
 	yield(get_tree(), 'idle_frame')
+	
+	shoulder_bone = owner.get_node('Hitboxes').find_node('Shoulders')
 	
 	if auto_aim:
 		
@@ -143,43 +145,67 @@ func _process(delta):
 	
 	var dead = stamina.hp == 0
 	
-	if not dead and auto_aim and targeted_enemy:
-		
-		var target_dead = targeted_enemy.get_node('Stamina').hp == 0
-		
-		if not is_instance_valid(targeted_enemy) or target_dead:
-			targeted_enemy = null
-			targeted_enemy_bone = null
-			return
-		
-		if camera_raycast.get_collider() and camera_raycast.get_collider().owner in enemies:
-			
-			camera_raycast.move_target = true
-		
-		else:
-			
-			var target_pos = targeted_enemy_bone.global_transform.origin
-			
-			global_transform.origin = shoulder_bone.global_transform.origin
-			
-			var space_state = get_world().direct_space_state
-			var result = space_state.intersect_ray(
-				shoulder_bone.global_transform.origin, target_pos, [owner], collision_mask
-				)
-			
-			if result:
-				camera_raycast.move_target = true
-				model.rotation = Vector3(0, 0, 0)
-				return
-			
-			camera_raycast.move_target = false
-			camera_raycast_target.global_transform.origin = target_pos
-			
-			var target_pos_horizontal = Vector3(target_pos.x, model.global_transform.origin.y, target_pos.z)
-			model.look_at(target_pos_horizontal, Vector3.UP)
-			model.rotate_y(deg2rad(180))
-			
-	else:
+	if dead:
 		
 		camera_raycast.move_target = true
 		model.rotation = Vector3(0, 0, 0)
+	
+	else:
+		
+		if auto_aim and targeted_enemy:
+		
+			var target_dead = targeted_enemy.get_node('Stamina').hp == 0
+			
+			if not is_instance_valid(targeted_enemy) or target_dead:
+				targeted_enemy = null
+				targeted_enemy_bone = null
+				return
+			
+			if camera_raycast.get_collider() and camera_raycast.get_collider().owner in enemies:
+				
+				camera_raycast.move_target = true
+				targeted_enemy = camera_raycast.get_collider().owner
+				targeted_enemy_bone = targeted_enemy.get_node('Hitboxes').find_node('Shoulders')
+			
+			else:
+				
+				var target_pos = targeted_enemy_bone.global_transform.origin
+				
+				global_transform.origin = shoulder_bone.global_transform.origin
+				
+				var space_state = get_world().direct_space_state
+				var result = space_state.intersect_ray(
+					shoulder_bone.global_transform.origin, target_pos, [owner], collision_mask
+					)
+				
+				if result:
+					camera_raycast.move_target = true
+					#model.rotation = Vector3(0, 0, 0)
+					return
+				
+				camera_raycast.move_target = false
+				camera_raycast_target.global_transform.origin = target_pos
+				
+		else:
+			
+			camera_raycast.move_target = true
+			#model.rotation = Vector3(0, 0, 0)
+		
+#		if camera_raycast.move_target:
+		
+		var aim_offset = (movement.angular_direction / Meta.rotate_sensitivity) * aim_offset_range
+		aim_offset.y *= -1
+		camera_raycast.rotation_offset = camera_raycast.rotation_offset.linear_interpolate(
+			aim_offset,
+			aim_offset_sensitivity * delta
+			)
+		
+#		else:
+#
+#			camera_raycast.rotation_offset = Vector2()
+		
+		var target_pos = camera_raycast_target.global_transform.origin
+		target_pos.y = model.global_transform.origin.y
+		model.look_at(target_pos, Vector3.UP)
+		model.rotate_y(deg2rad(180))
+		

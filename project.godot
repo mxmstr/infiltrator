@@ -1258,4 +1258,6 @@ limits/debugger_stdout/max_errors_per_frame=100
 [rendering]
 
 threads/thread_model=2
+limits/rendering/max_lights_per_object=50
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false
