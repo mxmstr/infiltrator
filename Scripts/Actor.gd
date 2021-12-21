@@ -19,6 +19,15 @@ func _has_tag(tag):
 	return tags_dict.has(tag)
 
 
+func _has_tags(tags):
+	
+	for tag in tags:
+		if not tags_dict.has(tag):
+			return false
+	
+	return true
+
+
 func _get_tag(tag):
 	
 	return tags_dict[tag]

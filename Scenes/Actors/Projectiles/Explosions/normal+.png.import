@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/normal-.png-ec19b97767e1f93141262235844f315c.s3tc.stex"
-path.etc2="res://.import/normal-.png-ec19b97767e1f93141262235844f315c.etc2.stex"
+path.s3tc="res://.import/normal+.png-af155f381b0f70a1f467d322ea787505.s3tc.stex"
+path.etc2="res://.import/normal+.png-af155f381b0f70a1f467d322ea787505.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Scenes/Actors/Particles/Explosion/normal-.png"
-dest_files=[ "res://.import/normal-.png-ec19b97767e1f93141262235844f315c.s3tc.stex", "res://.import/normal-.png-ec19b97767e1f93141262235844f315c.etc2.stex" ]
+source_file="res://Scenes/Actors/Projectiles/Explosions/normal+.png"
+dest_files=[ "res://.import/normal+.png-af155f381b0f70a1f467d322ea787505.s3tc.stex", "res://.import/normal+.png-af155f381b0f70a1f467d322ea787505.etc2.stex" ]
 
 [params]
 

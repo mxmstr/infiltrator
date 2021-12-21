@@ -1,6 +1,6 @@
 extends "res://Scripts/Action.gd"
 
-const item_names = ['Beretta', 'Colt', 'DesertEagle', 'Ingram', 'Jackhammer', 'M79', 'MP5', 'PumpShotgun', 'SawedoffShotgun', 'Sniper']
+const item_names = ['Beretta', 'Colt', 'DesertEagle', 'Ingram', 'Jackhammer', 'M79', 'MP5', 'PumpShotgun', 'SawedoffShotgun', 'Sniper', 'Grenade']
 
 export(String) var shoot_schema
 export(String) var shoot_idle_schema
@@ -12,19 +12,6 @@ onready var behavior = get_node_or_null('../Behavior')
 onready var righthand = get_node_or_null('../RightHandContainer')
 onready var camera_raycast = get_node_or_null('../CameraRig/Camera')
 onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
-
-
-#func _on_item_equipped(container, item):
-#
-#	if item._has_tag('AttachBone'):
-#		righthand.root.bone_name = item._get_tag('AttachBone')
-#	else:
-#		righthand.root.bone_name = righthand.bone_name
-#
-#
-#func _on_item_dequipped(container, item):
-#
-#	righthand.root.bone_name = righthand.bone_name
 
 
 func _cock_weapon():
@@ -42,9 +29,6 @@ func _ready():
 	for item_name in item_names:
 		shoot_animations[item_name] = _load_animations('Shoot' + item_name)
 		shoot_idle_animations[item_name] = _load_animations('Shoot' + item_name + 'Idle')
-	
-#	righthand.connect('item_added', self, '_on_item_equipped')
-#	righthand.connect('item_removed', self, '_on_item_dequipped')
 
 
 func _on_action(_state, data):
@@ -79,7 +63,11 @@ func _process(delta):
 			var item_name = righthand.items[0].base_name
 			
 			if shoot_idle_animations.has(item_name):
-				_play(shoot_idle_animations[item_name][0], shoot_idle_animations[item_name][1], shoot_idle_animations[item_name][2])
+				
+				if shoot_idle_animations[item_name].size() > 1:
+					_play(shoot_idle_animations[item_name][0], shoot_idle_animations[item_name][1], shoot_idle_animations[item_name][2])
+				else:
+					_play(shoot_idle_animations[item_name][0])
 	
 	else:
 		

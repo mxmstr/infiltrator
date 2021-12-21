@@ -4,33 +4,32 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "FireProjectile.Grenade"
-length = 5.0
 tracks/0/type = "method"
-tracks/0/path = NodePath("../../Audio")
+tracks/0/path = NodePath("../../Chamber")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "FireProjectile" ],
-"method": "_start_state"
+"args": [ "Projectiles/Explosions/Explosion1", Vector3( 0, 0, 0 ) ],
+"method": "_create_and_launch_item"
 } ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../../FireProjectileAction")
+tracks/1/path = NodePath("../..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 4 ),
+"times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "Projectiles/Explosion1" ],
-"method": "_fire_effect"
+"args": [  ],
+"method": "queue_free"
 } ]
 }
 

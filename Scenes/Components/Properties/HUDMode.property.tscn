@@ -4,6 +4,7 @@
 [ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../UI/Viewport/Control/Panel:modulate")
 tracks/0/interp = 1
@@ -130,6 +131,7 @@ tracks/8/keys = {
 }
 
 [sub_resource type="Animation" id=2]
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../UI/Viewport/Control/Panel:modulate")
 tracks/0/interp = 1
@@ -256,6 +258,7 @@ tracks/8/keys = {
 }
 
 [sub_resource type="Animation" id=3]
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../UI/Viewport/Control/Panel:modulate")
 tracks/0/interp = 1
@@ -510,6 +513,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "Victory"
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../UI/Viewport/Control/Panel:modulate")
 tracks/0/interp = 1

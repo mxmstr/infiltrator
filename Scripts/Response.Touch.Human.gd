@@ -49,26 +49,24 @@ func _on_stimulate(stim, data):
 				if item.base_name == source_name:
 					exists = true
 			
-			if exists:
+			if exists and data.source._has_tags(['Firearm', 'Stackable']):
 				
-				if data.source._has_tag('Firearm'):
+				var item_magazine = data.source.get_node('Magazine')
+				var item_chamber = data.source.get_node('Chamber')
+				var ammo_container = _get_ammo_container(item_magazine, owner)
+				
+				if not item_magazine._is_empty():
 					
-					var item_magazine = data.source.get_node('Magazine')
-					var item_chamber = data.source.get_node('Chamber')
-					var ammo_container = _get_ammo_container(item_magazine, owner)
+					var item_path = item_magazine.items[0]
 					
-					if not item_magazine._is_empty():
-						
-						var item_path = item_magazine.items[0]
-						
-						for i in range(item_magazine.items.size()):
-							ammo_container._add_item(item_path)
-					
-						if not data.source.get_node('Chamber')._is_empty():
-							ammo_container._add_item(item_path)
-					
-					data.source.get_node('Magazine')._delete_all()
-					data.source.get_node('Chamber')._delete_all()
+					for i in range(item_magazine.items.size()):
+						ammo_container._add_item(item_path)
+				
+					if not data.source.get_node('Chamber')._is_empty():
+						ammo_container._add_item(item_path)
+				
+				data.source.get_node('Magazine')._delete_all()
+				data.source.get_node('Chamber')._delete_all()
 				
 				data.source.queue_free()
 			

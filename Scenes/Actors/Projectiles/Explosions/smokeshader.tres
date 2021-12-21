@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=26 format=2]
 
-[ext_resource path="res://Scenes/Actors/Particles/Explosion/smokesprite.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Actors/Projectiles/Explosions/smokesprite.png" type="Texture" id=1]
 
 [sub_resource type="VisualShaderNodeColorFunc" id=1]
 

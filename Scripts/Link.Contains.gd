@@ -25,32 +25,14 @@ func _is_container(node):
 	return false
 
 
-func _try_container(node):
+func _try_container(prop):
 	
-	for item_tag in node.required_tags_dict.keys():
-		if item_tag.length() and not item_tag in to_node.tags_dict.keys():
-			return false
-	
-	
-	if node.max_quantity > 0 and len(node.items) >= node.max_quantity:
+	if prop._is_full():
 		return false
 	
-	to_node.visible = not node.invisible
-	
-	if collision:
-		collision.disabled = true
-	
-	node._add_item(to_node)
-	
-	if to_node._has_tag('AttachBone'):
-		node.root.bone_name = to_node._get_tag('AttachBone')
-	else:
-		node.root.bone_name = node.bone_name
-	
-	if from_behavior.get_script().has_script_signal('pre_advance'):
-		
-		from_behavior.connect('pre_advance', self, '_move_item')
-		human = true
+	for item_tag in prop.required_tags_dict.keys():
+		if item_tag.length() and not item_tag in to_node.tags_dict.keys():
+			return false
 	
 	return true
 
@@ -131,7 +113,6 @@ func _ready():
 	if container == '' or container == null:
 		
 		if not _find_free_container():
-			
 			queue_free()
 			return
 		
@@ -149,6 +130,8 @@ func _ready():
 			queue_free()
 			return
 	
+	_disable_collision()
+	
 	item_position_offset = _get_item_position_offset(to_node)
 	item_rotation_offset = _get_item_rotation_offset(to_node)
 	
@@ -156,6 +139,7 @@ func _ready():
 	container_node.root.add_child(root)
 	root.translation = item_position_offset
 	root.rotation = item_rotation_offset
+	
 
 
 func _process(delta):
@@ -170,17 +154,49 @@ func _process(delta):
 		_move_item()
 
 
+func _disable_collision():
+	
+	to_node.visible = not container_node.invisible
+	
+	if collision:
+		collision.disabled = true
+	
+	if to_node is Area:
+		to_node.monitoring = false
+	
+	if to_node is RigidBody:
+		to_node.sleeping = true
+	
+	container_node._add_item(to_node)
+	
+	if to_node._has_tag('AttachBone'):
+		container_node.root.bone_name = to_node._get_tag('AttachBone')
+	else:
+		container_node.root.bone_name = container_node.bone_name
+	
+	if from_behavior.get_script().has_script_signal('pre_advance'):
+		
+		from_behavior.connect('pre_advance', self, '_move_item')
+		human = true
+
+
 func _restore_collision():
 	
-	if is_instance_valid(to_node) and not to_node.is_queued_for_deletion():
+	if is_instance_valid(to_node):
 	
 		to_node.visible = true
+		
+		if container_node and is_instance_valid(container_node):
+			container_node._apply_launch_attributes(to_node)
 		
 		if collision:
 			collision.disabled = false
 		
-		if container_node and is_instance_valid(container_node):
-			container_node._apply_launch_attributes(to_node)
+		if to_node is Area:
+			to_node.monitoring = true
+		
+		if to_node is RigidBody:
+			to_node.sleeping = false
 
 
 func _destroy():
@@ -189,7 +205,7 @@ func _destroy():
 		
 		container_node._remove_item(to_node)
 		
-		if to_node._has_tag('AttachBone'):
+		if is_instance_valid(to_node) and to_node._has_tag('AttachBone'):
 			container_node.root.bone_name = container_node.bone_name
 	
 	if restore_collisions:

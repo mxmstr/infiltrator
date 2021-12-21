@@ -32,7 +32,7 @@ signal released
 
 func _is_empty():
 	
-	return len(items) == 0
+	return max_quantity > 0 and items.size() == 0
 
 
 func _is_full():
@@ -299,10 +299,16 @@ func _apply_launch_attributes(item):
 		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')
 
 
-func _create_and_launch_item(item_path):
+func _create_and_launch_item(item_path, rotation=null):
 	
 	var item = Meta.AddActor(item_path, null, null, null, { 'Shooter': shooter })
-	item.get_node('Movement')._teleport(root.global_transform.origin, root.global_transform.basis)
+	var position = root.global_transform.origin
+	var basis = root.global_transform.basis
+	
+	if rotation:
+		basis = Basis(rotation)
+	
+	item.get_node('Movement')._teleport(position, basis)
 	
 	_apply_launch_attributes(item)
 	

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=10 format=2]
 
-[ext_resource path="res://Scenes/Actors/Particles/Explosion/smokeshader.tres" type="Shader" id=1]
+[ext_resource path="res://Scenes/Actors/Projectiles/Explosions/smokeshader.tres" type="Shader" id=1]
 
 [sub_resource type="Gradient" id=1]
 

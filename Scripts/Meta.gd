@@ -310,11 +310,15 @@ func CreateLink(from, to, type, data={}):
 
 func DestroyLink(from, to, type, data={}):
 	
-	if from:
+	if is_instance_valid(from):
 		data.from = from.get_path()
+	else:
+		data.from_node = from
 	
-	if to:
+	if is_instance_valid(to):
 		data.to = to.get_path()
+	else:
+		data.to_node = to
 	
 	return LinkHub._destroy(type, data)
 

@@ -71,7 +71,7 @@ func _on_item_equipped(container, item):
 
 func _on_item_dequipped(container, item):
 	
-	if item._has_tag('Firearm'):
+	if is_instance_valid(item) and item._has_tag('Firearm'):
 		
 		item.get_node('Chamber').disconnect('item_released', self, '_on_fire')
 	

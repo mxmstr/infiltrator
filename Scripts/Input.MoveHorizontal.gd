@@ -3,10 +3,10 @@ extends "res://Scripts/Input.gd"
 var stance
 
 
-#func _on_just_activated():
-#
-#	stance.sidestep_speed = strength
-#
+func _on_just_activated():
+
+	stance.sidestep_speed = strength
+
 
 func _on_active():
 	

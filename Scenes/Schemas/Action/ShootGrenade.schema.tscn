@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Animations/Human/ShootGrenade_Down.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/ShootGrenade_Up.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/ShootGrenade.tres" type="Animation" id=3]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=4]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/ShootGrenade = ExtResource( 3 )
+anims/ShootGrenade_Down = ExtResource( 1 )
+anims/ShootGrenade_Up = ExtResource( 2 )
+script = ExtResource( 4 )
+attributes = "{
+	\"*\": {
+		\"clip_start\": 0.05,
+		\"layer\": \"MIXED\"
+	}
+}"

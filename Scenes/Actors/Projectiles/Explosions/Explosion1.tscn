@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Action.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Actors/Projectiles/Explosions/material.tres" type="Material" id=3]
+[ext_resource path="res://Scripts/Particles.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Components/Properties/Particles.property.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Stimuli/Radius.stimulus.tscn" type="PackedScene" id=8]
+
+[sub_resource type="ParticlesMaterial" id=1]
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 10.28
+linear_accel = -1.0
+angle_random = 1.0
+
+[sub_resource type="QuadMesh" id=2]
+size = Vector2( 8, 8 )
+
+[node name="Explosion1" instance=ExtResource( 1 )]
+tags = "Particles "
+
+[node name="Particles" type="Particles" parent="." index="0" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07846, 0 )
+material_override = ExtResource( 3 )
+emitting = false
+amount = 1
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.91
+randomness = 0.84
+fixed_fps = 30
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 2 )
+script = ExtResource( 4 )
+
+[node name="ExplosionSound" type="Node" parent="." index="1" instance=ExtResource( 6 )]
+script = ExtResource( 2 )
+tree = NodePath("../Audio")
+schema = "ExplosionSound"
+random = true
+state = "Explosion"
+
+[node name="RadiusStim" parent="." index="2" instance=ExtResource( 8 )]
+stim_type = "Damage"
+stim_intensity = 125.0
+one_shot = true
+max_distance = 2.0
+raycast = true
+use_hitbox = true
+required_tags = "Actor"
+
+[node name="Audio" parent="." index="6"]
+default_state = "Explosion"

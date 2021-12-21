@@ -27,11 +27,17 @@ func _set_collision_exceptions(new_exceptions):
 
 func _get_collision_exceptions():
 	
-	for exception in collision_exceptions:
-		if not is_instance_valid(exception):
-			collision_exceptions.erase(exception)
+	if owner is Area:
+		
+		for exception in collision_exceptions:
+			if not is_instance_valid(exception):
+				collision_exceptions.erase(exception)
+		
+		return collision_exceptions
 	
-	return collision_exceptions
+	else:
+		
+		return owner.get_collision_exceptions()
 
 
 func _set_speed(new_speed): 

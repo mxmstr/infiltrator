@@ -2,6 +2,7 @@ extends RayCast
 
 export(String) var stim_type
 export var auto = true
+export var one_shot = false
 export var continuous = false
 export var send_to_self = false
 
@@ -133,3 +134,6 @@ func _process(delta):
 	
 	if auto:
 		_stimulate()
+	
+	if one_shot:
+		auto = false

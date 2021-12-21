@@ -1,6 +1,8 @@
 extends RayCast
 
 export(String) var stim_type
+export var stim_intensity = 0.0
+export var one_shot = false
 export var continuous = false
 export var max_distance = 0.0
 export var raycast = false
@@ -8,6 +10,7 @@ export var use_hitbox = false
 export var stim_hitbox = false
 export(String, MULTILINE) var required_tags
 
+var active = true
 var required_tags_dict = {}
 var colliders = []
 var shooter
@@ -57,7 +60,7 @@ func _validate_within_radius(actor):
 
 func _physics_process(delta):
 	
-	if owner.is_queued_for_deletion() or (collision and collision.disabled):
+	if not active or owner.is_queued_for_deletion() or (collision and collision.disabled):
 		return
 	
 	var new_colliders = []
@@ -92,9 +95,9 @@ func _physics_process(delta):
 				if _validate_within_radius(hitbox):
 					
 					if stim_hitbox:
-						Meta.StimulateActor(hitbox, stim_type, owner)
+						Meta.StimulateActor(hitbox, stim_type, owner, stim_intensity)
 					else:
-						Meta.StimulateActor(actor, stim_type, owner)
+						Meta.StimulateActor(actor, stim_type, owner, stim_intensity)
 					emit_signal('stimulate')
 					
 					new_colliders.append(actor)
@@ -104,10 +107,13 @@ func _physics_process(delta):
 			
 			if _validate_within_radius(actor):
 				
-				Meta.StimulateActor(actor, stim_type, owner)
+				Meta.StimulateActor(actor, stim_type, owner, stim_intensity)
 				emit_signal('stimulate')
 				
 				new_colliders.append(actor)
 	
 	
 	colliders = new_colliders
+	
+	if one_shot:
+		active = false
