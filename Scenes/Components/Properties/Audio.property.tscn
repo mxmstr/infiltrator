@@ -11,3 +11,4 @@ bus = "SFX"
 anims/DefaultAnim = ExtResource( 3 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_filter_db = 0.0

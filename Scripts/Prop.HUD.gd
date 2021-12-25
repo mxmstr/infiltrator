@@ -100,6 +100,9 @@ func _refresh_ammo():
 		return
 	
 	
+	if righthand.items[0]._has_tag('Grenade'):
+		return
+	
 	if not ammo_container:
 		
 		ammo_container = _get_ammo_container(righthand.items[0])

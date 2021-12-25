@@ -22,7 +22,7 @@ var movement
 var root
 var shooter
 var required_tags_dict = {}
-var items = []
+var items = [] setget _set_items, _get_items
 
 signal item_added
 signal item_removed
@@ -30,9 +30,23 @@ signal item_released
 signal released
 
 
+func _set_items(new_items):
+	
+	items = new_items
+
+
+func _get_items():
+	
+	for item in items.duplicate():
+		if not item is String and not is_instance_valid(item):
+			items.erase(item)
+	
+	return items
+
+
 func _is_empty():
 	
-	return max_quantity > 0 and items.size() == 0
+	return items.size() == 0
 
 
 func _is_full():
@@ -291,6 +305,9 @@ func _apply_launch_attributes(item):
 		
 		var parent_list = _exclude_recursive(item, owner)
 		
+		if shooter._has_tag('Shooter'):
+			shooter = shooter._get_tag('Shooter')
+		
 		if release_exclude_parent_lifetime > 0:
 			get_tree().create_timer(release_exclude_parent_lifetime).connect('timeout', self, '_remove_exclusions', [item, parent_list])
 	
@@ -325,25 +342,34 @@ func _release_front_threaded():
 	Meta.threads.append(thread)
 
 
-func _release_front(data=null):
+func _release_front(release_speed_override=null):
 	
 	if not items.size():
 		return
+	
+	var release_speed_default = release_speed
+	
+	if release_speed_override:
+		release_speed = release_speed_override
 	
 	var item
 	
 	if factory_mode:
 		
 		item = Meta.AddActor(_remove_item(items[0]), root.global_transform.origin, root.rotation)
+		_apply_launch_attributes(item)
 	
 	else:
 		
 		item = items[0]
 		Meta.DestroyLink(owner, item, 'Contains', {'container': name})
 	
-	item._set_tag('Shooter', shooter)
+	if is_instance_valid(item):
+		item._set_tag('Shooter', shooter)
 	
 	emit_signal('item_released', item)
+	
+	release_speed = release_speed_default
 	
 	return item
 
@@ -370,6 +396,7 @@ func _release_all():
 		
 		for item in items:
 			released.append(Meta.AddActor(_remove_item(item), root.global_transform.origin, root.rotation))
+			_apply_launch_attributes(item)
 	
 	else:
 		
@@ -408,7 +435,6 @@ func _reset_root():
 func _ready():
 	
 	movement = get_node_or_null('../Movement')
-	
 	shooter = owner
 	
 	

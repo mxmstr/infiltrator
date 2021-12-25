@@ -30,6 +30,7 @@ gdscript/warnings/enable=false
 
 [display]
 
+window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 window/vsync/use_vsync=false
 window/stretch/mode="viewport"

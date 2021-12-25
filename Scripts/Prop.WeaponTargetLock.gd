@@ -27,11 +27,18 @@ onready var left_kick = get_node_or_null('../LeftKickContainer')
 
 func _on_fire(projectile):
 	
-	var target_pos = (projectile.global_transform.origin - 
-		projectile.global_transform.origin.direction_to(camera_raycast_target.global_transform.origin)
-	)
+	var direction = projectile.global_transform.origin.direction_to(camera_raycast_target.global_transform.origin)
+	var target_pos = projectile.global_transform.origin - direction
 	
 	projectile.look_at(target_pos, Vector3.UP)
+	
+	if projectile._has_tag('Grenade'):
+		
+		yield(get_tree(), 'idle_frame')
+		
+		var speed = projectile.get_node('Movement').speed
+		prints(speed)
+		projectile.apply_central_impulse(direction * speed)
 
 
 func _on_punch(projectile):
@@ -74,6 +81,9 @@ func _on_item_dequipped(container, item):
 	if is_instance_valid(item) and item._has_tag('Firearm'):
 		
 		item.get_node('Chamber').disconnect('item_released', self, '_on_fire')
+		
+		if item._has_tag('Grenade') and item.get_node('Behavior').current_state == 'FireProjectile':
+			_on_fire(item)
 	
 	equipped = false
 	targeted_enemy = null
@@ -181,17 +191,18 @@ func _process(delta):
 				if result:
 					camera_raycast.move_target = true
 					#model.rotation = Vector3(0, 0, 0)
-					return
 				
-				camera_raycast.move_target = false
-				camera_raycast_target.global_transform.origin = target_pos
+				else:
+					
+					camera_raycast.move_target = false
+					camera_raycast_target.global_transform.origin = target_pos
 				
 		else:
 			
 			camera_raycast.move_target = true
 			#model.rotation = Vector3(0, 0, 0)
 		
-#		if camera_raycast.move_target:
+		#if camera_raycast.move_target:
 		
 		var aim_offset = (movement.angular_direction / Meta.rotate_sensitivity) * aim_offset_range
 		aim_offset.y *= -1

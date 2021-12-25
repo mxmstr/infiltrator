@@ -20,8 +20,7 @@ func _load_animations(_schema):
 		return
 	
 	var owner_tags = owner.tags_dict.keys()
-	var files = Meta._get_files_recursive(schemas_dir, _schema, schemas_extension, owner_tags)
-	var schema_animation_player = load(files[0]).instance()
+	var schema_animation_player = Meta.LoadSchema(_schema, owner_tags).instance()
 	
 	var _animation_list = Array(schema_animation_player.get_animation_list())
 	var _attributes

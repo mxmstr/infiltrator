@@ -216,7 +216,7 @@ tracks/29/keys = {
 "times": PoolRealArray( 0.6 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
+"args": [ 15.0 ],
 "method": "_release_front"
 } ]
 }

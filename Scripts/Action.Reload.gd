@@ -49,8 +49,9 @@ func _on_action(_state, data):
 		if righthand._has_item_with_tag('Firearm'):
 			
 			var item_name = righthand.items[0].base_name
+			var magazine = righthand.items[0].get_node('Magazine')
 			
-			if animations.has(item_name) and righthand.items[0].get_node('Magazine')._can_transfer_items_from(owner):
+			if animations.has(item_name) and magazine._can_transfer_items_from(owner):
 				
 				_play(animations[item_name][0])
 	

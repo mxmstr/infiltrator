@@ -14,8 +14,8 @@ tracks/0/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "Projectiles/Explosions/Explosion1", Vector3( 0, 0, 0 ) ],
-"method": "_create_and_launch_item"
+"args": [  ],
+"method": "_release_front"
 } ]
 }
 tracks/1/type = "method"

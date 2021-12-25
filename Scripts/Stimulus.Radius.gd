@@ -68,10 +68,12 @@ func _physics_process(delta):
 	
 	for actor in actors.get_children() if actors else []:
 		
+		var exceptions = owner.get_collision_exceptions() if collision else []
+		
 		if actor in [owner, shooter] or \
 			not actor.get('tags') or \
 			(use_hitbox and not actor.has_node('Hitboxes')) or \
-			actor in owner.get_collision_exceptions():
+			actor in exceptions:
 			continue
 		
 		if not continuous and actor in colliders:

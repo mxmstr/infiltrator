@@ -31,6 +31,9 @@ enum Team {
 	Yellow
 }
 
+const schemas_dir = 'res://Scenes/Schemas/'
+const schemas_extension = '.schema.tscn'
+
 var preloader
 var tree_count = 0
 
@@ -58,13 +61,12 @@ var player_data = [
 	player_data_default.duplicate(),
 	player_data_default.duplicate()
 ]
-var rotate_sensitivity = 12.0
+var rotate_sensitivity = 14.0
 var rawinput = false
 var threads = []
 var cached_args = []
 
 signal on_input
-
 
 
 func _merge_dir(target, patch):
@@ -227,6 +229,14 @@ func Evaluate(node, expression, arguments):
 	return result
 
 
+func PreloadSchemas():
+	
+	var schemas = _get_files_recursive('res://Scenes/Schemas/', '', '.tscn')
+	
+	for schema in schemas:
+		preloader.add_resource(schema, load(schema))
+
+
 func PreloadActors():
 	
 	var actors = _get_files_recursive('res://Scenes/Actors/', '', '.tscn')
@@ -241,6 +251,50 @@ func PreloadLinks():
 	
 	for link in links:
 		preloader.add_resource(link, load(link))
+
+
+func LoadSchema(schema, owner_tags):
+	
+	var selected_file
+	var highest_tag_count = 0
+	
+	for resource in preloader.get_resource_list():
+		
+		if not resource.begins_with(schemas_dir) or not resource.ends_with(schemas_extension):
+			continue
+		
+		var file = resource.split('/')[-1]
+		
+		if file.split('.')[0] != schema:
+			continue
+		
+		var file_stripped = file.trim_prefix(schema).trim_suffix(schemas_extension)
+		var file_tags = Array(file_stripped.split('.'))
+		file_tags.erase('')
+		
+		
+		var tagged = true
+		var tag_count = 0
+		
+		for file_tag in file_tags:
+			
+			if file_tag in owner_tags:
+				tag_count += 1
+			else:
+				tagged = false
+				break
+		
+		if not tagged:
+			continue
+		
+		
+		if selected_file == null or tag_count > highest_tag_count:
+		
+			selected_file = resource
+			highest_tag_count = tag_count
+	
+	
+	return preloader.get_resource(selected_file)
 
 
 func AddActor(actor_path, position=null, rotation=null, direction=null, tags={}):
@@ -310,14 +364,14 @@ func CreateLink(from, to, type, data={}):
 
 func DestroyLink(from, to, type, data={}):
 	
-	if is_instance_valid(from):
+	if from and is_instance_valid(from):
 		data.from = from.get_path()
-	else:
+	elif from and not is_instance_valid(from):
 		data.from_node = from
 	
-	if is_instance_valid(to):
+	if to and is_instance_valid(to):
 		data.to = to.get_path()
-	else:
+	elif to and not is_instance_valid(to):
 		data.to_node = to
 	
 	return LinkHub._destroy(type, data)
@@ -374,6 +428,7 @@ func _enter_tree():
 	
 	preloader = ResourcePreloader.new()
 	
+	PreloadSchemas()
 	PreloadActors()
 	PreloadLinks()
 

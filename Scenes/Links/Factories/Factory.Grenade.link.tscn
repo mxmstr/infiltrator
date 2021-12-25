@@ -4,4 +4,4 @@
 
 [node name="Factory" type="Node"]
 script = ExtResource( 1 )
-products = "Items/Grenade"
+products = "Items/Grenade Chamber << 1 Projectiles/Explosions/Explosion1"
