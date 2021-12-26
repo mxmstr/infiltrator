@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Sounds/Payne/weapons/shoot_m79.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 length = 0.807982
@@ -18,12 +19,15 @@ tracks/0/keys = {
 } ],
 "times": PoolRealArray( 0 )
 }
-__meta__ = {
-
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/shoot_m79 = SubResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
-
+"_editor_description_": ""
 }
+attributes = "{
+	\"*\": {
+		\"level\": -5
+	}
+}"

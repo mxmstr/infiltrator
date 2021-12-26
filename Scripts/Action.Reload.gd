@@ -12,10 +12,16 @@ onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Targe
 
 func _play_reload_sound():
 	
+	if righthand._is_empty():
+		return
+	
 	righthand.items[0].get_node('Audio')._start_state('Reload')
 
 
 func _load_magazine():
+	
+	if righthand._is_empty():
+		return
 	
 	righthand.items[0].get_node('Magazine')._transfer_items_from(owner)
 

@@ -53,7 +53,8 @@ var player_data_default = {
 	'character': 'Humans/Players/Anderson',
 	'hp': 100.0,
 	'team': Team.None,
-	'auto_aim': true
+	'auto_aim': true,
+	'bot': false
 	}
 var player_data = [
 	player_data_default.duplicate(),

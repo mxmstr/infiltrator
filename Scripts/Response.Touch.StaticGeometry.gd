@@ -17,3 +17,5 @@ func _on_stimulate(stim, data):
 			sparks.rotate_y(deg2rad(180))
 			
 			data.source.queue_free()
+		
+		reception._reflect()

@@ -32,12 +32,15 @@ func _on_player_died(player, data):
 	if data.has('shooter'):
 		
 		var shooter = data.shooter
-		var shooter_team = 0
+		var shooter_team# = 0
+		
+		if shooter == player:
+			return
 		
 		if shooter._has_tag('Team'):
 			shooter_team = int(shooter._get_tag('Team'))
-		elif shooter._has_tag('Shooter') and shooter._get_tag('Shooter')._has_tag('Team'):
-			shooter_team = int(shooter._get_tag('Shooter')._get_tag('Team'))
+#		elif shooter._has_tag('Shooter') and shooter._get_tag('Shooter')._has_tag('Team'):
+#			shooter_team = int(shooter._get_tag('Shooter')._get_tag('Team'))
 		
 		var player_team = int(player._get_tag('Team'))
 		
@@ -145,6 +148,7 @@ func _ready():
 		actor.player_index = i
 		actor.get_node('Stamina').hp = data.hp
 		actor.get_node('WeaponTargetLock').auto_aim = data.auto_aim
+		actor.get_node('Bot').active = data.bot
 		actor._set_tag('Team', str(data.team))
 		
 		_add_viewport(actor, data)

@@ -37,14 +37,6 @@ func _get_sidestep_speed():
 	return owner.global_transform.basis.xform_inv(velocity).x
 
 
-func _set_direction(new_direction, local=false):
-	
-	if local:
-		direction = owner.global_transform.basis.xform(new_direction)
-	else:
-		direction = new_direction
-
-
 func _apply_root_transform(root_transform, delta):
 	
 	owner.transform *= root_transform

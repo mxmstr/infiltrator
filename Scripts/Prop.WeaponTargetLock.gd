@@ -34,11 +34,11 @@ func _on_fire(projectile):
 	
 	if projectile._has_tag('Grenade'):
 		
-		yield(get_tree(), 'idle_frame')
+		#yield(get_tree(), 'idle_frame')
 		
-		var speed = projectile.get_node('Movement').speed
-		prints(speed)
-		projectile.apply_central_impulse(direction * speed)
+		prints(projectile.get_node('Movement').speed)
+		#projectile.get_node('Movement')._set_direction(direction * -1, true)
+#		projectile.get_node('Movement').speed = projectile.get_node('Movement').speed
 
 
 func _on_punch(projectile):

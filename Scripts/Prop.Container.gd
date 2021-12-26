@@ -289,8 +289,8 @@ func _apply_launch_attributes(item):
 	
 	if item_movement:
 		
-		item_movement._set_speed(release_speed)
 		item_movement._set_direction(release_direction, true)
+		item_movement._set_speed(release_speed)
 		
 		if release_angular_spread.length():
 			

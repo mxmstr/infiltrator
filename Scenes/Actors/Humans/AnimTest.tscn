@@ -143,10 +143,10 @@ continuous_cd = true
 [node name="Model2" parent="." instance=ExtResource( 12 )]
 
 [node name="neo_reference_skeleton" parent="Model2" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.5411e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( 0.962897, -0.261462, 0.0668459, -0.209115, -0.879442, -0.427614, 0.170592, 0.397769, -0.901487, 0.206022, 0.864122, 0.166226 )
+transform = Transform( -0.0966153, 0.0708079, -0.9928, -0.810654, -0.584342, 0.0372135, -0.5775, 0.808413, 0.113857, 0.397127, 1.55653, 0.154362 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 2 )]
@@ -206,7 +206,7 @@ transform = Transform( 0.966659, 0.25514, -0.0217545, -0.0546936, 0.28872, 0.955
 continuous_cd = true
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="2"]
-transform = Transform( 0.83407, 0.490354, 0.252748, 0.494467, -0.461374, -0.736639, -0.244602, 0.739383, -0.627282, -0.223261, 0.899604, 0.131456 )
+transform = Transform( 0.255055, 0.919778, 0.298255, -0.320983, 0.371505, -0.87118, -0.912095, 0.126464, 0.389986, 0.172392, 1.26368, 0.347977 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 25 )]

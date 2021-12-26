@@ -13,7 +13,7 @@ func _on_body_shape_entered(body_id, body, body_shape, local_shape):
 		body,
 		stim_type,
 		owner,
-		movement._get_speed(),
+		movement.speed,
 		owner.global_transform.origin,
 		movement.direction
 		)

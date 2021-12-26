@@ -156,129 +156,13 @@ custom_constants/separation = 20
 margin_right = 476.0
 margin_bottom = 171.0
 
-[node name="Name" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" index="0"]
-margin_right = 476.0
-
-[node name="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" index="1"]
-margin_top = 33.0
-margin_right = 476.0
-margin_bottom = 33.0
-
-[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" index="2"]
-margin_top = 41.0
-margin_right = 476.0
-margin_bottom = 78.0
-
-[node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/CharacterSelector" index="0"]
-margin_top = 6.0
-margin_bottom = 31.0
-
-[node name="OptionButton" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/CharacterSelector" index="1"]
-margin_left = 123.0
-margin_right = 476.0
-margin_bottom = 37.0
-
-[node name="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" index="3"]
-margin_top = 86.0
-margin_right = 476.0
-margin_bottom = 131.0
-
-[node name="HP" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer" index="0"]
-margin_right = 196.0
-margin_bottom = 45.0
-
-[node name="Team" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer" index="1"]
-margin_left = 204.0
-margin_right = 476.0
-margin_bottom = 45.0
-
-[node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer/Team" index="0"]
-margin_top = 10.0
-margin_right = 73.0
-margin_bottom = 35.0
-
-[node name="OptionButton" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer/Team" index="1"]
-margin_left = 81.0
-margin_right = 272.0
-margin_bottom = 45.0
-
-[node name="HBoxContainer2" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1" index="4"]
-margin_top = 139.0
-margin_right = 476.0
-margin_bottom = 171.0
-
-[node name="AutoAim" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer2" index="0"]
-margin_right = 476.0
-margin_bottom = 32.0
-
-[node name="CheckBox" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer2/AutoAim" index="0"]
-margin_right = 136.0
-margin_bottom = 32.0
-
 [node name="Player2" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer" instance=ExtResource( 5 )]
 margin_left = 496.0
 margin_right = 972.0
 margin_bottom = 171.0
 
 [node name="Name" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" index="0"]
-margin_right = 476.0
 text = "Player 2"
-
-[node name="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" index="1"]
-margin_top = 33.0
-margin_right = 476.0
-margin_bottom = 33.0
-
-[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" index="2"]
-margin_top = 41.0
-margin_right = 476.0
-margin_bottom = 78.0
-
-[node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/CharacterSelector" index="0"]
-margin_top = 6.0
-margin_bottom = 31.0
-
-[node name="OptionButton" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/CharacterSelector" index="1"]
-margin_left = 123.0
-margin_right = 476.0
-margin_bottom = 37.0
-
-[node name="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" index="3"]
-margin_top = 86.0
-margin_right = 476.0
-margin_bottom = 131.0
-
-[node name="HP" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer" index="0"]
-margin_right = 196.0
-margin_bottom = 45.0
-
-[node name="Team" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer" index="1"]
-margin_left = 204.0
-margin_right = 476.0
-margin_bottom = 45.0
-
-[node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer/Team" index="0"]
-margin_top = 10.0
-margin_right = 73.0
-margin_bottom = 35.0
-
-[node name="OptionButton" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer/Team" index="1"]
-margin_left = 81.0
-margin_right = 272.0
-margin_bottom = 45.0
-
-[node name="HBoxContainer2" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2" index="4"]
-margin_top = 139.0
-margin_right = 476.0
-margin_bottom = 171.0
-
-[node name="AutoAim" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer2" index="0"]
-margin_right = 476.0
-margin_bottom = 32.0
-
-[node name="CheckBox" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer2/AutoAim" index="0"]
-margin_right = 136.0
-margin_bottom = 32.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList"]
 margin_top = 236.0
@@ -291,64 +175,7 @@ margin_right = 476.0
 margin_bottom = 171.0
 
 [node name="Name" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" index="0"]
-margin_right = 476.0
 text = "Player 3"
-
-[node name="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" index="1"]
-margin_top = 33.0
-margin_right = 476.0
-margin_bottom = 33.0
-
-[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" index="2"]
-margin_top = 41.0
-margin_right = 476.0
-margin_bottom = 78.0
-
-[node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/CharacterSelector" index="0"]
-margin_top = 6.0
-margin_bottom = 31.0
-
-[node name="OptionButton" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/CharacterSelector" index="1"]
-margin_left = 123.0
-margin_right = 476.0
-margin_bottom = 37.0
-
-[node name="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" index="3"]
-margin_top = 86.0
-margin_right = 476.0
-margin_bottom = 131.0
-
-[node name="HP" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer" index="0"]
-margin_right = 196.0
-margin_bottom = 45.0
-
-[node name="Team" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer" index="1"]
-margin_left = 204.0
-margin_right = 476.0
-margin_bottom = 45.0
-
-[node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer/Team" index="0"]
-margin_top = 10.0
-margin_right = 73.0
-margin_bottom = 35.0
-
-[node name="OptionButton" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer/Team" index="1"]
-margin_left = 81.0
-margin_right = 272.0
-margin_bottom = 45.0
-
-[node name="HBoxContainer2" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3" index="4"]
-margin_top = 139.0
-margin_right = 476.0
-margin_bottom = 171.0
-
-[node name="AutoAim" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer2" index="0"]
-margin_right = 476.0
-margin_bottom = 32.0
-
-[node name="CheckBox" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer2/AutoAim" index="0"]
-margin_right = 136.0
-margin_bottom = 32.0
 
 [node name="Player4" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2" instance=ExtResource( 5 )]
 margin_left = 496.0
@@ -356,64 +183,7 @@ margin_right = 972.0
 margin_bottom = 171.0
 
 [node name="Name" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" index="0"]
-margin_right = 476.0
 text = "Player 4"
-
-[node name="ViewportContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" index="1"]
-margin_top = 33.0
-margin_right = 476.0
-margin_bottom = 33.0
-
-[node name="CharacterSelector" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" index="2"]
-margin_top = 41.0
-margin_right = 476.0
-margin_bottom = 78.0
-
-[node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/CharacterSelector" index="0"]
-margin_top = 6.0
-margin_bottom = 31.0
-
-[node name="OptionButton" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/CharacterSelector" index="1"]
-margin_left = 123.0
-margin_right = 476.0
-margin_bottom = 37.0
-
-[node name="HBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" index="3"]
-margin_top = 86.0
-margin_right = 476.0
-margin_bottom = 131.0
-
-[node name="HP" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer" index="0"]
-margin_right = 196.0
-margin_bottom = 45.0
-
-[node name="Team" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer" index="1"]
-margin_left = 204.0
-margin_right = 476.0
-margin_bottom = 45.0
-
-[node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer/Team" index="0"]
-margin_top = 10.0
-margin_right = 73.0
-margin_bottom = 35.0
-
-[node name="OptionButton" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer/Team" index="1"]
-margin_left = 81.0
-margin_right = 272.0
-margin_bottom = 45.0
-
-[node name="HBoxContainer2" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4" index="4"]
-margin_top = 139.0
-margin_right = 476.0
-margin_bottom = 171.0
-
-[node name="AutoAim" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer2" index="0"]
-margin_right = 476.0
-margin_bottom = 32.0
-
-[node name="CheckBox" parent="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer2/AutoAim" index="0"]
-margin_right = 136.0
-margin_bottom = 32.0
 
 [node name="WeaponsLabel" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer"]
 margin_top = 559.0
@@ -443,15 +213,19 @@ margin_bottom = 634.0
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/CharacterSelector"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer/Team"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer2/AutoAim"]
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player1/HBoxContainer2/Bot"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/CharacterSelector"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer/Team"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer2/AutoAim"]
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer/Player2/HBoxContainer2/Bot"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/CharacterSelector"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer/Team"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer2/AutoAim"]
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player3/HBoxContainer2/Bot"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/CharacterSelector"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer/Team"]
 [editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer2/AutoAim"]
+[editable path="MarginContainer/ScrollContainer/HBoxContainer/CharacterList/HBoxContainer2/Player4/HBoxContainer2/Bot"]

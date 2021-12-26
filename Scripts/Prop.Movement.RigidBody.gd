@@ -1,8 +1,19 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
+var new_speed
 var teleporting = false
-var new_position = null
-var new_rotation = null
+var new_position
+var new_rotation
+
+
+func _set_speed(_new_speed): 
+	
+	new_speed = _new_speed
+
+
+func _get_speed(): 
+	
+	return owner.linear_velocity.length()
 
 
 func _teleport(_new_position=null, _new_rotation=null):
@@ -46,3 +57,12 @@ func _integrate_forces(state):
 		owner.can_sleep = true
 		
 		teleporting = false
+	
+	
+	if new_speed:
+		
+		prints(direction, new_speed)
+		var new_velocity = direction * new_speed
+		state.linear_velocity = Vector3()
+		state.apply_central_impulse(new_velocity)
+		new_speed = null

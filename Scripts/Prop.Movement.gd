@@ -52,7 +52,10 @@ func _get_speed():
 
 func _set_direction(new_direction, local=false):
 	
-	direction = new_direction
+	if local:
+		direction = owner.global_transform.basis.xform(new_direction)
+	else:
+		direction = new_direction
 
 
 func _get_forward_speed(): return 0
