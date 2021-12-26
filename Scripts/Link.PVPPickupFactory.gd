@@ -3,6 +3,7 @@ extends 'res://Scripts/Link.gd'
 var spawn_chance = 1.0#0.8
 var spawn_count = 8
 var respawn_time = 30.0
+var pickups = []
 
 
 func _on_timeout():
@@ -15,8 +16,9 @@ func _on_timeout():
 	markers[0].get_node('RespawnSound').playing = true
 
 
-func _on_stimulate():
+func _on_stimulate(item):
 	
+	pickups.erase(item)
 	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout')
 
 
@@ -35,11 +37,12 @@ func _on_factory_finished(link, marker):
 		
 		if output.has_node('AreaStim'):
 			
+			pickups.append(output)
 			output.get_node('AreaStim').connect(
 				'stimulate',
 				self,
 				'_on_stimulate',
-				[],
+				[output],
 				CONNECT_ONESHOT
 				)
 			

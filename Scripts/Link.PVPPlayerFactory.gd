@@ -32,7 +32,7 @@ func _on_player_died(player, data):
 	if data.has('shooter'):
 		
 		var shooter = data.shooter
-		var shooter_team# = 0
+		var shooter_team = 0
 		
 		if shooter == player:
 			return

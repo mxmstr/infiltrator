@@ -135,20 +135,20 @@ func _ready():
 	
 	shoulder_bone = owner.get_node('Hitboxes').find_node('Shoulders')
 	
-	if auto_aim:
+#	if auto_aim:
+	
+	for actor in $'/root/Mission/Actors'.get_children():
 		
-		for actor in $'/root/Mission/Actors'.get_children():
+		if actor != owner and actor.get('tags') and actor._has_tag('Team'):
 			
-			if actor != owner and actor.get('tags') and actor._has_tag('Team'):
+			var their_team = int(actor._get_tag('Team'))
+			var my_team = int(owner._get_tag('Team'))
+			
+			if their_team == Meta.Team.None or their_team != my_team:
 				
-				var their_team = int(actor._get_tag('Team'))
-				var my_team = int(owner._get_tag('Team'))
-				
-				if their_team == Meta.Team.None or their_team != my_team:
-					
-					enemies.append(actor)
-					actor.get_node('VisibilityNotifier').connect('camera_entered', self, '_on_camera_entered', [actor])
-					actor.get_node('VisibilityNotifier').connect('camera_exited', self, '_on_camera_exited', [actor])
+				enemies.append(actor)
+				actor.get_node('VisibilityNotifier').connect('camera_entered', self, '_on_camera_entered', [actor])
+				actor.get_node('VisibilityNotifier').connect('camera_exited', self, '_on_camera_exited', [actor])
 
 
 func _process(delta):
