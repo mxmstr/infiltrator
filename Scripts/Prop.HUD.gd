@@ -1,14 +1,19 @@
 extends Control
 
+const radar_scale = 0.25
+const radar_margin = 0.9
+
 export(NodePath) var viewport
 
 var radar_dots = []
+var radar_pickups = []
 var radius_x
 var radius_y
 var ammo_container
 
-onready var radar = get_node('Radar')#.find_node('Sprite')
-onready var radar_dot = load('res://Scenes/UI/HUD.RadarDot.tscn')
+onready var radar = get_node('Radar/TextureRect')
+onready var radar_dot = preload('res://Scenes/UI/HUD.RadarDot.tscn')
+onready var radar_ammo = preload('res://Scenes/UI/HUD.RadarAmmo.tscn')
 
 onready var crosshair = get_node('Crosshair')
 onready var ammo = get_node('Ammo')
@@ -17,6 +22,7 @@ onready var righthand = owner.get_node('../RightHandContainer')
 onready var stamina = owner.get_node('../Stamina')
 onready var camera = owner.get_node('../CameraRig/Camera')
 onready var camera_raycast_target = owner.get_node('../CameraRaycastStim/Target')
+onready var pickup_factory = $'/root/Mission/Links/PVPPickupFactory'
 
 
 func _on_damaged(hp):
@@ -140,18 +146,23 @@ func _ready():
 	
 	if Meta.multi_radar:
 		
+		var my_team = int(owner.owner._get_tag('Team'))
+		radar.modulate = Meta.TeamColors[my_team]
+		
 		for actor in $'/root/Mission/Actors'.get_children():
 			
 			if actor != owner.owner and actor.get('tags') and actor._has_tag('Human'):
 				
+				var their_team = int(actor._get_tag('Team'))
 				var dot = radar_dot.instance()
-				dot.modulate = Color.red
+				
+				dot.modulate = Meta.TeamColors[their_team]
 				add_child(dot)
 				radar_dots.append([dot, actor])
 	
 	else:
 		
-		radar.get_node('TextureRect').hide()
+		radar.hide()
 	
 	
 	ammo.hide()
@@ -163,22 +174,42 @@ func _process(delta):
 	
 #	radar_texture.position = rect_size - ((radar_texture.texture.get_size() / 2))
 	
-	for dot_info in radar_dots:
+	if Meta.multi_radar:
+	
+		var owner_position = (owner.owner.translation * 10).round()
 		
-		var dot = dot_info[0]
-		var actor = dot_info[1]
+		if radar_pickups.size() != pickup_factory.pickups.size():
+			
+			for radar_pickup in radar_pickups:
+				radar_pickup[0].queue_free()
+			
+			radar_pickups = []
+			
+			for pickup in pickup_factory.pickups:
+				var dot = radar_ammo.instance()
+				add_child(dot)
+				radar_pickups.append([dot, pickup])
 		
-		var distance_to = owner.owner.translation.distance_to(actor.translation)
-		var direction_to = owner.owner.translation.direction_to(actor.translation) * -distance_to
-		direction_to = owner.owner.transform.basis.xform_inv(direction_to) * 20.0
-		direction_to.y = 0
 		
-		if direction_to.length() > radius_x:
-			direction_to = direction_to.normalized() * radius_x
-		
-		var actor_position = Vector2(radius_x + direction_to.x, radius_y + direction_to.z)
-		
-		dot.position = radar.rect_global_position + actor_position
+		for dot_info in radar_dots + radar_pickups:
+			
+			var dot = dot_info[0]
+			var actor = dot_info[1]
+			
+			if not is_instance_valid(actor):
+				continue
+			
+			var actor_position = (actor.translation * 10).round()
+			var distance_to = owner_position.distance_to(actor_position)
+			var direction_to = owner_position.direction_to(actor_position) * -distance_to
+			direction_to = owner.owner.transform.basis.xform_inv(direction_to) * radar_scale
+			direction_to.y = 0
+			
+			if direction_to.length() > (radius_x * radar_margin):
+				direction_to = direction_to.normalized() * (radius_x * radar_margin)
+			
+			var dot_position = Vector2(radius_x + direction_to.x, radius_y + direction_to.z)
+			dot.position = radar.rect_global_position + dot_position
 	
 	
 	crosshair.rect_position = camera.unproject_position(camera_raycast_target.global_transform.origin) - crosshair.rect_pivot_offset

@@ -1,13 +1,5 @@
 extends Node
 
-const team_colors = [
-	Color.white,
-	Color.red,
-	Color.blue,
-	Color.green,
-	Color.yellow
-	]
-
 
 func _ready():
 	
@@ -19,7 +11,7 @@ func _ready():
 	var outline
 	var mesh = $'../Model'.get_child(0).get_child(0).mesh
 	var team = int(owner._get_tag('Team'))
-	var color = team_colors[team]
+	var color = Meta.TeamColors[team]
 	color.a = 0.5
 	
 	if Meta.multi_xray:

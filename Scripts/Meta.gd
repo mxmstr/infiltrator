@@ -31,6 +31,14 @@ enum Team {
 	Yellow
 }
 
+const TeamColors = [
+	Color.white,
+	Color.red,
+	Color.blue,
+	Color.green,
+	Color.yellow
+	]
+
 const schemas_dir = 'res://Scenes/Schemas/'
 const schemas_extension = '.schema.tscn'
 

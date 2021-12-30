@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/UI/HUD.CenterMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/roboto.font" type="BitmapFont" id=4]
 [ext_resource path="res://Scripts/FPS.gd" type="Script" id=5]
-[ext_resource path="res://Textures/UI/Radar.png" type="Texture" id=6]
+[ext_resource path="res://Textures/UI/Radar_small.png" type="Texture" id=6]
 [ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="CanvasItemMaterial" id=1]
@@ -70,14 +70,14 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="Radar"]
-margin_right = 676.0
-margin_bottom = 300.0
+margin_right = 901.0
+margin_bottom = 75.0
 size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="Radar"]
-margin_left = 684.0
+margin_left = 909.0
 margin_right = 984.0
-margin_bottom = 300.0
+margin_bottom = 75.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 texture = ExtResource( 6 )

@@ -18,7 +18,7 @@ transform = Transform( 5.55112e-17, 1.09278e-09, -0.025, 0.025, -1.09278e-09, 0,
 shape = SubResource( 1 )
 
 [node name="Magazine" parent="." index="2"]
-max_quantity = 25
+max_quantity = 20
 required_tags = "Bullet 9mm"
 
 [node name="Chamber" parent="." index="3"]

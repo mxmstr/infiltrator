@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Radar.png-37825a7db1582335c12bbe03324a8f25.stex"
+path="res://.import/Radar_small.png-53e9cfd1731220439cc2eb312493580b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/UI/Radar.png"
-dest_files=[ "res://.import/Radar.png-37825a7db1582335c12bbe03324a8f25.stex" ]
+source_file="res://Textures/UI/Radar_small.png"
+dest_files=[ "res://.import/Radar_small.png-53e9cfd1731220439cc2eb312493580b.stex" ]
 
 [params]
 
