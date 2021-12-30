@@ -26,6 +26,6 @@ script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
 		\"switch_mode\": \"End\",
-		\"level\": 0
+		\"level\": -5
 	}
 }"

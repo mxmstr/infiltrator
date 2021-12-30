@@ -6,7 +6,7 @@
 [node name="AnimLayerMovement" type="AnimationTree"]
 tree_root = ExtResource( 1 )
 process_mode = 2
-parameters/blend_position = 0
-parameters/0/blend_position = Vector2( 0.00101113, 0.0289018 )
+parameters/blend_position = 0.0
+parameters/0/blend_position = Vector2( 0.00264323, 0.942196 )
 parameters/1/blend_position = Vector2( 0, 0 )
 script = ExtResource( 2 )

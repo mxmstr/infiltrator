@@ -132,6 +132,7 @@ visible = false
 
 [node name="OmniLight" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -4.79581, 2.76238, -3.67612 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -139,6 +140,7 @@ omni_range = 3.44393
 
 [node name="OmniLight2" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -4.86457, 3.00439, 5.65654 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -146,6 +148,7 @@ omni_range = 4.944
 
 [node name="OmniLight3" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -4.86457, 5.84856, -3.04621 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -153,6 +156,7 @@ omni_range = 4.944
 
 [node name="OmniLight4" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 2.49423, 5.51287, -1.48181 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -160,6 +164,7 @@ omni_range = 4.944
 
 [node name="OmniLight5" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 4.4058, 5.51287, -4.49028 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -167,12 +172,14 @@ omni_range = 4.944
 
 [node name="OmniLight6" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 1.18417, 2.96162, -3.7642 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
 
 [node name="OmniLight7" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -0.504642, 2.87244, 7.4241 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -180,6 +187,7 @@ omni_range = 4.944
 
 [node name="OmniLight8" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 2.94889, 2.87244, 7.4241 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -187,6 +195,7 @@ omni_range = 4.944
 
 [node name="OmniLight9" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 1.20958, 2.87244, 2.91061 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -194,6 +203,7 @@ omni_range = 4.944
 
 [node name="OmniLight10" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 9.28749, 2.50806, 7.57444 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -201,6 +211,7 @@ omni_range = 4.944
 
 [node name="OmniLight11" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 13.0909, 2.50806, 7.57444 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -208,6 +219,7 @@ omni_range = 4.944
 
 [node name="OmniLight12" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 15.7525, 2.50806, 5.69382 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -215,6 +227,7 @@ omni_range = 4.944
 
 [node name="OmniLight13" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 19.6805, 2.50806, 5.69382 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -222,6 +235,7 @@ omni_range = 4.944
 
 [node name="OmniLight14" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 21.2129, 2.50806, 4.12085 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -229,6 +243,7 @@ omni_range = 4.944
 
 [node name="OmniLight15" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 21.2129, 2.50806, 1.29002 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -236,6 +251,7 @@ omni_range = 4.944
 
 [node name="OmniLight16" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 23.5824, 2.66341, -5.84067 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -243,6 +259,7 @@ omni_range = 4.944
 
 [node name="OmniLight17" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 19.4531, 2.66341, -5.84067 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -250,6 +267,7 @@ omni_range = 4.944
 
 [node name="OmniLight18" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 15.5657, 3.09504, -1.1178 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -257,6 +275,7 @@ omni_range = 4.944
 
 [node name="OmniLight19" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 15.0114, 2.93368, -7.29381 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -264,24 +283,28 @@ omni_range = 7.098
 
 [node name="OmniLight20" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 7.75928, 2.90751, -4.68229 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
 
 [node name="OmniLight21" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 10.9911, 3.03031, -4.68229 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
 
 [node name="OmniLight22" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 9.18489, 2.59479, 1.63462 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
 
 [node name="OmniLight23" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 3.15728, 2.96162, -7.54162 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -289,24 +312,28 @@ omni_range = 8.53
 
 [node name="OmniLight24" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -1.48439, 5.73825, -0.00642091 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
 
 [node name="OmniLight25" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -2.61198, 5.97049, 4.76439 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
 
 [node name="OmniLight26" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 2.71441, 6.16584, 5.71865 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
 
 [node name="OmniLight27" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -1.72614, 5.71288, -4.20864 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -314,6 +341,7 @@ omni_range = 3.0
 
 [node name="OmniLight28" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 10.4354, 2.75643, -9.03545 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -321,6 +349,7 @@ omni_range = 3.0
 
 [node name="OmniLight29" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 7.39588, 2.75643, -9.38974 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -328,6 +357,7 @@ omni_range = 3.0
 
 [node name="OmniLight30" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 7.39588, 2.75643, -15.4552 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -335,6 +365,7 @@ omni_range = 4.0
 
 [node name="OmniLight31" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 2.33294, 2.75643, -13.3309 )
+visible = false
 light_energy = 4.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -342,6 +373,7 @@ omni_range = 3.0
 
 [node name="OmniLight33" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 3.69034, 2.75643, -15.1126 )
+visible = false
 light_energy = 4.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -349,6 +381,7 @@ omni_range = 4.0
 
 [node name="OmniLight32" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 1.95994, 2.75643, -16.8774 )
+visible = false
 light_energy = 4.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -356,6 +389,7 @@ omni_range = 3.0
 
 [node name="OmniLight34" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 7.19439, 3.48854, -21.1392 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -363,6 +397,7 @@ omni_range = 4.0
 
 [node name="OmniLight35" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 7.19439, 3.48854, -25.614 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -370,6 +405,7 @@ omni_range = 4.0
 
 [node name="OmniLight36" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 7.19439, 3.48854, -30.0085 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -377,6 +413,7 @@ omni_range = 4.0
 
 [node name="OmniLight37" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 7.19439, 3.48854, -34.5074 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -384,6 +421,7 @@ omni_range = 4.0
 
 [node name="OmniLight38" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 7.20258, 3.16469, -39.0878 )
+visible = false
 light_energy = 2.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -391,6 +429,7 @@ omni_range = 4.0
 
 [node name="OmniLight39" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -2.14184, 8.02665, -27.6082 )
+visible = false
 light_energy = 6.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -398,6 +437,7 @@ omni_range = 10.0
 
 [node name="OmniLight40" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -2.14184, 8.02665, -34.5185 )
+visible = false
 light_energy = 6.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -405,6 +445,7 @@ omni_range = 10.0
 
 [node name="OmniLight41" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, -2.14184, 8.02665, -20.3947 )
+visible = false
 light_energy = 6.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -412,6 +453,7 @@ omni_range = 10.0
 
 [node name="OmniLight42" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 16.5012, 8.02665, -27.6082 )
+visible = false
 light_energy = 6.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -419,6 +461,7 @@ omni_range = 10.0
 
 [node name="OmniLight43" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 16.5012, 8.02665, -35.5332 )
+visible = false
 light_energy = 6.0
 light_specular = 0.0
 light_bake_mode = 2
@@ -426,6 +469,7 @@ omni_range = 10.0
 
 [node name="OmniLight44" type="OmniLight" parent="Navmesh"]
 transform = Transform( -0.244816, 0.96957, 8.94579e-07, -0.445804, -0.112566, 0.888025, 0.861002, 0.217402, 0.459796, 16.5012, 8.02665, -20.0364 )
+visible = false
 light_energy = 6.0
 light_specular = 0.0
 light_bake_mode = 2

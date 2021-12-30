@@ -7,7 +7,7 @@ var camera_raycast_target
 var perspective
 
 var aim_offset_range = 0.3
-var aim_offset_sensitivity = 7.0
+var aim_offset_sensitivity = 4.0
 var enemies = []
 var visible_enemies = []
 var targeted_enemy

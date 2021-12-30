@@ -23,9 +23,12 @@ tracks/0/keys = {
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/reload_colt = SubResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
 attributes = "{
 	\"*\": {
 		\"switch_mode\": \"End\",
-		\"level\": 0
+		\"level\": -5
 	}
 }"

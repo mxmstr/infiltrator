@@ -21,6 +21,7 @@ onready var stance = $'../Stance'
 onready var stamina = $'../Stamina'
 onready var perspective = $'../Perspective'
 onready var right_hand = $'../RightHandContainer'
+onready var inventory = $'../InventoryContainer'
 
 
 func _get_closest_pickup():
@@ -61,6 +62,12 @@ func _get_closest_enemy():
 			closest_distance = distance
 	
 	return closest
+
+
+func _respawn():
+	
+	if behavior.current_state == 'PostDeath':
+		$'/root/Mission/Links/PVPPlayerFactory'._respawn(owner)
 
 
 func _start_travel():
@@ -129,6 +136,15 @@ func _face():
 			camera_raycast.selection._has_tag('Hitbox') and \
 			camera_raycast.selection.owner in weapon_target_lock.enemies:
 			behavior._start_state('UseItem')
+#
+#		var item = right_hand.items[0]
+#
+#		if item._has_tag('Firearm') and \
+#			item.get_node('Chamber')._is_empty() and \
+#			item.get_node('Magazine')._is_empty():
+#
+#			for inv_item in get_node('InventoryContainer'):
+#
 
 
 func _process(delta):
@@ -143,8 +159,7 @@ func _process(delta):
 	
 	if dead:
 		
-		if behavior.current_state == 'PostDeath':
-			$'/root/Mission/Links/PVPPlayerFactory'._respawn(owner)
+		_respawn()
 	
 	else:
 		
@@ -152,6 +167,7 @@ func _process(delta):
 			
 			_travel()
 			_face()
+			
 		
 		else:
 			

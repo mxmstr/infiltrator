@@ -2,7 +2,7 @@ extends 'res://Scripts/Link.gd'
 
 var spawn_chance = 1.0#0.8
 var spawn_count = 8
-var respawn_time = 30.0
+var respawn_time = 15.0
 var pickups = []
 
 

@@ -4,6 +4,3 @@
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/Run = ExtResource( 1 )
-__meta__ = {
-
-}

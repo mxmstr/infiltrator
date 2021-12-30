@@ -1,16 +1,24 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
+const accel = 3.0
+const deaccel = 5.0
+const angular_accel = 0.1#0.05
+const angular_deaccel = 10.0
+
 export var gravity = -9.8
-export var accel = 3.0
-export var deaccel = 5.0
-export var angular_accel = 0.1
-export var angular_deaccel = 10
+export var vertical_speed_mult = 0.5
 export var stop_on_slope = false
 export var max_slides = 4
 
+var angular_velocity_x_pos = 0.0
+var angular_velocity_x_neg = 0.0
+var angular_velocity_y_pos = 0.0
+var angular_velocity_y_neg = 0.0
 var rotate_x_camera = false
 var rotate_y_camera = true
 var snap = Vector3()
+var factorx = angular_deaccel
+var factory = angular_deaccel
 
 onready var camera_rig = get_node_or_null('../CameraRig')
 
@@ -82,31 +90,51 @@ func _face(target, angle_delta=0.0):
 func _apply_rotation(delta):
 	
 	var new_velocity = angular_direction * delta
+	var x_positive = new_velocity.x if new_velocity.x > 0 else 0
+	var x_negative = new_velocity.x if new_velocity.x < 0 else 0
+	var y_positive = new_velocity.y if new_velocity.y > 0 else 0
+	var y_negative = new_velocity.y if new_velocity.y < 0 else 0
+	
 	var deltax = new_velocity.x - angular_velocity.x
+	var deltax_positive = deltax if deltax > 0 else 0
+	var deltax_negative = deltax if deltax < 0 else 0
 	var deltay = new_velocity.y - angular_velocity.y
-	var factorx
-	var factory
-	var factor
+	var deltay_positive = deltay if deltay > 0 else 0
+	var deltay_negative = deltay if deltay < 0 else 0
 	
-	if Vector2(new_velocity.x, 0).dot(Vector2(angular_velocity.x, 0)) <= 0:# or (new_velocity.x > 0 and angular_velocity.x < 0) or (new_velocity.x < 0 and angular_velocity.x > 0):
-		factorx = angular_deaccel
-	else:
-		factorx = angular_accel
-
-	if Vector2(0, new_velocity.y).dot(Vector2(0, angular_velocity.y)) <= 0:# or (new_velocity.y > 0 and angular_velocity.y < 0) or (new_velocity.y < 0 and angular_velocity.y > 0):
-		factory = angular_deaccel
-	else:
-		factory = angular_accel
-
-	angular_velocity.x = angular_velocity.linear_interpolate(new_velocity, factorx * delta).x
-	angular_velocity.y = angular_velocity.linear_interpolate(new_velocity, factory * delta).y
 	
-#	if new_velocity.dot(angular_velocity) > 0:
-#		factor = angular_accel
+	var factorx_positive = angular_accel if deltax_positive else angular_deaccel
+	var factorx_negative = angular_accel if deltax_negative else angular_deaccel
+	var factory_positive = angular_accel if deltay_positive else angular_deaccel
+	var factory_negative = angular_accel if deltay_negative else angular_deaccel
+	
+	
+#	prints(
+#		Vector2(angular_velocity.x, 0).linear_interpolate(Vector2(x_positive, 0), factorx_positive * delta).x + Vector2(angular_velocity.x, 0).linear_interpolate(Vector2(x_negative, 0), factorx_negative * delta).x
+#		)
+	angular_velocity_x_pos = Vector2(angular_velocity_x_pos, 0).linear_interpolate(Vector2(x_positive, 0), factorx_positive * delta).x
+	angular_velocity_x_neg = Vector2(angular_velocity_x_neg, 0).linear_interpolate(Vector2(x_negative, 0), factorx_negative * delta).x
+	angular_velocity.x = angular_velocity_x_pos + angular_velocity_x_neg
+	angular_velocity_y_pos = Vector2(0, angular_velocity_y_pos).linear_interpolate(Vector2(0, y_positive), factory_positive * vertical_speed_mult * delta).y
+	angular_velocity_y_neg = Vector2(0, angular_velocity_y_neg).linear_interpolate(Vector2(0, y_negative), factory_negative * vertical_speed_mult * delta).y
+	angular_velocity.y = angular_velocity_y_pos + angular_velocity_y_neg
+#	angular_velocity.y = Vector2(0, angular_velocity.y).linear_interpolate(Vector2(0, y_positive), factory_positive * delta).y
+#	angular_velocity.y = Vector2(0, angular_velocity.y).linear_interpolate(Vector2(0, y_negative), factory_negative * delta).y
+#	angular_velocity.y = angular_velocity.linear_interpolate(new_velocity, factory * vertical_speed_mult * delta).y
+	
+	#prints(new_velocity.x, angular_velocity.x)#, Vector2(new_velocity.x, 0).dot(Vector2(angular_velocity.x, 0)))
+#	if angular_direction.x == 0:# or (new_velocity.x > 0 and angular_velocity.x < -0.001) or (new_velocity.x < 0 and angular_velocity.x > 0.001):#Vector2(new_velocity.x, 0).dot(Vector2(angular_velocity.x, 0)) <= 0:# or (new_velocity.x > 0 and angular_velocity.x < 0) or (new_velocity.x < 0 and angular_velocity.x > 0):
+#		factorx = angular_deaccel
+#		#prints('- deaccel')
 #	else:
-#		factor = angular_deaccel
+#		factorx = angular_accel
+#		#prints('+ accel')
 #
-#	angular_velocity = angular_velocity.linear_interpolate(new_velocity, factor * delta)
+#	if angular_direction.y == 0:# or (new_velocity.y > 0 and angular_velocity.y < -0.001) or (new_velocity.y < 0 and angular_velocity.y > 0.001):#Vector2(0, new_velocity.y).dot(Vector2(0, angular_velocity.y)) <= 0:# or (new_velocity.y > 0 and angular_velocity.y < 0) or (new_velocity.y < 0 and angular_velocity.y > 0):
+#		factory = angular_deaccel
+#	else:
+#		factory = angular_accel
+	
 	
 	if rotate_x_camera:
 		camera_rig._rotate_camera(angular_velocity.y, angular_velocity.x)

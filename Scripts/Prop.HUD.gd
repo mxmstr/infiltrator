@@ -94,8 +94,8 @@ func _get_ammo_container(item):
 
 func _refresh_ammo():
 	
-	if righthand._is_empty():
-		
+	if righthand._is_empty() or \
+		not righthand.items[0].has_node('Magazine'):
 		ammo.hide()
 		return
 	

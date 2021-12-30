@@ -23,7 +23,8 @@ func _load_magazine():
 	if righthand._is_empty():
 		return
 	
-	righthand.items[0].get_node('Magazine')._transfer_items_from(owner)
+	if righthand.items[0].has_node('Magazine'):
+		righthand.items[0].get_node('Magazine')._transfer_items_from(owner)
 
 
 func _load_shotgun_shell():

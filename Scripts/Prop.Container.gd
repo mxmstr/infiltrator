@@ -401,6 +401,10 @@ func _release_all():
 	else:
 		
 		released = Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+		
+		for item in released.duplicate():
+			if not is_instance_valid(item):
+				released.erase(item)
 	
 	for item in released:
 		
