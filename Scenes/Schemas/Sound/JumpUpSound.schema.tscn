@@ -25,6 +25,6 @@ anims/whoosh_small1 = SubResource( 1 )
 script = ExtResource( 9 )
 attributes = "{
 	\"*\": {
-		\"level\": 0
+		\"level\": -5
 	}
 }"

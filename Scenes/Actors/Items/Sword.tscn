@@ -12,7 +12,7 @@ extents = Vector3( 0.0861287, 0.597, 0.152 )
 [node name="Sword" instance=ExtResource( 1 )]
 collision_mask = 3
 gravity_scale = 0.0
-tags = "Item Melee Sword AttachBone:Hand-L Offset-position:neo_reference_skeleton:Hand-L:0.034023,0.026457,0.23843 Offset-rotation:neo_reference_skeleton:Hand-L:-78.814377,23.774532,-14.087647"
+tags = "Item Melee Sword Rank:0 AttachBone:Hand-L Offset-position:neo_reference_skeleton:Hand-L:0.034023,0.026457,0.23843 Offset-rotation:neo_reference_skeleton:Hand-L:-78.814377,23.774532,-14.087647"
 
 [node name="Model" type="MeshInstance" parent="." index="0"]
 transform = Transform( 0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0 )

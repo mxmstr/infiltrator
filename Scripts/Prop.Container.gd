@@ -162,6 +162,7 @@ func _can_transfer_items_from(from):
 			if prop._is_empty():
 				continue
 			
+#			prints(prop, prop.items.size())
 			var valid = true
 			
 			for required_tag in required_tags_dict.keys():
@@ -196,6 +197,7 @@ func _transfer_items_from(from, limit=0):
 				
 				from_container = prop
 				best_tag_count = tag_count
+	
 	
 	if from_container:
 		
@@ -381,7 +383,8 @@ func _release(item):
 	
 	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
 	
-	item._set_tag('Shooter', shooter)
+	if is_instance_valid(item):
+		item._set_tag('Shooter', shooter)
 	
 	emit_signal('item_released', item)
 	

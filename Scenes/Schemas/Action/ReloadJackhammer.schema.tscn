@@ -8,6 +8,7 @@ anims/ReloadJackhammer = ExtResource( 1 )
 script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
+		\"speed\": 1.5,
 		\"clip_start\": 0.05,
 		\"layer\": \"MIXED\",
 		\"switch_mode\": \"End\"

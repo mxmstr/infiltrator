@@ -7,7 +7,7 @@
 extents = Vector3( 0.0378588, 0.0702915, 0.45521 )
 
 [node name="M79" instance=ExtResource( 1 )]
-tags = "Item Firearm M79 UseAction:FireProjectile FireRate:0.1 Stackable Offset-position:neo_reference_skeleton:Gun:0.000453,-0.03889,-0.053751
+tags = "Item Firearm M79 Rank:60 UseAction:FireProjectile FireRate:0.1 Stackable Offset-position:neo_reference_skeleton:Gun:0.000453,-0.03889,-0.053751
  Offset-rotation:neo_reference_skeleton:Gun:-89.435593,-89.997627,89.346985
 "
 

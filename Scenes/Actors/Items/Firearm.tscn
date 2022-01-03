@@ -45,7 +45,7 @@ tree = NodePath("../Behavior")
 tree_node = NodePath("../Reception")
 
 [node name="FireProjectileSound" parent="." instance=ExtResource( 6 )]
-tree = NodePath("../Audio")
+tree = NodePath("../FireAudio")
 
 [node name="ReloadSound" parent="." instance=ExtResource( 7 )]
 tree = NodePath("../Audio")
@@ -69,5 +69,7 @@ shape = SubResource( 28 )
 [node name="Behavior" parent="." instance=ExtResource( 10 )]
 
 [node name="Reception" parent="." instance=ExtResource( 11 )]
+
+[node name="FireAudio" parent="." instance=ExtResource( 16 )]
 
 [node name="Audio" parent="." instance=ExtResource( 16 )]

@@ -1,7 +1,7 @@
 extends AnimationTree
 
 var enable_abilities = true
-var current_state = ''
+var current_state = 'Default'
 var next = 'Default'
 var switch_mode = 'Immediate'
 var priority = 0

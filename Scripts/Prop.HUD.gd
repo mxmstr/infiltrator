@@ -106,21 +106,32 @@ func _refresh_ammo():
 		return
 	
 	
-	if righthand.items[0]._has_tag('Grenade'):
+	var item = righthand.items[0]
+	
+	if item._has_tag('Grenade'):
 		return
 	
 	if not ammo_container:
 		
-		ammo_container = _get_ammo_container(righthand.items[0])
+		ammo_container = _get_ammo_container(item)
 		ammo_container.connect('item_added', self, '_on_ammo_added')
 		ammo_container.connect('item_removed', self, '_on_ammo_removed')
 		
-		if not righthand.items[0].get_node('Magazine').is_connected('item_removed', self, '_on_ammo_removed'):
-			righthand.items[0].get_node('Magazine').connect('item_removed', self, '_on_ammo_removed')
+		if not item.get_node('Chamber').is_connected('item_added', self, '_on_ammo_added'):
+			item.get_node('Chamber').connect('item_added', self, '_on_ammo_added')
+		
+		if not item.get_node('Chamber').is_connected('item_removed', self, '_on_ammo_removed'):
+			item.get_node('Chamber').connect('item_removed', self, '_on_ammo_removed')
+		
+		if not item.get_node('Magazine').is_connected('item_added', self, '_on_ammo_added'):
+			item.get_node('Magazine').connect('item_added', self, '_on_ammo_added')
+		
+		if not item.get_node('Magazine').is_connected('item_removed', self, '_on_ammo_removed'):
+			item.get_node('Magazine').connect('item_removed', self, '_on_ammo_removed')
 	
 	var inv_ammo = ammo_container.items.size()
-	var chamber_ammo = 1 if righthand.items[0].get_node('Chamber').items.size() else 0
-	var mag_ammo = righthand.items[0].get_node('Magazine').items.size()
+	var chamber_ammo = 1 if item.get_node('Chamber').items.size() else 0
+	var mag_ammo = item.get_node('Magazine').items.size()
 	
 	ammo.text = str(chamber_ammo + mag_ammo) + ' | ' + str(inv_ammo)
 

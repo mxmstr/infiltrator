@@ -8,7 +8,7 @@
 extents = Vector3( 0.0335446, 0.118953, 0.639224 )
 
 [node name="PumpShotgun" instance=ExtResource( 1 )]
-tags = "Item Firearm Shotgun PumpShotgun Stackable UseAction:FireProjectile FireRate:0.75 Offset-position:neo_reference_skeleton:Gun:0.00044,0.007747,-0.00782 Offset-rotation:neo_reference_skeleton:Gun:-89.980209,-79.970055,76.587555"
+tags = "Item Firearm Shotgun PumpShotgun Stackable Rank:30 UseAction:FireProjectile FireRate:1.5 Offset-position:neo_reference_skeleton:Gun:0.00044,0.007747,-0.00782 Offset-rotation:neo_reference_skeleton:Gun:-89.980209,-79.970055,76.587555"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 5.55116e-17, 1.09278e-09, -0.025, 0.025, -1.09278e-09, 7.74447e-18, -1.09278e-09, -0.025, -1.09278e-09, 0, 0, 0 )

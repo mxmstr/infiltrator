@@ -7,7 +7,7 @@
 extents = Vector3( 0.0227914, 0.0918072, 0.155839 )
 
 [node name="DesertEagle" instance=ExtResource( 1 )]
-tags = "Item Firearm DesertEagle Stackable UseAction:FireProjectile FireRate:6.0 Offset-position:neo_reference_skeleton:Gun:0,-0.004,0.006 Offset-rotation:neo_reference_skeleton:Gun:-89.1,89.4,-89.9"
+tags = "Item Firearm DesertEagle Stackable Rank:11 UseAction:FireProjectile FireRate:6.0 Offset-position:neo_reference_skeleton:Gun:0,-0.004,0.006 Offset-rotation:neo_reference_skeleton:Gun:-89.1,89.4,-89.9"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 5.55116e-17, 1.09278e-09, -0.025, 0.025, -1.09278e-09, 7.74447e-18, -1.09278e-09, -0.025, -1.09278e-09, 0, 0, 0 )
@@ -21,4 +21,6 @@ max_quantity = 8
 required_tags = "Bullet Magnum"
 
 [node name="Chamber" parent="." index="3"]
+transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.098566, 0.273738 )
 release_speed = 20.0
+release_angular_spread = Vector2( 0.075, 0.075 )

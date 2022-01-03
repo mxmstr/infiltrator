@@ -45,7 +45,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath("../../Audio")
+tracks/2/path = NodePath("../../FireAudio")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false

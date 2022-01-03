@@ -2,6 +2,7 @@ extends Node
 
 export var default_state = 'Default'
 export(String) var bus
+export var level_modifier = 0.0
 
 var switch_mode = 'Immediate'
 
@@ -51,10 +52,10 @@ func _play(new_state, animation, attributes):
 	if attributes.has('switch_mode'):
 		switch_mode = attributes.switch_mode
 	
-	
-	audio_stream.unit_db = level
+	audio_stream.unit_db = level + level_modifier
 	animation_player.stop()
 	animation_player.play(animation, -1, scale)
+	prints(new_state, audio_stream.unit_db)
 
 
 func _ready():

@@ -7,7 +7,7 @@
 extents = Vector3( 0.0467498, 0.106254, 0.454442 )
 
 [node name="SawedoffShotgun" instance=ExtResource( 1 )]
-tags = "Item Firearm Shotgun SawedoffShotgun Stackable UseAction:FireProjectile FireRate:4.0 Offset-position:neo_reference_skeleton:Gun:-0.00045,-0.039368,-0.028535
+tags = "Item Firearm Shotgun SawedoffShotgun Stackable Rank:31 UseAction:FireProjectile FireRate:4.0 Offset-position:neo_reference_skeleton:Gun:-0.00045,-0.039368,-0.028535
  Offset-rotation:neo_reference_skeleton:Gun:-89.601395,-89.065186,89.888168
 "
 
@@ -19,9 +19,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0163468, 0.277896 )
 shape = SubResource( 1 )
 
 [node name="Magazine" parent="." index="2"]
-max_quantity = 2
 required_tags = "Bullet Shotgun"
 
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.0576052, 0.745377 )
 release_speed = 20.0
+release_angular_spread = Vector2( 0.1, 0.1 )
+max_quantity = 6
