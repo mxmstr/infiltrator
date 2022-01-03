@@ -11,7 +11,7 @@
 [sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="DynamicFont" id=2]
-size = 40
+size = 20
 font_data = ExtResource( 7 )
 
 [sub_resource type="StyleBoxFlat" id=3]
@@ -94,7 +94,8 @@ grow_vertical = 0
 custom_colors/font_color = Color( 0, 1, 0.462745, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
-text = "0 | 0"
+text = "0 | 0
+Unarmed"
 align = 2
 valign = 2
 __meta__ = {
@@ -120,10 +121,10 @@ __meta__ = {
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="Health"]
-margin_top = 511.0
-margin_right = 150.0
+margin_top = 535.0
+margin_right = 100.0
 margin_bottom = 560.0
-rect_min_size = Vector2( 150, 0 )
+rect_min_size = Vector2( 100, 0 )
 mouse_filter = 2
 size_flags_horizontal = 0
 custom_colors/font_color = Color( 0, 1, 0.462745, 1 )

@@ -55,7 +55,6 @@ func _play(new_state, animation, attributes):
 	audio_stream.unit_db = level + level_modifier
 	animation_player.stop()
 	animation_player.play(animation, -1, scale)
-	prints(new_state, audio_stream.unit_db)
 
 
 func _ready():

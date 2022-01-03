@@ -133,7 +133,7 @@ func _refresh_ammo():
 	var chamber_ammo = 1 if item.get_node('Chamber').items.size() else 0
 	var mag_ammo = item.get_node('Magazine').items.size()
 	
-	ammo.text = str(chamber_ammo + mag_ammo) + ' | ' + str(inv_ammo)
+	ammo.text = str(chamber_ammo + mag_ammo) + ' | ' + str(inv_ammo) + '\n' + item.base_name
 
 
 func _notification(what):
@@ -167,7 +167,11 @@ func _ready():
 				var their_team = int(actor._get_tag('Team'))
 				var dot = radar_dot.instance()
 				
-				dot.modulate = Meta.TeamColors[their_team]
+				if my_team == Meta.Team.None:
+					dot.modulate = Color.red
+				else:
+					dot.modulate = Meta.TeamColors[their_team]
+				
 				add_child(dot)
 				radar_dots.append([dot, actor])
 	

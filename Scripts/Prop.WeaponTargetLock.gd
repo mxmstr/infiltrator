@@ -204,7 +204,7 @@ func _process(delta):
 		
 		#if camera_raycast.move_target:
 		
-		var aim_offset = (movement.angular_direction / Meta.rotate_sensitivity) * aim_offset_range
+		var aim_offset = (movement.angular_direction / Meta.rotate_sensitivity) * aim_offset_range * (camera.fov / 65)
 		aim_offset.y *= -1
 		camera_raycast.rotation_offset = camera_raycast.rotation_offset.linear_interpolate(
 			aim_offset,

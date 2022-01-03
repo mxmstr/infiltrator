@@ -19,18 +19,12 @@ tracks/0/keys = {
 } ],
 "times": PoolRealArray( 0 )
 }
-__meta__ = {
-
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/shoot_pumpshotgun_cock = SubResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
-		\"level\": 0
+		\"level\": -5
 	}
 }"

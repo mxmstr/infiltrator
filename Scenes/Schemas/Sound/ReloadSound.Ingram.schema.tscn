@@ -29,6 +29,6 @@ __meta__ = {
 attributes = "{
 	\"*\": {
 		\"switch_mode\": \"End\",
-		\"level\": -5
+		\"level\": -10
 	}
 }"
