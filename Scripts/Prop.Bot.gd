@@ -1,7 +1,7 @@
 extends Node
 
 const rotate_speed = 100.0
-const path_finish_range = 0.25
+const path_finish_range = 0.5
 const melee_range = 2.0
 const shoot_range = 4.0
 
@@ -74,6 +74,8 @@ func _start_travel():
 	
 	if right_hand._is_empty():
 		target = _get_closest_pickup()
+		if not target:
+			target = _get_closest_enemy()
 	else:
 		target = _get_closest_enemy()
 	
@@ -164,11 +166,8 @@ func _process(delta):
 	else:
 		
 		if travelling:
-			
 			_travel()
-			_face()
-			
-		
 		else:
-			
 			_start_travel()
+		
+		_face()

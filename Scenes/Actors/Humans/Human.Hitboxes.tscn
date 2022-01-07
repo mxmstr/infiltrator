@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Models/Humans/Anderson.escn" type="PackedScene" id=1]
+[ext_resource path="res://Models/Humans/Anderson/Anderson.escn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Humans/Hitbox.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
@@ -57,189 +57,207 @@ extents = Vector3( 0.0767665, 0.0481098, 0.156947 )
 [node name="Hitboxes" instance=ExtResource( 1 )]
 transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, 0, 0, 0 )
 
-[node name="Pelvis" type="BoneAttachment" parent="neo_reference_skeleton" index="1"]
+[node name="Anderson_skeleton" parent="." index="0"]
+bones/1/bound_children = [ NodePath("Torso") ]
+bones/2/bound_children = [ NodePath("Neck") ]
+bones/3/bound_children = [ NodePath("Head") ]
+bones/4/bound_children = [ NodePath("Shoulders") ]
+bones/13/bound_children = [ NodePath("UpArm-R") ]
+bones/14/bound_children = [ NodePath("LoArm-R") ]
+bones/15/bound_children = [ NodePath("Hand-R") ]
+bones/17/bound_children = [ NodePath("UpArm-L") ]
+bones/18/bound_children = [ NodePath("LoArm-L") ]
+bones/19/bound_children = [ NodePath("Hand-L") ]
+bones/20/bound_children = [ NodePath("UpLeg-R") ]
+bones/21/bound_children = [ NodePath("LoLeg-R") ]
+bones/22/bound_children = [ NodePath("Foot-R") ]
+bones/24/bound_children = [ NodePath("UpLeg-L") ]
+bones/25/bound_children = [ NodePath("LoLeg-L") ]
+bones/26/bound_children = [ NodePath("Foot-L") ]
 
-[node name="Hitbox" parent="neo_reference_skeleton/Pelvis" index="0" instance=ExtResource( 2 )]
+[node name="Pelvis" type="BoneAttachment" parent="Anderson_skeleton" index="1"]
+
+[node name="Hitbox" parent="Anderson_skeleton/Pelvis" index="0" instance=ExtResource( 2 )]
 new_owner = NodePath(".")
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Pelvis/Hitbox" index="0"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/Pelvis/Hitbox" index="0"]
 transform = Transform( 1, 1.60393e-20, 0, 1.60394e-20, 1, 0, 0, 0, 1, 0, 0.938887, 0 )
 shape = SubResource( 1 )
 
-[node name="Torso" type="BoneAttachment" parent="neo_reference_skeleton" index="2"]
+[node name="Torso" type="BoneAttachment" parent="Anderson_skeleton" index="2"]
 transform = Transform( -1, -8.7423e-08, 3.2592e-07, 8.7423e-08, -1, 0, 3.2592e-07, 2.84928e-14, 1, 2.69928e-05, 1.07087, -0.0173241 )
 bone_name = "Torso"
 
-[node name="Hitbox" parent="neo_reference_skeleton/Torso" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/Torso" index="0" instance=ExtResource( 2 )]
 new_owner = NodePath(".")
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Torso/Hitbox" index="5"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/Torso/Hitbox" index="5"]
 transform = Transform( 1, 9.28637e-21, 0, 9.28641e-21, 1, 0, 0, 0, 1, 1.48068e-07, -0.212602, -0.0101683 )
 shape = SubResource( 2 )
 
-[node name="Shoulders" type="BoneAttachment" parent="neo_reference_skeleton" index="3"]
+[node name="Shoulders" type="BoneAttachment" parent="Anderson_skeleton" index="3"]
 transform = Transform( -1, -8.7423e-08, 3.2592e-07, 8.7423e-08, -1, 0, 3.2592e-07, 2.84928e-14, 1, 2.70001e-05, 1.51253, 0.0051736 )
 bone_name = "shoulders"
 
-[node name="Hitbox" parent="neo_reference_skeleton/Shoulders" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/Shoulders" index="0" instance=ExtResource( 2 )]
 new_owner = NodePath(".")
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Shoulders/Hitbox" index="5"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/Shoulders/Hitbox" index="5"]
 transform = Transform( 1, 9.28637e-21, 0, 9.28641e-21, 1, 0, 0, 0, 1, 1.2232e-07, -0.0219386, -0.0380383 )
 shape = SubResource( 3 )
 
-[node name="Neck" type="BoneAttachment" parent="neo_reference_skeleton" index="4"]
+[node name="Neck" type="BoneAttachment" parent="Anderson_skeleton" index="4"]
 transform = Transform( -1, -8.7423e-08, 3.2592e-07, 8.7423e-08, -1, 0, 3.2592e-07, 2.84928e-14, 1, 2.69915e-05, 1.58565, -0.0211924 )
 bone_name = "Neck"
 
-[node name="Hitbox" parent="neo_reference_skeleton/Neck" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/Neck" index="0" instance=ExtResource( 2 )]
 new_owner = NodePath(".")
 tags = "Hitbox DamageMult:10.0"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Neck/Hitbox" index="5"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/Neck/Hitbox" index="5"]
 transform = Transform( 1, 9.28637e-21, 0, 9.28641e-21, 1, 0, 0, 0, 1, 1.36424e-09, 0, 0.00418824 )
 shape = SubResource( 4 )
 
-[node name="Head" type="BoneAttachment" parent="neo_reference_skeleton" index="5"]
+[node name="Head" type="BoneAttachment" parent="Anderson_skeleton" index="5"]
 transform = Transform( -1, -8.7423e-08, 3.25153e-07, 8.7423e-08, -1, 6.70425e-17, 3.25153e-07, 2.84928e-14, 1, 6.7998e-05, 1.63115, -0.00127342 )
 bone_name = "Head"
 
-[node name="Hitbox" parent="neo_reference_skeleton/Head" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/Head" index="0" instance=ExtResource( 2 )]
 new_owner = NodePath(".")
 tags = "Hitbox DamageMult:10.0"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Head/Hitbox" index="5"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/Head/Hitbox" index="5"]
 transform = Transform( 1, 9.26452e-21, 0, 9.26456e-21, 1, 0, 0, 0, 1, 1.58398e-08, -0.123415, 0.0154985 )
 shape = SubResource( 5 )
 
-[node name="UpArm-R" type="BoneAttachment" parent="neo_reference_skeleton" index="6"]
+[node name="UpArm-R" type="BoneAttachment" parent="Anderson_skeleton" index="6"]
 transform = Transform( -0.948324, 0.317305, 3.2592e-07, -0.317305, -0.948324, 0, 3.09078e-07, -1.03416e-07, 1, 0.229288, 1.45689, -0.0256774 )
 bone_name = "UpArm-R"
 
-[node name="Hitbox" parent="neo_reference_skeleton/UpArm-R" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/UpArm-R" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.5"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/UpArm-R/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/UpArm-R/Hitbox" index="6"]
 transform = Transform( 0.990267, -0.139185, -2.31947e-08, 0.139185, 0.990267, -4.09716e-08, 2.86714e-08, 3.73446e-08, 1, 0.0190169, 0.0954772, 9.31323e-09 )
 shape = SubResource( 6 )
 
-[node name="LoArm-R" type="BoneAttachment" parent="neo_reference_skeleton" index="7"]
+[node name="LoArm-R" type="BoneAttachment" parent="Anderson_skeleton" index="7"]
 transform = Transform( -0.948324, 0.317305, 3.2592e-07, -0.317305, -0.948324, -6.73825e-15, 3.09078e-07, -1.03416e-07, 1, 0.360486, 1.18607, -0.000182256 )
 bone_name = "LoArm-R"
 
-[node name="Hitbox" parent="neo_reference_skeleton/LoArm-R" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/LoArm-R" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.5"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/LoArm-R/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/LoArm-R/Hitbox" index="6"]
 transform = Transform( 0.996966, -0.0705284, -0.0329505, 0.0658293, 0.98975, -0.126738, 0.0415514, 0.124184, 0.991389, 0.0106147, 0.162134, -0.0153592 )
 shape = SubResource( 7 )
 
-[node name="Hand-R" type="BoneAttachment" parent="neo_reference_skeleton" index="8"]
+[node name="Hand-R" type="BoneAttachment" parent="Anderson_skeleton" index="8"]
 transform = Transform( -0.948324, 0.317305, -1.16347e-06, -0.317305, -0.948324, -4.98343e-07, -1.26147e-06, -1.03416e-07, 1, 0.470175, 0.893861, 0.0111459 )
 bone_name = "Hand-R"
 
-[node name="Hitbox" parent="neo_reference_skeleton/Hand-R" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/Hand-R" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.25"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Hand-R/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/Hand-R/Hitbox" index="6"]
 transform = Transform( 1, 2.40207e-13, 0, 2.40207e-13, 1, 1.42109e-14, 0, 0, 1, 0.00400835, 0.0685644, 1.95578e-08 )
 shape = SubResource( 8 )
 
-[node name="UpArm-L" type="BoneAttachment" parent="neo_reference_skeleton" index="9"]
-transform = Transform( -0.951057, -0.309017, 3.2592e-07, 0.309017, -0.951057, 0, 3.09969e-07, 1.00715e-07, 1, -0.236329, 1.45689, -0.0256773 )
+[node name="UpArm-L" type="BoneAttachment" parent="Anderson_skeleton" index="9"]
+transform = Transform( -0.951057, -0.309016, 3.2592e-07, 0.309016, -0.951057, 0, 3.09969e-07, 1.00715e-07, 1, -0.236329, 1.45689, -0.0256773 )
 bone_name = "UpArm-L"
 
-[node name="Hitbox" parent="neo_reference_skeleton/UpArm-L" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/UpArm-L" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.5"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/UpArm-L/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/UpArm-L/Hitbox" index="6"]
 transform = Transform( 0.990266, 0.13919, 0, -0.13919, 0.990266, 0, 0, 0, 1, -0.019, 0.095, 0 )
 shape = SubResource( 9 )
 
-[node name="LoArm-L" type="BoneAttachment" parent="neo_reference_skeleton" index="10"]
-transform = Transform( -0.951057, -0.309017, 3.2592e-07, 0.309017, -0.951057, 0, 3.09969e-07, 1.00715e-07, 1, -0.358719, 1.17294, -0.00249002 )
+[node name="LoArm-L" type="BoneAttachment" parent="Anderson_skeleton" index="10"]
+transform = Transform( -0.951057, -0.309016, 3.2592e-07, 0.309016, -0.951057, 0, 3.09969e-07, 1.00715e-07, 1, -0.358719, 1.17294, -0.00249002 )
 bone_name = "LoArm-L"
 
-[node name="Hitbox" parent="neo_reference_skeleton/LoArm-L" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/LoArm-L" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.5"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/LoArm-L/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/LoArm-L/Hitbox" index="6"]
 transform = Transform( 0.997524, 0.0621228, -0.032957, -0.0658259, 0.98975, -0.126736, 0.0247461, 0.128591, 0.991389, -0.011, 0.162, -0.015 )
 shape = SubResource( 10 )
 
-[node name="Hand-L" type="BoneAttachment" parent="neo_reference_skeleton" index="11"]
-transform = Transform( 0.951057, -0.309017, -3.2592e-07, -0.309017, -0.951057, 0, -3.09969e-07, 1.00715e-07, -1, -0.467092, 0.884827, 0.00483319 )
+[node name="Hand-L" type="BoneAttachment" parent="Anderson_skeleton" index="11"]
+transform = Transform( 0.951057, -0.309016, -3.2592e-07, -0.309016, -0.951057, 0, -3.09969e-07, 1.00715e-07, -1, -0.467092, 0.884827, 0.00483319 )
 bone_name = "Hand-L"
 
-[node name="Hitbox" parent="neo_reference_skeleton/Hand-L" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/Hand-L" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.25"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Hand-L/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/Hand-L/Hitbox" index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004, 0.069, 0 )
 shape = SubResource( 11 )
 
-[node name="UpLeg-R" type="BoneAttachment" parent="neo_reference_skeleton" index="12"]
-transform = Transform( -0.996195, 0.0871555, 3.2592e-07, -0.0871555, -0.996195, 0, 3.2468e-07, -2.84057e-08, 1, 0.11913, 0.897936, -0.00643604 )
+[node name="UpLeg-R" type="BoneAttachment" parent="Anderson_skeleton" index="12"]
+transform = Transform( -0.996195, 0.0871537, 3.2592e-07, -0.0871537, -0.996195, 0, 3.2468e-07, -2.84052e-08, 1, 0.11913, 0.897936, -0.00643604 )
 bone_name = "UpLeg-R"
 
-[node name="Hitbox" parent="neo_reference_skeleton/UpLeg-R" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/UpLeg-R" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.5"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/UpLeg-R/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/UpLeg-R/Hitbox" index="6"]
 transform = Transform( 0.999996, -4.81736e-05, -0.00290194, -4.81087e-05, 0.99945, -0.0331694, 0.00290194, 0.0331694, 0.999445, 0.0217799, 0.18194, 0.00664775 )
 shape = SubResource( 12 )
 
-[node name="LoLeg-R" type="BoneAttachment" parent="neo_reference_skeleton" index="13"]
-transform = Transform( -0.996195, 0.0871555, -6.5224e-08, -0.0871555, -0.996195, -3.42205e-08, -6.79581e-08, -2.84057e-08, 1, 0.129623, 0.506169, 0.0139172 )
+[node name="LoLeg-R" type="BoneAttachment" parent="Anderson_skeleton" index="13"]
+transform = Transform( -0.996195, 0.0871537, -6.5224e-08, -0.0871537, -0.996195, -3.42199e-08, -6.79581e-08, -2.84052e-08, 1, 0.129623, 0.506169, 0.0139172 )
 bone_name = "LoLeg-R"
 
-[node name="Hitbox" parent="neo_reference_skeleton/LoLeg-R" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/LoLeg-R" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.5"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/LoLeg-R/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/LoLeg-R/Hitbox" index="6"]
 transform = Transform( 0.999974, 0.00576633, 0.00438672, -0.00613825, 0.995911, 0.090133, -0.00384905, -0.0901576, 0.99592, 0.00119206, 0.235038, -0.020776 )
 shape = SubResource( 13 )
 
-[node name="Foot-R" type="BoneAttachment" parent="neo_reference_skeleton" index="14"]
-transform = Transform( -1, -4.47035e-08, -6.5224e-08, 4.47035e-08, -1, -3.42205e-08, -6.52238e-08, -3.42205e-08, 1, 0.164541, 0.0819716, -0.0193866 )
+[node name="Foot-R" type="BoneAttachment" parent="Anderson_skeleton" index="14"]
+transform = Transform( -1, -5.21541e-08, -6.5224e-08, 5.21541e-08, -1, -3.42199e-08, -6.52239e-08, -3.42199e-08, 1, 0.164541, 0.0819718, -0.0193866 )
 bone_name = "Foot-R"
 
-[node name="Hitbox" parent="neo_reference_skeleton/Foot-R" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/Foot-R" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.25"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Foot-R/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/Foot-R/Hitbox" index="6"]
 transform = Transform( 1, 8.28632e-16, 4.9738e-14, 8.28613e-16, 1, 0, -4.9738e-14, 0, 1, -0.0134692, 0.0374144, 0.0553734 )
 shape = SubResource( 14 )
 
-[node name="UpLeg-L" type="BoneAttachment" parent="neo_reference_skeleton" index="15"]
-transform = Transform( -0.996195, -0.0871554, -1.24463e-06, 0.0871554, -0.996195, 2.37147e-13, -1.23989e-06, -1.08476e-07, 1, -0.115171, 0.905627, -0.00779296 )
+[node name="UpLeg-L" type="BoneAttachment" parent="Anderson_skeleton" index="15"]
+transform = Transform( -0.996195, -0.0871537, -1.24463e-06, 0.0871537, -0.996195, 2.37147e-13, -1.23989e-06, -1.08474e-07, 1, -0.115171, 0.905627, -0.00779296 )
 bone_name = "UpLeg-L"
 
-[node name="Hitbox" parent="neo_reference_skeleton/UpLeg-L" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/UpLeg-L" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.5"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/UpLeg-L/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/UpLeg-L/Hitbox" index="6"]
 transform = Transform( 0.999996, -0.000148456, -0.00289565, 5.23323e-05, 0.99945, -0.0331726, 0.00289898, 0.0331723, 0.999445, -0.022, 0.182, 0.007 )
 shape = SubResource( 15 )
 
-[node name="LoLeg-L" type="BoneAttachment" parent="neo_reference_skeleton" index="16"]
-transform = Transform( -0.996195, -0.0871554, -7.12018e-08, 0.0871554, -0.996195, -1.02661e-07, -6.198e-08, -1.08476e-07, 1, -0.130224, 0.506537, 0.0110523 )
+[node name="LoLeg-L" type="BoneAttachment" parent="Anderson_skeleton" index="16"]
+transform = Transform( -0.996195, -0.0871537, -4.62343e-07, 0.0871537, -0.996195, -6.84394e-08, -4.54615e-07, -1.08474e-07, 1, -0.130224, 0.506537, 0.0110523 )
 bone_name = "LoLeg-L"
 
-[node name="Hitbox" parent="neo_reference_skeleton/LoLeg-L" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/LoLeg-L" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.5"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/LoLeg-L/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/LoLeg-L/Hitbox" index="6"]
 transform = Transform( 0.999969, -0.00655731, 0.00438032, 0.0061359, 0.995911, 0.0901285, -0.00495341, -0.0900988, 0.995921, -0.001, 0.235, -0.021 )
 shape = SubResource( 16 )
 
-[node name="Foot-L" type="BoneAttachment" parent="neo_reference_skeleton" index="17"]
-transform = Transform( -1, -1.41561e-07, 7.11085e-07, 1.41561e-07, -1, -1.71102e-07, 7.11088e-07, -1.71103e-07, 1, -0.165445, 0.0788864, -0.0228544 )
+[node name="Foot-L" type="BoneAttachment" parent="Anderson_skeleton" index="17"]
+transform = Transform( -1, -4.47035e-08, -4.62343e-07, 4.47035e-08, -1, -6.84394e-08, -4.62339e-07, -6.84397e-08, 1, -0.165445, 0.0788866, -0.0228544 )
 bone_name = "Foot-L"
 
-[node name="Hitbox" parent="neo_reference_skeleton/Foot-L" index="0" instance=ExtResource( 2 )]
+[node name="Hitbox" parent="Anderson_skeleton/Foot-L" index="0" instance=ExtResource( 2 )]
 tags = "Hitbox DamageMult:0.25"
 
-[node name="Collision" type="CollisionShape" parent="neo_reference_skeleton/Foot-L/Hitbox" index="6"]
+[node name="Collision" type="CollisionShape" parent="Anderson_skeleton/Foot-L/Hitbox" index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013, 0.037, 0.055 )
 shape = SubResource( 17 )

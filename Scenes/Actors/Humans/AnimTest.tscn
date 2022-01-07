@@ -1,18 +1,7 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity.escn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Actors/Items/Colt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Actors/Items/DesertEagle.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Actors/Items/Ingram.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Actors/Items/Jackhammer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Actors/Items/M79.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Actors/Items/MP5.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Actors/Items/PumpShotgun.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Actors/Items/SawedoffShotgun.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Actors/Items/Sniper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Models/Humans/Anderson.escn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Actors/Items/BulletPunch.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Animations/Human/Action/Jump/HOPBACK.tres" type="Animation" id=14]
 [ext_resource path="res://Animations/Human/Action/Jump/Jump.Exit.tres" type="Animation" id=15]
 [ext_resource path="res://Animations/Human/Action/Jump/JumpLong.tres" type="Animation" id=16]
@@ -24,7 +13,6 @@
 [ext_resource path="res://Animations/Human/Action/Jump/sidestepleft.tres" type="Animation" id=22]
 [ext_resource path="res://Animations/Human/Action/Jump/sidestepright.tres" type="Animation" id=23]
 [ext_resource path="res://Animations/Human/Action/Kick/SNAPKICK.tres" type="Animation" id=24]
-[ext_resource path="res://Scenes/Actors/Items/Sword.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Animations/Human/BAT1.tres" type="Animation" id=26]
 [ext_resource path="res://Animations/Human/right_strike.tres" type="Animation" id=27]
 [ext_resource path="res://Animations/Human/stick_right.tres" type="Animation" id=28]
@@ -36,7 +24,6 @@
 [ext_resource path="res://Animations/Human/wild_strikes.tres" type="Animation" id=34]
 [ext_resource path="res://Animations/Human/2_1.tres" type="Animation" id=35]
 [ext_resource path="res://Animations/Human/360_strike.tres" type="Animation" id=36]
-[ext_resource path="res://Scenes/Actors/Items/Grenade.tscn" type="PackedScene" id=37]
 [ext_resource path="res://Animations/Human/Action/Shoot/Ingram/ShootIngram.tres" type="Animation" id=38]
 [ext_resource path="res://Animations/Human/ShootGrenade.tres" type="Animation" id=39]
 [ext_resource path="res://Animations/Human/Use.tres" type="Animation" id=40]
@@ -79,138 +66,7 @@ triangles = PoolIntArray( 0, 2, 3, 1, 2, 3, 0, 2, 4, 1, 2, 4 )
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
 
-[node name="neo_reference_skeleton" parent="Model" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 3.38813e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
-
-[node name="BoneAttachment" type="BoneAttachment" parent="Model/neo_reference_skeleton" index="1"]
-transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
-bone_name = "Gun"
-
-[node name="Beretta" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 2 )]
-transform = Transform( 0.995721, -0.0914473, 0.0132716, -0.014466, -0.0124059, 0.999818, -0.0912661, -0.995731, -0.0136759, 0.00988671, -0.022818, 0.0215178 )
-visible = false
-continuous_cd = true
-
-[node name="Beretta2" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 0.0190578, 0.999818, 0, -0.999817, 0.0190579, 0.00988671, -0.022818, 0.0215178 )
-visible = false
-continuous_cd = true
-
-[node name="ColtCommando" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 3 )]
-transform = Transform( 0.99757, 0.0684788, 0.0128557, -0.0133609, 0.00692052, 0.999886, 0.0683821, -0.997628, 0.00781846, -0.0510388, -0.0117496, -0.000418305 )
-visible = false
-continuous_cd = true
-
-[node name="DesertEagle" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 4 )]
-transform = Transform( 0.999858, 0.00847453, 0.0145552, -0.0145556, 8.98819e-06, 0.999895, 0.00847373, -0.999964, 0.000132772, -7.75009e-05, -0.00444692, 0.00555587 )
-visible = false
-continuous_cd = true
-
-[node name="Ingram" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 5 )]
-transform = Transform( 0.995621, -0.0923885, 0.0142942, -0.0143271, 0.000304142, 0.999899, -0.0923832, -0.995723, -0.00102042, -0.0159863, 0.00621378, 0.0378718 )
-visible = false
-continuous_cd = true
-
-[node name="Jackhammer" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 6 )]
-transform = Transform( 0.980444, -0.140225, 0.138076, -0.134875, 0.0321162, 0.990342, -0.143305, -0.989598, 0.0125755, -0.0454581, -0.0218313, 0.0376763 )
-visible = false
-continuous_cd = true
-
-[node name="M79" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 7 )]
-transform = Transform( 0.999887, 0.0113544, -0.00985805, 0.00985797, 0.000112351, 0.999952, 0.0113556, -0.999935, 6.27711e-07, 0.000452742, -0.0388898, -0.0537509 )
-visible = false
-continuous_cd = true
-
-[node name="MP5" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 8 )]
-transform = Transform( 0.999793, -0.0201553, 0.00252092, -0.00251836, 0.000128504, 0.999996, -0.0201551, -0.999797, 7.77167e-05, 0.000176981, 0.019284, -0.00473142 )
-visible = false
-continuous_cd = true
-
-[node name="PumpShotgun" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 9 )]
-transform = Transform( 0.998257, 0.0590009, -0.000345156, 0.000341179, 8.13585e-05, 1, 0.0590015, -0.998257, 6.12261e-05, 0.000440001, 0.00774671, -0.00781965 )
-visible = false
-continuous_cd = true
-
-[node name="SawedoffShotgun" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 10 )]
-transform = Transform( 0.999873, -0.0143629, -0.00695815, 0.00695851, 1.35833e-05, 0.999976, -0.0143629, -0.999897, 0.0001137, -0.00044997, -0.0393684, -0.0285348 )
-visible = false
-continuous_cd = true
-
-[node name="Sniper" parent="Model/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 11 )]
-transform = Transform( 0.999539, -0.0259195, -0.0158152, 0.0158216, 2.51718e-05, 0.999875, -0.0259153, -0.999664, 0.000435773, -0.000452671, -0.0259263, -0.0154109 )
-visible = false
-continuous_cd = true
-
 [node name="Model2" parent="." instance=ExtResource( 12 )]
-
-[node name="neo_reference_skeleton" parent="Model2" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
-
-[node name="BoneAttachment2" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="1"]
-transform = Transform( 0.999944, 0.0106066, 0.00074847, 0.000698552, 0.00471663, -0.999989, -0.0106106, 0.999933, 0.00470885, 0.116457, 1.34862, 0.377234 )
-bone_name = "Gun"
-
-[node name="Beretta" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 2 )]
-transform = Transform( 0.999999, 0, 0, 0, -4.37113e-08, 0.999999, 0, -0.999998, -4.37113e-08, -0.00848666, 0.00501686, 0.0258089 )
-visible = false
-continuous_cd = true
-
-[node name="ColtCommando" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 3 )]
-transform = Transform( 0.99757, 0.0684788, 0.0128557, -0.0133609, 0.00692052, 0.999886, 0.0683821, -0.997628, 0.00781846, -0.0510388, -0.0117496, -0.000418305 )
-visible = false
-continuous_cd = true
-
-[node name="DesertEagle" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 4 )]
-transform = Transform( 0.999858, 0.00847453, 0.0145552, -0.0145556, 8.98819e-06, 0.999895, 0.00847373, -0.999964, 0.000132772, -7.75009e-05, -0.00444692, 0.00555587 )
-visible = false
-continuous_cd = true
-
-[node name="Ingram" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 5 )]
-transform = Transform( 0.995621, -0.0923885, 0.0142942, -0.0143271, 0.000304142, 0.999899, -0.0923832, -0.995723, -0.00102042, -0.0159863, 0.00621378, 0.0378718 )
-visible = false
-continuous_cd = true
-
-[node name="Jackhammer" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 6 )]
-transform = Transform( 0.98977, -0.142665, 4.84902e-05, 0.00174008, 0.0124027, 0.999921, -0.142654, -0.989692, 0.0125243, 0.0281043, -0.0298389, 0.0376902 )
-continuous_cd = true
-
-[node name="M79" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 7 )]
-transform = Transform( 0.999887, 0.0113544, -0.00985805, 0.00985797, 0.000112351, 0.999952, 0.0113556, -0.999935, 6.27711e-07, 0.000452742, -0.0388898, -0.0537509 )
-visible = false
-continuous_cd = true
-
-[node name="MP5" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 8 )]
-transform = Transform( 0.999793, -0.0201553, 0.00252092, -0.00251836, 0.000128504, 0.999996, -0.0201551, -0.999797, 7.77167e-05, 0.000176966, 0.019284, -0.00473142 )
-visible = false
-continuous_cd = true
-
-[node name="PumpShotgun" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 9 )]
-transform = Transform( 0.998257, 0.0590009, -0.000345156, 0.000341179, 8.13585e-05, 1, 0.0590015, -0.998257, 6.12261e-05, 0.000440001, 0.00774671, -0.00781965 )
-visible = false
-continuous_cd = true
-
-[node name="SawedoffShotgun" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 10 )]
-transform = Transform( 0.999873, -0.0143629, -0.00695815, 0.00695851, 1.35833e-05, 0.999976, -0.0143629, -0.999897, 0.0001137, -0.00044997, -0.0393684, -0.0285348 )
-visible = false
-continuous_cd = true
-
-[node name="Sniper" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 11 )]
-transform = Transform( 0.999539, -0.0259195, -0.0158152, 0.0158216, 2.51718e-05, 0.999875, -0.0259153, -0.999664, 0.000435773, -0.000452671, -0.0259263, -0.0154109 )
-visible = false
-continuous_cd = true
-
-[node name="BulletPunch" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 13 )]
-
-[node name="Grenade" parent="Model2/neo_reference_skeleton/BoneAttachment2" instance=ExtResource( 37 )]
-transform = Transform( 0.966659, 0.25514, -0.0217545, -0.0546936, 0.28872, 0.95585, 0.250157, -0.922791, 0.293049, -0.0231185, 0.000962794, 0.0246048 )
-continuous_cd = true
-
-[node name="BoneAttachment" type="BoneAttachment" parent="Model2/neo_reference_skeleton" index="2"]
-transform = Transform( -0.838276, 0.357813, 0.411417, 0.334579, 0.933354, -0.130029, -0.430523, 0.0286515, -0.902125, 0.126942, 1.32905, 0.584641 )
-bone_name = "Hand-L"
-
-[node name="Sword" parent="Model2/neo_reference_skeleton/BoneAttachment" instance=ExtResource( 25 )]
-transform = Transform( 0.983877, -0.160835, 0.0782049, -0.0472179, 0.188154, 0.981004, -0.172495, -0.96888, 0.177527, 0.0340234, 0.026457, 0.23843 )
 visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -220,7 +76,7 @@ root_motion_track = NodePath("../..")
 parameters/blend_position = Vector2( -0.00462532, 0.0520232 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
-root_node = NodePath("../../Model2/neo_reference_skeleton")
+root_node = NodePath("")
 anims/2_1 = ExtResource( 35 )
 anims/2strike = ExtResource( 31 )
 anims/360_strike = ExtResource( 36 )

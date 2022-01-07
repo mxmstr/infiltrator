@@ -8,11 +8,17 @@ var characters = {
 	'Mr. Anderson': {
 		'scene': 'Humans/Players/Anderson'
 		},
-	'Trinity': {
-		'scene': 'Humans/Players/Infiltrator'
+	'Neo': {
+		'scene': 'Humans/Players/Neo'
 		},
-	'Agent': {
-		'scene': 'Humans/Players/Agent'
+	'Trinity': {
+		'scene': 'Humans/Players/Trinity'
+		},
+	'Morpheus': {
+		'scene': 'Humans/Players/Morpheus'
+		},
+	'Smith': {
+		'scene': 'Humans/Players/Smith'
 		},
 	'Cop': {
 		'scene': 'Humans/Players/Cop'
@@ -21,13 +27,13 @@ var characters = {
 		'scene': 'Humans/Players/Karen'
 		},
 	'Max': {
-		'scene': 'Humans/Players/Max'
+		'scene': 'Humans/Players/Payne'
 		},
 	'Scientist': {
 		'scene': 'Humans/Players/Scientist'
 		},
 	'SWAT': {
-		'scene': 'Humans/Players/Swat'
+		'scene': 'Humans/Players/SWAT'
 		}
 	}
 

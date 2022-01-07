@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/3D Outline/Toggle Outline.gd" type="Script" id=1]
 [ext_resource path="res://Models/Humans/Anderson.escn" type="PackedScene" id=2]
-[ext_resource path="res://Models/Outline2.tres" type="Material" id=3]
+[ext_resource path="res://Shaders/Outline2.tres" type="Material" id=3]
 [ext_resource path="res://addons/3D Outline/Test/Outlined Mesh.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Environment" id=3]
