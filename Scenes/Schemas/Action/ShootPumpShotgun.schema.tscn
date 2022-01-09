@@ -10,9 +10,6 @@ anims/ShootPumpShotgun = ExtResource( 1 )
 anims/ShootPumpShotgun_Down = ExtResource( 2 )
 anims/ShootPumpShotgun_Up = ExtResource( 3 )
 script = ExtResource( 4 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
 		\"clip_start\": 0.05,

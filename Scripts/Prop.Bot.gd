@@ -70,6 +70,12 @@ func _respawn():
 		$'/root/Mission/Links/PVPPlayerFactory'._respawn(owner)
 
 
+func _stop_travel():
+	
+	travelling = false
+	travel_path = []
+
+
 func _start_travel():
 	
 	if right_hand._is_empty():
@@ -161,10 +167,12 @@ func _process(delta):
 	
 	if dead:
 		
+		_stop_travel()
 		_respawn()
 	
 	else:
 		
+#		print(travel_path[0])
 		if travelling:
 			_travel()
 		else:

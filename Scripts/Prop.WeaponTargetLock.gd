@@ -6,8 +6,6 @@ var camera_raycast
 var camera_raycast_target
 var perspective
 
-var aim_offset_range = 0.3
-var aim_offset_sensitivity = 7.0
 var enemies = []
 var visible_enemies = []
 var targeted_enemy
@@ -203,12 +201,12 @@ func _process(delta):
 		
 		#if camera_raycast.move_target:
 		
-		var aim_offset = (movement.angular_direction / Meta.rotate_sensitivity) * aim_offset_range * (camera.fov / 65)
-		aim_offset.y *= -1
-		camera_raycast.rotation_offset = camera_raycast.rotation_offset.linear_interpolate(
-			aim_offset,
-			aim_offset_sensitivity * delta
-			)
+#		var aim_offset = (movement.angular_direction / Meta.rotate_sensitivity) * aim_offset_range * (camera.fov / 65)
+#		aim_offset.y *= -1
+#		camera_raycast.rotation_offset = camera_raycast.rotation_offset.linear_interpolate(
+#			aim_offset,
+#			aim_offset_sensitivity * delta
+#			)
 		
 #		else:
 #

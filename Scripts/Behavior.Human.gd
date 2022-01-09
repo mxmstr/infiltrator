@@ -4,6 +4,7 @@ export(String) var torso_bone
 export(Array, String) var action_bones
 
 var layer = Meta.BlendLayer.MOVEMENT
+var can_zoom = false
 var cached_action_pose
 
 var action_up
@@ -82,6 +83,7 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	
 	enable_abilities = true
 	layer = Meta.BlendLayer.MOVEMENT
+	can_zoom = false
 	
 	var lock_stance = false
 	var lock_movement = false
@@ -91,6 +93,9 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	
 	if attributes.has('layer'):
 		layer = Meta.BlendLayer[attributes.layer]
+	
+	if attributes.has('can_zoom'):
+		can_zoom = attributes.can_zoom
 	
 	if attributes.has('enable_abilities'):
 		enable_abilities = attributes.enable_abilities

@@ -231,4 +231,3 @@ func _process(delta):
 #	if owner.owner.player_index == 0:
 #		prints(screen_pos)
 	#crosshair.rect_position = screen_pos
-	

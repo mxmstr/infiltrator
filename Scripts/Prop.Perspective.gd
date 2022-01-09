@@ -8,6 +8,7 @@ export(String) var fp_root_bone
 export(String) var fp_shoulder_bone
 export(Array, String) var fp_hidden_bones
 
+var viewmodel
 var viewmodel_offset = 5
 var worldmodel_offset = 15
 
@@ -71,7 +72,7 @@ func _init_fp_skeleton():
 			shoulders_id = idx
 	
 	
-	var viewmodel = preload('res://Scenes/Components/Properties/ViewModel.property.tscn').instance()
+	viewmodel = preload('res://Scenes/Components/Properties/ViewModel.property.tscn').instance()
 	viewmodel.name = 'ActorViewModel'
 	viewmodel.model = $'../Model'
 	viewmodel.hidden_bones = fp_hidden_bones

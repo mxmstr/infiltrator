@@ -35,6 +35,7 @@ export var max_slope_angle = 30
 export var collision_height_mult = 1.0
 
 var speed_mult = 1.0
+var rotate_speed_mult = 1.0
 
 var lock_stance = false
 var lock_speed = false
@@ -105,12 +106,12 @@ func _set_sidestep_speed(new_speed):
 
 func _set_turn_speed(new_speed):
 	
-	movement.angular_direction.x = new_speed
+	movement.angular_direction.x = new_speed * rotate_speed_mult
 
 
 func _set_look_speed(new_speed):
 	
-	movement.angular_direction.y = new_speed
+	movement.angular_direction.y = new_speed * rotate_speed_mult
 
 
 func _align_to_camera():

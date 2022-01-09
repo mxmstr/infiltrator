@@ -231,7 +231,7 @@ func _push_front_into_container(new_container):
 	Meta.CreateLink(owner, item, 'Contains', {'container': new_container})
 
 
-func _get_parents(item, parent):
+func _exclude_recursive(item, parent):
 	
 	var parent_list = []
 	
@@ -258,7 +258,7 @@ func _get_parents(item, parent):
 	shooter = parent
 	
 	for link in Meta.GetLinks(null, parent, 'Contains'):
-		parent_list += _get_parents(item, link.from_node)
+		parent_list += _exclude_recursive(item, link.from_node)
 	
 	return parent_list
 
@@ -305,7 +305,7 @@ func _apply_launch_attributes(item):
 			item_movement.angular_direction.y = rand_range(-spread_y, spread_y)
 	
 	
-	var parent_list = _get_parents(item, owner)
+	var parent_list = _exclude_recursive(item, owner)
 	
 	if shooter._has_tag('Shooter'):
 		shooter = shooter._get_tag('Shooter')
