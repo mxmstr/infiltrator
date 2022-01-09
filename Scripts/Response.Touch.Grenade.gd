@@ -10,4 +10,5 @@ func _on_stimulate(stim, data):
 		
 		if data.source._has_tag('Map'):
 			
-			prints('intensity', data.intensity)
+			if data.intensity > 1.5:
+				audio._start_state('Impact')

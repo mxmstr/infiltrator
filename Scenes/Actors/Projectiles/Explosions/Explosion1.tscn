@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actors/Projectiles/Explosions/material.tres" type="Material" id=3]
@@ -18,7 +18,12 @@ angle_random = 1.0
 [sub_resource type="QuadMesh" id=2]
 size = Vector2( 8, 8 )
 
+[sub_resource type="SphereShape" id=3]
+radius = 0.5
+
 [node name="Explosion1" instance=ExtResource( 1 )]
+collision_layer = 0
+collision_mask = 0
 tags = "Actor Explosion"
 
 [node name="Particles" parent="." index="0" instance=ExtResource( 5 )]
@@ -34,13 +39,16 @@ fixed_fps = 30
 process_material = SubResource( 1 )
 draw_pass_1 = SubResource( 2 )
 
-[node name="ExplosionSound" parent="." index="1" instance=ExtResource( 6 )]
+[node name="Collision" type="CollisionShape" parent="." index="1"]
+shape = SubResource( 3 )
+
+[node name="ExplosionSound" parent="." index="2" instance=ExtResource( 6 )]
 tree = NodePath("../Audio")
 schema = "ExplosionSound"
 random = true
 state = "Explosion"
 
-[node name="RadiusStim" parent="." index="2" instance=ExtResource( 8 )]
+[node name="RadiusStim" parent="." index="3" instance=ExtResource( 8 )]
 stim_type = "Damage"
 stim_intensity = 125.0
 one_shot = true
@@ -49,5 +57,5 @@ raycast = true
 use_hitbox = true
 required_tags = "Actor"
 
-[node name="Audio" parent="." index="6"]
+[node name="Audio" parent="." index="7"]
 default_state = "Explosion"

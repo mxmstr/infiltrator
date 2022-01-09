@@ -231,32 +231,34 @@ func _push_front_into_container(new_container):
 	Meta.CreateLink(owner, item, 'Contains', {'container': new_container})
 
 
-func _exclude_recursive(item, parent):
+func _get_parents(item, parent):
 	
 	var parent_list = []
 	
-	if item is PhysicsBody:
+	if release_exclude_parent:
 		
-		item.add_collision_exception_with(parent)
+		if item is PhysicsBody:
+			
+			item.add_collision_exception_with(parent)
+			
+			if parent.has_node('Hitboxes'):
+				for hitbox in parent.get_node('Hitboxes').get_children():
+					item.add_collision_exception_with(hitbox)
 		
-		if parent.has_node('Hitboxes'):
-			for hitbox in parent.get_node('Hitboxes').get_children():
-				item.add_collision_exception_with(hitbox)
-	
-	if item is Area:
-		
-		item.get_node('Movement').collision_exceptions.append(parent)
-		
-		if parent.has_node('Hitboxes'):
-			for hitbox in parent.get_node('Hitboxes').get_children():
-				item.get_node('Movement').collision_exceptions.append(hitbox)
+		if item is Area:
+			
+			item.get_node('Movement').collision_exceptions.append(parent)
+			
+			if parent.has_node('Hitboxes'):
+				for hitbox in parent.get_node('Hitboxes').get_children():
+					item.get_node('Movement').collision_exceptions.append(hitbox)
 	
 	
 	parent_list.append(parent)
 	shooter = parent
 	
 	for link in Meta.GetLinks(null, parent, 'Contains'):
-		parent_list += _exclude_recursive(item, link.from_node)
+		parent_list += _get_parents(item, link.from_node)
 	
 	return parent_list
 
@@ -303,16 +305,13 @@ func _apply_launch_attributes(item):
 			item_movement.angular_direction.y = rand_range(-spread_y, spread_y)
 	
 	
-	if release_exclude_parent:
-		
-		var parent_list = _exclude_recursive(item, owner)
-		
-		if shooter._has_tag('Shooter'):
-			shooter = shooter._get_tag('Shooter')
-		
-		if release_exclude_parent_lifetime > 0:
-			get_tree().create_timer(release_exclude_parent_lifetime).connect('timeout', self, '_remove_exclusions', [item, parent_list])
+	var parent_list = _get_parents(item, owner)
 	
+	if shooter._has_tag('Shooter'):
+		shooter = shooter._get_tag('Shooter')
+	
+	if release_exclude_parent and release_exclude_parent_lifetime > 0:
+		get_tree().create_timer(release_exclude_parent_lifetime).connect('timeout', self, '_remove_exclusions', [item, parent_list])
 	
 	if release_lifetime > 0:
 		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')

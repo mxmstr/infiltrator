@@ -21,25 +21,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941735, 0 )
 source = ExtResource( 6 )
 
 [node name="RightHandContainer" parent="." index="30"]
-path = NodePath("../Model/neo_reference_skeleton")
+path = NodePath("../Model/Swat_skeleton")
 bone_name = "Gun"
 max_quantity = 1
 required_tags = "Item"
 
 [node name="RightPunchContainer" parent="." index="31"]
-path = NodePath("../Model/neo_reference_skeleton")
+path = NodePath("../Model/Swat_skeleton")
 bone_name = "Hand-R"
 
 [node name="LeftPunchContainer" parent="." index="32"]
-path = NodePath("../Model/neo_reference_skeleton")
+path = NodePath("../Model/Swat_skeleton")
 bone_name = "Hand-L"
 
 [node name="RightKickContainer" parent="." index="33"]
-path = NodePath("../Model/neo_reference_skeleton")
+path = NodePath("../Model/Swat_skeleton")
 bone_name = "Foot-R"
 
 [node name="LeftKickContainer" parent="." index="34"]
-path = NodePath("../Model/neo_reference_skeleton")
+path = NodePath("../Model/Swat_skeleton")
 bone_name = "Foot-L"
 
 [editable path="Model"]

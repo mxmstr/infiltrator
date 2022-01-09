@@ -1,7 +1,7 @@
 [gd_resource type="Environment" load_steps=4 format=2]
 
 [sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 0, 0, 0, 1, 0.862745, 1, 0.819608, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.862, 1, 0.82, 1 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
@@ -19,7 +19,5 @@ sun_energy = 12.26
 
 [resource]
 background_sky = SubResource( 1 )
-ambient_light_color = Color( 0.811765, 1, 0.74902, 1 )
-ambient_light_energy = 0.1
 adjustment_enabled = true
 adjustment_color_correction = SubResource( 3 )

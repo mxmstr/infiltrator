@@ -61,7 +61,6 @@ func _integrate_forces(state):
 	
 	if new_speed:
 		
-		prints(direction, new_speed)
 		var new_velocity = direction * new_speed
 		state.linear_velocity = Vector3()
 		state.apply_central_impulse(new_velocity)

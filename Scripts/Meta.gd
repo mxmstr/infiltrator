@@ -243,7 +243,13 @@ func PreloadSchemas():
 	var schemas = _get_files_recursive('res://Scenes/Schemas/', '', '.tscn')
 	
 	for schema in schemas:
-		preloader.add_resource(schema, load(schema))
+		
+		var packed_scene = load(schema)
+		var animation_player = packed_scene.instance()
+		packed_scene.pack(animation_player)
+		
+		preloader.add_resource(schema, packed_scene)
+		
 
 
 func PreloadActors():

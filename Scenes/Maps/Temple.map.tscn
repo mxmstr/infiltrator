@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Models/Maps/Temple/temple2.scn" type="PackedScene" id=3]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Models/Maps/Temple/temple2001.scn" type="PackedScene" id=5]
 [ext_resource path="res://Models/Maps/Temple/temple2003.scn" type="PackedScene" id=6]
 [ext_resource path="res://Models/Maps/Temple/temple2005.scn" type="PackedScene" id=7]
-[ext_resource path="res://Scripts/Destroyer.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Components/Responses/Touch.StaticGeometry.response2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Models/Maps/Temple/temple2002.scn" type="PackedScene" id=11]
@@ -39,21 +38,6 @@ data = PoolVector3Array( -22.975, 1.825, 42.15, -22.975, 7.975, 45.225, -22.975,
 
 [sub_resource type="ConcavePolygonShape" id=48]
 data = PoolVector3Array( -21.95, 1.825, -0.825, -21.95, 7.975, 2.25, -21.95, 1.825, 2.25, -21.95, 7.975, -0.825, -21.95, 7.975, 2.25, -21.95, 1.825, -0.825, -18.875, 7.975, 2.25, -18.875, 1.825, -0.825, -18.875, 1.825, 2.25, -18.875, 7.975, 2.25, -18.875, 7.975, -0.825, -18.875, 1.825, -0.825, -18.875, 7.975, -0.825, -21.95, 1.825, -0.825, -18.875, 1.825, -0.825, -18.875, 7.975, -0.825, -21.95, 7.975, -0.825, -21.95, 1.825, -0.825, -21.95, 1.825, 2.25, -18.875, 1.825, -0.825, -21.95, 1.825, -0.825, -21.95, 1.825, 2.25, -18.875, 1.825, 2.25, -18.875, 1.825, -0.825, -21.95, 7.975, 2.25, -18.875, 1.825, 2.25, -21.95, 1.825, 2.25, -21.95, 7.975, 2.25, -18.875, 7.975, 2.25, -18.875, 1.825, 2.25 )
-
-[sub_resource type="BoxShape" id=37]
-extents = Vector3( 93.8043, 26.9994, 37.0099 )
-
-[sub_resource type="BoxShape" id=38]
-extents = Vector3( 93.2504, 27.3555, 33.9987 )
-
-[sub_resource type="BoxShape" id=39]
-extents = Vector3( 33.0139, 28.0676, 91.5873 )
-
-[sub_resource type="BoxShape" id=40]
-extents = Vector3( 35.0811, 31.8591, 92.5512 )
-
-[sub_resource type="BoxShape" id=41]
-extents = Vector3( 93.2504, 11.2969, 113.225 )
 
 [node name="Map" type="Navigation"]
 script = ExtResource( 1 )
@@ -163,42 +147,12 @@ disabled = true
 [node name="TouchResponse" parent="Navmesh/Door5" instance=ExtResource( 10 )]
 tree_node = NodePath("../Reception")
 
-[node name="Area" type="Area" parent="Navmesh"]
-collision_layer = 0
-collision_mask = 14
-monitorable = false
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="Collision" type="CollisionShape" parent="Navmesh/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.615, 16.2617, 103.093 )
-shape = SubResource( 37 )
-
-[node name="Collision2" type="CollisionShape" parent="Navmesh/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.615, 16.2617, -137.471 )
-shape = SubResource( 38 )
-
-[node name="Collision3" type="CollisionShape" parent="Navmesh/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 125.716, 16.2617, -23.032 )
-shape = SubResource( 39 )
-
-[node name="Collision4" type="CollisionShape" parent="Navmesh/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -125.971, 16.2617, -21.9533 )
-shape = SubResource( 40 )
-
-[node name="Collision5" type="CollisionShape" parent="Navmesh/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 53.7278, 0 )
-shape = SubResource( 41 )
-
-[node name="Collision6" type="CollisionShape" parent="Navmesh/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.7327, 0 )
-shape = SubResource( 41 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="Navmesh"]
 transform = Transform( 0.85696, -0.406647, 0.316634, 0, 0.614368, 0.78902, -0.515382, -0.676159, 0.526489, 0, 54.7278, 0 )
+
+[node name="DirectionalLight2" type="DirectionalLight" parent="Navmesh"]
+transform = Transform( -0.86912, 0.218502, -0.44372, 0.368835, 0.884041, -0.287111, 0.329532, -0.413193, -0.848929, -43.3764, 48.0826, 21.6755 )
+light_energy = 0.7
 
 [editable path="Navmesh/Map"]
 [editable path="Navmesh/Door"]

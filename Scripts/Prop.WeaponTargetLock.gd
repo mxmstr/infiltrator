@@ -30,15 +30,14 @@ func _on_fire(projectile):
 	var direction = projectile.global_transform.origin.direction_to(camera_raycast_target.global_transform.origin)
 	var target_pos = projectile.global_transform.origin - direction
 	
-	projectile.look_at(target_pos, Vector3.UP)
-	
 	if projectile._has_tag('Grenade'):
 		
-		#yield(get_tree(), 'idle_frame')
+		projectile.get_node('Movement')._set_direction(direction * -1, true)
+		projectile.get_node('Movement').speed = projectile.get_node('Movement').speed
+	
+	else:
 		
-		prints(projectile.get_node('Movement').speed)
-		#projectile.get_node('Movement')._set_direction(direction * -1, true)
-#		projectile.get_node('Movement').speed = projectile.get_node('Movement').speed
+		projectile.look_at(target_pos, Vector3.UP)
 
 
 func _on_punch(projectile):

@@ -100,6 +100,7 @@ func _physics_process(delta):
 						Meta.StimulateActor(hitbox, stim_type, owner, stim_intensity)
 					else:
 						Meta.StimulateActor(actor, stim_type, owner, stim_intensity)
+					
 					emit_signal('stimulate')
 					
 					new_colliders.append(actor)
