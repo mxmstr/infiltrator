@@ -72,7 +72,6 @@ func _physics_process(delta):
 		
 		if actor in [owner, shooter] or \
 			not actor.get('tags') or \
-			(use_hitbox and not actor.has_node('Hitboxes')) or \
 			actor in exceptions:
 			continue
 		
@@ -90,7 +89,14 @@ func _physics_process(delta):
 			continue
 		
 		
-		if use_hitbox:
+		if _validate_within_radius(actor):
+				
+				Meta.StimulateActor(actor, stim_type, owner, stim_intensity)
+				emit_signal('stimulate')
+				
+				new_colliders.append(actor)
+		
+		elif use_hitbox and actor.has_node('Hitboxes'):
 			
 			for hitbox in actor.get_node('Hitboxes').get_children():
 				
@@ -105,15 +111,6 @@ func _physics_process(delta):
 					
 					new_colliders.append(actor)
 					break
-		
-		else:
-			
-			if _validate_within_radius(actor):
-				
-				Meta.StimulateActor(actor, stim_type, owner, stim_intensity)
-				emit_signal('stimulate')
-				
-				new_colliders.append(actor)
 	
 	
 	colliders = new_colliders

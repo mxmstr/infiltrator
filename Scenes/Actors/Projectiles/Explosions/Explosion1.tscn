@@ -49,6 +49,7 @@ random = true
 state = "Explosion"
 
 [node name="RadiusStim" parent="." index="3" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807579, 0 )
 stim_type = "Damage"
 stim_intensity = 125.0
 one_shot = true

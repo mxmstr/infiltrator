@@ -23,4 +23,6 @@ required_tags = "ImpactGrenade"
 
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.0314283, 0.60911 )
+release_speed = 40.0
+release_exclude_parent = false
 required_tags = "ImpactGrenade"

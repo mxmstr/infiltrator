@@ -20,6 +20,7 @@ radius = 0.25
 [node name="ImpactGrenade" instance=ExtResource( 1 )]
 collision_layer = 8
 collision_mask = 17
+monitorable = false
 tags = "Actor ImpactGrenade Damage:0 Force:0"
 
 [node name="Model" type="MeshInstance" parent="." index="0"]
@@ -38,6 +39,7 @@ tree_node = NodePath("../Reception")
 
 [node name="Movement" parent="." index="4"]
 process_movement = true
+gravity = -3
 projectile = true
 
 [node name="Behavior" parent="." index="5"]

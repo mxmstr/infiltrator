@@ -2,24 +2,22 @@ extends 'res://Scripts/Link.gd'
 
 var spawn_chance = 1.0#0.8
 var spawn_count = 8
-var respawn_time = 30.0
+var respawn_time = 15.0
 var pickups = []
 
 
-func _on_timeout():
+func _on_timeout(marker):
 	
 	randomize()
-	var markers = get_children()
-	markers.shuffle()
 	
-	_refresh_spawn(markers[0])
-	markers[0].get_node('RespawnSound').playing = true
+	_refresh_spawn(marker)
+	marker.get_node('RespawnSound').playing = true
 
 
-func _on_stimulate(item):
+func _on_stimulate(item, marker):
 	
 	pickups.erase(item)
-	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout')
+	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout', [marker])
 
 
 func _on_factory_finished(link, marker):
@@ -42,7 +40,7 @@ func _on_factory_finished(link, marker):
 				'stimulate',
 				self,
 				'_on_stimulate',
-				[output],
+				[output, marker],
 				CONNECT_ONESHOT
 				)
 			
@@ -50,6 +48,8 @@ func _on_factory_finished(link, marker):
 
 
 func _refresh_spawn(marker):
+	
+	randomize()
 	
 	var weapon_path = Meta.multi_loadout[randi() % Meta.multi_loadout.size()]
 	var node_name = Meta.preloader.get_resource('res://Scenes/Actors/' + weapon_path + '.tscn').instance().name
@@ -74,14 +74,8 @@ func _ready():
 	if get_child_count() == 0:
 		return
 	
-	randomize()
-	var markers = get_children()
-	markers.shuffle()
-	
-	spawn_count = int(markers.size())
-	
-	for i in range(spawn_count):
-		_refresh_spawn(markers[i])
+	for marker in get_children():
+		_refresh_spawn(marker)
 #
 #	pickup_idx = randi() % get_child_count()
 

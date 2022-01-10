@@ -15,9 +15,9 @@ func _ready():
 	color.a = 0.5
 	
 	if Meta.multi_xray:
-		outline = load('res://Models/OutlineXray.tres').duplicate(true)
+		outline = load('res://Shaders/OutlineXray.tres').duplicate(true)
 	else:
-		outline = load('res://Models/Outline.tres').duplicate(true)
+		outline = load('res://Shaders/Outline.tres').duplicate(true)
 	
 	outline.set_shader_param('color', color)
 	

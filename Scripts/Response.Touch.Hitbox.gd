@@ -46,3 +46,11 @@ func _on_stimulate(stim, data):
 				owner_righthand._release_front()
 			
 			data.source.queue_free()
+		
+		elif data.source._has_tag('ImpactGrenade'):
+			
+			var shooter = data.source._get_tag('Shooter') if data.source._has_tag('Shooter') else data.source
+			
+			Meta.AddActor('Projectiles/Explosions/Explosion1', data.source.translation, data.source.rotation, null, { 'Shooter': shooter })
+			
+			data.source.queue_free()
