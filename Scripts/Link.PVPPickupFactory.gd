@@ -3,7 +3,21 @@ extends 'res://Scripts/Link.gd'
 var spawn_chance = 1.0#0.8
 var spawn_count = 8
 var respawn_time = 15.0
-var pickups = []
+var pickups = [] setget _set_pickups, _get_pickups
+
+
+func _set_pickups(new_pickups):
+	
+	pickups = new_pickups
+
+
+func _get_pickups():
+	
+	for pickup in pickups.duplicate():
+		if not is_instance_valid(pickup):
+			pickups.erase(pickup)
+	
+	return pickups
 
 
 func _on_timeout(marker):

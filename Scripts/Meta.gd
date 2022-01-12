@@ -41,6 +41,7 @@ const TeamColors = [
 
 const schemas_dir = 'res://Scenes/Schemas/'
 const schemas_extension = '.schema.tscn'
+const rotate_sensitivity = 45.0
 
 var preloader
 var tree_count = 0
@@ -70,7 +71,6 @@ var player_data = [
 	player_data_default.duplicate(),
 	player_data_default.duplicate()
 ]
-var rotate_sensitivity = 40.0
 var rawinput = false
 var threads = []
 var cached_args = []

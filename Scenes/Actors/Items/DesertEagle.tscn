@@ -22,5 +22,5 @@ required_tags = "Bullet Magnum"
 
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.098566, 0.273738 )
-release_speed = 20.0
+release_speed = 30.0
 release_angular_spread = Vector2( 0.075, 0.075 )
