@@ -1,8 +1,11 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Animations/Human/ModeSwitchSniper.tres" type="Animation" id=2]
 [ext_resource path="res://Animations/Human/Action/Shoot/Sniper/shootsniper_zoommode.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/Action/Punch/punch_seraph.tres" type="Animation" id=4]
+[ext_resource path="res://Scenes/Actors/Items/Punch.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Actors/Items/Kick.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Models/Humans/Anderson/Anderson.escn" type="PackedScene" id=12]
 [ext_resource path="res://Animations/Human/Action/Jump/HOPBACK.tres" type="Animation" id=14]
 [ext_resource path="res://Animations/Human/Action/Jump/Jump.Exit.tres" type="Animation" id=15]
@@ -64,6 +67,7 @@ blend_point_4/pos = Vector2( -0.4, 0 )
 triangles = PoolIntArray( 0, 2, 3, 1, 2, 3, 0, 2, 4, 1, 2, 4 )
 
 [node name="AnimTest" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52597e-08, 3.57419e-08, 0.696956 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -72,6 +76,18 @@ visible = false
 
 [node name="Anderson_skeleton" parent="Model2" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+bones/15/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
+transform = Transform( -0.440549, -0.655715, -0.613151, -0.894292, 0.38026, 0.235893, 0.078478, 0.652258, -0.753924, -0.0984879, 1.42151, 1.14253 )
+bone_name = "Hand-R"
+
+[node name="Punch" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012105, 1.42503, 1.16488 )
+
+[node name="Kick" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00420141, 1.43704, 1.29838 )
+visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 6 )
@@ -104,6 +120,7 @@ anims/jumpForwardLeft = ExtResource( 20 )
 anims/jumpForwardRight = ExtResource( 21 )
 anims/marko_run = ExtResource( 43 )
 anims/punch2 = ExtResource( 32 )
+anims/punch_seraph = ExtResource( 4 )
 anims/right_strike = ExtResource( 27 )
 anims/shootsniper_zoommode = ExtResource( 3 )
 anims/sidestepleft = ExtResource( 22 )

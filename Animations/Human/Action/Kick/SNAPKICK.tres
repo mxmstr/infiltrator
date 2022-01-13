@@ -10,7 +10,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.45 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Items/Kick" ],

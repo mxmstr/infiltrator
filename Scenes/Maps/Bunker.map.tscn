@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Actors/StaticGeometry.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Scenes/Components/Responses/Touch.StaticGeometry.response2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Models/Maps/Bunker/bunker.scn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Actors/Humans/Players/Anderson.tscn" type="PackedScene" id=8]
 
 [sub_resource type="BoxShape" id=27]
 extents = Vector3( 0.644469, 0.0186345, 1.53989 )
@@ -76,6 +75,3 @@ light_energy = 0.7
 [node name="DirectionalLight3" type="DirectionalLight" parent="."]
 transform = Transform( 0.707107, -0.5, -0.5, 0, 0.707107, -0.707107, 0.707107, 0.5, 0.5, -43.3764, 48.0826, 21.6755 )
 light_energy = 0.3
-
-[node name="Anderson" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.68746, 0 )

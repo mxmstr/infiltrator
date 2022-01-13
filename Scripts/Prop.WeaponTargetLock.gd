@@ -49,8 +49,7 @@ func _on_camera_entered(_camera, actor):
 		
 		visible_enemies.append(actor)
 		
-		if equipped:
-			_select_target()
+		_select_target()
 
 
 func _on_camera_exited(_camera, actor):
@@ -59,8 +58,7 @@ func _on_camera_exited(_camera, actor):
 		
 		visible_enemies.erase(actor)
 		
-		if equipped:
-			_select_target()
+		_select_target()
 
 
 func _on_item_equipped(container, item):
@@ -68,9 +66,12 @@ func _on_item_equipped(container, item):
 	if item._has_tag('Firearm'):
 		
 		item.get_node('Chamber').connect('item_released', self, '_on_fire')
-		equipped = true
 		
-		_select_target()
+		if item._has_tag('AutoAim'):
+			equipped = true
+			_select_target()
+		else:
+			equipped = false
 
 
 func _on_item_dequipped(container, item):
@@ -90,8 +91,8 @@ func _on_item_dequipped(container, item):
 func _select_target():
 	
 	if not visible_enemies.size():
-		
 		targeted_enemy = null
+		targeted_enemy_bone = null
 		return
 	
 	
@@ -100,17 +101,22 @@ func _select_target():
 	
 	for enemy in visible_enemies:
 		
+		var alive = enemy.get_node('Stamina').hp > 0
 		var height = enemy.get_node('Collision').shape.extents.y
 		var screen_pos = camera.unproject_position(enemy.translation + Vector3(0, height / 2, 0))
 		var distance = screen_pos.distance_to(Vector2(perspective.rect_size.x / 2, perspective.rect_size.y / 2))
 		
-		if not closest_distance or distance < closest_distance:
+		if alive and (not closest_distance or distance < closest_distance):
 			
 			closest_distance = distance
 			closest_enemy = enemy
 	
-	targeted_enemy = closest_enemy
-	targeted_enemy_bone = targeted_enemy.get_node('Hitboxes').find_node('Shoulders')
+	if closest_enemy:
+		targeted_enemy = closest_enemy
+		targeted_enemy_bone = targeted_enemy.get_node('Hitboxes').find_node('Shoulders')
+	else:
+		targeted_enemy = null
+		targeted_enemy_bone = null
 
 
 func _ready():
@@ -159,13 +165,11 @@ func _process(delta):
 	
 	else:
 		
-		if auto_aim and targeted_enemy:
-		
-			var target_dead = targeted_enemy.get_node('Stamina').hp == 0
+		if auto_aim and equipped and targeted_enemy:
 			
-			if not is_instance_valid(targeted_enemy) or target_dead:
-				targeted_enemy = null
-				targeted_enemy_bone = null
+			if not is_instance_valid(targeted_enemy) or \
+				targeted_enemy.get_node('Stamina').hp == 0:
+				_select_target()
 				return
 			
 			if camera_raycast.get_collider() and camera_raycast.get_collider().owner in enemies:
@@ -199,18 +203,6 @@ func _process(delta):
 			camera_raycast.move_target = true
 			#model.rotation = Vector3(0, 0, 0)
 		
-		#if camera_raycast.move_target:
-		
-#		var aim_offset = (movement.angular_direction / Meta.rotate_sensitivity) * aim_offset_range * (camera.fov / 65)
-#		aim_offset.y *= -1
-#		camera_raycast.rotation_offset = camera_raycast.rotation_offset.linear_interpolate(
-#			aim_offset,
-#			aim_offset_sensitivity * delta
-#			)
-		
-#		else:
-#
-#			camera_raycast.rotation_offset = Vector2()
 		
 		var target_pos = camera_raycast_target.global_transform.origin
 		target_pos.y = model.global_transform.origin.y
