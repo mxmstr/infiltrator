@@ -59,7 +59,7 @@ func _on_next(forward=true, not_empty=false):
 				var magazine = item.get_node_or_null('Magazine')
 				var has_ammo = false if not_empty and magazine and magazine._is_empty() else true
 				
-				if rank > highest_rank and has_ammo:
+				if rank >= highest_rank and has_ammo:
 					next = item
 					highest_rank = rank
 		

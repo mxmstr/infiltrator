@@ -19,6 +19,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0163468, 0.277896 )
 shape = SubResource( 1 )
 
 [node name="Magazine" parent="." index="2"]
+max_quantity = 2
 required_tags = "Bullet Shotgun"
 
 [node name="Chamber" parent="." index="3"]

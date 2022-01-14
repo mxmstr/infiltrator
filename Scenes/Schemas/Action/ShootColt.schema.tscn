@@ -10,12 +10,10 @@ anims/ShootColt = ExtResource( 1 )
 anims/ShootColt_Down = ExtResource( 2 )
 anims/ShootColt_Up = ExtResource( 3 )
 script = ExtResource( 4 )
-__meta__ = {
-
-}
 attributes = "{
 	\"*\": {
 		\"clip_start\": 0.05,
-		\"layer\": \"MIXED\"
+		\"layer\": \"MIXED\",
+		\"next\": \"ShootIdle\"
 	}
 }"

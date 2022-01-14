@@ -51,7 +51,7 @@ func _on_item_added(container, item):
 			ammo_container.disconnect('item_removed', self, '_on_ammo_removed')
 			ammo_container = null
 		
-		_refresh_ammo()
+	_refresh_ammo()
 
 
 func _on_item_removed(container, item):
@@ -61,7 +61,7 @@ func _on_item_removed(container, item):
 		ammo_container.disconnect('item_removed', self, '_on_ammo_removed')
 		ammo_container = null
 	
-	ammo.hide()
+	_refresh_ammo()
 
 
 func _is_container(node):
@@ -100,40 +100,47 @@ func _get_ammo_container(item):
 
 func _refresh_ammo():
 	
-	if righthand._is_empty() or \
-		not righthand.items[0].has_node('Magazine'):
-		ammo.hide()
-		return
+	var ammo_text = ""
 	
-	
-	var item = righthand.items[0]
-	
-	if item._has_tag('Grenade'):
-		return
-	
-	if not ammo_container:
+	if righthand._is_empty():
 		
-		ammo_container = _get_ammo_container(item)
-		ammo_container.connect('item_added', self, '_on_ammo_added')
-		ammo_container.connect('item_removed', self, '_on_ammo_removed')
-		
-		if not item.get_node('Chamber').is_connected('item_added', self, '_on_ammo_added'):
-			item.get_node('Chamber').connect('item_added', self, '_on_ammo_added')
-		
-		if not item.get_node('Chamber').is_connected('item_removed', self, '_on_ammo_removed'):
-			item.get_node('Chamber').connect('item_removed', self, '_on_ammo_removed')
-		
-		if not item.get_node('Magazine').is_connected('item_added', self, '_on_ammo_added'):
-			item.get_node('Magazine').connect('item_added', self, '_on_ammo_added')
-		
-		if not item.get_node('Magazine').is_connected('item_removed', self, '_on_ammo_removed'):
-			item.get_node('Magazine').connect('item_removed', self, '_on_ammo_removed')
+		ammo_text += 'Unarmed'
 	
-	var inv_ammo = ammo_container.items.size()
-	var chamber_ammo = 1 if item.get_node('Chamber').items.size() else 0
-	var mag_ammo = item.get_node('Magazine').items.size()
+	elif righthand.items[0]._has_tag('Grenade') or not righthand.items[0].has_node('Magazine'):
+		
+		ammo_text += righthand.items[0].base_name
 	
-	ammo.text = str(chamber_ammo + mag_ammo) + ' | ' + str(inv_ammo) + '\n' + item.base_name
+	else:
+		
+		var item = righthand.items[0]
+		var chamber = item.get_node('Chamber')
+		var magazine = item.get_node('Magazine')
+		
+		if not ammo_container:
+			
+			ammo_container = _get_ammo_container(item)
+			ammo_container.connect('item_added', self, '_on_ammo_added')
+			ammo_container.connect('item_removed', self, '_on_ammo_removed')
+			
+			if not chamber.is_connected('item_added', self, '_on_ammo_added'):
+				chamber.connect('item_added', self, '_on_ammo_added')
+			
+			if not chamber.is_connected('item_removed', self, '_on_ammo_removed'):
+				chamber.connect('item_removed', self, '_on_ammo_removed')
+			
+			if not magazine.is_connected('item_added', self, '_on_ammo_added'):
+				magazine.connect('item_added', self, '_on_ammo_added')
+			
+			if not magazine.is_connected('item_removed', self, '_on_ammo_removed'):
+				magazine.connect('item_removed', self, '_on_ammo_removed')
+		
+		var inv_ammo = ammo_container.items.size()
+		var chamber_ammo = 1 if chamber.items.size() else 0
+		var mag_ammo = magazine.items.size()
+		
+		ammo_text += str(chamber_ammo + mag_ammo) + ' | ' + str(inv_ammo) + '\n' + item.base_name
+	
+	ammo.text = ammo_text
 
 
 func _notification(what):
@@ -179,10 +186,10 @@ func _ready():
 		
 		radar.hide()
 	
-	
-	ammo.hide()
 	righthand.connect('item_added', self, '_on_item_added')
 	righthand.connect('item_removed', self, '_on_item_removed')
+	
+	_refresh_ammo()
 
 
 func _process(delta):
@@ -228,6 +235,3 @@ func _process(delta):
 	
 	
 	crosshair.rect_position = camera.unproject_position(camera_raycast_target.global_transform.origin) - crosshair.rect_pivot_offset
-#	if owner.owner.player_index == 0:
-#		prints(screen_pos)
-	#crosshair.rect_position = screen_pos

@@ -41,7 +41,6 @@ func _on_action(_state, data):
 		
 			Meta.StimulateActor(righthand.items[0], 'Use', owner)
 	
-	
 	elif new_state == 'UseReact':
 		
 		if righthand._has_item_with_tag('Firearm'):
@@ -51,15 +50,11 @@ func _on_action(_state, data):
 			if shoot_animations.has(item_name):
 				
 				_play(shoot_animations[item_name][0], shoot_animations[item_name][1], shoot_animations[item_name][2])
-
-
-func _process(delta):
 	
-	if righthand._has_item_with_tag('Firearm'):
+	elif new_state == 'ShootIdle':
 		
-		if tree_node.current_state == 'Default':
+		if not righthand._is_empty():
 			
-			new_state = 'ShootIdle'
 			var item_name = righthand.items[0].base_name
 			
 			if shoot_idle_animations.has(item_name):
@@ -68,6 +63,15 @@ func _process(delta):
 					_play(shoot_idle_animations[item_name][0], shoot_idle_animations[item_name][1], shoot_idle_animations[item_name][2])
 				else:
 					_play(shoot_idle_animations[item_name][0])
+
+
+func _process(delta):
+	
+	if righthand._has_item_with_tag('Firearm'):
+		
+		if tree_node.current_state == 'Default':
+			
+			_on_action('ShootIdle', {})
 	
 	else:
 		

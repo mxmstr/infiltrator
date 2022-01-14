@@ -28,4 +28,4 @@ required_tags = "Bullet Sniper"
 
 [node name="Chamber" parent="." index="4"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.0855157, 0.965106 )
-release_speed = 80.0
+release_speed = 90.0

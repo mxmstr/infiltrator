@@ -12,8 +12,9 @@ anims/ShootSawedShotgun_Up = ExtResource( 3 )
 script = ExtResource( 4 )
 attributes = "{
 	\"*\": {
-		\"speed\": 3.0,
+		\"speed\": 3.5,
 		\"clip_start\": 0.05,
-		\"layer\": \"MIXED\"
+		\"layer\": \"MIXED\",
+		\"next\": \"ShootIdle\"
 	}
 }"
