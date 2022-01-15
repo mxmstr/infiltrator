@@ -49,4 +49,14 @@ func _on_stimulate(stim, data):
 					
 					data[0]._delete_all()
 			
-			behavior._start_state('Die', { 'shooter': data.shooter })
+			if data.source._has_tag('Explosion'):
+				
+				var target_pos = data.source.transform.origin
+				target_pos.y = owner.transform.origin.y
+				owner.look_at(target_pos, Vector3.UP)
+				owner.rotate_y(deg2rad(180))
+				
+				behavior._start_state('DieExplosion', { 'shooter': data.shooter })
+			
+			else:
+				behavior._start_state('Die', { 'shooter': data.shooter })

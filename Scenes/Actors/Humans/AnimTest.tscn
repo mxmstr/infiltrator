@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Animations/Human/ModeSwitchSniper.tres" type="Animation" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Animations/Human/Action/Punch/punch_seraph.tres" type="Animation" id=4]
 [ext_resource path="res://Scenes/Actors/Items/Punch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Items/Kick.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Animations/Human/Action/Death/death_explosion_a.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/Action/Death/death_explosion_b.tres" type="Animation" id=8]
 [ext_resource path="res://Models/Humans/Anderson/Anderson.escn" type="PackedScene" id=12]
 [ext_resource path="res://Animations/Human/Action/Jump/HOPBACK.tres" type="Animation" id=14]
 [ext_resource path="res://Animations/Human/Action/Jump/Jump.Exit.tres" type="Animation" id=15]
@@ -67,7 +69,7 @@ blend_point_4/pos = Vector2( -0.4, 0 )
 triangles = PoolIntArray( 0, 2, 3, 1, 2, 3, 0, 2, 4, 1, 2, 4 )
 
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52597e-08, 3.57419e-08, 0.696956 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -76,10 +78,9 @@ visible = false
 
 [node name="Anderson_skeleton" parent="Model2" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
-bones/15/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( -0.440549, -0.655715, -0.613151, -0.894292, 0.38026, 0.235893, 0.078478, 0.652258, -0.753924, -0.0984879, 1.42151, 1.14253 )
+transform = Transform( -0.0831668, -0.117917, -0.989535, -0.721293, -0.678039, 0.14142, -0.687619, 0.725506, -0.028662, -0.0541122, 0.13355, 0.380502 )
 bone_name = "Hand-R"
 
 [node name="Punch" parent="." instance=ExtResource( 5 )]
@@ -114,6 +115,8 @@ anims/ShootJackhammer = ExtResource( 44 )
 anims/ShootPumpShotgun = ExtResource( 18 )
 anims/T_RUN = ExtResource( 41 )
 anims/Use = ExtResource( 40 )
+anims/death_explosion_a = ExtResource( 7 )
+anims/death_explosion_b = ExtResource( 8 )
 anims/forward_strike = ExtResource( 33 )
 anims/jumpForward = ExtResource( 19 )
 anims/jumpForwardLeft = ExtResource( 20 )

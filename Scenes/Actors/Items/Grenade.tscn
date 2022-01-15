@@ -13,7 +13,7 @@ bounce = 0.75
 radius = 0.109011
 
 [node name="Grenade" instance=ExtResource( 1 )]
-mass = 3.0
+mass = 10.0
 physics_material_override = SubResource( 2 )
 tags = "Item Firearm Grenade Rank:70 UseAction:FireProjectile FireRate:0.33 Offset-position:neo_reference_skeleton:Gun:-0.023118,0.000963,0.024605 Offset-rotation:neo_reference_skeleton:Gun:-72.911118,-4.245605,-10.726698"
 

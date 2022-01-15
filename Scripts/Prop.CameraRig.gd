@@ -33,21 +33,20 @@ func _rotate_camera(delta_x, delta_y):
 
 func _reset_camera():
 	
-#	print(owner.get_node('Model').get_child(0).get_path())
-#	print(owner.get('CameraRig').path, path)
-#	prints(path, get_node(path), bone_name)
-	
 	if root:
+		
 		root.queue_free()
 		root = null
 	
 	if path and not path.is_empty():
 		
 		root = BoneAttachment.new()
-		get_node(path).add_child(root)#.call_deferred('add_child', root)
+		get_node(path).add_child(root)
 	
 		if bone_name != '':
 			root.bone_name = bone_name
+	
+	_clamp_camera()
 
 
 func _ready():

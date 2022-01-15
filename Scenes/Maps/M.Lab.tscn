@@ -31,19 +31,19 @@ agent/radius = 0.3
 polygon/verts_per_poly = 4.0
 
 [sub_resource type="BoxShape" id=8]
-extents = Vector3( 0.0741653, 1.86239, 11.5294 )
+extents = Vector3( 0.0741653, 4.55311, 11.5294 )
 
 [sub_resource type="BoxShape" id=9]
-extents = Vector3( 0.0741653, 1.86239, 11.5294 )
+extents = Vector3( 0.0741653, 4.48179, 11.5294 )
 
 [sub_resource type="BoxShape" id=10]
 extents = Vector3( 11.6625, 0.164612, 11.5294 )
 
 [sub_resource type="BoxShape" id=11]
-extents = Vector3( 0.0741653, 1.86239, 11.5294 )
+extents = Vector3( 0.0741653, 4.35005, 11.5294 )
 
 [sub_resource type="BoxShape" id=12]
-extents = Vector3( 0.0741653, 1.86239, 11.5294 )
+extents = Vector3( 0.0741653, 4.55207, 11.5294 )
 
 [sub_resource type="ArrayMesh" id=6]
 surfaces/0 = {
@@ -112,7 +112,7 @@ shape = SubResource( 9 )
 [node name="StaticGeometry3" parent="Navmesh" instance=ExtResource( 9 )]
 
 [node name="Collision" type="CollisionShape" parent="Navmesh/StaticGeometry3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08375, 3.72172, 1.92836 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08375, 6.09123, 1.92836 )
 shape = SubResource( 10 )
 
 [node name="StaticGeometry4" parent="Navmesh" instance=ExtResource( 9 )]

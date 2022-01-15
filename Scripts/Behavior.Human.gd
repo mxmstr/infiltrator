@@ -162,7 +162,7 @@ func _process(delta):
 	if not is_movement:
 		
 		advance(delta)
-		movement._apply_root_transform(get_root_motion_transform(), delta)
+		movement.call_deferred('_apply_root_transform', get_root_motion_transform(), delta)
 		
 		if is_mixed:
 			_cache_action_pose()

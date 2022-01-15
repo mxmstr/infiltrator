@@ -134,7 +134,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "cam_max_y", 1.57 ],
+"args": [ "cam_max_y", 0.0 ],
 "method": "set"
 } ]
 }
