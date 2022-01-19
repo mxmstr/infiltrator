@@ -1,7 +1,7 @@
 extends "res://Scripts/Input.gd"
 
-const aim_offset_range = 0.5
-const aim_offset_sensitivity = 2.0
+const aim_offset_range = 0.9
+const aim_offset_sensitivity = 1.0
 
 onready var movement = $'../Movement'
 onready var camera = $'../CameraRig/Camera'

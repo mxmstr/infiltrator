@@ -94,26 +94,26 @@ func _init_viewport():
 			ui.rect_position.x = 0
 			rect_position.x = 0
 		else:
-			ui.rect_position.x = width
-			rect_position.x = width
+			ui.rect_position.x = 1024 / 2
+			rect_position.x = 1024 / 2
 
 		if owner.player_index in [0, 1]:
 			ui.rect_position.y = 0
 			rect_position.y = 0
 		else:
-			ui.rect_position.y = height
-			rect_position.y = height
+			ui.rect_position.y = 600 / 2
+			rect_position.y = 600 / 2
 
-		ui.rect_size.y = height
-		ui.rect_size.x = width
-		ui.get_node('Viewport').size.y = height
-		ui.get_node('Viewport').size.x = width
-		ui.get_node('Viewport/Control').rect_size.y = height
-		ui.get_node('Viewport/Control').rect_size.x = width
-		rect_size.y = height
-		rect_size.x = width
-#			viewport.size.x = 1920#width
-#			viewport.size.y = 1080#height
+#		ui.rect_size.y = height
+#		ui.rect_size.x = width
+#		ui.get_node('Viewport').size.y = height
+#		ui.get_node('Viewport').size.x = width
+		ui.get_node('Viewport/Control').rect_size.x = 1024 / 2
+		ui.get_node('Viewport/Control').rect_size.y = 600 / 2
+		rect_size.x = 1024 / 2
+		rect_size.y = 600 / 2
+		viewport.size.x = owner.get_viewport().size.x / 2
+		viewport.size.y = owner.get_viewport().size.y / 2
 
 	else:
 
@@ -124,25 +124,23 @@ func _init_viewport():
 			ui.rect_position.y = 0
 			rect_position.y = 0
 		else:
-			ui.rect_position.y = height
-			rect_position.y = height
+			ui.rect_position.y = 600 / 2
+			rect_position.y = 600 / 2
 
-		ui.rect_size.y = height
-		ui.rect_size.x = width
-		ui.get_node('Viewport').size.y = height
-		ui.get_node('Viewport').size.x = width
-		ui.get_node('Viewport/Control').rect_size.y = height
-		ui.get_node('Viewport/Control').rect_size.x = width
-		rect_size.y = height
-		rect_size.x = width
+#		ui.rect_size.x = owner.get_viewport().size.x
+#		ui.rect_size.y = owner.get_viewport().size.y
+#		ui.get_node('Viewport').size.x = width
+#		ui.get_node('Viewport').size.y = height
+		ui.get_node('Viewport/Control').rect_size.x = 1024
+		ui.get_node('Viewport/Control').rect_size.y = 600 / 2
+		rect_size.x = 1024
+		rect_size.y = 600 / 2
 #		ui.rect_size.y = height
 #		ui.get_node('Viewport').size.y = height
 #		ui.get_node('Viewport/Control').rect_size.y = height
 #		rect_size.y = height
-#			viewport.size.x = 1920#width
-#			viewport.size.y = 1080#height
-
-#
+		viewport.size.x = owner.get_viewport().size.x
+		viewport.size.y = owner.get_viewport().size.y / 2
 	
 	
 #	$Container/Viewport.world = get_tree().root.world

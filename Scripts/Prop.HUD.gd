@@ -234,4 +234,9 @@ func _process(delta):
 			dot.position = radar.rect_global_position + dot_position
 	
 	
-	crosshair.rect_position = camera.unproject_position(camera_raycast_target.global_transform.origin) - crosshair.rect_pivot_offset
+	var camera_position = camera.unproject_position(camera_raycast_target.global_transform.origin)
+	var viewport_size = owner.get_viewport().size
+	camera_position.x *= (1024 / viewport_size.x)
+	camera_position.y *= (600 / viewport_size.y)
+	
+	crosshair.rect_position = camera_position - crosshair.rect_pivot_offset

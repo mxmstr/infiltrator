@@ -63,6 +63,9 @@ func _on_factory_finished(link, marker):
 
 func _refresh_spawn(marker):
 	
+	if Meta.multi_loadout.size() == 0:
+		return
+	
 	randomize()
 	
 	var weapon_path = Meta.multi_loadout[randi() % Meta.multi_loadout.size()]

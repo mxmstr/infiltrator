@@ -20,25 +20,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941735, 0 )
 [node name="Hitboxes" parent="." index="4" instance=ExtResource( 5 )]
 source = ExtResource( 6 )
 
-[node name="RightHandContainer" parent="." index="30"]
+[node name="RightHandContainer" parent="." index="33"]
 path = NodePath("../Model/Anderson_skeleton")
 bone_name = "Gun"
 max_quantity = 1
 required_tags = "Item"
 
-[node name="RightPunchContainer" parent="." index="31"]
+[node name="RightPunchContainer" parent="." index="34"]
 path = NodePath("../Model/Anderson_skeleton")
 bone_name = "Hand-R"
 
-[node name="LeftPunchContainer" parent="." index="32"]
+[node name="LeftPunchContainer" parent="." index="35"]
 path = NodePath("../Model/Anderson_skeleton")
 bone_name = "Hand-L"
 
-[node name="RightKickContainer" parent="." index="33"]
+[node name="RightKickContainer" parent="." index="36"]
 path = NodePath("../Model/Anderson_skeleton")
 bone_name = "Foot-R"
 
-[node name="LeftKickContainer" parent="." index="34"]
+[node name="LeftKickContainer" parent="." index="37"]
 path = NodePath("../Model/Anderson_skeleton")
 bone_name = "Foot-L"
 
