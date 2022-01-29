@@ -3,6 +3,7 @@ extends Node
 export(PackedScene) var source
 
 var bone_attachments = []
+var hitboxes = []
 
 onready var skeleton = get_node('../Model').get_child(0)
 
@@ -13,10 +14,10 @@ func _add_children():
 		
 		if child is BoneAttachment:
 			
-			var new_child = BoneAttachment.new()
-			new_child.bone_name = child.bone_name
-			get_node('../Model').get_child(0).add_child(new_child)
-			new_child.name = child.name
+			var new_bone = BoneAttachment.new()
+			new_bone.bone_name = child.bone_name
+			owner.get_node('Model').get_child(0).add_child(new_bone)
+			new_bone.name = child.name
 			
 			for hitbox in child.get_children():
 				
@@ -27,7 +28,7 @@ func _add_children():
 						export_props[prop.name] = hitbox.get(prop.name)
 				
 				var new_hitbox = hitbox.duplicate()
-				add_child(new_hitbox)
+				new_bone.add_child(new_hitbox)
 				
 				new_hitbox.name = child.name
 				
@@ -35,17 +36,14 @@ func _add_children():
 					new_hitbox.set(prop, export_props[prop])
 				
 				new_hitbox.set_owner(owner)
+				
+				hitboxes.append(new_hitbox)
 			
-			bone_attachments.append(new_child)
+			bone_attachments.append(new_bone)
 
 
-func _enter_tree():
-
+func _ready():
+	
+	yield(get_tree(), 'idle_frame')
+	
 	_add_children()
-
-
-func _physics_process(delta):
-
-	for i in range(get_child_count()):
-
-		get_child(i).global_transform = bone_attachments[i].global_transform#get_node('../Model').get_child(0).get_node(hitbox.name).global_transform

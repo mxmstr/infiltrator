@@ -155,15 +155,15 @@ func _process(delta):
 	var is_action = layer == Meta.BlendLayer.ACTION
 	var is_movement = layer == Meta.BlendLayer.MOVEMENT
 	var is_mixed = layer == Meta.BlendLayer.MIXED
-	
+
 	if is_action or is_movement:
 		skeleton.clear_bones_global_pose_override()
-	
+
 	if not is_movement:
-		
+
 		advance(delta)
 		movement.call_deferred('_apply_root_transform', get_root_motion_transform(), delta)
-		
+
 		if is_mixed:
 			_cache_action_pose()
 

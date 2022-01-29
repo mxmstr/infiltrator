@@ -26,6 +26,13 @@ onready var camera = camera_rig.get_node('Camera')
 
 func _init_duplicate_meshes():
 	
+	world_skeleton = model.get_child(0)
+	
+	for idx in range(world_skeleton.get_bone_count()):
+		if world_skeleton.get_bone_name(idx) in hidden_bones:
+			hidden_bone_ids.append(idx)
+	
+	
 	transform = model.transform
 	
 	var viewmodel = world_skeleton.duplicate()
@@ -38,6 +45,8 @@ func _init_duplicate_meshes():
 			child.queue_free()
 	
 	add_child(viewmodel)
+	
+	vm_skeleton = viewmodel
 
 
 func _cull_mask_bits(world_mesh, view_mesh):
@@ -185,18 +194,10 @@ func _get_item_rotation_offset(item):
 
 
 func _enter_tree():
-	
+
 #	if model.get_child(0) is Skeleton:
-	
-	world_skeleton = model.get_child(0)
-	
-	for idx in range(world_skeleton.get_bone_count()):
-		if world_skeleton.get_bone_name(idx) in hidden_bones:
-			hidden_bone_ids.append(idx)
-	
 	_init_duplicate_meshes()
-	
-	vm_skeleton = get_child(0)
+
 
 
 func _ready():
@@ -233,6 +234,7 @@ func _process(delta):
 #		global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, item_rotation_offset.z)
 #
 #
-	_blend_skeletons(world_skeleton, vm_skeleton)
+	if world_skeleton and vm_skeleton:
+		_blend_skeletons(world_skeleton, vm_skeleton)
 #
 	rotation = model.rotation

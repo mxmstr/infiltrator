@@ -19,7 +19,6 @@ func _ready():
 #	products = products.c_escape().replace('\\n', ' ')
 	
 	
-	
 	for product in products.c_escape().split('\\n'):
 		
 		var new_product = {}
@@ -54,8 +53,9 @@ func _ready():
 		
 		if product.target == 'target':
 			
-			if product.has('item'):
-				_create_product(get_node(to), container, product.amount, product.item)
+			pass
+#			if product.has('item'):
+#				_create_product(get_node(to), container, product.amount, product.item)
 		
 		else:
 			
@@ -64,6 +64,7 @@ func _ready():
 			
 			if product.has('item'):
 				_create_product(output, product.target_container, product.amount, product.item)
+	
 	
 	emit_signal('finished')
 

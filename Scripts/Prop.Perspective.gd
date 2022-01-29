@@ -8,6 +8,8 @@ export(String) var fp_root_bone
 export(String) var fp_shoulder_bone
 export(Array, String) var fp_hidden_bones
 
+var viewmodel_property = preload('res://Scenes/Components/Properties/ViewModel.property.tscn')
+
 var viewmodel
 var viewmodel_offset = 5
 var worldmodel_offset = 15
@@ -72,79 +74,65 @@ func _init_fp_skeleton():
 			shoulders_id = idx
 	
 	
-	viewmodel = preload('res://Scenes/Components/Properties/ViewModel.property.tscn').instance()
+	viewmodel = viewmodel_property.instance()
 	viewmodel.name = 'ActorViewModel'
 	viewmodel.model = $'../Model'
 	viewmodel.hidden_bones = fp_hidden_bones
 	viewmodel.follow_camera_bone_id = shoulders_id
 	viewmodel.follow_camera_offset = fp_offset
 	
-	owner.add_child(viewmodel)
-	viewmodel.owner = owner
+	owner.call_deferred('add_child', viewmodel)
+	viewmodel.call_deferred('set_owner', owner)
 
 
 func _init_viewport():
 	
+	var render_width = owner.get_viewport().size.x
+	var render_height = owner.get_viewport().size.y
+	var window_width = ProjectSettings.get_setting('display/window/size/width')
+	var window_height = ProjectSettings.get_setting('display/window/size/height')
+	var render_scale = ProjectSettings.get_setting('rendering/quality/filters/render_scale')
+	
 	if Meta.player_count > 2:
-
-		var width = get_tree().root.size.x / 2
-		var height = get_tree().root.size.y / 2
-
+		
 		if owner.player_index in [0, 2]:
 			ui.rect_position.x = 0
 			rect_position.x = 0
 		else:
-			ui.rect_position.x = 1024 / 2
-			rect_position.x = 1024 / 2
+			ui.rect_position.x = window_width / 2
+			rect_position.x = window_width / 2
 
 		if owner.player_index in [0, 1]:
 			ui.rect_position.y = 0
 			rect_position.y = 0
 		else:
-			ui.rect_position.y = 600 / 2
-			rect_position.y = 600 / 2
-
-#		ui.rect_size.y = height
-#		ui.rect_size.x = width
-#		ui.get_node('Viewport').size.y = height
-#		ui.get_node('Viewport').size.x = width
-		ui.get_node('Viewport/Control').rect_size.x = 1024 / 2
-		ui.get_node('Viewport/Control').rect_size.y = 600 / 2
-		rect_size.x = 1024 / 2
-		rect_size.y = 600 / 2
-		viewport.size.x = owner.get_viewport().size.x / 2
-		viewport.size.y = owner.get_viewport().size.y / 2
+			ui.rect_position.y = window_height / 2
+			rect_position.y = window_height / 2
+		
+		ui.get_node('Viewport/Control').rect_size.x =  window_width / 2
+		ui.get_node('Viewport/Control').rect_size.y = window_height / 2
+		rect_size.x = window_width / 2
+		rect_size.y = window_height / 2
+		viewport.size.x = render_width / 2
+		viewport.size.y = render_height / 2
+		viewport.size *= render_scale
 
 	else:
-
-		var width = get_tree().root.size.x
-		var height = get_tree().root.size.y / 2
-
+		
 		if owner.player_index == 0:
 			ui.rect_position.y = 0
 			rect_position.y = 0
 		else:
-			ui.rect_position.y = 600 / 2
-			rect_position.y = 600 / 2
+			ui.rect_position.y = window_height / 2
+			rect_position.y = window_height / 2
 
-#		ui.rect_size.x = owner.get_viewport().size.x
-#		ui.rect_size.y = owner.get_viewport().size.y
-#		ui.get_node('Viewport').size.x = width
-#		ui.get_node('Viewport').size.y = height
-		ui.get_node('Viewport/Control').rect_size.x = 1024
-		ui.get_node('Viewport/Control').rect_size.y = 600 / 2
-		rect_size.x = 1024
-		rect_size.y = 600 / 2
-#		ui.rect_size.y = height
-#		ui.get_node('Viewport').size.y = height
-#		ui.get_node('Viewport/Control').rect_size.y = height
-#		rect_size.y = height
-		viewport.size.x = owner.get_viewport().size.x
-		viewport.size.y = owner.get_viewport().size.y / 2
-	
-	
-#	$Container/Viewport.world = get_tree().root.world
-#	$Container/Viewport.size = get_tree().root.size
+		ui.get_node('Viewport/Control').rect_size.x = window_width
+		ui.get_node('Viewport/Control').rect_size.y = window_height / 2
+		rect_size.x = window_width
+		rect_size.y = window_height / 2
+		viewport.size.x = render_width
+		viewport.size.y = render_height / 2
+		viewport.size *= render_scale
 	
 	
 #	for child in owner.get_children():
@@ -163,9 +151,10 @@ func _init_viewport():
 
 func _ready():
 	
+	_init_fp_skeleton()
+	
 	yield(get_tree(), 'idle_frame')
 	
-	_init_fp_skeleton()
 	_init_viewport()
 	
 	get_tree().root.connect('size_changed', self, '_init_viewport')

@@ -1267,3 +1267,4 @@ threads/thread_model=2
 limits/rendering/max_lights_per_object=50
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false
+quality/filters/render_scale=1.0

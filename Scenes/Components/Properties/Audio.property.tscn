@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Audio.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 
-[node name="Audio" type="Node"]
+[node name="Audio" type="Spatial"]
 script = ExtResource( 2 )
 bus = "SFX"
 

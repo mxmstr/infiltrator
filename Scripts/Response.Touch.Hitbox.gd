@@ -1,8 +1,16 @@
 extends 'res://Scripts/Response.gd'
 
-onready var owner_righthand = owner.owner.get_node_or_null('RightHandContainer')
+var owner_righthand
+
 onready var reception = get_node_or_null('../Reception')
 onready var audio = get_node_or_null('../Audio')
+
+
+func _ready():
+	
+	yield(get_tree(), 'idle_frame')
+	
+	owner_righthand = owner.owner.get_node_or_null('RightHandContainer')
 
 
 func _on_stimulate(stim, data):
@@ -22,6 +30,7 @@ func _on_stimulate(stim, data):
 			
 			Meta.StimulateActor(owner.owner, 'Damage', data.source, damage, data.position, direction)
 			Meta.StimulateActor(owner.owner, 'Push', data.source, force, data.position, direction)
+			
 			audio._start_state('Damage')
 			
 			var blood = Meta.AddActor('Particles/BloodSquirt', data.source.translation, data.source.rotation)

@@ -14,6 +14,8 @@ var reception
 var item_position_offset
 var item_rotation_offset
 
+onready var actors = $'/root/Mission/Actors'
+
 
 func _is_container(node):
 	
@@ -89,6 +91,8 @@ func _get_item_rotation_offset(item):
 
 func _move_item():
 	
+	return
+	
 	if is_queued_for_deletion() or _is_invalid():
 		return
 	
@@ -132,14 +136,26 @@ func _ready():
 	
 	_disable_collision()
 	
+	yield(get_tree(), 'idle_frame')
+	
 	item_position_offset = _get_item_position_offset(to_node)
 	item_rotation_offset = _get_item_rotation_offset(to_node)
 	
-	root = Spatial.new()
-	container_node.root.add_child(root)
-	root.translation = item_position_offset
-	root.rotation = item_rotation_offset
+	to_node.get_parent().remove_child(to_node)
+	container_node.root.add_child(to_node)
+	to_node.translation = item_position_offset
+	to_node.rotation = item_rotation_offset
 	
+#	root = Spatial.new()
+#	container_node.root.add_child(root)
+#	root.translation = item_position_offset
+#	root.rotation = item_rotation_offset
+	
+	
+#	to_node.get_parent().call_deferred('remove_child', to_node)
+#	root.call_deferred('add_child', to_node)
+#	to_node.call_deferred('set_translation', Vector3())
+#	to_node.call_deferred('set_rotation', Vector3())
 
 
 func _process(delta):
@@ -150,13 +166,13 @@ func _process(delta):
 	if not container_node._has_item(to_node):
 		queue_free()
 	
-	if not human:
-		_move_item()
+#	if not human:
+#		_move_item()
 
 
 func _disable_collision():
 	
-	to_node.visible = not container_node.invisible
+#	to_node.visible = not container_node.invisible
 	
 	if collision:
 		collision.disabled = true
@@ -201,6 +217,8 @@ func _restore_collision():
 
 func _destroy():
 	
+	prints('asdf', to_node)
+	
 	if container_node and is_instance_valid(container_node):
 		
 		container_node._remove_item(to_node)
@@ -213,5 +231,10 @@ func _destroy():
 	
 	if root and is_instance_valid(root):
 		root.queue_free()
+	
+	if is_instance_valid(to_node):
+		
+		container_node.root.call_deferred('remove_child', to_node)
+		actors.call_deferred('add_child', to_node)
 	
 	._destroy()

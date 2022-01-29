@@ -38,6 +38,7 @@ radius = 0.1
 [node name="Bullet2" instance=ExtResource( 1 )]
 collision_layer = 8
 collision_mask = 17
+monitorable = false
 tags = "Actor Bullet 9mm Damage:0 Force:0"
 
 [node name="Particles" type="Particles" parent="." index="0"]

@@ -350,77 +350,119 @@ func AddWayPoint(position):
 	waypoint.global_transform.origin = position
 
 
-func GetActorLinearVelocity(actor):
-	
-	return actor.get_node('Movement').velocity if actor.has_node('Movement') else Vector3()
-
-
 func GetLinks(from, to, type, data={}):
 	
-	if from != null:
+	if from:
 		data.from_node = from
 	
-	if to != null:
+	if to:
 		data.to_node = to
 	
-	return LinkHub._get_links(type, data)
+	var links = []
+	
+	for link in $'/root/Mission/Links'.get_children():
+		
+		if not type == link.base_name:
+			continue
+		
+		var props_match = true
+		
+		for prop in data:
+			
+			if link.get(prop) != data[prop]:
+				props_match = false
+				break
+		
+		if not props_match:
+			continue
+		
+		links.append(link)
+	
+	return links
 
 
 func CreateLink(from, to, type, data={}):
 	
-	if not from or not is_instance_valid(from) or not to or not is_instance_valid(to):
-		return
+	data.from_node = from
+	data.to_node = to
 	
-	data.from = from.get_path()
-	data.to = to.get_path()
+	var new_link = preloader.get_resource('res://Scenes/Links/' + type + '.link.tscn').instance()
 	
-	return LinkHub._create(type, data)
+	for prop in data:
+		new_link.set(prop, data[prop])
+	
+	for link in $'/root/Mission/Links'.get_children():
+		if is_instance_valid(link) and link._equals(new_link):
+			return
+	
+	$'/root/Mission/Links'.add_child(new_link)
+	
+	return new_link
 
 
 func DestroyLink(from, to, type, data={}):
 	
-	if from and is_instance_valid(from):
-		data.from = from.get_path()
-	elif from and not is_instance_valid(from):
+	if from:
 		data.from_node = from
 	
-	if to and is_instance_valid(to):
-		data.to = to.get_path()
-	elif to and not is_instance_valid(to):
+	if to:
 		data.to_node = to
 	
-	return LinkHub._destroy(type, data)
+	var freed = []
+	
+	for link in $'/root/Mission/Links'.get_children():
+		
+		if not type in link.name:
+			continue
+		
+		var props_match = true
+		
+		for prop in data:
+			
+			if link.get(prop) != data[prop]:
+				props_match = false
+				break
+		
+		if not props_match:
+			continue
+		
+		link._destroy()
+		
+		if not link.to_node in freed:
+			freed.append(link.to_node)
+	
+	return freed
 
 
 func StimulateActor(actor, stim, source=self, intensity=0.0, position=Vector3(), direction=Vector3()):
 	
 	if not is_instance_valid(actor) or not is_instance_valid(source):
 		return
+#
+#	if actor.has_node('Reception'):
+#
+	var data
 	
-	if actor.has_node('Reception'):
+	if source.get('tags') and source._has_tag('Shooter'):
 		
-		var data
+		data = {
+			'source': source,
+			'shooter': source._get_tag('Shooter'),
+			'position': position,
+			'direction': direction,
+			'intensity': intensity
+			}
+	
+	else:
 		
-		if source.get('tags') and source._has_tag('Shooter'):
-			
-			data = {
-				'source': source,
-				'shooter': source._get_tag('Shooter'),
-				'position': position,
-				'direction': direction,
-				'intensity': intensity
-				}
-		
-		else:
-			
-			data = {
-				'source': source,
-				'position': position,
-				'direction': direction,
-				'intensity': intensity
-				}
-		
-		actor.get_node('Reception')._start_state(stim, data)
+		data = {
+			'source': source,
+			'position': position,
+			'direction': direction,
+			'intensity': intensity
+			}
+	
+	actor.get_node('Reception')._start_state(stim, data)
 
 
 func CreateEvent(actor, event_name):

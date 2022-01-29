@@ -234,9 +234,12 @@ func _process(delta):
 			dot.position = radar.rect_global_position + dot_position
 	
 	
+	var window_width = ProjectSettings.get_setting('display/window/size/width')
+	var window_height = ProjectSettings.get_setting('display/window/size/height')
+	var render_scale = ProjectSettings.get_setting('rendering/quality/filters/render_scale')
 	var camera_position = camera.unproject_position(camera_raycast_target.global_transform.origin)
-	var viewport_size = owner.get_viewport().size
-	camera_position.x *= (1024 / viewport_size.x)
-	camera_position.y *= (600 / viewport_size.y)
+	var viewport_size = owner.get_viewport().size * render_scale
+	camera_position.x *= (window_width / viewport_size.x)
+	camera_position.y *= (window_height / viewport_size.y)
 	
 	crosshair.rect_position = camera_position - crosshair.rect_pivot_offset

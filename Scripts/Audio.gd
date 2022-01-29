@@ -1,4 +1,4 @@
-extends Node
+extends Spatial
 
 export var default_state = 'Default'
 export(String) var bus
@@ -65,5 +65,7 @@ func _ready():
 
 
 func _process(delta):
-
+	
+	return
+	
 	audio_stream.global_transform.origin = owner.global_transform.origin

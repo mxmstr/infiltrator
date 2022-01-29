@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Mission.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Markers/PickupMarker.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Actors/Items/Bullet9mm.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Links/PVPPlayerFactory.link.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Markers/Waypoint2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Links/PVPPickupFactory.link.tscn" type="PackedScene" id=11]
@@ -18,9 +17,6 @@ __meta__ = {
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Bullet9mm" parent="Actors" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.505, 1.45195, -5.08017 )
 
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {

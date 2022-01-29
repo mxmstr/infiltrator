@@ -74,9 +74,9 @@ func _refresh_spawn(marker):
 	for file in Meta._get_files_recursive('res://Scenes/Links/Factories/', 'Factory', '.link.tscn', [node_name]):
 		
 		var new_link = Meta.preloader.get_resource(file).instance()
-		$'/root/Mission/Links'.add_child(new_link)
-		
 		new_link.connect('finished', self, '_on_factory_finished', [new_link, marker])
+		
+		$'/root/Mission/Links'.call_deferred('add_child', new_link)
 
 
 func _enter_tree():
