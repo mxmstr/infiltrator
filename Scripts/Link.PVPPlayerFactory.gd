@@ -34,7 +34,7 @@ func _on_player_died(player, data):
 		var shooter = data.shooter
 		var shooter_team = 0
 		
-		if shooter == player:
+		if not shooter or shooter == player:
 			return
 		
 		if shooter._has_tag('Team'):

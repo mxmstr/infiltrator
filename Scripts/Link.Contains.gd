@@ -217,8 +217,6 @@ func _restore_collision():
 
 func _destroy():
 	
-	prints('asdf', to_node)
-	
 	if container_node and is_instance_valid(container_node):
 		
 		container_node._remove_item(to_node)
@@ -234,7 +232,12 @@ func _destroy():
 	
 	if is_instance_valid(to_node):
 		
-		container_node.root.call_deferred('remove_child', to_node)
-		actors.call_deferred('add_child', to_node)
+		var to_node_transform = to_node.global_transform
+		
+		container_node.root.remove_child(to_node)
+		actors.add_child(to_node)
+		
+		if movement:
+			movement._teleport(to_node_transform.origin, to_node_transform.basis)
 	
 	._destroy()

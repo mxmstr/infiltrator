@@ -140,7 +140,7 @@ func _ready():
 	
 #	if auto_aim:
 	
-	for actor in $'/root/Mission/Actors'.get_children():
+	for actor in $'/root/Mission'.actors:
 		
 		if actor != owner and actor.get('tags') and actor._has_tag('Team'):
 			

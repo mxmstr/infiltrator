@@ -62,10 +62,3 @@ func _ready():
 	audio_stream.bus = bus
 	
 	emit_signal('action', default_state, {})
-
-
-func _process(delta):
-	
-	return
-	
-	audio_stream.global_transform.origin = owner.global_transform.origin

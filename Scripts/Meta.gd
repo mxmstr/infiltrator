@@ -75,6 +75,8 @@ var rawinput = false
 var threads = []
 var cached_args = []
 
+var actors
+
 signal on_input
 
 
@@ -314,10 +316,13 @@ func LoadSchema(schema, owner_tags):
 
 func AddActor(actor_path, position=null, rotation=null, direction=null, tags={}):
 	
+	if not actors:
+		actors = get_node_or_null('/root/Mission/Actors')
+	
 	var new_actor = preloader.get_resource('res://Scenes/Actors/' + actor_path + '.tscn').instance()
 	
 	_merge_dir(new_actor.tags_dict, tags)
-	$'/root/Mission/Actors'.add_child(new_actor)
+	actors.add_child(new_actor)
 	
 	if position:
 		new_actor.transform.origin = position
@@ -392,7 +397,7 @@ func CreateLink(from, to, type, data={}):
 		new_link.set(prop, data[prop])
 	
 	for link in $'/root/Mission/Links'.get_children():
-		if is_instance_valid(link) and link._equals(new_link):
+		if is_instance_valid(link) and not link.is_queued_for_deletion() and link._equals(new_link):
 			return
 	
 	$'/root/Mission/Links'.add_child(new_link)
@@ -418,7 +423,6 @@ func DestroyLink(from, to, type, data={}):
 		var props_match = true
 		
 		for prop in data:
-			
 			if link.get(prop) != data[prop]:
 				props_match = false
 				break
@@ -443,20 +447,11 @@ func StimulateActor(actor, stim, source=self, intensity=0.0, position=Vector3(),
 #
 	var data
 	
-	if source.get('tags') and source._has_tag('Shooter'):
+	if source.get('tags'):
 		
 		data = {
 			'source': source,
-			'shooter': source._get_tag('Shooter'),
-			'position': position,
-			'direction': direction,
-			'intensity': intensity
-			}
-	
-	else:
-		
-		data = {
-			'source': source,
+			'shooter': source._get_tag('Shooter') if source._has_tag('Shooter') else null,
 			'position': position,
 			'direction': direction,
 			'intensity': intensity

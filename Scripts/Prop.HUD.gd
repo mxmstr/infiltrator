@@ -167,7 +167,7 @@ func _ready():
 		var my_team = int(owner.owner._get_tag('Team'))
 		radar.modulate = Meta.TeamColors[my_team]
 		
-		for actor in $'/root/Mission/Actors'.get_children():
+		for actor in $'/root/Mission'.actors.get_children():
 			
 			if actor != owner.owner and actor.get('tags') and actor._has_tag('Human'):
 				

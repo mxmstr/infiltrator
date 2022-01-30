@@ -15,7 +15,7 @@ var required_tags_dict = {}
 var colliders = []
 var shooter
 
-onready var actors = get_node_or_null('/root/Mission/Actors')
+onready var mission = get_node_or_null('/root/Mission')
 onready var collision = get_node_or_null('../Collision')
 onready var movement = get_node_or_null('../Movement')
 
@@ -66,7 +66,7 @@ func _physics_process(delta):
 	var new_colliders = []
 	var collide_actors = []
 	
-	for actor in actors.get_children() if actors else []:
+	for actor in mission.actors:
 		
 		var exceptions = owner.get_collision_exceptions() if collision else []
 		
