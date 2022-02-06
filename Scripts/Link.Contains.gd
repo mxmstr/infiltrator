@@ -172,7 +172,7 @@ func _process(delta):
 
 func _disable_collision():
 	
-#	to_node.visible = not container_node.invisible
+	to_node.visible = not container_node.invisible
 	
 	if collision:
 		collision.disabled = true

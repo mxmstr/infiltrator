@@ -88,7 +88,7 @@ func _ready():
 #	yield(get_tree(), 'idle_frame')
 	
 	if owner.has_node('Hitboxes'):
-		for hitbox in owner.get_node('Hitboxes').get_children():
+		for hitbox in owner.get_node('Hitboxes').hitboxes:
 			add_exception(hitbox)
 	
 	

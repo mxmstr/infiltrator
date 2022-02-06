@@ -1,9 +1,12 @@
 extends Node
 
 export(String) var stim_type
+export var stim_intensity = 0.0
+export var one_shot = false
 export var continuous = false
-export var max_distance = 0.0
+export var raycast = false
 
+var active = true
 var collisions = []
 
 onready var collision = get_node_or_null('../Collision')
@@ -15,9 +18,22 @@ func _ready():
 	pass
 
 
+#func _test_raycast():
+#
+#	var space_state = owner.get_world().direct_space_state
+#	var 
+#
+#	var result = space_state.intersect_ray(
+#		collision.global_transform.origin, target_pos, [owner], owner.collision_mask
+#		)
+#
+#
+#	return
+
+
 func _physics_process(delta):
 	
-	if not collision or collision.disabled:
+	if not active or owner.is_queued_for_deletion() or (collision and collision.disabled):
 		return
 	
 	
@@ -31,18 +47,13 @@ func _physics_process(delta):
 	
 	for collision_ in movement._get_collisions():
 		
-		
-		if 'AmmoBox' in owner.name:
-			prints(collision_.collider)
-		
-		
 		if continuous or not collision_.collider in colliders:
 			
 			Meta.StimulateActor(
 				collision_.collider,
 				stim_type,
 				owner,
-				movement._get_speed() * -1,
+				movement._get_speed() * -1 if stim_intensity == 0 else stim_intensity,
 				collision_.position,
 				collision_.normal * -1
 				)
@@ -50,3 +61,6 @@ func _physics_process(delta):
 		new_collisions.append(collision_)
 	
 	collisions = new_collisions
+	
+	if one_shot:
+		active = false

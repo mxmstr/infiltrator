@@ -5,6 +5,11 @@ const radar_margin = 0.9
 
 export(NodePath) var viewport
 
+var window_width
+var window_height
+var render_scale
+var viewport_size
+var viewport_size_scaled
 var radar_dots = []
 var radar_pickups = []
 var radius_x
@@ -152,6 +157,12 @@ func _notification(what):
 
 func _ready():
 	
+	window_width = ProjectSettings.get_setting('display/window/size/width')
+	window_height = ProjectSettings.get_setting('display/window/size/height')
+	render_scale = ProjectSettings.get_setting('rendering/quality/filters/render_scale')
+	viewport_size = owner.get_viewport().size * render_scale
+	viewport_size_scaled = Vector2(window_width, window_height) / viewport_size
+	
 	stamina.connect('damaged', self, '_on_damaged')
 	health.value = stamina.hp
 	
@@ -188,7 +199,7 @@ func _ready():
 	
 	righthand.connect('item_added', self, '_on_item_added')
 	righthand.connect('item_removed', self, '_on_item_removed')
-	
+
 	_refresh_ammo()
 
 
@@ -234,12 +245,8 @@ func _process(delta):
 			dot.position = radar.rect_global_position + dot_position
 	
 	
-	var window_width = ProjectSettings.get_setting('display/window/size/width')
-	var window_height = ProjectSettings.get_setting('display/window/size/height')
-	var render_scale = ProjectSettings.get_setting('rendering/quality/filters/render_scale')
-	var camera_position = camera.unproject_position(camera_raycast_target.global_transform.origin)
-	var viewport_size = owner.get_viewport().size * render_scale
-	camera_position.x *= (window_width / viewport_size.x)
-	camera_position.y *= (window_height / viewport_size.y)
 	
+	var camera_position = camera.unproject_position(camera_raycast_target.global_transform.origin)
+	camera_position *= viewport_size_scaled
+
 	crosshair.rect_position = camera_position - crosshair.rect_pivot_offset

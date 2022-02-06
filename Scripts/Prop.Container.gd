@@ -164,7 +164,7 @@ func _exclude_recursive(item, parent):
 			item.add_collision_exception_with(parent)
 			
 			if parent.has_node('Hitboxes'):
-				for hitbox in parent.get_node('Hitboxes').get_children():
+				for hitbox in parent.get_node('Hitboxes').hitboxes:
 					item.add_collision_exception_with(hitbox)
 		
 		if item is Area:
@@ -172,7 +172,7 @@ func _exclude_recursive(item, parent):
 			item.get_node('Movement').collision_exceptions.append(parent)
 			
 			if parent.has_node('Hitboxes'):
-				for hitbox in parent.get_node('Hitboxes').get_children():
+				for hitbox in parent.get_node('Hitboxes').hitboxes:
 					item.get_node('Movement').collision_exceptions.append(hitbox)
 	
 	
@@ -197,7 +197,7 @@ func _remove_exclusions(item, parent_list):
 			item.remove_collision_exception_with(parent)
 			
 			if parent.has_node('Hitboxes'):
-				for hitbox in parent.get_node('Hitboxes').get_children():
+				for hitbox in parent.get_node('Hitboxes').hitboxes:
 					item.remove_collision_exception_with(hitbox)
 		
 		if item is Area:
@@ -205,7 +205,7 @@ func _remove_exclusions(item, parent_list):
 			item.get_node('Movement').collision_exceptions.erase(parent)
 			
 			if parent.has_node('Hitboxes'):
-				for hitbox in parent.get_node('Hitboxes').get_children():
+				for hitbox in parent.get_node('Hitboxes').hitboxes:
 					item.get_node('Movement').collision_exceptions.erase(hitbox)
 
 

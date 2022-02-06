@@ -98,7 +98,7 @@ func _physics_process(delta):
 		
 		elif use_hitbox and actor.has_node('Hitboxes'):
 			
-			for hitbox in actor.get_node('Hitboxes').get_children():
+			for hitbox in actor.get_node('Hitboxes').hitboxes:
 				
 				if _validate_within_radius(hitbox):
 					

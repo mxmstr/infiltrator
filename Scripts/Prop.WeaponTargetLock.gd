@@ -1,5 +1,7 @@
 extends RayCast
 
+const shoulder_bone_name = 'shoulders'
+
 var model
 var camera
 var camera_raycast
@@ -113,7 +115,7 @@ func _select_target():
 	
 	if closest_enemy:
 		targeted_enemy = closest_enemy
-		targeted_enemy_bone = targeted_enemy.get_node('Hitboxes').find_node('Shoulders')
+		targeted_enemy_bone = targeted_enemy.get_node('Hitboxes')._get_bone(shoulder_bone_name)
 	else:
 		targeted_enemy = null
 		targeted_enemy_bone = null
@@ -136,7 +138,7 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	shoulder_bone = owner.get_node('Hitboxes').find_node('Shoulders')
+	shoulder_bone = owner.get_node('Hitboxes')._get_bone(shoulder_bone_name)
 	
 #	if auto_aim:
 	
@@ -166,46 +168,49 @@ func _process(delta):
 	else:
 		
 		if auto_aim and equipped and targeted_enemy:
-			
+
 			if not is_instance_valid(targeted_enemy) or \
 				targeted_enemy.get_node('Stamina').hp == 0:
 				_select_target()
 				return
-			
+
 			if camera_raycast.get_collider() and camera_raycast.get_collider().owner in enemies:
-				
+
 				camera_raycast.move_target = true
 				targeted_enemy = camera_raycast.get_collider().owner
-				targeted_enemy_bone = targeted_enemy.get_node('Hitboxes').find_node('Shoulders')
-			
+				targeted_enemy_bone = targeted_enemy.get_node('Hitboxes')._get_bone(shoulder_bone_name)
+
 			else:
-				
+
 				var target_pos = targeted_enemy_bone.global_transform.origin
-				
+
 				global_transform.origin = shoulder_bone.global_transform.origin
-				
+
 				var space_state = get_world().direct_space_state
 				var result = space_state.intersect_ray(
 					shoulder_bone.global_transform.origin, target_pos, [owner], collision_mask
 					)
-				
+
 				if result:
 					camera_raycast.move_target = true
 					#model.rotation = Vector3(0, 0, 0)
-				
+
 				else:
-					
+
 					camera_raycast.move_target = false
 					camera_raycast_target.global_transform.origin = target_pos
-				
+
 		else:
-			
+
 			camera_raycast.move_target = true
 			#model.rotation = Vector3(0, 0, 0)
 		
 		
 		var target_pos = camera_raycast_target.global_transform.origin
-		target_pos.y = model.global_transform.origin.y
-		model.look_at(target_pos, Vector3.UP)
-		model.rotate_y(deg2rad(180))
+		var model_pos = model.global_transform.origin
+		target_pos.y = model_pos.y
+		
+		if target_pos != model_pos:
+			model.look_at(target_pos, Vector3.UP)
+			model.rotate_y(deg2rad(180))
 		

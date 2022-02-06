@@ -11,9 +11,9 @@ func _just_pressed(event, action):
 
 
 func _input(event):
-	
+
 	if _just_pressed(event, 'Respawn'):
-		
+
 		$'/root/Mission/Links/PVPPlayerFactory'._respawn(owner.owner)
 
 

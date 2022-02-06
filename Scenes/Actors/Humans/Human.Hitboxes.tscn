@@ -57,25 +57,6 @@ extents = Vector3( 0.0767665, 0.0481098, 0.156947 )
 [node name="Hitboxes" instance=ExtResource( 1 )]
 transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, 0, 0, 0 )
 
-[node name="Anderson_skeleton" parent="." index="0"]
-bones/0/bound_children = [ NodePath("Pelvis") ]
-bones/1/bound_children = [ NodePath("Torso") ]
-bones/2/bound_children = [ NodePath("Neck") ]
-bones/3/bound_children = [ NodePath("Head") ]
-bones/4/bound_children = [ NodePath("Shoulders") ]
-bones/13/bound_children = [ NodePath("UpArm-R") ]
-bones/14/bound_children = [ NodePath("LoArm-R") ]
-bones/15/bound_children = [ NodePath("Hand-R") ]
-bones/17/bound_children = [ NodePath("UpArm-L") ]
-bones/18/bound_children = [ NodePath("LoArm-L") ]
-bones/19/bound_children = [ NodePath("Hand-L") ]
-bones/20/bound_children = [ NodePath("UpLeg-R") ]
-bones/21/bound_children = [ NodePath("LoLeg-R") ]
-bones/22/bound_children = [ NodePath("Foot-R") ]
-bones/24/bound_children = [ NodePath("UpLeg-L") ]
-bones/25/bound_children = [ NodePath("LoLeg-L") ]
-bones/26/bound_children = [ NodePath("Foot-L") ]
-
 [node name="Pelvis" type="BoneAttachment" parent="Anderson_skeleton" index="1"]
 transform = Transform( -1, -1.50996e-07, 3.2592e-07, 1.50996e-07, -1, 0, 3.2592e-07, 4.92125e-14, 1, 2.7e-05, 0.949737, 0.004803 )
 bone_name = "Pelvis"

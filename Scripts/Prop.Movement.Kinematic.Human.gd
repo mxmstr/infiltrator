@@ -137,6 +137,7 @@ func _apply_rotation(delta):
 	
 	
 	if rotate_x_camera:
+		pass
 		camera_rig._rotate_camera(angular_velocity.y, angular_velocity.x)
 	else:
 		owner.rotation.y += angular_velocity.x

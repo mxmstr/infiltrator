@@ -6,7 +6,7 @@ var config
 
 var characters = {
 	'Mr. Anderson': {
-		'scene': 'Humans/Players/Anderson2'
+		'scene': 'Humans/Players/Anderson'
 		},
 	'Neo': {
 		'scene': 'Humans/Players/Neo'

@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Scenes/Actors/Area.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Textures/particle.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Components/Stimuli/Contact.Area.stimulus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/Responses/Touch.Bullet.response2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Stimuli/SpaceStateRaycast.stimulus.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
@@ -53,9 +53,9 @@ draw_pass_1 = SubResource( 14 )
 [node name="Collision" type="CollisionShape" parent="." index="1"]
 shape = SubResource( 6 )
 
-[node name="ContactStim" parent="." index="2" instance=ExtResource( 3 )]
+[node name="SpaceStateRaycastStim" parent="." index="2" instance=ExtResource( 5 )]
 stim_type = "Touch"
-raycast = true
+length = 0.2
 
 [node name="TouchResponse" parent="." index="3" instance=ExtResource( 4 )]
 tree_node = NodePath("../Reception")

@@ -316,13 +316,13 @@ func LoadSchema(schema, owner_tags):
 
 func AddActor(actor_path, position=null, rotation=null, direction=null, tags={}):
 	
-	if not actors:
-		actors = get_node_or_null('/root/Mission/Actors')
+#	if not actors:
+#		actors = get_node_or_null('/root/Mission/Actors')
 	
 	var new_actor = preloader.get_resource('res://Scenes/Actors/' + actor_path + '.tscn').instance()
 	
 	_merge_dir(new_actor.tags_dict, tags)
-	actors.add_child(new_actor)
+	$'/root/Mission/Actors'.add_child(new_actor)
 	
 	if position:
 		new_actor.transform.origin = position

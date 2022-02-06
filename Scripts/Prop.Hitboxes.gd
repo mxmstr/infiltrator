@@ -4,6 +4,7 @@ export(PackedScene) var source
 
 var bone_attachments = []
 var hitboxes = []
+var bone_to_hitbox = {}
 
 onready var skeleton = get_node('../Model').get_child(0)
 
@@ -38,8 +39,14 @@ func _add_children():
 				new_hitbox.set_owner(owner)
 				
 				hitboxes.append(new_hitbox)
+				bone_to_hitbox[new_bone.bone_name] = new_hitbox
 			
 			bone_attachments.append(new_bone)
+
+
+func _get_bone(bone_name):
+	
+	return bone_to_hitbox[bone_name]
 
 
 func _ready():

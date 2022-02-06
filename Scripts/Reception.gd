@@ -11,7 +11,7 @@ signal tree_root_state_started
 
 func _on_tree_root_pre_process():
 	
-	if data.has('source') and not weakref(data.source).get_ref():
+	if data.has('source') and not is_instance_valid(data.source):
 		_next_stim()
 
 

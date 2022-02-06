@@ -28,6 +28,9 @@ func _enter_tree():
 
 func _process(delta):
 	
+	if limit == 0:
+		return
+	
 	for actor in actors:
 		if not actor._has_tag('Human') and actor.translation.length() > limit:
 			actor.queue_free()
