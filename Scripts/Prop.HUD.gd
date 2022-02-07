@@ -22,17 +22,25 @@ onready var radar_ammo = preload('res://Scenes/UI/HUD.RadarAmmo.tscn')
 
 onready var crosshair = get_node('Crosshair')
 onready var ammo = get_node('Ammo')
-onready var health = get_node('Health/ProgressBar')
+onready var bullet_time_bar = find_node('BulletTime')
+onready var health_bar = find_node('Health')
+
 onready var righthand = owner.get_node('../RightHandContainer')
+onready var bullet_time = owner.get_node('../BulletTime')
 onready var stamina = owner.get_node('../Stamina')
 onready var camera = owner.get_node('../CameraRig/Camera')
 onready var camera_raycast_target = owner.get_node('../CameraRaycastStim/Target')
 onready var pickup_factory = $'/root/Mission/Links/PVPPickupFactory'
 
 
+func _on_bullet_time_changed(amount):
+	
+	bullet_time_bar.value = int(amount)
+
+
 func _on_damaged(hp):
 	
-	health.value = hp
+	health_bar.value = hp
 
 
 func _on_ammo_added(container, item):
@@ -163,8 +171,9 @@ func _ready():
 	viewport_size = owner.get_viewport().size * render_scale
 	viewport_size_scaled = Vector2(window_width, window_height) / viewport_size
 	
+	bullet_time.connect('amount_changed', self, '_on_bullet_time_changed')
 	stamina.connect('damaged', self, '_on_damaged')
-	health.value = stamina.hp
+	health_bar.value = stamina.hp
 	
 	yield(get_tree(), 'idle_frame')
 	

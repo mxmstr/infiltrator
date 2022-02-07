@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Humans/Anderson/Anderson.escn" type="PackedScene" id=2]
@@ -6,8 +6,13 @@
 [ext_resource path="res://Scenes/Components/Properties/Outline.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Prop.Stamina.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Actor.gd" type="Script" id=8]
 
 [node name="Anderson" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 8 )
 tags = "Actor Human Male Team:0 Skeleton:Default"
 
 [node name="Model" parent="." index="1" instance=ExtResource( 2 )]
@@ -19,6 +24,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941735, 0 )
 
 [node name="Hitboxes" parent="." index="4" instance=ExtResource( 5 )]
 source = ExtResource( 6 )
+
+[node name="Stamina" parent="." index="29"]
+script = ExtResource( 7 )
 
 [node name="RightHandContainer" parent="." index="33"]
 path = NodePath("../Model/Anderson_skeleton")

@@ -1,8 +1,8 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scenes/Actors/KinematicBody.Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Properties/CameraRig.property.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/Prop.Stamina.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Components/Properties/Stamina.property.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/Properties/Stance.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Properties/ClimbingSkill.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=6]
@@ -31,6 +31,7 @@
 [ext_resource path="res://Scenes/Components/Properties/UI.property.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Scenes/Components/Actions/Victory.action2.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scenes/Components/Actions/SwordMelee.action2.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Scenes/Components/Properties/BulletTime.property.tscn" type="PackedScene" id=32]
 
 [node name="Human" instance=ExtResource( 1 )]
 tags = "Actor Human"
@@ -38,233 +39,234 @@ tags = "Actor Human"
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="." index="0"]
 aabb = AABB( -0.119958, 0.162489, -0.0613593, 0.231916, 1.58002, 0.114907 )
 
-[node name="Stamina" type="Node" parent="." index="1"]
-script = ExtResource( 3 )
+[node name="BulletTime" parent="." index="1" instance=ExtResource( 32 )]
 
-[node name="Stance" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Stamina" parent="." index="2" instance=ExtResource( 3 )]
 
-[node name="ClimbingSkill" parent="." index="3" instance=ExtResource( 5 )]
+[node name="Stance" parent="." index="3" instance=ExtResource( 4 )]
 
-[node name="CameraRig" parent="." index="4" instance=ExtResource( 2 )]
+[node name="ClimbingSkill" parent="." index="4" instance=ExtResource( 5 )]
+
+[node name="CameraRig" parent="." index="5" instance=ExtResource( 2 )]
 viewport = NodePath("../Perspective/Viewport2D")
 camera_offset = Vector3( 0, 0, -0.3 )
 
 [node name="Camera" parent="CameraRig" index="0"]
 fov = 80.0
 
-[node name="RightHandContainer" parent="." index="5" instance=ExtResource( 6 )]
+[node name="RightHandContainer" parent="." index="6" instance=ExtResource( 6 )]
 release_exclude_parent = true
 release_exclude_parent_lifetime = 2.0
 
-[node name="RightPunchContainer" parent="." index="6" instance=ExtResource( 6 )]
+[node name="RightPunchContainer" parent="." index="7" instance=ExtResource( 6 )]
 factory_mode = true
 release_direction = Vector3( 0, 0, 0 )
 release_lifetime = 0.1
 release_exclude_parent = true
 required_tags = "Punch"
 
-[node name="LeftPunchContainer" parent="." index="7" instance=ExtResource( 6 )]
+[node name="LeftPunchContainer" parent="." index="8" instance=ExtResource( 6 )]
 factory_mode = true
 release_direction = Vector3( 0, 0, 0 )
 release_lifetime = 0.1
 release_exclude_parent = true
 required_tags = "Punch"
 
-[node name="RightKickContainer" parent="." index="8" instance=ExtResource( 6 )]
+[node name="RightKickContainer" parent="." index="9" instance=ExtResource( 6 )]
 factory_mode = true
 release_direction = Vector3( 0, 0, 0 )
 release_lifetime = 0.1
 release_exclude_parent = true
 required_tags = "Punch"
 
-[node name="LeftKickContainer" parent="." index="9" instance=ExtResource( 6 )]
+[node name="LeftKickContainer" parent="." index="10" instance=ExtResource( 6 )]
 factory_mode = true
 release_direction = Vector3( 0, 0, 0 )
 release_lifetime = 0.1
 release_exclude_parent = true
 required_tags = "Punch"
 
-[node name="InventoryContainer" parent="." index="10" instance=ExtResource( 6 )]
+[node name="InventoryContainer" parent="." index="11" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.45686 )
 release_exclude_parent = true
 release_exclude_parent_lifetime = 2.0
 invisible = true
 required_tags = "Item"
 
-[node name="Bullet9mmContainer" parent="." index="11" instance=ExtResource( 6 )]
+[node name="Bullet9mmContainer" parent="." index="12" instance=ExtResource( 6 )]
 factory_mode = true
 invisible = true
 required_tags = "Bullet 9mm"
 
-[node name="BulletRifleContainer" parent="." index="12" instance=ExtResource( 6 )]
+[node name="BulletRifleContainer" parent="." index="13" instance=ExtResource( 6 )]
 factory_mode = true
 invisible = true
 required_tags = "Bullet Rifle"
 
-[node name="BulletMagnumContainer" parent="." index="13" instance=ExtResource( 6 )]
+[node name="BulletMagnumContainer" parent="." index="14" instance=ExtResource( 6 )]
 factory_mode = true
 invisible = true
 required_tags = "Bullet Magnum"
 
-[node name="BulletShotgunContainer" parent="." index="14" instance=ExtResource( 6 )]
+[node name="BulletShotgunContainer" parent="." index="15" instance=ExtResource( 6 )]
 factory_mode = true
 invisible = true
 required_tags = "Bullet Shotgun"
 
-[node name="BulletSniperContainer" parent="." index="15" instance=ExtResource( 6 )]
+[node name="BulletSniperContainer" parent="." index="16" instance=ExtResource( 6 )]
 factory_mode = true
 invisible = true
 required_tags = "Bullet Sniper"
 
-[node name="GrenadeContainer" parent="." index="16" instance=ExtResource( 6 )]
+[node name="GrenadeContainer" parent="." index="17" instance=ExtResource( 6 )]
 factory_mode = true
 invisible = true
 required_tags = "Grenade"
 
-[node name="ImpactGrenadeContainer" parent="." index="17" instance=ExtResource( 6 )]
+[node name="ImpactGrenadeContainer" parent="." index="18" instance=ExtResource( 6 )]
 factory_mode = true
 invisible = true
 required_tags = "ImpactGrenade"
 
-[node name="ContactStim" parent="." index="18" instance=ExtResource( 7 )]
+[node name="ContactStim" parent="." index="19" instance=ExtResource( 7 )]
 stim_type = "Touch"
 
-[node name="AirborneStim" parent="." index="19" instance=ExtResource( 8 )]
+[node name="AirborneStim" parent="." index="20" instance=ExtResource( 8 )]
 delay = 2.0
 
-[node name="CameraRaycastStim" parent="." index="20" instance=ExtResource( 9 )]
+[node name="CameraRaycastStim" parent="." index="21" instance=ExtResource( 9 )]
 cast_to = Vector3( 0, 0, -50 )
 collision_mask = 17
 path = NodePath("../CameraRig/Camera")
 
-[node name="Perspective" parent="." index="21" instance=ExtResource( 10 )]
+[node name="Perspective" parent="." index="22" instance=ExtResource( 10 )]
 
-[node name="UI" parent="." index="22" instance=ExtResource( 29 )]
+[node name="UI" parent="." index="23" instance=ExtResource( 29 )]
 
-[node name="CameraMode" parent="." index="23" instance=ExtResource( 11 )]
+[node name="CameraMode" parent="." index="24" instance=ExtResource( 11 )]
 
-[node name="HUDMode" parent="." index="24" instance=ExtResource( 12 )]
+[node name="HUDMode" parent="." index="25" instance=ExtResource( 12 )]
 
-[node name="DefaultAction" parent="." index="25" instance=ExtResource( 13 )]
+[node name="DefaultAction" parent="." index="26" instance=ExtResource( 13 )]
 tree = NodePath("../Behavior")
 
-[node name="PrimaryAction" parent="." index="26" instance=ExtResource( 14 )]
+[node name="PrimaryAction" parent="." index="27" instance=ExtResource( 14 )]
 tree = NodePath("../Behavior")
 
-[node name="PunchAction" parent="." index="27" instance=ExtResource( 15 )]
+[node name="PunchAction" parent="." index="28" instance=ExtResource( 15 )]
 tree = NodePath("../Behavior")
 
-[node name="SwordMeleeAction" parent="." index="28" instance=ExtResource( 31 )]
+[node name="SwordMeleeAction" parent="." index="29" instance=ExtResource( 31 )]
 tree = NodePath("../Behavior")
 
-[node name="JumpUpAction" parent="." index="29" instance=ExtResource( 16 )]
+[node name="JumpUpAction" parent="." index="30" instance=ExtResource( 16 )]
 tree = NodePath("../Behavior")
 
-[node name="JumpBackwardAction" parent="." index="30" instance=ExtResource( 17 )]
+[node name="JumpBackwardAction" parent="." index="31" instance=ExtResource( 17 )]
 tree = NodePath("../Behavior")
 
-[node name="JumpLeftAction" parent="." index="31" instance=ExtResource( 18 )]
+[node name="JumpLeftAction" parent="." index="32" instance=ExtResource( 18 )]
 tree = NodePath("../Behavior")
 
-[node name="JumpRightAction" parent="." index="32" instance=ExtResource( 19 )]
+[node name="JumpRightAction" parent="." index="33" instance=ExtResource( 19 )]
 tree = NodePath("../Behavior")
 
-[node name="ReloadAction" parent="." index="33" instance=ExtResource( 20 )]
+[node name="ReloadAction" parent="." index="34" instance=ExtResource( 20 )]
 tree = NodePath("../Behavior")
 
-[node name="DieAction" parent="." index="34" instance=ExtResource( 21 )]
+[node name="DieAction" parent="." index="35" instance=ExtResource( 21 )]
 tree = NodePath("../Behavior")
 random = true
 
-[node name="DieExplosionAction" parent="." index="35" instance=ExtResource( 21 )]
+[node name="DieExplosionAction" parent="." index="36" instance=ExtResource( 21 )]
 tree = NodePath("../Behavior")
 schema = "DieExplosion"
 random = true
 state = "DieExplosion"
 
-[node name="PostDeathAction" parent="." index="36" instance=ExtResource( 22 )]
+[node name="PostDeathAction" parent="." index="37" instance=ExtResource( 22 )]
 tree = NodePath("../Behavior")
 schema = "PostDeath"
 state = "PostDeath"
 
-[node name="VictoryAction" parent="." index="37" instance=ExtResource( 30 )]
+[node name="VictoryAction" parent="." index="38" instance=ExtResource( 30 )]
 tree = NodePath("../Behavior")
 
-[node name="AnimLayerMovement" parent="." index="38" instance=ExtResource( 23 )]
+[node name="AnimLayerMovement" parent="." index="39" instance=ExtResource( 23 )]
 
-[node name="TouchResponse" parent="." index="39" instance=ExtResource( 24 )]
+[node name="TouchResponse" parent="." index="40" instance=ExtResource( 24 )]
 tree_node = NodePath("../Reception")
 
-[node name="UseReactResponse" parent="." index="40" instance=ExtResource( 25 )]
+[node name="UseReactResponse" parent="." index="41" instance=ExtResource( 25 )]
 tree_node = NodePath("../Reception")
 
-[node name="EmptyReactResponse" parent="." index="41" instance=ExtResource( 26 )]
+[node name="EmptyReactResponse" parent="." index="42" instance=ExtResource( 26 )]
 tree_node = NodePath("../Reception")
 
-[node name="DamageResponse" parent="." index="42" instance=ExtResource( 27 )]
+[node name="DamageResponse" parent="." index="43" instance=ExtResource( 27 )]
 tree_node = NodePath("../Reception")
 
-[node name="JumpUpSound" parent="." index="43" instance=ExtResource( 22 )]
+[node name="JumpUpSound" parent="." index="44" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "JumpUpSound"
 random = true
 state = "JumpUp"
 
-[node name="JumpDodgeSound" parent="." index="44" instance=ExtResource( 22 )]
+[node name="JumpDodgeSound" parent="." index="45" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "JumpDodgeSound"
 random = true
 state = "JumpDodge"
 
-[node name="JumpBackwardSound" parent="." index="45" instance=ExtResource( 22 )]
+[node name="JumpBackwardSound" parent="." index="46" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "JumpBackwardSound"
 random = true
 state = "JumpBackward"
 
-[node name="PunchSound" parent="." index="46" instance=ExtResource( 22 )]
+[node name="PunchSound" parent="." index="47" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PunchSound"
 state = "Punch"
 
-[node name="KickSound" parent="." index="47" instance=ExtResource( 22 )]
+[node name="KickSound" parent="." index="48" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "KickSound"
 state = "Kick"
 
-[node name="SwordMeleeSound" parent="." index="48" instance=ExtResource( 22 )]
+[node name="SwordMeleeSound" parent="." index="49" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "SwordMeleeSound"
 random = true
 state = "SwordMelee"
 
-[node name="ThrowGrenadeSound" parent="." index="49" instance=ExtResource( 22 )]
+[node name="ThrowGrenadeSound" parent="." index="50" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "ThrowGrenadeSound"
 state = "ThrowGrenade"
 
-[node name="OofSound" parent="." index="50" instance=ExtResource( 22 )]
+[node name="OofSound" parent="." index="51" instance=ExtResource( 22 )]
 tree = NodePath("../VoiceAudio")
 schema = "Oof"
 random = true
 state = "Oof"
 
-[node name="PickupWeaponSound" parent="." index="51" instance=ExtResource( 22 )]
+[node name="PickupWeaponSound" parent="." index="52" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PickupWeaponSound"
 state = "PickupWeapon"
 
-[node name="PickupAmmoSound" parent="." index="52" instance=ExtResource( 22 )]
+[node name="PickupAmmoSound" parent="." index="53" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PickupAmmoSound"
 state = "PickupAmmo"
 
-[node name="VoiceAudio" parent="." index="53" instance=ExtResource( 28 )]
+[node name="VoiceAudio" parent="." index="54" instance=ExtResource( 28 )]
 bus = "Voice"
 
-[node name="FoleyAudio" parent="." index="54" instance=ExtResource( 28 )]
+[node name="FoleyAudio" parent="." index="55" instance=ExtResource( 28 )]
 
-[node name="FeetAudio" parent="." index="55" instance=ExtResource( 28 )]
+[node name="FeetAudio" parent="." index="56" instance=ExtResource( 28 )]
 
 [editable path="CameraRig"]
 [editable path="Perspective"]
