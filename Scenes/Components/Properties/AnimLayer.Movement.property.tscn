@@ -1,12 +1,284 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tres" type="AnimationNodeBlendSpace1D" id=1]
-[ext_resource path="res://Scripts/Prop.AnimLayer.Movement.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AnimationTree.BlendSpace.gd" type="Script" id=2]
+[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+scale = 1.75
+animation = "StrafeLeft"
+script = ExtResource( 5 )
+chain = false
+schema = "RunLeft"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+scale = 1.75
+animation = "StrafeRight"
+script = ExtResource( 5 )
+chain = false
+schema = "RunRight"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+scale = 1.75
+animation = "WalkBackward"
+script = ExtResource( 5 )
+chain = false
+schema = "WalkBackward"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+scale = 1.75
+animation = "Walk"
+script = ExtResource( 5 )
+chain = false
+schema = "WalkForward"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+scale = 1.75
+animation = "Run"
+script = ExtResource( 5 )
+chain = false
+schema = "RunForward"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+scale = 1.75
+animation = "WalkBackward"
+script = ExtResource( 5 )
+chain = false
+schema = "WalkBackward"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "StrafeLeft"
+script = ExtResource( 5 )
+chain = false
+schema = "Stand"
+custom_script = ""
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=9]
+blend_point_0/node = SubResource( 3 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 4 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 5 )
+blend_point_2/pos = Vector2( 0, -0.3 )
+blend_point_3/node = SubResource( 6 )
+blend_point_3/pos = Vector2( 0, 0.3 )
+blend_point_4/node = SubResource( 7 )
+blend_point_4/pos = Vector2( 0, 1 )
+blend_point_5/node = SubResource( 8 )
+blend_point_5/pos = Vector2( 0, -1 )
+blend_point_6/node = SubResource( 17 )
+blend_point_6/pos = Vector2( 0, 0 )
+script = ExtResource( 2 )
+blendspace = ""
+chain = false
+update_mode = "process"
+speed = 0.0
+x_target = "Movement"
+x_method = "_get_sidestep_speed"
+x_args = [  ]
+x_max_value = -4.5
+x_min_value = 4.5
+y_target = "Movement"
+y_method = "_get_forward_speed"
+y_args = [  ]
+y_max_value = 4.5
+y_min_value = -4.5
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "CrouchSideStepLeft"
+script = ExtResource( 5 )
+chain = false
+schema = "CrouchLeft"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "CrouchSidestepRight"
+script = ExtResource( 5 )
+chain = false
+schema = "CrouchRight"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "CrouchForward"
+script = ExtResource( 5 )
+chain = false
+schema = "CrouchForward"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "CrouchBackward"
+script = ExtResource( 5 )
+chain = false
+schema = "CrouchBackward"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "StrafeLeft"
+script = ExtResource( 5 )
+chain = false
+schema = "Crouch"
+custom_script = ""
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=16]
+blend_point_0/node = SubResource( 12 )
+blend_point_0/pos = Vector2( -0.2, 0 )
+blend_point_1/node = SubResource( 13 )
+blend_point_1/pos = Vector2( 0.2, 0 )
+blend_point_2/node = SubResource( 14 )
+blend_point_2/pos = Vector2( 0, 0.2 )
+blend_point_3/node = SubResource( 15 )
+blend_point_3/pos = Vector2( 0, -0.2 )
+blend_point_4/node = SubResource( 18 )
+blend_point_4/pos = Vector2( 0, 0 )
+script = ExtResource( 2 )
+blendspace = ""
+chain = false
+update_mode = "process"
+speed = 0.0
+x_target = "Movement"
+x_method = "_get_sidestep_speed"
+x_args = [  ]
+x_max_value = -4.5
+x_min_value = 4.5
+y_target = "Movement"
+y_method = "_get_forward_speed"
+y_args = [  ]
+y_max_value = 4.5
+y_min_value = -4.5
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=19]
+blend_point_0/node = SubResource( 9 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 16 )
+blend_point_1/pos = 1.0
+min_space = 0.0
+max_space = 4.0
+snap = 1.0
+script = ExtResource( 2 )
+blendspace = ""
+chain = false
+update_mode = "process"
+speed = 8.0
+x_target = "Stance"
+x_method = "get"
+x_args = [ "stance" ]
+x_max_value = 4.0
+x_min_value = 0.0
+y_target = ""
+y_method = ""
+y_args = [  ]
+y_max_value = 0.0
+y_min_value = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "StrafeLeft"
+script = ExtResource( 5 )
+chain = false
+schema = "WallRunForward"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "DefaultAnim"
+script = ExtResource( 5 )
+chain = false
+schema = "WallRunBackward"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "DefaultAnim"
+script = ExtResource( 5 )
+chain = false
+schema = "WallRunLeft"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "DefaultAnim"
+script = ExtResource( 5 )
+chain = false
+schema = "WallRunRight"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "DefaultAnim"
+script = ExtResource( 5 )
+chain = false
+schema = "WallRunStand"
+custom_script = ""
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=20]
+blend_point_0/node = SubResource( 26 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 27 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 28 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 29 )
+blend_point_3/pos = Vector2( 1, 0 )
+blend_point_4/node = SubResource( 30 )
+blend_point_4/pos = Vector2( 0, 0 )
+script = ExtResource( 2 )
+blendspace = ""
+chain = false
+update_mode = "process"
+speed = 0.0
+x_target = ""
+x_method = ""
+x_args = [  ]
+x_max_value = 0.0
+x_min_value = 0.0
+y_target = ""
+y_method = ""
+y_args = [  ]
+y_max_value = 0.0
+y_min_value = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/Default/node = SubResource( 19 )
+states/Default/position = Vector2( -72.425, 134 )
+states/WallRun/node = SubResource( 20 )
+states/WallRun/position = Vector2( 205.575, 134 )
+transitions = [ "Default", "WallRun", SubResource( 21 ), "WallRun", "Default", SubResource( 22 ) ]
+start_node = "Default"
+graph_offset = Vector2( -476.425, 0 )
+script = ExtResource( 4 )
+statemachine = ""
+chain = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+
+[sub_resource type="GDScript" id=25]
+script/source = "extends AnimationTree
+
+
+signal on_process
+
+
+func _process(delta):
+	
+	emit_signal('on_process', delta)
+"
 
 [node name="AnimLayerMovement" type="AnimationTree"]
-tree_root = ExtResource( 1 )
+tree_root = SubResource( 23 )
+anim_player = NodePath("AnimationPlayer")
 process_mode = 2
-parameters/blend_position = 0.0
-parameters/0/blend_position = Vector2( 0.00264323, 0.942196 )
-parameters/1/blend_position = Vector2( 0, 0 )
-script = ExtResource( 2 )
+parameters/playback = SubResource( 24 )
+parameters/Default/blend_position = 0
+parameters/Default/0/blend_position = Vector2( 0.00282753, 0.0289018 )
+parameters/Default/1/blend_position = Vector2( 0, 0 )
+parameters/WallRun/blend_position = Vector2( 0, 0 )
+script = SubResource( 25 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DefaultAnim = ExtResource( 3 )

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Animations/Human/wall_shootdodgebackward.tres" type="Animation" id=1]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/wall_shootdodgebackward = ExtResource( 1 )

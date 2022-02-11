@@ -145,6 +145,7 @@ func _ready():
 	container_node.root.add_child(to_node)
 	to_node.translation = item_position_offset
 	to_node.rotation = item_rotation_offset
+	to_node.scale = Vector3(1, 1, 1)
 	
 #	root = Spatial.new()
 #	container_node.root.add_child(root)

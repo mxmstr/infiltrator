@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Animations/Human/Movement/Run.tres" type="Animation" id=1]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/Run = ExtResource( 1 )

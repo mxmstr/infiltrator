@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Humans/Payne/Payne2.escn" type="PackedScene" id=2]
@@ -7,40 +7,44 @@
 [ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=6]
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+
 [node name="Max" instance=ExtResource( 1 )]
 tags = "Actor Human Male Team:0 Skeleton:Default"
 
 [node name="Model" parent="." index="1" instance=ExtResource( 2 )]
 
 [node name="Collision" parent="." index="2" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941735, 0 )
 
 [node name="Outline" parent="." index="3" instance=ExtResource( 4 )]
 
 [node name="Hitboxes" parent="." index="4" instance=ExtResource( 5 )]
 source = ExtResource( 6 )
 
-[node name="RightHandContainer" parent="." index="30"]
+[node name="RightHandContainer" parent="." index="35"]
 path = NodePath("../Model/payne2_skeleton")
 bone_name = "Gun"
 max_quantity = 1
 required_tags = "Item"
 
-[node name="RightPunchContainer" parent="." index="31"]
+[node name="RightPunchContainer" parent="." index="36"]
 path = NodePath("../Model/payne2_skeleton")
 bone_name = "Hand-R"
 
-[node name="LeftPunchContainer" parent="." index="32"]
+[node name="LeftPunchContainer" parent="." index="37"]
 path = NodePath("../Model/payne2_skeleton")
 bone_name = "Hand-L"
 
-[node name="RightKickContainer" parent="." index="33"]
+[node name="RightKickContainer" parent="." index="38"]
 path = NodePath("../Model/payne2_skeleton")
 bone_name = "Foot-R"
 
-[node name="LeftKickContainer" parent="." index="34"]
+[node name="LeftKickContainer" parent="." index="39"]
 path = NodePath("../Model/payne2_skeleton")
 bone_name = "Foot-L"
+
+[node name="AnimLayerMovement" parent="." index="68"]
+parameters/playback = SubResource( 1 )
 
 [editable path="Model"]
 [editable path="CameraRig"]

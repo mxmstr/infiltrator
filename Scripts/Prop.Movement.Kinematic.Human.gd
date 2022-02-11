@@ -28,11 +28,6 @@ signal move_and_slide
 
 func _get_collisions():
 	
-	var collisions = []
-	
-	for index in range(owner.get_slide_count()):
-		collisions.append(owner.get_slide_collision(index))
-	
 	return collisions
 
 
@@ -162,5 +157,16 @@ func _physics_process(delta):
 	# Apply velocity
 	velocity = owner.move_and_slide_with_snap(velocity, snap, Vector3.UP, stop_on_slope)
 	
+	collisions = []
+	
+	for index in range(owner.get_slide_count()):
+		collisions.append(owner.get_slide_collision(index))
+	
+#	if collisions.size():
+#		prints(' ')
+	
+#	for slide in collisions:
+#		if slide.on_wall:
+#			prints(OS.get_system_time_msecs())
 	
 	emit_signal('move_and_slide', delta)

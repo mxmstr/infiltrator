@@ -4,13 +4,14 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "DefaultAction"
-length = 0.001
+length = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/DefaultAction = SubResource( 1 )
 script = ExtResource( 1 )
 attributes = "{
 	\"*\": {
+		\"endless\": true,
 		\"layer\": \"MOVEMENT\"
 	}
 }"

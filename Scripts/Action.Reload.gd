@@ -120,7 +120,7 @@ func _load_shotgun_shell():
 	var item_name = item.base_name
 	
 	if animations.has(item_name) and not is_full and remaining > 0:
-		_play(animations[item_name][0])
+		_play(state, animations[item_name][0])
 
 
 func _ready():
@@ -134,9 +134,7 @@ func _ready():
 
 func _on_action(_state, data):
 	
-	new_state = _state
-	
-	if new_state == state:
+	if _state == state:
 		
 		if righthand._has_item_with_tag('Firearm'):
 			
@@ -146,5 +144,5 @@ func _on_action(_state, data):
 			var is_full = magazine.max_quantity <= magazine.items.size() + (0 if chamber._is_empty() else 1)
 			
 			if animations.has(item_name) and not is_full and _can_transfer_items_to(magazine):
-				_play(animations[item_name][0])
+				_play(state, animations[item_name][0])
 	

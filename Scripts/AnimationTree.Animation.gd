@@ -31,17 +31,8 @@ func _load_animations():
 	
 	
 	var animation_player = owner.get_node(owner.anim_player)
-	var owner_tags = owner.owner.tags_dict.keys()#[]
-	
-#	if owner.owner._has_tag(owner.schema_type):
-#		owner_tags = owner.owner._get_tag(owner.schema_type)
-	
-
-#	if schema != '':
-#		prints(owner.owner.name, owner.name, schema)
-	var files = Meta._get_files_recursive(schemas_dir, schema, schemas_extension, owner_tags)
-	
-	var schema_animation_player = load(files[0]).instance()
+	var owner_tags = owner.owner.tags_dict.keys()
+	var schema_animation_player = Meta.LoadSchema(schema, owner_tags).instance()
 	animation_list = Array(schema_animation_player.get_animation_list())
 	
 	if schema_animation_player.get('attributes'):

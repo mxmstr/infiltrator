@@ -51,15 +51,9 @@ func _shoot_array(count):
 		var item_clone = chamber._create_and_launch_item(item.system_path)
 
 
-func _on_action(_state, data): 
+func _state_start():
 	
-	new_state = _state
-	
-	if new_state == state:
-		
-		if _play(animation_list[0]):
-			
-			reception._reflect('UseReact')
+	reception._reflect('UseReact')
 
 
 func _ready():

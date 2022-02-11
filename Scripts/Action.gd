@@ -2,7 +2,7 @@ extends "res://Scripts/AnimationLoader.gd"
 
 export(String) var state
 
-var new_state = ''
+var data
 
 
 func _ready():
@@ -13,14 +13,14 @@ func _ready():
 	tree_node.connect('action', self, '_on_action')
 
 
-func _play(_animation, _down=null, _up=null):
+func _play(_state, _animation, _down=null, _up=null):
 	
 	var result
 	
 	if _up and _down:
-		result = tree_node._play(new_state, _animation, attributes[_animation], _up, _down)
+		result = tree_node._play(_state, _animation, attributes[_animation], _up, _down)
 	else:
-		result = tree_node._play(new_state, _animation, attributes[_animation])
+		result = tree_node._play(_state, _animation, attributes[_animation])
 	
 	if random:
 		_randomize_animation()
@@ -28,9 +28,12 @@ func _play(_animation, _down=null, _up=null):
 	return result
 
 
-func _on_action(_state, data): 
+func _state_start(): pass
+
+
+func _on_action(_state, _data):
 	
-	new_state = _state
-	
-	if new_state == state:
-		_play(animation_list[0])
+	if _state == state and _play(state, animation_list[0]):
+		
+		data = _data
+		_state_start()

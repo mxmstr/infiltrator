@@ -100,7 +100,16 @@ func on_loadanim_pressed():
 			
 			var files = []
 			var dir = Directory.new()
-			dir.open(dock.get_node('LoadAnimInput').text)
+			var current_path = EditorPlugin.new().get_editor_interface().get_current_path()
+			
+			if current_path[-1] != '/':
+				selected.add_animation(
+					current_path.split('/')[-1].replace('.tres', ''), 
+					load(current_path)
+					)
+				return
+			
+			dir.open(current_path)
 			dir.list_dir_begin()
 			
 			while true:
@@ -109,13 +118,13 @@ func on_loadanim_pressed():
 				
 				if file == '':
 					break
-					
+
 				elif not file.begins_with('.') and file.ends_with('.tres'):
-					
-					var anim_source = load(dock.get_node('LoadAnimInput').text + file)
+
+					var anim_source = load(current_path + file)
 					file = file.replace('.tres', '')
 					selected.add_animation(file, anim_source)
-						
+			
 			dir.list_dir_end()
 
 

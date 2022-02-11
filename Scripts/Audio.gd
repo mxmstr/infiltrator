@@ -8,10 +8,21 @@ var switch_mode = 'Immediate'
 
 onready var animation_player = $AnimationPlayer
 onready var audio_stream = $AudioStreamPlayer3D
+onready var bullet_time_server = $'/root/Mission/Links/BulletTimeServer'
 
 signal action
 
 var current_state = ''
+
+
+func _on_bullet_time_started():
+	
+	audio_stream.pitch_scale = Engine.time_scale
+
+
+func _on_bullet_time_ended():
+	
+	audio_stream.pitch_scale = 1.0
 
 
 func _start_state(_name, _data={}):
@@ -58,6 +69,9 @@ func _play(new_state, animation, attributes):
 
 
 func _ready():
+	
+	bullet_time_server.connect('started', self, '_on_bullet_time_started')
+	bullet_time_server.connect('ended', self, '_on_bullet_time_ended')
 	
 	audio_stream.bus = bus
 	

@@ -18,12 +18,21 @@ enum LeanDirection {
 	RIGHT
 }
 
+enum Mode {
+	DEFAULT,
+	WALLRUN
+}
+
+const wall_run_vertical_speed = 4
+const wall_run_vertical_mult = 3
+
 export(float) var forward_speed setget _set_forward_speed
 export(float) var sidestep_speed setget _set_sidestep_speed
 
 export(StanceType) var stance = StanceType.STANDING setget _set_stance
 export(SpeedType) var speed = SpeedType.RUNNING
 export(LeanDirection) var lean = LeanDirection.DEFAULT
+export(Mode) var mode = Mode.DEFAULT
 
 export var max_speed = 5.0
 export var walk_mult = 0.3
@@ -32,7 +41,8 @@ export var crawl_mult = 0.15
 
 export var max_slope_angle = 30
 
-export var collision_height_mult = 1.0
+var collision_height
+var collision_height_mult = 1.0
 
 var speed_mult = 1.0
 var rotate_speed_mult = 1.0
@@ -43,6 +53,8 @@ var lock_direction = false
 var lock_rotation = false
 var lock_movement = false
 
+var wall_normal
+
 onready var movement = get_node_or_null('../Movement')
 onready var collision = get_node_or_null('../Collision')
 onready var camera = get_node_or_null('../CameraRig/Camera')
@@ -52,8 +64,6 @@ func _turn(delta):
 	
 	if lock_rotation:
 		return
-	
-#	print(delta)
 	
 	movement._turn(delta)
 
@@ -125,11 +135,14 @@ func _resize_collision():
 	
 	if collision:
 		
-	#	if collision_height_mult == null:
-	#		return
-		
-		collision.shape.extents.y = collision_height_mult
-		collision.translation.y = collision_height_mult
+		collision.shape.extents.y = collision_height * collision_height_mult
+		collision.translation.y = collision_height * collision_height_mult
+
+
+func _ready():
+	
+	if collision:
+		collision_height = collision.shape.extents.y
 
 
 func _physics_process(delta):
@@ -164,5 +177,19 @@ func _physics_process(delta):
 	
 	velocity *= max_speed * speed_mult
 	
-	movement._set_speed(velocity.length())
-	movement._set_direction(velocity.normalized(), true)
+	if mode == Mode.DEFAULT:
+		
+		movement._set_speed(velocity.length())
+		movement._set_direction(velocity.normalized(), true)
+	
+	elif mode == Mode.WALLRUN:
+		
+		
+		var global_velocity = owner.global_transform.basis.xform(velocity)
+		var slide_direction = global_velocity.slide(wall_normal)
+		var slide_angle = global_velocity.angle_to(-wall_normal)
+		var vertical_speed = ( (PI - min(slide_angle * wall_run_vertical_mult, PI) ) / PI ) * wall_run_vertical_speed
+		
+		movement._set_speed(velocity.length())
+		movement._set_direction(slide_direction.normalized())
+		movement._set_vertical_velocity(vertical_speed)

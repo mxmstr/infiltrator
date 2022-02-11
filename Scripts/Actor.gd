@@ -21,11 +21,7 @@ func _has_tag(tag):
 
 func _has_tags(tags):
 	
-	for tag in tags:
-		if not tags_dict.has(tag):
-			return false
-	
-	return true
+	return tags_dict.has_all(tags)
 
 
 func _get_tag(tag):

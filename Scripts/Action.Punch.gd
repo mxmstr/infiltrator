@@ -9,20 +9,18 @@ var animation_list_kick = []
 
 func _on_action(_state, data):
 	
-	new_state = _state
-	
-	if new_state == 'PunchIdle':
+	if _state == 'PunchIdle':
 		
-		_play(animation_list_idle[0])
+		_play(_state, animation_list_idle[0])
 	
-	if new_state == 'Punch':
+	if _state == 'Punch':
 		
-		_play(animation_list[0])
+		_play(_state, animation_list[0])
 		_randomize_animation()
 	
-	elif new_state == 'Kick':
+	elif _state == 'Kick':
 		
-		_play(animation_list_kick[0])
+		_play(_state, animation_list_kick[0])
 
 
 func _ready():

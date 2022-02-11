@@ -25,7 +25,7 @@ func _can_switch(new_priority):
 
 func _on_action_finished():
 	
-	if endless or current_state == 'Default':
+	if endless:
 		return
 	
 	call_deferred('emit_signal', 'action', next, {})

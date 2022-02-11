@@ -10,6 +10,7 @@ var cooldown = false
 var amount = 100.0 setget _set_amount
 
 onready var bullet_time_server = get_node_or_null('/root/Mission/Links/BulletTimeServer')
+onready var foley_audio = $'../FoleyAudio'
 
 signal amount_changed
 
@@ -27,12 +28,14 @@ func _start():
 		return
 	
 	active = true
+	foley_audio._start_state('BulletTimeStart')
 	bullet_time_server._start(owner)
 
 
 func _stop():
 	
 	active = false
+	foley_audio._start_state('BulletTimeEnd')
 	bullet_time_server._stop(owner)
 
 

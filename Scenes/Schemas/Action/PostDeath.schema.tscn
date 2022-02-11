@@ -4,7 +4,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "PostDeath"
-length = 0.001
+length = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/PostDeath = SubResource( 1 )

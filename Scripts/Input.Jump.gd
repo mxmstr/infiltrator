@@ -1,22 +1,24 @@
 extends "res://Scripts/Input.gd"
 
-var forward
-var backward
-var right
-var left
+var wall_run_direction
 
+onready var forward = get_node_or_null('../MoveForwardInput')
+onready var backward = get_node_or_null('../MoveBackwardInput')
+onready var right = get_node_or_null('../MoveRightInput')
+onready var left = get_node_or_null('../MoveLeftInput')
 onready var behavior = get_node_or_null('../Behavior')
-
-
-func _ready():
-	
-	forward = get_node_or_null('../MoveForwardInput')
-	backward = get_node_or_null('../MoveBackwardInput')
-	right = get_node_or_null('../MoveRightInput')
-	left = get_node_or_null('../MoveLeftInput')
+onready var movement = get_node_or_null('../Movement')
 
 
 func _on_just_activated():
+	
+	for slide in movement.collisions:
+		
+		if slide.on_wall:
+			
+			behavior._start_state('WallRun', { 'normal': slide.normal })
+			return
+	
 	
 	var vertical = forward.strength + backward.strength
 	var horizontal = left.strength + right.strength
@@ -44,3 +46,8 @@ func _on_just_activated():
 	else:
 		
 		behavior._start_state('JumpUp')
+
+
+func _on_just_deactivated():
+	
+	behavior._start_state('WallRunEnd')

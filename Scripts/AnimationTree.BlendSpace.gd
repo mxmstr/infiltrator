@@ -129,7 +129,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
 	
 	owner.connect('on_process', self, '_process')
-
+	
 	
 	for child_name in children:
 		
@@ -144,7 +144,6 @@ func _ready(_owner, _parent, _parameters, _node_name):
 				child._ready(owner, self, parameters + child_name + '/', child_name)
 			else:
 				child._ready(owner, self, parameters, child_name)
-		
 		
 		
 		if child is AnimationNodeAnimation:

@@ -6,7 +6,7 @@ var velocity = Vector3()
 export var angular_direction = Vector2()
 var angular_velocity = Vector2()
 var pitch = 0.0
-var collisions setget _set_collisions, _get_collisions
+var collisions = [] setget _set_collisions, _get_collisions
 var collision_exceptions = [] setget _set_collision_exceptions, _get_collision_exceptions
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Animations/Human/ModeSwitchSniper.tres" type="Animation" id=2]
@@ -10,7 +10,9 @@
 [ext_resource path="res://Animations/Human/Action/Death/death_explosion_b.tres" type="Animation" id=8]
 [ext_resource path="res://Scenes/Actors/Items/Sword.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Actors/Items/SwordHit.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Animations/Human/wall_shootdodgeforward.tres" type="Animation" id=11]
 [ext_resource path="res://Models/Humans/Anderson/Anderson.escn" type="PackedScene" id=12]
+[ext_resource path="res://Animations/Human/wall_shootdodgeflipforward.tres" type="Animation" id=13]
 [ext_resource path="res://Animations/Human/Action/Jump/HOPBACK.tres" type="Animation" id=14]
 [ext_resource path="res://Animations/Human/Action/Jump/Jump.Exit.tres" type="Animation" id=15]
 [ext_resource path="res://Animations/Human/Action/Jump/JumpLong.tres" type="Animation" id=16]
@@ -22,6 +24,7 @@
 [ext_resource path="res://Animations/Human/Action/Jump/sidestepleft.tres" type="Animation" id=22]
 [ext_resource path="res://Animations/Human/Action/Jump/sidestepright.tres" type="Animation" id=23]
 [ext_resource path="res://Animations/Human/Action/Kick/SNAPKICK.tres" type="Animation" id=24]
+[ext_resource path="res://Animations/Human/wall_shootdodgeflipbackward.tres" type="Animation" id=25]
 [ext_resource path="res://Animations/Human/BAT1.tres" type="Animation" id=26]
 [ext_resource path="res://Animations/Human/right_strike.tres" type="Animation" id=27]
 [ext_resource path="res://Animations/Human/stick_right.tres" type="Animation" id=28]
@@ -81,7 +84,7 @@ visible = false
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( 0.0520491, 0.992886, -0.107087, 0.981066, -0.0708696, -0.180245, -0.186552, -0.0956776, -0.977775, 0.446514, 1.05972, 0.0732558 )
+transform = Transform( 0.993897, 0.0805014, -0.0754227, -0.00162224, -0.672974, -0.739665, -0.110302, 0.735273, -0.668735, -0.316391, 1.02349, -0.143503 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 9 )]
@@ -102,7 +105,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0303, 0.394467 )
 tree_root = SubResource( 6 )
 anim_player = NodePath("AnimationPlayer")
 root_motion_track = NodePath("../..")
-parameters/blend_position = Vector2( -0.00462532, 0.0520232 )
+parameters/blend_position = Vector2( 0.00282753, 0.0225563 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../../Model2/Anderson_skeleton")
@@ -138,6 +141,9 @@ anims/sidestepleft = ExtResource( 22 )
 anims/sidestepright = ExtResource( 23 )
 anims/stick_right = ExtResource( 28 )
 anims/stick_rightbat_new = ExtResource( 30 )
+anims/wall_shootdodgeflipbackward = ExtResource( 25 )
+anims/wall_shootdodgeflipforward = ExtResource( 13 )
+anims/wall_shootdodgeforward = ExtResource( 11 )
 anims/wild_strikes = ExtResource( 34 )
 anims/wushu2_front = ExtResource( 29 )
 
