@@ -1,17 +1,27 @@
 extends "res://Scripts/Action.gd"
 
 const item_names = ['Beretta', 'Colt', 'DesertEagle', 'Ingram', 'Jackhammer', 'M79', 'MP5', 'PumpShotgun', 'SawedoffShotgun', 'Sniper', 'Grenade']
+const dual_wield_items = ['Beretta']
 
 export(String) var shoot_schema
-export(String) var shoot_idle_schema
 
 var shoot_animations = {}
 var shoot_idle_animations = {}
+var shoot_dual_animations = {}
+var shoot_dual_idle_animations = {}
 
 onready var behavior = get_node_or_null('../Behavior')
 onready var righthand = get_node_or_null('../RightHandContainer')
+onready var lefthand = get_node_or_null('../LeftHandContainer')
 onready var camera_raycast = get_node_or_null('../CameraRig/Camera')
 onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
+
+
+func _use_left_hand_item():
+	
+	if not lefthand._is_empty() and tree_node.current_state in ['Default', 'UseReact', 'ShootIdle']:
+		
+		Meta.StimulateActor(lefthand.items[0], 'Use', owner)
 
 
 func _cock_weapon():
@@ -27,8 +37,13 @@ func _ready():
 		return
 	
 	for item_name in item_names:
-		shoot_animations[item_name] = _load_animations('Shoot' + item_name)
-		shoot_idle_animations[item_name] = _load_animations('Shoot' + item_name + 'Idle')
+		
+		shoot_animations[item_name] = _load_animations(shoot_schema + item_name)
+		shoot_idle_animations[item_name] = _load_animations(shoot_schema + item_name + 'Idle')
+		
+		if item_name in dual_wield_items:
+			shoot_dual_animations[item_name] = _load_animations(shoot_schema + item_name + 'Dual')
+			shoot_dual_idle_animations[item_name] = _load_animations(shoot_schema + item_name + 'DualIdle')
 
 
 func _on_action(_state, data):
@@ -43,24 +58,40 @@ func _on_action(_state, data):
 		
 		if righthand._has_item_with_tag('Firearm'):
 			
-			var item_name = righthand.items[0].base_name
+			var right_name = righthand.items[0].base_name
+			var left_name = '' if lefthand._is_empty() else lefthand.items[0].base_name
 			
-			if shoot_animations.has(item_name):
+			if shoot_animations.has(right_name):
 				
-				_play(_state, shoot_animations[item_name][0], shoot_animations[item_name][1], shoot_animations[item_name][2])
+				var animation_list
+				
+				if right_name in dual_wield_items and right_name == left_name:
+					animation_list = shoot_dual_animations[right_name]
+				else:
+					animation_list = shoot_animations[right_name]
+				
+				_play(_state, animation_list[0], animation_list[1], animation_list[2])
 	
 	elif _state == 'ShootIdle':
 		
 		if not righthand._is_empty():
 			
-			var item_name = righthand.items[0].base_name
+			var right_name = righthand.items[0].base_name
+			var left_name = '' if lefthand._is_empty() else lefthand.items[0].base_name
 			
-			if shoot_idle_animations.has(item_name):
+			if shoot_idle_animations.has(right_name):
 				
-				if shoot_idle_animations[item_name].size() > 1:
-					_play(_state, shoot_idle_animations[item_name][0], shoot_idle_animations[item_name][1], shoot_idle_animations[item_name][2])
+				var animation_list
+				
+				if right_name in dual_wield_items and right_name == left_name:
+					animation_list = shoot_dual_idle_animations[right_name]
 				else:
-					_play(_state, shoot_idle_animations[item_name][0])
+					animation_list = shoot_idle_animations[right_name]
+				
+				if animation_list.size() == 3:
+					_play(_state, animation_list[0], animation_list[1], animation_list[2])
+				else:
+					_play(_state, animation_list[0])
 
 
 func _process(delta):

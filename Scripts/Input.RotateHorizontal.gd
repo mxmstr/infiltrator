@@ -7,7 +7,6 @@ onready var movement = $'../Movement'
 onready var camera = $'../CameraRig/Camera'
 onready var camera_raycast = $'../CameraRaycastStim'
 onready var stance = $'../Stance'
-onready var bullet_time = $'../BulletTime'
 
 
 func _on_just_activated():

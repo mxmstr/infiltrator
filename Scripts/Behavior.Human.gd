@@ -15,6 +15,7 @@ onready var stance = get_node_or_null('../Stance')
 onready var camera_mode = get_node_or_null('../CameraMode')
 onready var hud_mode = get_node_or_null('../HUDMode')
 onready var anim_layer_movement = get_node_or_null('../AnimLayerMovement')
+onready var bullet_time = get_node_or_null('../BulletTime')
 
 signal pre_advance
 
@@ -77,6 +78,18 @@ func _apply_action_pose():
 
 
 func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
+	
+	var time_scaled = true
+	
+	if attributes.has('time_scaled'):
+		time_scaled = attributes.time_scaled
+	
+	if bullet_time and bullet_time.active and not time_scaled:
+		if attributes.has('speed'):
+			attributes.speed /= Engine.time_scale
+		else:
+			attributes.speed = 1 / Engine.time_scale
+	
 	
 	if not ._play(new_state, animation, attributes):
 		return false
@@ -141,6 +154,11 @@ func _ready():
 	
 	action_up = tree_root.get_node('ActionUp')
 	action_down = tree_root.get_node('ActionDown')
+	
+	var anim_layer_player = anim_layer_movement.get_node('AnimationPlayer')
+	
+	for animation in anim_layer_player.get_animation_list():
+		$AnimationPlayer.add_animation(animation, anim_layer_player.get_animation(animation))
 	
 	anim_layer_movement.anim_player = anim_layer_movement.get_path_to($AnimationPlayer)
 	anim_layer_movement.tree_root = anim_layer_movement.tree_root.duplicate(true)

@@ -6,6 +6,7 @@ var animations = {}
 
 onready var behavior = get_node_or_null('../Behavior')
 onready var righthand = get_node_or_null('../RightHandContainer')
+onready var lefthand = get_node_or_null('../LeftHandContainer')
 onready var camera_raycast = get_node_or_null('../CameraRig/Camera')
 onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
 
@@ -95,19 +96,29 @@ func _transfer_items_to(to, limit=0):
 	return 0
 
 
-func _load_magazine():
+func _load_magazine(item):
 	
-	if righthand._is_empty():
-		return
-	
-	if not righthand.items[0].has_node('Magazine'):
-		return
-	
-	var magazine = righthand.items[0].get_node('Magazine')
-	var chamber = righthand.items[0].get_node('Chamber')
+	var magazine = item.get_node('Magazine')
+	var chamber = item.get_node('Chamber')
 	var limit = 0 if chamber._is_empty() else max(magazine.max_quantity - 1, 0)
 	
 	_transfer_items_to(magazine, limit)
+
+
+func _load_righthand_magazine():
+	
+	if righthand._is_empty() or not righthand.items[0].has_node('Magazine'):
+		return
+	
+	_load_magazine(righthand.items[0])
+
+
+func _load_lefthand_magazine():
+	
+	if lefthand._is_empty() or not lefthand.items[0].has_node('Magazine'):
+		return
+	
+	_load_magazine(lefthand.items[0])
 
 
 func _load_shotgun_shell():

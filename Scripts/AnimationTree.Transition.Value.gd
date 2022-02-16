@@ -18,10 +18,12 @@ func _evaluate(_value):
 	
 	var playback = owner.get(parameters + 'playback')
 	
-	var current_frame = 0 if not playback.is_playing() else playback.get_current_play_pos()
+#	var current_frame = 0 if not playback.is_playing() else playback.get_current_play_pos()
+#
+#	if current_frame < wait_for_frame:
+#		return false
 	
-	if current_frame < wait_for_frame:
-		return false
+	
 	
 	match assertion:
 		
@@ -42,7 +44,7 @@ func _update():
 		
 		_args.append(arg)
 	
-	disabled = not _evaluate(owner.owner.get_node(target).callv(method, _args))
+	auto_advance = _evaluate(owner.owner.get_node(target).callv(method, _args))
 
 
 func _on_state_starting(new_name):

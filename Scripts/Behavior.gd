@@ -101,6 +101,7 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	if attributes.has('endless'):
 		endless = attributes.endless
 	
+	
 	_set_animation(animation, scale, clip_start, clip_end)
 	
 	

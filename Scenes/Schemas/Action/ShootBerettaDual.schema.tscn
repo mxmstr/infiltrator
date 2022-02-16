@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBerettaDual_Up.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBerettaDual.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBerettaDual_Down.tres" type="Animation" id=3]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=4]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/ShootBerettaDual = ExtResource( 2 )
+anims/ShootBerettaDual_Down = ExtResource( 3 )
+anims/ShootBerettaDual_Up = ExtResource( 1 )
+script = ExtResource( 4 )
+attributes = "{
+	\"*\": {
+		\"clip_start\": 0.05,
+		\"layer\": \"MIXED\",
+		\"next\": \"ShootIdle\"
+	}
+}"

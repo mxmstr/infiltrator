@@ -92,8 +92,12 @@ func _suspend_players():
 
 func _respawn(actor):
 	
-	var marker_idx = randi() % markers.size()
-	var marker = markers[marker_idx]
+	var sorted_markers = markers.duplicate()
+	sorted_markers.sort_custom(Meta.SortActors.new(actor), '_descending')
+	var marker = sorted_markers[0]
+#	var current_pos = actor.global_transform.origin
+#	var marker_idx = randi() % markers.size()
+#	var marker = markers[marker_idx]
 	var data = Meta.player_data[actor.player_index]
 	
 	actor.global_transform.origin = marker.global_transform.origin

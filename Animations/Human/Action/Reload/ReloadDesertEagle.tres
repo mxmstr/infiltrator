@@ -14,7 +14,7 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "_load_magazine"
+"method": "_load_righthand_magazine"
 } ]
 }
 tracks/1/type = "transform"

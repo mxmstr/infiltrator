@@ -54,11 +54,12 @@ func _process(delta):
 	
 	if active:
 		
-		_set_amount(amount - (drain_rate * delta / Engine.time_scale))
-		
-		if amount == 0:
-			_stop()
-#			_cooldown()
+		pass
+#		_set_amount(amount - (drain_rate * delta / Engine.time_scale))
+#
+#		if amount == 0:
+#			_stop()
+##			_cooldown()
 	
 	else:
 		

@@ -80,6 +80,34 @@ var actors
 signal on_input
 
 
+class SortActors:
+	
+	var actor
+	
+	func _init(actor):
+		self.actor = actor
+	
+	func _ascending(a, b):
+		
+		var dist_a = a.global_transform.origin.distance_to(actor.global_transform.origin)
+		var dist_b = b.global_transform.origin.distance_to(actor.global_transform.origin)
+		
+		if dist_a < dist_b:
+			return true
+		
+		return false
+	
+	func _descending(a, b):
+		
+		var dist_a = a.global_transform.origin.distance_to(actor.global_transform.origin)
+		var dist_b = b.global_transform.origin.distance_to(actor.global_transform.origin)
+		
+		if dist_a > dist_b:
+			return true
+		
+		return false
+
+
 func _merge_dir(target, patch):
 	
 	for key in patch:

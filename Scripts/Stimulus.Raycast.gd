@@ -85,13 +85,6 @@ func _on_before_move(velocity):
 
 func _ready():
 	
-#	yield(get_tree(), 'idle_frame')
-	
-	if owner.has_node('Hitboxes'):
-		for hitbox in owner.get_node('Hitboxes').hitboxes:
-			add_exception(hitbox)
-	
-	
 	for tag in required_tags.split(' '):
 		
 		var values = Array(tag.split(':'))
@@ -113,6 +106,13 @@ func _ready():
 	
 	if predict_collision:
 		movement.connect('before_move', self, '_on_before_move')
+	
+	
+	yield(get_tree(), 'idle_frame')
+	
+	if owner.has_node('Hitboxes'):
+		for hitbox in owner.get_node('Hitboxes').hitboxes:
+			add_exception(hitbox)
 
 
 func _process(delta):

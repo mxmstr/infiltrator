@@ -83,6 +83,11 @@ func _face(target, angle_delta=0.0):
 		owner.global_transform.look_at(owner.global_transform.origin - turn_target)
 
 
+func _test_movement(new_velocity):
+	
+	return owner.move_and_collide(new_velocity, true, true, true)
+
+
 func _apply_rotation(delta):
 	
 	var new_velocity = angular_direction * delta
@@ -161,12 +166,5 @@ func _physics_process(delta):
 	
 	for index in range(owner.get_slide_count()):
 		collisions.append(owner.get_slide_collision(index))
-	
-#	if collisions.size():
-#		prints(' ')
-	
-#	for slide in collisions:
-#		if slide.on_wall:
-#			prints(OS.get_system_time_msecs())
 	
 	emit_signal('move_and_slide', delta)

@@ -19,10 +19,13 @@ func _notification(what):
 
 func _equals(other):
 	
-	return get_class() == other.get_class() and from_node == other.from_node and to_node == other.to_node
+	return base_name == other.base_name and from_node == other.from_node and to_node == other.to_node
 
 
 func _is_invalid():
+	
+	if is_queued_for_deletion():
+		return
 	
 	if not from_node:
 		return true

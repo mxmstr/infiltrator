@@ -18,9 +18,9 @@ func _play(_state, _animation, _down=null, _up=null):
 	var result
 	
 	if _up and _down:
-		result = tree_node._play(_state, _animation, attributes[_animation], _up, _down)
+		result = tree_node._play(_state, _animation, attributes[_animation].duplicate(), _up, _down)
 	else:
-		result = tree_node._play(_state, _animation, attributes[_animation])
+		result = tree_node._play(_state, _animation, attributes[_animation].duplicate())
 	
 	if random:
 		_randomize_animation()

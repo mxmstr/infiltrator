@@ -187,9 +187,10 @@ func _ready(_owner, _parent, _parameters, _node_name):
 		
 		var from_name = get_transition_from(0)
 		var to_name = get_transition_to(0)
+		var clone = get_transition(0).duplicate(true)
 		
-		add_transition(from_name, to_name, get_transition(0).duplicate(true))
 		remove_transition_by_index(0)
+		add_transition(from_name, to_name, clone)
 
 
 	for idx in range(get_transition_count()):
@@ -206,7 +207,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 		if transition.has_method('_ready'):
 			transition._ready(owner, self, parameters, from, to)
 		
-		add_transition(from_name, to_name, transition)
+		#add_transition(from_name, to_name, transition)
 
 
 func _process(delta):

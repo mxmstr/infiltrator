@@ -3,6 +3,7 @@
 [resource]
 resource_name = "neo_reference_skeleton|neo_reference_skeleton|wall_shootdodgeba"
 length = 4.375
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".:LoLeg-L")
 tracks/0/interp = 1
@@ -219,7 +220,7 @@ tracks/29/keys = {
 "values": [ Vector3( 0, 1.7, 0 ) ]
 }
 tracks/30/type = "value"
-tracks/30/path = NodePath("../../Movement:collision_height_mult")
+tracks/30/path = NodePath("../../Stance:collision_height_mult")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/imported = false
