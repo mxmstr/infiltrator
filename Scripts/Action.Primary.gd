@@ -1,7 +1,7 @@
 extends "res://Scripts/Action.gd"
 
 const item_names = ['Beretta', 'Colt', 'DesertEagle', 'Ingram', 'Jackhammer', 'M79', 'MP5', 'PumpShotgun', 'SawedoffShotgun', 'Sniper', 'Grenade']
-const dual_wield_items = ['Beretta']
+const dual_wield_items = ['Beretta', 'DesertEagle', 'Ingram']
 
 export(String) var shoot_schema
 
@@ -60,17 +60,21 @@ func _on_action(_state, data):
 			
 			var right_name = righthand.items[0].base_name
 			var left_name = '' if lefthand._is_empty() else lefthand.items[0].base_name
+			var dual_wielding = right_name in dual_wield_items and right_name == left_name
 			
 			if shoot_animations.has(right_name):
 				
 				var animation_list
 				
-				if right_name in dual_wield_items and right_name == left_name:
+				if dual_wielding:
 					animation_list = shoot_dual_animations[right_name]
 				else:
 					animation_list = shoot_animations[right_name]
 				
 				_play(_state, animation_list[0], animation_list[1], animation_list[2])
+				
+				if dual_wielding and right_name == 'Ingram':
+					_use_left_hand_item()
 	
 	elif _state == 'ShootIdle':
 		

@@ -25,25 +25,28 @@ source = ExtResource( 6 )
 path = NodePath("../Model/Dawn_skeleton")
 bone_name = "Gun"
 max_quantity = 1
-required_tags = "Item"
 
-[node name="RightPunchContainer" parent="." index="36"]
-path = NodePath("../Model/Dawn_skeleton")
-bone_name = "Hand-R"
-
-[node name="LeftPunchContainer" parent="." index="37"]
+[node name="LeftHandContainer" parent="." index="37"]
 path = NodePath("../Model/Dawn_skeleton")
 bone_name = "Hand-L"
 
-[node name="RightKickContainer" parent="." index="38"]
+[node name="RightPunchContainer" parent="." index="38"]
+path = NodePath("../Model/Dawn_skeleton")
+bone_name = "Hand-R"
+
+[node name="LeftPunchContainer" parent="." index="39"]
+path = NodePath("../Model/Dawn_skeleton")
+bone_name = "Hand-L"
+
+[node name="RightKickContainer" parent="." index="40"]
 path = NodePath("../Model/Dawn_skeleton")
 bone_name = "Foot-R"
 
-[node name="LeftKickContainer" parent="." index="39"]
+[node name="LeftKickContainer" parent="." index="41"]
 path = NodePath("../Model/Dawn_skeleton")
 bone_name = "Foot-L"
 
-[node name="AnimLayerMovement" parent="." index="68"]
+[node name="AnimLayerMovement" parent="." index="70"]
 parameters/playback = SubResource( 1 )
 
 [editable path="Model"]

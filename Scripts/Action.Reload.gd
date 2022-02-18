@@ -1,7 +1,7 @@
 extends "res://Scripts/Action.gd"
 
 const item_names = ['Beretta', 'Colt', 'DesertEagle', 'Ingram', 'Jackhammer', 'M79', 'MP5', 'PumpShotgun', 'SawedoffShotgun', 'Sniper']
-const dual_wield_items = ['Beretta']
+const dual_wield_items = ['Beretta', 'DesertEagle', 'Ingram']
 
 var animations = {}
 var dual_animations = {}

@@ -9,13 +9,15 @@ func _on_stimulate(stim, data):
 	
 	if stim == 'EmptyReact':
 		
-		behavior._start_state('Reload')
-		
-		if behavior.current_state != 'Reload':
-			inventory._on_next(true, true)
+		if not right_hand._is_empty() and data.source == right_hand.items[0]:
 			
-			if right_hand._is_empty():
-				inventory._on_next(false, true)
+			behavior._start_state('Reload')
 			
-			if right_hand._is_empty():
-				inventory._go_to_unarmed()
+			if behavior.current_state != 'Reload':
+				inventory._on_next(true, true)
+				
+				if right_hand._is_empty():
+					inventory._on_next(false, true)
+				
+#				if right_hand._is_empty():
+#					inventory._go_to_unarmed()
