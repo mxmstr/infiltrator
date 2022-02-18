@@ -55,36 +55,32 @@ func _find_free_container():
 
 func _get_item_position_offset(item):
 	
-	if item._has_tag('Offset-position'):
-
-		var item_data = item._get_tag('Offset-position')
+	for item_data in item._get_tags('Offset-position'):
 		
 		var root_parent_name = item_data[0]
 		var item_bone_name = item_data[1]
 		var item_offset = item_data[2].split(',')
 
-		return Vector3(float(item_offset[0]), float(item_offset[1]), float(item_offset[2])) if (
-			#(root_parent_name == '' or (container_node.root and container_node.root.get_parent().name == root_parent_name)) and \
+		if (#(root_parent_name == '' or (container_node.root and container_node.root.get_parent().name == root_parent_name)) and \
 			(item_bone_name == '' or (container_node.root and item_bone_name == container_node.root.bone_name))
-			) else Vector3()
+			):
+			return Vector3(float(item_offset[0]), float(item_offset[1]), float(item_offset[2]))
 	
 	return Vector3()
 
 
 func _get_item_rotation_offset(item):
 	
-	if item._has_tag('Offset-rotation'):
-
-		var item_data = item._get_tag('Offset-rotation')
-
+	for item_data in item._get_tags('Offset-rotation'):
+		
 		var root_parent_name = item_data[0]
 		var item_bone_name = item_data[1]
 		var item_offset = item_data[2].split(',')
-
-		return Vector3(deg2rad(float(item_offset[0])), deg2rad(float(item_offset[1])), deg2rad(float(item_offset[2]))) if (
-			#(root_parent_name == '' or (container_node.root and container_node.root.get_parent().name == root_parent_name)) and \
+		
+		if (#(root_parent_name == '' or (container_node.root and container_node.root.get_parent().name == root_parent_name)) and \
 			(item_bone_name == '' or (container_node.root and item_bone_name == container_node.root.bone_name))
-			) else Vector3()
+			):
+			return Vector3(deg2rad(float(item_offset[0])), deg2rad(float(item_offset[1])), deg2rad(float(item_offset[2]))) 
 	
 	return Vector3()
 

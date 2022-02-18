@@ -74,5 +74,6 @@ func _ready():
 	bullet_time_server.connect('ended', self, '_on_bullet_time_ended')
 	
 	audio_stream.bus = bus
+	audio_stream.pitch_scale = Engine.time_scale
 	
 	emit_signal('action', default_state, {})

@@ -220,3 +220,17 @@ tracks/29/keys = {
 "method": "_use_left_hand_item"
 } ]
 }
+tracks/30/type = "method"
+tracks/30/path = NodePath("../../Behavior")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray( 0.35 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "switch_mode", "Immediate" ],
+"method": "set"
+} ]
+}

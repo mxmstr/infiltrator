@@ -19,14 +19,25 @@ func _has_tag(tag):
 	return tags_dict.has(tag)
 
 
-func _has_tags(tags):
+func _has_tags(_tags):
 	
-	return tags_dict.has_all(tags)
+	return tags_dict.has_all(_tags)
 
 
 func _get_tag(tag):
 	
 	return tags_dict[tag]
+
+
+func _get_tags(_tag):
+	
+	var matching = []
+	
+	for tag in tags_dict:
+		if _tag in tag:
+			matching.append(tags_dict[tag])
+	
+	return matching
 
 
 func _set_tag(tag, value):

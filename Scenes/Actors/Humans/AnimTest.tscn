@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Animations/Human/ModeSwitchSniper.tres" type="Animation" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://Animations/Human/N_RUN.tres" type="Animation" id=42]
 [ext_resource path="res://Animations/Human/marko_run.tres" type="Animation" id=43]
 [ext_resource path="res://Animations/Human/Action/Shoot/Jackhammer/ShootJackhammer.tres" type="Animation" id=44]
+[ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=45]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
@@ -85,12 +86,25 @@ visible = false
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( 0.991429, 0.128805, -0.0218832, -0.0206223, -0.0111158, -0.999726, -0.129013, 0.991608, -0.00836417, -0.243045, 1.62956, 0.500813 )
+transform = Transform( 0.982147, -0.0203683, 0.187014, 0.187137, 0.00429831, -0.982325, 0.0192043, 0.999783, 0.00803335, 0.174846, 1.66136, 0.525771 )
+bone_name = "Gun"
+
+[node name="Beretta" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 45 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.008, 0.005, 0.026 )
+
+[node name="BoneAttachment2" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="2"]
+transform = Transform( 0.992896, 0.0494693, -0.108214, -0.109154, 0.0166936, -0.993885, -0.0473603, 0.998636, 0.0219747, -0.281519, 1.63565, 0.495569 )
 bone_name = "Hand-L"
 
-[node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 9 )]
+[node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 9 )]
 transform = Transform( 0.914222, 0.387863, 0.117308, 0.124658, -0.544658, 0.829341, 0.385564, -0.743579, -0.546289, -0.0737061, 0.178538, 0.142844 )
 visible = false
+
+[node name="Beretta" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 45 )]
+transform = Transform( 1, -1.74623e-09, -3.72529e-09, -1.49012e-08, -3.91155e-08, 1, 6.28643e-09, -1, -4.28408e-08, 0.00706324, 0.036149, -0.000168443 )
+
+[node name="Beretta2" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 45 )]
+transform = Transform( 1, -1.74623e-09, -3.72529e-09, -1.49012e-08, -3.91155e-08, 1, 6.28643e-09, -1, -4.28408e-08, 0.00706324, 0.036149, -0.000168443 )
 
 [node name="Punch" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012105, 1.42503, 1.16488 )

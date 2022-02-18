@@ -168,8 +168,6 @@ func _ready():
 	window_width = ProjectSettings.get_setting('display/window/size/width')
 	window_height = ProjectSettings.get_setting('display/window/size/height')
 	render_scale = ProjectSettings.get_setting('rendering/quality/filters/render_scale')
-	viewport_size = owner.get_viewport().size * render_scale
-	viewport_size_scaled = Vector2(window_width, window_height) / viewport_size
 	
 	bullet_time.connect('amount_changed', self, '_on_bullet_time_changed')
 	stamina.connect('damaged', self, '_on_damaged')
@@ -187,7 +185,7 @@ func _ready():
 		var my_team = int(owner.owner._get_tag('Team'))
 		radar.modulate = Meta.TeamColors[my_team]
 		
-		for actor in $'/root/Mission'.actors.get_children():
+		for actor in $'/root/Mission'.actors:
 			
 			if actor != owner.owner and actor.get('tags') and actor._has_tag('Human'):
 				
@@ -254,7 +252,8 @@ func _process(delta):
 			dot.position = radar.rect_global_position + dot_position
 	
 	
-	
+	viewport_size = owner.get_viewport().size * render_scale
+	viewport_size_scaled = Vector2(window_width, window_height) / viewport_size
 	var camera_position = camera.unproject_position(camera_raycast_target.global_transform.origin)
 	camera_position *= viewport_size_scaled
 

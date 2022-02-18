@@ -19,8 +19,8 @@ onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Targe
 
 func _use_left_hand_item():
 	
+	lefthand.items.size()
 	if not lefthand._is_empty() and tree_node.current_state in ['Default', 'UseReact', 'ShootIdle']:
-		
 		Meta.StimulateActor(lefthand.items[0], 'Use', owner)
 
 
@@ -77,7 +77,11 @@ func _on_action(_state, data):
 		if not righthand._is_empty():
 			
 			var right_name = righthand.items[0].base_name
-			var left_name = '' if lefthand._is_empty() else lefthand.items[0].base_name
+			var left_name = ''
+			
+			lefthand.items.size()
+			if not lefthand._is_empty():
+				left_name = lefthand.items[0].base_name
 			
 			if shoot_idle_animations.has(right_name):
 				

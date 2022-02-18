@@ -1,8 +1,10 @@
 extends "res://Scripts/Action.gd"
 
 const item_names = ['Beretta', 'Colt', 'DesertEagle', 'Ingram', 'Jackhammer', 'M79', 'MP5', 'PumpShotgun', 'SawedoffShotgun', 'Sniper']
+const dual_wield_items = ['Beretta']
 
 var animations = {}
+var dual_animations = {}
 
 onready var behavior = get_node_or_null('../Behavior')
 onready var righthand = get_node_or_null('../RightHandContainer')
@@ -141,6 +143,9 @@ func _ready():
 	
 	for item_name in item_names:
 		animations[item_name] = _load_animations('Reload' + item_name)
+		
+		if item_name in dual_wield_items:
+			dual_animations[item_name] = _load_animations('Reload' + item_name + 'Dual')
 
 
 func _on_action(_state, data):
@@ -149,11 +154,23 @@ func _on_action(_state, data):
 		
 		if righthand._has_item_with_tag('Firearm'):
 			
+			var right_name = righthand.items[0].base_name
+			var left_name = ''
+			
+			lefthand.items.size()
+			if not lefthand._is_empty():
+				left_name = lefthand.items[0].base_name
+			
 			var item_name = righthand.items[0].base_name
 			var chamber = righthand.items[0].get_node('Chamber')
 			var magazine = righthand.items[0].get_node('Magazine')
 			var is_full = magazine.max_quantity <= magazine.items.size() + (0 if chamber._is_empty() else 1)
 			
 			if animations.has(item_name) and not is_full and _can_transfer_items_to(magazine):
-				_play(state, animations[item_name][0])
+				
+				if right_name in dual_wield_items and right_name == left_name:
+					_play(state, dual_animations[right_name][0])
+				else:
+					_play(state, animations[item_name][0])
+			
 	

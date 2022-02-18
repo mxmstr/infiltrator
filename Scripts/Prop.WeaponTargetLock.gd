@@ -19,6 +19,7 @@ var equipped = false
 onready var movement = get_node_or_null('../Movement')
 onready var stamina = get_node_or_null('../Stamina')
 onready var right_hand = get_node_or_null('../RightHandContainer')
+onready var left_hand = get_node_or_null('../LeftHandContainer')
 onready var right_punch = get_node_or_null('../RightPunchContainer')
 onready var left_punch = get_node_or_null('../LeftPunchContainer')
 onready var right_kick = get_node_or_null('../RightKickContainer')
@@ -76,6 +77,12 @@ func _on_item_equipped(container, item):
 			equipped = false
 
 
+func _on_lefthand_item_equipped(container, item):
+	
+	if item._has_tag('Firearm'):
+		item.get_node('Chamber').connect('item_released', self, '_on_fire')
+
+
 func _on_item_dequipped(container, item):
 	
 	if is_instance_valid(item) and item._has_tag('Firearm'):
@@ -88,6 +95,13 @@ func _on_item_dequipped(container, item):
 	equipped = false
 	targeted_enemy = null
 	targeted_enemy_bone = null
+
+
+func _on_lefthand_item_dequipped(container, item):
+	
+	if is_instance_valid(item) and item._has_tag('Firearm'):
+		
+		item.get_node('Chamber').disconnect('item_released', self, '_on_fire')
 
 
 func _select_target():
@@ -131,6 +145,8 @@ func _ready():
 	
 	right_hand.connect('item_added', self, '_on_item_equipped')
 	right_hand.connect('item_removed', self, '_on_item_dequipped')
+	left_hand.connect('item_added', self, '_on_lefthand_item_equipped')
+	left_hand.connect('item_removed', self, '_on_lefthand_item_dequipped')
 	right_punch.connect('item_released', self, '_on_punch')
 	left_punch.connect('item_released', self, '_on_punch')
 	right_kick.connect('item_released', self, '_on_punch')
@@ -139,8 +155,6 @@ func _ready():
 	yield(get_tree(), 'idle_frame')
 	
 	shoulder_bone = owner.get_node('Hitboxes')._get_bone(shoulder_bone_name)
-	
-#	if auto_aim:
 	
 	for actor in $'/root/Mission'.actors:
 		

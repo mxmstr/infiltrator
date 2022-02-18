@@ -12,8 +12,10 @@ anims/ShootBerettaDual_Up = ExtResource( 1 )
 script = ExtResource( 4 )
 attributes = "{
 	\"*\": {
+		\"speed\": 3.0,
 		\"clip_start\": 0.05,
 		\"layer\": \"MIXED\",
+		\"switch_mode\": \"End\",
 		\"next\": \"ShootIdle\"
 	}
 }"

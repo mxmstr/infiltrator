@@ -18,20 +18,19 @@ func _go_to_unarmed():
 func _go_to_next(next):
 	
 	var current = right_hand._release_front()
-	var new = inventory._release(next)
-	
-	if new:
-		Meta.CreateLink(owner, new, 'Contains', { 'container': 'RightHandContainer' } )
-	
 	if current:
 		Meta.CreateLink(owner, current, 'Contains', { 'container': 'InventoryContainer' } )
+	
+	var new = inventory._release(next)
+	if new:
+		Meta.CreateLink(owner, new, 'Contains', { 'container': 'RightHandContainer' } )
 	
 	behavior._start_state('Default')
 
 
 func _find_next(current_rank, not_empty):
 	
-	var next
+	var next_item
 	var next_rank = 100
 	
 	for item in inventory.items:
@@ -41,14 +40,15 @@ func _find_next(current_rank, not_empty):
 		var has_ammo = false if not_empty and magazine and magazine._is_empty() else true
 		
 		if rank > current_rank and rank < next_rank and has_ammo:
-			next = item
+			next_item = item
 			next_rank = rank
 	
-	return next
+	return next_item
 
 
 func _find_previous(current_rank, not_empty):
 	
+	var next_item
 	var next_rank = -1
 	
 	for item in inventory.items:
@@ -58,8 +58,10 @@ func _find_previous(current_rank, not_empty):
 		var has_ammo = false if not_empty and magazine and magazine._is_empty() else true
 		
 		if rank < current_rank and rank > next_rank and has_ammo:
-			next = item
+			next_item = item
 			next_rank = rank
+	
+	return next_item
 
 
 func _is_container(node):
@@ -107,22 +109,35 @@ func _try_dual_wield(current):
 	
 	var link = Meta.CreateLink(owner, current, 'DualWield')
 	
-	return not link._is_invalid() if link else false
+	if not link or link._is_invalid():
+		return false
+	
+	behavior._start_state('Default')
+	
+	return true
 
 
 func _on_next(forward=true, not_empty=false):
 	
-	var next
+	var next_item
 	
 	if right_hand._is_empty():
 		
 		if forward:
-			next = _find_next(-1, not_empty)
+			next_item = _find_next(-1, not_empty)
 		else:
-			next = _find_previous(-1, not_empty)
+			
+			next_item = _find_previous(1000, not_empty)
+			
+			if next_item and next_item._has_tag('DualWield'):
+				
+				_go_to_next(next_item)
+				_try_dual_wield(next_item)
+				
+				return
 		
-		if next:
-			_go_to_next(next)
+		if next_item:
+			_go_to_next(next_item)
 		
 	else:
 		
@@ -132,23 +147,41 @@ func _on_next(forward=true, not_empty=false):
 		
 		if forward:
 			
-			if dual_wield and not Meta.GetLinks(owner, current, 'DualWield').size():
+			if dual_wield:
 				
-#				if _try_dual_wield(current):
-#					return
+				if Meta.GetLinks(owner, current, 'DualWield').size():
+					
+					next_item = _find_next(current_rank, not_empty)
 				
-				next = _find_next(current_rank, not_empty)
+				else:
+					
+					if _try_dual_wield(current):
+						return
+					
+					next_item = _find_next(current_rank, not_empty)
 				
 			else:
 				
-				next = _find_next(current_rank, not_empty)
+				next_item = _find_next(current_rank, not_empty)
 		
 		else:
 			
-			next = _find_previous(current_rank, not_empty)
+			if dual_wield and Meta.GetLinks(owner, current, 'DualWield').size():
+				next_item = current
+			
+			else:
+				
+				next_item = _find_previous(current_rank, not_empty)
+				
+				if next_item and next_item._has_tag('DualWield'):
+					
+					_go_to_next(next_item)
+					_try_dual_wield(next_item)
+					
+					return
 		
-		if next:
-			_go_to_next(next)
+		if next_item:
+			_go_to_next(next_item)
 		else:
 			_go_to_unarmed()
 
