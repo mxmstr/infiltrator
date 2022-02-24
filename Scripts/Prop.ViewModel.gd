@@ -4,7 +4,6 @@ const viewmodel_offset = 5
 const worldmodel_offset = 15
 
 var has_skeleton = false
-
 var hidden_bones = []
 var hidden_bone_ids = []
 var follow_camera_bone_id
@@ -47,9 +46,14 @@ func _init_duplicate_meshes():
 	add_child(viewmodel)
 	
 	vm_skeleton = viewmodel
+	
+	
+	model.visible = false
 
 
 func _cull_mask_bits(world_mesh, view_mesh):
+	
+	return
 	
 	camera.set_cull_mask_bit(viewmodel_offset, false)
 	view_mesh.set_layer_mask_bit(viewmodel_offset, false)
@@ -115,7 +119,13 @@ func _init_container():
 	item_rotation_offset = _get_item_rotation_offset(model.owner)
 
 
-func _blend_skeletons(s_world, s_view):
+func _blend_skeletons():
+	
+	if not world_skeleton or not vm_skeleton:
+		return
+	
+	vm_skeleton.transform = world_skeleton.transform
+	transform = model.transform
 	
 #	behavior.blend_with_skeleton(s_view, '', [])
 #
@@ -125,36 +135,62 @@ func _blend_skeletons(s_world, s_view):
 #		p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
 #		s_view.set_bone_pose(idx, p_world)
 	
-	for idx in range(s_world.get_bone_count()):
-
-		var s_world_bone_name = s_world.get_bone_name(idx)
+	
+	for idx in range(world_skeleton.get_bone_count()):
+		
+		var s_world_bone_name = world_skeleton.get_bone_name(idx)
 		
 		if s_world_bone_name == 'Torso':
 			
-			var p_world = s_world.get_bone_global_pose(idx)
-			
-			s_view.set_bone_global_pose_override(idx, p_world, 1.0, true)
+			var p_world = world_skeleton.get_bone_global_pose(idx)
+			vm_skeleton.set_bone_global_pose_override(idx, p_world, 1.0, true)
 
 		else:
 			
-			var p_world = s_world.get_bone_pose(idx)
-			
-			if s_world_bone_name in hidden_bones:
-				p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
-			
-			s_view.set_bone_pose(idx, p_world)
+			var p_world = world_skeleton.get_bone_pose(idx)
+			vm_skeleton.set_bone_pose(idx, p_world)
 	
 	
-	s_view.transform = s_world.transform
+	var pelvis_id = world_skeleton.find_bone('Pelvis')
+	var pelvis_pose = world_skeleton.get_bone_global_pose(pelvis_id)
+	pelvis_pose.origin += Vector3(0, 0, -0.3)
+	vm_skeleton.set_bone_global_pose_override(pelvis_id, pelvis_pose, 1.0, true)
+	
+	
+	for hidden_bone_id in hidden_bone_ids:
 
-
-#	if follow_camera_bone_id:
-#
-#		var pose_bone = s_view.get_bone_global_pose(follow_camera_bone_id).origin + follow_camera_offset
-#		var bone_transform = owner.global_transform.basis.xform(pose_bone)
-#		var rig_transform = camera_rig.global_transform.origin - owner.global_transform.origin
-#
-#		s_view.global_transform.origin = owner.global_transform.origin + rig_transform - bone_transform
+		var p_world = world_skeleton.get_bone_pose(hidden_bone_id)
+		p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
+		
+		vm_skeleton.set_bone_pose(hidden_bone_id, p_world)
+	
+	
+	
+	if follow_camera_bone_id:
+		
+		var neck_id = vm_skeleton.find_bone('Neck')
+		var neck_pose = vm_skeleton.get_bone_global_pose(neck_id)
+		
+		var bone_pose = vm_skeleton.get_bone_global_pose(follow_camera_bone_id)
+		#var bone_transform = owner.global_transform.basis.xform(bone_pose)
+		#var rig_transform = camera_rig.global_transform.origin - owner.global_transform.origin
+		var camera_offset = -camera.transform.basis.z
+		camera_offset.y *= -1
+		
+		
+		bone_pose.origin = (
+			camera_rig.transform.origin - 
+			(neck_pose.origin - bone_pose.origin)# + 
+			#Vector3(0, 0, -0.2) +
+			#(camera_offset * 0.2)# + (Vector3(0, -0.5, 0) * -camera.transform.basis.z)
+			)
+		
+		bone_pose.origin += camera.transform.basis.xform_inv(Vector3(0, -0.2, -0.3))
+		
+		vm_skeleton.set_bone_global_pose_override(follow_camera_bone_id, bone_pose, 1.0, true)
+		#s_view.global_transform.origin = owner.global_transform.origin + rig_transform - bone_transform
+	
+	
 
 
 func _get_item_position_offset(item):
@@ -206,6 +242,7 @@ func _ready():
 		yield(get_tree(), 'idle_frame')
 	
 	owner.connect('player_index_changed', self, '_init_mesh_layers')
+	behavior.connect('post_advance', self, '_blend_skeletons')
 	
 	yield(get_tree(), 'idle_frame')
 	
@@ -234,7 +271,5 @@ func _process(delta):
 #		global_transform.basis = global_transform.basis.rotated(global_transform.basis.z, item_rotation_offset.z)
 #
 #
-	if world_skeleton and vm_skeleton:
-		_blend_skeletons(world_skeleton, vm_skeleton)
+	
 #
-	rotation = model.rotation

@@ -158,6 +158,6 @@ anims/Default_hit_08.wav = SubResource( 8 )
 script = ExtResource( 9 )
 attributes = "{
 	\"*\": {
-		\"level\": 5
+		\"level\": 0
 	}
 }"

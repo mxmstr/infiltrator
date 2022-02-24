@@ -17,20 +17,49 @@ var worldmodel_offset = 15
 var rig_translated = false
 var rig_rotated = false
 
+onready var model = $'../Model'
+onready var mesh = $'../Model'.get_child(0).get_child(0)
 onready var viewport = get_node('Viewport2D')
 onready var ui = get_node('../UI')
 onready var rig = get_node_or_null('../CameraRig')
 onready var camera = rig.get_node('Camera')
 
 
-func _on_pre_draw(viewport):
+func _on_pre_draw(viewport_rid):
 	
-	pass
+	return
+	if viewport_rid.get_id() == viewport.get_viewport_rid().get_id():
+		
+		for idx in range(model.get_child(0).get_bone_count()):
+			
+			var s_world_bone_name = model.get_child(0).get_bone_name(idx)
+			
+			if s_world_bone_name in ['Head', 'Neck']:
+				
+#				var global_pose = model.get_child(0).get_bone_global_pose_no_override(idx)
+#				global_pose.basis = global_pose.basis.scaled(Vector3(0.01, 0.01, 0.01))
+#				model.get_child(0).set_bone_global_pose_override(idx, global_pose, 1.0, true)
+				
+				var p_world = model.get_child(0).get_bone_pose(idx)
+				p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
+				model.get_child(0).set_bone_pose(idx, p_world)
+#				prints(model.get_child(0).get_bone_pose(idx).basis.get_scale())
 
 
-func _on_post_draw(viewport):
+func _on_post_draw(viewport_rid):
 	
-	pass
+	return
+	if viewport_rid.get_id() == viewport.get_viewport_rid().get_id():
+		
+		for idx in range(model.get_child(0).get_bone_count()):
+			
+			var s_world_bone_name = model.get_child(0).get_bone_name(idx)
+			
+			if s_world_bone_name in ['Head', 'Neck']:
+				
+				var p_world = model.get_child(0).get_bone_pose(idx)
+				p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
+				model.get_child(0).set_bone_pose(idx, p_world)
 
 
 func _on_item_contained(container, item):
@@ -42,7 +71,7 @@ func _on_item_contained(container, item):
 		viewmodel.model = item.get_node('Model')
 		viewmodel.container = container
 		
-		var path_to_root = $'../Model'.get_path_to(container.root)
+		var path_to_root = model.get_path_to(container.root)
 		viewmodel.container_root = $'../ActorViewModel'.get_node('Model/' + path_to_root)
 		
 		owner.add_child(viewmodel)
@@ -56,16 +85,16 @@ func _on_item_released(container, item):
 
 func _init_fp_skeleton():
 	
-	if not has_node('../Model'):
+	if not model:
 		return
 	
 	
 	var root_id
 	var shoulders_id
 	
-	for idx in range($'../Model'.get_child(0).get_bone_count()):
+	for idx in range(model.get_child(0).get_bone_count()):
 		
-		var bone_name = $'../Model'.get_child(0).get_bone_name(idx)
+		var bone_name = model.get_child(0).get_bone_name(idx)
 		
 		if bone_name == fp_root_bone:
 			root_id = idx
@@ -76,7 +105,7 @@ func _init_fp_skeleton():
 	
 	viewmodel = viewmodel_property.instance()
 	viewmodel.name = 'ActorViewModel'
-	viewmodel.model = $'../Model'
+	viewmodel.model = model
 	viewmodel.hidden_bones = fp_hidden_bones
 	viewmodel.follow_camera_bone_id = shoulders_id
 	viewmodel.follow_camera_offset = fp_offset
@@ -145,16 +174,30 @@ func _init_viewport():
 #			child.connect('item_removed', self, '_on_item_released')
 	
 	
-#	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
-#	VisualServer.connect('viewport_post_draw', self, '_on_post_draw')
 
 
 func _ready():
 	
 	_init_fp_skeleton()
+#	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
+#	VisualServer.connect('viewport_post_draw', self, '_on_post_draw')
 	
 	yield(get_tree(), 'idle_frame')
 	
 	_init_viewport()
 	
 	get_tree().root.connect('size_changed', self, '_init_viewport')
+
+
+#func _process(delta):
+#
+#
+#	for idx in range(model.get_child(0).get_bone_count()):
+#
+#		var s_world_bone_name = model.get_child(0).get_bone_name(idx)
+#
+#		if s_world_bone_name in ['Head', 'Neck']:
+#
+#			var p_world = model.get_child(0).get_bone_pose(idx)
+#			p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
+#			model.get_child(0).set_bone_pose(idx, p_world)

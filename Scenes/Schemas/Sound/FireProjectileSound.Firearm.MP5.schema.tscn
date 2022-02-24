@@ -28,6 +28,6 @@ __meta__ = {
 }
 attributes = "{
 	\"*\": {
-		\"level\": -5
+		\"level\": -10
 	}
 }"

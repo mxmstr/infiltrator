@@ -52,7 +52,6 @@ aabb = AABB( -0.119958, 0.162489, -0.0613593, 0.231916, 1.58002, 0.114907 )
 
 [node name="CameraRig" parent="." index="5" instance=ExtResource( 2 )]
 viewport = NodePath("../Perspective/Viewport2D")
-camera_offset = Vector3( 0, 0, -0.3 )
 
 [node name="Camera" parent="CameraRig" index="0"]
 fov = 80.0
@@ -149,6 +148,7 @@ collision_mask = 17
 path = NodePath("../CameraRig/Camera")
 
 [node name="Perspective" parent="." index="23" instance=ExtResource( 10 )]
+fp_shoulder_bone = "Torso"
 
 [node name="UI" parent="." index="24" instance=ExtResource( 29 )]
 

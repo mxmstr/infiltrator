@@ -118,8 +118,8 @@ func _travel():
 func _face():
 	
 	var closest = _get_closest_enemy()
-	var enemy_shoulder_bone = closest.get_node('Hitboxes')._get_bone('Shoulders')
-	var target_pos = enemy_shoulder_bone.transform.origin
+	var enemy_shoulder_bone = closest.get_node('Hitboxes')._get_bone('shoulders')
+	var target_pos = enemy_shoulder_bone.global_transform.origin
 	
 	var forward = camera.global_transform.basis.z.rotated(camera.global_transform.basis.y, deg2rad(180))
 	var direction_to_target = camera.global_transform.origin.direction_to(target_pos)

@@ -133,7 +133,7 @@ func _load_shotgun_shell():
 	var item_name = item.base_name
 	
 	if animations.has(item_name) and not is_full and remaining > 0:
-		_play(state, animations[item_name][0])
+		_play(state, animations[item_name][0], item_name + '_')
 
 
 func _ready():
@@ -142,10 +142,11 @@ func _ready():
 		return
 	
 	for item_name in item_names:
-		animations[item_name] = _load_animations('Reload' + item_name)
+		animations[item_name] = _load_animations('Reload' + item_name, item_name + '_')
 		
 		if item_name in dual_wield_items:
-			dual_animations[item_name] = _load_animations('Reload' + item_name + 'Dual')
+			dual_animations[item_name] = _load_animations('Reload' + item_name + 'Dual', item_name + 'Dual_')
+	
 
 
 func _on_action(_state, data):
@@ -169,8 +170,8 @@ func _on_action(_state, data):
 			if animations.has(item_name) and not is_full and _can_transfer_items_to(magazine):
 				
 				if right_name in dual_wield_items and right_name == left_name:
-					_play(state, dual_animations[right_name][0])
+					_play(state, dual_animations[right_name][0], item_name + 'Dual_')
 				else:
-					_play(state, animations[item_name][0])
+					_play(state, animations[item_name][0], item_name + '_')
 			
 	

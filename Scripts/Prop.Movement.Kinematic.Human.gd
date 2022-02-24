@@ -2,7 +2,7 @@ extends 'res://Scripts/Prop.Movement.gd'
 
 const accel = 2.0
 const deaccel = 5.0
-const angular_accel = 0.04#0.05
+const angular_accel = 0.02#0.05
 const angular_deaccel = 9.0
 
 export var gravity = -9.8

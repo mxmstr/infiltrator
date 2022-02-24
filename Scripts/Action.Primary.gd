@@ -38,12 +38,12 @@ func _ready():
 	
 	for item_name in item_names:
 		
-		shoot_animations[item_name] = _load_animations(shoot_schema + item_name)
-		shoot_idle_animations[item_name] = _load_animations(shoot_schema + item_name + 'Idle')
+		shoot_animations[item_name] = _load_animations(shoot_schema + item_name, item_name + '_')
+		shoot_idle_animations[item_name] = _load_animations(shoot_schema + item_name + 'Idle', item_name + '_')
 		
 		if item_name in dual_wield_items:
-			shoot_dual_animations[item_name] = _load_animations(shoot_schema + item_name + 'Dual')
-			shoot_dual_idle_animations[item_name] = _load_animations(shoot_schema + item_name + 'DualIdle')
+			shoot_dual_animations[item_name] = _load_animations(shoot_schema + item_name + 'Dual', item_name + 'Dual_')
+			shoot_dual_idle_animations[item_name] = _load_animations(shoot_schema + item_name + 'DualIdle', item_name + 'Dual_')
 
 
 func _on_action(_state, data):
@@ -65,13 +65,16 @@ func _on_action(_state, data):
 			if shoot_animations.has(right_name):
 				
 				var animation_list
+				var prefix
 				
 				if dual_wielding:
 					animation_list = shoot_dual_animations[right_name]
+					prefix = right_name + 'Dual_'
 				else:
 					animation_list = shoot_animations[right_name]
+					prefix = right_name + '_'
 				
-				_play(_state, animation_list[0], animation_list[1], animation_list[2])
+				_play(_state, animation_list[0], prefix, animation_list[1], animation_list[2])
 				
 				if dual_wielding and right_name == 'Ingram':
 					_use_left_hand_item()
@@ -87,19 +90,24 @@ func _on_action(_state, data):
 			if not lefthand._is_empty():
 				left_name = lefthand.items[0].base_name
 			
+			var dual_wielding = right_name in dual_wield_items and right_name == left_name
+			
 			if shoot_idle_animations.has(right_name):
 				
 				var animation_list
+				var prefix
 				
-				if right_name in dual_wield_items and right_name == left_name:
+				if dual_wielding:
 					animation_list = shoot_dual_idle_animations[right_name]
+					prefix = right_name + 'Dual_'
 				else:
 					animation_list = shoot_idle_animations[right_name]
+					prefix = right_name + '_'
 				
 				if animation_list.size() == 3:
-					_play(_state, animation_list[0], animation_list[1], animation_list[2])
+					_play(_state, animation_list[0], prefix, animation_list[1], animation_list[2])
 				else:
-					_play(_state, animation_list[0])
+					_play(_state, animation_list[0], prefix)
 
 
 func _process(delta):

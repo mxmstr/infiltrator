@@ -13,14 +13,15 @@ func _ready():
 	tree_node.connect('action', self, '_on_action')
 
 
-func _play(_state, _animation, _down=null, _up=null):
+func _play(_state, _animation, _attributes_prefix='', _down=null, _up=null):
 	
+	var attributes_name = _attributes_prefix + _animation
 	var result
 	
 	if _up and _down:
-		result = tree_node._play(_state, _animation, attributes[_animation].duplicate(), _up, _down)
+		result = tree_node._play(_state, _animation, attributes[attributes_name].duplicate(), _up, _down)
 	else:
-		result = tree_node._play(_state, _animation, attributes[_animation].duplicate())
+		result = tree_node._play(_state, _animation, attributes[attributes_name].duplicate())
 	
 	if random:
 		_randomize_animation()

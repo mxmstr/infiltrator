@@ -10,6 +10,8 @@ var cached_action_pose
 var action_up
 var action_down
 
+onready var model = $'../Model'
+onready var viewport = $'../Perspective/Viewport2D'
 onready var movement = get_node_or_null('../Movement')
 onready var stance = get_node_or_null('../Stance')
 onready var camera_mode = get_node_or_null('../CameraMode')
@@ -18,6 +20,27 @@ onready var anim_layer_movement = get_node_or_null('../AnimLayerMovement')
 onready var bullet_time = get_node_or_null('../BulletTime')
 
 signal pre_advance
+signal post_advance
+
+
+func _on_pre_draw(viewport_rid):
+	
+	if viewport_rid.get_id() == viewport.get_viewport_rid().get_id():
+		
+		for idx in range(model.get_child(0).get_bone_count()):
+			
+			var s_world_bone_name = model.get_child(0).get_bone_name(idx)
+			
+			if s_world_bone_name in ['Head', 'Neck']:
+				
+#				var global_pose = model.get_child(0).get_bone_global_pose_no_override(idx)
+#				global_pose.basis = global_pose.basis.scaled(Vector3(0.01, 0.01, 0.01))
+#				model.get_child(0).set_bone_global_pose_override(idx, global_pose, 1.0, true)
+				
+				var p_world = model.get_child(0).get_bone_pose(idx)
+				p_world.basis = p_world.basis.scaled(Vector3(0.01, 0.01, 0.01))
+				model.get_child(0).set_bone_pose(idx, p_world)
+#				prints(model.get_child(0).get_bone_pose(idx).basis.get_scale())
 
 
 func _set_layer(_layer):
@@ -83,7 +106,7 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	
 	if attributes.has('time_scaled'):
 		time_scaled = attributes.time_scaled
-	
+
 	if bullet_time and bullet_time.active and not time_scaled:
 		if attributes.has('speed'):
 			attributes.speed /= Engine.time_scale
@@ -152,6 +175,8 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 
 func _ready():
 	
+	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
+	
 	action_up = tree_root.get_node('ActionUp')
 	action_down = tree_root.get_node('ActionDown')
 	
@@ -190,6 +215,7 @@ func _process(delta):
 
 	if is_mixed:
 		_apply_action_pose()
-
 	
 	skeleton.scale = Vector3(-1, -1, -1)
+	
+	emit_signal('post_advance')
