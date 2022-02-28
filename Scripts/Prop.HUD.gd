@@ -43,17 +43,17 @@ func _on_damaged(hp):
 	health_bar.value = hp
 
 
-func _on_ammo_added(container, item):
+func _on_ammo_added(item):
 	
 	_refresh_ammo()
 
 
-func _on_ammo_removed(container, item):
+func _on_ammo_removed(item):
 	
 	_refresh_ammo()
 
 
-func _on_item_added(container, item):
+func _on_item_added(item):
 	
 	if item._has_tag('Firearm'):
 		
@@ -67,7 +67,7 @@ func _on_item_added(container, item):
 	_refresh_ammo()
 
 
-func _on_item_removed(container, item):
+func _on_item_removed(item):
 	
 	if ammo_container:
 		ammo_container.disconnect('item_added', self, '_on_ammo_added')

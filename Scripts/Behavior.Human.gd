@@ -193,7 +193,7 @@ func _ready():
 
 func _process(delta):
 	
-	emit_signal('pre_advance')
+	emit_signal('pre_advance', delta)
 	
 	var is_action = layer == Meta.BlendLayer.ACTION
 	var is_movement = layer == Meta.BlendLayer.MOVEMENT
@@ -218,4 +218,4 @@ func _process(delta):
 	
 	skeleton.scale = Vector3(-1, -1, -1)
 	
-	emit_signal('post_advance')
+	emit_signal('post_advance', delta)

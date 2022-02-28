@@ -68,7 +68,7 @@ func _add_item(item):
 	
 	items.append(item)
 	
-	emit_signal('item_added', self, item)
+	emit_signal('item_added', item)
 	
 	return true
 
@@ -79,7 +79,7 @@ func _remove_item(item):
 		
 		items.erase(item)
 		
-		emit_signal('item_removed', self, item)
+		emit_signal('item_removed', item)
 		
 		return item
 

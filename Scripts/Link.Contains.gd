@@ -53,7 +53,7 @@ func _find_free_container():
 	return false
 
 
-func _get_item_position_offset(item):
+static func _get_item_position_offset(item, _container_node):
 	
 	for item_data in item._get_tags('Offset-position'):
 		
@@ -62,14 +62,14 @@ func _get_item_position_offset(item):
 		var item_offset = item_data[2].split(',')
 
 		if (#(root_parent_name == '' or (container_node.root and container_node.root.get_parent().name == root_parent_name)) and \
-			(item_bone_name == '' or (container_node.root and item_bone_name == container_node.root.bone_name))
+			(item_bone_name == '' or (_container_node.root and item_bone_name == _container_node.root.bone_name))
 			):
 			return Vector3(float(item_offset[0]), float(item_offset[1]), float(item_offset[2]))
 	
 	return Vector3()
 
 
-func _get_item_rotation_offset(item):
+static func _get_item_rotation_offset(item, _container_node):
 	
 	for item_data in item._get_tags('Offset-rotation'):
 		
@@ -78,7 +78,7 @@ func _get_item_rotation_offset(item):
 		var item_offset = item_data[2].split(',')
 		
 		if (#(root_parent_name == '' or (container_node.root and container_node.root.get_parent().name == root_parent_name)) and \
-			(item_bone_name == '' or (container_node.root and item_bone_name == container_node.root.bone_name))
+			(item_bone_name == '' or (_container_node.root and item_bone_name == _container_node.root.bone_name))
 			):
 			return Vector3(deg2rad(float(item_offset[0])), deg2rad(float(item_offset[1])), deg2rad(float(item_offset[2]))) 
 	
@@ -134,8 +134,8 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	item_position_offset = _get_item_position_offset(to_node)
-	item_rotation_offset = _get_item_rotation_offset(to_node)
+	item_position_offset = _get_item_position_offset(to_node, container_node)
+	item_rotation_offset = _get_item_rotation_offset(to_node, container_node)
 	
 	to_node.get_parent().remove_child(to_node)
 	container_node.root.add_child(to_node)
@@ -187,10 +187,10 @@ func _disable_collision():
 	else:
 		container_node.root.bone_name = container_node.bone_name
 	
-	if from_behavior.get_script().has_script_signal('pre_advance'):
-		
-		from_behavior.connect('pre_advance', self, '_move_item')
-		human = true
+#	if from_behavior.get_script().has_script_signal('pre_advance'):
+#
+#		from_behavior.connect('pre_advance', self, '_move_item')
+#		human = true
 
 
 func _restore_collision():

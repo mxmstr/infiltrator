@@ -64,7 +64,7 @@ func _on_camera_exited(_camera, actor):
 		_select_target()
 
 
-func _on_item_equipped(container, item):
+func _on_item_equipped(item):
 	
 	if item._has_tag('Firearm'):
 		
@@ -77,13 +77,13 @@ func _on_item_equipped(container, item):
 			equipped = false
 
 
-func _on_lefthand_item_equipped(container, item):
+func _on_lefthand_item_equipped(item):
 	
 	if item._has_tag('Firearm'):
 		item.get_node('Chamber').connect('item_released', self, '_on_fire')
 
 
-func _on_item_dequipped(container, item):
+func _on_item_dequipped(item):
 	
 	if is_instance_valid(item) and item._has_tag('Firearm'):
 		
@@ -97,7 +97,7 @@ func _on_item_dequipped(container, item):
 	targeted_enemy_bone = null
 
 
-func _on_lefthand_item_dequipped(container, item):
+func _on_lefthand_item_dequipped(item):
 	
 	if is_instance_valid(item) and item._has_tag('Firearm'):
 		

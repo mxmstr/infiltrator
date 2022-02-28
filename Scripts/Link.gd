@@ -10,6 +10,8 @@ var base_name
 var from_node
 var to_node
 
+signal destroyed
+
 
 func _notification(what):
 	
@@ -83,3 +85,5 @@ func _destroy():
 	set_process(false)
 	set_physics_process(false)
 	queue_free()
+	
+	emit_signal('destroyed')

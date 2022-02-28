@@ -279,7 +279,6 @@ func PreloadSchemas():
 		packed_scene.pack(animation_player)
 		
 		preloader.add_resource(schema, packed_scene)
-		
 
 
 func PreloadActors():

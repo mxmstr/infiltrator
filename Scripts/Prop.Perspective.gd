@@ -10,7 +10,7 @@ export(Array, String) var fp_hidden_bones
 
 var viewmodel_property = preload('res://Scenes/Components/Properties/ViewModel.property.tscn')
 
-var viewmodel
+var viewmodels = []
 var viewmodel_offset = 5
 var worldmodel_offset = 15
 
@@ -19,6 +19,8 @@ var rig_rotated = false
 
 onready var model = $'../Model'
 onready var mesh = $'../Model'.get_child(0).get_child(0)
+onready var right_hand = $'../RightHandContainer'
+onready var left_hand = $'../LeftHandContainer'
 onready var viewport = get_node('Viewport2D')
 onready var ui = get_node('../UI')
 onready var rig = get_node_or_null('../CameraRig')
@@ -62,25 +64,29 @@ func _on_post_draw(viewport_rid):
 				model.get_child(0).set_bone_pose(idx, p_world)
 
 
-func _on_item_contained(container, item):
+func _on_item_contained(item, container):
 	
 	if container.bone_name != '':
 		
-		var viewmodel = preload('res://Scenes/Components/Properties/ViewModel.property.tscn').instance()
-		viewmodel.name = item.name + 'ViewModel'
-		viewmodel.model = item.get_node('Model')
+		var viewmodel = viewmodel_property.instance()
+		var contains_link = preload('res://Scripts/Link.Contains.gd')
+		viewmodel.name = item.base_name + 'ViewModel'
+		viewmodel.actor = item
 		viewmodel.container = container
 		
-		var path_to_root = model.get_path_to(container.root)
-		viewmodel.container_root = $'../ActorViewModel'.get_node('Model/' + path_to_root)
-		
 		owner.add_child(viewmodel)
-		viewmodel.owner = owner
+		viewmodel.set_owner(owner)
+		
+		viewmodels.append(viewmodel)
 
 
-func _on_item_released(container, item):
+func _on_item_released(item, container):
 	
-	owner.get_node(item.name + 'ViewModel').queue_free()
+	prints('destroy', item, container.bone_name)
+	for viewmodel in viewmodels.duplicate():
+		if viewmodel.actor == item:
+			viewmodel._destroy()
+			viewmodels.erase(viewmodel)
 
 
 func _init_fp_skeleton():
@@ -103,15 +109,22 @@ func _init_fp_skeleton():
 			shoulders_id = idx
 	
 	
-	viewmodel = viewmodel_property.instance()
+	var viewmodel = viewmodel_property.instance()
 	viewmodel.name = 'ActorViewModel'
-	viewmodel.model = model
+	viewmodel.actor = owner
 	viewmodel.hidden_bones = fp_hidden_bones
 	viewmodel.follow_camera_bone_id = shoulders_id
 	viewmodel.follow_camera_offset = fp_offset
 	
-	owner.call_deferred('add_child', viewmodel)
-	viewmodel.call_deferred('set_owner', owner)
+	owner.add_child(viewmodel)
+	viewmodel.set_owner(owner)
+	
+	viewmodels.append(viewmodel)
+	
+	right_hand.connect('item_added', self, '_on_item_contained', [right_hand])
+	right_hand.connect('item_removed', self, '_on_item_released', [right_hand])
+	left_hand.connect('item_added', self, '_on_item_contained', [left_hand])
+	left_hand.connect('item_removed', self, '_on_item_released', [left_hand])
 
 
 func _init_viewport():
@@ -172,18 +185,16 @@ func _init_viewport():
 #
 #			child.connect('item_added', self, '_on_item_contained')
 #			child.connect('item_removed', self, '_on_item_released')
-	
-	
 
 
 func _ready():
 	
-	_init_fp_skeleton()
 #	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
 #	VisualServer.connect('viewport_post_draw', self, '_on_post_draw')
 	
 	yield(get_tree(), 'idle_frame')
 	
+	_init_fp_skeleton()
 	_init_viewport()
 	
 	get_tree().root.connect('size_changed', self, '_init_viewport')

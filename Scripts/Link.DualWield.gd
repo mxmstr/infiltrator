@@ -4,7 +4,7 @@ var clone
 var clone_contains_link
 
 
-func _on_item_removed(container, item):
+func _on_item_removed(item):
 	
 	_destroy()
 
@@ -18,11 +18,15 @@ func _ready():
 		_destroy()
 		return
 	
+	clone_contains_link.connect('destroyed', self, '_destroy')
 	from_node.get_node('RightHandContainer').connect('item_removed', self, '_on_item_removed')
 	from_node.get_node('ReloadAction')._load_lefthand_magazine()
 
 
 func _destroy():
+	
+	if is_instance_valid(clone_contains_link) and not clone_contains_link.is_queued_for_deletion():
+		clone_contains_link._destroy()
 	
 	from_node.get_node('TouchResponse')._stack_item(clone)
 	

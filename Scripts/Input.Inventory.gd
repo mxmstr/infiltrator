@@ -117,6 +117,19 @@ func _try_dual_wield(current):
 	return true
 
 
+func _stop_dual_wield(current):
+	
+	var dual_wield_links = Meta.GetLinks(owner, current, 'DualWield')
+	
+	if dual_wield_links.size():
+		for link in dual_wield_links:
+			link._destroy()
+	
+	behavior._start_state('Default')
+	
+	return dual_wield_links.size()
+
+
 func _on_next(forward=true, not_empty=false):
 	
 	var next_item
@@ -166,8 +179,10 @@ func _on_next(forward=true, not_empty=false):
 		
 		else:
 			
-			if dual_wield and Meta.GetLinks(owner, current, 'DualWield').size():
-				next_item = current
+			if dual_wield:
+				
+				if _stop_dual_wield(current):
+					return
 			
 			else:
 				
