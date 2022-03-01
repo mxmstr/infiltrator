@@ -26,6 +26,8 @@ onready var behavior = get_node_or_null('../Behavior')
 onready var camera_rig = get_node_or_null('../CameraRig')
 onready var camera = get_node_or_null('../CameraRig/Camera')
 
+signal blended_skeletons
+
 
 func _init_duplicate_meshes():
 	
@@ -48,6 +50,7 @@ func _init_duplicate_meshes():
 	add_child(model_instance)
 	
 	model = model_instance
+	model.transform = actor_model.transform
 	
 	if model_instance.get_children().size() and model_instance.get_child(0) and model_instance.get_child(0) is Skeleton:
 		
@@ -57,7 +60,7 @@ func _init_duplicate_meshes():
 			if vm_skeleton.get_bone_name(idx) in hidden_bones:
 				hidden_bone_ids.append(idx)
 	
-	#model.visible = false
+	#actor_model.visible = false
 
 
 func _cull_mask_bits(world_mesh, view_mesh):
@@ -161,6 +164,7 @@ func _init_container():
 
 	translation = contains_link._get_item_position_offset(actor, container)
 	rotation = contains_link._get_item_rotation_offset(actor, container)
+	model.transform = actor_model.transform
 	
 	get_child(0).queue_free()
 
@@ -199,23 +203,22 @@ func _blend_skeletons(delta):
 		vm_skeleton.set_bone_pose(hidden_bone_id, p_world)
 	
 	
-	
 	if follow_camera_bone_id:
-		
+
 		var neck_id = vm_skeleton.find_bone('Neck')
 		var neck_pose = vm_skeleton.get_bone_global_pose(neck_id)
-		
+
 		var bone_pose = vm_skeleton.get_bone_global_pose(follow_camera_bone_id)
 		var camera_offset = -camera.transform.basis.z
 		camera_offset.y *= -1
-		
+
 		bone_pose.origin = (
 			camera_rig.transform.origin - 
 			(neck_pose.origin - bone_pose.origin) +
 			camera.transform.basis.xform_inv(Vector3(0, -0.2, -0.3)) +
 			follow_camera_torso_delta
 			)
-		
+
 		vm_skeleton.set_bone_global_pose_override(follow_camera_bone_id, bone_pose, 1.0, true)
 	
 	
@@ -224,6 +227,8 @@ func _blend_skeletons(delta):
 		10.0 * delta
 		)
 	follow_camera_torso_origin = torso_pose.origin
+	
+	emit_signal('blended_skeletons')
 
 
 func _destroy():

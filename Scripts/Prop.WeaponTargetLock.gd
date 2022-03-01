@@ -26,18 +26,33 @@ onready var right_kick = get_node_or_null('../RightKickContainer')
 onready var left_kick = get_node_or_null('../LeftKickContainer')
 
 
-func _on_fire(projectile):
+func _on_fire(projectile, item):
+	
+	if projectile._has_tag('Bullet') and perspective.viewmodels.size():
+			
+			for viewmodel in perspective.viewmodels:
+				
+				if viewmodel.actor == item:
+					
+					yield(get_tree(), 'idle_frame')
+					
+					if not projectile or not viewmodel or not item:
+						break 
+					
+					projectile.global_transform.origin = viewmodel.global_transform.origin + projectile.global_transform.origin - item.global_transform.origin
+					
+					break
 	
 	var direction = projectile.global_transform.origin.direction_to(camera_raycast_target.global_transform.origin)
 	var target_pos = projectile.global_transform.origin - direction
-	
+
 	if projectile._has_tag('Grenade'):
-		
+
 		projectile.get_node('Movement')._set_direction(direction * -1, true)
 		projectile.get_node('Movement').speed = projectile.get_node('Movement').speed
-	
+
 	else:
-		
+
 		projectile.look_at(target_pos, Vector3.UP)
 
 
@@ -68,7 +83,7 @@ func _on_item_equipped(item):
 	
 	if item._has_tag('Firearm'):
 		
-		item.get_node('Chamber').connect('item_released', self, '_on_fire')
+		item.get_node('Chamber').connect('item_removed', self, '_on_fire', [item])
 		
 		if item._has_tag('AutoAim'):
 			equipped = true
@@ -80,7 +95,7 @@ func _on_item_equipped(item):
 func _on_lefthand_item_equipped(item):
 	
 	if item._has_tag('Firearm'):
-		item.get_node('Chamber').connect('item_released', self, '_on_fire')
+		item.get_node('Chamber').connect('item_released', self, '_on_fire', [item])
 
 
 func _on_item_dequipped(item):
@@ -90,7 +105,7 @@ func _on_item_dequipped(item):
 		item.get_node('Chamber').disconnect('item_released', self, '_on_fire')
 		
 		if item._has_tag('Grenade') and item.get_node('Behavior').current_state == 'FireProjectile':
-			_on_fire(item)
+			_on_fire(item, null)
 	
 	equipped = false
 	targeted_enemy = null

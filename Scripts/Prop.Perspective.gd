@@ -82,7 +82,6 @@ func _on_item_contained(item, container):
 
 func _on_item_released(item, container):
 	
-	prints('destroy', item, container.bone_name)
 	for viewmodel in viewmodels.duplicate():
 		if viewmodel.actor == item:
 			viewmodel._destroy()
