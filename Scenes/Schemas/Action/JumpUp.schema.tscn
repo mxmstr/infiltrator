@@ -8,8 +8,8 @@ anims/JumpUp = ExtResource( 1 )
 script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
-		\"speed\": 1.75,
 		\"clip_start\": 0.05,
+		\"speed\": 1.75,
 		\"clip_end\": 1.1,
 		\"layer\": \"ACTION\",
 		\"switch_mode\": \"End\"

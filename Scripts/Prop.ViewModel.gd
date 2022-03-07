@@ -223,8 +223,8 @@ func _blend_skeletons(delta):
 	
 	
 	follow_camera_torso_delta = follow_camera_torso_delta.linear_interpolate(
-		(torso_pose.origin - follow_camera_torso_origin) * 10,
-		10.0 * delta
+		(torso_pose.origin - follow_camera_torso_origin) * 5,
+		5.0 * delta
 		)
 	follow_camera_torso_origin = torso_pose.origin
 	

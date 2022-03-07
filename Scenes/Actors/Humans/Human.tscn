@@ -180,116 +180,153 @@ tree = NodePath("../Behavior")
 [node name="JumpRightAction" parent="." index="34" instance=ExtResource( 19 )]
 tree = NodePath("../Behavior")
 
-[node name="WallRunAction" parent="." index="35" instance=ExtResource( 33 )]
+[node name="AirDodgeLeftAction" parent="." index="35" instance=ExtResource( 19 )]
+tree = NodePath("../Behavior")
+schema = "AirDodgeLeft"
+state = "AirDodgeLeft"
+
+[node name="AirDodgeRightAction" parent="." index="36" instance=ExtResource( 19 )]
+tree = NodePath("../Behavior")
+schema = "AirDodgeRight"
+state = "AirDodgeRight"
+
+[node name="AirDodgeBackwardAction" parent="." index="37" instance=ExtResource( 19 )]
+tree = NodePath("../Behavior")
+schema = "AirDodgeBackward"
+state = "AirDodgeBackward"
+
+[node name="RollForwardAction" parent="." index="38" instance=ExtResource( 19 )]
+tree = NodePath("../Behavior")
+schema = "RollForward"
+state = "RollForward"
+
+[node name="RollBackwardAction" parent="." index="39" instance=ExtResource( 19 )]
+tree = NodePath("../Behavior")
+schema = "RollBackward"
+state = "RollBackward"
+
+[node name="RollLeftAction" parent="." index="40" instance=ExtResource( 19 )]
+tree = NodePath("../Behavior")
+schema = "RollLeft"
+state = "RollLeft"
+
+[node name="RollRightAction" parent="." index="41" instance=ExtResource( 19 )]
+tree = NodePath("../Behavior")
+schema = "RollRight"
+state = "RollRight"
+
+[node name="WallRunAction" parent="." index="42" instance=ExtResource( 33 )]
 tree = NodePath("../Behavior")
 
-[node name="ReloadAction" parent="." index="36" instance=ExtResource( 20 )]
+[node name="ReloadAction" parent="." index="43" instance=ExtResource( 20 )]
 tree = NodePath("../Behavior")
 
-[node name="DieAction" parent="." index="37" instance=ExtResource( 21 )]
+[node name="DieAction" parent="." index="44" instance=ExtResource( 21 )]
 tree = NodePath("../Behavior")
 random = true
 
-[node name="DieExplosionAction" parent="." index="38" instance=ExtResource( 21 )]
+[node name="DieExplosionAction" parent="." index="45" instance=ExtResource( 21 )]
 tree = NodePath("../Behavior")
 schema = "DieExplosion"
 random = true
 state = "DieExplosion"
 
-[node name="PostDeathAction" parent="." index="39" instance=ExtResource( 22 )]
+[node name="PostDeathAction" parent="." index="46" instance=ExtResource( 22 )]
 tree = NodePath("../Behavior")
 schema = "PostDeath"
 state = "PostDeath"
 
-[node name="VictoryAction" parent="." index="40" instance=ExtResource( 30 )]
+[node name="VictoryAction" parent="." index="47" instance=ExtResource( 30 )]
 tree = NodePath("../Behavior")
 
-[node name="AnimLayerMovement" parent="." index="41" instance=ExtResource( 23 )]
+[node name="AnimLayerMovement" parent="." index="48" instance=ExtResource( 23 )]
 parameters/playback = SubResource( 1 )
 
-[node name="TouchResponse" parent="." index="42" instance=ExtResource( 24 )]
+[node name="TouchResponse" parent="." index="49" instance=ExtResource( 24 )]
 tree_node = NodePath("../Reception")
 
-[node name="UseReactResponse" parent="." index="43" instance=ExtResource( 25 )]
+[node name="UseReactResponse" parent="." index="50" instance=ExtResource( 25 )]
 tree_node = NodePath("../Reception")
 
-[node name="EmptyReactResponse" parent="." index="44" instance=ExtResource( 26 )]
+[node name="EmptyReactResponse" parent="." index="51" instance=ExtResource( 26 )]
 tree_node = NodePath("../Reception")
 
-[node name="DamageResponse" parent="." index="45" instance=ExtResource( 27 )]
+[node name="DamageResponse" parent="." index="52" instance=ExtResource( 27 )]
 tree_node = NodePath("../Reception")
 
-[node name="JumpUpSound" parent="." index="46" instance=ExtResource( 22 )]
+[node name="JumpUpSound" parent="." index="53" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "JumpUpSound"
 random = true
 state = "JumpUp"
 
-[node name="JumpDodgeSound" parent="." index="47" instance=ExtResource( 22 )]
+[node name="JumpDodgeSound" parent="." index="54" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "JumpDodgeSound"
 random = true
 state = "JumpDodge"
 
-[node name="JumpBackwardSound" parent="." index="48" instance=ExtResource( 22 )]
+[node name="JumpBackwardSound" parent="." index="55" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "JumpBackwardSound"
 random = true
 state = "JumpBackward"
 
-[node name="PunchSound" parent="." index="49" instance=ExtResource( 22 )]
+[node name="PunchSound" parent="." index="56" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PunchSound"
 state = "Punch"
 
-[node name="KickSound" parent="." index="50" instance=ExtResource( 22 )]
+[node name="KickSound" parent="." index="57" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "KickSound"
 state = "Kick"
 
-[node name="SwordMeleeSound" parent="." index="51" instance=ExtResource( 22 )]
+[node name="SwordMeleeSound" parent="." index="58" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "SwordMeleeSound"
 random = true
 state = "SwordMelee"
 
-[node name="ThrowGrenadeSound" parent="." index="52" instance=ExtResource( 22 )]
+[node name="ThrowGrenadeSound" parent="." index="59" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "ThrowGrenadeSound"
 state = "ThrowGrenade"
 
-[node name="OofSound" parent="." index="53" instance=ExtResource( 22 )]
+[node name="OofSound" parent="." index="60" instance=ExtResource( 22 )]
 tree = NodePath("../VoiceAudio")
 schema = "Oof"
 random = true
 state = "Oof"
 
-[node name="PickupWeaponSound" parent="." index="54" instance=ExtResource( 22 )]
+[node name="PickupWeaponSound" parent="." index="61" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PickupWeaponSound"
 state = "PickupWeapon"
 
-[node name="PickupAmmoSound" parent="." index="55" instance=ExtResource( 22 )]
+[node name="PickupAmmoSound" parent="." index="62" instance=ExtResource( 22 )]
 tree = NodePath("../FoleyAudio")
 schema = "PickupAmmoSound"
 state = "PickupAmmo"
 
-[node name="BulletTimeStartSound" parent="." index="56" instance=ExtResource( 22 )]
-tree = NodePath("../FoleyAudio")
+[node name="BulletTimeStartSound" parent="." index="63" instance=ExtResource( 22 )]
+tree = NodePath("../UIAudio")
 schema = "BulletTimeStartSound"
 state = "BulletTimeStart"
 
-[node name="BulletTimeEndSound" parent="." index="57" instance=ExtResource( 22 )]
-tree = NodePath("../FoleyAudio")
+[node name="BulletTimeEndSound" parent="." index="64" instance=ExtResource( 22 )]
+tree = NodePath("../UIAudio")
 schema = "BulletTimeEndSound"
 state = "BulletTimeEnd"
 
-[node name="VoiceAudio" parent="." index="58" instance=ExtResource( 28 )]
+[node name="VoiceAudio" parent="." index="65" instance=ExtResource( 28 )]
 bus = "Voice"
 
-[node name="FoleyAudio" parent="." index="59" instance=ExtResource( 28 )]
+[node name="FoleyAudio" parent="." index="66" instance=ExtResource( 28 )]
 
-[node name="FeetAudio" parent="." index="60" instance=ExtResource( 28 )]
+[node name="FeetAudio" parent="." index="67" instance=ExtResource( 28 )]
+
+[node name="UIAudio" parent="." index="68" instance=ExtResource( 28 )]
 
 [editable path="CameraRig"]
 [editable path="Perspective"]

@@ -231,8 +231,9 @@ func _destroy():
 		
 		var to_node_transform = to_node.global_transform
 		
-		container_node.root.remove_child(to_node)
-		actors.add_child(to_node)
+		if container_node.root == to_node.get_parent():
+			container_node.root.remove_child(to_node)
+			actors.add_child(to_node)
 		
 		if movement:
 			movement._teleport(to_node_transform.origin, to_node_transform.basis)

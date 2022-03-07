@@ -1,14 +1,13 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
-const accel = 2.0
+const gravity = -9.8
+const stop_on_slope = false
+const max_slides = 4
+const accel = 1.0
 const deaccel = 5.0
 const angular_accel = 0.02#0.05
 const angular_deaccel = 9.0
-
-export var gravity = -9.8
-export var vertical_speed_mult = 0.5
-export var stop_on_slope = false
-export var max_slides = 4
+const angular_vertical_speed_mult = 0.5
 
 var angular_velocity_x_pos = 0.0
 var angular_velocity_x_neg = 0.0
@@ -111,8 +110,8 @@ func _apply_rotation(delta):
 	angular_velocity_x_pos = Vector2(angular_velocity_x_pos, 0).linear_interpolate(Vector2(x_positive, 0), factorx_positive * delta).x
 	angular_velocity_x_neg = Vector2(angular_velocity_x_neg, 0).linear_interpolate(Vector2(x_negative, 0), factorx_negative * delta).x
 	angular_velocity.x = angular_velocity_x_pos + angular_velocity_x_neg
-	angular_velocity_y_pos = Vector2(0, angular_velocity_y_pos).linear_interpolate(Vector2(0, y_positive), factory_positive * vertical_speed_mult * delta).y
-	angular_velocity_y_neg = Vector2(0, angular_velocity_y_neg).linear_interpolate(Vector2(0, y_negative), factory_negative * vertical_speed_mult * delta).y
+	angular_velocity_y_pos = Vector2(0, angular_velocity_y_pos).linear_interpolate(Vector2(0, y_positive), factory_positive * angular_vertical_speed_mult * delta).y
+	angular_velocity_y_neg = Vector2(0, angular_velocity_y_neg).linear_interpolate(Vector2(0, y_negative), factory_negative * angular_vertical_speed_mult * delta).y
 	angular_velocity.y = angular_velocity_y_pos + angular_velocity_y_neg
 	
 	if rotate_x_camera:

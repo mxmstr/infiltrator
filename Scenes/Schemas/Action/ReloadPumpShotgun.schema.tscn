@@ -11,6 +11,7 @@ attributes = "{
 		\"speed\": 2.0,
 		\"clip_start\": 0.05,
 		\"layer\": \"MIXED\",
-		\"switch_mode\": \"Immediate\"
+		\"switch_mode\": \"Immediate\",
+		\"time_scaled\": false
 	}
 }"

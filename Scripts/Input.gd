@@ -37,7 +37,8 @@ func _input(event):
 	
 	
 	if not bullet_time.active and Engine.time_scale < 1.0:
-		yield(get_tree().create_timer((1.0 - Engine.time_scale) * input_delay_mult), 'timeout')
+		var delay_time = ((1.0 - Engine.time_scale) * input_delay_mult) / Engine.time_scale
+		yield(get_tree().create_timer(delay_time), 'timeout')
 	
 	if event.is_action(action) and event.device == perspective.gamepad_device:
 		

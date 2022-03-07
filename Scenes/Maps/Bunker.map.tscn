@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Actors/StaticGeometry.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Components/Responses/Touch.StaticGeometry.response2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Models/Maps/Bunker/bunker.scn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Maps/Bunker.map.lmbake" type="BakedLightmapData" id=8]
 
 [sub_resource type="BoxShape" id=29]
 extents = Vector3( 1.2006, 0.0186345, 4.00824 )
@@ -49,6 +50,17 @@ script = ExtResource( 1 )
 environment = ExtResource( 4 )
 
 [node name="NavGeometry" type="ImmediateGeometry" parent="."]
+
+[node name="BakedLightmap" type="BakedLightmap" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00418377 )
+extents = Vector3( 59.1542, 29.5153, 100.867 )
+quality = 0
+environment_mode = 1
+capture_quality = 0
+light_data = ExtResource( 8 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Rooms" type="Spatial" parent="."]
 visible = false
@@ -112,6 +124,7 @@ tags = "Map"
 
 [node name="Model" parent="Bunker" instance=ExtResource( 7 )]
 transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0 )
+use_in_baked_light = true
 
 [node name="Collision" type="CollisionShape" parent="Bunker"]
 transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0 )
@@ -131,17 +144,17 @@ __meta__ = {
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.761465, 0.0123612, -0.648088, 0.619243, 0.28165, 0.732947, 0.191594, -0.959437, 0.206812, 5.60697, 18.1156, 44.024 )
+visible = false
 light_energy = 1.3
 light_specular = 0.0
-light_bake_mode = 2
 shadow_enabled = true
 shadow_contact = 1.122
 
 [node name="DirectionalLight2" type="DirectionalLight" parent="."]
 transform = Transform( -0.268796, 0.686865, 0.675252, 0.952815, 0.0869602, 0.290828, 0.14104, 0.721564, -0.67783, 0, 18.1156, 44.024 )
+visible = false
 light_energy = 0.7
 light_specular = 0.0
-light_bake_mode = 2
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.19542, -4.47353, 1.04698 )

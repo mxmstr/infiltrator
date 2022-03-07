@@ -16,8 +16,10 @@ var shoulder_bone
 var auto_aim = false
 var equipped = false
 
+onready var behavior = get_node_or_null('../Behavior')
 onready var movement = get_node_or_null('../Movement')
 onready var stamina = get_node_or_null('../Stamina')
+onready var bullet_time = get_node_or_null('../BulletTime')
 onready var right_hand = get_node_or_null('../RightHandContainer')
 onready var left_hand = get_node_or_null('../LeftHandContainer')
 onready var right_punch = get_node_or_null('../RightPunchContainer')
@@ -29,25 +31,35 @@ onready var left_kick = get_node_or_null('../LeftKickContainer')
 func _on_fire(projectile, item):
 	
 	if projectile._has_tag('Bullet') and perspective.viewmodels.size():
-			
+
 			for viewmodel in perspective.viewmodels:
-				
+
 				if viewmodel.actor == item:
-					
+
+					projectile.visible = false
+
 					yield(get_tree(), 'idle_frame')
-					
-					if not projectile or not viewmodel or not item:
-						break 
-					
+
+					if not is_instance_valid(projectile):
+						return
+
+					projectile.visible = true
+
+					if not is_instance_valid(viewmodel) or not is_instance_valid(item):
+						break
+
 					projectile.global_transform.origin = viewmodel.global_transform.origin + projectile.global_transform.origin - item.global_transform.origin
-					
+
 					break
+	
+	if not is_instance_valid(projectile):
+		return
 	
 	var direction = projectile.global_transform.origin.direction_to(camera_raycast_target.global_transform.origin)
 	var target_pos = projectile.global_transform.origin - direction
 
 	if projectile._has_tag('Grenade'):
-
+		
 		projectile.get_node('Movement')._set_direction(direction * -1, true)
 		projectile.get_node('Movement').speed = projectile.get_node('Movement').speed
 
@@ -83,7 +95,7 @@ func _on_item_equipped(item):
 	
 	if item._has_tag('Firearm'):
 		
-		item.get_node('Chamber').connect('item_removed', self, '_on_fire', [item])
+		item.get_node('Chamber').connect('item_released', self, '_on_fire', [item])
 		
 		if item._has_tag('AutoAim'):
 			equipped = true
@@ -212,8 +224,7 @@ func _process(delta):
 			else:
 
 				var target_pos = targeted_enemy_bone.global_transform.origin
-
-				global_transform.origin = shoulder_bone.global_transform.origin
+				#global_transform.origin = shoulder_bone.global_transform.origin
 
 				var space_state = get_world().direct_space_state
 				var result = space_state.intersect_ray(
@@ -222,24 +233,27 @@ func _process(delta):
 
 				if result:
 					camera_raycast.move_target = true
-					#model.rotation = Vector3(0, 0, 0)
 
 				else:
-
 					camera_raycast.move_target = false
-					camera_raycast_target.global_transform.origin = target_pos
+					target_pos = camera_raycast.global_transform.origin + (camera_raycast.global_transform.origin.direction_to(target_pos).normalized()  * 5)
+					camera_raycast_target.global_transform.origin = camera_raycast_target.global_transform.origin.move_toward(target_pos, 100 * delta)
 
 		else:
 
 			camera_raycast.move_target = true
-			#model.rotation = Vector3(0, 0, 0)
 		
 		
-		var target_pos = camera_raycast_target.global_transform.origin
-		var model_pos = model.global_transform.origin
-		target_pos.y = model_pos.y
+		if behavior.current_state in ['Default', 'UseReact', 'ShootIdle']:
+			
+			var target_pos = camera_raycast_target.global_transform.origin
+			var model_pos = model.global_transform.origin
+			target_pos.y = model_pos.y
+			
+			if target_pos != model_pos:
+				model.look_at(target_pos, Vector3.UP)
+				model.rotate_y(deg2rad(180))
 		
-		if target_pos != model_pos:
-			model.look_at(target_pos, Vector3.UP)
-			model.rotate_y(deg2rad(180))
-		
+		else:
+			
+			model.rotation = Vector3(0, 0, 0)
