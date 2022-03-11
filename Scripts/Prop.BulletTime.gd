@@ -1,8 +1,8 @@
 extends Node
 
 const max_amount = 100
-const drain_rate = 20.0
-const regen_rate = 2.0
+const drain_rate = 15.0
+const regen_rate = 5.0#2.0
 const cooldown_time = 3.0
 
 var active = false

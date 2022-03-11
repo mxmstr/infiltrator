@@ -224,7 +224,7 @@ tracks/30/keys = {
 "times": PoolRealArray( 0.416667 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ 5.0 ],
+"args": [ 7.0 ],
 "method": "_set_vertical_velocity"
 } ]
 }

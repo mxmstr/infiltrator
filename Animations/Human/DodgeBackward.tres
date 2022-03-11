@@ -252,3 +252,17 @@ tracks/32/keys = {
 "update": 0,
 "values": [ Vector3( 0, 180, 0 ), Vector3( 0, 180, 0 ), Vector3( 180, 180, 0 ), Vector3( 360, 180, 0 ) ]
 }
+tracks/33/type = "method"
+tracks/33/path = NodePath("../../FoleyAudio")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0.666667 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Roll" ],
+"method": "_start_state"
+} ]
+}

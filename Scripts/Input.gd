@@ -1,6 +1,6 @@
 extends Node
 
-const input_delay_mult = 0.1
+const input_delay_mult = 0.01
 
 export(String) var action
 export var strength_multiplier = 1.0

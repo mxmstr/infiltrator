@@ -1,7 +1,6 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
 const gravity = -9.8
-const stop_on_slope = false
 const max_slides = 4
 const accel = 1.0
 const deaccel = 5.0
@@ -127,7 +126,7 @@ func _physics_process(delta):
 	
 	_apply_rotation(scaled_delta)
 	
-	var vertical = velocity.y# + (delta * gravity)
+	var vertical = velocity.y
 	var horizontal = Vector3(velocity.x, 0, velocity.z)
 	
 	var new_velocity = direction * speed
@@ -153,13 +152,13 @@ func _physics_process(delta):
 		velocity = Vector3(velocity.x, velocity.y + (gravity * delta), velocity.z)
 	
 	# Calc snap value
-	if owner.is_on_floor() and velocity.y <= 0:    
+	if owner.is_on_floor() and velocity.y <= 0:
 		snap = -owner.get_floor_normal() - owner.get_floor_velocity() * delta
 	else:
 		snap = Vector3.ZERO
 
 	# Apply velocity
-	velocity = owner.move_and_slide_with_snap(velocity, snap, Vector3.UP, stop_on_slope)
+	velocity = owner.move_and_slide_with_snap(velocity, snap, Vector3.UP, true)
 	
 	collisions = []
 	

@@ -21,8 +21,8 @@ func _on_just_activated():
 		camera.fov = default_fov
 		stance.rotate_speed_mult = 1.0
 		
-		if perspective.viewmodel:
-			perspective.viewmodel.show()
+#		if perspective.viewmodel:
+#			perspective.viewmodel.show()
 		
 		if not right_hand._is_empty():
 			right_hand.items[0].show()
@@ -36,8 +36,8 @@ func _on_just_activated():
 			camera.fov = int(right_hand.items[0]._get_tag('ZoomFOV'))
 			stance.rotate_speed_mult = 0.2
 			
-			if perspective.viewmodel:
-				perspective.viewmodel.hide()
+#			if perspective.viewmodel:
+#				perspective.viewmodel.hide()
 			
 			if not right_hand._is_empty():
 				right_hand.items[0].hide()
@@ -52,8 +52,8 @@ func _process(delta):
 		camera.fov = default_fov
 		stance.rotate_speed_mult = 1.0
 		
-		if perspective.viewmodel:
-			perspective.viewmodel.show()
+#		if perspective.viewmodel:
+#			perspective.viewmodel.show()
 		
 		if not right_hand._is_empty():
 			right_hand.items[0].show()

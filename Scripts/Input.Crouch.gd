@@ -23,22 +23,34 @@ func _roll():
 	
 	var vertical = forward.strength + backward.strength
 	var horizontal = left.strength + right.strength
+	var action
 	
-	if vertical > 0.9:
+	if vertical > 0.65:
 		
-		behavior._start_state('RollForward')
+		if horizontal > 0.65:
+			action = 'RollForwardLeft'
+		elif horizontal < -0.65:
+			action = 'RollForwardRight'
+		elif vertical > 0.9:
+			action = 'RollForward'
 	
-	elif vertical < -0.9:
+	elif vertical < -0.65:
 		
-		behavior._start_state('RollBackward')
+		if horizontal > 0.65:
+			action = 'RollBackwardLeft'
+		elif horizontal < -0.65:
+			action = 'RollBackwardRight'
+		elif vertical < -0.9:
+			action = 'RollBackward'
 	
-	elif abs(vertical) <= 0.2 and horizontal < -0.9:
-		
-		behavior._start_state('RollRight')
+	elif horizontal < -0.9:
+		action = 'RollRight'
 	
-	elif abs(vertical) <= 0.2 and horizontal > 0.9:
-		
-		behavior._start_state('RollLeft')
+	elif horizontal > 0.9:
+		action = 'RollLeft'
+	
+	if action:
+		behavior._start_state(action)
 
 
 func _on_just_activated():
@@ -61,7 +73,7 @@ func _process(delta):
 		if roll_input_timeout and strength < 0.9:
 			roll_input_active = false
 		
-		elif not roll_input_timeout and strength < 0.9 and strength > 0.1:
+		elif not roll_input_timeout and strength < 0.9:# and strength > 0.1:
 			_roll()
 	
 	elif strength > 0.9:

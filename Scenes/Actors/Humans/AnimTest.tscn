@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Animations/Human/ModeSwitchSniper.tres" type="Animation" id=2]
@@ -60,6 +60,12 @@
 [ext_resource path="res://Animations/Human/cartbackright.tres" type="Animation" id=58]
 [ext_resource path="res://Animations/Human/CARTLEFT.tres" type="Animation" id=59]
 [ext_resource path="res://Animations/Human/butterfly.tres" type="Animation" id=60]
+[ext_resource path="res://Animations/Human/DodgeForwardRight.tres" type="Animation" id=61]
+[ext_resource path="res://Animations/Human/DodgeForwardLeft.tres" type="Animation" id=62]
+[ext_resource path="res://Animations/Human/2_DodgeBackwardLeft.tres" type="Animation" id=63]
+[ext_resource path="res://Animations/Human/2_DodgeBackwardRight.tres" type="Animation" id=64]
+[ext_resource path="res://Animations/Human/maddodgebackwardLeft.tres" type="Animation" id=65]
+[ext_resource path="res://Animations/Human/maddodgebackwardRight.tres" type="Animation" id=66]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
@@ -130,7 +136,7 @@ tracks/2/keys = {
 }
 
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16848, 4.48696e-08, -1.04875e-07 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30151, 7.40848e-08, -1.30151 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -138,19 +144,17 @@ visible = false
 [node name="Model2" parent="." instance=ExtResource( 12 )]
 
 [node name="Anderson_skeleton" parent="Model2" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
-bones/16/bound_children = [ NodePath("BoneAttachment") ]
-bones/19/bound_children = [ NodePath("BoneAttachment2") ]
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 1.69407e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
+transform = Transform( 0.57917, -0.796573, 0.173302, 0.725704, 0.600642, 0.335535, -0.371371, -0.0685661, 0.92595, -0.136241, 2.28165, 0.0825448 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 45 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.008, 0.005, 0.026 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="2"]
-transform = Transform( 0.951057, -0.309016, -3.2592e-07, -0.309016, -0.951057, 0, -3.09969e-07, 1.00715e-07, -1, -0.467092, 0.884827, 0.00483319 )
+transform = Transform( 0.97438, -0.111228, -0.195478, -0.029051, 0.799623, -0.5998, 0.223023, 0.590112, 0.775906, -0.455944, 1.92507, -0.108342 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 9 )]
@@ -194,6 +198,8 @@ parameters/blend_position = Vector2( 0.00282753, 0.0225563 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../../Model2/Anderson_skeleton")
 anims/2_1 = ExtResource( 35 )
+anims/2_DodgeBackwardLeft = ExtResource( 63 )
+anims/2_DodgeBackwardRight = ExtResource( 64 )
 anims/2strike = ExtResource( 31 )
 anims/360_strike = ExtResource( 36 )
 anims/BACKFLIP = ExtResource( 55 )
@@ -201,6 +207,8 @@ anims/BAT1 = ExtResource( 26 )
 anims/CARTLEFT = ExtResource( 59 )
 anims/DodgeBackward = ExtResource( 49 )
 anims/DodgeForward = ExtResource( 52 )
+anims/DodgeForwardLeft = ExtResource( 62 )
+anims/DodgeForwardRight = ExtResource( 61 )
 anims/DodgeLeft = ExtResource( 51 )
 anims/DodgeRight = ExtResource( 50 )
 anims/HOPBACK = ExtResource( 14 )
@@ -231,6 +239,8 @@ anims/forward_strike = ExtResource( 33 )
 anims/jumpForward = ExtResource( 19 )
 anims/jumpForwardLeft = ExtResource( 20 )
 anims/jumpForwardRight = ExtResource( 21 )
+anims/maddodgebackwardLeft = ExtResource( 65 )
+anims/maddodgebackwardRight = ExtResource( 66 )
 anims/marko_run = ExtResource( 43 )
 anims/punch2 = ExtResource( 32 )
 anims/punch_seraph = ExtResource( 4 )

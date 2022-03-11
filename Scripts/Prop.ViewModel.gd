@@ -114,6 +114,7 @@ func _init_mesh_layers():
 
 func _uncull_mask_bits(world_mesh):
 	
+	# TODO owner can be null
 	world_mesh.set_layer_mask_bit(0, true)
 	world_mesh.set_layer_mask_bit(worldmodel_offset + owner.player_index, false)
 
@@ -130,6 +131,9 @@ func _revert_mesh_layers():
 			_uncull_mask_bits(w_child)
 	
 	else:
+		
+		if not is_instance_valid(actor_model):
+			return
 		
 		if actor_model is MeshInstance:
 			_uncull_mask_bits(actor_model)
