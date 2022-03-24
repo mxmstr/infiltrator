@@ -15,7 +15,6 @@ attributes = "{
 		\"speed\": 2.25,
 		\"clip_start\": 0.05,
 		\"layer\": \"MIXED\",
-		\"switch_mode\": \"End\",
 		\"next\": \"ShootIdle\"
 	}
 }"

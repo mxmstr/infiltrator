@@ -9,6 +9,16 @@ var cached_action_pose
 
 var action_up
 var action_down
+var transition
+var blend_space_2d
+var blend_space_up
+var blend_space_upright
+var blend_space_right
+var blend_space_downright
+var blend_space_down
+var blend_space_downleft
+var blend_space_left
+var blend_space_upleft
 
 onready var model = $'../Model'
 onready var viewport = $'../Perspective/Viewport2D'
@@ -100,7 +110,7 @@ func _apply_action_pose():
 			skeleton.set_bone_pose(idx, cached_action_pose[idx])
 
 
-func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
+func _apply_time_scale(attributes):
 	
 	var time_scaled = true
 	
@@ -112,10 +122,9 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 			attributes.speed /= Engine.time_scale
 		else:
 			attributes.speed = 1 / Engine.time_scale
-	
-	
-	if not ._play(new_state, animation, attributes):
-		return false
+
+
+func _apply_human_attributes(attributes):
 	
 	enable_abilities = true
 	layer = Meta.BlendLayer.MOVEMENT
@@ -156,9 +165,19 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	stance.lock_movement = lock_movement
 	camera_mode._start_state(camera_mode_state)
 	hud_mode._start_state(hud_mode_state)
+
+
+func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
 	
+	_apply_time_scale(attributes)
 	
-	_set_action_blend(0)
+	if not ._play(new_state, animation, attributes):
+		return false
+	
+	_apply_human_attributes(attributes)
+	
+	set('parameters/Transition/current', 0)
+	#_set_action_blend(0)
 	
 	if up_animation:
 		_set_animation_up(up_animation, action.scale, action.clip_start, action.clip_end)
@@ -173,12 +192,64 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	return true
 
 
+func _play_8way(new_state, animation_list, attributes):
+	
+	_apply_time_scale(attributes)
+	
+	if not _apply_attributes(new_state, attributes):
+		return false
+	
+	_apply_human_attributes(attributes)
+	
+	var animation_nodes = [
+		blend_space_up,
+		blend_space_upright,
+		blend_space_right,
+		blend_space_downright,
+		blend_space_down,
+		blend_space_downleft,
+		blend_space_left,
+		blend_space_upleft
+		]
+	
+	for idx in range(8):
+		animation_nodes[idx].scale = scale
+		animation_nodes[idx].clip_start = clip_start
+		animation_nodes[idx].clip_end = clip_end
+		animation_nodes[idx].animation = animation_list[idx]
+	
+#	if current_state == 'Default':
+#		return true
+	
+	set('parameters/Transition/current', 1)
+	
+	return true
+
+
+func _get_blend_point_node(direction):
+	
+	for idx in range(blend_space_2d.get_blend_point_count()):
+		
+		if direction == blend_space_2d.get_blend_point_node(idx).resource_name:
+			return blend_space_2d.get_blend_point_node(idx)
+
+
 func _ready():
 	
 	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
 	
+	transition = tree_root.get_node('Transition')
 	action_up = tree_root.get_node('ActionUp')
 	action_down = tree_root.get_node('ActionDown')
+	blend_space_2d = tree_root.get_node('BlendSpace2D')
+	blend_space_up = _get_blend_point_node('Forward')
+	blend_space_upright = _get_blend_point_node('ForwardRight')
+	blend_space_right = _get_blend_point_node('Right')
+	blend_space_downright = _get_blend_point_node('BackwardRight')
+	blend_space_down = _get_blend_point_node('Backward')
+	blend_space_downleft = _get_blend_point_node('BackwardLeft')
+	blend_space_left = _get_blend_point_node('Left')
+	blend_space_upleft = _get_blend_point_node('ForwardLeft')
 	
 	var anim_layer_player = anim_layer_movement.get_node('AnimationPlayer')
 	
@@ -198,7 +269,7 @@ func _process(delta):
 	var is_action = layer == Meta.BlendLayer.ACTION
 	var is_movement = layer == Meta.BlendLayer.MOVEMENT
 	var is_mixed = layer == Meta.BlendLayer.MIXED
-
+	
 	if is_action or is_movement:
 		skeleton.clear_bones_global_pose_override()
 

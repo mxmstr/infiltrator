@@ -205,7 +205,7 @@ func _physics_process(delta):
 		var global_rotation = owner.global_transform.basis
 		var global_velocity = global_rotation.xform(velocity)
 		var slide_direction = global_velocity.slide(wall_normal)
-		slide_direction = slide_direction.linear_interpolate(-wall_normal, 0.05)
+		slide_direction = slide_direction.linear_interpolate(-wall_normal, 0.1)
 		
 		var facing_angle_forward = global_rotation.z.angle_to(-wall_normal)
 		var facing_angle_sidestep = global_rotation.z.angle_to(
@@ -221,8 +221,6 @@ func _physics_process(delta):
 		
 		wall_forward_speed = max( ((PI / 2) - facing_angle_forward) / (PI / 2), 0 )
 		wall_sidestep_speed = ((PI / 2) - facing_angle_sidestep) / (PI / 2)
-		
-#		prints(wall_forward_speed, wall_sidestep_speed)
 		
 		movement._set_speed(horizontal_speed)
 		movement._set_direction(slide_direction.normalized())

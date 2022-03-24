@@ -1,9 +1,14 @@
 extends AnimationTree
 
+export var default_state = 'Default'
+
 var enable_abilities = true
 var current_state = 'Default'
 var next = 'Default'
 var switch_mode = 'Immediate'
+var clip_start = 0
+var clip_end = 0
+var scale = 1.0
 var priority = 0
 var endless = false
 
@@ -41,8 +46,6 @@ func _start_state(_name, _data={}):
 
 func _set_animation(animation, scale, clip_start, clip_end):
 	
-#	prints(animation, scale, clip_start, clip_end)
-	
 	action.scale = scale
 	action.clip_start = clip_start
 	action.clip_end = clip_end
@@ -59,7 +62,7 @@ func _set_oneshot_active(enabled):
 	set('parameters/OneShot/active', enabled)
 
 
-func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
+func _apply_attributes(new_state, attributes):
 	
 	var new_priority = 0
 	
@@ -74,10 +77,9 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	_set_oneshot_active(false)
 	advance(0)
 	
-	
-	var scale = 1.0
-	var clip_start = 0
-	var clip_end = 0
+	clip_start = 0
+	clip_end = 0
+	scale = 1.0
 	next = 'Default'
 	switch_mode = 'Immediate'
 	priority = new_priority
@@ -101,9 +103,15 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	if attributes.has('endless'):
 		endless = attributes.endless
 	
+	return true
+
+
+func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
+	
+	if not _apply_attributes(new_state, attributes):
+		return false
 	
 	_set_animation(animation, scale, clip_start, clip_end)
-	
 	
 	if current_state == 'Default':
 		return true
@@ -139,5 +147,4 @@ func _ready():
 	
 	active = true
 	
-	call_deferred('emit_signal', 'action', 'Default', {})
-	
+	call_deferred('emit_signal', 'action', default_state, {})

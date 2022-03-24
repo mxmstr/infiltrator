@@ -1,6 +1,56 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Animations/Human/wall_shootdodgebackward.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/wall_shootdodgeforward.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/wall_shootdodgeforwardright.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/wall_shootdodgeright.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/wall_shootdodgebackwardright.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/wall_shootdodgebackward.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/wall_shootdodgebackwardleft.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/wall_shootdodgeleft.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/wall_shootdodgeforwardleft.tres" type="Animation" id=8]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=9]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-anims/wall_shootdodgebackward = ExtResource( 1 )
+anims/wall_shootdodgeleft = ExtResource( 7 )
+anims/wall_shootdodgeforwardleft = ExtResource( 8 )
+anims/wall_shootdodgebackwardright = ExtResource( 4 )
+anims/wall_shootdodgeforwardright = ExtResource( 2 )
+anims/wall_shootdodgeforward = ExtResource( 1 )
+anims/wall_shootdodgeright = ExtResource( 3 )
+anims/wall_shootdodgebackwardleft = ExtResource( 6 )
+anims/wall_shootdodgebackward = ExtResource( 5 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+attributes = "{
+	\"*\": {
+		\"speed\": 1.5,
+		\"clip_start\": 1.65,
+		\"layer\": \"ACTION\"
+	},
+	\"wall_shootdodgeforward\": {
+		\"direction\": 0
+	},
+	\"wall_shootdodgeforwardright\": {
+		\"direction\": 1
+	},
+	\"wall_shootdodgeright\": {
+		\"direction\": 2
+	},
+	\"wall_shootdodgebackwardright\": {
+		\"direction\": 3
+	},
+	\"wall_shootdodgebackward\": {
+		\"direction\": 4
+	},
+	\"wall_shootdodgebackwardleft\": {
+		\"direction\": 5
+	},
+	\"wall_shootdodgeleft\": {
+		\"direction\": 6
+	},
+	\"wall_shootdodgeforwardleft\": {
+		\"direction\": 7
+	}
+}"

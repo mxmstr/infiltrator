@@ -1,18 +1,9 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://Animations/Human/wall_shootdodgeforwardleft.tres" type="Animation" id=1]
 [ext_resource path="res://Scripts/AnimationTree.BlendSpace.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
 [ext_resource path="res://Scripts/AnimationTree.StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=5]
-[ext_resource path="res://Animations/Human/wall_shootdodgeforwardright.tres" type="Animation" id=6]
-[ext_resource path="res://Animations/Human/wall_shootdodgebackwardright.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/wall_shootdodgebackwardleft.tres" type="Animation" id=8]
-[ext_resource path="res://Animations/Human/wall_shootdodgeforward.tres" type="Animation" id=9]
-[ext_resource path="res://Animations/Human/wall_shootdodgebackward.tres" type="Animation" id=10]
-[ext_resource path="res://Animations/Human/wall_shootdodgeleft.tres" type="Animation" id=11]
-[ext_resource path="res://Animations/Human/wall_shootdodgeright.tres" type="Animation" id=12]
-[ext_resource path="res://Scripts/AnimationTree.Transition.Value.gd" type="Script" id=13]
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 scale = 1.75
@@ -186,114 +177,9 @@ y_args = [  ]
 y_max_value = 0.0
 y_min_value = 0.0
 
-[sub_resource type="AnimationNodeAnimation" id=26]
-scale = 1.75
-animation = "wall_shootdodgeforward"
-clip_start = 1.65
-
-[sub_resource type="AnimationNodeAnimation" id=27]
-scale = 1.75
-animation = "wall_shootdodgebackward"
-clip_start = 1.65
-
-[sub_resource type="AnimationNodeAnimation" id=28]
-scale = 1.75
-animation = "wall_shootdodgeleft"
-clip_start = 1.65
-
-[sub_resource type="AnimationNodeAnimation" id=29]
-scale = 1.75
-animation = "wall_shootdodgeright"
-clip_start = 1.65
-
-[sub_resource type="AnimationNodeAnimation" id=30]
-scale = 1.75
-animation = "wall_shootdodgeforward"
-clip_start = 1.65
-
-[sub_resource type="AnimationNodeAnimation" id=31]
-scale = 1.75
-animation = "wall_shootdodgeforwardleft"
-clip_start = 1.65
-
-[sub_resource type="AnimationNodeAnimation" id=32]
-scale = 1.75
-animation = "wall_shootdodgeforwardright"
-clip_start = 1.65
-
-[sub_resource type="AnimationNodeAnimation" id=33]
-scale = 1.75
-animation = "wall_shootdodgebackwardleft"
-clip_start = 1.65
-
-[sub_resource type="AnimationNodeAnimation" id=34]
-scale = 1.75
-animation = "wall_shootdodgebackwardright"
-clip_start = 1.65
-
-[sub_resource type="AnimationNodeBlendSpace2D" id=20]
-blend_point_0/node = SubResource( 26 )
-blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 27 )
-blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 28 )
-blend_point_2/pos = Vector2( -1, 0 )
-blend_point_3/node = SubResource( 29 )
-blend_point_3/pos = Vector2( 1, 0 )
-blend_point_4/node = SubResource( 30 )
-blend_point_4/pos = Vector2( 0, 0 )
-blend_point_5/node = SubResource( 31 )
-blend_point_5/pos = Vector2( -0.7, 0.7 )
-blend_point_6/node = SubResource( 32 )
-blend_point_6/pos = Vector2( 0.7, 0.7 )
-blend_point_7/node = SubResource( 33 )
-blend_point_7/pos = Vector2( -0.7, -0.7 )
-blend_point_8/node = SubResource( 34 )
-blend_point_8/pos = Vector2( 0.7, -0.7 )
-script = ExtResource( 2 )
-blendspace = ""
-chain = false
-update_mode = "process"
-speed = 0.0
-x_target = "Stance"
-x_method = "get"
-x_args = [ "wall_sidestep_speed" ]
-x_max_value = 1.0
-x_min_value = -1.0
-y_target = "Stance"
-y_method = "get"
-y_args = [ "wall_forward_speed" ]
-y_max_value = 1.0
-y_min_value = -1.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-script = ExtResource( 13 )
-transition_value = ""
-update_mode = "process"
-assertion = "Equals"
-target = "Stance"
-method = "get"
-args = [ "mode" ]
-value = 1.0
-wait_for_frame = 0.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-script = ExtResource( 13 )
-transition_value = ""
-update_mode = "process"
-assertion = "Equals"
-target = "Stance"
-method = "get"
-args = [ "mode" ]
-value = 0.0
-wait_for_frame = 0.0
-
 [sub_resource type="AnimationNodeStateMachine" id=23]
 states/Default/node = SubResource( 19 )
-states/Default/position = Vector2( -72.425, 134 )
-states/WallRun/node = SubResource( 20 )
-states/WallRun/position = Vector2( 205.575, 134 )
-transitions = [ "Default", "WallRun", SubResource( 21 ), "WallRun", "Default", SubResource( 22 ) ]
+states/Default/position = Vector2( 69.575, 144 )
 start_node = "Default"
 graph_offset = Vector2( -476.425, 29.4764 )
 script = ExtResource( 4 )
@@ -322,16 +208,7 @@ parameters/playback = SubResource( 24 )
 parameters/Default/blend_position = 0.00661157
 parameters/Default/0/blend_position = Vector2( 0.00282753, 0.0289018 )
 parameters/Default/1/blend_position = Vector2( 0, 0 )
-parameters/WallRun/blend_position = Vector2( 0.0979667, -0.00137556 )
 script = SubResource( 25 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 3 )
-anims/wall_shootdodgebackward = ExtResource( 10 )
-anims/wall_shootdodgebackwardleft = ExtResource( 8 )
-anims/wall_shootdodgebackwardright = ExtResource( 7 )
-anims/wall_shootdodgeforward = ExtResource( 9 )
-anims/wall_shootdodgeforwardleft = ExtResource( 1 )
-anims/wall_shootdodgeforwardright = ExtResource( 6 )
-anims/wall_shootdodgeleft = ExtResource( 11 )
-anims/wall_shootdodgeright = ExtResource( 12 )

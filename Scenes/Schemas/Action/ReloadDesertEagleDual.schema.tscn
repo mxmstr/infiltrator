@@ -8,7 +8,6 @@ anims/ReloadBerettaDual = ExtResource( 3 )
 script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
-		\"speed\": 0.5,
 		\"clip_start\": 0.05,
 		\"layer\": \"MIXED\",
 		\"switch_mode\": \"End\",

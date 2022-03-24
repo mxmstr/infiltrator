@@ -1,7 +1,7 @@
 extends "res://Scripts/Action.gd"
 
 const item_names = ['Beretta', 'Colt', 'DesertEagle', 'Ingram', 'Jackhammer', 'M79', 'MP5', 'PumpShotgun', 'SawedoffShotgun', 'Sniper', 'Grenade']
-const dual_wield_items = ['Beretta', 'DesertEagle', 'Ingram']
+const dual_wield_items = ['Beretta', 'DesertEagle', 'Ingram', 'SawedoffShotgun']
 
 export(String) var shoot_schema
 
@@ -17,9 +17,26 @@ onready var camera_raycast = get_node_or_null('../CameraRig/Camera')
 onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
 
 
+func _use_right_hand_item():
+	
+	if not righthand._is_empty() and tree_node.current_state in ['Default', 'UseReact', 'ShootIdle']:
+		
+		var item = righthand.items[0]
+		
+		if not lefthand._is_empty():
+			
+			if item._has_tag('DualWieldFireDelay'):
+				get_tree().create_timer(float(item._get_tag('DualWieldFireDelay'))).connect('timeout', self, '_use_left_hand_item')
+			else:
+				_use_left_hand_item()
+		
+		Meta.StimulateActor(item, 'Use', owner)
+
+
 func _use_left_hand_item():
 	
 	lefthand.items.size()
+	
 	if not lefthand._is_empty() and tree_node.current_state in ['Default', 'UseReact', 'ShootIdle']:
 		Meta.StimulateActor(lefthand.items[0], 'Use', owner)
 
@@ -50,9 +67,7 @@ func _on_action(_state, data):
 	
 	if _state == 'UseItem':
 		
-		if not righthand._is_empty() and tree_node.current_state in ['Default', 'UseReact', 'ShootIdle']:
-		
-			Meta.StimulateActor(righthand.items[0], 'Use', owner)
+		_use_right_hand_item()
 	
 	elif _state == 'UseReact':
 		
@@ -123,12 +138,12 @@ func _process(delta):
 		if tree_node.current_state == 'ShootIdle':
 			
 			tree_node._start_state('Default')
-
-
+	
+	
 	if tree_node.current_state in ['UseReact', 'ShootIdle']:
-
+		
 		var target_pos = camera_raycast_target.global_transform.origin
 		var look_direction = camera_raycast.global_transform.origin.direction_to(target_pos).normalized()
 		var look_angle = Vector3(0, -1, 0).angle_to(look_direction)
-
+		
 		tree_node._set_action_blend((rad2deg(look_angle) - 90) / 90)

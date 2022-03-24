@@ -58,16 +58,20 @@ func _jump():
 
 func _on_just_activated():
 	
-	for slide in movement.collisions:
-		if slide.on_wall:
-			behavior._start_state('WallRun', { 'normal': slide.normal })
+	var vertical = forward.strength + backward.strength
+	
+	if vertical > 0.2:
+	
+		for slide in movement.collisions:
+			if slide.on_wall:
+				behavior._start_state('WallRun', { 'normal': slide.normal })
+				return
+		
+		var test_collision = movement._test_movement(movement.direction * 1.5)
+		
+		if test_collision and test_collision.on_wall:
+			behavior._start_state('WallRun', { 'normal': test_collision.normal })
 			return
-	
-	var test_collision = movement._test_movement(movement.direction * 1.5)
-	
-	if test_collision and test_collision.on_wall:
-		behavior._start_state('WallRun', { 'normal': test_collision.normal })
-		return
 	
 	
 	if owner.is_on_floor():

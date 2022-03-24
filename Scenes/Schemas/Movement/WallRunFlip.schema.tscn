@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Animations/Human/wall_shootdodgeflipright.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/wall_shootdodgeflipleft.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/wall_shootdodgeflipforward.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/wall_shootdodgeflipbackward.tres" type="Animation" id=4]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=9]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/wall_shootdodgeflipbackward = ExtResource( 4 )
+anims/wall_shootdodgeflipforward = ExtResource( 3 )
+anims/wall_shootdodgeflipleft = ExtResource( 2 )
+anims/wall_shootdodgeflipright = ExtResource( 1 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+attributes = "{
+	\"*\": {
+		\"clip_start\": 0.05,
+		\"layer\": \"ACTION\"
+	}
+}"

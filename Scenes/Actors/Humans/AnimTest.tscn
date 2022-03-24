@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=81 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Animations/Human/ModeSwitchSniper.tres" type="Animation" id=2]
@@ -66,6 +66,13 @@
 [ext_resource path="res://Animations/Human/2_DodgeBackwardRight.tres" type="Animation" id=64]
 [ext_resource path="res://Animations/Human/maddodgebackwardLeft.tres" type="Animation" id=65]
 [ext_resource path="res://Animations/Human/maddodgebackwardRight.tres" type="Animation" id=66]
+[ext_resource path="res://Animations/Human/roll_shootdodgeleft.tres" type="Animation" id=67]
+[ext_resource path="res://Animations/Human/air_shootdodgeleft.tres" type="Animation" id=68]
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeForward.tres" type="Animation" id=69]
+[ext_resource path="res://Animations/Human/drunk_shootdodgebackward.tres" type="Animation" id=70]
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeRight.tres" type="Animation" id=71]
+[ext_resource path="res://Animations/Human/new_shootdodgeforward.tres" type="Animation" id=72]
+[ext_resource path="res://Animations/Human/new_shootdodgebackward.tres" type="Animation" id=73]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
@@ -136,7 +143,6 @@ tracks/2/keys = {
 }
 
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30151, 7.40848e-08, -1.30151 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -144,17 +150,17 @@ visible = false
 [node name="Model2" parent="." instance=ExtResource( 12 )]
 
 [node name="Anderson_skeleton" parent="Model2" index="0"]
-transform = Transform( -1, 1.32005e-14, 8.74228e-08, 1.69407e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( 0.57917, -0.796573, 0.173302, 0.725704, 0.600642, 0.335535, -0.371371, -0.0685661, 0.92595, -0.136241, 2.28165, 0.0825448 )
+transform = Transform( 0.935465, -0.016495, 0.353035, 0.331581, 0.386661, -0.860551, -0.12231, 0.922075, 0.367177, 0.345394, 0.130898, -0.37178 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 45 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.008, 0.005, 0.026 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="2"]
-transform = Transform( 0.97438, -0.111228, -0.195478, -0.029051, 0.799623, -0.5998, 0.223023, 0.590112, 0.775906, -0.455944, 1.92507, -0.108342 )
+transform = Transform( 0.929302, -0.140148, -0.341698, -0.229387, 0.506081, -0.831423, 0.289449, 0.851023, 0.438154, -0.494451, 0.191262, -0.453838 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 9 )]
@@ -228,6 +234,7 @@ anims/ShootJackhammer = ExtResource( 44 )
 anims/ShootPumpShotgun = ExtResource( 18 )
 anims/T_RUN = ExtResource( 41 )
 anims/Use = ExtResource( 40 )
+anims/air_shootdodgeleft = ExtResource( 68 )
 anims/butterfly = ExtResource( 60 )
 anims/cart_right = ExtResource( 57 )
 anims/cartbackleft = ExtResource( 54 )
@@ -235,6 +242,7 @@ anims/cartbackright = ExtResource( 58 )
 anims/cartright = ExtResource( 56 )
 anims/death_explosion_a = ExtResource( 7 )
 anims/death_explosion_b = ExtResource( 8 )
+anims/drunk_shootdodgebackward = ExtResource( 70 )
 anims/forward_strike = ExtResource( 33 )
 anims/jumpForward = ExtResource( 19 )
 anims/jumpForwardLeft = ExtResource( 20 )
@@ -242,9 +250,14 @@ anims/jumpForwardRight = ExtResource( 21 )
 anims/maddodgebackwardLeft = ExtResource( 65 )
 anims/maddodgebackwardRight = ExtResource( 66 )
 anims/marko_run = ExtResource( 43 )
+anims/matrixed_ShootDodgeForward = ExtResource( 69 )
+anims/matrixed_ShootDodgeRight = ExtResource( 71 )
+anims/new_shootdodgebackward = ExtResource( 73 )
+anims/new_shootdodgeforward = ExtResource( 72 )
 anims/punch2 = ExtResource( 32 )
 anims/punch_seraph = ExtResource( 4 )
 anims/right_strike = ExtResource( 27 )
+anims/roll_shootdodgeleft = ExtResource( 67 )
 anims/shootsniper_zoommode = ExtResource( 3 )
 anims/sidestepleft = ExtResource( 22 )
 anims/sidestepright = ExtResource( 23 )

@@ -4,4 +4,5 @@
 
 [node name="WallRunAction" type="Node"]
 script = ExtResource( 1 )
+schema = "WallRun"
 state = "WallRun"
