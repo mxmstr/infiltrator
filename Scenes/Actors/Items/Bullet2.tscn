@@ -38,8 +38,9 @@ radius = 0.1
 [node name="Bullet2" instance=ExtResource( 1 )]
 collision_layer = 8
 collision_mask = 17
+monitoring = false
 monitorable = false
-tags = "Actor Bullet 9mm Damage:0 Force:0"
+tags = "Actor Bullet 9mm Pooled Damage:0 Force:0"
 
 [node name="Particles" type="Particles" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )

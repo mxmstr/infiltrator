@@ -53,7 +53,7 @@ func _stack_item(item):
 	item.get_node('Magazine')._delete_all()
 	item.get_node('Chamber')._delete_all()
 	
-	item.queue_free()
+	Meta.DestroyActor(item)
 
 
 func _on_stimulate(stim, data):
@@ -91,4 +91,4 @@ func _on_stimulate(stim, data):
 			for i in range(amount):
 				owner.get_node(kind + 'Container')._add_item(path)
 			
-			data.source.queue_free()
+			Meta.DestroyActor(data.source)

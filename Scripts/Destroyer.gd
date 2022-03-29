@@ -3,7 +3,7 @@ extends Area
 
 func _on_body_entered(body):
 	
-	body.queue_free()
+	Meta.DestroyActor(body)
 
 
 func _ready():

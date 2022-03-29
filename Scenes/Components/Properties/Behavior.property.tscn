@@ -5,22 +5,14 @@
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "DefaultAnim"
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeOneShot" id=3]
-__meta__ = {
-
-}
 
 [sub_resource type="AnimationNodeBlendTree" id=4]
+graph_offset = Vector2( 0, -82.075 )
 nodes/Action/node = SubResource( 1 )
 nodes/Action/position = Vector2( 300, 20 )
 nodes/Animation/node = SubResource( 2 )
@@ -28,22 +20,13 @@ nodes/Animation/position = Vector2( 300, 140 )
 nodes/OneShot/node = SubResource( 3 )
 nodes/OneShot/position = Vector2( 540, 20 )
 nodes/output/position = Vector2( 780, 80 )
-node_connections = [ "output", 0, "OneShot", "OneShot", 0, "Animation", "OneShot", 1, "Action" ]
-__meta__ = {
-
-}
+node_connections = [ "OneShot", 0, "Animation", "OneShot", 1, "Action", "output", 0, "OneShot" ]
 
 [node name="Behavior" type="AnimationTree"]
 tree_root = SubResource( 4 )
 anim_player = NodePath("AnimationPlayer")
 parameters/OneShot/active = false
 script = ExtResource( 1 )
-__meta__ = {
-
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 2 )
-__meta__ = {
-
-}

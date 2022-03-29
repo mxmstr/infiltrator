@@ -27,7 +27,7 @@ func _equals(other):
 func _is_invalid():
 	
 	if is_queued_for_deletion():
-		return
+		return true
 	
 	if not from_node:
 		return true
@@ -38,6 +38,9 @@ func _is_invalid():
 	if from_node.is_queued_for_deletion():
 		return true
 	
+	if not is_instance_valid(from_node.get_parent()):
+		return true
+	
 	if not to_node:
 		return true
 	
@@ -45,6 +48,9 @@ func _is_invalid():
 		return true
 	
 	if to_node.is_queued_for_deletion():
+		return true
+	
+	if not is_instance_valid(to_node.get_parent()):
 		return true
 	
 	return false

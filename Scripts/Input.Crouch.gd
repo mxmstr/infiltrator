@@ -17,6 +17,9 @@ onready var movement = get_node_or_null('../Movement')
 func _on_roll_timeout():
 	
 	roll_input_timeout = true
+	
+	if strength > 0.9:
+		behavior._start_state('Dive')
 
 
 func _roll():

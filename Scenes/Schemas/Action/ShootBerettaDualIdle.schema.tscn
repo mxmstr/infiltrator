@@ -12,6 +12,7 @@ anims/ShootBerettaDualIdle_Up = ExtResource( 1 )
 script = ExtResource( 4 )
 attributes = "{
 	\"*\": {
-		\"layer\": \"MIXED\"
+		\"layer\": \"MIXED\",
+		\"align_model_to_aim\": true
 	}
 }"

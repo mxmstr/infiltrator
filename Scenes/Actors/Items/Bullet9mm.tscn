@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Actors/Items/Bullet2.tscn" type="PackedScene" id=1]
 
 [node name="Bullet9mm" instance=ExtResource( 1 )]
-tags = "Actor Bullet 9mm Damage:10 Force:2"
+tags = "Actor Bullet 9mm Pooled Damage:10 Force:2"
 
 [node name="Behavior" parent="." index="5"]
 process_mode = 1

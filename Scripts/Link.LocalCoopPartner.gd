@@ -34,7 +34,7 @@ func _ready():
 	if not Meta.coop:
 		
 		if from_node != null:
-			from_node.queue_free()
+			Meta.DestroyActor(from_node)
 			
 		return
 	

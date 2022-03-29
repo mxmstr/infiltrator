@@ -645,6 +645,7 @@ __meta__ = {
 }
 attributes = "{
 	\"*\": {
-		\"layer\": \"MIXED\"
+		\"layer\": \"MIXED\",
+		\"align_model_to_aim\": true
 	}
 }"

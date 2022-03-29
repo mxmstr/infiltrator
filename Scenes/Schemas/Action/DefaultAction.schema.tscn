@@ -12,6 +12,7 @@ script = ExtResource( 1 )
 attributes = "{
 	\"*\": {
 		\"endless\": true,
-		\"layer\": \"MOVEMENT\"
+		\"layer\": \"MOVEMENT\",
+		\"align_model_to_aim\": true
 	}
 }"

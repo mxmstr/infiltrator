@@ -14,6 +14,7 @@ attributes = "{
 	\"*\": {
 		\"clip_start\": 0.4,
 		\"layer\": \"MIXED\",
+		\"align_model_to_aim\": true,
 		\"next\": \"ShootIdle\"
 	}
 }"

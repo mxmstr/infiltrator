@@ -8,7 +8,7 @@ anims/maddodgebackwardLeft = ExtResource( 1 )
 script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
-		\"speed\": 2.00,
+		\"speed\": 1.50,
 		\"clip_start\": 0.05,
 		\"layer\": \"ACTION\",
 		\"switch_mode\": \"End\",

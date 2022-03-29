@@ -15,6 +15,7 @@ var targeted_enemy_bone
 var shoulder_bone
 var auto_aim = false
 var equipped = false
+var align_model = false
 
 onready var behavior = get_node_or_null('../Behavior')
 onready var movement = get_node_or_null('../Movement')
@@ -244,7 +245,7 @@ func _process(delta):
 			camera_raycast.move_target = true
 		
 		
-		if behavior.current_state in ['Default', 'UseReact', 'ShootIdle']:
+		if align_model:#behavior.current_state in ['Default', 'UseReact', 'ShootIdle', 'Dive']:
 			
 			var target_pos = camera_raycast_target.global_transform.origin
 			var model_pos = model.global_transform.origin

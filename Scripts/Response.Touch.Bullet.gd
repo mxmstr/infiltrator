@@ -15,13 +15,13 @@ func _on_stimulate(stim, data):
 			owner.translation = data.position
 			
 			#Meta.AddActor('Particles/Smoke', owner.translation)
-			Meta.AddActor('Particles/Sparks', owner.translation, null, data.direction)
+			#Meta.AddActor('Particles/Sparks', owner.translation, null, data.direction)
 			
-			owner.queue_free()
+			Meta.DestroyActor(owner)
 		
 		elif data.source._has_tag('Hitbox'):
 			
 			Meta.AddActor('Particles/BloodSquirt', owner.translation, null, data.direction)
 			
-			owner.queue_free()
+			Meta.DestroyActor(owner)
 			

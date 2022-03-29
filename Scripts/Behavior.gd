@@ -126,7 +126,6 @@ func _set_skeleton():
 	if not has_node('../Model') or not $'../Model'.get_child_count():
 		return
 	
-	
 	var skeleton = $'../Model'.get_child(0)
 	$AnimationPlayer.root_node = $AnimationPlayer.get_path_to(skeleton)
 

@@ -102,7 +102,7 @@ func _move_item():
 
 func _ready():
 	
-	if is_queued_for_deletion():
+	if _is_invalid():
 		return
 	
 	from_behavior = from_node.get_node_or_null('Behavior')
@@ -133,6 +133,9 @@ func _ready():
 	_disable_collision()
 	
 	yield(get_tree(), 'idle_frame')
+	
+	if _is_invalid():
+		return
 	
 	item_position_offset = _get_item_position_offset(to_node, container_node)
 	item_rotation_offset = _get_item_rotation_offset(to_node, container_node)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Animations/Human/ModeSwitchSniper.tres" type="Animation" id=2]
@@ -73,6 +73,7 @@
 [ext_resource path="res://Animations/Human/matrixed_ShootDodgeRight.tres" type="Animation" id=71]
 [ext_resource path="res://Animations/Human/new_shootdodgeforward.tres" type="Animation" id=72]
 [ext_resource path="res://Animations/Human/new_shootdodgebackward.tres" type="Animation" id=73]
+[ext_resource path="res://Scenes/Actors/Items/SawedoffShotgun.tscn" type="PackedScene" id=74]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Stand"
@@ -153,14 +154,18 @@ visible = false
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( 0.935465, -0.016495, 0.353035, 0.331581, 0.386661, -0.860551, -0.12231, 0.922075, 0.367177, 0.345394, 0.130898, -0.37178 )
+transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 45 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.008, 0.005, 0.026 )
+visible = false
+
+[node name="SawedoffShotgun" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 74 )]
+transform = Transform( 0.98729, 0.157525, 0.0211143, -0.0235019, 0.013309, 0.999636, 0.157186, -0.987427, 0.0168419, -0.0229437, 0.0228328, 0.015305 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="2"]
-transform = Transform( 0.929302, -0.140148, -0.341698, -0.229387, 0.506081, -0.831423, 0.289449, 0.851023, 0.438154, -0.494451, 0.191262, -0.453838 )
+transform = Transform( 0.951057, -0.309016, -3.2592e-07, -0.309016, -0.951057, 0, -3.09969e-07, 1.00715e-07, -1, -0.467092, 0.884827, 0.00483319 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 9 )]
@@ -181,7 +186,11 @@ visible = false
 
 [node name="Ingram" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 48 )]
 transform = Transform( 1, -3.84606e-14, 0, 0, -4.37149e-08, 1, -2.57832e-14, -1, -4.37149e-08, -0.020767, 0.0631709, 0.0192859 )
+visible = false
 tags = "Item Firearm Ingram AutoFire Stackable AutoAim DualWield Rank:20 UseAction:FireProjectile FireRate:9.0 Offset-position:neo_reference_skeleton:Gun:-0.015986,0.006214,0.037872 Offset-rotation:neo_reference_skeleton:Gun:-89.179077,94.08503,-88.78389"
+
+[node name="SawedoffShotgun" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 74 )]
+transform = Transform( 0.998883, 0.000673684, -0.0472363, 0.0472322, 0.00520584, 0.99887, 0.000918819, -0.999986, 0.00516819, 0.0210868, 0.0579958, -0.00133801 )
 
 [node name="Punch" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012105, 1.42503, 1.16488 )

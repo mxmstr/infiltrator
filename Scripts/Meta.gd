@@ -76,6 +76,8 @@ var threads = []
 var cached_args = []
 
 var actors
+var actor_pool = {}
+var actor_pool_size = 10
 
 signal on_input
 
@@ -286,7 +288,19 @@ func PreloadActors():
 	var actors = _get_files_recursive('res://Scenes/Actors/', '', '.tscn')
 	
 	for actor in actors:
-		preloader.add_resource(actor, load(actor))
+		
+		var actor_res = load(actor)
+		var actor_instance = actor_res.instance()
+
+		if actor_instance.get('tags') and actor_instance._has_tag('Pooled'):
+			
+			actor_pool[actor] = []
+			
+			for i in range(actor_pool_size):
+				actor_pool[actor].append(load(actor).instance())
+		
+		
+		preloader.add_resource(actor, actor_res)
 
 
 func PreloadLinks():
@@ -346,7 +360,21 @@ func AddActor(actor_path, position=null, rotation=null, direction=null, tags={})
 #	if not actors:
 #		actors = get_node_or_null('/root/Mission/Actors')
 	
-	var new_actor = preloader.get_resource('res://Scenes/Actors/' + actor_path + '.tscn').instance()
+	var new_actor
+	var resource_path = 'res://Scenes/Actors/' + actor_path + '.tscn'
+	
+#	if resource_path in actor_pool:
+#
+#		new_actor = actor_pool[resource_path].pop_front()
+#
+#		if new_actor:
+#			new_actor.notification(NOTIFICATION_READY)
+#		else:
+#			new_actor = preloader.get_resource(resource_path).instance()
+#
+#	else:
+	
+	new_actor = preloader.get_resource(resource_path).instance()
 	
 	_merge_dir(new_actor.tags_dict, tags)
 	$'/root/Mission/Actors'.add_child(new_actor)
@@ -365,6 +393,21 @@ func AddActor(actor_path, position=null, rotation=null, direction=null, tags={})
 			new_actor.look_at(target, Vector3.UP)
 	
 	return new_actor
+
+
+func DestroyActor(actor):
+	
+	if is_instance_valid(actor):
+		
+		if actor.get('tags') and actor._has_tag('Pooled'):
+			
+			var resource_path = 'res://Scenes/Actors/' + actor.system_path + '.tscn'
+			actor.get_parent().remove_child(actor)
+			actor_pool[resource_path].append(actor)
+			
+		else:
+			
+			actor.queue_free()
 
 
 func AddLink(link_path):

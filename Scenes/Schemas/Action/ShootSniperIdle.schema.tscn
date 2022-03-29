@@ -634,6 +634,7 @@ script = ExtResource( 1 )
 attributes = "{
 	\"*\": {
 		\"layer\": \"MIXED\",
+		\"align_model_to_aim\": true,
 		\"can_zoom\": true
 	}
 }"

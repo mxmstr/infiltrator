@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=1]
 [ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=2]
@@ -138,6 +138,20 @@ tracks/7/keys = {
 "method": "set"
 } ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath("../CameraRig")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "clamp_camera", true ],
+"method": "set"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "BoneParentExit"
@@ -261,6 +275,80 @@ tracks/2/keys = {
 "method": "set"
 } ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("../CameraRig")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "clamp_camera", true ],
+"method": "set"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "FullYaw"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath("../Movement")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "rotate_x_camera", true ],
+"method": "set"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../CameraRig")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cam_max_x", 3.15 ],
+"method": "set"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../CameraRig")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cam_max_y", 1.57 ],
+"method": "set"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("../CameraRig")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "clamp_camera", false ],
+"method": "set"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -306,6 +394,20 @@ tracks/2/keys = {
 "method": "set"
 } ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("../CameraRig")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "clamp_camera", true ],
+"method": "set"
+} ]
+}
 
 [node name="CameraMode" type="AnimationPlayer"]
 root_node = NodePath(".")
@@ -314,6 +416,7 @@ anims/BoneParent = SubResource( 2 )
 anims/BoneParentExit = SubResource( 3 )
 anims/Default = SubResource( 5 )
 anims/DefaultAnim = ExtResource( 1 )
+anims/FullYaw = SubResource( 6 )
 anims/HalfYaw = SubResource( 4 )
 script = ExtResource( 2 )
 start = "Default"

@@ -63,7 +63,7 @@ func _add_item(item):
 		
 		if not item is String:
 		
-			item.queue_free()
+			Meta.DestroyActor(item)
 			item = item.system_path
 	
 	items.append(item)
@@ -236,7 +236,7 @@ func _apply_launch_attributes(item):
 		get_tree().create_timer(release_exclude_parent_lifetime).connect('timeout', self, '_remove_exclusions', [item, parent_list])
 	
 	if release_lifetime > 0:
-		get_tree().create_timer(release_lifetime).connect('timeout', item, 'queue_free')
+		get_tree().create_timer(release_lifetime).connect('timeout', Meta, 'DestroyActor', [item])
 
 
 func _create_and_launch_item(item_path, rotation=null):
@@ -351,7 +351,7 @@ func _delete_all():
 		Meta.DestroyLink(owner, null, 'Contains', {'container': name})
 		
 		for item in removed:
-			item.queue_free()
+			Meta.DestroyActor(item)
 
 
 func _reset_root():

@@ -27,6 +27,7 @@ onready var stance = get_node_or_null('../Stance')
 onready var camera_mode = get_node_or_null('../CameraMode')
 onready var hud_mode = get_node_or_null('../HUDMode')
 onready var anim_layer_movement = get_node_or_null('../AnimLayerMovement')
+onready var weapon_target_lock = get_node_or_null('../WeaponTargetLock')
 onready var bullet_time = get_node_or_null('../BulletTime')
 
 signal pre_advance
@@ -133,6 +134,7 @@ func _apply_human_attributes(attributes):
 	var lock_stance = false
 	var lock_movement = false
 	var lock_rotation = false
+	var align_model_to_aim = false
 	var camera_mode_state = 'Default'
 	var hud_mode_state = 'Default'
 	
@@ -154,6 +156,9 @@ func _apply_human_attributes(attributes):
 	if attributes.has('lock_movement'):
 		lock_movement = attributes.lock_movement
 	
+	if attributes.has('align_model_to_aim'):
+		align_model_to_aim = attributes.align_model_to_aim
+	
 	if attributes.has('camera_mode'):
 		camera_mode_state = attributes.camera_mode
 	
@@ -163,6 +168,7 @@ func _apply_human_attributes(attributes):
 	stance.lock_stance = lock_stance
 	stance.lock_rotation = lock_rotation
 	stance.lock_movement = lock_movement
+	weapon_target_lock.align_model = align_model_to_aim
 	camera_mode._start_state(camera_mode_state)
 	hud_mode._start_state(hud_mode_state)
 

@@ -5,7 +5,7 @@ export var time = -1.0
 
 func _on_timeout():
 	
-	owner.queue_free()
+	Meta.DestroyActor(owner)
 
 
 func _ready():

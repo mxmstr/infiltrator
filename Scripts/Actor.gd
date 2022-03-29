@@ -58,21 +58,30 @@ func _notification(what):
 		
 		base_name = name
 		system_path = filename.replace('.tscn', '').replace('res://Scenes/Actors/', '')
+		
+		#.replace('\n', ' ')
+		for tag in tags.split(' '):
+			
+			var values = Array(tag.split(':'))
+			var key = values.pop_front()
+			
+			if values.size() == 1:
+				tags_dict[key] = values[0]
+			else:
+				tags_dict[key] = values
 
 
 func _enter_tree():
 	
-	#.replace('\n', ' ')
-	for tag in tags.split(' '):
-		
-		var values = Array(tag.split(':'))
-		var key = values.pop_front()
-		
-		if values.size() == 1:
-			tags_dict[key] = values[0]
-		else:
-			tags_dict[key] = values
-	
+#	for tag in tags.split(' '):
+#
+#		var values = Array(tag.split(':'))
+#		var key = values.pop_front()
+#
+#		if values.size() == 1:
+#			tags_dict[key] = values[0]
+#		else:
+#			tags_dict[key] = values
 	
 	for child in get_children():
 		

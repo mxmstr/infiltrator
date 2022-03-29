@@ -12,4 +12,4 @@ func _on_stimulate(stim, data):
 		
 		Meta.AddActor('Projectiles/Explosions/Explosion1', owner.translation, owner.rotation, null, { 'Shooter': shooter })
 		
-		owner.queue_free()
+		Meta.DestroyActor(owner)

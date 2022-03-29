@@ -5,6 +5,7 @@ export(NodePath) var viewport
 export(NodePath) var path
 export(String) var bone_name
 
+export var clamp_camera = true
 export var cam_max_x = 0.0
 export var cam_max_y = PI / 2
 export(Vector3) var camera_offset
@@ -18,9 +19,10 @@ onready var camera = $Camera#get_node_or_null('../Perspective/Viewport/Camera')
 
 func _clamp_camera():
 	
-#	prints(cam_max_x, cam_max_y)
-	camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)
-	camera.rotation.y = clamp(camera.rotation.y, -cam_max_x, cam_max_x)
+	if clamp_camera:
+		
+		camera.rotation.x = clamp(camera.rotation.x, -cam_max_y, cam_max_y)
+		camera.rotation.y = clamp(camera.rotation.y, -cam_max_x, cam_max_x)
 
 
 func _rotate_camera(delta_x, delta_y):

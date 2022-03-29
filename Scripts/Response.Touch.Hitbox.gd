@@ -36,7 +36,7 @@ func _on_stimulate(stim, data):
 			var blood = Meta.AddActor('Particles/BloodSquirt', data.source.translation, data.source.rotation)
 			blood.rotate_y(deg2rad(180))
 			
-			data.source.queue_free()
+			Meta.DestroyActor(data.source)
 		
 		elif data.source._has_tag('Melee'):
 			
@@ -54,12 +54,11 @@ func _on_stimulate(stim, data):
 			if randf() < disarm_chance:
 				owner_righthand._release_front()
 			
-			data.source.queue_free()
+			Meta.DestroyActor(data.source)
 		
 		elif data.source._has_tag('ImpactGrenade'):
 			
 			var shooter = data.source._get_tag('Shooter') if data.source._has_tag('Shooter') else data.source
 			
 			Meta.AddActor('Projectiles/Explosions/Explosion1', data.source.translation, data.source.rotation, null, { 'Shooter': shooter })
-			
-			data.source.queue_free()
+			Meta.DestroyActor(data.source)

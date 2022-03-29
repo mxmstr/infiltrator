@@ -12,7 +12,7 @@ var y_value_range
 onready var behavior = $'../Behavior'
 onready var movement = $'../Movement'
 onready var stance = $'../Stance'
-onready var camera = $'../CameraRig/Camera'
+onready var camera_raycast = $'../CameraRaycastStim'
 
 
 func _on_test_off_wall_timeout():
@@ -38,7 +38,7 @@ func _on_action(_state, _data):
 func _set_blendspace_position():
 	
 	var owner_rotation = owner.global_transform.basis.z
-	var camera_rotation = -camera.global_transform.basis.z
+	var camera_rotation = -camera_raycast.global_transform.basis.z
 	
 	var facing_angle_x = camera_rotation.angle_to(
 		owner_rotation.rotated(Vector3.UP, (PI / 2))
@@ -46,12 +46,12 @@ func _set_blendspace_position():
 	facing_angle_x = (PI / 2) - facing_angle_x
 	
 	var facing_angle_y = camera_rotation.angle_to(owner_rotation)
-	facing_angle_y = max( (PI / 2) - facing_angle_y, 0 )
+	facing_angle_y = (PI / 2) - facing_angle_y
 	
 	
 	var x_value = facing_angle_x
-	var x_max_value = -1
-	var x_min_value = 1
+	var x_max_value = 1
+	var x_min_value = -1
 	x_value = (((x_value - x_min_value) / (x_max_value - x_min_value)) * x_value_range) + x_min
 	
 	var y_value = facing_angle_y

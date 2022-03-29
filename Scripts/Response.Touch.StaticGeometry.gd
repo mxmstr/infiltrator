@@ -16,6 +16,6 @@ func _on_stimulate(stim, data):
 			var sparks = Meta.AddActor('Particles/Sparks', data.source.translation, data.source.rotation)# null, data.direction)
 			sparks.rotate_y(deg2rad(180))
 			
-			data.source.queue_free()
+			Meta.DestroyActor(data.source)
 		
 		reception._reflect()
