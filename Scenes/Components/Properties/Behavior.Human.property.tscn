@@ -104,7 +104,7 @@ nodes/OneShot/position = Vector2( 500, 0 )
 nodes/Transition/node = SubResource( 13 )
 nodes/Transition/position = Vector2( 720, 60 )
 nodes/output/position = Vector2( 940, 100 )
-node_connections = [ "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "Transition", 0, "OneShot", "Transition", 1, "BlendSpace2D", "output", 0, "Transition" ]
+node_connections = [ "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "Transition", 0, "OneShot", "Transition", 1, "BlendSpace2D", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "output", 0, "Transition" ]
 
 [sub_resource type="Animation" id=11]
 resource_name = "DefaultHumanAnim"

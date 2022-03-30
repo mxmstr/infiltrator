@@ -26,13 +26,15 @@ func _load_animations(_schema, _prefix=''):
 	var _attributes
 	
 	if schema_animation_player.get('attributes'):
-		_attributes = parse_json(schema_animation_player.attributes)#Meta._merge_dir(attributes, parse_json(schema_animation_player.attributes))
+		_attributes = parse_json(schema_animation_player.attributes)
+		if _attributes == null:
+			prints(_schema)
 	
 	
 	for animation_name in _animation_list:
 		
 		var animation_res = schema_animation_player.get_animation(animation_name)
-		animation_player.add_animation(animation_name, animation_res)
+		tree_node._add_animation(animation_name, animation_res)
 		
 		animation_name = _prefix + animation_name
 		
@@ -71,9 +73,9 @@ func _randomize_animation():
 
 func _ready():
 	
+	yield(get_tree(), 'idle_frame')
+	
 	if not tree.is_empty():
-		
 		tree_node = get_node(tree)
-		animation_player = tree_node.get_node('AnimationPlayer')
 	
 	animation_list = _load_animations(schema)

@@ -138,6 +138,8 @@ func _load_shotgun_shell():
 
 func _ready():
 	
+	yield(get_tree(), 'idle_frame')
+	
 	if tree.is_empty():
 		return
 	

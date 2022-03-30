@@ -7,6 +7,8 @@ var layer = Meta.BlendLayer.MOVEMENT
 var can_zoom = false
 var cached_action_pose
 
+var oneshot
+var action
 var action_up
 var action_down
 var transition
@@ -20,7 +22,7 @@ var blend_space_downleft
 var blend_space_left
 var blend_space_upleft
 
-onready var model = $'../Model'
+onready var animation_player = $AnimationPlayer
 onready var viewport = $'../Perspective/Viewport2D'
 onready var movement = get_node_or_null('../Movement')
 onready var stance = get_node_or_null('../Stance')
@@ -54,14 +56,37 @@ func _on_pre_draw(viewport_rid):
 #				prints(model.get_child(0).get_bone_pose(idx).basis.get_scale())
 
 
+func _is_action_playing():
+	
+	return get('parameters/OneShot/active')
+
+
 func _set_layer(_layer):
 	
 	layer = _layer
 
 
+func _set_oneshot_active(enabled):
+	
+	set('parameters/OneShot/active', enabled)
+
+
 func _set_action_blend(blend):
 	
 	set('parameters/ActionBlend/blend_amount', blend)
+
+
+func _add_animation(animation_name, animation_res):
+	
+	animation_player.add_animation(animation_name, animation_res)
+
+
+func _set_animation(animation, scale, clip_start, clip_end):
+	
+	action.scale = scale
+	action.clip_start = clip_start
+	action.clip_end = clip_end
+	action.animation = animation
 
 
 func _set_animation_up(animation, scale, clip_start, clip_end):
@@ -177,13 +202,22 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	
 	_apply_time_scale(attributes)
 	
-	if not ._play(new_state, animation, attributes):
+	if not _apply_attributes(new_state, attributes):
 		return false
+	
+	_set_animation(animation, scale, clip_start, clip_end)
+	
+	if current_state == 'Default':
+		return true
+	
+	_set_oneshot_active(false)
+	call('advance', 0)
+	
+	_set_oneshot_active(true)
 	
 	_apply_human_attributes(attributes)
 	
 	set('parameters/Transition/current', 0)
-	#_set_action_blend(0)
 	
 	if up_animation:
 		_set_animation_up(up_animation, action.scale, action.clip_start, action.clip_end)
@@ -206,6 +240,9 @@ func _play_8way(new_state, animation_list, attributes):
 		return false
 	
 	_apply_human_attributes(attributes)
+	
+	_set_oneshot_active(false)
+	call('advance', 0)
 	
 	var animation_nodes = [
 		blend_space_up,
@@ -235,19 +272,34 @@ func _play_8way(new_state, animation_list, attributes):
 func _get_blend_point_node(direction):
 	
 	for idx in range(blend_space_2d.get_blend_point_count()):
-		
 		if direction == blend_space_2d.get_blend_point_node(idx).resource_name:
 			return blend_space_2d.get_blend_point_node(idx)
 
 
+func _set_skeleton():
+	
+	if model and model.get_child_count():
+		
+		skeleton = model.get_child(0)
+		animation_player.root_node = animation_player.get_path_to(skeleton)
+		
+		set('root_motion_track', NodePath('../../'))
+
+
 func _ready():
 	
-	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
+	yield(get_tree(), 'idle_frame')
 	
-	transition = tree_root.get_node('Transition')
-	action_up = tree_root.get_node('ActionUp')
-	action_down = tree_root.get_node('ActionDown')
-	blend_space_2d = tree_root.get_node('BlendSpace2D')
+	set('tree_root', get('tree_root').duplicate(true))
+	
+	oneshot = get('tree_root').get_node('OneShot')
+	oneshot.connect('finished', self, '_on_action_finished')
+	
+	action = get('tree_root').get_node('Action')
+	transition = get('tree_root').get_node('Transition')
+	action_up = get('tree_root').get_node('ActionUp')
+	action_down = get('tree_root').get_node('ActionDown')
+	blend_space_2d = get('tree_root').get_node('BlendSpace2D')
 	blend_space_up = _get_blend_point_node('Forward')
 	blend_space_upright = _get_blend_point_node('ForwardRight')
 	blend_space_right = _get_blend_point_node('Right')
@@ -260,12 +312,14 @@ func _ready():
 	var anim_layer_player = anim_layer_movement.get_node('AnimationPlayer')
 	
 	for animation in anim_layer_player.get_animation_list():
-		$AnimationPlayer.add_animation(animation, anim_layer_player.get_animation(animation))
+		animation_player.add_animation(animation, anim_layer_player.get_animation(animation))
 	
-	anim_layer_movement.anim_player = anim_layer_movement.get_path_to($AnimationPlayer)
+	anim_layer_movement.anim_player = anim_layer_movement.get_path_to(animation_player)
 	anim_layer_movement.tree_root = anim_layer_movement.tree_root.duplicate(true)
 	anim_layer_movement.tree_root._ready(anim_layer_movement, null, 'parameters/', 'root')
 	anim_layer_movement.active = true
+	
+	set('active', true)
 
 
 func _process(delta):
@@ -281,8 +335,8 @@ func _process(delta):
 
 	if not is_movement:
 
-		advance(delta)
-		movement.call_deferred('_apply_root_transform', get_root_motion_transform(), delta)
+		call('advance', delta)
+		movement.call_deferred('_apply_root_transform', call('get_root_motion_transform'), delta)
 
 		if is_mixed:
 			_cache_action_pose()

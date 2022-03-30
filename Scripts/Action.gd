@@ -7,6 +7,8 @@ var data
 
 func _ready():
 	
+	yield(get_tree(), 'idle_frame')
+	
 	if tree.is_empty():
 		return
 	

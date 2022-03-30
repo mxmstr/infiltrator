@@ -62,7 +62,7 @@ func _set_blendspace_position():
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	yield(behavior, 'pre_advance')
 	
 	x_min = behavior.blend_space_2d.get('min_space').x
 	y_min = behavior.blend_space_2d.get('min_space').y

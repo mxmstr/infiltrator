@@ -35,6 +35,11 @@ func _can_switch():
 	return switch_mode == 'Immediate' or not animation_player.is_playing()
 
 
+func _add_animation(animation_name, animation_res):
+	
+	animation_player.add_animation(animation_name, animation_res)
+
+
 func _play(new_state, animation, attributes):
 	
 	if not _can_switch():
