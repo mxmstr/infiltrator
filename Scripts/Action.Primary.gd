@@ -19,7 +19,7 @@ onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Targe
 
 func _use_right_hand_item():
 	
-	if not righthand._is_empty() and tree_node.current_state in ['Default', 'UseReact', 'ShootIdle']:
+	if not righthand._is_empty() and tree_node.can_use_item:
 		
 		var item = righthand.items[0]
 		
@@ -37,7 +37,7 @@ func _use_left_hand_item():
 	
 	lefthand.items.size()
 	
-	if not lefthand._is_empty() and tree_node.current_state in ['Default', 'UseReact', 'ShootIdle']:
+	if not lefthand._is_empty() and tree_node.can_use_item:
 		Meta.StimulateActor(lefthand.items[0], 'Use', owner)
 
 

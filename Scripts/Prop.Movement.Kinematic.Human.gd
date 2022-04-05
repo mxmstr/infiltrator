@@ -17,7 +17,9 @@ var rotate_y_camera = true
 var snap = Vector3()
 var factorx = angular_deaccel
 var factory = angular_deaccel
+var root_motion_use_model = false
 
+onready var model = get_node_or_null('../Model')
 onready var camera_rig = get_node_or_null('../CameraRig')
 onready var bullet_time = get_node_or_null('../BulletTime')
 
@@ -41,7 +43,14 @@ func _get_sidestep_speed():
 
 func _apply_root_transform(root_transform, delta):
 	
-	owner.transform *= root_transform
+	if root_motion_use_model:
+		var transform_offset = owner.global_transform
+		transform_offset.basis = model.global_transform.basis
+		transform_offset *= root_transform
+		transform_offset.basis = owner.global_transform.basis
+		owner.global_transform = transform_offset
+	else:
+		owner.global_transform *= root_transform
 
 
 func _teleport(new_position=null, new_rotation=null):

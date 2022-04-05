@@ -11,6 +11,7 @@ var clip_end = 0
 var scale = 1.0
 var priority = 0
 var endless = false
+var finished = true
 
 var skeleton
 
@@ -26,12 +27,14 @@ func _is_action_playing():
 
 func _can_switch(new_priority):
 	
-	return (not endless and not _is_action_playing()) or \
+	return not _is_action_playing() or \
 		new_priority > priority or \
 		(new_priority == priority and switch_mode == 'Immediate')
 
 
 func _on_action_finished(animation_name=null):
+	
+	finished = true
 	
 	if endless:
 		return
@@ -76,6 +79,7 @@ func _apply_attributes(new_state, attributes):
 	switch_mode = 'Immediate'
 	priority = new_priority
 	endless = false
+	finished = false
 	
 	if attributes.has('speed'):
 		scale = attributes.speed

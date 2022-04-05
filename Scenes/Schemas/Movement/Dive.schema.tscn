@@ -31,7 +31,10 @@ attributes = "{
 		\"switch_mode\": \"End\",
 		\"lock_movement\": true,
 		\"camera_mode\": \"FullYaw\",
-		\"align_model_to_aim\": true
+		\"align_model_to_aim\": true,
+		\"root_motion_use_model\": true,
+		\"can_use_item\": true,
+		\"endless\": true
 	},
 	\"ShootDodgeForward\": {
 		\"direction\": 0

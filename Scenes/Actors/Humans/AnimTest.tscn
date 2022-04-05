@@ -1,78 +1,24 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
-[ext_resource path="res://Animations/Human/ModeSwitchSniper.tres" type="Animation" id=2]
-[ext_resource path="res://Animations/Human/Action/Shoot/Sniper/shootsniper_zoommode.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Human/Action/Punch/punch_seraph.tres" type="Animation" id=4]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
+[ext_resource path="res://Animations/Human/ShootDodgeBackwardRight.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/ShootDodgeBackwardLeft.tres" type="Animation" id=4]
 [ext_resource path="res://Scenes/Actors/Items/Punch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Items/Kick.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Animations/Human/Action/Death/death_explosion_a.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/Action/Death/death_explosion_b.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Human/ShootDodgeBackward.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/ShootDodgeLeft.tres" type="Animation" id=8]
 [ext_resource path="res://Scenes/Actors/Items/Sword.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Actors/Items/SwordHit.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Animations/Human/wall_shootdodgeforward.tres" type="Animation" id=11]
+[ext_resource path="res://Animations/Human/ShootDodgeRight.tres" type="Animation" id=11]
 [ext_resource path="res://Models/Humans/Anderson/Anderson.escn" type="PackedScene" id=12]
-[ext_resource path="res://Animations/Human/wall_shootdodgeflipforward.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/Action/Jump/HOPBACK.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/Action/Jump/Jump.Exit.tres" type="Animation" id=15]
-[ext_resource path="res://Animations/Human/Action/Jump/JumpLong.tres" type="Animation" id=16]
-[ext_resource path="res://Animations/Human/Action/Jump/JumpUp.tres" type="Animation" id=17]
-[ext_resource path="res://Animations/Human/Action/Shoot/PumpShotgun/ShootPumpShotgun.tres" type="Animation" id=18]
-[ext_resource path="res://Animations/Human/Action/Jump/jumpForward.tres" type="Animation" id=19]
-[ext_resource path="res://Animations/Human/Action/Jump/jumpForwardLeft.tres" type="Animation" id=20]
-[ext_resource path="res://Animations/Human/Action/Jump/jumpForwardRight.tres" type="Animation" id=21]
-[ext_resource path="res://Animations/Human/Action/Jump/sidestepleft.tres" type="Animation" id=22]
-[ext_resource path="res://Animations/Human/Action/Jump/sidestepright.tres" type="Animation" id=23]
-[ext_resource path="res://Animations/Human/Action/Kick/SNAPKICK.tres" type="Animation" id=24]
-[ext_resource path="res://Animations/Human/wall_shootdodgeflipbackward.tres" type="Animation" id=25]
-[ext_resource path="res://Animations/Human/BAT1.tres" type="Animation" id=26]
-[ext_resource path="res://Animations/Human/right_strike.tres" type="Animation" id=27]
-[ext_resource path="res://Animations/Human/stick_right.tres" type="Animation" id=28]
-[ext_resource path="res://Animations/Human/wushu2_front.tres" type="Animation" id=29]
-[ext_resource path="res://Animations/Human/stick_rightbat_new.tres" type="Animation" id=30]
-[ext_resource path="res://Animations/Human/2strike.tres" type="Animation" id=31]
-[ext_resource path="res://Animations/Human/Action/Punch/punch2.tres" type="Animation" id=32]
-[ext_resource path="res://Animations/Human/forward_strike.tres" type="Animation" id=33]
-[ext_resource path="res://Animations/Human/wild_strikes.tres" type="Animation" id=34]
-[ext_resource path="res://Animations/Human/2_1.tres" type="Animation" id=35]
-[ext_resource path="res://Animations/Human/360_strike.tres" type="Animation" id=36]
-[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBerettaDual.tres" type="Animation" id=37]
-[ext_resource path="res://Animations/Human/Action/Shoot/Ingram/ShootIngram.tres" type="Animation" id=38]
-[ext_resource path="res://Animations/Human/ShootGrenade.tres" type="Animation" id=39]
-[ext_resource path="res://Animations/Human/Use.tres" type="Animation" id=40]
-[ext_resource path="res://Animations/Human/Movement/T_RUN.tres" type="Animation" id=41]
-[ext_resource path="res://Animations/Human/N_RUN.tres" type="Animation" id=42]
-[ext_resource path="res://Animations/Human/marko_run.tres" type="Animation" id=43]
-[ext_resource path="res://Animations/Human/Action/Shoot/Jackhammer/ShootJackhammer.tres" type="Animation" id=44]
+[ext_resource path="res://Animations/Human/ShootDodgeForwardLeft.tres" type="Animation" id=13]
+[ext_resource path="res://Animations/Human/ShootDodgeForwardRight.tres" type="Animation" id=14]
+[ext_resource path="res://Animations/Human/ShootDodgeForward.tres" type="Animation" id=15]
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=45]
 [ext_resource path="res://Scenes/Actors/Items/DesertEagle.tscn" type="PackedScene" id=46]
-[ext_resource path="res://Animations/Human/Action/Shoot/Ingram/ShootIngramDual.tres" type="Animation" id=47]
 [ext_resource path="res://Scenes/Actors/Items/Ingram.tscn" type="PackedScene" id=48]
-[ext_resource path="res://Animations/Human/DodgeBackward.tres" type="Animation" id=49]
-[ext_resource path="res://Animations/Human/DodgeRight.tres" type="Animation" id=50]
-[ext_resource path="res://Animations/Human/DodgeLeft.tres" type="Animation" id=51]
 [ext_resource path="res://Animations/Human/DodgeForward.tres" type="Animation" id=52]
-[ext_resource path="res://Animations/Human/Movement/Run.tres" type="Animation" id=53]
-[ext_resource path="res://Animations/Human/cartbackleft.tres" type="Animation" id=54]
-[ext_resource path="res://Animations/Human/BACKFLIP.tres" type="Animation" id=55]
-[ext_resource path="res://Animations/Human/cartright.tres" type="Animation" id=56]
-[ext_resource path="res://Animations/Human/cart_right.tres" type="Animation" id=57]
-[ext_resource path="res://Animations/Human/cartbackright.tres" type="Animation" id=58]
-[ext_resource path="res://Animations/Human/CARTLEFT.tres" type="Animation" id=59]
-[ext_resource path="res://Animations/Human/butterfly.tres" type="Animation" id=60]
-[ext_resource path="res://Animations/Human/DodgeForwardRight.tres" type="Animation" id=61]
-[ext_resource path="res://Animations/Human/DodgeForwardLeft.tres" type="Animation" id=62]
-[ext_resource path="res://Animations/Human/2_DodgeBackwardLeft.tres" type="Animation" id=63]
-[ext_resource path="res://Animations/Human/2_DodgeBackwardRight.tres" type="Animation" id=64]
-[ext_resource path="res://Animations/Human/maddodgebackwardLeft.tres" type="Animation" id=65]
-[ext_resource path="res://Animations/Human/maddodgebackwardRight.tres" type="Animation" id=66]
-[ext_resource path="res://Animations/Human/roll_shootdodgeleft.tres" type="Animation" id=67]
-[ext_resource path="res://Animations/Human/air_shootdodgeleft.tres" type="Animation" id=68]
-[ext_resource path="res://Animations/Human/matrixed_ShootDodgeForward.tres" type="Animation" id=69]
-[ext_resource path="res://Animations/Human/drunk_shootdodgebackward.tres" type="Animation" id=70]
-[ext_resource path="res://Animations/Human/matrixed_ShootDodgeRight.tres" type="Animation" id=71]
-[ext_resource path="res://Animations/Human/new_shootdodgeforward.tres" type="Animation" id=72]
-[ext_resource path="res://Animations/Human/new_shootdodgebackward.tres" type="Animation" id=73]
 [ext_resource path="res://Scenes/Actors/Items/SawedoffShotgun.tscn" type="PackedScene" id=74]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
@@ -107,7 +53,7 @@ triangles = PoolIntArray( 0, 2, 3, 1, 2, 3, 0, 2, 4, 1, 2, 4 )
 [sub_resource type="Animation" id=7]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../CameraRig:transform")
+tracks/0/path = NodePath("../../CameraRig:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -116,34 +62,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.7, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../../CameraRig:translation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 1.7, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../../CameraRig:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 180, 0 ) ]
+"values": [ Vector3( 0, 0.90011, 0 ) ]
 }
 
 [node name="AnimTest" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13755e-08, 1.15144e-07, -0.124577 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -154,7 +77,7 @@ visible = false
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( 0.948324, 0.317305, 1.16347e-06, 0.317305, -0.948324, 4.98343e-07, 1.26147e-06, -1.03416e-07, -1, 0.487098, 0.828674, 0.0189739 )
+transform = Transform( 0.985753, 0.167815, 0.0113616, 0.153888, -0.872554, -0.463648, -0.0678933, 0.45879, -0.885947, 0.349343, 0.69338, -0.0502143 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 45 )]
@@ -165,7 +88,7 @@ visible = false
 transform = Transform( 0.98729, 0.157525, 0.0211143, -0.0235019, 0.013309, 0.999636, 0.157186, -0.987427, 0.0168419, -0.0229437, 0.0228328, 0.015305 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="2"]
-transform = Transform( 0.951057, -0.309016, -3.2592e-07, -0.309016, -0.951057, 0, -3.09969e-07, 1.00715e-07, -1, -0.467092, 0.884827, 0.00483319 )
+transform = Transform( 0.984465, -0.162226, 0.0671688, -0.139381, -0.954695, -0.262927, 0.106779, 0.24948, -0.962475, -0.367321, 0.773067, -0.143193 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 9 )]
@@ -212,76 +135,62 @@ parameters/blend_position = Vector2( 0.00282753, 0.0225563 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../../Model2/Anderson_skeleton")
-anims/2_1 = ExtResource( 35 )
-anims/2_DodgeBackwardLeft = ExtResource( 63 )
-anims/2_DodgeBackwardRight = ExtResource( 64 )
-anims/2strike = ExtResource( 31 )
-anims/360_strike = ExtResource( 36 )
-anims/BACKFLIP = ExtResource( 55 )
-anims/BAT1 = ExtResource( 26 )
-anims/CARTLEFT = ExtResource( 59 )
-anims/DodgeBackward = ExtResource( 49 )
 anims/DodgeForward = ExtResource( 52 )
-anims/DodgeForwardLeft = ExtResource( 62 )
-anims/DodgeForwardRight = ExtResource( 61 )
-anims/DodgeLeft = ExtResource( 51 )
-anims/DodgeRight = ExtResource( 50 )
-anims/HOPBACK = ExtResource( 14 )
-anims/Jump.Exit = ExtResource( 15 )
-anims/JumpLong = ExtResource( 16 )
-anims/JumpUp = ExtResource( 17 )
-anims/ModeSwitchSniper = ExtResource( 2 )
-anims/N_RUN = ExtResource( 42 )
 anims/RESET = SubResource( 7 )
-anims/Run = ExtResource( 53 )
-anims/SNAPKICK = ExtResource( 24 )
-anims/ShootBerettaDual = ExtResource( 37 )
-anims/ShootGrenade = ExtResource( 39 )
-anims/ShootIngram = ExtResource( 38 )
-anims/ShootIngramDual = ExtResource( 47 )
-anims/ShootJackhammer = ExtResource( 44 )
-anims/ShootPumpShotgun = ExtResource( 18 )
-anims/T_RUN = ExtResource( 41 )
-anims/Use = ExtResource( 40 )
-anims/air_shootdodgeleft = ExtResource( 68 )
-anims/butterfly = ExtResource( 60 )
-anims/cart_right = ExtResource( 57 )
-anims/cartbackleft = ExtResource( 54 )
-anims/cartbackright = ExtResource( 58 )
-anims/cartright = ExtResource( 56 )
-anims/death_explosion_a = ExtResource( 7 )
-anims/death_explosion_b = ExtResource( 8 )
-anims/drunk_shootdodgebackward = ExtResource( 70 )
-anims/forward_strike = ExtResource( 33 )
-anims/jumpForward = ExtResource( 19 )
-anims/jumpForwardLeft = ExtResource( 20 )
-anims/jumpForwardRight = ExtResource( 21 )
-anims/maddodgebackwardLeft = ExtResource( 65 )
-anims/maddodgebackwardRight = ExtResource( 66 )
-anims/marko_run = ExtResource( 43 )
-anims/matrixed_ShootDodgeForward = ExtResource( 69 )
-anims/matrixed_ShootDodgeRight = ExtResource( 71 )
-anims/new_shootdodgebackward = ExtResource( 73 )
-anims/new_shootdodgeforward = ExtResource( 72 )
-anims/punch2 = ExtResource( 32 )
-anims/punch_seraph = ExtResource( 4 )
-anims/right_strike = ExtResource( 27 )
-anims/roll_shootdodgeleft = ExtResource( 67 )
-anims/shootsniper_zoommode = ExtResource( 3 )
-anims/sidestepleft = ExtResource( 22 )
-anims/sidestepright = ExtResource( 23 )
-anims/stick_right = ExtResource( 28 )
-anims/stick_rightbat_new = ExtResource( 30 )
-anims/wall_shootdodgeflipbackward = ExtResource( 25 )
-anims/wall_shootdodgeflipforward = ExtResource( 13 )
-anims/wall_shootdodgeforward = ExtResource( 11 )
-anims/wild_strikes = ExtResource( 34 )
-anims/wushu2_front = ExtResource( 29 )
+anims/ShootDodgeBackward = ExtResource( 7 )
+anims/ShootDodgeBackwardLeft = ExtResource( 4 )
+anims/ShootDodgeBackwardRight = ExtResource( 3 )
+anims/ShootDodgeForward = ExtResource( 15 )
+anims/ShootDodgeForwardLeft = ExtResource( 13 )
+anims/ShootDodgeForwardRight = ExtResource( 14 )
+anims/ShootDodgeLeft = ExtResource( 8 )
+anims/ShootDodgeRight = ExtResource( 11 )
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+attributes = "{
+	\"*\": {
+		\"speed\": 1.0,
+		\"clip_start\": 0.05,
+		\"layer\": \"ACTION\",
+		\"switch_mode\": \"End\",
+		\"lock_movement\": true,
+		\"camera_mode\": \"FullYaw\",
+		\"align_model_to_aim\": true,
+		\"can_use_item\": true,
+		\"endless\": true
+	},
+	\"ShootDodgeForward\": {
+		\"direction\": 0
+	},
+	\"ShootDodgeForwardRight\": {
+		\"direction\": 1
+	},
+	\"ShootDodgeRight\": {
+		\"direction\": 2
+	},
+	\"ShootDodgeBackwardRight\": {
+		\"direction\": 3
+	},
+	\"ShootDodgeBackward\": {
+		\"direction\": 4
+	},
+	\"ShootDodgeBackwardLeft\": {
+		\"direction\": 5
+	},
+	\"ShootDodgeLeft\": {
+		\"direction\": 6
+	},
+	\"ShootDodgeForwardLeft\": {
+		\"direction\": 7
+	}
+}"
 
 [node name="RootMotionView" type="RootMotionView" parent="."]
 
 [node name="CameraRig" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.7, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.90011, 0 )
 
 [node name="Camera" type="Camera" parent="CameraRig"]
 

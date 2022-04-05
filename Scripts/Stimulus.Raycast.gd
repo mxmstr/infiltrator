@@ -123,8 +123,8 @@ func _process(delta):
 		global_transform.basis = root.global_transform.basis
 		
 		if rotation_offset.length():
-			rotate_y(rotation_offset.x)
-			rotate_x(rotation_offset.y)
+			global_transform.basis = global_transform.basis.rotated(root.global_transform.basis.y, rotation_offset.x)
+			global_transform.basis = global_transform.basis.rotated(root.global_transform.basis.x, -rotation_offset.y)
 	
 	if move_target and get_collision_point():
 		$Target.global_transform.origin = get_collision_point()

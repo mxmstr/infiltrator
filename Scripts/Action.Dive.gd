@@ -12,6 +12,8 @@ var y_value_range
 onready var behavior = $'../Behavior'
 onready var movement = $'../Movement'
 onready var stance = $'../Stance'
+onready var camera_rig = $'../CameraRig'
+onready var camera = $'../CameraRig/Camera'
 onready var camera_raycast = $'../CameraRaycastStim'
 
 
@@ -25,20 +27,13 @@ func _on_test_off_wall_timeout():
 	test_off_wall = false
 
 
-func _on_action(_state, _data):
-	
-	if _state == 'Dive':
-		
-		if not _play(_state, null):
-			return
-		
-		data = _data
-
-
 func _set_blendspace_position():
 	
 	var owner_rotation = owner.global_transform.basis.z
-	var camera_rotation = -camera_raycast.global_transform.basis.z
+	var camera_rotation = -camera_raycast.global_transform.basis.z#owner.global_transform.basis.xform(Vector3(data.direction.x, 0, data.direction.y))
+	
+#	var direction_x = Vector2(1, 0).angle_to(data.direction)
+#	var direction_y = Vector2(0, 1).angle_to(data.direction)
 	
 	var facing_angle_x = camera_rotation.angle_to(
 		owner_rotation.rotated(Vector3.UP, (PI / 2))
@@ -48,18 +43,35 @@ func _set_blendspace_position():
 	var facing_angle_y = camera_rotation.angle_to(owner_rotation)
 	facing_angle_y = (PI / 2) - facing_angle_y
 	
+	var facing_direction = Vector2(facing_angle_x, facing_angle_y).normalized()
 	
-	var x_value = facing_angle_x
+	var x_value = facing_direction.x
 	var x_max_value = 1
 	var x_min_value = -1
-	x_value = (((x_value - x_min_value) / (x_max_value - x_min_value)) * x_value_range) + x_min
+	facing_direction.x = (((x_value - x_min_value) / (x_max_value - x_min_value)) * x_value_range) + x_min
 	
-	var y_value = facing_angle_y
+	var y_value = facing_direction.y
 	var y_max_value = 1
 	var y_min_value = -1
-	y_value = (((y_value - y_min_value) / (y_max_value - y_min_value)) * y_value_range) + y_min
+	facing_direction.y = (((y_value - y_min_value) / (y_max_value - y_min_value)) * y_value_range) + y_min
 	
-	behavior.set('parameters/BlendSpace2D/blend_position', Vector2(x_value, y_value))
+	#facing_direction = data.direction
+	
+	behavior.set('parameters/BlendSpace2D/blend_position', facing_direction)
+
+
+func _state_start():
+	
+	var model_pos = owner.global_transform.origin
+	var target_pos = model_pos - owner.global_transform.basis.xform(Vector3(data.direction.x, 0, data.direction.y))
+	target_pos.y = model_pos.y
+	
+	camera_rig.clamp_camera = false
+	var camera_rotation = camera.global_transform.basis
+	
+	owner.look_at(target_pos, Vector3.UP)
+	
+	camera.global_transform.basis = camera_rotation
 
 
 func _ready():
@@ -74,6 +86,10 @@ func _ready():
 
 func _process(delta):
 	
-	if behavior.current_state == 'Dive':
+	if behavior.current_state == state:
 		
 		_set_blendspace_position()
+		
+		if behavior.finished and abs(stance.forward_speed) > 0.1 or abs(stance.sidestep_speed) > 0.1:
+			behavior._start_state('Default')
+			#stance._align_to_camera()

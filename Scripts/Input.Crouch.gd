@@ -19,7 +19,11 @@ func _on_roll_timeout():
 	roll_input_timeout = true
 	
 	if strength > 0.9:
-		behavior._start_state('Dive')
+		
+		var vertical = forward.strength + backward.strength
+		var horizontal = left.strength + right.strength
+		
+		behavior._start_state('Dive', { 'direction': Vector2(horizontal, vertical) })
 
 
 func _roll():

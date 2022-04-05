@@ -1,9 +1,15 @@
 extends "res://Scripts/Behavior.gd"
 
+enum Mode {
+	OneShot,
+	EightWay
+}
+
 export(String) var torso_bone
 export(Array, String) var action_bones
 
 var layer = Meta.BlendLayer.MOVEMENT
+var can_use_item = false
 var can_zoom = false
 var cached_action_pose
 
@@ -58,7 +64,12 @@ func _on_pre_draw(viewport_rid):
 
 func _is_action_playing():
 	
-	return get('parameters/OneShot/active')
+	return not finished
+	
+#	if get('parameters/Transition/current') == Mode.OneShot:
+#		return get('parameters/OneShot/active')
+#	else:
+#		return not finished
 
 
 func _set_layer(_layer):
@@ -154,17 +165,22 @@ func _apply_human_attributes(attributes):
 	
 	enable_abilities = true
 	layer = Meta.BlendLayer.MOVEMENT
+	can_use_item = false
 	can_zoom = false
 	
 	var lock_stance = false
 	var lock_movement = false
 	var lock_rotation = false
 	var align_model_to_aim = false
+	var root_motion_use_model = false
 	var camera_mode_state = 'Default'
 	var hud_mode_state = 'Default'
 	
 	if attributes.has('layer'):
 		layer = Meta.BlendLayer[attributes.layer]
+	
+	if attributes.has('can_use_item'):
+		can_use_item = attributes.can_use_item
 	
 	if attributes.has('can_zoom'):
 		can_zoom = attributes.can_zoom
@@ -184,6 +200,9 @@ func _apply_human_attributes(attributes):
 	if attributes.has('align_model_to_aim'):
 		align_model_to_aim = attributes.align_model_to_aim
 	
+	if attributes.has('root_motion_use_model'):
+		root_motion_use_model = attributes.root_motion_use_model
+	
 	if attributes.has('camera_mode'):
 		camera_mode_state = attributes.camera_mode
 	
@@ -194,6 +213,7 @@ func _apply_human_attributes(attributes):
 	stance.lock_rotation = lock_rotation
 	stance.lock_movement = lock_movement
 	weapon_target_lock.align_model = align_model_to_aim
+	movement.root_motion_use_model = root_motion_use_model
 	camera_mode._start_state(camera_mode_state)
 	hud_mode._start_state(hud_mode_state)
 
@@ -205,11 +225,6 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	if not _apply_attributes(new_state, attributes):
 		return false
 	
-	_set_animation(animation, scale, clip_start, clip_end)
-	
-	if current_state == 'Default':
-		return true
-	
 	_set_oneshot_active(false)
 	call('advance', 0)
 	
@@ -217,7 +232,12 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	
 	_apply_human_attributes(attributes)
 	
-	set('parameters/Transition/current', 0)
+	set('parameters/Transition/current', Mode.OneShot)
+	
+	if current_state == 'Default':
+		return true
+	
+	_set_animation(animation, scale, clip_start, clip_end)
 	
 	if up_animation:
 		_set_animation_up(up_animation, action.scale, action.clip_start, action.clip_end)
@@ -264,7 +284,7 @@ func _play_8way(new_state, animation_list, attributes):
 #	if current_state == 'Default':
 #		return true
 	
-	set('parameters/Transition/current', 1)
+	set('parameters/Transition/current', Mode.EightWay)
 	
 	return true
 
@@ -293,8 +313,6 @@ func _ready():
 	set('tree_root', get('tree_root').duplicate(true))
 	
 	oneshot = get('tree_root').get_node('OneShot')
-	oneshot.connect('finished', self, '_on_action_finished')
-	
 	action = get('tree_root').get_node('Action')
 	transition = get('tree_root').get_node('Transition')
 	action_up = get('tree_root').get_node('ActionUp')
@@ -308,6 +326,9 @@ func _ready():
 	blend_space_downleft = _get_blend_point_node('BackwardLeft')
 	blend_space_left = _get_blend_point_node('Left')
 	blend_space_upleft = _get_blend_point_node('ForwardLeft')
+	
+	oneshot.connect('finished', self, '_on_action_finished')
+	blend_space_2d.connect('finished', self, '_on_action_finished')
 	
 	var anim_layer_player = anim_layer_movement.get_node('AnimationPlayer')
 	

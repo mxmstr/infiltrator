@@ -16,6 +16,7 @@ attributes = "{
 		\"clip_start\": 0.05,
 		\"layer\": \"MIXED\",
 		\"align_model_to_aim\": true,
+		\"can_use_item\": true,
 		\"next\": \"ShootIdle\"
 	}
 }"

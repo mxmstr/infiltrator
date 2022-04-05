@@ -115,16 +115,16 @@ func _set_stance(new_state):
 
 func _set_forward_speed(new_speed):
 	
-	if lock_movement:
-		return
+#	if lock_movement:
+#		return
 	
 	forward_speed = new_speed
 
 
 func _set_sidestep_speed(new_speed):
 	
-	if lock_movement:
-		return
+#	if lock_movement:
+#		return
 	
 	sidestep_speed = new_speed
 

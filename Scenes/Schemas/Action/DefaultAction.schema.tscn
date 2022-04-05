@@ -13,6 +13,7 @@ attributes = "{
 	\"*\": {
 		\"endless\": true,
 		\"layer\": \"MOVEMENT\",
-		\"align_model_to_aim\": true
+		\"align_model_to_aim\": true,
+		\"can_use_item\": true
 	}
 }"
