@@ -20,10 +20,7 @@ onready var camera_raycast = $'../CameraRaycastStim'
 func _set_blendspace_position():
 	
 	var owner_rotation = owner.global_transform.basis.z
-	var camera_rotation = -camera_raycast.global_transform.basis.z#owner.global_transform.basis.xform(Vector3(data.direction.x, 0, data.direction.y))
-	
-#	var direction_x = Vector2(1, 0).angle_to(data.direction)
-#	var direction_y = Vector2(0, 1).angle_to(data.direction)
+	var camera_rotation = -camera_raycast.global_transform.basis.z
 	
 	var facing_angle_x = camera_rotation.angle_to(
 		owner_rotation.rotated(Vector3.UP, (PI / 2))
@@ -44,8 +41,6 @@ func _set_blendspace_position():
 	var y_max_value = 1
 	var y_min_value = -1
 	facing_direction.y = (((y_value - y_min_value) / (y_max_value - y_min_value)) * y_value_range) + y_min
-	
-	#facing_direction = data.direction
 	
 	behavior.set('parameters/BlendSpace2D/blend_position', facing_direction)
 
@@ -79,7 +74,3 @@ func _process(delta):
 	if behavior.current_state == state:
 		
 		_set_blendspace_position()
-		
-		if behavior.finished and (abs(stance.forward_speed) > 0.1 or abs(stance.sidestep_speed) > 0.1):
-
-			behavior._start_state('Default', { 'override': true })

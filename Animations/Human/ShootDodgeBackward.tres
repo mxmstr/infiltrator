@@ -3,6 +3,7 @@
 [resource]
 resource_name = "neo_reference_skeleton|neo_reference_skeleton|ShootDodgeBackwar"
 length = 2.54167
+step = 0.0416667
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".:JBRL")
 tracks/0/interp = 1
@@ -212,7 +213,7 @@ tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/keys = PoolRealArray( 0.0416667, 1, -8.33534e-08, 1.17943e-07, -2.75671e-07, 0, 0, 0, 1, 1, 1, 1, 2.5, 1, 0, 0, -5.25, 0, 0, 0, 1, 1, 1, 1 )
+tracks/29/keys = PoolRealArray( 0.0416667, 1, -8.33534e-08, 1.17943e-07, -2.75671e-07, 0, 0, 0, 1, 1, 1, 1, 2.54167, 1, 0, 0, -5.25, 0, 0, 0, 1, 1, 1, 1 )
 tracks/30/type = "value"
 tracks/30/path = NodePath("../../CameraRig:translation")
 tracks/30/interp = 1
@@ -220,10 +221,10 @@ tracks/30/loop_wrap = true
 tracks/30/imported = false
 tracks/30/enabled = true
 tracks/30/keys = {
-"times": PoolRealArray( 0, 0.458333, 0.916667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.458333, 0.916667, 1.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 1.43657, 0 ), Vector3( 0, 0.90011, 0 ), Vector3( 0, 0.628809, 0 ) ]
+"values": [ Vector3( 0, 1.43657, 0 ), Vector3( 0, 1.17898, 0.251799 ), Vector3( 0, 0.672129, -0.546918 ), Vector3( 0, 0.530345, -0.66722 ) ]
 }
 tracks/31/type = "value"
 tracks/31/path = NodePath("../../CameraRig:rotation_degrees")
@@ -236,4 +237,18 @@ tracks/31/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 0, 180, 0 ) ]
+}
+tracks/32/type = "method"
+tracks/32/path = NodePath("../../Movement")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0.708333 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 4.5 ],
+"method": "_set_vertical_velocity"
+} ]
 }

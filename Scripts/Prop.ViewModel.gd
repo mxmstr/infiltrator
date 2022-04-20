@@ -23,6 +23,7 @@ var vm_skeleton
 
 onready var contains_link = load('res://Scripts/Link.Contains.gd')
 onready var behavior = get_node_or_null('../Behavior')
+onready var perspective = get_node_or_null('../Perspective')
 onready var camera_rig = get_node_or_null('../CameraRig')
 onready var camera = get_node_or_null('../CameraRig/Camera')
 
@@ -198,7 +199,6 @@ func _blend_skeletons(delta):
 	pelvis_pose.origin += Vector3(0, 0, -0.3)
 	vm_skeleton.set_bone_global_pose_override(pelvis_id, pelvis_pose, 1.0, true)
 	
-	
 	for hidden_bone_id in hidden_bone_ids:
 
 		var p_world = world_skeleton.get_bone_pose(hidden_bone_id)
@@ -207,30 +207,30 @@ func _blend_skeletons(delta):
 		vm_skeleton.set_bone_pose(hidden_bone_id, p_world)
 	
 	
-	if follow_camera_bone_id:
+	if perspective.fp_skeleton_offset_enable:
+	
+		if follow_camera_bone_id:
 
-		var neck_id = vm_skeleton.find_bone('Neck')
-		var neck_pose = vm_skeleton.get_bone_global_pose(neck_id)
+			var neck_id = vm_skeleton.find_bone('Neck')
+			var neck_pose = vm_skeleton.get_bone_global_pose(neck_id)
+			var bone_pose = vm_skeleton.get_bone_global_pose(follow_camera_bone_id)
+			var camera_offset = -camera.transform.basis.z
+			camera_offset.y *= -1
 
-		var bone_pose = vm_skeleton.get_bone_global_pose(follow_camera_bone_id)
-		var camera_offset = -camera.transform.basis.z
-		camera_offset.y *= -1
+			bone_pose.origin = (
+				camera_rig.transform.origin - 
+				(neck_pose.origin - bone_pose.origin) +
+				camera.transform.basis.xform_inv(Vector3(0, -0.2, -0.3)) +
+				follow_camera_torso_delta
+				)
 
-		bone_pose.origin = (
-			camera_rig.transform.origin - 
-			(neck_pose.origin - bone_pose.origin) +
-			camera.transform.basis.xform_inv(Vector3(0, -0.2, -0.3)) +
-			follow_camera_torso_delta
+			vm_skeleton.set_bone_global_pose_override(follow_camera_bone_id, bone_pose, 1.0, true)
+		
+		follow_camera_torso_delta = follow_camera_torso_delta.linear_interpolate(
+			(torso_pose.origin - follow_camera_torso_origin) * 5,
+			5.0 * delta
 			)
-
-		vm_skeleton.set_bone_global_pose_override(follow_camera_bone_id, bone_pose, 1.0, true)
-	
-	
-	follow_camera_torso_delta = follow_camera_torso_delta.linear_interpolate(
-		(torso_pose.origin - follow_camera_torso_origin) * 5,
-		5.0 * delta
-		)
-	follow_camera_torso_origin = torso_pose.origin
+		follow_camera_torso_origin = torso_pose.origin
 	
 	emit_signal('blended_skeletons')
 

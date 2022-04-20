@@ -3,19 +3,18 @@
 [ext_resource path="res://Scripts/Schema.gd" type="Script" id=1]
 
 [sub_resource type="Animation" id=1]
-resource_name = "PostDeath"
+resource_name = "DefaultAction"
 length = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-anims/PostDeath = SubResource( 1 )
+anims/DefaultAction = SubResource( 1 )
 script = ExtResource( 1 )
 attributes = "{
 	\"*\": {
-		\"priority\": 2,
 		\"endless\": true,
-		\"layer\": \"ACTION\",
-		\"lock_movement\": true,
-		\"camera_mode\": \"BoneParent\",
-		\"hud_mode\": \"PostDeath\"
+		\"layer\": \"MOVEMENT\",
+		\"align_model_to_aim\": true,
+		\"can_use_item\": true,
+		\"input_context\": \"PreJump\"
 	}
 }"

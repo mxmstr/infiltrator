@@ -139,13 +139,6 @@ func _set_look_speed(new_speed):
 	movement.angular_direction.y = new_speed * rotate_speed_mult
 
 
-func _align_to_camera():
-	
-	var target = owner.global_transform.origin + camera.global_transform.basis.z#.inverse()
-	target.y = owner.global_transform.origin.y
-	owner.look_at(target, Vector3(0, 1, 0))
-
-
 func _resize_collision():
 	
 	if collision:

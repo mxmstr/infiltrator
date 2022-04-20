@@ -10,10 +10,10 @@ export(Array, String) var fp_hidden_bones
 
 var viewmodel_property = preload('res://Scenes/Components/Properties/ViewModel.property.tscn')
 
+var fp_skeleton_offset_enable = true
 var viewmodels = []
 var viewmodel_offset = 5
 var worldmodel_offset = 15
-
 var rig_translated = false
 var rig_rotated = false
 

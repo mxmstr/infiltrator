@@ -19,7 +19,7 @@ script = ExtResource( 7 )
 attributes = "{
 	\"*\": {
 		\"clip_start\": 0.05,
-		\"priority\": 1,
+		\"priority\": 2,
 		\"layer\": \"ACTION\",
 		\"switch_mode\": \"End\",
 		\"lock_movement\": true,

@@ -1,24 +1,19 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
-[ext_resource path="res://Animations/Human/ShootDodgeBackwardRight.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Human/ShootDodgeBackwardLeft.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/Movement/Run.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/ShootDodgeForward.tres" type="Animation" id=3]
+[ext_resource path="res://Scenes/Schemas/Movement/ShootDodgeAir.schema.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Actors/Items/Punch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Items/Kick.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Animations/Human/ShootDodgeBackward.tres" type="Animation" id=7]
-[ext_resource path="res://Animations/Human/ShootDodgeLeft.tres" type="Animation" id=8]
+[ext_resource path="res://Scenes/Schemas/Movement/Dive.schema.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Schemas/Movement/ShootDodgeStand.schema.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Actors/Items/Sword.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Actors/Items/SwordHit.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Animations/Human/ShootDodgeRight.tres" type="Animation" id=11]
 [ext_resource path="res://Models/Humans/Anderson/Anderson.escn" type="PackedScene" id=12]
-[ext_resource path="res://Animations/Human/ShootDodgeForwardLeft.tres" type="Animation" id=13]
-[ext_resource path="res://Animations/Human/ShootDodgeForwardRight.tres" type="Animation" id=14]
-[ext_resource path="res://Animations/Human/ShootDodgeForward.tres" type="Animation" id=15]
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=45]
 [ext_resource path="res://Scenes/Actors/Items/DesertEagle.tscn" type="PackedScene" id=46]
 [ext_resource path="res://Scenes/Actors/Items/Ingram.tscn" type="PackedScene" id=48]
-[ext_resource path="res://Animations/Human/DodgeForward.tres" type="Animation" id=52]
 [ext_resource path="res://Scenes/Actors/Items/SawedoffShotgun.tscn" type="PackedScene" id=74]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
@@ -62,11 +57,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0.90011, 0 ) ]
+"values": [ Vector3( 0, 1.17898, 0.251799 ) ]
 }
 
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13755e-08, 1.15144e-07, -0.124577 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29454e-08, 1.17943e-07, -2.75671e-07 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -75,9 +70,11 @@ visible = false
 
 [node name="Anderson_skeleton" parent="Model2" index="0"]
 transform = Transform( -1, 1.32005e-14, 8.74228e-08, 2.11758e-21, 1, -1.50996e-07, 8.74228e-08, 1.50996e-07, 1, 0, 0, 0 )
+bones/16/bound_children = [ NodePath("BoneAttachment") ]
+bones/19/bound_children = [ NodePath("BoneAttachment2") ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( 0.985753, 0.167815, 0.0113616, 0.153888, -0.872554, -0.463648, -0.0678933, 0.45879, -0.885947, 0.349343, 0.69338, -0.0502143 )
+transform = Transform( 0.994046, 0.0622456, 0.0894338, 0.107473, -0.424827, -0.898873, -0.0179571, 0.903132, -0.428987, 0.331394, 0.849986, 0.138705 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 45 )]
@@ -88,7 +85,7 @@ visible = false
 transform = Transform( 0.98729, 0.157525, 0.0211143, -0.0235019, 0.013309, 0.999636, 0.157186, -0.987427, 0.0168419, -0.0229437, 0.0228328, 0.015305 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="2"]
-transform = Transform( 0.984465, -0.162226, 0.0671688, -0.139381, -0.954695, -0.262927, 0.106779, 0.24948, -0.962475, -0.367321, 0.773067, -0.143193 )
+transform = Transform( 0.945164, -0.0183358, -0.326082, -0.18008, -0.862195, -0.473489, -0.272464, 0.506246, -0.818217, -0.362694, 0.797477, 0.121047 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 9 )]
@@ -129,68 +126,25 @@ visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 6 )
-anim_player = NodePath("AnimationPlayer")
 root_motion_track = NodePath("../..")
 parameters/blend_position = Vector2( 0.00282753, 0.0225563 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+[node name="AnimationPlayer" parent="AnimationTree" instance=ExtResource( 4 )]
 root_node = NodePath("../../Model2/Anderson_skeleton")
-anims/DodgeForward = ExtResource( 52 )
+anims/Run = ExtResource( 2 )
+anims/ShootDodgeForward = ExtResource( 3 )
+
+[node name="AnimationPlayer2" parent="AnimationTree" instance=ExtResource( 7 )]
+root_node = NodePath("../../Model2/Anderson_skeleton")
 anims/RESET = SubResource( 7 )
-anims/ShootDodgeBackward = ExtResource( 7 )
-anims/ShootDodgeBackwardLeft = ExtResource( 4 )
-anims/ShootDodgeBackwardRight = ExtResource( 3 )
-anims/ShootDodgeForward = ExtResource( 15 )
-anims/ShootDodgeForwardLeft = ExtResource( 13 )
-anims/ShootDodgeForwardRight = ExtResource( 14 )
-anims/ShootDodgeLeft = ExtResource( 8 )
-anims/ShootDodgeRight = ExtResource( 11 )
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
-attributes = "{
-	\"*\": {
-		\"speed\": 1.0,
-		\"clip_start\": 0.05,
-		\"layer\": \"ACTION\",
-		\"switch_mode\": \"End\",
-		\"lock_movement\": true,
-		\"camera_mode\": \"FullYaw\",
-		\"align_model_to_aim\": true,
-		\"can_use_item\": true,
-		\"endless\": true
-	},
-	\"ShootDodgeForward\": {
-		\"direction\": 0
-	},
-	\"ShootDodgeForwardRight\": {
-		\"direction\": 1
-	},
-	\"ShootDodgeRight\": {
-		\"direction\": 2
-	},
-	\"ShootDodgeBackwardRight\": {
-		\"direction\": 3
-	},
-	\"ShootDodgeBackward\": {
-		\"direction\": 4
-	},
-	\"ShootDodgeBackwardLeft\": {
-		\"direction\": 5
-	},
-	\"ShootDodgeLeft\": {
-		\"direction\": 6
-	},
-	\"ShootDodgeForwardLeft\": {
-		\"direction\": 7
-	}
-}"
+
+[node name="AnimationPlayer3" parent="AnimationTree" instance=ExtResource( 8 )]
+root_node = NodePath("../../Model2/Anderson_skeleton")
 
 [node name="RootMotionView" type="RootMotionView" parent="."]
 
 [node name="CameraRig" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.90011, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.17898, 0.251799 )
 
 [node name="Camera" type="Camera" parent="CameraRig"]
 

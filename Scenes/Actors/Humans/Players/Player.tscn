@@ -35,32 +35,41 @@
 [node name="SecondaryActionInput" parent="." index="1" instance=ExtResource( 22 )]
 
 [node name="MoveBackwardInput" parent="." index="2" instance=ExtResource( 3 )]
+contexts = [ "All" ]
 
 [node name="MoveForwardInput" parent="." index="3" instance=ExtResource( 4 )]
+contexts = [ "All" ]
 
 [node name="MoveVerticalStop" parent="." index="4" instance=ExtResource( 5 )]
 
 [node name="MoveLeftInput" parent="." index="5" instance=ExtResource( 6 )]
+contexts = [ "All" ]
 
 [node name="MoveRightInput" parent="." index="6" instance=ExtResource( 7 )]
+contexts = [ "All" ]
 
 [node name="MoveHorizontalStop" parent="." index="7" instance=ExtResource( 8 )]
 
 [node name="RotateUpInput" parent="." index="8" instance=ExtResource( 9 )]
+contexts = [ "All" ]
 
 [node name="RotateDownInput" parent="." index="9" instance=ExtResource( 10 )]
+contexts = [ "All" ]
 
 [node name="RotateVerticalStop" parent="." index="10" instance=ExtResource( 11 )]
 
 [node name="RotateLeftInput" parent="." index="11" instance=ExtResource( 12 )]
+contexts = [ "All" ]
 
 [node name="RotateRightInput" parent="." index="12" instance=ExtResource( 13 )]
+contexts = [ "All" ]
 
 [node name="RotateHorizontalStop" parent="." index="13" instance=ExtResource( 14 )]
 
 [node name="CrouchInput" parent="." index="14" instance=ExtResource( 15 )]
 
 [node name="JumpInput" parent="." index="15" instance=ExtResource( 16 )]
+contexts = [ "Default", "PreJump" ]
 
 [node name="DropInput" parent="." index="16" instance=ExtResource( 17 )]
 
@@ -85,7 +94,7 @@ script = ExtResource( 21 )
 [node name="Bot" type="Node" parent="." index="24"]
 script = ExtResource( 23 )
 
-[node name="AnimLayerMovement" parent="." index="64"]
+[node name="AnimLayerMovement" parent="." index="84"]
 parameters/playback = SubResource( 1 )
 
 [editable path="CameraRig"]

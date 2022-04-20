@@ -25,9 +25,10 @@ func _is_action_playing():
 	return call('is_playing')
 
 
-func _can_switch(new_priority):
+func _can_switch(new_priority, override):
 	
-	return not _is_action_playing() or \
+	return override or \
+		not _is_action_playing() or \
 		new_priority > priority or \
 		(new_priority == priority and switch_mode == 'Immediate')
 
@@ -62,12 +63,10 @@ func _set_animation(animation, scale, clip_start, clip_end):
 
 func _apply_attributes(new_state, attributes):
 	
-	var new_priority = 0
+	var override = attributes.has('override')
+	var new_priority = attributes.priority if attributes.has('priority') else 0
 	
-	if attributes.has('priority'):
-		new_priority = attributes.priority
-	
-	if not _can_switch(new_priority):
+	if not _can_switch(new_priority, override):
 		return false
 	
 	current_state = new_state

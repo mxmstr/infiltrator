@@ -7,6 +7,7 @@ var base_name
 var system_path
 var tags_dict = {}
 var player_index = 0 setget _set_player_index
+var input_context = 'Default'
 
 signal entered_tree
 signal integrate_forces
@@ -52,6 +53,19 @@ func _set_player_index(new_player_index):
 	emit_signal('player_index_changed', player_index)
 
 
+func _parse_tags():
+	
+	for tag in tags.split(' '):
+		
+		var values = Array(tag.split(':'))
+		var key = values.pop_front()
+		
+		if values.size() == 1:
+			tags_dict[key] = values[0]
+		else:
+			tags_dict[key] = values
+
+
 func _notification(what):
 	
 	if what == NOTIFICATION_INSTANCED:
@@ -59,29 +73,13 @@ func _notification(what):
 		base_name = name
 		system_path = filename.replace('.tscn', '').replace('res://Scenes/Actors/', '')
 		
-		#.replace('\n', ' ')
-		for tag in tags.split(' '):
-			
-			var values = Array(tag.split(':'))
-			var key = values.pop_front()
-			
-			if values.size() == 1:
-				tags_dict[key] = values[0]
-			else:
-				tags_dict[key] = values
+		_parse_tags()
 
 
 func _enter_tree():
 	
-#	for tag in tags.split(' '):
-#
-#		var values = Array(tag.split(':'))
-#		var key = values.pop_front()
-#
-#		if values.size() == 1:
-#			tags_dict[key] = values[0]
-#		else:
-#			tags_dict[key] = values
+	#if tags_dict.empty():
+	_parse_tags()
 	
 	for child in get_children():
 		

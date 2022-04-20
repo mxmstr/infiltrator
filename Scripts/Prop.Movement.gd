@@ -69,6 +69,11 @@ func _set_vertical_velocity(vertical):
 	velocity.y = vertical
 
 
+func _add_vertical_velocity(vertical):
+	
+	velocity.y += vertical
+
+
 func _teleport(new_position=null, new_rotation=null): pass
 
 

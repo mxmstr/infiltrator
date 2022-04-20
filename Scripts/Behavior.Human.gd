@@ -8,10 +8,14 @@ enum Mode {
 export(String) var torso_bone
 export(Array, String) var action_bones
 
-var layer = Meta.BlendLayer.MOVEMENT
+const blend_time_max = 0.05
+
+var layer = Meta.BlendLayer.MOVEMENT setget _set_layer
 var can_use_item = false
 var can_zoom = false
 var cached_action_pose
+var cached_blend_pose
+var blend_time = 0
 
 var oneshot
 var action
@@ -31,6 +35,7 @@ var blend_space_upleft
 onready var animation_player = $AnimationPlayer
 onready var viewport = $'../Perspective/Viewport2D'
 onready var movement = get_node_or_null('../Movement')
+onready var perspective = get_node_or_null('../Perspective')
 onready var stance = get_node_or_null('../Stance')
 onready var camera_mode = get_node_or_null('../CameraMode')
 onready var hud_mode = get_node_or_null('../HUDMode')
@@ -64,7 +69,7 @@ func _on_pre_draw(viewport_rid):
 
 func _is_action_playing():
 	
-	return not finished
+	return true if endless else not finished
 	
 #	if get('parameters/Transition/current') == Mode.OneShot:
 #		return get('parameters/OneShot/active')
@@ -75,6 +80,9 @@ func _is_action_playing():
 func _set_layer(_layer):
 	
 	layer = _layer
+	
+	blend_time = blend_time_max
+	_cache_blend_pose()
 
 
 func _set_oneshot_active(enabled):
@@ -130,6 +138,20 @@ func _cache_action_pose():
 			cached_action_pose.append(skeleton.get_bone_pose(idx))
 
 
+func _cache_blend_pose():
+	
+	cached_blend_pose = []
+	
+	for idx in range(skeleton.get_bone_count()):
+		
+		var bone_name = skeleton.get_bone_name(idx)
+		
+		if bone_name == torso_bone:
+			cached_blend_pose.append(skeleton.get_bone_global_pose_no_override(idx))
+		else:
+			cached_blend_pose.append(skeleton.get_bone_pose(idx))
+
+
 func _apply_action_pose():
 	
 	for idx in range(skeleton.get_bone_count()):
@@ -145,6 +167,31 @@ func _apply_action_pose():
 		elif bone_name in action_bones:
 			
 			skeleton.set_bone_pose(idx, cached_action_pose[idx])
+
+
+func _apply_blend_pose():
+	
+	if blend_time == 0:
+		return
+	
+	for idx in range(skeleton.get_bone_count()):
+		
+		var bone_name = skeleton.get_bone_name(idx)
+		
+#		if bone_name == torso_bone:
+#
+#			var global_pose = skeleton.get_bone_global_pose_no_override(idx)
+#			cached_blend_pose[idx] = Transform(cached_blend_pose[idx].basis, global_pose.origin)
+#			global_pose = global_pose.interpolate_with(cached_blend_pose[idx], blend_time / blend_time_max)
+#			skeleton.set_bone_global_pose_override(idx, global_pose, 1.0, true)
+#
+#		elif bone_name in action_bones:
+		
+		var pose = skeleton.get_bone_pose(idx)
+		pose = pose.interpolate_with(cached_blend_pose[idx], blend_time / blend_time_max)
+		skeleton.set_bone_pose(idx, pose)
+	
+	blend_time = clamp(blend_time - get_process_delta_time(), 0, blend_time_max)
 
 
 func _apply_time_scale(attributes):
@@ -163,59 +210,33 @@ func _apply_time_scale(attributes):
 
 func _apply_human_attributes(attributes):
 	
-	enable_abilities = true
-	layer = Meta.BlendLayer.MOVEMENT
-	can_use_item = false
-	can_zoom = false
+	enable_abilities = attributes.enable_abilities if attributes.has('enable_abilities') else true
+	can_use_item = attributes.can_use_item if attributes.has('can_use_item') else false
+	can_zoom = attributes.can_zoom if attributes.has('can_zoom') else false
 	
-	var lock_stance = false
-	var lock_movement = false
-	var lock_rotation = false
-	var align_model_to_aim = false
-	var root_motion_use_model = false
-	var camera_mode_state = 'Default'
-	var hud_mode_state = 'Default'
+	var new_layer = Meta.BlendLayer[attributes.layer] if attributes.has('layer') else Meta.BlendLayer.MOVEMENT
+	var lock_stance = attributes.lock_stance if attributes.has('lock_stance') else false
+	var lock_movement = attributes.lock_movement if attributes.has('lock_movement') else false
+	var lock_rotation = attributes.lock_rotation if attributes.has('lock_rotation') else false
+	var align_model_to_aim = attributes.align_model_to_aim if attributes.has('align_model_to_aim') else false
+	var root_motion_use_model = attributes.root_motion_use_model if attributes.has('root_motion_use_model') else false
+	var fp_skeleton_offset = attributes.fp_skeleton_offset if attributes.has('fp_skeleton_offset') else true
+	var camera_mode_state = attributes.camera_mode if attributes.has('camera_mode') else 'Default'
+	var hud_mode_state = attributes.hud_mode if attributes.has('hud_mode') else 'Default'
+	var input_context = attributes.input_context if attributes.has('input_context') else 'Default'
+	var gravity_scale = attributes.gravity_scale if attributes.has('gravity_scale') else 1.0
 	
-	if attributes.has('layer'):
-		layer = Meta.BlendLayer[attributes.layer]
-	
-	if attributes.has('can_use_item'):
-		can_use_item = attributes.can_use_item
-	
-	if attributes.has('can_zoom'):
-		can_zoom = attributes.can_zoom
-	
-	if attributes.has('enable_abilities'):
-		enable_abilities = attributes.enable_abilities
-	
-	if attributes.has('lock_stance'):
-		lock_stance = attributes.lock_stance
-	
-	if attributes.has('lock_rotation'):
-		lock_rotation = attributes.lock_rotation
-	
-	if attributes.has('lock_movement'):
-		lock_movement = attributes.lock_movement
-	
-	if attributes.has('align_model_to_aim'):
-		align_model_to_aim = attributes.align_model_to_aim
-	
-	if attributes.has('root_motion_use_model'):
-		root_motion_use_model = attributes.root_motion_use_model
-	
-	if attributes.has('camera_mode'):
-		camera_mode_state = attributes.camera_mode
-	
-	if attributes.has('hud_mode'):
-		hud_mode_state = attributes.hud_mode
-	
+	_set_layer(new_layer)
 	stance.lock_stance = lock_stance
 	stance.lock_rotation = lock_rotation
 	stance.lock_movement = lock_movement
 	weapon_target_lock.align_model = align_model_to_aim
 	movement.root_motion_use_model = root_motion_use_model
+	movement.gravity_scale = gravity_scale
+	perspective.fp_skeleton_offset_enable = fp_skeleton_offset
 	camera_mode._start_state(camera_mode_state)
 	hud_mode._start_state(hud_mode_state)
+	owner.input_context = input_context
 
 
 func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
@@ -225,12 +246,17 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	if not _apply_attributes(new_state, attributes):
 		return false
 	
+	_apply_human_attributes(attributes)
+	
 	_set_oneshot_active(false)
 	call('advance', 0)
-	
 	_set_oneshot_active(true)
 	
-	_apply_human_attributes(attributes)
+	if not oneshot.is_connected('finished', self, '_on_action_finished'):
+		oneshot.connect('finished', self, '_on_action_finished')
+	
+	if blend_space_2d.is_connected('finished', self, '_on_action_finished'):
+		blend_space_2d.disconnect('finished', self, '_on_action_finished')
 	
 	set('parameters/Transition/current', Mode.OneShot)
 	
@@ -263,6 +289,12 @@ func _play_8way(new_state, animation_list, attributes):
 	
 	_set_oneshot_active(false)
 	call('advance', 0)
+	
+	if oneshot.is_connected('finished', self, '_on_action_finished'):
+		oneshot.disconnect('finished', self, '_on_action_finished')
+	
+	if not blend_space_2d.is_connected('finished', self, '_on_action_finished'):
+		blend_space_2d.connect('finished', self, '_on_action_finished')
 	
 	var animation_nodes = [
 		blend_space_up,
@@ -327,9 +359,6 @@ func _ready():
 	blend_space_left = _get_blend_point_node('Left')
 	blend_space_upleft = _get_blend_point_node('ForwardLeft')
 	
-	oneshot.connect('finished', self, '_on_action_finished')
-	blend_space_2d.connect('finished', self, '_on_action_finished')
-	
 	var anim_layer_player = anim_layer_movement.get_node('AnimationPlayer')
 	
 	for animation in anim_layer_player.get_animation_list():
@@ -367,6 +396,8 @@ func _process(delta):
 
 	if is_mixed:
 		_apply_action_pose()
+	
+	#_apply_blend_pose()
 	
 	skeleton.scale = Vector3(-1, -1, -1)
 	

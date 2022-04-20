@@ -2,6 +2,7 @@ extends "res://Scripts/Input.gd"
 
 var wall_run_direction
 
+onready var primary = get_node_or_null('../PrimaryActionInput')
 onready var forward = get_node_or_null('../MoveForwardInput')
 onready var backward = get_node_or_null('../MoveBackwardInput')
 onready var right = get_node_or_null('../MoveRightInput')
@@ -9,6 +10,26 @@ onready var left = get_node_or_null('../MoveLeftInput')
 onready var behavior = get_node_or_null('../Behavior')
 onready var movement = get_node_or_null('../Movement')
 onready var stance = get_node_or_null('../Stance')
+
+
+func _try_wallrun():
+	
+	var vertical = forward.strength + backward.strength
+	
+	if vertical > 0.2:
+		
+		for slide in movement.collisions:
+			if slide.on_wall:
+				behavior._start_state('WallRun', { 'normal': slide.normal })
+				return true
+		
+		var test_collision = movement._test_movement(movement.direction * 1.5)
+		
+		if test_collision and test_collision.on_wall:
+			behavior._start_state('WallRun', { 'normal': test_collision.normal })
+			return true
+	
+	return false
 
 
 func _jump():
@@ -58,26 +79,51 @@ func _jump():
 
 func _on_just_activated():
 	
-	var vertical = forward.strength + backward.strength
+	if _try_wallrun():
+		return
 	
-	if vertical > 0.2:
-	
-		for slide in movement.collisions:
-			if slide.on_wall:
-				behavior._start_state('WallRun', { 'normal': slide.normal })
-				return
-		
-		var test_collision = movement._test_movement(movement.direction * 1.5)
-		
-		if test_collision and test_collision.on_wall:
-			behavior._start_state('WallRun', { 'normal': test_collision.normal })
-			return
-	
-	
-	if owner.is_on_floor():
-		_jump()
+	behavior._start_state('PreJump')
+
+
+#func _on_active():
+#
+#	if behavior.current_state == 'PreJump':
+#
+#		#prints(get_process_delta_time(), primary.strength)
+#		if primary.active:
+#
+#			var vertical = forward.strength + backward.strength
+#			var horizontal = left.strength + right.strength
+#
+#			behavior._start_state('ShootDodgeAir', { 'direction': Vector2(horizontal, vertical) })
 
 
 func _on_just_deactivated():
 	
-	behavior._start_state('WallRunEnd')
+	if behavior.current_state == 'PreJump':
+		
+		if owner.is_on_floor():
+			_jump()
+	
+	elif behavior.current_state == 'WallRun':
+		
+		behavior._start_state('WallRunEnd')
+
+
+func _process(delta):
+	
+	if active:
+		
+		if behavior.current_state == 'PreJump':
+			
+			#prints(get_process_delta_time(), primary.strength)
+			if primary.active:
+				
+				var vertical = forward.strength + backward.strength
+				var horizontal = left.strength + right.strength
+				
+				behavior._start_state('ShootDodgeAir', { 'direction': Vector2(horizontal, vertical) })
+	
+	
+#	if owner.name == 'Cop':
+#		prints(owner.input_context)

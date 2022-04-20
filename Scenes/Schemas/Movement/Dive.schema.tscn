@@ -25,11 +25,13 @@ __meta__ = {
 }
 attributes = "{
 	\"*\": {
+		\"priority\": 1,
 		\"speed\": 1.0,
 		\"clip_start\": 0.05,
 		\"layer\": \"ACTION\",
 		\"switch_mode\": \"End\",
 		\"lock_movement\": true,
+		\"fp_skeleton_offset\": false,
 		\"camera_mode\": \"FullYaw\",
 		\"align_model_to_aim\": true,
 		\"root_motion_use_model\": true,

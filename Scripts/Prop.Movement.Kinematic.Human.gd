@@ -8,6 +8,7 @@ const angular_accel = 0.02#0.05
 const angular_deaccel = 9.0
 const angular_vertical_speed_mult = 0.5
 
+var gravity_scale = 1.0
 var angular_velocity_x_pos = 0.0
 var angular_velocity_x_neg = 0.0
 var angular_velocity_y_pos = 0.0
@@ -158,7 +159,7 @@ func _physics_process(delta):
 		var length = Vector3(velocity.x, 0, velocity.z).length()
 		velocity = velocity.normalized() * length
 	else:
-		velocity = Vector3(velocity.x, velocity.y + (gravity * delta), velocity.z)
+		velocity = Vector3(velocity.x, velocity.y + (gravity * gravity_scale * delta), velocity.z)
 	
 	# Calc snap value
 	if owner.is_on_floor() and velocity.y <= 0:

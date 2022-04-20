@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeBackwardRight.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeForward.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeForwardLeft.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeLeft.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeBackward.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeForwardRight.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeRight.tres" type="Animation" id=7]
+[ext_resource path="res://Animations/Human/matrixed_ShootDodgeBackwardLeft.tres" type="Animation" id=8]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=9]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/matrixed_ShootDodgeBackward = ExtResource( 5 )
+anims/matrixed_ShootDodgeBackwardLeft = ExtResource( 8 )
+anims/matrixed_ShootDodgeBackwardRight = ExtResource( 1 )
+anims/matrixed_ShootDodgeForward = ExtResource( 2 )
+anims/matrixed_ShootDodgeForwardLeft = ExtResource( 3 )
+anims/matrixed_ShootDodgeForwardRight = ExtResource( 6 )
+anims/matrixed_ShootDodgeLeft = ExtResource( 4 )
+anims/matrixed_ShootDodgeRight = ExtResource( 7 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+attributes = "{
+	\"*\": {
+		\"speed\": 1.0,
+		\"clip_start\": 0.05,
+		\"layer\": \"ACTION\",
+		\"switch_mode\": \"End\",
+		\"lock_movement\": true,
+		\"fp_skeleton_offset\": false,
+		\"camera_mode\": \"FullYaw\",
+		\"align_model_to_aim\": true,
+		\"root_motion_use_model\": true,
+		\"can_use_item\": true,
+		\"gravity_scale\": 0.8
+	},
+	\"matrixed_ShootDodgeForward\": {
+		\"direction\": 0
+	},
+	\"matrixed_ShootDodgeForwardRight\": {
+		\"direction\": 1
+	},
+	\"matrixed_ShootDodgeRight\": {
+		\"direction\": 2
+	},
+	\"matrixed_ShootDodgeBackwardRight\": {
+		\"direction\": 3
+	},
+	\"matrixed_ShootDodgeBackward\": {
+		\"direction\": 4
+	},
+	\"matrixed_ShootDodgeBackwardLeft\": {
+		\"direction\": 5
+	},
+	\"matrixed_ShootDodgeLeft\": {
+		\"direction\": 6
+	},
+	\"matrixed_ShootDodgeForwardLeft\": {
+		\"direction\": 7
+	}
+}"

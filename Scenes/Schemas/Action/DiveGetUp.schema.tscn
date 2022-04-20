@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Animations/Human/ShootDodgeBackward_Getup.tres" type="Animation" id=1]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
+[ext_resource path="res://Animations/Human/ShootDodgeForward_Getup.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/Human/ShootDodgeLeft_Getup.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/Human/ShootDodgeRight_Getup.tres" type="Animation" id=5]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/ShootDodgeBackward_Getup = ExtResource( 1 )
+anims/ShootDodgeForward_Getup = ExtResource( 3 )
+anims/ShootDodgeLeft_Getup = ExtResource( 4 )
+anims/ShootDodgeRight_Getup = ExtResource( 5 )
+script = ExtResource( 2 )
+attributes = "{
+	\"*\": {
+		\"clip_start\": 0.05,
+		\"layer\": \"ACTION\",
+		\"switch_mode\": \"End\",
+		\"lock_movement\": true,
+		\"camera_mode\": \"HalfYaw\"
+	}
+}"
