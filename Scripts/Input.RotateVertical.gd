@@ -1,37 +1,27 @@
-extends "res://Scripts/Input.gd"
+extends 'res://Scripts/Input.Rotate.gd'
 
-const aim_offset_range = 0.9
-const aim_offset_sensitivity = 1.0
-
-onready var movement = $'../Movement'
-onready var camera = $'../CameraRig/Camera'
-onready var camera_raycast = $'../CameraRaycastStim'
-onready var stance = $'../Stance'
+onready var bullet_time = $'../BulletTime'
 
 
-func _on_just_activated():
-	
-	stance._set_look_speed(strength * Meta.rotate_sensitivity)
+func _get_aim_offset(delta):
 
+	if owner.is_processing_input():
 
-func _on_active():
-	
-	_on_just_activated()
+		var aim_offset = Vector2(0, (right.strength - left.strength) * aim_offset_range * (camera.fov / 65))
+		aim_offset.y *= -1
+		return  Vector2(0, camera_raycast.rotation_offset.y).linear_interpolate(
+			aim_offset,
+			aim_offset_sensitivity * delta
+			).y
+
+	else:
+
+		return 0.0
 
 
 func _process(delta):
-	
+
 	var scaled_delta = delta / Engine.time_scale if bullet_time.active else delta
-	
-	if owner.is_processing_input():
-		
-		var aim_offset = Vector2(0, strength * aim_offset_range * (camera.fov / 65))
-		aim_offset.y *= -1
-		camera_raycast.rotation_offset.y = Vector2(0, camera_raycast.rotation_offset.y).linear_interpolate(
-			aim_offset,
-			aim_offset_sensitivity * scaled_delta
-			).y
-	
-	else:
-		
-		camera_raycast.rotation_offset.y = 0
+
+	movement.angular_direction.y = _get_rotation(delta) * 0.5
+	camera_raycast.rotation_offset.y = _get_aim_offset(delta)

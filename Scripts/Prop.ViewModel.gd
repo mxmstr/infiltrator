@@ -194,11 +194,6 @@ func _blend_skeletons(delta):
 	vm_skeleton.set_bone_global_pose_override(torso_id, torso_pose, 1.0, true)
 	
 	
-	var pelvis_id = world_skeleton.find_bone('Pelvis')
-	var pelvis_pose = world_skeleton.get_bone_global_pose(pelvis_id)
-	pelvis_pose.origin += Vector3(0, 0, -0.3)
-	vm_skeleton.set_bone_global_pose_override(pelvis_id, pelvis_pose, 1.0, true)
-	
 	for hidden_bone_id in hidden_bone_ids:
 
 		var p_world = world_skeleton.get_bone_pose(hidden_bone_id)
@@ -208,7 +203,13 @@ func _blend_skeletons(delta):
 	
 	
 	if perspective.fp_skeleton_offset_enable:
-	
+		
+		var pelvis_id = world_skeleton.find_bone('Pelvis')
+		var pelvis_pose = world_skeleton.get_bone_global_pose(pelvis_id)
+		pelvis_pose.origin += Vector3(0, 0, -0.3)
+		vm_skeleton.set_bone_global_pose_override(pelvis_id, pelvis_pose, 1.0, true)
+		
+		
 		if follow_camera_bone_id:
 
 			var neck_id = vm_skeleton.find_bone('Neck')
@@ -231,6 +232,10 @@ func _blend_skeletons(delta):
 			5.0 * delta
 			)
 		follow_camera_torso_origin = torso_pose.origin
+	
+	else:
+		
+		vm_skeleton.clear_bones_global_pose_override()
 	
 	emit_signal('blended_skeletons')
 

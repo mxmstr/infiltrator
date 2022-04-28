@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends GraphEdit
+
+func _process(delta):
+	update()
+
+func _draw():
+	var a = $A.rect_global_position
+	var b = $B.rect_global_position
+	var pre_a= $PreA.rect_global_position
+	var post_b= $PostB.rect_global_position
+	var line = []
+	
+	var times = 100.0
+	for i in range(times):
+		var value = i / times
+		var pos = a.cubic_interpolate(b, pre_a, post_b, value)
+		line.append(pos)
+	
+	draw_polyline(line, Color.white, 2, true)
+	draw_line(a, pre_a, Color.red, 1, true)
+	draw_line(b, post_b, Color.green, 1, true)
+	draw_line(pre_a, post_b, Color.blue, 1, true)"
+
+[node name="CubicInterp" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GraphicEditor" type="GraphEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+use_snap = false
+script = SubResource( 2 )
+
+[node name="A" type="GraphNode" parent="GraphicEditor"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 800.0
+margin_top = 450.0
+margin_right = 841.0
+margin_bottom = 479.0
+rect_pivot_offset = Vector2( 20, 14 )
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+title = "A"
+offset = Vector2( 800, 450 )
+
+[node name="B" type="GraphNode" parent="GraphicEditor"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 800.0
+margin_top = 450.0
+margin_right = 841.0
+margin_bottom = 479.0
+rect_pivot_offset = Vector2( 20, 14 )
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+title = "B"
+offset = Vector2( 800, 450 )
+
+[node name="PreA" type="GraphNode" parent="GraphicEditor"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 800.0
+margin_top = 450.0
+margin_right = 862.0
+margin_bottom = 479.0
+rect_pivot_offset = Vector2( 31, 14.5 )
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+title = "PreA"
+offset = Vector2( 800, 450 )
+
+[node name="PostB" type="GraphNode" parent="GraphicEditor"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 800.0
+margin_top = 450.0
+margin_right = 869.0
+margin_bottom = 479.0
+rect_pivot_offset = Vector2( 34.5, 14.5 )
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+title = "PostB"
+offset = Vector2( 800, 450 )
+

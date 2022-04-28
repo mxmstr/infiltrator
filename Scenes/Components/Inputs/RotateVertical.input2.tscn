@@ -2,10 +2,5 @@
 
 [ext_resource path="res://Scripts/Input.RotateVertical.gd" type="Script" id=1]
 
-
-[node name="RotateUpInput" type="Node"]
+[node name="RotateVertical" type="Node"]
 script = ExtResource( 1 )
-__meta__ = {
-
-}
-action = "RotateUp"

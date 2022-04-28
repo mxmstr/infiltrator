@@ -45,11 +45,13 @@ func _get_sidestep_speed():
 func _apply_root_transform(root_transform, delta):
 	
 	if root_motion_use_model:
+		
 		var transform_offset = owner.global_transform
 		transform_offset.basis = model.global_transform.basis
 		transform_offset *= root_transform
 		transform_offset.basis = owner.global_transform.basis
 		owner.global_transform = transform_offset
+	
 	else:
 		owner.global_transform *= root_transform
 
@@ -98,30 +100,30 @@ func _test_movement(new_velocity):
 
 func _apply_rotation(delta):
 	
-	var new_velocity = angular_direction * delta
-	var x_positive = new_velocity.x if new_velocity.x > 0 else 0
-	var x_negative = new_velocity.x if new_velocity.x < 0 else 0
-	var y_positive = new_velocity.y if new_velocity.y > 0 else 0
-	var y_negative = new_velocity.y if new_velocity.y < 0 else 0
-	
-	var deltax = new_velocity.x - angular_velocity.x
-	var deltax_positive = deltax if deltax > 0 else 0
-	var deltax_negative = deltax if deltax < 0 else 0
-	var deltay = new_velocity.y - angular_velocity.y
-	var deltay_positive = deltay if deltay > 0 else 0
-	var deltay_negative = deltay if deltay < 0 else 0
-	
-	var factorx_positive = angular_accel if deltax_positive else angular_deaccel
-	var factorx_negative = angular_accel if deltax_negative else angular_deaccel
-	var factory_positive = angular_accel if deltay_positive else angular_deaccel
-	var factory_negative = angular_accel if deltay_negative else angular_deaccel
-	
-	angular_velocity_x_pos = Vector2(angular_velocity_x_pos, 0).linear_interpolate(Vector2(x_positive, 0), factorx_positive * delta).x
-	angular_velocity_x_neg = Vector2(angular_velocity_x_neg, 0).linear_interpolate(Vector2(x_negative, 0), factorx_negative * delta).x
-	angular_velocity.x = angular_velocity_x_pos + angular_velocity_x_neg
-	angular_velocity_y_pos = Vector2(0, angular_velocity_y_pos).linear_interpolate(Vector2(0, y_positive), factory_positive * angular_vertical_speed_mult * delta).y
-	angular_velocity_y_neg = Vector2(0, angular_velocity_y_neg).linear_interpolate(Vector2(0, y_negative), factory_negative * angular_vertical_speed_mult * delta).y
-	angular_velocity.y = angular_velocity_y_pos + angular_velocity_y_neg
+	var angular_velocity = angular_direction * delta
+#	var x_positive = new_velocity.x if new_velocity.x > 0 else 0
+#	var x_negative = new_velocity.x if new_velocity.x < 0 else 0
+#	var y_positive = new_velocity.y if new_velocity.y > 0 else 0
+#	var y_negative = new_velocity.y if new_velocity.y < 0 else 0
+#
+#	var deltax = new_velocity.x - angular_velocity.x
+#	var deltax_positive = deltax if deltax > 0 else 0
+#	var deltax_negative = deltax if deltax < 0 else 0
+#	var deltay = new_velocity.y - angular_velocity.y
+#	var deltay_positive = deltay if deltay > 0 else 0
+#	var deltay_negative = deltay if deltay < 0 else 0
+#
+#	var factorx_positive = angular_accel if deltax_positive else angular_deaccel
+#	var factorx_negative = angular_accel if deltax_negative else angular_deaccel
+#	var factory_positive = angular_accel if deltay_positive else angular_deaccel
+#	var factory_negative = angular_accel if deltay_negative else angular_deaccel
+#
+#	angular_velocity_x_pos = Vector2(angular_velocity_x_pos, 0).linear_interpolate(Vector2(x_positive, 0), factorx_positive * delta).x
+#	angular_velocity_x_neg = Vector2(angular_velocity_x_neg, 0).linear_interpolate(Vector2(x_negative, 0), factorx_negative * delta).x
+#	angular_velocity.x = angular_velocity_x_pos + angular_velocity_x_neg
+#	angular_velocity_y_pos = Vector2(0, angular_velocity_y_pos).linear_interpolate(Vector2(0, y_positive), factory_positive * angular_vertical_speed_mult * delta).y
+#	angular_velocity_y_neg = Vector2(0, angular_velocity_y_neg).linear_interpolate(Vector2(0, y_negative), factory_negative * angular_vertical_speed_mult * delta).y
+#	angular_velocity.y = angular_velocity_y_pos + angular_velocity_y_neg
 	
 	if rotate_x_camera:
 		camera_rig._rotate_camera(angular_velocity.y, angular_velocity.x)

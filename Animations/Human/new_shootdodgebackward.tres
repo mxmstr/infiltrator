@@ -221,10 +221,10 @@ tracks/30/loop_wrap = true
 tracks/30/imported = false
 tracks/30/enabled = true
 tracks/30/keys = {
-"times": PoolRealArray( 0, 0.458333, 0.916667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.458334, 1.54167, 1.95833 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 1.43657, 0 ), Vector3( 0, 0.90011, 0 ), Vector3( 0, 0.628809, 0 ) ]
+"values": [ Vector3( 0, 1.43657, 0 ), Vector3( 0, 1.07881, -0.616271 ), Vector3( 0, 0.771815, -0.884315 ), Vector3( 0, 0.35944, -1.29669 ) ]
 }
 tracks/31/type = "value"
 tracks/31/path = NodePath("../../CameraRig:rotation_degrees")

@@ -29,6 +29,8 @@ const wall_run_horizontal_mult = 2
 
 export(float) var forward_speed setget _set_forward_speed
 export(float) var sidestep_speed setget _set_sidestep_speed
+export(float) var turn_speed setget _set_turn_speed
+export(float) var look_speed setget _set_look_speed
 
 export(StanceType) var stance = StanceType.STANDING setget _set_stance
 export(SpeedType) var speed = SpeedType.RUNNING

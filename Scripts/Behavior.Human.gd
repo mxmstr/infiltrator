@@ -13,6 +13,7 @@ const blend_time_max = 0.05
 var layer = Meta.BlendLayer.MOVEMENT setget _set_layer
 var can_use_item = false
 var can_zoom = false
+var root_motion_use_model = false
 var cached_action_pose
 var cached_blend_pose
 var blend_time = 0
@@ -37,6 +38,8 @@ onready var viewport = $'../Perspective/Viewport2D'
 onready var movement = get_node_or_null('../Movement')
 onready var perspective = get_node_or_null('../Perspective')
 onready var stance = get_node_or_null('../Stance')
+onready var camera_rig = get_node_or_null('../CameraRig')
+onready var camera = get_node_or_null('../CameraRig/Camera')
 onready var camera_mode = get_node_or_null('../CameraMode')
 onready var hud_mode = get_node_or_null('../HUDMode')
 onready var anim_layer_movement = get_node_or_null('../AnimLayerMovement')
@@ -213,13 +216,13 @@ func _apply_human_attributes(attributes):
 	enable_abilities = attributes.enable_abilities if attributes.has('enable_abilities') else true
 	can_use_item = attributes.can_use_item if attributes.has('can_use_item') else false
 	can_zoom = attributes.can_zoom if attributes.has('can_zoom') else false
+	root_motion_use_model = attributes.root_motion_use_model if attributes.has('root_motion_use_model') else false
 	
 	var new_layer = Meta.BlendLayer[attributes.layer] if attributes.has('layer') else Meta.BlendLayer.MOVEMENT
 	var lock_stance = attributes.lock_stance if attributes.has('lock_stance') else false
 	var lock_movement = attributes.lock_movement if attributes.has('lock_movement') else false
 	var lock_rotation = attributes.lock_rotation if attributes.has('lock_rotation') else false
 	var align_model_to_aim = attributes.align_model_to_aim if attributes.has('align_model_to_aim') else false
-	var root_motion_use_model = attributes.root_motion_use_model if attributes.has('root_motion_use_model') else false
 	var fp_skeleton_offset = attributes.fp_skeleton_offset if attributes.has('fp_skeleton_offset') else true
 	var camera_mode_state = attributes.camera_mode if attributes.has('camera_mode') else 'Default'
 	var hud_mode_state = attributes.hud_mode if attributes.has('hud_mode') else 'Default'
@@ -321,6 +324,19 @@ func _play_8way(new_state, animation_list, attributes):
 	return true
 
 
+func _offset_camera_rig():
+	
+	var offset_angle = Vector3.BACK.angle_to(model.transform.basis.z)
+	
+	if Vector3.RIGHT.angle_to(model.transform.basis.z) > PI / 2:
+		offset_angle *= -1
+	
+	camera_rig.transform.origin = camera_rig.transform.origin.rotated(
+		Vector3.UP, 
+		offset_angle
+		)
+
+
 func _get_blend_point_node(direction):
 	
 	for idx in range(blend_space_2d.get_blend_point_count()):
@@ -387,7 +403,7 @@ func _process(delta):
 
 		call('advance', delta)
 		movement.call_deferred('_apply_root_transform', call('get_root_motion_transform'), delta)
-
+		
 		if is_mixed:
 			_cache_action_pose()
 
@@ -400,5 +416,8 @@ func _process(delta):
 	#_apply_blend_pose()
 	
 	skeleton.scale = Vector3(-1, -1, -1)
+	
+	if root_motion_use_model:
+		call_deferred('_offset_camera_rig')
 	
 	emit_signal('post_advance', delta)

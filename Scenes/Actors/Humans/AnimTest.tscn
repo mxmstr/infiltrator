@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Animations/Human/Movement/Run.tres" type="Animation" id=2]
@@ -60,8 +60,23 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 1.17898, 0.251799 ) ]
 }
 
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../CameraRig:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.07881, -0.616271 ) ]
+}
+
 [node name="AnimTest" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29454e-08, 1.17943e-07, -2.75671e-07 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -74,7 +89,7 @@ bones/16/bound_children = [ NodePath("BoneAttachment") ]
 bones/19/bound_children = [ NodePath("BoneAttachment2") ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( 0.994046, 0.0622456, 0.0894338, 0.107473, -0.424827, -0.898873, -0.0179571, 0.903132, -0.428987, 0.331394, 0.849986, 0.138705 )
+transform = Transform( -0.978878, -0.0356449, -0.201314, 0.172668, -0.671391, -0.720709, -0.109471, -0.740246, 0.663364, -0.350616, 0.843678, -0.394917 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 45 )]
@@ -85,7 +100,7 @@ visible = false
 transform = Transform( 0.98729, 0.157525, 0.0211143, -0.0235019, 0.013309, 0.999636, 0.157186, -0.987427, 0.0168419, -0.0229437, 0.0228328, 0.015305 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="2"]
-transform = Transform( 0.945164, -0.0183358, -0.326082, -0.18008, -0.862195, -0.473489, -0.272464, 0.506246, -0.818217, -0.362694, 0.797477, 0.121047 )
+transform = Transform( -0.77993, 0.158417, 0.605487, -0.223459, -0.974156, -0.0329639, 0.584616, -0.161011, 0.795172, 0.310371, 0.837492, -0.32537 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 9 )]
@@ -140,11 +155,12 @@ anims/RESET = SubResource( 7 )
 
 [node name="AnimationPlayer3" parent="AnimationTree" instance=ExtResource( 8 )]
 root_node = NodePath("../../Model2/Anderson_skeleton")
+anims/RESET = SubResource( 8 )
 
 [node name="RootMotionView" type="RootMotionView" parent="."]
 
 [node name="CameraRig" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.17898, 0.251799 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.07881, -0.616271 )
 
 [node name="Camera" type="Camera" parent="CameraRig"]
 

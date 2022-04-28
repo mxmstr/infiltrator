@@ -116,14 +116,9 @@ func _process(delta):
 		
 		if behavior.current_state == 'PreJump':
 			
-			#prints(get_process_delta_time(), primary.strength)
 			if primary.active:
 				
 				var vertical = forward.strength + backward.strength
 				var horizontal = left.strength + right.strength
 				
 				behavior._start_state('ShootDodgeAir', { 'direction': Vector2(horizontal, vertical) })
-	
-	
-#	if owner.name == 'Cop':
-#		prints(owner.input_context)

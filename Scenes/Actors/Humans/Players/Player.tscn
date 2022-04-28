@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Inputs/PrimaryAction.input2.tscn" type="PackedScene" id=2]
@@ -8,12 +8,8 @@
 [ext_resource path="res://Scenes/Components/Inputs/MoveLeft.input2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Components/Inputs/MoveRight.input2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Components/Inputs/MoveHorizontalStop.input2.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Components/Inputs/RotateUp.input2.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Components/Inputs/RotateDown.input2.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Components/Inputs/RotateVerticalStop.input2.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Components/Inputs/RotateLeft.input2.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Components/Inputs/RotateRight.input2.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/Components/Inputs/RotateHorizontalStop.input2.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Components/Inputs/RotateVertical.input2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Components/Inputs/RotateHorizontal.input2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Components/Inputs/Crouch.input2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Components/Inputs/Jump.input2.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Components/Inputs/Drop.input2.tscn" type="PackedScene" id=17]
@@ -50,21 +46,25 @@ contexts = [ "All" ]
 
 [node name="MoveHorizontalStop" parent="." index="7" instance=ExtResource( 8 )]
 
-[node name="RotateUpInput" parent="." index="8" instance=ExtResource( 9 )]
-contexts = [ "All" ]
+[node name="RotateUpInput" parent="." index="8" instance=ExtResource( 19 )]
+action = "RotateUp"
 
-[node name="RotateDownInput" parent="." index="9" instance=ExtResource( 10 )]
-contexts = [ "All" ]
+[node name="RotateDownInput" parent="." index="9" instance=ExtResource( 19 )]
+action = "RotateDown"
 
-[node name="RotateVerticalStop" parent="." index="10" instance=ExtResource( 11 )]
+[node name="RotateVertical" parent="." index="10" instance=ExtResource( 9 )]
+positive_input = NodePath("../RotateUpInput")
+negative_input = NodePath("../RotateDownInput")
 
-[node name="RotateLeftInput" parent="." index="11" instance=ExtResource( 12 )]
-contexts = [ "All" ]
+[node name="RotateLeftInput" parent="." index="11" instance=ExtResource( 19 )]
+action = "RotateLeft"
 
-[node name="RotateRightInput" parent="." index="12" instance=ExtResource( 13 )]
-contexts = [ "All" ]
+[node name="RotateRightInput" parent="." index="12" instance=ExtResource( 19 )]
+action = "RotateRight"
 
-[node name="RotateHorizontalStop" parent="." index="13" instance=ExtResource( 14 )]
+[node name="RotateHorizontal" parent="." index="13" instance=ExtResource( 12 )]
+positive_input = NodePath("../RotateRightInput")
+negative_input = NodePath("../RotateLeftInput")
 
 [node name="CrouchInput" parent="." index="14" instance=ExtResource( 15 )]
 
@@ -94,7 +94,7 @@ script = ExtResource( 21 )
 [node name="Bot" type="Node" parent="." index="24"]
 script = ExtResource( 23 )
 
-[node name="AnimLayerMovement" parent="." index="84"]
+[node name="AnimLayerMovement" parent="." index="85"]
 parameters/playback = SubResource( 1 )
 
 [editable path="CameraRig"]

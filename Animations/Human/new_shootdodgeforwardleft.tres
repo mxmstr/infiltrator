@@ -3,6 +3,7 @@
 [resource]
 resource_name = "neo_reference_skeleton|neo_reference_skeleton|new_shootdodg008"
 length = 2.58333
+step = 0.0416667
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".:Toe-L")
 tracks/0/interp = 1
@@ -214,26 +215,26 @@ tracks/29/imported = false
 tracks/29/enabled = true
 tracks/29/keys = PoolRealArray( 0.0416667, 1, -8.33534e-08, 1.17943e-07, -2.75671e-07, 0, 0, 0, 1, 1, 1, 1, 2.58333, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 tracks/30/type = "value"
-tracks/30/path = NodePath("../../CameraRig:translation")
+tracks/30/path = NodePath("../../CameraRig:rotation_degrees")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/imported = false
 tracks/30/enabled = true
 tracks/30/keys = {
-"times": PoolRealArray( 0, 0.458333, 0.916667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 1.43657, 0 ), Vector3( 0, 0.90011, 0 ), Vector3( 0, 0.628809, 0 ) ]
+"values": [ Vector3( 0, 180, 0 ) ]
 }
 tracks/31/type = "value"
-tracks/31/path = NodePath("../../CameraRig:rotation_degrees")
+tracks/31/path = NodePath("../../CameraRig:translation")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/imported = false
 tracks/31/enabled = true
 tracks/31/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.458333, 1.54167, 1.95833 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 180, 0 ) ]
+"values": [ Vector3( 0, 1.43657, 0 ), Vector3( 0.386, 1.079, 0.339 ), Vector3( 0.608, 0.772, 0.626 ), Vector3( 0.895, 0.359, 0.938 ) ]
 }
