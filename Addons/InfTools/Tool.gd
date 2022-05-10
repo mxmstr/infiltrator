@@ -206,44 +206,64 @@ func on_loadaudio_pressed():
 
 func on_loadmap_pressed():
 	
-	if not selection.get_selected_nodes().empty():
+	for node in selection.get_selected_nodes():
 		
-		var selected = selection.get_selected_nodes()[0]
-		var map = load(dock.get_node('LoadMapInput').text).instance()
-		
-		for child in map.get_children():
+		if node is MeshInstance and node.visible:
 			
-			if child is MeshInstance:
-				
-				var model = child.duplicate()
-				var scaling = model.scale
-				
-				model.create_trimesh_collision()
-				
-				var body = model.get_child(0)
-				var collision = body.get_node('CollisionShape')
-				var receptor = load('res://Scenes/Components/Properties/Reception.property.tscn').instance()
-				
-				model.remove_child(body)
-				selected.add_child(body)
-				body.add_child(model)
-				body.remove_child(collision)
-				body.add_child(collision)
-				body.add_child(receptor)
-
-				model.scale = Vector3(1, 1, 1)
-				body.scale = scaling
-				body.collision_layer = 4
-
-				body.name = model.name
-				model.name = 'Model'
-				collision.name = 'Collision'
-				
-				body.owner = get_tree().get_edited_scene_root()
-				model.owner = get_tree().get_edited_scene_root()
-				collision.owner = get_tree().get_edited_scene_root()
-				receptor.owner = get_tree().get_edited_scene_root()
-
+			var map = node.get_node('../../')
+			
+			node = node.duplicate()
+			map.add_child(node)
+			node.create_trimesh_collision()
+			
+			var shape = node.get_child(0).get_node('CollisionShape')
+			shape.name = node.name
+			shape.get_parent().remove_child(shape)
+			map.add_child(shape)
+			shape.global_transform = node.global_transform
+			shape.set_owner(map.owner)
+			node.queue_free()
+			
+	
+#	if not selection.get_selected_nodes().empty():
+#
+#		var selected = selection.get_selected_nodes()[0]
+#		var map = load(dock.get_node('LoadMapInput').text).instance()
+#
+#		for child in map.get_children():
+#
+#			if child is MeshInstance:
+#
+#				var model = child.duplicate()
+#				var scaling = model.scale
+#
+#				model.create_trimesh_collision()
+#
+#				var body = model.get_child(0)
+#				var collision = body.get_node('CollisionShape')
+#				var receptor = load('res://Scenes/Components/Properties/Reception.property.tscn').instance()
+#
+#				model.remove_child(body)
+#				selected.add_child(body)
+#				body.add_child(model)
+#				body.remove_child(collision)
+#				body.add_child(collision)
+#				body.add_child(receptor)
+#
+#				model.scale = Vector3(1, 1, 1)
+#				body.scale = scaling
+#				body.collision_layer = 4
+#
+#				body.name = model.name
+#				model.name = 'Model'
+#				collision.name = 'Collision'
+#
+#				body.owner = get_tree().get_edited_scene_root()
+#				model.owner = get_tree().get_edited_scene_root()
+#				collision.owner = get_tree().get_edited_scene_root()
+#				receptor.owner = get_tree().get_edited_scene_root()
+#
+#				break
 
 
 func _evaluate(node, expression, arguments):
