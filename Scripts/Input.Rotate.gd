@@ -31,12 +31,12 @@ onready var stance = $'../Stance'
 
 func _get_rotation(delta):
 	
-	var new_speed_pos = right.strength * Meta.rotate_sensitivity
+	var new_speed_pos = right.strength
 	var new_speed_pos_delta = abs(new_speed_pos) - abs(speed_pos)
 	var accel_power_pos = (right.strength - right_last_strength) * accel_multiplier
 	var accel_pos = pow(angular_accel, 1) * accel_power_pos if new_speed_pos_delta >= 0 else angular_deaccel
 	
-	var new_speed_neg = left.strength * Meta.rotate_sensitivity
+	var new_speed_neg = left.strength
 	var new_speed_neg_delta = abs(new_speed_neg) - abs(speed_neg)
 	var accel_power_neg = (left.strength - left_last_strength) * accel_multiplier
 	var accel_neg = pow(angular_accel, 1) * accel_power_neg if new_speed_neg_delta >= 0 else angular_deaccel
@@ -51,7 +51,7 @@ func _get_rotation(delta):
 	right_last_strength = right.strength
 	left_last_strength = left.strength
 	
-	return speed_pos - speed_neg
+	return (speed_pos - speed_neg) * Meta.rotate_sensitivity
 
 
 func _ready():
