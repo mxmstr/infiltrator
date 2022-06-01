@@ -64,16 +64,6 @@ func _get_forward_speed(): return 0
 func _get_sidestep_speed(): return 0
 
 
-func _set_vertical_velocity(vertical):
-	
-	velocity.y = vertical
-
-
-func _add_vertical_velocity(vertical):
-	
-	velocity.y += vertical
-
-
 func _teleport(new_position=null, new_rotation=null): pass
 
 

@@ -23,7 +23,10 @@ func _on_roll_timeout():
 		var vertical = forward.strength + backward.strength
 		var horizontal = left.strength + right.strength
 		
-		behavior._start_state('Dive', { 'direction': Vector2(horizontal, vertical) })
+		if abs(vertical) < 0.9 and abs(horizontal) < 0.9:
+			behavior._start_state('ShootDodgeStand', { 'direction': Vector2(0, -1) })
+		else:
+			behavior._start_state('Dive', { 'direction': Vector2(horizontal, vertical) })
 
 
 func _roll():
@@ -63,9 +66,6 @@ func _roll():
 func _on_just_activated():
 	
 	stance.stance = stance.StanceType.CROUCHING
-	
-#	if strength > 0.9:
-#		get_tree().create_timer(roll_timeout).connect('timeout', self, '_on_roll_timeout')
 
 
 func _on_just_deactivated():
@@ -87,4 +87,5 @@ func _process(delta):
 		
 		roll_input_active = true
 		roll_input_timeout = false
+		
 		get_tree().create_timer(roll_timeout).connect('timeout', self, '_on_roll_timeout')

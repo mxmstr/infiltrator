@@ -93,7 +93,3 @@ func _ready():
 	
 	for marker in get_children():
 		_refresh_spawn(marker)
-#
-#	pickup_idx = randi() % get_child_count()
-
-#	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout')

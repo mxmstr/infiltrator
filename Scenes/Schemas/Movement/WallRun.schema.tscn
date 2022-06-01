@@ -25,6 +25,7 @@ __meta__ = {
 }
 attributes = "{
 	\"*\": {
+		\"priority\": 1,
 		\"speed\": 1.5,
 		\"clip_start\": 1.65,
 		\"layer\": \"ACTION\",

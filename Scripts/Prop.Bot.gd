@@ -1,6 +1,6 @@
 extends Node
 
-const rotate_speed = 100.0
+const rotate_speed = 10.0
 const path_finish_range = 0.6
 const melee_range = 2.0
 const shoot_range = 4.0

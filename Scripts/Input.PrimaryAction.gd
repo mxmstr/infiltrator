@@ -38,6 +38,8 @@ func _on_just_deactivated():
 
 func _process(delta):
 	
+	righthand.items.size()
+	
 	if righthand._is_empty():
 		
 		if active and behavior.current_state == 'PunchIdle' and \

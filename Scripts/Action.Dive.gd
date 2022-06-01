@@ -20,10 +20,7 @@ onready var camera_raycast = $'../CameraRaycastStim'
 func _set_blendspace_position():
 	
 	var owner_rotation = owner.global_transform.basis.z
-	var camera_rotation = -camera_raycast.global_transform.basis.z#owner.global_transform.basis.xform(Vector3(data.direction.x, 0, data.direction.y))
-	
-#	var direction_x = Vector2(1, 0).angle_to(data.direction)
-#	var direction_y = Vector2(0, 1).angle_to(data.direction)
+	var camera_rotation = -camera_raycast.global_transform.basis.z
 	
 	var facing_angle_x = camera_rotation.angle_to(
 		owner_rotation.rotated(Vector3.UP, (PI / 2))

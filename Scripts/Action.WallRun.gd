@@ -39,10 +39,12 @@ func _on_action(_state, _data):
 	
 	elif _state == 'WallRunEnd':
 		
-		behavior._start_state('Default')
-		stance.mode = stance.Mode.DEFAULT
-		active = false
-		test_off_wall = false
+		if behavior.current_state == 'WallRun':
+			
+			behavior._start_state('Default', { 'override': true })
+			stance.mode = stance.Mode.DEFAULT
+			active = false
+			test_off_wall = false
 
 
 func _set_blendspace_position():

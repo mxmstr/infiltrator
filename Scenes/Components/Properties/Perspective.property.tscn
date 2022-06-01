@@ -1,15 +1,178 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Prop.Perspective.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float brightness : hint_range(0.0,8.0) = 1.0;
+uniform float contrast : hint_range(0.0,8.0) = 1.0;
+uniform float saturation : hint_range(0.0,8.0) = 1.0;
+
+// Use a GradientTexture for the color correction
+uniform sampler2D gradient;
+
+
+void fragment(){
+	// Viewport texture
+	vec4 input_color = texture(TEXTURE, UV);
+	
+	//Brightness adjustment
+	input_color.rgb = mix(vec3(0.0), input_color.rgb, brightness);
+	
+	//Contrast adjustment	
+    input_color.rgb = mix(vec3(0.5), input_color.rgb, contrast);
+	
+	//Saturation adjustment	
+    input_color.rgb = mix(vec3(dot(vec3(1.0), input_color.rgb) * 0.33333), input_color.rgb, saturation);
+	
+	// Color correction
+//	float grayscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
+//	vec3 sampled_color = texture(gradient, vec2(1.0, 1.0)).rgb;
+	
+	//Final result
+	COLOR.rgb = input_color.rgb;
+	COLOR.a = input_color.a;
+}"
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 3 )
+shader_param/brightness = 1.0
+shader_param/contrast = 1.0
+shader_param/saturation = 1.0
+shader_param/gradient = SubResource( 5 )
+
+[sub_resource type="ViewportTexture" id=11]
+viewport_path = NodePath("Viewport2D")
+
+[sub_resource type="Animation" id=8]
+resource_name = "BulletTime"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorCorrection:material:shader_param/brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorCorrection:material:shader_param/contrast")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.25 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorCorrection:material:shader_param/saturation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.75 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Default"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorCorrection:material:shader_param/brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorCorrection:material:shader_param/contrast")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorCorrection:material:shader_param/saturation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorCorrection:material:shader_param/brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorCorrection:material:shader_param/contrast")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorCorrection:material:shader_param/saturation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 
 [node name="Perspective" type="ViewportContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 stretch = true
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 fp_root_bone = "Pelvis"
 fp_hidden_bones = [ "Head", "Neck" ]
 
@@ -21,3 +184,20 @@ render_target_update_mode = 3
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 shadow_atlas_size = 1
+
+[node name="ColorCorrection" type="TextureRect" parent="."]
+material = SubResource( 6 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 11 )
+stretch_mode = 1
+flip_v = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Default"
+playback_default_blend_time = 0.1
+anims/BulletTime = SubResource( 8 )
+anims/Default = SubResource( 9 )
+anims/RESET = SubResource( 10 )

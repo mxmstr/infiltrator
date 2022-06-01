@@ -126,8 +126,11 @@ func _set_skeleton():
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	if not is_instance_valid(self):
+		return
 	
-	_set_skeleton()
+	#yield(get_tree(), 'idle_frame')
+	
+	call_deferred('_set_skeleton')
 	
 	call_deferred('emit_signal', 'action', default_state, {})

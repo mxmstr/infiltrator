@@ -52,4 +52,3 @@ parameters/playback = SubResource( 1 )
 [editable path="Model"]
 [editable path="CameraRig"]
 [editable path="CameraRaycastStim"]
-[editable path="Perspective"]

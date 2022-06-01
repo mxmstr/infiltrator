@@ -18,7 +18,6 @@ func _ready():
 	
 #	products = products.c_escape().replace('\\n', ' ')
 	
-	
 	for product in products.c_escape().split('\\n'):
 		
 		var new_product = {}

@@ -356,6 +356,8 @@ func _set_skeleton():
 
 func _ready():
 	
+	set_physics_process(false)
+	
 	yield(get_tree(), 'idle_frame')
 	
 	set('tree_root', get('tree_root').duplicate(true))
@@ -386,9 +388,10 @@ func _ready():
 	anim_layer_movement.active = true
 	
 	set('active', true)
+	set_physics_process(true)
 
 
-func _process(delta):
+func _physics_process(delta):
 	
 	emit_signal('pre_advance', delta)
 	
@@ -402,7 +405,7 @@ func _process(delta):
 	if not is_movement:
 
 		call('advance', delta)
-		movement.call_deferred('_apply_root_transform', call('get_root_motion_transform'), delta)
+		#movement.call_deferred('_apply_root_transform', call('get_root_motion_transform'), delta)
 		
 		if is_mixed:
 			_cache_action_pose()

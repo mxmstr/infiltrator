@@ -130,32 +130,14 @@ func _ready():
 			queue_free()
 			return
 	
+	if _is_invalid():
+		return
+	
 	_disable_collision()
 	
 	yield(get_tree(), 'idle_frame')
 	
-	if _is_invalid():
-		return
-	
-	item_position_offset = _get_item_position_offset(to_node, container_node)
-	item_rotation_offset = _get_item_rotation_offset(to_node, container_node)
-	
-	to_node.get_parent().remove_child(to_node)
-	container_node.root.add_child(to_node)
-	to_node.translation = item_position_offset
-	to_node.rotation = item_rotation_offset
-	to_node.scale = Vector3(1, 1, 1)
-	
-#	root = Spatial.new()
-#	container_node.root.add_child(root)
-#	root.translation = item_position_offset
-#	root.rotation = item_rotation_offset
-	
-	
-#	to_node.get_parent().call_deferred('remove_child', to_node)
-#	root.call_deferred('add_child', to_node)
-#	to_node.call_deferred('set_translation', Vector3())
-#	to_node.call_deferred('set_rotation', Vector3())
+	_reparent()
 
 
 func _process(delta):
@@ -165,9 +147,6 @@ func _process(delta):
 	
 	if not container_node._has_item(to_node):
 		queue_free()
-	
-#	if not human:
-#		_move_item()
 
 
 func _disable_collision():
@@ -175,25 +154,33 @@ func _disable_collision():
 	to_node.visible = not container_node.invisible
 	
 	if collision:
-		collision.disabled = true
-	
+		collision.call_deferred('set_disabled', true)
+		
 	if to_node is Area:
 		to_node.monitoring = false
 	
 	if to_node is RigidBody:
 		to_node.sleeping = true
-	
-	container_node._add_item(to_node)
+		to_node.mode = RigidBody.MODE_STATIC
 	
 	if to_node._has_tag('AttachBone'):
 		container_node.root.bone_name = to_node._get_tag('AttachBone')
 	else:
 		container_node.root.bone_name = container_node.bone_name
 	
-#	if from_behavior.get_script().has_script_signal('pre_advance'):
-#
-#		from_behavior.connect('pre_advance', self, '_move_item')
-#		human = true
+	container_node._add_item(to_node)
+
+
+func _reparent():
+	
+	item_position_offset = _get_item_position_offset(to_node, container_node)
+	item_rotation_offset = _get_item_rotation_offset(to_node, container_node)
+	
+	to_node.get_parent().remove_child(to_node)
+	container_node.root.add_child(to_node)
+	to_node.translation = item_position_offset
+	to_node.rotation = item_rotation_offset
+	to_node.scale = Vector3(1, 1, 1)
 
 
 func _restore_collision():
@@ -206,13 +193,14 @@ func _restore_collision():
 			container_node._apply_launch_attributes(to_node)
 		
 		if collision:
-			collision.disabled = false
+			collision.call_deferred('set_disabled', false)
 		
 		if to_node is Area:
 			to_node.monitoring = true
 		
 		if to_node is RigidBody:
 			to_node.sleeping = false
+			to_node.mode = RigidBody.MODE_RIGID
 
 
 func _destroy():
@@ -224,9 +212,6 @@ func _destroy():
 		if is_instance_valid(to_node) and to_node._has_tag('AttachBone'):
 			container_node.root.bone_name = container_node.bone_name
 	
-	if restore_collisions:
-		_restore_collision()
-	
 	if root and is_instance_valid(root):
 		root.queue_free()
 	
@@ -234,11 +219,13 @@ func _destroy():
 		
 		var to_node_transform = to_node.global_transform
 		
-		if container_node.root == to_node.get_parent():
-			container_node.root.remove_child(to_node)
-			actors.add_child(to_node)
+		to_node.get_parent().remove_child(to_node)
+		actors.add_child(to_node)
 		
 		if movement:
 			movement._teleport(to_node_transform.origin, to_node_transform.basis)
+	
+	if restore_collisions:
+		_restore_collision()
 	
 	._destroy()

@@ -46,6 +46,8 @@ func _get_items():
 
 func _is_empty():
 	
+	items.size()
+	
 	return items.size() == 0
 
 
@@ -58,16 +60,16 @@ func _add_item(item):
 	
 	if max_quantity > 0 and items.size() >= max_quantity:
 		return false
-	
+
 	if factory_mode:
-		
+
 		if not item is String:
-		
+
 			Meta.DestroyActor(item)
 			item = item.system_path
-	
+
 	items.append(item)
-	
+
 	emit_signal('item_added', item)
 	
 	return true
@@ -215,6 +217,8 @@ func _apply_launch_attributes(item):
 	
 	if item_movement:
 		
+		release_direction
+		
 		item_movement._set_direction(release_direction, true)
 		item_movement._set_speed(release_speed)
 		
@@ -241,14 +245,16 @@ func _apply_launch_attributes(item):
 
 func _create_and_launch_item(item_path, rotation=null):
 	
-	var item = Meta.AddActor(item_path, null, null, null, { 'Shooter': shooter })
 	var position = root.global_transform.origin
-	var basis = root.global_transform.basis
+	var basis = root.global_transform.basis.get_euler()
 	
 	if rotation:
-		basis = Basis(rotation)
+		basis = rotation#Basis(rotation)
 	
-	item.get_node('Movement')._teleport(position, basis)
+	var item = Meta.AddActor(item_path, position, basis, null, { 'Shooter': shooter })
+	
+	
+	#item.get_node('Movement')._teleport(position, basis)
 	
 	_apply_launch_attributes(item)
 	
@@ -348,7 +354,7 @@ func _delete_all():
 		
 		var removed = items.duplicate()
 		
-		Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+		#Meta.DestroyLink(owner, null, 'Contains', {'container': name})
 		
 		for item in removed:
 			Meta.DestroyActor(item)

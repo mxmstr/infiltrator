@@ -290,14 +290,14 @@ func PreloadActors():
 	for actor in actors:
 		
 		var actor_res = load(actor)
-		var actor_instance = actor_res.instance()
-
-		if actor_instance.get('tags') and actor_instance._has_tag('Pooled'):
-			
-			actor_pool[actor] = []
-			
-			for i in range(actor_pool_size):
-				actor_pool[actor].append(load(actor).instance())
+#		var actor_instance = actor_res.instance()
+#
+#		if actor_instance.get('tags') and actor_instance._has_tag('Pooled'):
+#
+#			actor_pool[actor] = []
+#
+#			for i in range(actor_pool_size):
+#				actor_pool[actor].append(load(actor).instance())
 		
 		
 		preloader.add_resource(actor, actor_res)
@@ -399,15 +399,15 @@ func DestroyActor(actor):
 	
 	if is_instance_valid(actor):
 		
-		if actor.get('tags') and actor._has_tag('Pooled'):
-			
-			var resource_path = 'res://Scenes/Actors/' + actor.system_path + '.tscn'
-			actor.get_parent().remove_child(actor)
-			actor_pool[resource_path].append(actor)
-			
-		else:
-			
-			actor.queue_free()
+#		if actor.get('tags') and actor._has_tag('Pooled'):
+#
+#			var resource_path = 'res://Scenes/Actors/' + actor.system_path + '.tscn'
+#			actor.get_parent().remove_child(actor)
+#			#actor_pool[resource_path].append(actor)
+#
+#		else:
+		
+		actor.queue_free()
 
 
 func AddLink(link_path):

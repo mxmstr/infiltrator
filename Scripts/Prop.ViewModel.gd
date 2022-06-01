@@ -32,6 +32,10 @@ signal blended_skeletons
 
 func _init_duplicate_meshes():
 	
+	# TODO
+	if not is_instance_valid(actor):
+		return
+	
 	actor_model = actor.get_node('Model')
 	
 	if actor_model.get_children().size() and actor_model.get_child(0) and actor_model.get_child(0) is Skeleton:

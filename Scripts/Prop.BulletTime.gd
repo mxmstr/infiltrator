@@ -1,7 +1,7 @@
 extends Node
 
 const max_amount = 100
-const drain_rate = 15.0
+const drain_rate = 11.0
 const regen_rate = 5.0#2.0
 const cooldown_time = 3.0
 
@@ -10,6 +10,7 @@ var cooldown = false
 var amount = 100.0 setget _set_amount
 
 onready var bullet_time_server = get_node_or_null('/root/Mission/Links/BulletTimeServer')
+onready var perspective_anim_player = $'../Perspective/AnimationPlayer'
 onready var ui_audio = $'../UIAudio'
 
 signal amount_changed
@@ -28,6 +29,7 @@ func _start():
 		return
 	
 	active = true
+	perspective_anim_player.play('BulletTime')
 	ui_audio._start_state('BulletTimeStart')
 	bullet_time_server._start(owner)
 
@@ -35,6 +37,7 @@ func _start():
 func _stop():
 	
 	active = false
+	perspective_anim_player.play('Default')
 	ui_audio._start_state('BulletTimeEnd')
 	bullet_time_server._stop(owner)
 

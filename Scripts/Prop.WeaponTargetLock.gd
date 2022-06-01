@@ -33,25 +33,28 @@ func _on_fire(projectile, item):
 	
 	if projectile._has_tag('Bullet') and perspective.viewmodels.size():
 
-			for viewmodel in perspective.viewmodels:
+		for viewmodel in perspective.viewmodels:
 
-				if viewmodel.actor == item:
+			if viewmodel.actor == item:
 
-					projectile.visible = false
+				projectile.visible = false
 
-					yield(get_tree(), 'idle_frame')
+				yield(get_tree(), 'idle_frame')
 
-					if not is_instance_valid(projectile):
-						return
+				if not is_instance_valid(projectile):
+					return
 
-					projectile.visible = true
+				projectile.visible = true
 
-					if not is_instance_valid(viewmodel) or not is_instance_valid(item):
-						break
-
-					projectile.global_transform.origin = viewmodel.global_transform.origin + projectile.global_transform.origin - item.global_transform.origin
-
+				if not is_instance_valid(viewmodel) or not is_instance_valid(item):
 					break
+				
+				var offset = projectile.global_transform.origin
+				offset -= item.global_transform.origin
+				projectile.global_transform.origin = viewmodel.global_transform.origin + offset
+
+				break
+	
 	
 	if not is_instance_valid(projectile):
 		return
@@ -65,7 +68,7 @@ func _on_fire(projectile, item):
 		projectile.get_node('Movement').speed = projectile.get_node('Movement').speed
 
 	else:
-
+		
 		projectile.look_at(target_pos, Vector3.UP)
 
 

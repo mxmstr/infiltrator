@@ -19,6 +19,8 @@ onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Targe
 
 func _use_right_hand_item():
 	
+	righthand.items.size()
+	
 	if not righthand._is_empty() and tree_node.can_use_item:
 		
 		var item = righthand.items[0]

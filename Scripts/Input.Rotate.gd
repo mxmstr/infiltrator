@@ -2,7 +2,7 @@ extends Node
 
 const aim_offset_range = 0.5
 const aim_offset_sensitivity = 1.5
-const angular_accel = 0.2
+const angular_accel = 0.4
 const angular_deaccel = 8.0
 const accel_multiplier = 1
 

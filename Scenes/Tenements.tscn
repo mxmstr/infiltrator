@@ -32,72 +32,78 @@ __meta__ = {
 [node name="PVPPlayerFactory" parent="Links" instance=ExtResource( 1 )]
 
 [node name="RespawnMarker1" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08066, 0.143723, -15.5977 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.00519, 0.055621, -15.9426 )
 
 [node name="RespawnMarker2" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08066, 0.143723, -15.5977 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.83808, -0.124543, 11.3659 )
 
 [node name="RespawnMarker3" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.08066, 0.143723, -15.5977 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.7571, -2.42866, 9.79647 )
 
 [node name="RespawnMarker4" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.08066, 0.143723, -15.5977 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0760351, -4.95357, 13.8472 )
 
 [node name="RespawnMarker5" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.08066, 0.143723, -15.5977 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7446, -5.31421, 1.48623 )
 
 [node name="RespawnMarker6" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08066, 0.143723, -15.5977 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.46225, -15.0079, -5.48701 )
 
 [node name="RespawnMarker7" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.08066, 0.143723, -15.5977 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.13588, -14.9586, 26.2611 )
 
 [node name="RespawnMarker8" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 6.08066, 0.143723, -15.5977 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.8319, -14.9865, 1.11937 )
 
 [node name="RespawnMarker9" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, -0.642788, 6.08066, 0.143723, -15.5977 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.87541, -24.4918, 13.8967 )
 
 [node name="RespawnMarker10" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 6.08066, 0.143723, -15.5977 )
+transform = Transform( -0.642788, 0, -0.766045, 0, 1, 0, 0.766045, 0, -0.642788, -8.8808, -24.5037, 12.7264 )
 
 [node name="RespawnMarker11" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 6.08066, 0.143723, -15.5977 )
-
-[node name="RespawnMarker12" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08066, 0.143723, -15.5977 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 23.0158, -20.0372, 6.68277 )
 
 [node name="PVPPickupFactory" parent="Links" instance=ExtResource( 3 )]
 
 [node name="PickupMarker1" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.9262, 2.11963, 39.1147 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90016, 0.127756, -9.98947 )
 
 [node name="PickupMarker2" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.6391, 6.7054, 20.0197 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4595, 0.851588, -12.7085 )
 
 [node name="PickupMarker3" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.87884, 6.65958, 19.1487 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4646, -5.31144, 6.12468 )
 
 [node name="PickupMarker4" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8026, 2.04978, 40.2532 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17077, -4.97097, 4.35516 )
 
 [node name="PickupMarker5" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8604, -2.5286, 15.2155 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7736, -4.94361, 17.6704 )
 
 [node name="PickupMarker6" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3934, -0.991185, -18.5425 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.82259, -5.22659, 8.15239 )
 
 [node name="PickupMarker7" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8208, -1.01643, -19.4578 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.68366, -10.0239, 10.0101 )
 
 [node name="PickupMarker8" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.0851, 2.04275, 3.32812 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.12002, -15.0177, 4.2647 )
 
 [node name="PickupMarker9" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66205, 6.64229, -2.51067 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.33341, -14.9515, 18.9731 )
 
 [node name="PickupMarker10" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01504, -2.60974, 14.891 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.99023, -14.8735, 1.08135 )
+
+[node name="PickupMarker11" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9687, -20.0162, 1.08135 )
+
+[node name="PickupMarker12" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.269659, -24.379, -0.940192 )
+
+[node name="PickupMarker13" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53049, -24.4609, 7.32947 )
 
 [node name="Static" type="Spatial" parent="."]
 __meta__ = {

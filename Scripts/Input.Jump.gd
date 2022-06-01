@@ -104,6 +104,8 @@ func _on_just_deactivated():
 		
 		if owner.is_on_floor():
 			_jump()
+		else:
+			behavior._start_state('Default')
 	
 	elif behavior.current_state == 'WallRun':
 		

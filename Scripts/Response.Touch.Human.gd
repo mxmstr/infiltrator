@@ -33,7 +33,6 @@ func _get_ammo_container(magazine, target):
 	return null
 
 
-
 func _stack_item(item):
 	
 	var item_magazine = item.get_node('Magazine')

@@ -15,9 +15,12 @@ const ACCEL_AIR: float = 1.0
 const WALL_MARGIN: float = 0.001
 const STEP_HEIGHT_DEFAULT: Vector3 = Vector3(0, 0.5, 0)
 const STEP_MAX_SLOPE_DEGREE: float = 5.0
-const STEP_CHECK_COUNT: int = 2
+const STEP_CHECK_COUNT: int = 1
 
+var on_wall_count = 0
+var was_on_wall = false
 var is_step: bool = false
+var step_check = false
 var step_check_height: Vector3 = STEP_HEIGHT_DEFAULT / STEP_CHECK_COUNT
 var gravity_vec: Vector3 = Vector3.ZERO
 var movement: Vector3 = Vector3.ZERO
@@ -35,6 +38,7 @@ var factory = angular_deaccel
 var root_motion_use_model = false
 
 onready var model = get_node_or_null('../Model')
+onready var behavior = get_node_or_null('../Behavior')
 onready var camera_rig = get_node_or_null('../CameraRig')
 onready var bullet_time = get_node_or_null('../BulletTime')
 
@@ -56,7 +60,22 @@ func _get_sidestep_speed():
 	return owner.global_transform.basis.xform_inv(velocity).x
 
 
-func _apply_root_transform(root_transform, delta):
+func _set_vertical_velocity(vertical):
+	
+	gravity_vec.y = vertical
+
+
+func _add_vertical_velocity(vertical):
+	
+	gravity_vec.y += vertical
+
+
+func _apply_root_transform(root_transform):
+	
+	if root_transform == Transform():
+		return
+	
+	#root_transform.origin /= get_process_delta_time()
 	
 	if root_motion_use_model:
 		
@@ -67,6 +86,7 @@ func _apply_root_transform(root_transform, delta):
 		owner.global_transform = transform_offset
 	
 	else:
+		
 		owner.global_transform *= root_transform
 
 
@@ -137,27 +157,43 @@ func _physics_process(delta):
 #	var f_input: float = Input.get_action_strength("Backward") - Input.get_action_strength("Forward")
 #	var h_input: float = Input.get_action_strength("Right") - Input.get_action_strength("Left")
 #	direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()
-
-	var factor
-
+	
 	#jumping and gravity
 	if owner.is_on_floor():
-		snap = -owner.get_floor_normal()
-		factor = ACCEL_DEFAULT
-		gravity_vec = Vector3.ZERO
+		
+		if gravity_vec.y > 0:
+			#factor = ACCEL_AIR
+			snap = Vector3.ZERO
+		else:
+			snap = -owner.get_floor_normal()
+			#factor = ACCEL_DEFAULT
+			gravity_vec = Vector3.ZERO
+		
 	else:
 		snap = Vector3.DOWN
-		factor = ACCEL_AIR
+		#factor = ACCEL_AIR
 		gravity_vec += Vector3.DOWN * gravity * delta
+	
+	
+	var new_velocity = direction * speed
+	var factor
 
-#	if velocity.y > 0 and owner.is_on_floor():
+	if new_velocity.dot(velocity) > 0:
+		factor = accel
+	else:
+		factor = deaccel
+
+	if factor > 0:
+		velocity = velocity.linear_interpolate(new_velocity, factor * scaled_delta)
+	else:
+		velocity = new_velocity
+	
+#	if velocity.y > 0:# and owner.is_on_floor():
 #		snap = Vector3.ZERO
 #		gravity_vec = Vector3.UP * velocity.y
 
-	#make it move
-	velocity = velocity.linear_interpolate(direction * speed, factor * delta)
-
-	if gravity_vec.y >= 0:
+	if step_check and gravity_vec.y >= 0:# and (owner.is_on_wall() and not was_on_wall):
+		
 		for i in range(STEP_CHECK_COUNT):
 			var test_motion_result: PhysicsTestMotionResult = PhysicsTestMotionResult.new()
 
@@ -165,7 +201,7 @@ func _physics_process(delta):
 			var transform3d: Transform = owner.global_transform
 			var motion: Vector3 = step_height
 			var is_player_collided: bool = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
-
+#
 			#prints('is_player_collided 0', is_player_collided, test_motion_result.collision_normal.y < 0, str(randi()))
 			if test_motion_result.collision_normal.y < 0:
 				continue
@@ -174,18 +210,19 @@ func _physics_process(delta):
 				transform3d.origin += step_height
 				motion = velocity * delta
 				is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
-				
+
 				#prints('is_player_collided 1', is_player_collided, str(randi()))
 				if not is_player_collided:
 					transform3d.origin += motion
 					motion = -step_height
 					is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+					#prints('is_player_collided 2', is_player_collided, str(randi()))
 					if is_player_collided:
 						#prints('is_player_collided 2', test_motion_result.collision_normal.angle_to(Vector3.UP), str(randi()))
 						if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
 							#head_offset = -test_motion_result.motion_remainder
 							is_step = true
-							#prints('is step 1 ' + str(randi()))
+							prints('is step 1 ' + str(randi()))
 							owner.global_transform.origin += -test_motion_result.motion_remainder
 							break
 				else:
@@ -194,77 +231,86 @@ func _physics_process(delta):
 					transform3d.origin += test_motion_result.collision_normal * WALL_MARGIN
 					motion = (velocity * delta).slide(wall_collision_normal)
 					is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+					prints('is_player_collided 3', is_player_collided, str(randi()))
 					if not is_player_collided:
 						transform3d.origin += motion
 						motion = -step_height
 						is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+						prints('is_player_collided 4', is_player_collided, str(randi()))
 						if is_player_collided:
 							if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
 								#head_offset = -test_motion_result.motion_remainder
 								is_step = true
-								#prints('is step 2 ' + str(randi()))
+								prints('is step 2 ' + str(randi()))
 								owner.global_transform.origin += -test_motion_result.motion_remainder
 								break
-			else:
-				var wall_collision_normal: Vector3 = test_motion_result.collision_normal
-				transform3d.origin += test_motion_result.collision_normal * WALL_MARGIN
-				motion = step_height
-				is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
-				if not is_player_collided:
-					transform3d.origin += step_height
-					motion = (velocity * delta).slide(wall_collision_normal)
-					is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
-					if not is_player_collided:
-						transform3d.origin += motion
-						motion = -step_height
-						is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
-						if is_player_collided:
-							if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
-								#head_offset = -test_motion_result.motion_remainder
-								is_step = true
-								#prints('is step 3 ' + str(randi()))
-								owner.global_transform.origin += -test_motion_result.motion_remainder
-								break
+#			else:
+#				var wall_collision_normal: Vector3 = test_motion_result.collision_normal
+#				transform3d.origin += test_motion_result.collision_normal * WALL_MARGIN
+#				motion = step_height
+#				is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+#				prints('is_player_collided 5', is_player_collided, str(randi()))
+#				if not is_player_collided:
+#					transform3d.origin += step_height
+#					motion = (velocity * delta).slide(wall_collision_normal)
+#					is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+#					prints('is_player_collided 6', is_player_collided, str(randi()))
+#					if not is_player_collided:
+#						transform3d.origin += motion
+#						motion = -step_height
+#						is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+#						prints('is_player_collided 7', is_player_collided, str(randi()))
+#						if is_player_collided:
+#							if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
+#								#head_offset = -test_motion_result.motion_remainder
+#								is_step = true
+#								prints('is step 3 ' + str(randi()))
+#								owner.global_transform.origin += -test_motion_result.motion_remainder
+#								break
 	
+	was_on_wall = owner.is_on_wall()
 	var is_falling: bool = false
 
-	if not is_step and owner.is_on_floor():
-		var test_motion_result: PhysicsTestMotionResult = PhysicsTestMotionResult.new()
-		var step_height: Vector3 = STEP_HEIGHT_DEFAULT
-		var transform3d: Transform = owner.global_transform
-		var motion: Vector3 = velocity * delta
-		var is_player_collided: bool = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
-
-		if not is_player_collided:
-			transform3d.origin += motion
-			motion = -step_height
-			is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
-			if is_player_collided:
-				if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
-					#head_offset = test_motion_result.motion
-					is_step = true
-					#prints('is step 4 ' + str(randi()), test_motion_result.collider)
-					owner.global_transform.origin += test_motion_result.motion
-			else:
-				is_falling = true
-		else:
-			if test_motion_result.collision_normal.y == 0:
-				var wall_collision_normal: Vector3 = test_motion_result.collision_normal
-				transform3d.origin += test_motion_result.collision_normal * WALL_MARGIN
-				motion = (velocity * delta).slide(wall_collision_normal)
-				is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
-				if not is_player_collided:
-					transform3d.origin += motion
-					motion = -step_height
-					is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
-					if is_player_collided:
-						if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
-							#head_offset = test_motion_result.motion
-							is_step = true
-							#prints('is step 5 ' + str(randi()))
-							owner.global_transform.origin += test_motion_result.motion
-					else:
-						is_falling = true
+#	if not is_step and owner.is_on_floor():
+#		var test_motion_result: PhysicsTestMotionResult = PhysicsTestMotionResult.new()
+#		var step_height: Vector3 = STEP_HEIGHT_DEFAULT
+#		var transform3d: Transform = owner.global_transform
+#		var motion: Vector3 = velocity * delta
+#		var is_player_collided: bool = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+#		#prints('is_player_collided 8', is_player_collided, str(randi()))
+#		if not is_player_collided:
+#			transform3d.origin += motion
+#			motion = -step_height
+#			is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+#			prints('is_player_collided 9', is_player_collided, str(randi()))
+#			if is_player_collided:
+#				if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
+#					#head_offset = test_motion_result.motion
+#					is_step = true
+#					prints('is step 4 ' + str(randi()), test_motion_result.collider)
+#					owner.global_transform.origin += test_motion_result.motion
+#			else:
+#				is_falling = true
+#		else:
+#			if test_motion_result.collision_normal.y == 0:
+#				var wall_collision_normal: Vector3 = test_motion_result.collision_normal
+#				transform3d.origin += test_motion_result.collision_normal * WALL_MARGIN
+#				motion = (velocity * delta).slide(wall_collision_normal)
+#				is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+#				prints('is_player_collided 10', is_player_collided, str(randi()))
+#				if not is_player_collided:
+#					transform3d.origin += motion
+#					motion = -step_height
+#					is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+#					prints('is_player_collided 11', is_player_collided, str(randi()))
+#					if is_player_collided:
+#						if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
+#							#head_offset = test_motion_result.motion
+#							is_step = true
+#							prints('is step 5 ' + str(randi()))
+#							owner.global_transform.origin += test_motion_result.motion
+#					else:
+#						is_falling = true
 
 #	if is_step:
 #		factor = SPEED_ON_STAIRS
@@ -275,53 +321,36 @@ func _physics_process(delta):
 #
 #		if abs(head_offset.y) <= 0.01:
 #			factor = SPEED_DEFAULT
-
+	
+	
 	movement = velocity + gravity_vec
+	
+	_apply_root_transform(behavior.get_root_motion_transform())
 
 	if is_falling:
 		snap = Vector3.ZERO
 
 # warning-ignore:return_value_discarded
-	owner.move_and_slide_with_snap(movement, snap, Vector3.UP, false, 4, deg2rad(46), false)
+	owner.move_and_slide_with_snap(movement, snap, Vector3.UP, false, 2, deg2rad(46), false)
 	
+	collisions = []
+	var new_on_wall_count = 0
+
+	for index in range(owner.get_slide_count()):
+		
+		var slide = owner.get_slide_collision(index)
+		
+		if slide.on_wall:
+			new_on_wall_count += 1
+		
+		collisions.append(slide)
 	
-#	var vertical = velocity.y
-#	var horizontal = Vector3(velocity.x, 0, velocity.z)
-#
-#	var new_velocity = direction * speed
-#	var factor
-#
-#	if new_velocity.dot(horizontal) > 0:
-#		factor = accel
-#	else:
-#		factor = deaccel
-#
-#	if factor > 0:
-#		velocity = horizontal.linear_interpolate(new_velocity, factor * scaled_delta)
-#	else:
-#		velocity = new_velocity
-#
-#	velocity.y = vertical
-#
-#
-#	if owner.is_on_floor() and velocity.y <= 0:
-#		var length = Vector3(velocity.x, 0, velocity.z).length()
-#		velocity = velocity.normalized() * length
-#	else:
-#		velocity = Vector3(velocity.x, velocity.y + (gravity * gravity_scale * delta), velocity.z)
-#
-#	# Calc snap value
-#	if owner.is_on_floor() and velocity.y <= 0:
-#		snap = -owner.get_floor_normal() - owner.get_floor_velocity() * delta
-#	else:
-#		snap = Vector3.ZERO
-#
-#	# Apply velocity
-#	velocity = owner.move_and_slide_with_snap(velocity, snap, Vector3.UP, true)
-#
-#	collisions = []
-#
-#	for index in range(owner.get_slide_count()):
-#		collisions.append(owner.get_slide_collision(index))
-#
-#	emit_signal('move_and_slide', delta)
+	#prints(owner.get_slide_count())
+	
+#	if new_on_wall_count != on_wall_count:
+#		prints(on_wall_count, new_on_wall_count)
+	
+	step_check = new_on_wall_count != on_wall_count
+	on_wall_count = new_on_wall_count
+
+	emit_signal('move_and_slide', delta)
