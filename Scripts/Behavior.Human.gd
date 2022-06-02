@@ -251,6 +251,9 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	
 	_apply_human_attributes(attributes)
 	
+	if not up_animation and not down_animation:
+		_set_action_blend(0)
+	
 	_set_oneshot_active(false)
 	call('advance', 0)
 	_set_oneshot_active(true)
@@ -290,6 +293,7 @@ func _play_8way(new_state, animation_list, attributes):
 	
 	_apply_human_attributes(attributes)
 	
+	_set_action_blend(0)
 	_set_oneshot_active(false)
 	call('advance', 0)
 	

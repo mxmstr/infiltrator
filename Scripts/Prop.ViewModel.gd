@@ -268,6 +268,10 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
+#	if not is_instance_valid(actor):
+#		perspective._on_item_released(actor, null)
+#		return
+	
 	if world_skeleton and vm_skeleton:
 		behavior.connect('post_advance', self, '_blend_skeletons')
 	

@@ -68,8 +68,9 @@ func _on_stimulate(stim, data):
 			var items_list = inventory.items + righthand.items
 			
 			for item in items_list:
-				if item.base_name == source_name:
+				if item.base_name == source_name and item != data.source:
 					exists = true
+					break
 			
 			if exists and data.source._has_tags(['Firearm', 'Stackable']):
 				
