@@ -222,6 +222,7 @@ func _apply_human_attributes(attributes):
 	var lock_stance = attributes.lock_stance if attributes.has('lock_stance') else false
 	var lock_movement = attributes.lock_movement if attributes.has('lock_movement') else false
 	var lock_rotation = attributes.lock_rotation if attributes.has('lock_rotation') else false
+	#var new_stance = attributes.stance if attributes.has('stance') else 'Standing'
 	var align_model_to_aim = attributes.align_model_to_aim if attributes.has('align_model_to_aim') else false
 	var fp_skeleton_offset = attributes.fp_skeleton_offset if attributes.has('fp_skeleton_offset') else true
 	var camera_mode_state = attributes.camera_mode if attributes.has('camera_mode') else 'Default'
@@ -233,6 +234,7 @@ func _apply_human_attributes(attributes):
 	stance.lock_stance = lock_stance
 	stance.lock_rotation = lock_rotation
 	stance.lock_movement = lock_movement
+	#stance.stance = stance.StanceType[new_stance]
 	weapon_target_lock.align_model = align_model_to_aim
 	movement.root_motion_use_model = root_motion_use_model
 	movement.gravity_scale = gravity_scale
@@ -265,6 +267,8 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 		blend_space_2d.disconnect('finished', self, '_on_action_finished')
 	
 	set('parameters/Transition/current', Mode.OneShot)
+	
+	emit_signal('state_started', new_state)
 	
 	if current_state == 'Default':
 		return true

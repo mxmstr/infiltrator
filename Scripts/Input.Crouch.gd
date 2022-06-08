@@ -63,14 +63,17 @@ func _roll():
 		behavior._start_state(action)
 
 
-func _on_just_activated():
-	
-	stance.stance = stance.StanceType.CROUCHING
+#func _on_just_activated():
+#
+#
 
 
 func _on_just_deactivated():
 	
-	stance.stance = stance.StanceType.STANDING
+	if stance.stance == stance.StanceType.STANDING:
+		stance._set_stance_input(stance.StanceType.CROUCHING)
+	else:
+		stance._set_stance_input(stance.StanceType.STANDING)
 
 
 func _process(delta):

@@ -213,7 +213,7 @@ tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/keys = PoolRealArray( 0.0416667, 1, -8.33534e-08, 1.17943e-07, -2.75671e-07, 0, 0, 0, 1, 1, 1, 1, 1.95833, 1, 0, 0, 4, 0, 0, 0, 1, 1, 1, 1 )
+tracks/29/keys = PoolRealArray( 0.0416667, 1, -8.33534e-08, 1.17943e-07, -2.75671e-07, 0, 0, 0, 1, 1, 1, 1, 1.974, 1, 0, 0, 3.5, 0, 0, 0, 1, 1, 1, 1 )
 tracks/30/type = "value"
 tracks/30/path = NodePath("../../CameraRig:translation")
 tracks/30/interp = 1
@@ -251,4 +251,16 @@ tracks/32/keys = {
 "args": [ 4.5 ],
 "method": "_add_vertical_velocity"
 } ]
+}
+tracks/33/type = "value"
+tracks/33/path = NodePath("../../Stance:stance")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }

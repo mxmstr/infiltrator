@@ -6,7 +6,6 @@ const dual_wield_items = ['Beretta', 'DesertEagle', 'Ingram', 'SawedoffShotgun']
 var animations = {}
 var dual_animations = {}
 
-onready var behavior = get_node_or_null('../Behavior')
 onready var righthand = get_node_or_null('../RightHandContainer')
 onready var lefthand = get_node_or_null('../LeftHandContainer')
 onready var camera_raycast = get_node_or_null('../CameraRig/Camera')

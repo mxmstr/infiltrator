@@ -1,6 +1,5 @@
 extends "res://Scripts/Action.gd"
 
-onready var behavior = $'../Behavior'
 onready var inventory = $'../Inventory'
 
 

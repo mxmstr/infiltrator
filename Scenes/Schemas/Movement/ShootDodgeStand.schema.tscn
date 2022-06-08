@@ -30,6 +30,7 @@ attributes = "{
 		\"layer\": \"ACTION\",
 		\"switch_mode\": \"End\",
 		\"lock_movement\": true,
+		\"lock_stance\": true,
 		\"fp_skeleton_offset\": false,
 		\"camera_mode\": \"FullYaw\",
 		\"align_model_to_aim\": true,

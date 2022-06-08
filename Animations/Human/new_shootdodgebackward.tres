@@ -238,3 +238,15 @@ tracks/31/keys = {
 "update": 0,
 "values": [ Vector3( 0, 180, 0 ) ]
 }
+tracks/32/type = "value"
+tracks/32/path = NodePath("../../Stance:stance")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0.05, 0.541667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}

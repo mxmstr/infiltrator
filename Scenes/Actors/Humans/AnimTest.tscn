@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Models/Humans/Trinity/Trinity.escn" type="PackedScene" id=1]
 [ext_resource path="res://Animations/Human/Movement/Run.tres" type="Animation" id=2]
@@ -13,6 +13,19 @@
 [ext_resource path="res://Animations/Human/GetWeapon.tres" type="Animation" id=11]
 [ext_resource path="res://Models/Humans/Anderson/Anderson.escn" type="PackedScene" id=12]
 [ext_resource path="res://Animations/Human/HolsterWeapon.tres" type="Animation" id=13]
+[ext_resource path="res://Scenes/Components/Properties/Stance.property.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Schemas/Movement/CrouchLeft.schema.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Schemas/Movement/Crouch.schema.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Schemas/Movement/CrouchBackward.schema.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Schemas/Movement/CrouchForward.schema.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Schemas/Movement/CrouchRight.schema.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Schemas/Movement/WalkForward.schema.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Schemas/Movement/RunBackward.schema.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Schemas/Movement/RunForward.schema.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Schemas/Movement/RunRight.schema.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Schemas/Movement/RunLeft.schema.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/Schemas/Movement/Stand.Female.schema.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/Schemas/Movement/Stand.Male.schema.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Actors/Items/Beretta.tscn" type="PackedScene" id=45]
 [ext_resource path="res://Scenes/Actors/Items/DesertEagle.tscn" type="PackedScene" id=46]
 [ext_resource path="res://Scenes/Actors/Items/Ingram.tscn" type="PackedScene" id=48]
@@ -78,6 +91,7 @@ tracks/0/keys = {
 }
 
 [node name="AnimTest" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.33534e-08, 1.17943e-07, -2.75671e-07 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -90,7 +104,7 @@ bones/16/bound_children = [ NodePath("BoneAttachment") ]
 bones/19/bound_children = [ NodePath("BoneAttachment2") ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="1"]
-transform = Transform( -0.922607, -0.00561473, 0.385703, 0.15749, -0.918245, 0.363351, 0.352129, 0.395973, 0.848062, -0.124792, 1.15483, 0.200026 )
+transform = Transform( 0.984547, -0.112731, 0.134012, 0.0220294, -0.679445, -0.733396, 0.17373, 0.725015, -0.666462, 0.261818, 0.854703, 0.238475 )
 bone_name = "Gun"
 
 [node name="Beretta" parent="Model2/Anderson_skeleton/BoneAttachment" instance=ExtResource( 45 )]
@@ -101,7 +115,7 @@ visible = false
 transform = Transform( 0.98729, 0.157525, 0.0211143, -0.0235019, 0.013309, 0.999636, 0.157186, -0.987427, 0.0168419, -0.0229437, 0.0228328, 0.015305 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Model2/Anderson_skeleton" index="2"]
-transform = Transform( 0.903235, -0.420039, -0.0879488, -5.6719e-06, 0.204927, -0.978778, 0.429147, 0.884066, 0.185095, -0.309432, 1.25442, 0.166565 )
+transform = Transform( 0.968135, 0.0859259, -0.235229, -0.0821556, -0.778339, -0.622446, -0.236572, 0.621937, -0.746477, -0.319493, 0.893402, 0.188488 )
 bone_name = "Hand-L"
 
 [node name="Sword" parent="Model2/Anderson_skeleton/BoneAttachment2" instance=ExtResource( 9 )]
@@ -142,6 +156,7 @@ visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 6 )
+anim_player = NodePath("AnimationPlayer")
 root_motion_track = NodePath("../..")
 parameters/blend_position = Vector2( 0.00282753, 0.0225563 )
 
@@ -160,10 +175,42 @@ anims/RESET = SubResource( 7 )
 root_node = NodePath("../../Model2/Anderson_skeleton")
 anims/RESET = SubResource( 8 )
 
+[node name="AnimationPlayer4" parent="AnimationTree" instance=ExtResource( 16 )]
+
+[node name="AnimationPlayer5" parent="AnimationTree" instance=ExtResource( 17 )]
+
+[node name="AnimationPlayer6" parent="AnimationTree" instance=ExtResource( 18 )]
+
+[node name="AnimationPlayer7" parent="AnimationTree" instance=ExtResource( 15 )]
+
+[node name="AnimationPlayer8" parent="AnimationTree" instance=ExtResource( 19 )]
+
+[node name="AnimationPlayer9" parent="AnimationTree" instance=ExtResource( 21 )]
+root_node = NodePath("../..")
+
+[node name="AnimationPlayer10" parent="AnimationTree" instance=ExtResource( 22 )]
+root_node = NodePath("../..")
+
+[node name="AnimationPlayer11" parent="AnimationTree" instance=ExtResource( 24 )]
+root_node = NodePath("../..")
+
+[node name="AnimationPlayer12" parent="AnimationTree" instance=ExtResource( 23 )]
+root_node = NodePath("../..")
+
+[node name="AnimationPlayer13" parent="AnimationTree" instance=ExtResource( 20 )]
+root_node = NodePath("../..")
+
+[node name="AnimationPlayer14" parent="AnimationTree" instance=ExtResource( 25 )]
+
+[node name="AnimationPlayer15" parent="AnimationTree" instance=ExtResource( 26 )]
+
 [node name="RootMotionView" type="RootMotionView" parent="."]
+animation_path = NodePath("../AnimationTree")
+
+[node name="Stance" parent="." instance=ExtResource( 14 )]
 
 [node name="CameraRig" type="Spatial" parent="."]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.07881, -0.616271 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.07881, -0.616271 )
 
 [node name="Camera" type="Camera" parent="CameraRig"]
 

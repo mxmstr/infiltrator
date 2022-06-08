@@ -9,7 +9,6 @@ var y_min
 var x_value_range
 var y_value_range
 
-onready var behavior = $'../Behavior'
 onready var movement = $'../Movement'
 onready var stance = $'../Stance'
 onready var camera_rig = $'../CameraRig'
@@ -61,6 +60,11 @@ func _state_start():
 	camera.global_transform.basis = camera_rotation
 
 
+func _state_end():
+	
+	stance.stance = stance.StanceType.STANDING
+
+
 func _ready():
 	
 	yield(behavior, 'pre_advance')
@@ -78,5 +82,5 @@ func _process(delta):
 		_set_blendspace_position()
 		
 		if behavior.finished and (abs(stance.forward_speed) > 0.1 or abs(stance.sidestep_speed) > 0.1):
-
+			
 			behavior._start_state('Default', { 'override': true })

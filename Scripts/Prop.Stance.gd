@@ -44,9 +44,6 @@ export var crawl_mult = 0.15
 
 export var max_slope_angle = 30
 
-var collision_height
-var collision_height_mult = 1.0
-
 var speed_mult = 1.0
 var rotate_speed_mult = 1.0
 
@@ -60,6 +57,7 @@ var wall_normal = Vector3.FORWARD
 var wall_forward_speed = 0.0
 var wall_sidestep_speed = 0.0
 
+onready var animation_player = $AnimationPlayer
 onready var movement = get_node_or_null('../Movement')
 onready var collision = get_node_or_null('../Collision')
 onready var camera = get_node_or_null('../CameraRig/Camera')
@@ -81,11 +79,16 @@ func _look(delta):
 	movement._look(delta)
 
 
-func _set_stance(new_state):
+func _set_stance_input(new_state):
 	
 	if lock_stance:
 		return
-		
+	
+	_set_stance(new_state)
+
+
+func _set_stance(new_state):
+	
 	stance = new_state
 	
 	match stance:
@@ -93,14 +96,17 @@ func _set_stance(new_state):
 		StanceType.STANDING:
 			
 			speed_mult = 1.0
+			animation_player.play('Standing')
 		
 		StanceType.CROUCHING:
 			
 			speed_mult = crouch_mult
+			animation_player.play('Crouching')
 		
 		StanceType.CRAWLING:
 			
 			speed_mult = crawl_mult
+			animation_player.play('Crawling')
 
 
 #func _get_forward_speed():
@@ -141,23 +147,7 @@ func _set_look_speed(new_speed):
 	movement.angular_direction.y = new_speed * rotate_speed_mult
 
 
-func _resize_collision():
-	
-	if collision:
-		
-		collision.shape.extents.y = collision_height * collision_height_mult
-		collision.translation.y = collision_height * collision_height_mult
-
-
-func _ready():
-	
-	if collision:
-		collision_height = collision.shape.extents.y
-
-
 func _physics_process(delta):
-	
-	_resize_collision()
 	
 	if lock_movement:
 		movement.direction = Vector3()

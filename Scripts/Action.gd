@@ -5,6 +5,8 @@ export(String) var state
 var data = {}
 var new_data = {}
 
+onready var behavior = $'../Behavior'
+
 
 func _ready():
 	
@@ -40,6 +42,18 @@ func _play(_state, _animation, _attributes_prefix='', _down=null, _up=null):
 func _state_start(): pass
 
 
+func _state_end(): pass
+
+
+func _on_state_started(new_state):
+	
+	if new_state != state:
+		
+		_state_end()
+		
+		behavior.disconnect('state_started', self, '_on_state_started')
+
+
 func _on_action(_state, _data):
 	
 	new_data = _data
@@ -47,4 +61,8 @@ func _on_action(_state, _data):
 	if _state == state and _play(state, animation_list[0]):
 		
 		data = new_data
+		
+		if not behavior.is_connected('state_started', self, '_on_state_started'):
+			behavior.connect('state_started', self, '_on_state_started')
+		
 		_state_start()

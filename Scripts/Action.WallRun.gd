@@ -9,7 +9,6 @@ var y_min
 var x_value_range
 var y_value_range
 
-onready var behavior = $'../Behavior'
 onready var movement = $'../Movement'
 onready var stance = $'../Stance'
 

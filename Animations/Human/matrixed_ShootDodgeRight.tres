@@ -251,3 +251,15 @@ tracks/32/keys = {
 "method": "_add_vertical_velocity"
 } ]
 }
+tracks/33/type = "value"
+tracks/33/path = NodePath("../../Stance:stance")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Particles.property.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Action.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Textures/spark.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpatialMaterial" id=5]
 flags_transparent = true
@@ -50,3 +51,6 @@ state = "BulletHit"
 
 [node name="Audio" parent="." instance=ExtResource( 4 )]
 default_state = "BulletHit"
+
+[node name="Behavior" parent="." instance=ExtResource( 6 )]
+playback_process_mode = 2

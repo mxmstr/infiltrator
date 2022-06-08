@@ -18,6 +18,7 @@ var skeleton
 onready var model = get_node_or_null('../Model')
 
 signal action
+signal state_started
 
 
 func _is_action_playing():
@@ -105,6 +106,8 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	
 	if not _apply_attributes(new_state, attributes):
 		return false
+	
+	emit_signal('state_started', new_state)
 	
 	if current_state == 'Default':
 		return true
