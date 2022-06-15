@@ -1,5 +1,7 @@
 extends Node
 
+var selected_item
+
 onready var right_hand = get_node_or_null('../RightHandContainer')
 onready var inventory = get_node_or_null('../InventoryContainer')
 onready var behavior = get_node_or_null('../Behavior')
@@ -13,7 +15,13 @@ func _go_to_unarmed():
 		Meta.CreateLink(owner, current, 'Contains', { 'container': 'InventoryContainer' } )
 
 
-func _go_to_next(next):
+func _go_to_next(next=null):
+	
+	if not next:
+		next = selected_item
+	
+	if not is_instance_valid(next):
+		return
 	
 	var current = right_hand._release_front()
 	
@@ -98,16 +106,27 @@ func _get_ammo_container(item):
 	return container
 
 
-func _try_dual_wield(current):
+func _has_enough_ammo(next):
 	
-	var ammo_container = _get_ammo_container(current)
+	var ammo_container = _get_ammo_container(next)
 	var inv_ammo = ammo_container.items.size()
-	var clip_size = current.get_node('Magazine').max_quantity
+	var clip_size = next.get_node('Magazine').max_quantity
 	
-	if inv_ammo < clip_size:
-		return false
+	return inv_ammo >= clip_size
+
+
+func _try_dual_wield(next=null):
 	
-	var link = Meta.CreateLink(owner, current, 'DualWield')
+	if not next:
+		next = selected_item
+	
+	if not is_instance_valid(next):
+		return
+	
+	if not _has_enough_ammo(next):
+		return
+	
+	var link = Meta.CreateLink(owner, next, 'DualWield')
 	
 	if not link or link._is_invalid():
 		return false
@@ -132,27 +151,25 @@ func _stop_dual_wield(current):
 
 func _next(forward=true, not_empty=false):
 	
-	var next_item
-	
 	if right_hand._is_empty():
 		
 		if forward:
 			
-			next_item = _find_next(-1, not_empty)
+			selected_item = _find_next(-1, not_empty)
 			
-			if next_item:
-				behavior._start_state('ChangeItem', { 'item': next_item })
+			if selected_item:
+				behavior._start_state('ChangeItem')
 		
 		else:
 			
-			next_item = _find_previous(1000, not_empty)
+			selected_item = _find_previous(1000, not_empty)
 			
-			if next_item:
+			if selected_item:
 				
-				if next_item._has_tag('DualWield'):
-					behavior._start_state('DualWieldItem', { 'item': next_item })
+				if selected_item._has_tag('DualWield'):
+					behavior._start_state('DualWieldItem')
 				else:
-					behavior._start_state('ChangeItem', { 'item': next_item })
+					behavior._start_state('ChangeItem')
 				
 			else:
 				
@@ -166,45 +183,44 @@ func _next(forward=true, not_empty=false):
 		
 		if forward:
 			
-			if dual_wield:
+			if dual_wield and _has_enough_ammo(current):
 				
 				if Meta.GetLinks(owner, current, 'DualWield').size():
 					
-					next_item = _find_next(current_rank, not_empty)
+					selected_item = _find_next(current_rank, not_empty)
 					
-					if next_item:
-						behavior._start_state('ChangeItem', { 'item': next_item })
+					if selected_item:
+						behavior._start_state('ChangeItem')
 					else:
 						behavior._start_state('HolsterItem')
 				
 				else:
-					
-					behavior._start_state('DualWieldItem', { 'item': current })
-			
+					behavior._start_state('DualWieldItem')
+				
 			else:
 				
-				next_item = _find_next(current_rank, not_empty)
+				selected_item = _find_next(current_rank, not_empty)
 				
-				if next_item:
-					behavior._start_state('ChangeItem', { 'item': next_item })
+				if selected_item:
+					behavior._start_state('ChangeItem')
+				else:
+					behavior._start_state('HolsterItem')
 		
 		else:
 
-			if dual_wield:
-
-				if _stop_dual_wield(current):
-					return
+			if dual_wield and Meta.GetLinks(owner, current, 'DualWield').size():
+				_stop_dual_wield(current)
 
 			else:
 
-				next_item = _find_previous(current_rank, not_empty)
+				selected_item = _find_previous(current_rank, not_empty)
 
-				if next_item:
+				if selected_item:
 				
-					if next_item._has_tag('DualWield'):
-						behavior._start_state('ChangeItem', { 'item': next_item, 'dual_wield': true })
+					if selected_item._has_tag('DualWield'):
+						behavior._start_state('ChangeItem', { 'dual_wield': true })
 					else:
-						behavior._start_state('ChangeItem', { 'item': next_item })
+						behavior._start_state('ChangeItem')
 				
 				else:
 					behavior._start_state('HolsterItem')

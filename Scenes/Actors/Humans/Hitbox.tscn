@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Actors/StaticBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Responses/Touch.Hitbox.response2.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Actions/SoundSet.Hitbox.tscn" type="PackedScene" id=3]
 
 [node name="Hitbox" instance=ExtResource( 1 )]
 collision_layer = 16
@@ -12,17 +12,5 @@ tags = "Hitbox"
 [node name="TouchResponse" parent="." index="0" instance=ExtResource( 2 )]
 tree_node = NodePath("../Reception")
 
-[node name="DamageSound" parent="." index="1" instance=ExtResource( 3 )]
+[node name="SoundSet" parent="." index="1" instance=ExtResource( 3 )]
 tree = NodePath("../Audio")
-schema = "DamageSound"
-state = "Damage"
-
-[node name="PunchHitSound" parent="." index="2" instance=ExtResource( 3 )]
-tree = NodePath("../Audio")
-schema = "PunchHitSound"
-state = "PunchHit"
-
-[node name="SwordHitSound" parent="." index="3" instance=ExtResource( 3 )]
-tree = NodePath("../Audio")
-schema = "SwordHitSound"
-state = "SwordHit"

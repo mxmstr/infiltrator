@@ -1,8 +1,10 @@
 extends Node
 
-onready var behavior = get_node_or_null('../Behavior')
-onready var chamber = get_node_or_null('../Chamber')
-onready var magazine = get_node_or_null('../Magazine')
+var tree
+
+onready var behavior = get_node_or_null('../../Behavior')
+onready var chamber = get_node_or_null('../../Chamber')
+onready var magazine = get_node_or_null('../../Magazine')
 
 
 func _process(delta):

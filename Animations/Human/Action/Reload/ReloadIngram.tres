@@ -4,7 +4,7 @@
 resource_name = "neo_reference_skeleton|neo_reference_skeleton|ReloadIngramkf2|"
 length = 2.54167
 tracks/0/type = "method"
-tracks/0/path = NodePath("../../ReloadAction")
+tracks/0/path = NodePath("../../ActionSet/ReloadAction")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -235,7 +235,7 @@ tracks/30/keys = {
 } ]
 }
 tracks/31/type = "method"
-tracks/31/path = NodePath("../../ReloadAction")
+tracks/31/path = NodePath("../../ActionSet/ReloadAction")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/imported = false

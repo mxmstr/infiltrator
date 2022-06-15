@@ -10,10 +10,10 @@ var shoot_idle_animations = {}
 var shoot_dual_animations = {}
 var shoot_dual_idle_animations = {}
 
-onready var righthand = get_node_or_null('../RightHandContainer')
-onready var lefthand = get_node_or_null('../LeftHandContainer')
-onready var camera_raycast = get_node_or_null('../CameraRig/Camera')
-onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
+onready var righthand = get_node_or_null('../../RightHandContainer')
+onready var lefthand = get_node_or_null('../../LeftHandContainer')
+onready var camera_raycast = get_node_or_null('../../CameraRig/Camera')
+onready var camera_raycast_target = get_node_or_null('../../CameraRaycastStim/Target')
 
 
 func _use_right_hand_item():

@@ -51,7 +51,7 @@ bone_name = "Foot-R"
 path = NodePath("../Model/Anderson_skeleton")
 bone_name = "Foot-L"
 
-[node name="AnimLayerMovement" parent="." index="94"]
+[node name="AnimLayerMovement" parent="." index="59"]
 parameters/playback = SubResource( 1 )
 
 [editable path="Model"]

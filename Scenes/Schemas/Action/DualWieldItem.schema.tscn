@@ -9,6 +9,7 @@ script = ExtResource( 2 )
 attributes = "{
 	\"*\": {
 		\"clip_start\": 0.05,
+		\"priority\": 1,
 		\"layer\": \"MIXED\",
 		\"switch_mode\": \"Immediate\",
 		\"time_scaled\": false

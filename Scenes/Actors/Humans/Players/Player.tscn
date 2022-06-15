@@ -94,7 +94,7 @@ script = ExtResource( 21 )
 [node name="Bot" type="Node" parent="." index="24"]
 script = ExtResource( 23 )
 
-[node name="AnimLayerMovement" parent="." index="86"]
+[node name="AnimLayerMovement" parent="." index="55"]
 parameters/playback = SubResource( 1 )
 
 [editable path="CameraRig"]

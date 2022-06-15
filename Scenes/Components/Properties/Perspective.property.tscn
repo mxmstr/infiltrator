@@ -54,7 +54,7 @@ viewport_path = NodePath("Viewport2D")
 [sub_resource type="Animation" id=8]
 resource_name = "BulletTime"
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorCorrection:material:shader_param/brightness")
+tracks/0/path = NodePath("Control/ColorCorrection:material:shader_param/brightness")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -66,7 +66,7 @@ tracks/0/keys = {
 "values": [ 1.1 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ColorCorrection:material:shader_param/contrast")
+tracks/1/path = NodePath("Control/ColorCorrection:material:shader_param/contrast")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -78,7 +78,7 @@ tracks/1/keys = {
 "values": [ 1.25 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ColorCorrection:material:shader_param/saturation")
+tracks/2/path = NodePath("Control/ColorCorrection:material:shader_param/saturation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -93,7 +93,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=9]
 resource_name = "Default"
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorCorrection:material:shader_param/brightness")
+tracks/0/path = NodePath("Control/ColorCorrection:material:shader_param/brightness")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -105,7 +105,7 @@ tracks/0/keys = {
 "values": [ 1.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ColorCorrection:material:shader_param/contrast")
+tracks/1/path = NodePath("Control/ColorCorrection:material:shader_param/contrast")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -117,7 +117,7 @@ tracks/1/keys = {
 "values": [ 1.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ColorCorrection:material:shader_param/saturation")
+tracks/2/path = NodePath("Control/ColorCorrection:material:shader_param/saturation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -132,7 +132,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=10]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorCorrection:material:shader_param/brightness")
+tracks/0/path = NodePath("Control/ColorCorrection:material:shader_param/brightness")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -144,7 +144,7 @@ tracks/0/keys = {
 "values": [ 1.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ColorCorrection:material:shader_param/contrast")
+tracks/1/path = NodePath("Control/ColorCorrection:material:shader_param/contrast")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -156,7 +156,7 @@ tracks/1/keys = {
 "values": [ 1.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ColorCorrection:material:shader_param/saturation")
+tracks/2/path = NodePath("Control/ColorCorrection:material:shader_param/saturation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -185,10 +185,12 @@ audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 shadow_atlas_size = 1
 
-[node name="ColorCorrection" type="TextureRect" parent="."]
+[node name="Control" type="AspectRatioContainer" parent="."]
+
+[node name="ColorCorrection" type="TextureRect" parent="Control"]
 material = SubResource( 6 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource( 11 )

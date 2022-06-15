@@ -5,7 +5,7 @@ export(String) var state
 var data = {}
 var new_data = {}
 
-onready var behavior = $'../Behavior'
+onready var behavior = $'../../Behavior'
 
 
 func _ready():

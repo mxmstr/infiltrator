@@ -1,8 +1,8 @@
 extends "res://Scripts/Action.gd"
 
-onready var reception = get_node_or_null('../Reception')
-onready var chamber = get_node_or_null('../Chamber')
-onready var magazine = get_node_or_null('../Magazine')
+onready var reception = get_node_or_null('../../Reception')
+onready var chamber = get_node_or_null('../../Chamber')
+onready var magazine = get_node_or_null('../../Magazine')
 
 
 func _fire_effect(effect_path):

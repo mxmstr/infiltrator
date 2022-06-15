@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/ActionSet.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Action.gd" type="Script" id=3]
+
+[node name="SoundSet" type="Node"]
+script = ExtResource( 1 )
+
+[node name="JumpUpSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "JumpUpSound"
+random = true
+state = "JumpUp"
+
+[node name="JumpDodgeSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "JumpDodgeSound"
+random = true
+state = "JumpDodge"
+
+[node name="JumpBackwardSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "JumpBackwardSound"
+random = true
+state = "JumpBackward"
+
+[node name="RollSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "RollSound"
+state = "Roll"
+
+[node name="PunchSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "PunchSound"
+state = "Punch"
+
+[node name="KickSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "KickSound"
+state = "Kick"
+
+[node name="SwordMeleeSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "SwordMeleeSound"
+random = true
+state = "SwordMelee"
+
+[node name="ThrowGrenadeSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "ThrowGrenadeSound"
+state = "ThrowGrenade"
+
+[node name="OofSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "Oof"
+random = true
+state = "Oof"
+
+[node name="PickupWeaponSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "PickupWeaponSound"
+state = "PickupWeapon"
+
+[node name="PickupAmmoSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "PickupAmmoSound"
+state = "PickupAmmo"
+
+[node name="BulletTimeStartSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "BulletTimeStartSound"
+state = "BulletTimeStart"
+
+[node name="BulletTimeEndSound" type="Node" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+schema = "BulletTimeEndSound"
+state = "BulletTimeEnd"

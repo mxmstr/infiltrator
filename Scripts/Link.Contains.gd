@@ -137,6 +137,9 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
+	if _is_invalid():
+		return
+	
 	_reparent()
 
 

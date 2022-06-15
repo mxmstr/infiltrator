@@ -1,0 +1,218 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Action.Victory.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Action.SwordMelee.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Action.WallRun.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Components/Actions/ShootDodgeAir.action2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/Actions/Punch.action2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Actions/Dive.action2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Actions/Victory.action2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Actions/Reload.action2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Components/Actions/JumpUp.action2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Components/Actions/JumpRight.action2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Components/Actions/Default.action2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Components/Actions/JumpLeft.action2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Components/Actions/ChangeItem.action2.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Components/Actions/Primary.action2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Components/Actions/Die.action2.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Components/Actions/WallRun.action2.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Components/Actions/SwordMelee.action2.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Components/Actions/JumpBackward.action2.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scripts/Action.Punch.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Action.Reload.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/Action.Dive.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/Action.ChangeItem.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/Action.Primary.gd" type="Script" id=24]
+[ext_resource path="res://Scripts/Action.gd" type="Script" id=25]
+[ext_resource path="res://Scripts/Action.ShootDodgeAir.gd" type="Script" id=26]
+[ext_resource path="res://Scripts/ActionSet.gd" type="Script" id=27]
+
+[node name="ActionSet" type="Node"]
+script = ExtResource( 27 )
+
+[node name="DefaultAction" type="Node" parent="." instance=ExtResource( 12 )]
+script = ExtResource( 25 )
+schema = "DefaultAction"
+state = "Default"
+
+[node name="PrimaryAction" type="Node" parent="." instance=ExtResource( 15 )]
+script = ExtResource( 24 )
+shoot_schema = "Shoot"
+
+[node name="PunchAction" type="Node" parent="." instance=ExtResource( 6 )]
+script = ExtResource( 20 )
+schema = "Punch"
+schema_idle = "PunchIdle"
+schema_kick = "Kick"
+
+[node name="SwordMeleeAction" type="Node" parent="." instance=ExtResource( 18 )]
+script = ExtResource( 3 )
+schema = "SwordMelee"
+random = true
+state = "SwordMelee"
+
+[node name="ChangeItemAction" type="Node" parent="." instance=ExtResource( 14 )]
+script = ExtResource( 23 )
+schema = "ChangeItem"
+state = "ChangeItem"
+
+[node name="DualWieldItemAction" type="Node" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 25 )
+schema = "DualWieldItem"
+state = "DualWieldItem"
+
+[node name="HolsterItemAction" type="Node" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 25 )
+schema = "HolsterItem"
+state = "HolsterItem"
+
+[node name="PreJumpAction" type="Node" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 25 )
+schema = "PreJump"
+state = "PreJump"
+
+[node name="JumpUpAction" type="Node" parent="." instance=ExtResource( 10 )]
+script = ExtResource( 25 )
+schema = "JumpUp"
+state = "JumpUp"
+
+[node name="JumpBackwardAction" type="Node" parent="." instance=ExtResource( 19 )]
+script = ExtResource( 25 )
+schema = "JumpBackward"
+state = "JumpBackward"
+
+[node name="JumpBackwardLeftAction" type="Node" parent="." instance=ExtResource( 13 )]
+script = ExtResource( 25 )
+schema = "JumpBackwardLeft"
+state = "JumpBackwardLeft"
+
+[node name="JumpBackwardRightAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "JumpBackwardRight"
+state = "JumpBackwardRight"
+
+[node name="JumpLeftAction" type="Node" parent="." instance=ExtResource( 13 )]
+script = ExtResource( 25 )
+schema = "JumpLeft"
+state = "JumpLeft"
+
+[node name="JumpRightAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "JumpRight"
+state = "JumpRight"
+
+[node name="AirDodgeLeftAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "AirDodgeLeft"
+state = "AirDodgeLeft"
+
+[node name="AirDodgeRightAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "AirDodgeRight"
+state = "AirDodgeRight"
+
+[node name="AirDodgeBackwardAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "AirDodgeBackward"
+state = "AirDodgeBackward"
+
+[node name="AirDodgeBackwardLeftAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "AirDodgeBackwardLeft"
+state = "AirDodgeBackwardLeft"
+
+[node name="AirDodgeBackwardRightAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "AirDodgeBackwardRight"
+state = "AirDodgeBackwardRight"
+
+[node name="RollForwardAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "RollForward"
+state = "RollForward"
+
+[node name="RollForwardLeftAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "RollForwardLeft"
+state = "RollForwardLeft"
+
+[node name="RollForwardRightAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "RollForwardRight"
+state = "RollForwardRight"
+
+[node name="RollBackwardAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "RollBackward"
+state = "RollBackward"
+
+[node name="RollBackwardLeftAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "RollBackwardLeft"
+state = "RollBackwardLeft"
+
+[node name="RollBackwardRightAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "RollBackwardRight"
+state = "RollBackwardRight"
+
+[node name="RollLeftAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "RollLeft"
+state = "RollLeft"
+
+[node name="RollRightAction" type="Node" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 25 )
+schema = "RollRight"
+state = "RollRight"
+
+[node name="WallRunAction" type="Node" parent="." instance=ExtResource( 17 )]
+script = ExtResource( 4 )
+schema = "WallRun"
+state = "WallRun"
+
+[node name="DiveAction" type="Node" parent="." instance=ExtResource( 7 )]
+script = ExtResource( 22 )
+schema = "Dive"
+state = "Dive"
+
+[node name="DiveGetUpAction" type="Node" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 25 )
+schema = "DiveGetUp"
+state = "DiveGetUp"
+
+[node name="ShootDodgeStandAction" type="Node" parent="." instance=ExtResource( 7 )]
+script = ExtResource( 22 )
+schema = "ShootDodgeStand"
+state = "ShootDodgeStand"
+
+[node name="ShootDodgeAirAction" type="Node" parent="." instance=ExtResource( 5 )]
+script = ExtResource( 26 )
+schema = "ShootDodgeAir"
+state = "ShootDodgeAir"
+
+[node name="ReloadAction" type="Node" parent="." instance=ExtResource( 9 )]
+script = ExtResource( 21 )
+state = "Reload"
+
+[node name="DieAction" type="Node" parent="." instance=ExtResource( 16 )]
+script = ExtResource( 25 )
+schema = "Die"
+random = true
+state = "Die"
+
+[node name="DieExplosionAction" type="Node" parent="." instance=ExtResource( 16 )]
+script = ExtResource( 25 )
+schema = "DieExplosion"
+random = true
+state = "DieExplosion"
+
+[node name="PostDeathAction" type="Node" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 25 )
+schema = "PostDeath"
+state = "PostDeath"
+
+[node name="VictoryAction" type="Node" parent="." instance=ExtResource( 8 )]
+script = ExtResource( 2 )
+state = "Victory"

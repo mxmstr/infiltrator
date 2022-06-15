@@ -4,7 +4,7 @@
 [ext_resource path="res://Models/Items/Max Payne Weapons/Grenade/Grenade.obj" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Components/Stimuli/Contact.RigidBody.stimulus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/Responses/Touch.Grenade.response2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/Actions/SoundSet.Firearm.Grenade.tscn" type="PackedScene" id=5]
 
 [sub_resource type="PhysicsMaterial" id=2]
 bounce = 0.75
@@ -23,13 +23,11 @@ transform = Transform( 0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0 )
 [node name="Collision" type="CollisionShape" parent="." index="1"]
 shape = SubResource( 1 )
 
-[node name="ContactStim" parent="." index="2" instance=ExtResource( 3 )]
-stim_type = "Touch"
-
-[node name="ImpactSound" parent="." index="3" instance=ExtResource( 5 )]
+[node name="SoundSet2" parent="." index="2" instance=ExtResource( 5 )]
 tree = NodePath("../Audio")
-schema = "GrenadeImpactSound"
-state = "Impact"
+
+[node name="ContactStim" parent="." index="3" instance=ExtResource( 3 )]
+stim_type = "Touch"
 
 [node name="TouchResponse" parent="." index="4" instance=ExtResource( 4 )]
 tree_node = NodePath("../Reception")
@@ -45,14 +43,16 @@ release_direction = Vector3( 0, 0, 0 )
 release_exclude_parent = false
 required_tags = "Explosion"
 
-[node name="FireProjectileSound" parent="." index="10"]
-tree = NodePath("")
+[node name="FireProjectileSound" parent="SoundSet" index="0"]
 schema = ""
+state = ""
 
-[node name="ReloadSound" parent="." index="11"]
-tree = NodePath("")
+[node name="ReloadSound" parent="SoundSet" index="1"]
 schema = ""
+state = ""
 
-[node name="EmptySound" parent="." index="12"]
-tree = NodePath("")
+[node name="EmptySound" parent="SoundSet" index="2"]
 schema = ""
+state = ""
+
+[editable path="SoundSet"]

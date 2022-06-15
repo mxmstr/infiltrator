@@ -6,10 +6,10 @@ const dual_wield_items = ['Beretta', 'DesertEagle', 'Ingram', 'SawedoffShotgun']
 var animations = {}
 var dual_animations = {}
 
-onready var righthand = get_node_or_null('../RightHandContainer')
-onready var lefthand = get_node_or_null('../LeftHandContainer')
-onready var camera_raycast = get_node_or_null('../CameraRig/Camera')
-onready var camera_raycast_target = get_node_or_null('../CameraRaycastStim/Target')
+onready var righthand = get_node_or_null('../../RightHandContainer')
+onready var lefthand = get_node_or_null('../../LeftHandContainer')
+onready var camera_raycast = get_node_or_null('../../CameraRig/Camera')
+onready var camera_raycast_target = get_node_or_null('../../CameraRaycastStim/Target')
 
 
 func _play_reload_sound():

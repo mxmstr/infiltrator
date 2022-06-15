@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Particles.property.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Textures/spark.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/Actions/ActionSet.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpatialMaterial" id=5]
 flags_transparent = true
@@ -42,9 +43,12 @@ explosiveness = 0.91
 process_material = SubResource( 7 )
 draw_pass_1 = SubResource( 6 )
 
-[node name="BulletHitSound" type="Node" parent="."]
-script = ExtResource( 3 )
+[node name="SoundSet" parent="." instance=ExtResource( 7 )]
 tree = NodePath("../Audio")
+
+[node name="BulletHitSound" type="Node" parent="SoundSet"]
+script = ExtResource( 3 )
+tree = NodePath("../../Audio")
 schema = "BulletHitSound"
 random = true
 state = "BulletHit"

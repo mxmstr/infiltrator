@@ -1,14 +1,11 @@
 extends "res://Scripts/Action.gd"
 
-onready var inventory = $'../Inventory'
+onready var inventory = $'../../Inventory'
 
 
 func _select_item():
 	
-	if not is_instance_valid(data.item):
-		return
-	
-	inventory._go_to_next(data.item)
+	inventory._go_to_next()
 	
 	if data.has('dual_wield'):
-		behavior._start_state('DualWieldItem', { 'item': data.item })
+		behavior._start_state('DualWieldItem')

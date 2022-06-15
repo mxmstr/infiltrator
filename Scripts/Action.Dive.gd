@@ -9,11 +9,11 @@ var y_min
 var x_value_range
 var y_value_range
 
-onready var movement = $'../Movement'
-onready var stance = $'../Stance'
-onready var camera_rig = $'../CameraRig'
-onready var camera = $'../CameraRig/Camera'
-onready var camera_raycast = $'../CameraRaycastStim'
+onready var movement = $'../../Movement'
+onready var stance = $'../../Stance'
+onready var camera_rig = $'../../CameraRig'
+onready var camera = $'../../CameraRig/Camera'
+onready var camera_raycast = $'../../CameraRaycastStim'
 
 
 func _set_blendspace_position():

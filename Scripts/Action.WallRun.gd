@@ -9,8 +9,8 @@ var y_min
 var x_value_range
 var y_value_range
 
-onready var movement = $'../Movement'
-onready var stance = $'../Stance'
+onready var movement = $'../../Movement'
+onready var stance = $'../../Stance'
 
 
 func _on_test_off_wall_timeout():

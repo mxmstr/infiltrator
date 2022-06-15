@@ -94,7 +94,8 @@ func _respawn(actor):
 	
 	var sorted_markers = markers.duplicate()
 	sorted_markers.sort_custom(Meta.SortActors.new(actor), '_descending')
-	var marker = sorted_markers[0]
+	sorted_markers.slice(0, 2)
+	var marker = sorted_markers[randi() % 3]
 #	var current_pos = actor.global_transform.origin
 #	var marker_idx = randi() % markers.size()
 #	var marker = markers[marker_idx]
@@ -121,7 +122,7 @@ func _add_viewport(actor, data):
 	perspective._init_viewport()
 	
 #	perspective.get_node('Viewport').world = get_tree().root.world
-
+	
 	perspective.mouse_device = data.mouse
 	perspective.keyboard_device = data.keyboard
 	perspective.gamepad_device = data.gamepad
