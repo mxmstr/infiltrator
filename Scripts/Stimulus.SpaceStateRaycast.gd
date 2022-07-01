@@ -44,6 +44,8 @@ func _ready():
 
 func _physics_process(delta):
 	
+	return
+	
 	if not active or owner.is_queued_for_deletion() or (collision and collision.disabled):
 		return
 

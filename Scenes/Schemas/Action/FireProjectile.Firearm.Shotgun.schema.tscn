@@ -5,33 +5,21 @@
 [sub_resource type="Animation" id=1]
 resource_name = "FireProjectile.Shotgun"
 tracks/0/type = "method"
-tracks/0/path = NodePath("../../FireProjectileAction")
+tracks/0/path = NodePath("../../Chamber")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "_clone_and_shoot"
-}, {
-"args": [  ],
-"method": "_clone_and_shoot"
-}, {
-"args": [  ],
-"method": "_clone_and_shoot"
-}, {
-"args": [  ],
-"method": "_clone_and_shoot"
-}, {
-"args": [  ],
-"method": "_clone_and_shoot"
+"method": "_release_all"
 } ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("../../Chamber")
+tracks/1/path = NodePath("../../FireAudio")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -40,36 +28,8 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "_release_all"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("../../FireAudio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
 "args": [ "FireProjectile" ],
 "method": "_start_state"
-} ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("../../FireProjectileAction")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ 5 ],
-"method": "_shoot_array"
 } ]
 }
 

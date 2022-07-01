@@ -23,3 +23,4 @@ required_tags = "Bullet Rifle"
 [node name="Chamber" parent="." index="3"]
 transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0.0817747, 0.614824 )
 release_speed = 40.0
+release_angular_spread = Vector2( 0.1, 0.1 )

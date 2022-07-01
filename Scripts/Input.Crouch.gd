@@ -68,12 +68,12 @@ func _roll():
 #
 
 
-func _on_just_deactivated():
-	
-	if stance.stance == stance.StanceType.STANDING:
-		stance._set_stance_input(stance.StanceType.CROUCHING)
-	else:
-		stance._set_stance_input(stance.StanceType.STANDING)
+#func _on_just_deactivated():
+#
+#	if stance.stance == stance.StanceType.STANDING:
+#		stance._set_stance_input(stance.StanceType.CROUCHING)
+#	else:
+#		stance._set_stance_input(stance.StanceType.STANDING)
 
 
 func _process(delta):

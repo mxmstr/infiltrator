@@ -2,8 +2,8 @@ extends 'res://Scripts/Prop.Movement.gd'
 
 const gravity = 9.8
 const max_slides = 4
-const accel = 2.0
-const deaccel = 5.0
+const accel = 3.0
+const deaccel = 6.0
 const angular_accel = 0.02#0.05
 const angular_deaccel = 9.0
 const angular_vertical_speed_mult = 0.5

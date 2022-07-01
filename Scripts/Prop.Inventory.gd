@@ -167,7 +167,7 @@ func _next(forward=true, not_empty=false):
 			if selected_item:
 				
 				if selected_item._has_tag('DualWield'):
-					behavior._start_state('DualWieldItem')
+					behavior._start_state('ChangeItem', { 'dual_wield': true })
 				else:
 					behavior._start_state('ChangeItem')
 				
@@ -195,6 +195,8 @@ func _next(forward=true, not_empty=false):
 						behavior._start_state('HolsterItem')
 				
 				else:
+					
+					selected_item = current
 					behavior._start_state('DualWieldItem')
 				
 			else:

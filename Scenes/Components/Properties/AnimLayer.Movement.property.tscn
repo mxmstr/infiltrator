@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/AnimationTree.BlendSpace.gd" type="Script" id=2]
 [ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
@@ -60,21 +60,41 @@ chain = false
 schema = "Stand"
 custom_script = ""
 
+[sub_resource type="AnimationNodeAnimation" id=26]
+scale = 1.75
+animation = "DefaultAnim"
+script = ExtResource( 5 )
+chain = false
+schema = "Sprint"
+custom_script = ""
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+scale = 1.75
+animation = "WalkBackward"
+script = ExtResource( 5 )
+chain = false
+schema = "WalkBackward"
+custom_script = ""
+
 [sub_resource type="AnimationNodeBlendSpace2D" id=9]
 blend_point_0/node = SubResource( 3 )
-blend_point_0/pos = Vector2( -1, 0 )
+blend_point_0/pos = Vector2( -0.6, 0 )
 blend_point_1/node = SubResource( 4 )
-blend_point_1/pos = Vector2( 1, 0 )
+blend_point_1/pos = Vector2( 0.6, 0 )
 blend_point_2/node = SubResource( 5 )
-blend_point_2/pos = Vector2( 0, -0.3 )
+blend_point_2/pos = Vector2( 0, -0.2 )
 blend_point_3/node = SubResource( 6 )
-blend_point_3/pos = Vector2( 0, 0.3 )
+blend_point_3/pos = Vector2( 0, 0.2 )
 blend_point_4/node = SubResource( 7 )
-blend_point_4/pos = Vector2( 0, 1 )
+blend_point_4/pos = Vector2( 0, 0.6 )
 blend_point_5/node = SubResource( 8 )
-blend_point_5/pos = Vector2( 0, -1 )
+blend_point_5/pos = Vector2( 0, -0.6 )
 blend_point_6/node = SubResource( 17 )
 blend_point_6/pos = Vector2( 0, 0 )
+blend_point_7/node = SubResource( 26 )
+blend_point_7/pos = Vector2( 0, 1 )
+blend_point_8/node = SubResource( 27 )
+blend_point_8/pos = Vector2( 0, -1 )
 script = ExtResource( 2 )
 blendspace = ""
 chain = false
@@ -206,7 +226,7 @@ anim_player = NodePath("AnimationPlayer")
 process_mode = 2
 parameters/playback = SubResource( 24 )
 parameters/Default/blend_position = 0.00661157
-parameters/Default/0/blend_position = Vector2( 0.00282753, 0.0289018 )
+parameters/Default/0/blend_position = Vector2( -0.00120723, 0.982857 )
 parameters/Default/1/blend_position = Vector2( 0, 0 )
 script = SubResource( 25 )
 

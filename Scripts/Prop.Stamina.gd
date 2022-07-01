@@ -2,8 +2,15 @@ extends Node
 
 export var hp = 100 setget _set_hp
 
+var invulnerable = false setget _set_invulnerable
+
 signal damaged
 signal just_died
+
+
+func _set_invulnerable(new_invulnerable):
+	
+	invulnerable = new_invulnerable
 
 
 func _set_hp(new_hp):
@@ -13,6 +20,9 @@ func _set_hp(new_hp):
 
 
 func _damage(amount):
+	
+	if invulnerable:
+		return
 	
 	var current = hp
 	

@@ -5,6 +5,7 @@ const drain_rate = 11.0
 const regen_rate = 5.0#2.0
 const cooldown_time = 3.0
 
+var locked = false
 var active = false
 var cooldown = false
 var amount = 100.0 setget _set_amount
@@ -23,6 +24,12 @@ func _set_amount(new_amount):
 	emit_signal('amount_changed', amount)
 
 
+func _input_start():
+	
+	if not locked:
+		_start()
+
+
 func _start():
 	
 	if cooldown:
@@ -32,6 +39,12 @@ func _start():
 	perspective_anim_player.play('BulletTime')
 	ui_audio._start_state('BulletTimeStart')
 	bullet_time_server._start(owner)
+
+
+func _input_stop():
+	
+	if not locked:
+		_stop()
 
 
 func _stop():

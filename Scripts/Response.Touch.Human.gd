@@ -2,7 +2,7 @@ extends 'res://Scripts/Response.gd'
 
 onready var righthand = get_node_or_null('../RightHandContainer')
 onready var inventory = get_node_or_null('../InventoryContainer')
-onready var foley_audio = get_node_or_null('../FoleyAudio')
+onready var ui_audio = get_node_or_null('../UIAudio')
 onready var stamina = get_node_or_null('../Stamina')
 
 
@@ -61,7 +61,7 @@ func _on_stimulate(stim, data):
 		
 		if data.source._has_tag('Item'):
 			
-			foley_audio._start_state('PickupWeapon')
+			ui_audio._start_state('PickupWeapon')
 			
 			var source_name = data.source.base_name
 			var exists = false
@@ -82,7 +82,7 @@ func _on_stimulate(stim, data):
 		
 		elif data.source._has_tag('Ammo'):
 			
-			foley_audio._start_state('PickupAmmo')
+			ui_audio._start_state('PickupAmmo')
 			
 			var kind = data.source._get_tag('Kind')
 			var path = data.source._get_tag('Path')

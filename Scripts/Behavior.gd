@@ -132,8 +132,8 @@ func _ready():
 	if not is_instance_valid(self):
 		return
 	
-	#yield(get_tree(), 'idle_frame')
-	
 	call_deferred('_set_skeleton')
+	
+	#yield(get_tree(), 'idle_frame')
 	
 	call_deferred('emit_signal', 'action', default_state, {})

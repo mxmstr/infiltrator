@@ -5,11 +5,15 @@ enum Mode {
 	EightWay
 }
 
-export(String) var torso_bone
-export(Array, String) var action_bones
-
+const torso_bone = 'Torso'
+const upper_body_bones = ['shoulders', 'Neck', 'Head', 'UpArm-L', 'UpArm-R', 'LoArm-L', 'LoArm-R', 'Hand-L', 'Hand-R', 'Gun']
+const left_arm_root = 'UpArm-L'
+const left_arm_bones = ['LoArm-L', 'Hand-L']
+const right_arm_root = 'UpArm-R'
+const right_arm_bones = ['LoArm-R', 'Hand-R', 'Gun']
 const blend_time_max = 0.05
 
+var arms_only = false
 var layer = Meta.BlendLayer.MOVEMENT setget _set_layer
 var can_use_item = false
 var can_zoom = false
@@ -38,6 +42,7 @@ onready var viewport = $'../Perspective/Viewport2D'
 onready var movement = get_node_or_null('../Movement')
 onready var perspective = get_node_or_null('../Perspective')
 onready var stance = get_node_or_null('../Stance')
+onready var stamina = get_node_or_null('../Stamina')
 onready var camera_rig = get_node_or_null('../CameraRig')
 onready var camera = get_node_or_null('../CameraRig/Camera')
 onready var camera_mode = get_node_or_null('../CameraMode')
@@ -135,10 +140,19 @@ func _cache_action_pose():
 		
 		var bone_name = skeleton.get_bone_name(idx)
 		
-		if bone_name == torso_bone:
-			cached_action_pose.append(skeleton.get_bone_global_pose_no_override(idx))
+		if arms_only:
+			
+			if bone_name in [left_arm_root, right_arm_root]:
+				cached_action_pose.append(skeleton.get_bone_global_pose_no_override(idx))
+			else:
+				cached_action_pose.append(skeleton.get_bone_pose(idx))
+		
 		else:
-			cached_action_pose.append(skeleton.get_bone_pose(idx))
+			
+			if bone_name == torso_bone:
+				cached_action_pose.append(skeleton.get_bone_global_pose_no_override(idx))
+			else:
+				cached_action_pose.append(skeleton.get_bone_pose(idx))
 
 
 func _cache_blend_pose():
@@ -161,15 +175,30 @@ func _apply_action_pose():
 		
 		var bone_name = skeleton.get_bone_name(idx)
 		
-		if bone_name == torso_bone:
+		if arms_only:
 			
-			var global_pose = skeleton.get_bone_global_pose_no_override(idx)
-			cached_action_pose[idx] = Transform(cached_action_pose[idx].basis, global_pose.origin)
-			skeleton.set_bone_global_pose_override(idx, cached_action_pose[idx], 1.0, true)
+			if bone_name in [left_arm_root, right_arm_root]:
+
+				var global_pose = skeleton.get_bone_global_pose_no_override(idx)
+				cached_action_pose[idx] = Transform(cached_action_pose[idx].basis, global_pose.origin)
+
+				skeleton.set_bone_global_pose_override(idx, cached_action_pose[idx], 1.0, true)
+
+			elif bone_name in left_arm_bones + right_arm_bones:
+
+				skeleton.set_bone_pose(idx, cached_action_pose[idx])
+		
+		else:
 			
-		elif bone_name in action_bones:
+			if bone_name == torso_bone:
+				
+				var global_pose = skeleton.get_bone_global_pose_no_override(idx)
+				cached_action_pose[idx] = Transform(cached_action_pose[idx].basis, global_pose.origin)
+				skeleton.set_bone_global_pose_override(idx, cached_action_pose[idx], 1.0, true)
 			
-			skeleton.set_bone_pose(idx, cached_action_pose[idx])
+			elif bone_name in upper_body_bones:
+				
+				skeleton.set_bone_pose(idx, cached_action_pose[idx])
 
 
 func _apply_blend_pose():
@@ -181,18 +210,18 @@ func _apply_blend_pose():
 		
 		var bone_name = skeleton.get_bone_name(idx)
 		
-#		if bone_name == torso_bone:
-#
-#			var global_pose = skeleton.get_bone_global_pose_no_override(idx)
-#			cached_blend_pose[idx] = Transform(cached_blend_pose[idx].basis, global_pose.origin)
-#			global_pose = global_pose.interpolate_with(cached_blend_pose[idx], blend_time / blend_time_max)
-#			skeleton.set_bone_global_pose_override(idx, global_pose, 1.0, true)
-#
-#		elif bone_name in action_bones:
-		
-		var pose = skeleton.get_bone_pose(idx)
-		pose = pose.interpolate_with(cached_blend_pose[idx], blend_time / blend_time_max)
-		skeleton.set_bone_pose(idx, pose)
+		if bone_name == torso_bone:
+
+			var global_pose = skeleton.get_bone_global_pose_no_override(idx)
+			cached_blend_pose[idx] = Transform(cached_blend_pose[idx].basis, global_pose.origin)
+			global_pose = global_pose.interpolate_with(cached_blend_pose[idx], blend_time / blend_time_max)
+			skeleton.set_bone_global_pose_override(idx, global_pose, 1.0, true)
+
+		elif bone_name in upper_body_bones:
+			
+			var pose = skeleton.get_bone_pose(idx)
+			pose = pose.interpolate_with(cached_blend_pose[idx], blend_time / blend_time_max)
+			skeleton.set_bone_pose(idx, pose)
 	
 	blend_time = clamp(blend_time - get_process_delta_time(), 0, blend_time_max)
 
@@ -229,6 +258,7 @@ func _apply_human_attributes(attributes):
 	var hud_mode_state = attributes.hud_mode if attributes.has('hud_mode') else 'Default'
 	var input_context = attributes.input_context if attributes.has('input_context') else 'Default'
 	var gravity_scale = attributes.gravity_scale if attributes.has('gravity_scale') else 1.0
+	var invulnerable = attributes.invulnerable if attributes.has('invulnerable') else false
 	
 	_set_layer(new_layer)
 	stance.lock_stance = lock_stance
@@ -238,6 +268,7 @@ func _apply_human_attributes(attributes):
 	weapon_target_lock.align_model = align_model_to_aim
 	movement.root_motion_use_model = root_motion_use_model
 	movement.gravity_scale = gravity_scale
+	stamina.invulnerable = invulnerable
 	perspective.fp_skeleton_offset_enable = fp_skeleton_offset
 	camera_mode._start_state(camera_mode_state)
 	hud_mode._start_state(hud_mode_state)
@@ -420,7 +451,7 @@ func _physics_process(delta):
 
 	if not is_action:
 		anim_layer_movement.advance(delta)
-
+#
 	if is_mixed:
 		_apply_action_pose()
 	

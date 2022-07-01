@@ -20,7 +20,8 @@ func _ready():
 	
 	clone_contains_link.connect('destroyed', self, '_destroy')
 	from_node.get_node('RightHandContainer').connect('item_removed', self, '_on_item_removed')
-	from_node.get_node('ReloadAction')._load_lefthand_magazine()
+	# TODO Attempt to call function '_load_lefthand_magazine' in base 'null instance' on a null instance.
+	from_node.get_node('ActionSet/ReloadAction')._load_lefthand_magazine()
 
 
 func _destroy():

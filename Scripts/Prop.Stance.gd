@@ -37,7 +37,8 @@ export(SpeedType) var speed = SpeedType.RUNNING
 export(LeanDirection) var lean = LeanDirection.DEFAULT
 export(Mode) var mode = Mode.DEFAULT
 
-export var max_speed = 5.0
+export var max_speed = 3.25
+export var sprint_mult = 1.5
 export var walk_mult = 0.3
 export var crouch_mult = 0.25
 export var crawl_mult = 0.15
@@ -178,14 +179,21 @@ func _physics_process(delta):
 			velocity.z = (sign(forward_speed) * y2 * 1.0/sqrt(x2 + y2))
 	
 	
-	velocity *= max_speed * speed_mult
-	
 	if mode == Mode.DEFAULT:
+		
+		velocity *= max_speed * speed_mult
+		
+		if stance == StanceType.STANDING \
+			and Vector3(0, 0, 1).angle_to(velocity) < 0.1 \
+			and movement.movement.length() > (max_speed * 0.95):
+			velocity *= sprint_mult
 		
 		movement._set_speed(velocity.length())
 		movement._set_direction(velocity.normalized(), true)
 	
 	elif mode == Mode.WALLRUN:
+		
+		velocity *= max_speed
 		
 		var global_rotation = owner.global_transform.basis
 		var global_velocity = global_rotation.xform(velocity)

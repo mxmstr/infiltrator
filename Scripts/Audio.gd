@@ -3,6 +3,7 @@ extends Spatial
 export var default_state = 'Default'
 export(String) var bus
 export var level_modifier = 0.0
+export var time_scaled = true
 
 var switch_mode = 'Immediate'
 
@@ -17,7 +18,8 @@ var current_state = ''
 
 func _on_bullet_time_started():
 	
-	audio_stream.pitch_scale = Engine.time_scale
+	if time_scaled:
+		audio_stream.pitch_scale = Engine.time_scale
 
 
 func _on_bullet_time_ended():
@@ -81,4 +83,6 @@ func _ready():
 	audio_stream.bus = bus
 	audio_stream.pitch_scale = Engine.time_scale
 	
-	emit_signal('action', default_state, {})
+	yield(get_tree(), 'idle_frame')
+	
+	call_deferred('emit_signal', 'action', default_state, {})

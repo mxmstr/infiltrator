@@ -4,13 +4,6 @@ const test_off_wall_time = 0.25
 
 var active = false
 var test_off_wall = false
-var x_min
-var y_min
-var x_value_range
-var y_value_range
-
-onready var movement = $'../../Movement'
-onready var stance = $'../../Stance'
 
 
 func _on_test_off_wall_timeout():

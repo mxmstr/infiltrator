@@ -248,10 +248,10 @@ func _process(delta):
 			camera_raycast.move_target = true
 		
 		
-		if align_model:#behavior.current_state in ['Default', 'UseReact', 'ShootIdle', 'Dive']:
+		if align_model:
 			
-			var target_pos = camera_raycast_target.global_transform.origin
 			var model_pos = model.global_transform.origin
+			var target_pos = model_pos - camera_raycast.global_transform.basis.z
 			target_pos.y = model_pos.y
 			
 			if target_pos != model_pos:

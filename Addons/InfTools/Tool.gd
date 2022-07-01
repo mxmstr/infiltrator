@@ -171,12 +171,14 @@ func _load_stream(selected, file, anim_name):
 
 func on_loadaudio_pressed():
 	
+	prints('asdf1')
 	if not selection.get_selected_nodes().empty():
 		
 		var selected = selection.get_selected_nodes()[0]
 		
 		if selected is AnimationPlayer:
 			
+			prints(dock.get_node('LoadAudioInput').text)
 			if dock.get_node('LoadAudioInput').text.ends_with('.wav'):
 				
 				_load_stream(selected, dock.get_node('LoadAudioInput').text, 

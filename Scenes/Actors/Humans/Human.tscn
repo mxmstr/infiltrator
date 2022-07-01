@@ -193,6 +193,9 @@ tree = NodePath("../../UIAudio")
 [node name="BulletTimeEndSound" parent="SoundSet" index="12"]
 tree = NodePath("../../UIAudio")
 
+[node name="ShootDodgeStingerSound" parent="SoundSet" index="13"]
+tree = NodePath("../../StingerAudio")
+
 [node name="TouchResponse" parent="." index="31" instance=ExtResource( 24 )]
 tree_node = NodePath("../Reception")
 
@@ -213,6 +216,10 @@ bus = "Voice"
 [node name="FeetAudio" parent="." index="37" instance=ExtResource( 28 )]
 
 [node name="UIAudio" parent="." index="38" instance=ExtResource( 28 )]
+time_scaled = false
+
+[node name="StingerAudio" parent="." index="39" instance=ExtResource( 28 )]
+time_scaled = false
 
 [editable path="CameraRig"]
 [editable path="SoundSet"]
