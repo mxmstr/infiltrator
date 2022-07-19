@@ -38,7 +38,7 @@ export(LeanDirection) var lean = LeanDirection.DEFAULT
 export(Mode) var mode = Mode.DEFAULT
 
 export var max_speed = 3.25
-export var sprint_mult = 1.5
+export var sprint_mult = 1.75
 export var walk_mult = 0.3
 export var crouch_mult = 0.25
 export var crawl_mult = 0.15
@@ -184,7 +184,7 @@ func _physics_process(delta):
 		velocity *= max_speed * speed_mult
 		
 		if stance == StanceType.STANDING \
-			and Vector3(0, 0, 1).angle_to(velocity) < 0.1 \
+			and Vector3(0, 0, 1).angle_to(velocity) < 0.25 \
 			and movement.movement.length() > (max_speed * 0.95):
 			velocity *= sprint_mult
 		

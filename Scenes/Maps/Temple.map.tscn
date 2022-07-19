@@ -62,16 +62,17 @@ __meta__ = {
 [node name="Map" parent="Navmesh" instance=ExtResource( 9 )]
 tags = "Map"
 
+[node name="TouchResponse" parent="Navmesh/Map/Reception" index="0" instance=ExtResource( 10 )]
+
 [node name="Model" parent="Navmesh/Map" instance=ExtResource( 3 )]
 
 [node name="Collision" type="CollisionShape" parent="Navmesh/Map"]
 shape = SubResource( 42 )
 
-[node name="TouchResponse" parent="Navmesh/Map" instance=ExtResource( 10 )]
-tree_node = NodePath("../Reception")
-
 [node name="Door" parent="Navmesh" instance=ExtResource( 9 )]
 visible = false
+
+[node name="TouchResponse" parent="Navmesh/Door/Reception" index="0" instance=ExtResource( 10 )]
 
 [node name="Model" parent="Navmesh/Door" instance=ExtResource( 5 )]
 skeleton = NodePath("../..")
@@ -80,11 +81,10 @@ skeleton = NodePath("../..")
 shape = SubResource( 43 )
 disabled = true
 
-[node name="TouchResponse" parent="Navmesh/Door" instance=ExtResource( 10 )]
-tree_node = NodePath("../Reception")
-
 [node name="Door1" parent="Navmesh" instance=ExtResource( 9 )]
 visible = false
+
+[node name="TouchResponse" parent="Navmesh/Door1/Reception" index="0" instance=ExtResource( 10 )]
 
 [node name="Model" parent="Navmesh/Door1" instance=ExtResource( 11 )]
 skeleton = NodePath("../..")
@@ -93,11 +93,10 @@ skeleton = NodePath("../..")
 shape = SubResource( 44 )
 disabled = true
 
-[node name="TouchResponse" parent="Navmesh/Door1" instance=ExtResource( 10 )]
-tree_node = NodePath("../Reception")
-
 [node name="Door2" parent="Navmesh" instance=ExtResource( 9 )]
 visible = false
+
+[node name="TouchResponse" parent="Navmesh/Door2/Reception" index="0" instance=ExtResource( 10 )]
 
 [node name="Model" parent="Navmesh/Door2" instance=ExtResource( 6 )]
 skeleton = NodePath("../..")
@@ -106,11 +105,10 @@ skeleton = NodePath("../..")
 shape = SubResource( 45 )
 disabled = true
 
-[node name="TouchResponse" parent="Navmesh/Door2" instance=ExtResource( 10 )]
-tree_node = NodePath("../Reception")
-
 [node name="Door3" parent="Navmesh" instance=ExtResource( 9 )]
 visible = false
+
+[node name="TouchResponse" parent="Navmesh/Door3/Reception" index="0" instance=ExtResource( 10 )]
 
 [node name="Model" parent="Navmesh/Door3" instance=ExtResource( 12 )]
 skeleton = NodePath("../..")
@@ -119,11 +117,10 @@ skeleton = NodePath("../..")
 shape = SubResource( 46 )
 disabled = true
 
-[node name="TouchResponse" parent="Navmesh/Door3" instance=ExtResource( 10 )]
-tree_node = NodePath("../Reception")
-
 [node name="Door4" parent="Navmesh" instance=ExtResource( 9 )]
 visible = false
+
+[node name="TouchResponse" parent="Navmesh/Door4/Reception" index="0" instance=ExtResource( 10 )]
 
 [node name="Model" parent="Navmesh/Door4" instance=ExtResource( 7 )]
 skeleton = NodePath("../..")
@@ -132,11 +129,10 @@ skeleton = NodePath("../..")
 shape = SubResource( 47 )
 disabled = true
 
-[node name="TouchResponse" parent="Navmesh/Door4" instance=ExtResource( 10 )]
-tree_node = NodePath("../Reception")
-
 [node name="Door5" parent="Navmesh" instance=ExtResource( 9 )]
 visible = false
+
+[node name="TouchResponse" parent="Navmesh/Door5/Reception" index="0" instance=ExtResource( 10 )]
 
 [node name="Model" parent="Navmesh/Door5" instance=ExtResource( 13 )]
 skeleton = NodePath("../..")
@@ -144,9 +140,6 @@ skeleton = NodePath("../..")
 [node name="Collision" type="CollisionShape" parent="Navmesh/Door5"]
 shape = SubResource( 48 )
 disabled = true
-
-[node name="TouchResponse" parent="Navmesh/Door5" instance=ExtResource( 10 )]
-tree_node = NodePath("../Reception")
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Navmesh"]
 transform = Transform( 0.85696, -0.406647, 0.316634, 0, 0.614368, 0.78902, -0.515382, -0.676159, 0.526489, 0, 54.7278, 0 )

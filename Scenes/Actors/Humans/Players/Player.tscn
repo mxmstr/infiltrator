@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/Actors/Humans/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Inputs/PrimaryAction.input2.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/Components/Inputs/MoveRight.input2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Components/Inputs/MoveHorizontalStop.input2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Components/Inputs/RotateVertical.input2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Components/Inputs/Reload.input2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Inputs/RotateHorizontal.input2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Components/Inputs/Crouch.input2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Components/Inputs/Jump.input2.tscn" type="PackedScene" id=16]
@@ -29,73 +30,77 @@
 [node name="PrimaryActionInput" parent="." index="0" instance=ExtResource( 2 )]
 
 [node name="SecondaryActionInput" parent="." index="1" instance=ExtResource( 22 )]
+action = "Secondary"
 
-[node name="MoveBackwardInput" parent="." index="2" instance=ExtResource( 3 )]
+[node name="ReloadInput" parent="." index="2" instance=ExtResource( 10 )]
+
+[node name="MoveBackwardInput" parent="." index="3" instance=ExtResource( 3 )]
 contexts = [ "All" ]
 
-[node name="MoveForwardInput" parent="." index="3" instance=ExtResource( 4 )]
+[node name="MoveForwardInput" parent="." index="4" instance=ExtResource( 4 )]
 contexts = [ "All" ]
 
-[node name="MoveVerticalStop" parent="." index="4" instance=ExtResource( 5 )]
+[node name="MoveVerticalStop" parent="." index="5" instance=ExtResource( 5 )]
 
-[node name="MoveLeftInput" parent="." index="5" instance=ExtResource( 6 )]
+[node name="MoveLeftInput" parent="." index="6" instance=ExtResource( 6 )]
 contexts = [ "All" ]
 
-[node name="MoveRightInput" parent="." index="6" instance=ExtResource( 7 )]
+[node name="MoveRightInput" parent="." index="7" instance=ExtResource( 7 )]
 contexts = [ "All" ]
 
-[node name="MoveHorizontalStop" parent="." index="7" instance=ExtResource( 8 )]
+[node name="MoveHorizontalStop" parent="." index="8" instance=ExtResource( 8 )]
 
-[node name="RotateUpInput" parent="." index="8" instance=ExtResource( 19 )]
+[node name="RotateUpInput" parent="." index="9" instance=ExtResource( 19 )]
 action = "RotateUp"
 
-[node name="RotateDownInput" parent="." index="9" instance=ExtResource( 19 )]
+[node name="RotateDownInput" parent="." index="10" instance=ExtResource( 19 )]
 action = "RotateDown"
 
-[node name="RotateVertical" parent="." index="10" instance=ExtResource( 9 )]
+[node name="RotateVertical" parent="." index="11" instance=ExtResource( 9 )]
 positive_input = NodePath("../RotateUpInput")
 negative_input = NodePath("../RotateDownInput")
 
-[node name="RotateLeftInput" parent="." index="11" instance=ExtResource( 19 )]
+[node name="RotateLeftInput" parent="." index="12" instance=ExtResource( 19 )]
 action = "RotateLeft"
 
-[node name="RotateRightInput" parent="." index="12" instance=ExtResource( 19 )]
+[node name="RotateRightInput" parent="." index="13" instance=ExtResource( 19 )]
 action = "RotateRight"
 
-[node name="RotateHorizontal" parent="." index="13" instance=ExtResource( 12 )]
+[node name="RotateHorizontal" parent="." index="14" instance=ExtResource( 12 )]
 positive_input = NodePath("../RotateRightInput")
 negative_input = NodePath("../RotateLeftInput")
 
-[node name="CrouchInput" parent="." index="14" instance=ExtResource( 15 )]
+[node name="CrouchInput" parent="." index="15" instance=ExtResource( 15 )]
 
-[node name="JumpInput" parent="." index="15" instance=ExtResource( 16 )]
+[node name="JumpInput" parent="." index="16" instance=ExtResource( 16 )]
 contexts = [ "Default", "PreJump" ]
 
-[node name="DropInput" parent="." index="16" instance=ExtResource( 17 )]
+[node name="DropInput" parent="." index="17" instance=ExtResource( 17 )]
 
-[node name="ZoomInput" parent="." index="17" instance=ExtResource( 24 )]
+[node name="ZoomInput" parent="." index="18" instance=ExtResource( 24 )]
 
-[node name="BulletTimeInput" parent="." index="18" instance=ExtResource( 25 )]
+[node name="BulletTimeInput" parent="." index="19" instance=ExtResource( 25 )]
 
-[node name="PauseInput" parent="." index="19" instance=ExtResource( 18 )]
+[node name="PauseInput" parent="." index="20" instance=ExtResource( 18 )]
 
-[node name="InvNextInput" parent="." index="20" instance=ExtResource( 19 )]
+[node name="InvNextInput" parent="." index="21" instance=ExtResource( 19 )]
 action = "ScrollUp"
 
-[node name="InvPrevInput" parent="." index="21" instance=ExtResource( 19 )]
+[node name="InvPrevInput" parent="." index="22" instance=ExtResource( 19 )]
 action = "ScrollDown"
 
-[node name="InventoryInput" parent="." index="22" instance=ExtResource( 20 )]
+[node name="InventoryInput" parent="." index="23" instance=ExtResource( 20 )]
 
-[node name="WeaponTargetLock" type="RayCast" parent="." index="23"]
+[node name="WeaponTargetLock" type="RayCast" parent="." index="24"]
 cast_to = Vector3( 50, 0, 0 )
 script = ExtResource( 21 )
 
-[node name="Bot" type="Node" parent="." index="24"]
+[node name="Bot" type="Node" parent="." index="25"]
 script = ExtResource( 23 )
 
-[node name="AnimLayerMovement" parent="." index="55"]
+[node name="AnimLayerMovement" parent="." index="54"]
 parameters/playback = SubResource( 1 )
 
 [editable path="CameraRig"]
 [editable path="CameraRaycastStim"]
+[editable path="SoundSet"]

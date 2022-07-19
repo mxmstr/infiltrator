@@ -9,3 +9,11 @@ func _select_item():
 	
 	if data.has('dual_wield'):
 		behavior._start_state('DualWieldItem')
+
+
+func _on_action(_state, _data):
+	
+	if _state == 'ChangeItemSelectItem':
+		_select_item()
+	
+	._on_action(_state, _data)

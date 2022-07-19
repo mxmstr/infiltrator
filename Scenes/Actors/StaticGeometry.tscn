@@ -6,5 +6,4 @@
 [node name="StaticGeometry" instance=ExtResource( 1 )]
 tags = "Map"
 
-[node name="TouchResponse" parent="." index="0" instance=ExtResource( 2 )]
-tree_node = NodePath("../Reception")
+[node name="TouchResponse" parent="Reception" index="0" instance=ExtResource( 2 )]

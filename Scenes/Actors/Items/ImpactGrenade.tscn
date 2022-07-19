@@ -34,13 +34,9 @@ shape = SubResource( 6 )
 stim_type = "Touch"
 raycast = true
 
-[node name="TouchResponse" parent="." index="3" instance=ExtResource( 2 )]
-tree_node = NodePath("../Reception")
-
-[node name="Movement" parent="." index="4"]
+[node name="Movement" parent="." index="3"]
 process_movement = true
 gravity = -3
 projectile = true
 
-[node name="Behavior" parent="." index="5"]
-process_mode = 2
+[node name="TouchResponse" parent="Reception" index="0" instance=ExtResource( 2 )]

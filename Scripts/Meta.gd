@@ -41,7 +41,6 @@ const TeamColors = [
 
 const schemas_dir = 'res://Scenes/Schemas/'
 const schemas_extension = '.schema.tscn'
-const rotate_sensitivity = 9.0
 
 var preloader
 var tree_count = 0

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Animations/Human/Action/Kick/jumpspinkickup_new.tres" type="Animation" id=1]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/jumpspinkickup_new = ExtResource( 1 )
+script = ExtResource( 2 )
+attributes = "{
+	\"*\": {
+		\"speed\": 2.0,
+		\"clip_start\": 0.05,
+		\"layer\": \"ACTION\",
+		\"switch_mode\": \"End\",
+		\"lock_movement\": true,
+		\"camera_mode\": \"HalfYaw\"
+	}
+}"

@@ -22,5 +22,8 @@ func _process(delta):
 	
 	var scaled_delta = delta / Engine.time_scale if bullet_time.active else delta
 	
-	stance.turn_speed = -_get_rotation(scaled_delta)
+	var speed = -_get_rotation(scaled_delta)
+	stance.turn_speed = speed
+#	if speed != 0:
+#		prints(angular_accel, speed)
 	camera_raycast.rotation_offset.x = _get_aim_offset(scaled_delta)

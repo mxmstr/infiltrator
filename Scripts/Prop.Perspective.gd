@@ -134,6 +134,8 @@ func _init_viewport():
 	var window_height = ProjectSettings.get_setting('display/window/size/height')
 	var render_scale = ProjectSettings.get_setting('rendering/quality/filters/render_scale')
 	
+#	prints(window_width
+	
 	if Meta.player_count == 1:
 		return
 	

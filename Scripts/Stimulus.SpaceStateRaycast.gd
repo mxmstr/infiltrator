@@ -22,7 +22,7 @@ func _on_before_move(velocity):
 		owner.transform.origin, 
 		owner.transform.origin + velocity, 
 		[owner] + movement.collision_exceptions, 
-		owner.collision_mask
+		raycast_collision_mask
 		)
 	
 	if not result.empty():
@@ -54,7 +54,7 @@ func _physics_process(delta):
 		owner.global_transform.origin,
 		owner.global_transform.origin + (owner.global_transform.basis.z * length),
 		[owner] + movement.collision_exceptions,
-		owner.collision_mask
+		raycast_collision_mask
 		)
 
 	if not result.empty():

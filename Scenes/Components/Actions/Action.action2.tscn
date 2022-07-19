@@ -4,5 +4,3 @@
 
 [node name="Action" type="Node"]
 script = ExtResource( 1 )
-schema = "HolsterItem"
-state = "HolsterItem"

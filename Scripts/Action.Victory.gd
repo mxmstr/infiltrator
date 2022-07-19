@@ -9,9 +9,6 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	if tree.is_empty():
-		return
-	
 	tree_node.connect('action', self, '_on_action')
 
 

@@ -225,7 +225,7 @@ func _blend_skeletons(delta):
 			bone_pose.origin = (
 				camera_rig.transform.origin - 
 				(neck_pose.origin - bone_pose.origin) +
-				camera.transform.basis.xform_inv(Vector3(0, -0.2, -0.3)) +
+				camera.transform.basis.xform_inv(Vector3(0, -0.2, -0.05)) +
 				follow_camera_torso_delta
 				)
 

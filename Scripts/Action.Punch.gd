@@ -1,10 +1,8 @@
 extends "res://Scripts/Action.gd"
 
 export(String) var schema_idle
-export(String) var schema_kick
 
 var animation_list_idle = []
-var animation_list_kick = []
 
 
 func _on_action(_state, data):
@@ -17,18 +15,10 @@ func _on_action(_state, data):
 		
 		_play(_state, animation_list[0])
 		_randomize_animation()
-	
-	elif _state == 'Kick':
-		
-		_play(_state, animation_list_kick[0])
 
 
 func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	if tree.is_empty():
-		return
-	
 	animation_list_idle = _load_animations(schema_idle)
-	animation_list_kick = _load_animations(schema_kick)

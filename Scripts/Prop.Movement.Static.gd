@@ -78,7 +78,7 @@ func _face(target, angle_delta=0.0):
 
 func _physics_process(delta):
 	
-	if not process_movement or collision.disabled:
+	if not process_movement or (collision and collision.disabled):
 		return
 	
 	

@@ -27,6 +27,10 @@ func _set_collision_exceptions(new_exceptions):
 
 func _get_collision_exceptions():
 	
+#	if not owner is PhysicsBody:
+#
+#		return []
+	
 	if owner is Area:
 		
 		for exception in collision_exceptions:

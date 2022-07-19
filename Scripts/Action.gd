@@ -12,9 +12,6 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	if tree.is_empty():
-		return
-	
 	tree_node.connect('action', self, '_on_action')
 
 
@@ -29,9 +26,9 @@ func _play(_state, _animation, _attributes_prefix='', _down=null, _up=null):
 	var result
 	
 	if _up and _down:
-		result = tree_node._play(_state, _animation, attributes_cloned, _up, _down)
+		result = tree_node._play(_state, _animation, attributes_cloned, new_data, _up, _down)
 	else:
-		result = tree_node._play(_state, _animation, attributes_cloned)
+		result = tree_node._play(_state, _animation, attributes_cloned, new_data)
 	
 	if random:
 		_randomize_animation()

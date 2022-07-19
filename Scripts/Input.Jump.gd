@@ -20,13 +20,13 @@ func _try_wallrun():
 		
 		for slide in movement.collisions:
 			if slide.on_wall:
-				behavior._start_state('WallRun', { 'normal': slide.normal })
+				behavior._start_state('WallRunStart', { 'normal': slide.normal })
 				return true
 		
 		var test_collision = movement._test_movement(movement.direction * 1.5)
 		
 		if test_collision and test_collision.on_wall:
-			behavior._start_state('WallRun', { 'normal': test_collision.normal })
+			behavior._start_state('WallRunStart', { 'normal': test_collision.normal })
 			return true
 	
 	return false
@@ -124,3 +124,8 @@ func _process(delta):
 				var horizontal = left.strength + right.strength
 				
 				behavior._start_state('ShootDodgeAir', { 'direction': Vector2(horizontal, vertical) })
+	
+	else:
+		
+		if behavior.current_state == 'WallRun':
+			behavior._start_state('WallRunEnd')

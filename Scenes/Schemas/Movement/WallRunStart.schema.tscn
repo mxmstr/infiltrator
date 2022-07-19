@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Animations/Human/wall_shootdodgeforward_noloop.tres" type="Animation" id=1]
+[ext_resource path="res://Scripts/Schema.gd" type="Script" id=9]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/wall_shootdodgeforward_noloop = ExtResource( 1 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+attributes = "{
+	\"*\": {
+		\"priority\": 1,
+		\"speed\": 2.0,
+		\"clip_start\": 0.04,
+		\"clip_end\": 1.65,
+		\"layer\": \"ACTION\",
+		\"can_use_item\": true,
+		\"next\": \"WallRun\"
+	}
+}"

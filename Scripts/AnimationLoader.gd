@@ -77,5 +77,7 @@ func _ready():
 	
 	if not tree.is_empty():
 		tree_node = get_node(tree)
+	else:
+		tree_node = get_parent()
 	
 	animation_list = _load_animations(schema)

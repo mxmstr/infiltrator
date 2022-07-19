@@ -2,8 +2,7 @@ extends 'res://Scripts/Response.gd'
 
 var owner_righthand
 
-onready var reception = get_node_or_null('../Reception')
-onready var audio = get_node_or_null('../Audio')
+onready var audio = get_node_or_null('../../Audio')
 
 
 func _ready():

@@ -60,7 +60,4 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	if tree.is_empty():
-		return
-	
 	attributes[animation_list[0]].speed = float(owner._get_tag('FireRate'))

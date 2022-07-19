@@ -275,7 +275,7 @@ func _apply_human_attributes(attributes):
 	owner.input_context = input_context
 
 
-func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
+func _play(new_state, animation, attributes, _data, up_animation=null, down_animation=null):
 	
 	_apply_time_scale(attributes)
 	
@@ -283,6 +283,8 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 		return false
 	
 	_apply_human_attributes(attributes)
+	
+	data = _data
 	
 	if not up_animation and not down_animation:
 		_set_action_blend(0)
@@ -319,7 +321,7 @@ func _play(new_state, animation, attributes, up_animation=null, down_animation=n
 	return true
 
 
-func _play_8way(new_state, animation_list, attributes):
+func _play_8way(new_state, animation_list, attributes, _data):
 	
 	_apply_time_scale(attributes)
 	
@@ -327,6 +329,8 @@ func _play_8way(new_state, animation_list, attributes):
 		return false
 	
 	_apply_human_attributes(attributes)
+	
+	data = _data
 	
 	_set_action_blend(0)
 	_set_oneshot_active(false)

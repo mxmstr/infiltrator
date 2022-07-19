@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Links/LocalCoopPartner.link.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Links/ControlDevice.link.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Maps/M.Lab.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Maps/Lab.map.tscn" type="PackedScene" id=5]
 
 
 

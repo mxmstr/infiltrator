@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scenes/Actors/KinematicBody.Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/Properties/CameraRig.property.tscn" type="PackedScene" id=2]
@@ -12,8 +12,16 @@
 [ext_resource path="res://Scenes/Components/Properties/Perspective.property.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Properties/CameraMode.property.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Components/Properties/HUDMode.property.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Components/Actions/ActionSet.Human.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/Components/Actions/SoundSet.Human.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Components/Actions/JumpUp.action2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Components/Actions/WallRun.action2.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Components/Actions/Victory.action2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Components/Actions/ShootDodgeAir.action2.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Components/Actions/ChangeItem.action2.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Components/Actions/Die.action2.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Components/Actions/Punch.action2.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Components/Actions/Dive.action2.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Components/Actions/JumpRight.action2.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.property.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Components/Responses/Touch.Human.response2.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/Components/Responses/UseReact.response2.tscn" type="PackedScene" id=25]
@@ -21,8 +29,14 @@
 [ext_resource path="res://Scenes/Components/Responses/Damage.response2.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scenes/Components/Properties/UI.property.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Scenes/Components/Actions/JumpLeft.action2.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scenes/Components/Actions/SwordMelee.action2.tscn" type="PackedScene" id=31]
 [ext_resource path="res://Scenes/Components/Properties/BulletTime.property.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Scenes/Components/Actions/Primary.action2.tscn" type="PackedScene" id=33]
+[ext_resource path="res://Scenes/Components/Actions/Reload.action2.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Scenes/Components/Actions/Default.action2.tscn" type="PackedScene" id=35]
 [ext_resource path="res://Scenes/Components/Properties/Inventory.property.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Scenes/Components/Actions/JumpBackward.action2.tscn" type="PackedScene" id=37]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -148,78 +162,236 @@ fp_shoulder_bone = "Torso"
 [node name="AnimLayerMovement" parent="." index="28" instance=ExtResource( 23 )]
 parameters/playback = SubResource( 1 )
 
-[node name="ActionSet" parent="." index="29" instance=ExtResource( 13 )]
-tree = NodePath("../Behavior")
-
-[node name="SoundSet" parent="." index="30" instance=ExtResource( 14 )]
-tree = NodePath("../Audio")
-
-[node name="JumpUpSound" parent="SoundSet" index="0"]
-tree = NodePath("../../FoleyAudio")
-
-[node name="JumpDodgeSound" parent="SoundSet" index="1"]
-tree = NodePath("../../FoleyAudio")
-
-[node name="JumpBackwardSound" parent="SoundSet" index="2"]
-tree = NodePath("../../FoleyAudio")
-
-[node name="RollSound" parent="SoundSet" index="3"]
-tree = NodePath("../../FoleyAudio")
-
-[node name="PunchSound" parent="SoundSet" index="4"]
-tree = NodePath("../../FoleyAudio")
-
-[node name="KickSound" parent="SoundSet" index="5"]
-tree = NodePath("../../FoleyAudio")
-
-[node name="SwordMeleeSound" parent="SoundSet" index="6"]
-tree = NodePath("../../FoleyAudio")
-
-[node name="ThrowGrenadeSound" parent="SoundSet" index="7"]
-tree = NodePath("../../FoleyAudio")
-
-[node name="OofSound" parent="SoundSet" index="8"]
-tree = NodePath("../../VoiceAudio")
-
-[node name="PickupWeaponSound" parent="SoundSet" index="9"]
-tree = NodePath("../../UIAudio")
-
-[node name="PickupAmmoSound" parent="SoundSet" index="10"]
-tree = NodePath("../../UIAudio")
-
-[node name="BulletTimeStartSound" parent="SoundSet" index="11"]
-tree = NodePath("../../UIAudio")
-
-[node name="BulletTimeEndSound" parent="SoundSet" index="12"]
-tree = NodePath("../../UIAudio")
-
-[node name="ShootDodgeStingerSound" parent="SoundSet" index="13"]
-tree = NodePath("../../StingerAudio")
-
-[node name="TouchResponse" parent="." index="31" instance=ExtResource( 24 )]
-tree_node = NodePath("../Reception")
-
-[node name="UseReactResponse" parent="." index="32" instance=ExtResource( 25 )]
-tree_node = NodePath("../Reception")
-
-[node name="EmptyReactResponse" parent="." index="33" instance=ExtResource( 26 )]
-tree_node = NodePath("../Reception")
-
-[node name="DamageResponse" parent="." index="34" instance=ExtResource( 27 )]
-tree_node = NodePath("../Reception")
-
-[node name="VoiceAudio" parent="." index="35" instance=ExtResource( 28 )]
+[node name="VoiceAudio" parent="." index="29" instance=ExtResource( 28 )]
 bus = "Voice"
 
-[node name="FoleyAudio" parent="." index="36" instance=ExtResource( 28 )]
+[node name="OofSound" parent="VoiceAudio" index="2" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "Oof"
+random = true
+state = "Oof"
 
-[node name="FeetAudio" parent="." index="37" instance=ExtResource( 28 )]
+[node name="FoleyAudio" parent="." index="30" instance=ExtResource( 28 )]
 
-[node name="UIAudio" parent="." index="38" instance=ExtResource( 28 )]
+[node name="JumpUpSound" parent="FoleyAudio" index="2" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "JumpUpSound"
+random = true
+state = "JumpUp"
+
+[node name="JumpDodgeSound" parent="FoleyAudio" index="3" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "JumpDodgeSound"
+random = true
+state = "JumpDodge"
+
+[node name="JumpBackwardSound" parent="FoleyAudio" index="4" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "JumpBackwardSound"
+random = true
+state = "JumpBackward"
+
+[node name="RollSound" parent="FoleyAudio" index="5" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "RollSound"
+state = "Roll"
+
+[node name="PunchSound" parent="FoleyAudio" index="6" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "PunchSound"
+state = "Punch"
+
+[node name="KickSound" parent="FoleyAudio" index="7" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "KickSound"
+state = "Kick"
+
+[node name="SwordMeleeSound" parent="FoleyAudio" index="8" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "SwordMeleeSound"
+random = true
+state = "SwordMelee"
+
+[node name="ThrowGrenadeSound" parent="FoleyAudio" index="9" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "ThrowGrenadeSound"
+state = "ThrowGrenade"
+
+[node name="FeetAudio" parent="." index="31" instance=ExtResource( 28 )]
+
+[node name="UIAudio" parent="." index="32" instance=ExtResource( 28 )]
 time_scaled = false
 
-[node name="StingerAudio" parent="." index="39" instance=ExtResource( 28 )]
+[node name="PickupWeaponSound" parent="UIAudio" index="2" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "PickupWeaponSound"
+state = "PickupWeapon"
+
+[node name="PickupAmmoSound" parent="UIAudio" index="3" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "PickupAmmoSound"
+state = "PickupAmmo"
+
+[node name="BulletTimeStartSound" parent="UIAudio" index="4" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "BulletTimeStartSound"
+state = "BulletTimeStart"
+
+[node name="BulletTimeEndSound" parent="UIAudio" index="5" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "BulletTimeEndSound"
+state = "BulletTimeEnd"
+
+[node name="StingerAudio" parent="." index="33" instance=ExtResource( 28 )]
 time_scaled = false
+
+[node name="ShootDodgeStingerSound" parent="StingerAudio" index="2" instance=ExtResource( 19 )]
+tree = NodePath("..")
+schema = "ShootDodgeStingerSound"
+state = "ShootDodgeStinger"
+
+[node name="DefaultAction" parent="Behavior" index="1" instance=ExtResource( 35 )]
+
+[node name="PrimaryAction" parent="Behavior" index="2" instance=ExtResource( 33 )]
+
+[node name="PunchAction" parent="Behavior" index="3" instance=ExtResource( 20 )]
+
+[node name="KickForwardAction" parent="Behavior" index="4" instance=ExtResource( 19 )]
+schema = "KickForward"
+state = "KickForward"
+
+[node name="KickForwardLeftAction" parent="Behavior" index="5" instance=ExtResource( 19 )]
+schema = "KickForwardLeft"
+state = "KickForwardLeft"
+
+[node name="KickForwardRightAction" parent="Behavior" index="6" instance=ExtResource( 19 )]
+schema = "KickForwardRight"
+state = "KickForwardRight"
+
+[node name="SwordMeleeAction" parent="Behavior" index="7" instance=ExtResource( 31 )]
+
+[node name="ChangeItemAction" parent="Behavior" index="8" instance=ExtResource( 17 )]
+
+[node name="DualWieldItemAction" parent="Behavior" index="9" instance=ExtResource( 19 )]
+schema = "DualWieldItem"
+state = "DualWieldItem"
+
+[node name="HolsterItemAction" parent="Behavior" index="10" instance=ExtResource( 19 )]
+schema = "HolsterItem"
+state = "HolsterItem"
+
+[node name="PreJumpAction" parent="Behavior" index="11" instance=ExtResource( 19 )]
+schema = "PreJump"
+state = "PreJump"
+
+[node name="JumpUpAction" parent="Behavior" index="12" instance=ExtResource( 13 )]
+
+[node name="JumpBackwardAction" parent="Behavior" index="13" instance=ExtResource( 37 )]
+
+[node name="JumpBackwardLeftAction" parent="Behavior" index="14" instance=ExtResource( 30 )]
+schema = "JumpBackwardLeft"
+state = "JumpBackwardLeft"
+
+[node name="JumpBackwardRightAction" parent="Behavior" index="15" instance=ExtResource( 22 )]
+schema = "JumpBackwardRight"
+state = "JumpBackwardRight"
+
+[node name="JumpLeftAction" parent="Behavior" index="16" instance=ExtResource( 30 )]
+
+[node name="JumpRightAction" parent="Behavior" index="17" instance=ExtResource( 22 )]
+
+[node name="AirDodgeLeftAction" parent="Behavior" index="18" instance=ExtResource( 22 )]
+schema = "AirDodgeLeft"
+state = "AirDodgeLeft"
+
+[node name="AirDodgeRightAction" parent="Behavior" index="19" instance=ExtResource( 22 )]
+schema = "AirDodgeRight"
+state = "AirDodgeRight"
+
+[node name="AirDodgeBackwardAction" parent="Behavior" index="20" instance=ExtResource( 22 )]
+schema = "AirDodgeBackward"
+state = "AirDodgeBackward"
+
+[node name="AirDodgeBackwardLeftAction" parent="Behavior" index="21" instance=ExtResource( 22 )]
+schema = "AirDodgeBackwardLeft"
+state = "AirDodgeBackwardLeft"
+
+[node name="AirDodgeBackwardRightAction" parent="Behavior" index="22" instance=ExtResource( 22 )]
+schema = "AirDodgeBackwardRight"
+state = "AirDodgeBackwardRight"
+
+[node name="RollForwardAction" parent="Behavior" index="23" instance=ExtResource( 22 )]
+schema = "RollForward"
+state = "RollForward"
+
+[node name="RollForwardLeftAction" parent="Behavior" index="24" instance=ExtResource( 22 )]
+schema = "RollForwardLeft"
+state = "RollForwardLeft"
+
+[node name="RollForwardRightAction" parent="Behavior" index="25" instance=ExtResource( 22 )]
+schema = "RollForwardRight"
+state = "RollForwardRight"
+
+[node name="RollBackwardAction" parent="Behavior" index="26" instance=ExtResource( 22 )]
+schema = "RollBackward"
+state = "RollBackward"
+
+[node name="RollBackwardLeftAction" parent="Behavior" index="27" instance=ExtResource( 22 )]
+schema = "RollBackwardLeft"
+state = "RollBackwardLeft"
+
+[node name="RollBackwardRightAction" parent="Behavior" index="28" instance=ExtResource( 22 )]
+schema = "RollBackwardRight"
+state = "RollBackwardRight"
+
+[node name="RollLeftAction" parent="Behavior" index="29" instance=ExtResource( 22 )]
+schema = "RollLeft"
+state = "RollLeft"
+
+[node name="RollRightAction" parent="Behavior" index="30" instance=ExtResource( 22 )]
+schema = "RollRight"
+state = "RollRight"
+
+[node name="WallRunStartAction" parent="Behavior" index="31" instance=ExtResource( 19 )]
+schema = "WallRunStart"
+state = "WallRunStart"
+
+[node name="WallRunAction" parent="Behavior" index="32" instance=ExtResource( 14 )]
+
+[node name="DiveAction" parent="Behavior" index="33" instance=ExtResource( 21 )]
+
+[node name="DiveGetUpAction" parent="Behavior" index="34" instance=ExtResource( 19 )]
+schema = "DiveGetUp"
+state = "DiveGetUp"
+
+[node name="ShootDodgeStandAction" parent="Behavior" index="35" instance=ExtResource( 21 )]
+schema = "ShootDodgeStand"
+state = "ShootDodgeStand"
+
+[node name="ShootDodgeAirAction" parent="Behavior" index="36" instance=ExtResource( 16 )]
+
+[node name="ReloadAction" parent="Behavior" index="37" instance=ExtResource( 34 )]
+
+[node name="DieAction" parent="Behavior" index="38" instance=ExtResource( 18 )]
+random = true
+
+[node name="DieExplosionAction" parent="Behavior" index="39" instance=ExtResource( 18 )]
+schema = "DieExplosion"
+random = true
+state = "DieExplosion"
+
+[node name="PostDeathAction" parent="Behavior" index="40" instance=ExtResource( 19 )]
+schema = "PostDeath"
+state = "PostDeath"
+
+[node name="VictoryAction" parent="Behavior" index="41" instance=ExtResource( 15 )]
+
+[node name="TouchResponse" parent="Reception" index="0" instance=ExtResource( 24 )]
+
+[node name="UseReactResponse" parent="Reception" index="1" instance=ExtResource( 25 )]
+
+[node name="EmptyReactResponse" parent="Reception" index="2" instance=ExtResource( 26 )]
+
+[node name="DamageResponse" parent="Reception" index="3" instance=ExtResource( 27 )]
 
 [editable path="CameraRig"]
-[editable path="SoundSet"]

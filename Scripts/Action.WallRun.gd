@@ -19,7 +19,7 @@ func _on_test_off_wall_timeout():
 
 func _on_action(_state, _data):
 	
-	if _state == 'WallRun':
+	if _state == state:
 		
 		if not _play(_state, null):
 			return
@@ -31,7 +31,7 @@ func _on_action(_state, _data):
 	
 	elif _state == 'WallRunEnd':
 		
-		if behavior.current_state == 'WallRun':
+		if behavior.current_state == state:
 			
 			behavior._start_state('Default', { 'override': true })
 			stance.mode = stance.Mode.DEFAULT
@@ -54,19 +54,9 @@ func _set_blendspace_position():
 	behavior.set('parameters/BlendSpace2D/blend_position', Vector2(x_value, y_value))
 
 
-func _ready():
-	
-	yield(behavior, 'pre_advance')
-	
-	x_min = behavior.blend_space_2d.get('min_space').x
-	y_min = behavior.blend_space_2d.get('min_space').y
-	x_value_range = behavior.blend_space_2d.get('max_space').x - behavior.blend_space_2d.get('min_space').x
-	y_value_range = behavior.blend_space_2d.get('max_space').y - behavior.blend_space_2d.get('min_space').y
-
-
 func _process(delta):
 	
-	if behavior.current_state == 'WallRun':
+	if behavior.current_state == state:
 		
 		_set_blendspace_position()
 		

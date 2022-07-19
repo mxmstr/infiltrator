@@ -21,7 +21,7 @@ func _ready():
 	clone_contains_link.connect('destroyed', self, '_destroy')
 	from_node.get_node('RightHandContainer').connect('item_removed', self, '_on_item_removed')
 	# TODO Attempt to call function '_load_lefthand_magazine' in base 'null instance' on a null instance.
-	from_node.get_node('ActionSet/ReloadAction')._load_lefthand_magazine()
+	from_node.get_node('Behavior/ReloadAction')._load_lefthand_magazine()
 
 
 func _destroy():
@@ -29,6 +29,6 @@ func _destroy():
 	if is_instance_valid(clone_contains_link) and not clone_contains_link.is_queued_for_deletion():
 		clone_contains_link._destroy()
 	
-	from_node.get_node('TouchResponse')._stack_item(clone)
+	from_node.get_node('Reception/TouchResponse')._stack_item(clone)
 	
 	._destroy()

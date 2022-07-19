@@ -31,6 +31,9 @@ onready var left_kick = get_node_or_null('../LeftKickContainer')
 
 func _on_fire(projectile, item):
 	
+	if not is_instance_valid(projectile):
+		return
+	
 	if projectile._has_tag('Bullet') and perspective.viewmodels.size():
 
 		for viewmodel in perspective.viewmodels:

@@ -4,6 +4,7 @@ export var default_state = 'Default'
 
 var enable_abilities = true
 var current_state = 'Default'
+var data = {}
 var next = 'Default'
 var switch_mode = 'Immediate'
 var clip_start = 0
@@ -41,7 +42,10 @@ func _on_action_finished(animation_name=null):
 	if endless:
 		return
 	
-	call_deferred('emit_signal', 'action', next, {})
+	if next == 'Default':
+		call_deferred('emit_signal', 'action', next, {})
+	else:
+		call_deferred('emit_signal', 'action', next, data)
 
 
 func _start_state(_name, _data={}):
@@ -102,10 +106,12 @@ func _apply_attributes(new_state, attributes):
 	return true
 
 
-func _play(new_state, animation, attributes, up_animation=null, down_animation=null):
+func _play(new_state, animation, attributes, _data, up_animation=null, down_animation=null):
 	
 	if not _apply_attributes(new_state, attributes):
 		return false
+	
+	data = _data
 	
 	emit_signal('state_started', new_state)
 	

@@ -1,8 +1,10 @@
 extends Node
 
+const rotate_sensitivity = 2.5
+const rotate_sensitivity_mult = 2.5
 const aim_offset_range = 0.5
-const aim_offset_sensitivity = 1.5
-const angular_accel = 0.4
+const aim_offset_sensitivity = 2.0
+const angular_accel = 0.01
 const angular_deaccel = 8.0
 const accel_multiplier = 1
 
@@ -34,13 +36,15 @@ func _get_rotation(delta):
 	var new_speed_pos = right.strength
 	var new_speed_pos_delta = abs(new_speed_pos) - abs(speed_pos)
 	var accel_power_pos = (right.strength - right_last_strength) * accel_multiplier
-	var accel_pos = pow(angular_accel, 1) * accel_power_pos if new_speed_pos_delta >= 0 else angular_deaccel
+	var accel_pos = (angular_accel + 0) if new_speed_pos_delta >= 0 else angular_deaccel
 	
 	var new_speed_neg = left.strength
 	var new_speed_neg_delta = abs(new_speed_neg) - abs(speed_neg)
 	var accel_power_neg = (left.strength - left_last_strength) * accel_multiplier
-	var accel_neg = pow(angular_accel, 1) * accel_power_neg if new_speed_neg_delta >= 0 else angular_deaccel
+	var accel_neg = (angular_accel + 0) if new_speed_neg_delta >= 0 else angular_deaccel
 	
+#	speed_pos = smoothstep(speed_pos, new_speed_pos, 3)
+#	speed_neg = smoothstep(speed_neg, new_speed_neg, 3)
 	speed_pos = Vector2(speed_pos, 0).linear_interpolate(
 		Vector2(new_speed_pos, 0), min(accel_pos, 1.0)
 		).x
@@ -51,7 +55,10 @@ func _get_rotation(delta):
 	right_last_strength = right.strength
 	left_last_strength = left.strength
 	
-	return (speed_pos - speed_neg) * Meta.rotate_sensitivity
+#	var power = abs(new_speed_pos - new_speed_neg)
+#	return pow(rotate_sensitivity * (new_speed_pos - new_speed_neg), power)
+	return (speed_pos - speed_neg) * rotate_sensitivity * pow(rotate_sensitivity_mult, abs(new_speed_pos - new_speed_neg))
+	#return (speed_pos - speed_neg) * rotate_sensitivity
 
 
 func _ready():

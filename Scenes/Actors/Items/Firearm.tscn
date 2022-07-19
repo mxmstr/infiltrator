@@ -1,20 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Actions/ActionSet.Firearm.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Actions/FireProjectile.action2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Components/Responses/Use.Firearm.response2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Components/Sounds/FireProjectile.sound2.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Components/Actions/ActionSet.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Actions/LoadChamber.action2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Components/Stimuli/Area.stimulus.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scripts/Action.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=16]
 
-[sub_resource type="SphereShape" id=28]
+[sub_resource type="SphereShape" id=1]
 
 [node name="Firearm" type="RigidBody"]
 collision_layer = 4
@@ -36,44 +35,37 @@ max_quantity = 1
 invisible = true
 required_tags = "Bullet"
 
-[node name="ActionSet" parent="." instance=ExtResource( 3 )]
-tree = NodePath("../Behavior")
-
-[node name="SoundSet" parent="." instance=ExtResource( 7 )]
-tree = NodePath("../Audio")
-
-[node name="FireProjectileSound" type="Node" parent="SoundSet" instance=ExtResource( 6 )]
-script = ExtResource( 12 )
-tree = NodePath("../../FireAudio")
-schema = "FireProjectileSound"
-state = "FireProjectile"
-
-[node name="ReloadSound" type="Node" parent="SoundSet" instance=ExtResource( 4 )]
-script = ExtResource( 12 )
-schema = "ReloadSound"
-state = "Reload"
-
-[node name="EmptySound" type="Node" parent="SoundSet" instance=ExtResource( 4 )]
-script = ExtResource( 12 )
-schema = "EmptySound"
-state = "Empty"
-
-[node name="UseResponse" parent="." instance=ExtResource( 5 )]
-tree_node = NodePath("../Reception")
-
 [node name="AreaStim" parent="." instance=ExtResource( 8 )]
 collision_layer = 0
 collision_mask = 2
+monitorable = false
 
 [node name="Collision" type="CollisionShape" parent="AreaStim"]
-shape = SubResource( 28 )
+shape = SubResource( 1 )
 
 [node name="Movement" parent="." instance=ExtResource( 9 )]
 
 [node name="Behavior" parent="." instance=ExtResource( 10 )]
 
+[node name="FireProjectileAction" parent="Behavior" instance=ExtResource( 3 )]
+
+[node name="LoadChamberAction" parent="Behavior" instance=ExtResource( 7 )]
+
 [node name="Reception" parent="." instance=ExtResource( 11 )]
+
+[node name="UseResponse" parent="Reception" instance=ExtResource( 5 )]
 
 [node name="FireAudio" parent="." instance=ExtResource( 16 )]
 
+[node name="FireProjectileSound" parent="FireAudio" instance=ExtResource( 6 )]
+tree = NodePath("..")
+
 [node name="Audio" parent="." instance=ExtResource( 16 )]
+
+[node name="ReloadSound" parent="Audio" instance=ExtResource( 4 )]
+schema = "ReloadSound"
+state = "Reload"
+
+[node name="EmptySound" parent="Audio" instance=ExtResource( 4 )]
+schema = "EmptySound"
+state = "Empty"

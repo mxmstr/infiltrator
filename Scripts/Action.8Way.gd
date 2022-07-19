@@ -83,6 +83,6 @@ func _ready():
 
 func _play(_state, _animation, _attributes_prefix='', _down=null, _up=null):
 	
-	var result = tree_node._play_8way(_state, animation_list, attributes[animation_list[0]].duplicate())
+	var result = tree_node._play_8way(_state, animation_list, attributes[animation_list[0]].duplicate(), new_data)
 	
 	return result

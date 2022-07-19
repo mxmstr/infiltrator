@@ -86,7 +86,7 @@ input_1/name = "BlendSpace2D"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=8]
-graph_offset = Vector2( 0, 115.598 )
+graph_offset = Vector2( -530.173, -132.176 )
 nodes/Action/node = SubResource( 1 )
 nodes/Action/position = Vector2( 80, -40 )
 nodes/ActionBlend/node = SubResource( 2 )
@@ -104,7 +104,7 @@ nodes/OneShot/position = Vector2( 500, 0 )
 nodes/Transition/node = SubResource( 13 )
 nodes/Transition/position = Vector2( 720, 60 )
 nodes/output/position = Vector2( 940, 100 )
-node_connections = [ "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "output", 0, "Transition", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "Transition", 0, "OneShot", "Transition", 1, "BlendSpace2D" ]
+node_connections = [ "output", 0, "Transition", "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "Transition", 0, "OneShot", "Transition", 1, "BlendSpace2D", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp" ]
 
 [sub_resource type="Animation" id=11]
 resource_name = "DefaultHumanAnim"
@@ -126,8 +126,6 @@ parameters/BlendSpace2D/blend_position = Vector2( -0.660731, 0.676301 )
 parameters/OneShot/active = false
 parameters/Transition/current = 0
 script = ExtResource( 1 )
-torso_bone = "Torso"
-action_bones = [ "shoulders", "Neck", "Head", "UpArm-L", "UpArm-R", "LoArm-L", "LoArm-R", "Hand-L", "Hand-R", "Gun" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DefaultAnim = ExtResource( 2 )

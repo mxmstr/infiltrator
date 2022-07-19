@@ -139,9 +139,6 @@ func _ready():
 	
 	yield(get_tree(), 'idle_frame')
 	
-	if tree.is_empty():
-		return
-	
 	for item_name in item_names:
 		animations[item_name] = _load_animations('Reload' + item_name, item_name + '_')
 		
