@@ -40,6 +40,7 @@ amount = 5
 lifetime = 0.1
 one_shot = true
 explosiveness = 0.91
+randomness = 1.0
 process_material = SubResource( 7 )
 draw_pass_1 = SubResource( 6 )
 

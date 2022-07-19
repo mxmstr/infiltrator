@@ -76,7 +76,7 @@ var cached_args = []
 
 var actors
 var actor_pool = {}
-var actor_pool_size = 10
+var actor_pool_size = 1000
 
 signal on_input
 
@@ -289,14 +289,14 @@ func PreloadActors():
 	for actor in actors:
 		
 		var actor_res = load(actor)
-#		var actor_instance = actor_res.instance()
-#
-#		if actor_instance.get('tags') and actor_instance._has_tag('Pooled'):
-#
-#			actor_pool[actor] = []
-#
-#			for i in range(actor_pool_size):
-#				actor_pool[actor].append(load(actor).instance())
+		var actor_instance = actor_res.instance()
+
+		if actor_instance.get('tags') and actor_instance._has_tag('Pooled'):
+
+			actor_pool[actor] = []
+
+			for i in range(actor_pool_size):
+				actor_pool[actor].append(load(actor).instance())
 		
 		
 		preloader.add_resource(actor, actor_res)
@@ -362,18 +362,21 @@ func AddActor(actor_path, position=null, rotation=null, direction=null, tags={})
 	var new_actor
 	var resource_path = 'res://Scenes/Actors/' + actor_path + '.tscn'
 	
-#	if resource_path in actor_pool:
-#
-#		new_actor = actor_pool[resource_path].pop_front()
-#
-#		if new_actor:
-#			new_actor.notification(NOTIFICATION_READY)
-#		else:
-#			new_actor = preloader.get_resource(resource_path).instance()
-#
-#	else:
-	
-	new_actor = preloader.get_resource(resource_path).instance()
+	if resource_path in actor_pool:
+		
+		new_actor = actor_pool[resource_path].pop_front()
+		
+#		if 'Sparks' in actor_path:
+#			prints('create', new_actor, actor_pool[resource_path].size())
+		
+		if new_actor:
+			new_actor.emit_signal('ressurected')
+		else:
+			new_actor = preloader.get_resource(resource_path).instance()
+
+	else:
+		
+		new_actor = preloader.get_resource(resource_path).instance()
 	
 	_merge_dir(new_actor.tags_dict, tags)
 	$'/root/Mission/Actors'.add_child(new_actor)
@@ -398,15 +401,27 @@ func DestroyActor(actor):
 	
 	if is_instance_valid(actor):
 		
-#		if actor.get('tags') and actor._has_tag('Pooled'):
-#
-#			var resource_path = 'res://Scenes/Actors/' + actor.system_path + '.tscn'
-#			actor.get_parent().remove_child(actor)
-#			#actor_pool[resource_path].append(actor)
-#
-#		else:
-		
-		actor.queue_free()
+		if actor.get('tags') and actor._has_tag('Pooled'):
+			
+			var resource_path = 'res://Scenes/Actors/' + actor.system_path + '.tscn'
+			
+#			if 'Sparks' in actor.system_path:
+#				prints('destroy', actor_pool[resource_path].size())
+			
+			if actor_pool[resource_path].size() < actor_pool_size:
+				
+				if actor.get_parent():
+					actor.get_parent().remove_child(actor)
+				
+				actor_pool[resource_path].append(actor)
+			
+			else:
+				
+				actor.queue_free()
+
+		else:
+			
+			actor.queue_free()
 
 
 func AddLink(link_path):

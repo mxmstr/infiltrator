@@ -13,6 +13,7 @@ signal entered_tree
 signal integrate_forces
 signal player_index_changed
 signal on_input
+signal ressurected
 
 
 func _has_tag(tag):

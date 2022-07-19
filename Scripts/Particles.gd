@@ -1,7 +1,14 @@
 extends Particles
 
 
-func _ready():
+func _on_ressurected():
+	
+	restart()
+
+
+func _enter_tree():
+	
+	owner.connect('ressurected', self, '_on_ressurected')
 	
 	emitting = true
 

@@ -75,7 +75,14 @@ func _play(new_state, animation, attributes, _data):
 	animation_player.play(animation, -1, scale)
 
 
+func _on_ressurected():
+	
+	call_deferred('emit_signal', 'action', default_state, {})
+
+
 func _ready():
+	
+	owner.connect('ressurected', self, '_on_ressurected')
 	
 	bullet_time_server.connect('started', self, '_on_bullet_time_started')
 	bullet_time_server.connect('ended', self, '_on_bullet_time_ended')
