@@ -27,7 +27,7 @@ func _on_before_move(velocity):
 	
 	if not result.empty():
 		
-		Meta.StimulateActor(
+		ActorServer.Stim(
 			result.collider, 
 			stim_type,
 			owner, 
@@ -59,7 +59,7 @@ func _physics_process(delta):
 
 	if not result.empty():
 
-		Meta.StimulateActor(
+		ActorServer.Stim(
 			result.collider, 
 			stim_type,
 			owner, 

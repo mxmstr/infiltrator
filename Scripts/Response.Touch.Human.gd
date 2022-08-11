@@ -52,7 +52,7 @@ func _stack_item(item):
 	item.get_node('Magazine')._delete_all()
 	item.get_node('Chamber')._delete_all()
 	
-	Meta.DestroyActor(item)
+	ActorServer.Destroy(item)
 
 
 func _on_stimulate(stim, data):
@@ -78,7 +78,7 @@ func _on_stimulate(stim, data):
 			
 			else:
 				
-				Meta.CreateLink(owner, data.source, 'Contains')
+				LinkServer.Create(owner, data.source, 'Contains')
 		
 		elif data.source._has_tag('Ammo'):
 			
@@ -91,4 +91,4 @@ func _on_stimulate(stim, data):
 			for i in range(amount):
 				owner.get_node(kind + 'Container')._add_item(path)
 			
-			Meta.DestroyActor(data.source)
+			ActorServer.Destroy(data.source)

@@ -282,34 +282,6 @@ func PreloadSchemas():
 		preloader.add_resource(schema, packed_scene)
 
 
-func PreloadActors():
-	
-	var actors = _get_files_recursive('res://Scenes/Actors/', '', '.tscn')
-	
-	for actor in actors:
-		
-		var actor_res = load(actor)
-		var actor_instance = actor_res.instance()
-
-		if actor_instance.get('tags') and actor_instance._has_tag('Pooled'):
-
-			actor_pool[actor] = []
-
-			for i in range(actor_pool_size):
-				actor_pool[actor].append(load(actor).instance())
-		
-		
-		preloader.add_resource(actor, actor_res)
-
-
-func PreloadLinks():
-	
-	var links = _get_files_recursive('res://Scenes/Links/', '', '.tscn')
-	
-	for link in links:
-		preloader.add_resource(link, load(link))
-
-
 func LoadSchema(schema, owner_tags):
 	
 	var selected_file
@@ -354,84 +326,6 @@ func LoadSchema(schema, owner_tags):
 	return preloader.get_resource(selected_file)
 
 
-func AddActor(actor_path, position=null, rotation=null, direction=null, tags={}):
-	
-#	if not actors:
-#		actors = get_node_or_null('/root/Mission/Actors')
-	
-	var new_actor
-	var resource_path = 'res://Scenes/Actors/' + actor_path + '.tscn'
-	
-	if resource_path in actor_pool:
-		
-		new_actor = actor_pool[resource_path].pop_front()
-		
-#		if 'Sparks' in actor_path:
-#			prints('create', new_actor, actor_pool[resource_path].size())
-		
-		if new_actor:
-			new_actor.emit_signal('ressurected')
-		else:
-			new_actor = preloader.get_resource(resource_path).instance()
-
-	else:
-		
-		new_actor = preloader.get_resource(resource_path).instance()
-	
-	_merge_dir(new_actor.tags_dict, tags)
-	$'/root/Mission/Actors'.add_child(new_actor)
-	
-	if position:
-		new_actor.transform.origin = position
-	
-	if rotation:
-		new_actor.rotation = rotation
-	
-	if direction:
-		
-		var target = new_actor.transform.origin - direction
-		
-		if Vector3.UP.cross(target - new_actor.transform.origin) != Vector3():
-			new_actor.look_at(target, Vector3.UP)
-	
-	return new_actor
-
-
-func DestroyActor(actor):
-	
-	if is_instance_valid(actor):
-		
-		if actor.get('tags') and actor._has_tag('Pooled'):
-			
-			var resource_path = 'res://Scenes/Actors/' + actor.system_path + '.tscn'
-			
-#			if 'Sparks' in actor.system_path:
-#				prints('destroy', actor_pool[resource_path].size())
-			
-			if actor_pool[resource_path].size() < actor_pool_size:
-				
-				if actor.get_parent():
-					actor.get_parent().remove_child(actor)
-				
-				actor_pool[resource_path].append(actor)
-			
-			else:
-				
-				actor.queue_free()
-
-		else:
-			
-			actor.queue_free()
-
-
-func AddLink(link_path):
-	
-	var new_link = preloader.get_resource('res://Scenes/Links/' + link_path + '.link.tscn').instance()
-	$'/root/Mission/Links'.add_child(new_link)
-	
-	return new_link
-
-
 func AddWayPoint(position):
 
 	var waypoint = load('res://Scenes/Markers/Waypoint2.tscn').instance()
@@ -439,117 +333,12 @@ func AddWayPoint(position):
 	waypoint.global_transform.origin = position
 
 
-func GetLinks(from, to, type, data={}):
-	
-	if from:
-		data.from_node = from
-	
-	if to:
-		data.to_node = to
-	
-	var links = []
-	
-	for link in $'/root/Mission/Links'.get_children():
-		
-		if not type == link.base_name:
-			continue
-		
-		var props_match = true
-		
-		for prop in data:
-			
-			if link.get(prop) != data[prop]:
-				props_match = false
-				break
-		
-		if not props_match:
-			continue
-		
-		links.append(link)
-	
-	return links
-
-
-func CreateLink(from, to, type, data={}):
-	
-	data.from_node = from
-	data.to_node = to
-	
-	var new_link = preloader.get_resource('res://Scenes/Links/' + type + '.link.tscn').instance()
-	
-	for prop in data:
-		new_link.set(prop, data[prop])
-	
-	for link in $'/root/Mission/Links'.get_children():
-		if is_instance_valid(link) and not link.is_queued_for_deletion() and link._equals(new_link):
-			return
-	
-	$'/root/Mission/Links'.add_child(new_link)
-	
-	return new_link
-
-
-func DestroyLink(from, to, type, data={}):
-	
-	if from:
-		data.from_node = from
-	
-	if to:
-		data.to_node = to
-	
-	var freed = []
-	
-	for link in $'/root/Mission/Links'.get_children():
-		
-		if not type in link.name:
-			continue
-		
-		var props_match = true
-		
-		for prop in data:
-			if link.get(prop) != data[prop]:
-				props_match = false
-				break
-		
-		if not props_match:
-			continue
-		
-		link._destroy()
-		
-		if not link.to_node in freed:
-			freed.append(link.to_node)
-	
-	return freed
-
-
-func StimulateActor(actor, stim, source=self, intensity=0.0, position=Vector3(), direction=Vector3()):
-	
-	if not is_instance_valid(actor) or not is_instance_valid(source):
-		return
-#
-#	if actor.has_node('Reception'):
-#
-	var data
-	
-	if source.get('tags'):
-		
-		data = {
-			'source': source,
-			'shooter': source._get_tag('Shooter') if source._has_tag('Shooter') else null,
-			'position': position,
-			'direction': direction,
-			'intensity': intensity
-			}
-	
-	actor.get_node('Reception')._start_state(stim, data)
-
-
 func CreateEvent(actor, event_name):
 	
 	var event = load('res://Scenes/Actors/Events' + event_name + '.tscn').instance()
 	$'/root/Mission/Actors'.add_child(event)
 	
-	CreateLink(event, actor, 'EventMaster')
+	LinkServer.Create(event, actor, 'EventMaster')
 
 
 func _input(event):
@@ -565,8 +354,6 @@ func _enter_tree():
 	preloader = ResourcePreloader.new()
 	
 	PreloadSchemas()
-	PreloadActors()
-	PreloadLinks()
 
 
 func _exit_tree():

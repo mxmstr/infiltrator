@@ -49,7 +49,7 @@ func _physics_process(delta):
 		
 		if continuous or not collision_.collider in colliders:
 			
-			Meta.StimulateActor(
+			ActorServer.Stim(
 				collision_.collider,
 				stim_type,
 				owner,

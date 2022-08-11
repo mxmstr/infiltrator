@@ -27,7 +27,7 @@ func _physics_process(delta):
 			
 			if continuous or not actor in collisions:
 				
-				Meta.StimulateActor(actor, stim_type, owner)
+				ActorServer.Stim(actor, stim_type, owner)
 				
 				emit_signal('triggered', {})
 			

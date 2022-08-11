@@ -54,9 +54,6 @@ bone_name = "Foot-R"
 path = NodePath("../Model/Trinity_skeleton")
 bone_name = "Foot-L"
 
-[node name="ColorCorrection" parent="Perspective" index="1"]
-texture = SubResource( 3 )
-
 [node name="AnimLayerMovement" parent="." index="59"]
 parameters/playback = SubResource( 1 )
 

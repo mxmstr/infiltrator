@@ -41,7 +41,7 @@ func _init_duplicate_meshes():
 	if actor_model.get_children().size() and actor_model.get_child(0) and actor_model.get_child(0) is Skeleton:
 		world_skeleton = actor_model.get_child(0)
 	
-	var actor_instance = Meta.preloader.get_resource('res://Scenes/Actors/' + actor.system_path + '.tscn').instance()
+	var actor_instance = ActorServer.preloader.get_resource('res://Scenes/Actors/' + actor.system_path + '.tscn').instance()
 	var model_instance = actor_instance.get_node('Model')
 	
 	if model_instance is MeshInstance:

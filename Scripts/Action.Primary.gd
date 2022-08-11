@@ -31,7 +31,7 @@ func _use_right_hand_item():
 			else:
 				_use_left_hand_item()
 		
-		Meta.StimulateActor(item, 'Use', owner)
+		ActorServer.Stim(item, 'Use', owner)
 
 
 func _use_left_hand_item():
@@ -39,7 +39,7 @@ func _use_left_hand_item():
 	lefthand.items.size()
 	
 	if not lefthand._is_empty() and tree_node.can_use_item:
-		Meta.StimulateActor(lefthand.items[0], 'Use', owner)
+		ActorServer.Stim(lefthand.items[0], 'Use', owner)
 
 
 func _cock_weapon():

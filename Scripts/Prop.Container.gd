@@ -65,7 +65,7 @@ func _add_item(item):
 
 		if not item is String:
 
-			Meta.DestroyActor(item)
+			ActorServer.Destroy(item)
 			item = item.system_path
 
 	items.append(item)
@@ -152,7 +152,7 @@ func _push_front_into_container(new_container):
 	
 	var item = _release_front()
 	
-	Meta.CreateLink(owner, item, 'Contains', {'container': new_container})
+	LinkServer.Create(owner, item, 'Contains', {'container': new_container})
 
 
 func _exclude_recursive(item, parent):
@@ -160,28 +160,12 @@ func _exclude_recursive(item, parent):
 	var parent_list = []
 	
 	if release_exclude_parent:
-		
-		if item is PhysicsBody:
-			
-			item.add_collision_exception_with(parent)
-			
-			if parent.has_node('Hitboxes'):
-				for hitbox in parent.get_node('Hitboxes').hitboxes:
-					item.add_collision_exception_with(hitbox)
-		
-		if item is Area:
-			
-			item.get_node('Movement').collision_exceptions.append(parent)
-			
-			if parent.has_node('Hitboxes'):
-				for hitbox in parent.get_node('Hitboxes').hitboxes:
-					item.get_node('Movement').collision_exceptions.append(hitbox)
-	
+		ActorServer.AddCollisionException(item, parent)
 	
 	parent_list.append(parent)
 	shooter = parent
 	
-	for link in Meta.GetLinks(null, parent, 'Contains'):
+	for link in LinkServer.GetAll(null, parent, 'Contains'):
 		parent_list += _exclude_recursive(item, link.from_node)
 	
 	return parent_list
@@ -193,65 +177,46 @@ func _remove_exclusions(item, parent_list):
 		return
 	
 	for parent in parent_list:
-		
-		if item is PhysicsBody:
-			
-			item.remove_collision_exception_with(parent)
-			
-			if parent.has_node('Hitboxes'):
-				for hitbox in parent.get_node('Hitboxes').hitboxes:
-					item.remove_collision_exception_with(hitbox)
-		
-		if item is Area:
-			
-			item.get_node('Movement').collision_exceptions.erase(parent)
-			
-			if parent.has_node('Hitboxes'):
-				for hitbox in parent.get_node('Hitboxes').hitboxes:
-					item.get_node('Movement').collision_exceptions.erase(hitbox)
+		ActorServer.RemoveCollisionException(item, parent)
 
 
 func _apply_launch_attributes(item):
 	
-	var item_movement = item.get_node_or_null('Movement')
+	ActorServer.SetDirectionLocal(item, release_direction)
+	ActorServer.SetSpeed(item, release_speed)
 	
-	if item_movement:
+	if release_angular_spread.length():
 		
-		release_direction
+		var spread_x = release_angular_spread.x
+		spread_x = rand_range(-spread_x, spread_x)
+		var spread_y = release_angular_spread.y
+		spread_y = rand_range(-spread_y, spread_y)
 		
-		item_movement._set_direction(release_direction, true)
-		item_movement._set_speed(release_speed)
-		
-		if release_angular_spread.length():
-			
-			var spread_x = release_angular_spread.x
-			item_movement.angular_direction.x = rand_range(-spread_x, spread_x)
-
-			var spread_y = release_angular_spread.y
-			item_movement.angular_direction.y = rand_range(-spread_y, spread_y)
+		ActorServer.SetAngularDirection(item, Vector2(spread_x, spread_y))
 	
 	
 	var parent_list = _exclude_recursive(item, owner)
 	
 	if shooter._has_tag('Shooter'):
 		shooter = shooter._get_tag('Shooter')
+		ActorServer.SetTag(item, 'Shooter', shooter)
 	
 	if release_exclude_parent and release_exclude_parent_lifetime > 0:
 		get_tree().create_timer(release_exclude_parent_lifetime).connect('timeout', self, '_remove_exclusions', [item, parent_list])
 	
 	if release_lifetime > 0:
-		get_tree().create_timer(release_lifetime).connect('timeout', Meta, 'DestroyActor', [item])
+		get_tree().create_timer(release_lifetime).connect('timeout', ActorServer, 'Destroy', [item])
 
 
-func _create_and_launch_item(item_path, rotation=null):
+func _create_and_launch_item(item_path, _rotation=null):
 	
 	var position = root.global_transform.origin
-	var basis = root.global_transform.basis.get_euler()
+	var rotation = root.global_transform.basis.get_euler()
 	
-	if rotation:
-		basis = rotation#Basis(rotation)
+	if _rotation:
+		rotation = _rotation
 	
-	var item = Meta.AddActor(item_path, position, basis, null, { 'Shooter': shooter })
+	var item = ActorServer.Create(item_path, position, rotation, null, { 'Shooter': shooter })
 	
 	
 	#item.get_node('Movement')._teleport(position, basis)
@@ -285,16 +250,17 @@ func _release_front(release_speed_override=null):
 	
 	if factory_mode:
 		
-		item = Meta.AddActor(_remove_item(items[0]), root.global_transform.origin, root.rotation)
+		var removed = _remove_item(items[0])
+		item = ActorServer.Create(removed, root.global_transform.origin, root.rotation)
 		_apply_launch_attributes(item)
 	
 	else:
 		
 		item = items[0]
-		Meta.DestroyLink(owner, item, 'Contains', {'container': name})
+		LinkServer.Destroy(owner, item, 'Contains', {'container': name})
 	
 	if is_instance_valid(item):
-		item._set_tag('Shooter', shooter)
+		ActorServer.SetTag(item, 'Shooter', shooter)
 	
 	emit_signal('item_released', item)
 	
@@ -308,7 +274,7 @@ func _release(item):
 	if not items.size():
 		return
 	
-	Meta.DestroyLink(owner, item, 'Contains', {'container': name})
+	LinkServer.Destroy(owner, item, 'Contains', {'container': name})
 	
 	if is_instance_valid(item):
 		item._set_tag('Shooter', shooter)
@@ -325,12 +291,14 @@ func _release_all():
 	if factory_mode:
 		
 		for item in items:
-			released.append(Meta.AddActor(_remove_item(item), root.global_transform.origin, root.rotation))
+			
+			var removed = _remove_item(item)
+			released.append(ActorServer.Create(removed, root.global_transform.origin, root.rotation))
 			_apply_launch_attributes(item)
 	
 	else:
 		
-		released = Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+		released = LinkServer.Destroy(owner, null, 'Contains', {'container': name})
 		
 		for item in released.duplicate():
 			if not is_instance_valid(item):
@@ -338,7 +306,7 @@ func _release_all():
 	
 	for item in released:
 		
-		item._set_tag('Shooter', shooter)
+		ActorServer.SetTag(item, 'Shooter', shooter)
 		emit_signal('item_released', item)
 	
 	return released
@@ -354,10 +322,10 @@ func _delete_all():
 		
 		var removed = items.duplicate()
 		
-		#Meta.DestroyLink(owner, null, 'Contains', {'container': name})
+		#LinkServer.Destroy(owner, null, 'Contains', {'container': name})
 		
 		for item in removed:
-			Meta.DestroyActor(item)
+			ActorServer.Destroy(item)
 
 
 func _reset_root():

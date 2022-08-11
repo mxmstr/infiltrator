@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Mission.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Markers/PickupMarker.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Actors/Items/Bullet9mm.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Links/BulletTimeServer.link.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Links/PVPPlayerFactory.link.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Markers/Waypoint2.tscn" type="PackedScene" id=10]
@@ -15,13 +14,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="PhysicsSharedArea" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+
 [node name="Actors" type="Spatial" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Bullet9mm" parent="Actors" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16626, 1.94709, 0 )
 
 [node name="Markers" type="Spatial" parent="."]
 __meta__ = {

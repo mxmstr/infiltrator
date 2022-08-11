@@ -32,36 +32,36 @@ func _has_targets():
 
 func _create_x_target(position):
 	
-	x_target = Meta.AddActor('Empty', position)
+	x_target = ActorServer.Create('Empty', position)
 
 
 func _create_y_target(position):
 	
-	y_target = Meta.AddActor('Empty', position)
+	y_target = ActorServer.Create('Empty', position)
 
 
-func _create_x_drag():
-	
-	var data = {
-		'from': x_target.get_path(),
-		'to': owner.get_path(),
-		'relative': true,
-		'power': 0.0
-	}
-	
-	x_drag = LinkHub._create('Drag', data)
-
-
-func _create_y_drag():
-	
-	var data = {
-		'from': y_target.get_path(),
-		'to': owner.get_path(),
-		'relative': true,
-		'power': 0.0
-	}
-	
-	y_drag = LinkHub._create('Drag', data)
+#func _create_x_drag():
+#
+#	var data = {
+#		'from': x_target.get_path(),
+#		'to': owner.get_path(),
+#		'relative': true,
+#		'power': 0.0
+#	}
+#
+#	x_drag = LinkServer.Create('Drag', data)
+#
+#
+#func _create_y_drag():
+#
+#	var data = {
+#		'from': y_target.get_path(),
+#		'to': owner.get_path(),
+#		'relative': true,
+#		'power': 0.0
+#	}
+#
+#	y_drag = LinkServer.Create('Drag', data)
 
 
 func _destroy_x_target():

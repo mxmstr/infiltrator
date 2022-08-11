@@ -8,7 +8,7 @@ onready var magazine = get_node_or_null('../../Magazine')
 func _fire_effect(effect_path):
 	
 	prints(effect_path)
-	Meta.AddActor(effect_path, owner.translation, owner.rotation)
+	ActorServer.Create(effect_path, owner.translation, owner.rotation)
 
 
 func _clone_and_shoot():

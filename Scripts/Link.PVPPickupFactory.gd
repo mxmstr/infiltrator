@@ -69,11 +69,11 @@ func _refresh_spawn(marker):
 	randomize()
 	
 	var weapon_path = Meta.multi_loadout[randi() % Meta.multi_loadout.size()]
-	var node_name = Meta.preloader.get_resource('res://Scenes/Actors/' + weapon_path + '.tscn').instance().name
+	var node_name = ActorServer.preloader.get_resource('res://Scenes/Actors/' + weapon_path + '.tscn').instance().name
 	
 	for file in Meta._get_files_recursive('res://Scenes/Links/Factories/', 'Factory', '.link.tscn', [node_name]):
 		
-		var new_link = Meta.preloader.get_resource(file).instance()
+		var new_link = LinkServer.preloader.get_resource(file).instance()
 		new_link.connect('finished', self, '_on_factory_finished', [new_link, marker])
 		
 		$'/root/Mission/Links'.call_deferred('add_child', new_link)

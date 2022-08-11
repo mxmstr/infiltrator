@@ -18,7 +18,7 @@ func _on_body_entered(body):
 	if body in movement.collision_exceptions:
 		return
 
-	Meta.StimulateActor(body, stim_type, owner)
+	ActorServer.Stim(body, stim_type, owner)
 	emit_signal('stimulate')
 
 

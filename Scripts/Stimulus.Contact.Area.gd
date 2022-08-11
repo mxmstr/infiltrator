@@ -28,7 +28,7 @@ func _on_body_shape_entered(body_id, body, body_shape, area_shape):
 		if body_collision and not _test_raycast(body):
 			return
 	
-	Meta.StimulateActor(
+	ActorServer.Stim(
 		body, 
 		stim_type,
 		owner, 

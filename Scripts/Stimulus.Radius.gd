@@ -91,7 +91,7 @@ func _physics_process(delta):
 		
 		if _validate_within_radius(actor):
 				
-				Meta.StimulateActor(actor, stim_type, owner, stim_intensity)
+				ActorServer.Stim(actor, stim_type, owner, stim_intensity)
 				emit_signal('stimulate')
 				
 				new_colliders.append(actor)
@@ -103,9 +103,9 @@ func _physics_process(delta):
 				if _validate_within_radius(hitbox):
 					
 					if stim_hitbox:
-						Meta.StimulateActor(hitbox, stim_type, owner, stim_intensity)
+						ActorServer.Stim(hitbox, stim_type, owner, stim_intensity)
 					else:
-						Meta.StimulateActor(actor, stim_type, owner, stim_intensity)
+						ActorServer.Stim(actor, stim_type, owner, stim_intensity)
 					
 					emit_signal('stimulate')
 					

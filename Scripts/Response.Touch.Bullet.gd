@@ -14,11 +14,11 @@ func _on_stimulate(stim, data):
 			#Meta.AddActor('Particles/Smoke', owner.translation)
 			#Meta.AddActor('Particles/Sparks', owner.translation, null, data.direction)
 			
-			Meta.DestroyActor(owner)
+			ActorServer.Destroy(owner)
 		
 		elif data.source._has_tag('Hitbox'):
 			
-			Meta.AddActor('Particles/BloodSquirt', owner.translation, null, data.direction)
+			ActorServer.Create('Particles/BloodSquirt', owner.translation, null, data.direction)
 			
-			Meta.DestroyActor(owner)
+			ActorServer.Destroy(owner)
 			

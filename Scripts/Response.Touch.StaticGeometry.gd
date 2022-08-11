@@ -10,9 +10,9 @@ func _on_stimulate(stim, data):
 			data.source.translation = data.position
 			
 			#Meta.AddActor('Particles/Smoke', owner.translation)
-			var sparks = Meta.AddActor('Particles/Sparks', data.source.translation, data.source.rotation)# null, data.direction)
+			var sparks = ActorServer.Create('Particles/Sparks', data.source.translation, data.source.rotation)# null, data.direction)
 			sparks.rotate_y(deg2rad(180))
 			
-			Meta.DestroyActor(data.source)
+			ActorServer.Destroy(data.source)
 		
 		tree_node._reflect()

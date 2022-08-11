@@ -27,8 +27,8 @@ func _process(delta):
 	
 	if processed and physics_processed:
 		
-		if Meta.GetLinks(from_node, null, 'EventSubject').size() == 0:
-			Meta.DestroyActor(from_node)
+		if LinkServer.GetAll(from_node, null, 'EventSubject').size() == 0:
+			ActorServer.Destroy(from_node)
 	
 	processed = true
 

@@ -34,7 +34,7 @@ func _ready():
 	if not Meta.coop:
 		
 		if from_node != null:
-			Meta.DestroyActor(from_node)
+			ActorServer.Destroy(from_node)
 			
 		return
 	

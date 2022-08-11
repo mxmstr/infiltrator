@@ -58,7 +58,7 @@ func _ready():
 		
 		else:
 			
-			var output = Meta.AddActor(product.target)
+			var output = ActorServer.Create(product.target)
 			outputs.append(output)
 			
 			if product.has('item'):
@@ -73,14 +73,14 @@ func _create_product(target, target_container, amount, item):
 	for i in range(amount):
 		
 		if target.get_node(target_container).factory_mode:
-		
+			
 			target.get_node(target_container)._add_item(item)
 		
 		else:
 		
-			var new_actor = Meta.AddActor(item)
+			var new_actor = ActorServer.Create(item)
 			
-			Meta.CreateLink(target, new_actor, 'Contains', { 'container': target_container })
+			LinkServer.Create(target, new_actor, 'Contains', { 'container': target_container })
 			
 			for subproduct in products_list:
 				

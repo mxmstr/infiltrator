@@ -3,4 +3,4 @@
 [ext_resource path="res://Scenes/Actors/Items/Bullet2.tscn" type="PackedScene" id=1]
 
 [node name="BulletRifle" instance=ExtResource( 1 )]
-tags = "Actor Bullet Rifle Damage:20 Force:4"
+tags = "Actor Bullet Rifle Pooled Damage:20 Force:4"

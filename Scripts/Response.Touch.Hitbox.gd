@@ -27,15 +27,15 @@ func _on_stimulate(stim, data):
 			var force = float(data.source._get_tag('Force'))
 			var direction = data.source.transform.basis.z.normalized()
 			
-			Meta.StimulateActor(owner.owner, 'Damage', data.source, damage, data.position, direction)
-			Meta.StimulateActor(owner.owner, 'Push', data.source, force, data.position, direction)
+			ActorServer.Stim(owner.owner, 'Damage', data.source, damage, data.position, direction)
+			ActorServer.Stim(owner.owner, 'Push', data.source, force, data.position, direction)
 			
 			audio._start_state('Damage')
 			
-			var blood = Meta.AddActor('Particles/BloodSquirt', data.source.translation, data.source.rotation)
+			var blood = ActorServer.Create('Particles/BloodSquirt', data.source.translation, data.source.rotation)
 			blood.rotate_y(deg2rad(180))
 			
-			Meta.DestroyActor(data.source)
+			ActorServer.Destroy(data.source)
 		
 		elif data.source._has_tag('Melee'):
 			
@@ -45,19 +45,19 @@ func _on_stimulate(stim, data):
 			var hitsound = data.source._get_tag('HitSound')
 			var direction = data.source._get_tag('Shooter').transform.basis.z.normalized()
 			
-			Meta.StimulateActor(owner.owner, 'Damage', data.source, damage, data.position, direction)
-			Meta.StimulateActor(owner.owner, 'Push', data.source, force, data.position, direction)
+			ActorServer.Stim(owner.owner, 'Damage', data.source, damage, data.position, direction)
+			ActorServer.Stim(owner.owner, 'Push', data.source, force, data.position, direction)
 			
 			audio._start_state(hitsound)
 			
 			if randf() < disarm_chance:
 				owner_righthand._release_front()
 			
-			Meta.DestroyActor(data.source)
+			ActorServer.Destroy(data.source)
 		
 		elif data.source._has_tag('ImpactGrenade'):
 			
 			var shooter = data.source._get_tag('Shooter') if data.source._has_tag('Shooter') else data.source
 			
-			Meta.AddActor('Projectiles/Explosions/Explosion1', data.source.translation, data.source.rotation, null, { 'Shooter': shooter })
-			Meta.DestroyActor(data.source)
+			ActorServer.Create('Projectiles/Explosions/Explosion1', data.source.translation, data.source.rotation, null, { 'Shooter': shooter })
+			ActorServer.Destroy(data.source)

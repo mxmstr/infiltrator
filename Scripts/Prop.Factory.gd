@@ -32,4 +32,4 @@ func _ready():
 #
 #		if product.target == 'target':
 #
-#			Meta.CreateLink(Meta._add_actor(product.item))
+#			LinkServer.Create(Meta._add_actor(product.item))

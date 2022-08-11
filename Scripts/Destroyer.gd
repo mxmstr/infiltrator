@@ -3,7 +3,7 @@ extends Area
 
 func _on_body_entered(body):
 	
-	Meta.DestroyActor(body)
+	ActorServer.Destroy(body)
 
 
 func _ready():

@@ -5,7 +5,7 @@ export var time = -1.0
 
 func _on_timeout():
 	
-	Meta.DestroyActor(owner)
+	ActorServer.Destroy(owner)
 
 
 func _ready():

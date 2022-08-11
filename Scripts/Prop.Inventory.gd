@@ -12,7 +12,7 @@ func _go_to_unarmed():
 	var current = right_hand._release_front()
 	
 	if current:
-		Meta.CreateLink(owner, current, 'Contains', { 'container': 'InventoryContainer' } )
+		LinkServer.Create(owner, current, 'Contains', { 'container': 'InventoryContainer' } )
 
 
 func _go_to_next(next=null):
@@ -26,12 +26,12 @@ func _go_to_next(next=null):
 	var current = right_hand._release_front()
 	
 	if current:
-		Meta.CreateLink(owner, current, 'Contains', { 'container': 'InventoryContainer' } )
+		LinkServer.Create(owner, current, 'Contains', { 'container': 'InventoryContainer' } )
 	
 	var new = inventory._release(next)
 	
 	if new:
-		Meta.CreateLink(owner, new, 'Contains', { 'container': 'RightHandContainer' } )
+		LinkServer.Create(owner, new, 'Contains', { 'container': 'RightHandContainer' } )
 	
 	behavior._start_state('Default')
 
@@ -138,7 +138,7 @@ func _try_dual_wield(next=null):
 
 func _stop_dual_wield(current):
 	
-	var dual_wield_links = Meta.GetLinks(owner, current, 'DualWield')
+	var dual_wield_links = LinkServer.GetAll(owner, current, 'DualWield')
 	
 	if dual_wield_links.size():
 		for link in dual_wield_links:
@@ -185,7 +185,7 @@ func _next(forward=true, not_empty=false):
 			
 			if dual_wield and _has_enough_ammo(current):
 				
-				if Meta.GetLinks(owner, current, 'DualWield').size():
+				if LinkServer.GetAll(owner, current, 'DualWield').size():
 					
 					selected_item = _find_next(current_rank, not_empty)
 					
@@ -210,7 +210,7 @@ func _next(forward=true, not_empty=false):
 		
 		else:
 
-			if dual_wield and Meta.GetLinks(owner, current, 'DualWield').size():
+			if dual_wield and LinkServer.GetAll(owner, current, 'DualWield').size():
 				_stop_dual_wield(current)
 
 			else:

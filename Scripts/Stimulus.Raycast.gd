@@ -46,9 +46,9 @@ func _stimulate(stim_type_override=''):
 	
 	
 	if send_to_self:
-		Meta.StimulateActor(owner, new_stim, owner, movement.velocity.length() * -1, get_collision_point(), get_collision_normal() * -1)
+		ActorServer.Stim(owner, new_stim, owner, movement.velocity.length() * -1, get_collision_point(), get_collision_normal() * -1)
 	else:
-		Meta.StimulateActor(selection, new_stim, owner, movement.velocity.length(), get_collision_point(), get_collision_normal())
+		ActorServer.Stim(selection, new_stim, owner, movement.velocity.length(), get_collision_point(), get_collision_normal())
 
 
 func _update_raycast_selection():
@@ -78,7 +78,7 @@ func _on_before_move(velocity):
 		temp_raycast.force_raycast_update()
 
 		if temp_raycast.get_collider():
-			Meta.StimulateActor(temp_raycast.get_collider(), stim_type, owner, velocity.length(), temp_raycast.get_collision_point(), temp_raycast.get_collision_normal())
+			ActorServer.Stim(temp_raycast.get_collider(), stim_type, owner, velocity.length(), temp_raycast.get_collision_point(), temp_raycast.get_collision_normal())
 		
 		temp_raycast.free()
 

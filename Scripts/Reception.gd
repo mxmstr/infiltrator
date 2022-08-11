@@ -74,7 +74,7 @@ func _reflect(reflected_stim=''):
 	if reflected_stim == '':
 		reflected_stim = stim
 	
-	Meta.StimulateActor(data.source, reflected_stim, owner, data.intensity, data.position, data.direction * -1)
+	ActorServer.Stim(data.source, reflected_stim, owner, data.intensity, data.position, data.direction * -1)
 
 
 #func _ready():

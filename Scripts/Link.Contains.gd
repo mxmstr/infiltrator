@@ -17,6 +17,11 @@ var item_rotation_offset
 onready var actors = $'/root/Mission/Actors'
 
 
+func _equals(other):
+	
+	return base_name == other.base_name and to_node == other.to_node
+
+
 func _is_container(node):
 	
 	if node.get_script() != null:
@@ -85,30 +90,18 @@ static func _get_item_rotation_offset(item, _container_node):
 	return Vector3()
 
 
-func _move_item():
-	
-	return
-	
-	if is_queued_for_deletion() or _is_invalid():
-		return
-	
-	if movement and is_instance_valid(movement) and not movement.is_queued_for_deletion():
-		
-		var new_transform = root.global_transform
-		
-		if movement.has_method('_teleport'):
-			movement._teleport(new_transform.origin, new_transform.basis)
-
-
 func _ready():
 	
 	if _is_invalid():
 		return
 	
 	from_behavior = from_node.get_node_or_null('Behavior')
-	movement = to_node.get_node_or_null('Movement')
-	collision = to_node.get_node_or_null('Collision')
-	reception = to_node.get_node_or_null('Reception')
+	
+	if to_node is Node:
+		
+		movement = to_node.get_node_or_null('Movement')
+		collision = to_node.get_node_or_null('Collision')
+		reception = to_node.get_node_or_null('Reception')
 	
 	if container == '' or container == null:
 		
@@ -133,7 +126,7 @@ func _ready():
 	if _is_invalid():
 		return
 	
-	_disable_collision()
+	_deactivate_actor()
 	
 	yield(get_tree(), 'idle_frame')
 	
@@ -152,29 +145,35 @@ func _process(delta):
 		queue_free()
 
 
-func _disable_collision():
+func _deactivate_actor():
 	
 	to_node.visible = not container_node.invisible
 	
-	if collision:
-		collision.call_deferred('set_disabled', true)
-		
+	ActorServer.DisableCollision(to_node)
+	
 	if to_node is Area:
+		
 		to_node.monitoring = false
 	
 	if to_node is RigidBody:
+		
 		to_node.sleeping = true
 		to_node.mode = RigidBody.MODE_STATIC
 	
-	if to_node._has_tag('AttachBone'):
-		container_node.root.bone_name = to_node._get_tag('AttachBone')
-	else:
-		container_node.root.bone_name = container_node.bone_name
+	if to_node is Node:
+		
+		if to_node._has_tag('AttachBone'):
+			container_node.root.bone_name = to_node._get_tag('AttachBone')
+		else:
+			container_node.root.bone_name = container_node.bone_name
 	
 	container_node._add_item(to_node)
 
 
 func _reparent():
+	
+	if to_node is Projectile:
+		return
 	
 	item_position_offset = _get_item_position_offset(to_node, container_node)
 	item_rotation_offset = _get_item_rotation_offset(to_node, container_node)
@@ -186,24 +185,22 @@ func _reparent():
 	to_node.scale = Vector3(1, 1, 1)
 
 
-func _restore_collision():
+func _activate_actor():
 	
-	if is_instance_valid(to_node):
+	to_node.visible = true
 	
-		to_node.visible = true
-		
-		if container_node and is_instance_valid(container_node):
-			container_node._apply_launch_attributes(to_node)
-		
-		if collision:
-			collision.call_deferred('set_disabled', false)
-		
-		if to_node is Area:
-			to_node.monitoring = true
-		
-		if to_node is RigidBody:
-			to_node.sleeping = false
-			to_node.mode = RigidBody.MODE_RIGID
+	if container_node and is_instance_valid(container_node):
+		container_node._apply_launch_attributes(to_node)
+	
+	if collision:
+		collision.call_deferred('set_disabled', false)
+	
+	if to_node is Area:
+		to_node.monitoring = true
+	
+	if to_node is RigidBody:
+		to_node.sleeping = false
+		to_node.mode = RigidBody.MODE_RIGID
 
 
 func _destroy():
@@ -212,13 +209,13 @@ func _destroy():
 		
 		container_node._remove_item(to_node)
 		
-		if is_instance_valid(to_node) and to_node._has_tag('AttachBone'):
+		if is_instance_valid(to_node) and to_node is Node and to_node._has_tag('AttachBone'):
 			container_node.root.bone_name = container_node.bone_name
 	
 	if root and is_instance_valid(root):
 		root.queue_free()
 	
-	if is_instance_valid(to_node):
+	if is_instance_valid(to_node) and to_node is Node:
 		
 		var to_node_transform = to_node.global_transform
 		
@@ -227,8 +224,15 @@ func _destroy():
 		
 		if movement:
 			movement._teleport(to_node_transform.origin, to_node_transform.basis)
-	
-	if restore_collisions:
-		_restore_collision()
+		
+		if restore_collisions:
+			_activate_actor()
 	
 	._destroy()
+
+
+func _physics_process(delta):
+	
+	if to_node is Projectile:
+		
+		to_node.transform = container_node.root.global_transform

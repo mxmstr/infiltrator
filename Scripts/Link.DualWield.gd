@@ -11,8 +11,8 @@ func _on_item_removed(item):
 
 func _ready():
 	
-	clone = Meta.AddActor(to_node.system_path)
-	clone_contains_link = Meta.CreateLink(from_node, clone, 'Contains', { 'container': 'LeftHandContainer' } )
+	clone = ActorServer.Create(to_node.system_path)
+	clone_contains_link = LinkServer.Create(from_node, clone, 'Contains', { 'container': 'LeftHandContainer' } )
 	
 	if not clone_contains_link:
 		_destroy()

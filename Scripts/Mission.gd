@@ -33,4 +33,4 @@ func _process(delta):
 	
 	for actor in actors:
 		if not actor._has_tag('Human') and actor.translation.length() > limit:
-			Meta.DestroyActor(actor)
+			ActorServer.Destroy(actor)

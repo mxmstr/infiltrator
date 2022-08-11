@@ -149,7 +149,7 @@ func _ready():
 		var data = Meta.player_data[i]
 		var marker = markers[i]
 		
-		var actor = Meta.AddActor(data.character, marker.global_transform.origin, marker.rotation)
+		var actor = ActorServer.Create(data.character, marker.global_transform.origin, marker.rotation)
 		actor.player_index = i
 		actor.get_node('Stamina').hp = data.hp
 		actor.get_node('WeaponTargetLock').auto_aim = data.auto_aim
