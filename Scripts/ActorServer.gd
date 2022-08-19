@@ -75,7 +75,7 @@ func Destroy(actor):
 	
 	if is_instance_valid(actor):
 		
-		if actor.get('tags') and actor._has_tag('Pooled'):
+		if actor is Projectile:
 			
 			ProjectileServer.Destroy(actor)
 #			var resource_path = 'res://Scenes/Actors/' + actor.system_path + '.tscn'

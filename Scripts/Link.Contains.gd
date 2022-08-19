@@ -215,15 +215,17 @@ func _destroy():
 	if root and is_instance_valid(root):
 		root.queue_free()
 	
-	if is_instance_valid(to_node) and to_node is Node:
-		
-		var to_node_transform = to_node.global_transform
-		
-		to_node.get_parent().remove_child(to_node)
-		actors.add_child(to_node)
-		
-		if movement:
-			movement._teleport(to_node_transform.origin, to_node_transform.basis)
+	if is_instance_valid(to_node):
+	
+		if to_node is Node:
+			
+			var to_node_transform = to_node.global_transform
+			
+			to_node.get_parent().remove_child(to_node)
+			actors.add_child(to_node)
+			
+			if movement:
+				movement._teleport(to_node_transform.origin, to_node_transform.basis)
 		
 		if restore_collisions:
 			_activate_actor()
@@ -233,6 +235,6 @@ func _destroy():
 
 func _physics_process(delta):
 	
-	if to_node is Projectile:
+	if is_instance_valid(to_node) and is_instance_valid(container_node) and to_node is Projectile:
 		
-		to_node.transform = container_node.root.global_transform
+		to_node.transform = container_node.global_transform
