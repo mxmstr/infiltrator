@@ -105,6 +105,21 @@ func SetTag(actor, key, value):
 	actor._set_tag(key, value)
 
 
+func Teleport(actor, new_position):
+	
+	if actor is Projectile:
+		actor.transform.origin = new_position
+	else:
+		actor.global_transform.origin = new_position
+
+
+func Face(actor, new_rotation):
+	
+	if actor is Projectile:
+		actor.transform.basis = Basis(new_rotation)
+	else:
+		actor.rotation = new_rotation
+
 
 func EnableCollision(actor):
 	
@@ -139,17 +154,20 @@ func Stim(actor, stim, source=self, intensity=0.0, position=Vector3(), direction
 #
 	var data
 	
-	if source.get('tags'):
-		
-		data = {
-			'source': source,
-			'shooter': source._get_tag('Shooter') if source._has_tag('Shooter') else null,
-			'position': position,
-			'direction': direction,
-			'intensity': intensity
-			}
+#	if source.get('tags_dict'):
+#
+	data = {
+		'source': source,
+		'shooter': source._get_tag('Shooter') if source._has_tag('Shooter') else null,
+		'position': position,
+		'direction': direction,
+		'intensity': intensity
+		}
 	
-	actor.get_node('Reception')._start_state(stim, data)
+	if actor is Projectile:
+		ProjectileServer.Stim(stim, data)
+	else:
+		actor.get_node('Reception')._start_state(stim, data)
 
 
 func SetDirection(actor, release_direction):

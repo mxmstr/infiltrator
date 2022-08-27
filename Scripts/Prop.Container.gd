@@ -197,6 +197,8 @@ func _apply_launch_attributes(item):
 	
 	var parent_list = _exclude_recursive(item, owner)
 	
+	#prints(item, parent_list)
+	
 	if shooter._has_tag('Shooter'):
 		shooter = shooter._get_tag('Shooter')
 		ActorServer.SetTag(item, 'Shooter', shooter)

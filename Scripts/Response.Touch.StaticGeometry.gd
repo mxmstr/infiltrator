@@ -7,11 +7,15 @@ func _on_stimulate(stim, data):
 		
 		if data.source._has_tag('Bullet'):
 			
-			data.source.translation = data.position
+			ActorServer.Teleport(data.source, data.position)
 			
 			#Meta.AddActor('Particles/Smoke', owner.translation)
-			var sparks = ActorServer.Create('Particles/Sparks', data.source.translation, data.source.rotation)# null, data.direction)
-			sparks.rotate_y(deg2rad(180))
+			var sparks = ActorServer.Create(
+				'Particles/Sparks', 
+				data.source.translation, 
+				data.source.rotation.rotated(data.source.transform.basis.y, PI / 2)
+				)
+			#sparks.rotate_y(deg2rad(180))
 			
 			ActorServer.Destroy(data.source)
 		

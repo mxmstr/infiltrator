@@ -78,9 +78,12 @@ func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
 	projectile.speed = 0.0
 	projectile.model = new_model
 	#projectile.particles = new_particles
-	#projectile.collision_shape_rid = new_collision
+#	projectile.collision_shape_rid = new_collision
 	projectile.collision_exceptions = []
 	projectile.tags_dict = new_actor.tags_dict
+	
+	if new_actor is CollisionObject:
+		projectile.collision_mask = new_actor.collision_mask
 	
 	Meta._merge_dir(projectile.tags_dict, tags)
 	
@@ -91,9 +94,7 @@ func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
 
 func Destroy(projectile):
 	
-	return
-	
-	PhysicsServer.free_rid(projectile.collision_shape_rid)
+	#PhysicsServer.free_rid(projectile.collision_shape_rid)
 	projectiles.erase(projectile)
 
 
@@ -106,14 +107,21 @@ func EnableCollision(projectile):
 	
 	var index = projectiles.find(projectile)
 	
-	PhysicsServer.area_set_shape_disabled(physics_shared_area.get_rid(), index, false)
+	projectile.collision_disabled = false
+	#PhysicsServer.area_set_shape_disabled(physics_shared_area.get_rid(), index, false)
 
 
 func DisableCollision(projectile):
 	
 	var index = projectiles.find(projectile)
 	
-	PhysicsServer.area_set_shape_disabled(physics_shared_area.get_rid(), index, true)
+	projectile.collision_disabled = true
+	#PhysicsServer.area_set_shape_disabled(physics_shared_area.get_rid(), index, true)
+
+
+func Stim(stim, data):
+	
+	pass
 
 
 func SetDirection(projectile, new_direction):
@@ -174,8 +182,8 @@ func _on_node_added(node):
 		
 		physics_shared_area = get_node_or_null('/root/Mission/PhysicsSharedArea')
 		
-		if physics_shared_area:
-			physics_shared_area.connect('body_shape_entered', self, '_on_body_shape_entered')
+#		if physics_shared_area:
+#			physics_shared_area.connect('body_shape_entered', self, '_on_body_shape_entered')
 
 
 func _ready():
@@ -183,50 +191,65 @@ func _ready():
 	get_tree().connect('node_added', self, '_on_node_added')
 
 
-func _process(delta):
-	
+func _physics_process(delta):
+
+	var bullets_queued_for_destruction = []
+
+	if not is_instance_valid(physics_shared_area):
+		return
+
 	for i in range(0, projectiles.size()):
-		
+
 		var projectile = projectiles[i]
 		
+		var angular_velocity = projectile.angular_direction * delta
+		
+		projectile.transform = projectile.transform.rotated(projectile.transform.basis.y, angular_velocity.x)
+		projectile.transform = projectile.transform.rotated(projectile.transform.basis.x, angular_velocity.y)
+		
 		var offset = (
-			projectile.direction.normalized() * 
+			projectile.transform.basis.xform(Vector3(0, 0, 1)) *#projectile.direction.normalized() * 
 			projectile.speed * 
 			delta
 			)
+
 		
+		#prints(projectile.collision_disabled)
+		
+		
+		if not projectile.collision_disabled and projectile.collision_mask:
+			
+			var space_state = actors.get_world().direct_space_state
+			var result = space_state.intersect_ray(
+				projectile.transform.origin,
+				projectile.transform.origin + offset,
+				projectile.collision_exceptions,
+				projectile.collision_mask
+				)
+			
+			if not result.empty():
+				
+				ActorServer.Stim(
+					result.collider, 
+					'Touch',
+					projectile, 
+					projectile.speed,
+					projectile.transform.origin,
+					projectile.transform.basis.z
+					)
+
+
 		projectile.transform.origin += offset
-		
+
 		if projectile.model:
 			VisualServer.instance_set_transform(projectile.model, projectile.transform)
+
+		if projectile.particles:
+			VisualServer.instance_set_transform(projectile.particles, projectile.transform)
+
+
 		
 
-
-#func _physics_process(delta):
-#
-#	var bullets_queued_for_destruction = []
-#
-#	if not is_instance_valid(physics_shared_area):
-#		return
-#
-#	for i in range(0, projectiles.size()):
-#
-#		var projectile = projectiles[i]
-#
-#		var offset = (
-#			projectile.direction.normalized() * 
-#			projectile.speed * 
-#			delta
-#			)
-#
-#		projectile.transform.origin += offset
-#
-#		if projectile.model:
-#			VisualServer.instance_set_transform(projectile.model, projectile.transform)
-#
-#		if projectile.particles:
-#			VisualServer.instance_set_transform(projectile.particles, projectile.transform)
-#
 #		PhysicsServer.area_set_shape_transform(
 #			physics_shared_area.get_rid(), 
 #			i, 

@@ -5,11 +5,15 @@ var system_path : String
 var visible = true
 var transform : Transform
 var global_transform : Transform setget _set_global_transform, _get_global_transform
+var translation : Vector3 setget _set_translation, _get_translation
+var rotation : Vector3 setget _set_rotation, _get_rotation
 var direction : Vector3
 var angular_direction : Vector2
 var speed : float
 var model : RID
 var particles : RID
+var collision_disabled = false
+var collision_mask : int
 var collision_shape_rid : RID
 var collision_exceptions : Array
 var tags_dict : Dictionary
@@ -67,3 +71,24 @@ func _set_global_transform(new_global_transform):
 func _get_global_transform():
 	
 	return transform
+
+
+func _set_translation(new_translation):
+	
+	transform.origin = new_translation
+
+
+func _get_translation():
+	
+	return transform.origin
+
+
+func _set_rotation(new_rotation):
+	
+	transform.basis = Basis(new_rotation)
+
+
+func _get_rotation():
+	
+	return transform.basis.get_euler()
+

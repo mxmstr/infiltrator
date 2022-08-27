@@ -192,8 +192,7 @@ func _activate_actor():
 	if container_node and is_instance_valid(container_node):
 		container_node._apply_launch_attributes(to_node)
 	
-	if collision:
-		collision.call_deferred('set_disabled', false)
+	ActorServer.EnableCollision(to_node)
 	
 	if to_node is Area:
 		to_node.monitoring = true
