@@ -12,6 +12,7 @@ var angular_direction : Vector2
 var speed : float
 var model : RID
 var particles : RID
+var particles_transform : Transform
 var collision_disabled = false
 var collision_mask : int
 var collision_shape_rid : RID

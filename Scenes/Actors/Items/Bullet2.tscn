@@ -12,16 +12,6 @@
 [sub_resource type="PrismMesh" id=16]
 size = Vector3( 0.1, 0.1, 0.1 )
 
-[sub_resource type="SpatialMaterial" id=12]
-flags_transparent = true
-flags_unshaded = true
-vertex_color_use_as_albedo = true
-params_billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-albedo_texture = ExtResource( 2 )
-
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.016 ), -2.94591, 0.0, 0, 0 ]
 
@@ -36,7 +26,18 @@ radial_accel = 3.0
 tangential_accel = 1.0
 scale_curve = SubResource( 3 )
 
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 2 )
+
 [sub_resource type="QuadMesh" id=14]
+material = SubResource( 12 )
 size = Vector2( 0.05, 0.05 )
 
 [sub_resource type="SphereShape" id=15]
@@ -55,7 +56,6 @@ mesh = SubResource( 16 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-material_override = SubResource( 12 )
 cast_shadow = 0
 lifetime = 0.6
 visibility_aabb = AABB( -0.193909, -0.932309, -0.371607, 0.387815, 1.86463, 0.743204 )

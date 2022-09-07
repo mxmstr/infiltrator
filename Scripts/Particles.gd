@@ -13,4 +13,4 @@ func _enter_tree():
 	emitting = true
 
 	var time = (lifetime * 2) / speed_scale
-	get_tree().create_timer(time).connect('timeout', Meta, 'DestroyActor', [owner])
+	get_tree().create_timer(time).connect('timeout', ActorServer, 'Destroy', [owner])

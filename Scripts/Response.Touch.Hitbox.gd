@@ -32,8 +32,11 @@ func _on_stimulate(stim, data):
 			
 			audio._start_state('Damage')
 			
-			var blood = ActorServer.Create('Particles/BloodSquirt', data.source.translation, data.source.rotation)
-			blood.rotate_y(deg2rad(180))
+			var blood = ActorServer.Create(
+				'Particles/BloodSquirt',
+				data.source.translation,
+				data.source.rotation.rotated(data.source.transform.basis.y, PI / 2)
+				)
 			
 			ActorServer.Destroy(data.source)
 		

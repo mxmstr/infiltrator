@@ -74,10 +74,6 @@ var rawinput = false
 var threads = []
 var cached_args = []
 
-var actors
-var actor_pool = {}
-var actor_pool_size = 1000
-
 signal on_input
 
 

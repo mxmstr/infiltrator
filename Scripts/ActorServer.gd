@@ -2,6 +2,11 @@ extends Node
 
 var preloader = ResourcePreloader.new()
 
+var actors
+
+var actor_pool = {}
+var actor_pool_size = 1
+
 
 func _preload():
 	
@@ -12,12 +17,12 @@ func _preload():
 		var actor_res = load(actor)
 		var actor_instance = actor_res.instance()
 
-#		if actor_instance.get('tags') and actor_instance._has_tag('Pooled'):
-#
-#			actor_pool[actor] = []
-#
-#			for i in range(actor_pool_size):
-#				actor_pool[actor].append(load(actor).instance())
+		if actor_instance.get('tags') and actor_instance._has_tag('Pooled'):
+			
+			actor_pool[actor_instance.system_path] = []
+			
+			for i in range(actor_pool_size):
+				actor_pool[actor_instance.system_path].append(load(actor).instance())
 		
 		
 		preloader.add_resource(actor, actor_res)
@@ -25,32 +30,18 @@ func _preload():
 
 func Create(actor_path, position=null, rotation=null, direction=null, tags={}):
 	
-#	if not actors:
-#		actors = get_node_or_null('/root/Mission/Actors')
-	
 	var new_actor
 	var resource_path = 'res://Scenes/Actors/' + actor_path + '.tscn'
 	
-	new_actor = preloader.get_resource(resource_path).instance()
-	
-	if new_actor.get('tags') and new_actor._has_tag('Pooled'):
+	if actor_path in actor_pool:
+		
+		new_actor = actor_pool[actor_path][0]
 		
 		return ProjectileServer.Create(new_actor, position, rotation, direction, tags)
 	
 	else:
 		
-	#	if resource_path in actor_pool:
-	#
-	#		new_actor = actor_pool[resource_path].pop_front()
-	#
-	#		if new_actor:
-	#			new_actor.emit_signal('ressurected')
-	#		else:
-	#			new_actor = preloader.get_resource(resource_path).instance()
-	#
-	#	else:
-	#
-	#		new_actor = preloader.get_resource(resource_path).instance()
+		new_actor = preloader.get_resource(resource_path).instance()
 		
 		Meta._merge_dir(new_actor.tags_dict, tags)
 		$'/root/Mission/Actors'.add_child(new_actor)
@@ -150,23 +141,21 @@ func Stim(actor, stim, source=self, intensity=0.0, position=Vector3(), direction
 	if not is_instance_valid(actor) or not is_instance_valid(source):
 		return
 #
-#	if actor.has_node('Reception'):
-#
 	var data
 	
-#	if source.get('tags_dict'):
-#
-	data = {
-		'source': source,
-		'shooter': source._get_tag('Shooter') if source._has_tag('Shooter') else null,
-		'position': position,
-		'direction': direction,
-		'intensity': intensity
-		}
-	
 	if actor is Projectile:
-		ProjectileServer.Stim(stim, data)
+		ProjectileServer.Stim(actor, stim, source, intensity, position, direction)
+	
 	else:
+		
+		data = {
+			'source': source,
+			'shooter': source._get_tag('Shooter') if source._has_tag('Shooter') else null,
+			'position': position,
+			'direction': direction,
+			'intensity': intensity
+			}
+		
 		actor.get_node('Reception')._start_state(stim, data)
 
 

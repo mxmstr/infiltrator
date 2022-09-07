@@ -4,13 +4,6 @@
 [ext_resource path="res://Scenes/Components/Properties/Particles.property.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/spark.png" type="Texture" id=3]
 
-[sub_resource type="SpatialMaterial" id=4]
-flags_transparent = true
-flags_unshaded = true
-params_cull_mode = 2
-albedo_color = Color( 1, 0, 0, 1 )
-albedo_texture = ExtResource( 3 )
-
 [sub_resource type="ParticlesMaterial" id=6]
 flag_align_y = true
 direction = Vector3( 0, 0, 1 )
@@ -19,7 +12,15 @@ gravity = Vector3( 0, -5, 0 )
 initial_velocity = 2.0
 linear_accel = 7.0
 
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 1, 0, 0, 1 )
+albedo_texture = ExtResource( 3 )
+
 [sub_resource type="QuadMesh" id=7]
+material = SubResource( 4 )
 size = Vector2( 0.2, 0.2 )
 
 [node name="BloodSquirt" type="Spatial"]
@@ -29,7 +30,6 @@ tags = "Particles Pooled"
 
 [node name="Particles" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, -3.66526e-10, 1.02406e-18, 3.66526e-10, 1, -1.86265e-09, -3.41354e-19, 1.86265e-09, 1, 0, 0, 0 )
-material_override = SubResource( 4 )
 cast_shadow = 0
 emitting = false
 amount = 10

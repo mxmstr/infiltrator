@@ -1,24 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Components/Properties/Particles.property.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Action.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Textures/spark.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Components/Actions/ActionSet.tscn" type="PackedScene" id=7]
-
-[sub_resource type="SphereMesh" id=8]
-
-[sub_resource type="SpatialMaterial" id=9]
-albedo_color = Color( 1, 0.984314, 0, 1 )
-
-[sub_resource type="SpatialMaterial" id=5]
-flags_transparent = true
-flags_unshaded = true
-params_cull_mode = 2
-albedo_color = Color( 1, 0.968627, 0.384314, 1 )
-albedo_texture = ExtResource( 5 )
+[ext_resource path="res://Textures/spark.png" type="Texture" id=8]
 
 [sub_resource type="ParticlesMaterial" id=7]
 flag_align_y = true
@@ -28,7 +16,15 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 7.62
 radial_accel = 41.06
 
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 1, 0.968627, 0.384314, 1 )
+albedo_texture = ExtResource( 8 )
+
 [sub_resource type="QuadMesh" id=6]
+material = SubResource( 5 )
 size = Vector2( 0.2, 0.2 )
 
 [node name="Sparks" type="Spatial"]
@@ -36,14 +32,8 @@ transform = Transform( 1, 3.70164e-10, 5.82077e-11, 3.66526e-10, 1, 9.31323e-10,
 script = ExtResource( 1 )
 tags = "Paticles Pooled"
 
-[node name="Model" type="MeshInstance" parent="."]
-transform = Transform( 1, -1.08421e-19, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 8 )
-material/0 = SubResource( 9 )
-
 [node name="Particles" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, -3.66526e-10, 1.02406e-18, 3.66526e-10, 1, -1.86265e-09, -3.41354e-19, 1.86265e-09, 1, 0, 0, 0 )
-material_override = SubResource( 5 )
 cast_shadow = 0
 emitting = false
 amount = 5
