@@ -1,6 +1,7 @@
 class_name Projectile
 extends Reference
 
+var valid = true
 var system_path : String
 var visible = true setget _set_visible, _get_visible
 var transform : Transform
@@ -34,6 +35,9 @@ func look_at(target, up):
 
 
 func _set_visible(new_visible):
+	
+	if not valid:
+		return
 	
 	if model:
 		VisualServer.instance_set_visible(model, new_visible)

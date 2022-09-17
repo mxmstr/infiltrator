@@ -106,6 +106,8 @@ func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
 
 func Destroy(projectile):
 	
+	projectile.valid = false
+	
 	if projectile.model:
 		VisualServer.free_rid(projectile.model)
 	
