@@ -37,7 +37,7 @@ func _jump():
 	var vertical = forward.strength + backward.strength
 	var horizontal = left.strength + right.strength
 	var speed_percent = min(movement.velocity.length() / stance.max_speed, 1.0)
-	var running = speed_percent > 0.4
+	var running = speed_percent > 0.75
 	var action = 'JumpUp'
 	
 	if vertical < -0.2:

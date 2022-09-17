@@ -1424,6 +1424,8 @@ __meta__ = {
 [node name="Map" parent="Navmesh" instance=ExtResource( 9 )]
 tags = "Map"
 
+[node name="TouchResponse" parent="Navmesh/Map/Reception" index="0" instance=ExtResource( 10 )]
+
 [node name="Model" parent="Navmesh/Map" instance=ExtResource( 2 )]
 
 [node name="mesh_0_72nr003" parent="Navmesh/Map/Model" index="416"]
@@ -1443,9 +1445,6 @@ visible = false
 
 [node name="mesh_0_110nr" parent="Navmesh/Map/Model" index="444"]
 visible = false
-
-[node name="TouchResponse" parent="Navmesh/Map" instance=ExtResource( 10 )]
-tree_node = NodePath("../Reception")
 
 [node name="mesh_0_25nr2" type="CollisionShape" parent="Navmesh/Map"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1.33872, 0, 0, 0, -5.09198 )

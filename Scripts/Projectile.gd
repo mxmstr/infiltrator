@@ -2,7 +2,7 @@ class_name Projectile
 extends Reference
 
 var system_path : String
-var visible = true
+var visible = true setget _set_visible, _get_visible
 var transform : Transform
 var global_transform : Transform setget _set_global_transform, _get_global_transform
 var translation : Vector3 setget _set_translation, _get_translation
@@ -31,6 +31,22 @@ func look_at(target, up):
 	lookat.origin = transform.origin
 	lookat = lookat.looking_at(target, up)
 	transform = lookat
+
+
+func _set_visible(new_visible):
+	
+	if model:
+		VisualServer.instance_set_visible(model, new_visible)
+	
+	if particles:
+		VisualServer.instance_set_visible(particles, new_visible)
+	
+	visible = new_visible
+
+
+func _get_visible():
+	
+	return visible
 
 
 func _has_tag(tag):

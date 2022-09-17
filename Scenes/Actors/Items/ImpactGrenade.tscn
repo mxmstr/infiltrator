@@ -20,7 +20,6 @@ radius = 0.25
 [node name="ImpactGrenade" instance=ExtResource( 1 )]
 collision_layer = 8
 collision_mask = 17
-monitorable = false
 tags = "Actor ImpactGrenade Damage:0 Force:0"
 
 [node name="Model" type="MeshInstance" parent="." index="0"]
@@ -32,7 +31,6 @@ shape = SubResource( 6 )
 
 [node name="ContactStim" parent="." index="2" instance=ExtResource( 3 )]
 stim_type = "Touch"
-raycast = true
 
 [node name="Movement" parent="." index="3"]
 process_movement = true

@@ -39,6 +39,12 @@ required_tags = "Explosion"
 
 [node name="TouchResponse" parent="Reception" index="1" instance=ExtResource( 4 )]
 
+[node name="FireProjectileSound" parent="FireAudio" index="2"]
+schema = ""
+
+[node name="ReloadSound" parent="Audio" index="2"]
+schema = ""
+
 [node name="ImpactSound" parent="Audio" index="4" instance=ExtResource( 5 )]
 schema = "GrenadeImpactSound"
 state = "Impact"

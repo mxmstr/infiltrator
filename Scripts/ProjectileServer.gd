@@ -2,7 +2,6 @@ extends Node
 
 var projectiles = []
 var actors
-var physics_shared_area
 
 
 func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
@@ -126,7 +125,6 @@ func EnableCollision(projectile):
 	var index = projectiles.find(projectile)
 	
 	projectile.collision_disabled = false
-	#PhysicsServer.area_set_shape_disabled(physics_shared_area.get_rid(), index, false)
 
 
 func DisableCollision(projectile):
@@ -134,7 +132,6 @@ func DisableCollision(projectile):
 	var index = projectiles.find(projectile)
 	
 	projectile.collision_disabled = true
-	#PhysicsServer.area_set_shape_disabled(physics_shared_area.get_rid(), index, true)
 
 
 func Stim(projectile, stim, source, intensity, position, direction):
@@ -172,47 +169,29 @@ func RemoveCollisionException(projectile, other):
 	projectile.collision_exceptions.remove(other)
 
 
-func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	
-	prints(body)
-	#var shape = PhysicsServer.area_get_shape(physics_shared_area.get_rid(), local_shape_index)
-	var projectile = projectiles[local_shape_index]
-	
-	if body in projectile.collision_exceptions:
-		return
-	
-	ActorServer.Stim(
-		body, 
-		'Touch',
-		projectile, 
-		projectile.speed,
-		projectile.transform.origin,
-		projectile.transform.basis.z
-		)
-
-
 func _on_node_added(node):
 	
-	if not actors:
+	if not actors or not is_instance_valid(actors):
 		actors = get_node_or_null('/root/Mission/Actors')
+
+
+func _on_node_removed(node):
 	
-	if not physics_shared_area:
+	if node == actors:
 		
-		physics_shared_area = get_node_or_null('/root/Mission/PhysicsSharedArea')
+		var _projectiles = projectiles.duplicate()
 		
-#		if physics_shared_area:
-#			physics_shared_area.connect('body_shape_entered', self, '_on_body_shape_entered')
+		for i in range(0, _projectiles.size()):
+			Destroy(_projectiles[i])
 
 
 func _ready():
 	
 	get_tree().connect('node_added', self, '_on_node_added')
+	get_tree().connect('node_removed', self, '_on_node_removed')
 
 
 func _physics_process(delta):
-	
-	if not is_instance_valid(physics_shared_area):
-		return
 	
 	var _projectiles = projectiles.duplicate()
 	
@@ -223,9 +202,6 @@ func _physics_process(delta):
 		if not is_instance_valid(projectile):
 			continue
 		
-		
-#		if projectile.system_path == 'Particles/Sparks':
-#			prints('asdf')
 		
 		if projectile.model:
 			VisualServer.instance_set_transform(projectile.model, projectile.transform)
