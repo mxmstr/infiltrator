@@ -126,7 +126,7 @@ func _try_dual_wield(next=null):
 	if not _has_enough_ammo(next):
 		return
 	
-	var link = Meta.CreateLink(owner, next, 'DualWield')
+	var link = LinkServer.Create(owner, next, 'DualWield')
 	
 	if not link or link._is_invalid():
 		return false
