@@ -215,6 +215,9 @@ func _process(delta):
 	
 	else:
 		
+		var locking_on = false
+		var target_pos
+		
 		if auto_aim and equipped and targeted_enemy:
 
 			if not is_instance_valid(targeted_enemy) or \
@@ -223,14 +226,14 @@ func _process(delta):
 				return
 
 			if camera_raycast.get_collider() and camera_raycast.get_collider().owner in enemies:
-
+				
 				camera_raycast.move_target = true
 				targeted_enemy = camera_raycast.get_collider().owner
 				targeted_enemy_bone = targeted_enemy.get_node('Hitboxes')._get_bone(shoulder_bone_name)
 
 			else:
 
-				var target_pos = targeted_enemy_bone.global_transform.origin
+				target_pos = targeted_enemy_bone.global_transform.origin
 				#global_transform.origin = shoulder_bone.global_transform.origin
 
 				var space_state = get_world().direct_space_state
@@ -239,22 +242,28 @@ func _process(delta):
 					)
 
 				if result:
+					
 					camera_raycast.move_target = true
 
 				else:
+					
+					locking_on = true
 					camera_raycast.move_target = false
-					target_pos = camera_raycast.global_transform.origin + (camera_raycast.global_transform.origin.direction_to(target_pos).normalized()  * 5)
+					target_pos = camera_raycast.global_transform.origin + (camera_raycast.global_transform.origin.direction_to(target_pos).normalized() * 5)
 					camera_raycast_target.global_transform.origin = camera_raycast_target.global_transform.origin.move_toward(target_pos, 100 * delta)
 
 		else:
-
+			
 			camera_raycast.move_target = true
 		
 		
-		if align_model:
+		var model_pos = model.global_transform.origin
+		
+		if align_model and not locking_on:
+			target_pos = model_pos - camera_raycast.global_transform.basis.z
+		
+		if align_model or locking_on:
 			
-			var model_pos = model.global_transform.origin
-			var target_pos = model_pos - camera_raycast.global_transform.basis.z
 			target_pos.y = model_pos.y
 			
 			if target_pos != model_pos:

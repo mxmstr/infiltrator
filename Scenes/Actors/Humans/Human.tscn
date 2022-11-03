@@ -59,6 +59,9 @@ aabb = AABB( -0.119958, 0.162489, -0.0613593, 0.231916, 1.58002, 0.114907 )
 [node name="CameraRig" parent="." index="6" instance=ExtResource( 2 )]
 viewport = NodePath("../Perspective/Viewport2D")
 
+[node name="Camera" parent="CameraRig" index="0"]
+fov = 90.0
+
 [node name="RightHandContainer" parent="." index="7" instance=ExtResource( 6 )]
 release_exclude_parent = true
 release_exclude_parent_lifetime = 2.0

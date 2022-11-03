@@ -23,7 +23,7 @@ func _on_roll_timeout():
 		var vertical = forward.strength + backward.strength
 		var horizontal = left.strength + right.strength
 		
-		if abs(vertical) < 0.9 and abs(horizontal) < 0.9:
+		if abs(vertical) < 0.75 and abs(horizontal) < 0.75:
 			behavior._start_state('ShootDodgeStand', { 'direction': Vector2(0, -1) })
 		else:
 			behavior._start_state('Dive', { 'direction': Vector2(horizontal, vertical) })
