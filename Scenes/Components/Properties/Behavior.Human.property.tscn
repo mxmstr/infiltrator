@@ -81,12 +81,12 @@ fadeout_time = 0.0
 [sub_resource type="AnimationNodeTransition" id=13]
 input_count = 2
 input_0/name = "OneShot"
-input_0/auto_advance = true
+input_0/auto_advance = false
 input_1/name = "BlendSpace2D"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=8]
-graph_offset = Vector2( -530.173, -132.176 )
+graph_offset = Vector2( 0.00012207, 0 )
 nodes/Action/node = SubResource( 1 )
 nodes/Action/position = Vector2( 80, -40 )
 nodes/ActionBlend/node = SubResource( 2 )
@@ -104,7 +104,7 @@ nodes/OneShot/position = Vector2( 500, 0 )
 nodes/Transition/node = SubResource( 13 )
 nodes/Transition/position = Vector2( 720, 60 )
 nodes/output/position = Vector2( 940, 100 )
-node_connections = [ "output", 0, "Transition", "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "Transition", 0, "OneShot", "Transition", 1, "BlendSpace2D", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp" ]
+node_connections = [ "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "Transition", 0, "OneShot", "Transition", 1, "BlendSpace2D", "output", 0, "Transition" ]
 
 [sub_resource type="Animation" id=11]
 resource_name = "DefaultHumanAnim"
