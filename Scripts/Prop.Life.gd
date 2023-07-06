@@ -1,6 +1,6 @@
 extends Node
 
-export var time = -1.0
+@export var time = -1.0
 
 
 func _on_timeout():
@@ -17,4 +17,4 @@ func _ready():
 		timer.wait_time = time
 		add_child(timer)
 		
-		timer.connect('timeout', self, '_on_timeout')
+		timer.connect('timeout',Callable(self,'_on_timeout'))

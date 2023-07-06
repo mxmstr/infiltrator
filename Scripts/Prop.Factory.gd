@@ -1,8 +1,8 @@
 extends Node
 
-export(NodePath) var target
-export(String) var container_name
-export(String, MULTILINE) var products
+@export var target: NodePath
+@export var container_name: String
+@export_multiline var products
 
 
 func _ready():

@@ -8,19 +8,19 @@
 [ext_resource path="res://Scripts/Mission.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Links/BulletTimeServer.link.tscn" type="PackedScene" id=7]
 
-[node name="Mission" type="Spatial"]
+[node name="Mission" type="Node3D"]
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
 limit = 100
 
-[node name="Actors" type="Spatial" parent="."]
+[node name="Actors" type="Node3D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Markers" type="Spatial" parent="."]
+[node name="Markers" type="Node3D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -32,86 +32,86 @@ __meta__ = {
 [node name="PVPPlayerFactory" parent="Links" instance=ExtResource( 1 )]
 
 [node name="RespawnMarker1" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.79, -4.73516, 36.3834 )
+transform = Transform3D( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.79, -4.73516, 36.3834 )
 
 [node name="RespawnMarker2" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.31596, -7.74986, 16.1927 )
+transform = Transform3D( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.31596, -7.74986, 16.1927 )
 
 [node name="RespawnMarker3" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.9933, -7.74342, -11.8825 )
+transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.9933, -7.74342, -11.8825 )
 
 [node name="RespawnMarker4" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 17.4832, -7.49016, 3.21976 )
+transform = Transform3D( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 17.4832, -7.49016, 3.21976 )
 
 [node name="RespawnMarker5" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 15.5873, -7.49016, -15.4008 )
+transform = Transform3D( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 15.5873, -7.49016, -15.4008 )
 
 [node name="RespawnMarker6" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5873, -7.48895, -27.4893 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5873, -7.48895, -27.4893 )
 
 [node name="RespawnMarker7" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.031, -9.35497, -36.4553 )
+transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.031, -9.35497, -36.4553 )
 
 [node name="RespawnMarker8" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.48819, -9.37054, -39.3038 )
+transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.48819, -9.37054, -39.3038 )
 
 [node name="RespawnMarker9" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38.3435, -9.37054, -42.7272 )
+transform = Transform3D( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38.3435, -9.37054, -42.7272 )
 
 [node name="RespawnMarker10" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7484, -7.47324, -28.6575 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7484, -7.47324, -28.6575 )
 
 [node name="RespawnMarker11" parent="Links/PVPPlayerFactory" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.3139, -7.47753, -21.4148 )
+transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.3139, -7.47753, -21.4148 )
 
 [node name="PVPPickupFactory" parent="Links" instance=ExtResource( 3 )]
 
 [node name="PickupMarker1" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6609, -5.37676, 46.9911 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6609, -5.37676, 46.9911 )
 
 [node name="PickupMarker2" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.24512, -5.42133, 57.2897 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.24512, -5.42133, 57.2897 )
 
 [node name="PickupMarker3" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50571, -9.38006, 0.862806 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50571, -9.38006, 0.862806 )
 
 [node name="PickupMarker4" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4324, -8.8662, 1.07142 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4324, -8.8662, 1.07142 )
 
 [node name="PickupMarker5" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13073, -7.74249, -11.6582 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13073, -7.74249, -11.6582 )
 
 [node name="PickupMarker6" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6335, -7.45622, -6.2513 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6335, -7.45622, -6.2513 )
 
 [node name="PickupMarker7" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2437, -7.47451, -16.7786 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2437, -7.47451, -16.7786 )
 
 [node name="PickupMarker8" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7303, -7.46208, -24.8826 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7303, -7.46208, -24.8826 )
 
 [node name="PickupMarker9" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.2931, -7.4648, -16.3618 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.2931, -7.4648, -16.3618 )
 
 [node name="PickupMarker10" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.2523, -7.48638, -26.3161 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.2523, -7.48638, -26.3161 )
 
 [node name="PickupMarker11" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0047, -9.34291, -47.2047 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0047, -9.34291, -47.2047 )
 
 [node name="PickupMarker12" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5606, -9.34719, -39.766 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5606, -9.34719, -39.766 )
 
 [node name="PickupMarker13" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2194, -7.44561, -25.1612 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2194, -7.44561, -25.1612 )
 
 [node name="PickupMarker14" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.98803, -9.34849, -29.975 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.98803, -9.34849, -29.975 )
 
 [node name="PickupMarker15" parent="Links/PVPPickupFactory" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.98803, -9.35378, -43.1227 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.98803, -9.35378, -43.1227 )
 
-[node name="Static" type="Spatial" parent="."]
+[node name="Static" type="Node3D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }

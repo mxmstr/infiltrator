@@ -1,9 +1,9 @@
 extends MarginContainer
 
-export(Color) var color_select
-export(Color) var color_default
-export(Color) var color_cancel
-export(PackedScene) var list_item
+@export var color_select: Color
+@export var color_default: Color
+@export var color_cancel: Color
+@export var list_item: PackedScene
 
 var update = true
 var selection = null
@@ -93,11 +93,11 @@ func _refresh_children():
 	if len(interactions) > 0:
 		
 		for interaction in interactions:
-			var child = list_item.instance()
+			var child = list_item.instantiate()
 			child.text = interaction
 			list.add_child(child)
 		
-		var child = list_item.instance()
+		var child = list_item.instantiate()
 		child.text = 'Cancel'
 		list.add_child(child)
 		
@@ -129,7 +129,7 @@ func _update_interactions():
 
 func _ready():
 	
-	pass#$'../../CameraRaycast'.connect('selection_changed', self, '_on_selection_changed')
+	pass#$'../../CameraRaycast'.connect('selection_changed',Callable(self,'_on_selection_changed'))
 
 
 func _process(delta):

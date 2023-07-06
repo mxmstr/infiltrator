@@ -3,10 +3,10 @@ extends Control
 var pvp
 var rank_names = ['1st', '2nd', '3rd', '4th']
 
-onready var message = find_node('VictoryMessage')
-onready var rank = find_node('Rank')
-onready var kills = find_node('Kills')
-onready var deaths = find_node('Deaths')
+@onready var message = find_child('VictoryMessage')
+@onready var rank = find_child('Rank')
+@onready var kills = find_child('Kills')
+@onready var deaths = find_child('Deaths')
 
 
 func _on_player_died(player_index, points):
@@ -60,7 +60,7 @@ func _on_team_won(winner_name, scores):
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	
 	pvp = get_node_or_null('/root/Mission/Links/PVPPlayerFactory')
@@ -68,12 +68,12 @@ func _ready():
 	if not pvp:
 		return
 	
-	pvp.connect('player_died', self, '_on_player_died')
-	pvp.connect('player_scored', self, '_on_player_scored')
-	pvp.connect('player_won', self, '_on_player_won')
-	pvp.connect('team_scored', self, '_on_team_scored')
-	pvp.connect('team_won', self, '_on_team_won')
+	pvp.connect('player_died',Callable(self,'_on_player_died'))
+	pvp.connect('player_scored',Callable(self,'_on_player_scored'))
+	pvp.connect('player_won',Callable(self,'_on_player_won'))
+	pvp.connect('team_scored',Callable(self,'_on_team_scored'))
+	pvp.connect('team_won',Callable(self,'_on_team_won'))
 	
-	var exit = find_node('Exit').get_node('Button')
+	var exit = find_child('Exit').get_node('Button')
 	
-	exit.connect('pressed', get_tree(), 'change_scene', ['res://Scenes/MainMenu.tscn'])
+	exit.connect('pressed',Callable(get_tree(),'change_scene_to_file').bind('res://Scenes/MainMenu.tscn'))

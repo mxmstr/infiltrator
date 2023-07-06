@@ -1,23 +1,23 @@
-extends RayCast
+extends RayCast3D
 
-export(String) var stim_type
-export var stim_intensity = 0.0
-export var one_shot = false
-export var continuous = false
-export var max_distance = 0.0
-export var raycast = false
-export var use_hitbox = false
-export var stim_hitbox = false
-export(String, MULTILINE) var required_tags
+@export var stim_type: String
+@export var stim_intensity = 0.0
+@export var one_shot = false
+@export var continuous = false
+@export var max_distance = 0.0
+@export var raycast = false
+@export var use_hitbox = false
+@export var stim_hitbox = false
+@export_multiline var required_tags
 
 var active = true
 var required_tags_dict = {}
 var colliders = []
 var shooter
 
-onready var mission = get_node_or_null('/root/Mission')
-onready var collision = get_node_or_null('../Collision')
-onready var movement = get_node_or_null('../Movement')
+@onready var mission = get_node_or_null('/root/Mission')
+@onready var collision = get_node_or_null('../Collision')
+@onready var movement = get_node_or_null('../Movement')
 
 signal stimulate
 
@@ -31,7 +31,7 @@ func _ready():
 		
 		required_tags_dict[key] = values
 	
-	cast_to = Vector3(0, 0, -max_distance)
+	target_position = Vector3(0, 0, -max_distance)
 	
 	if owner._has_tag('Shooter'):
 		shooter = owner._get_tag('Shooter')

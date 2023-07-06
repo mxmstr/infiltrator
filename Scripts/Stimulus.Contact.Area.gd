@@ -1,16 +1,16 @@
 extends Node
 
-export(String) var stim_type
-export var stim_intensity = 0.0
-export var one_shot = false
-export var raycast = false
-export(int, LAYERS_3D_PHYSICS) var raycast_collision_mask = 0
+@export var stim_type: String
+@export var stim_intensity = 0.0
+@export var one_shot = false
+@export var raycast = false
+@export var raycast_collision_mask = 0 # (int, LAYERS_3D_PHYSICS)
 
 var active = true
 var one_shot_frames = 2
 
-onready var collision = get_node_or_null('../Collision')
-onready var movement = get_node_or_null('../Movement')
+@onready var collision = get_node_or_null('../Collision')
+@onready var movement = get_node_or_null('../Movement')
 
 
 func _on_body_shape_entered(body_id, body, body_shape, area_shape):
@@ -40,7 +40,7 @@ func _on_body_shape_entered(body_id, body, body_shape, area_shape):
 
 func _test_raycast(body):
 	
-	var space_state = owner.get_world().direct_space_state
+	var space_state = owner.get_world_3d().direct_space_state
 	var from_position = collision.global_transform.origin
 	var to_position = body.get_node('Collision').global_transform.origin
 	
@@ -51,7 +51,7 @@ func _test_raycast(body):
 		owner.collision_mask#raycast_collision_mask
 		)
 	
-	return not result.empty() and result.collider == body
+	return not result.is_empty() and result.collider == body
 	
 #
 #
@@ -60,7 +60,7 @@ func _test_raycast(body):
 #		to_position,
 #		[owner] + movement.collision_exceptions, 
 #		raycast_collision_mask
-#		).empty():
+#		).is_empty():
 #		return true
 #
 #	return true
@@ -68,7 +68,7 @@ func _test_raycast(body):
 
 func _ready():
 	
-	owner.connect('body_shape_entered', self, '_on_body_shape_entered')
+	owner.connect('body_shape_entered',Callable(self,'_on_body_shape_entered'))
 
 
 func _physics_process(delta):
@@ -76,7 +76,7 @@ func _physics_process(delta):
 	if one_shot:
 		
 		if one_shot_frames == 0:
-			if owner.is_connected('body_shape_entered', self, '_on_body_shape_entered'):
-				owner.disconnect('body_shape_entered', self, '_on_body_shape_entered')
+			if owner.is_connected('body_shape_entered',Callable(self,'_on_body_shape_entered')):
+				owner.disconnect('body_shape_entered',Callable(self,'_on_body_shape_entered'))
 		else:
 			one_shot_frames -= 1

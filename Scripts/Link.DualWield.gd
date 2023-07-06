@@ -18,8 +18,8 @@ func _ready():
 		_destroy()
 		return
 	
-	clone_contains_link.connect('destroyed', self, '_destroy')
-	from_node.get_node('RightHandContainer').connect('item_removed', self, '_on_item_removed')
+	clone_contains_link.connect('destroyed',Callable(self,'_destroy'))
+	from_node.get_node('RightHandContainer').connect('item_removed',Callable(self,'_on_item_removed'))
 	# TODO Attempt to call function '_load_lefthand_magazine' in base 'null instance' on a null instance.
 	from_node.get_node('Behavior/ReloadAction')._load_lefthand_magazine()
 
@@ -31,4 +31,4 @@ func _destroy():
 	
 	from_node.get_node('Reception/TouchResponse')._stack_item(clone)
 	
-	._destroy()
+	super._destroy()

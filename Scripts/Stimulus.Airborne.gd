@@ -1,7 +1,7 @@
 extends Node
 
-export var delay = 1.0
-export var min_fall_speed = 1.0
+@export var delay = 1.0
+@export var min_fall_speed = 1.0
 
 var timer
 
@@ -35,4 +35,4 @@ func _physics_process(delta):
 		timer.wait_time = delay
 		add_child(timer)
 		
-		timer.connect('timeout', self, '_on_timeout')
+		timer.connect('timeout',Callable(self,'_on_timeout'))

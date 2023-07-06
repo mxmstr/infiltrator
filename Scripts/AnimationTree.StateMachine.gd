@@ -2,8 +2,8 @@ extends AnimationNodeStateMachine
 
 const camera_rig_track_path = '../../Perspective'
 
-export(String) var statemachine
-export var chain = false
+@export var statemachine: String
+@export var chain = false
 
 var node_name
 var owner
@@ -133,7 +133,7 @@ func _editor_ready(_owner, _parent, _parameters, _name):
 				child._editor_ready(_owner, self, _parameters, child_name)
 
 
-func _ready(_owner, _parent, _parameters, _node_name):
+func __ready(_owner, _parent, _parameters, _node_name):
 	
 	owner = _owner
 	parent = _parent
@@ -142,9 +142,9 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	animation_player = owner.get_node_or_null('AnimationPlayer')
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
-		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+		owner.get(parent.parameters + 'playback').connect('state_starting',Callable(self,'_on_state_starting'))
 	
-	owner.connect('on_process', self, '_process')
+	owner.connect('on_process',Callable(self,'__process'))
 
 
 	var children = get_children()
@@ -153,15 +153,15 @@ func _ready(_owner, _parent, _parameters, _node_name):
 		
 		var child = children[child_name]
 		
-		if child.has_method('_ready'):
+		if child.has_method('__ready'):
 
 			if child is AnimationNodeStateMachine or \
 				child is AnimationNodeBlendTree or \
 				child is AnimationNodeBlendSpace1D or \
 				child is AnimationNodeBlendSpace2D:
-				child._ready(owner, self, parameters + child_name + '/', child_name)
+				child.__ready(owner, self, parameters + child_name + '/', child_name)
 			else:
-				child._ready(owner, self, parameters, child_name)
+				child.__ready(owner, self, parameters, child_name)
 		
 		
 		if child is AnimationNodeAnimation:
@@ -201,21 +201,18 @@ func _ready(_owner, _parent, _parameters, _node_name):
 		var from = get_node(from_name)
 		var to = get_node(to_name)
 
-		if from.has_method('_ready'):
+		if from.has_method('__ready'):
 			from.connections.append(transition)
 
-		if transition.has_method('_ready'):
-			transition._ready(owner, self, parameters, from, to)
+		if transition.has_method('__ready'):
+			transition.__ready(owner, self, parameters, from, to)
 		
 		#add_transition(from_name, to_name, transition)
 
 
-func _process(delta):
+func __process(delta):
 	
 	if advance:
 		owner.advance(0.01)
 	
 	advance = false
-	
-#	if statemachine == 'merrp':# and owner.owner.name == 'Infiltrator':
-#		prints(owner.get(parameters + 'playback').get_current_play_pos())

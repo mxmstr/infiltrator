@@ -1,11 +1,11 @@
-tool
+@tool
 extends Navigation
 
 var paths = {}
 var path_color = Color(0, 0, 0, 1)
 var to_path_color = Color(1, 1, 1, 1)
 
-var line_material = SpatialMaterial.new()
+var line_material = StandardMaterial3D.new()
 
 
 func update_waypoint_path(waypoint):
@@ -18,8 +18,8 @@ func update_waypoint_path(waypoint):
 			
 		else:
 			
-			var begin = waypoint.translation
-			var end = waypoint.get_next_ref().translation
+			var begin = waypoint.position
+			var end = waypoint.get_next_ref().position
 			var path = Array(get_simple_path(begin, end, true))
 			
 			path.invert()
@@ -49,7 +49,7 @@ func _ready():
 
 func _process(delta):
 	
-	var new_path_color = path_color.linear_interpolate(to_path_color, delta * 10)
+	var new_path_color = path_color.lerp(to_path_color, delta * 10)
 	if str(path_color) == str(new_path_color):
 		if to_path_color == Color(1, 1, 1, 1):
 			to_path_color = Color(0, 0, 0, 1)

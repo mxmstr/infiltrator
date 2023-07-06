@@ -1,6 +1,6 @@
 extends 'res://Scripts/Link.gd'
 
-export(String) var container
+@export var container: String
 
 var root
 var container_node
@@ -14,7 +14,7 @@ var reception
 var item_position_offset
 var item_rotation_offset
 
-onready var actors = $'/root/Mission/Actors'
+@onready var actors = $'/root/Mission/Actors'
 
 
 func _equals(other):
@@ -85,7 +85,7 @@ static func _get_item_rotation_offset(item, _container_node):
 		if (#(root_parent_name == '' or (container_node.root and container_node.root.get_parent().name == root_parent_name)) and \
 			(item_bone_name == '' or (_container_node.root and item_bone_name == _container_node.root.bone_name))
 			):
-			return Vector3(deg2rad(float(item_offset[0])), deg2rad(float(item_offset[1])), deg2rad(float(item_offset[2]))) 
+			return Vector3(deg_to_rad(float(item_offset[0])), deg_to_rad(float(item_offset[1])), deg_to_rad(float(item_offset[2]))) 
 	
 	return Vector3()
 
@@ -128,7 +128,7 @@ func _ready():
 	
 	_deactivate_actor()
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	if _is_invalid():
 		return
@@ -151,14 +151,14 @@ func _deactivate_actor():
 	
 	ActorServer.DisableCollision(to_node)
 	
-	if to_node is Area:
+	if to_node is Area3D:
 		
 		to_node.monitoring = false
 	
-	if to_node is RigidBody:
+	if to_node is RigidBody3D:
 		
 		to_node.sleeping = true
-		to_node.mode = RigidBody.MODE_STATIC
+		to_node.freeze = true
 	
 	if to_node is Node:
 		
@@ -180,7 +180,7 @@ func _reparent():
 	
 	to_node.get_parent().remove_child(to_node)
 	container_node.root.add_child(to_node)
-	to_node.translation = item_position_offset
+	to_node.position = item_position_offset
 	to_node.rotation = item_rotation_offset
 	to_node.scale = Vector3(1, 1, 1)
 
@@ -194,12 +194,12 @@ func _activate_actor():
 	
 	ActorServer.EnableCollision(to_node)
 	
-	if to_node is Area:
+	if to_node is Area3D:
 		to_node.monitoring = true
 	
-	if to_node is RigidBody:
+	if to_node is RigidBody3D:
 		to_node.sleeping = false
-		to_node.mode = RigidBody.MODE_RIGID
+		to_node.freeze = false
 
 
 func _destroy():
@@ -229,7 +229,7 @@ func _destroy():
 		if restore_collisions:
 			_activate_actor()
 	
-	._destroy()
+	super._destroy()
 
 
 func _physics_process(delta):

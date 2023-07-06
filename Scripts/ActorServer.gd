@@ -15,14 +15,14 @@ func _preload():
 	for actor in actors:
 		
 		var actor_res = load(actor)
-		var actor_instance = actor_res.instance()
+		var actor_instance = actor_res.instantiate()
 
 		if actor_instance.get('tags') and actor_instance._has_tag('Pooled'):
 			
 			actor_pool[actor_instance.system_path] = []
 			
 			for i in range(actor_pool_size):
-				actor_pool[actor_instance.system_path].append(load(actor).instance())
+				actor_pool[actor_instance.system_path].append(load(actor).instantiate())
 		
 		
 		preloader.add_resource(actor, actor_res)
@@ -41,7 +41,7 @@ func Create(actor_path, position=null, rotation=null, direction=null, tags={}):
 	
 	else:
 		
-		new_actor = preloader.get_resource(resource_path).instance()
+		new_actor = preloader.get_resource(resource_path).instantiate()
 		
 		Meta._merge_dir(new_actor.tags_dict, tags)
 		$'/root/Mission/Actors'.add_child(new_actor)
@@ -184,7 +184,7 @@ func SetDirectionLocal(actor, release_direction):
 	if not actor_movement:
 		return
 	
-	actor_movement._set_direction(release_direction, true)
+	actor_movement._set_direction_local(release_direction)
 
 
 func SetSpeed(actor, release_speed):
@@ -221,7 +221,7 @@ func AddCollisionException(actor, other):
 		ProjectileServer.AddCollisionException(actor, other)
 		return
 	
-	if actor is PhysicsBody:
+	if actor is PhysicsBody3D:
 		
 		actor.add_collision_exception_with(other)
 		
@@ -229,7 +229,7 @@ func AddCollisionException(actor, other):
 			for hitbox in other.get_node('Hitboxes').hitboxes:
 				actor.add_collision_exception_with(hitbox)
 	
-	if actor is Area:
+	if actor is Area3D:
 		
 		actor.get_node('Movement').collision_exceptions.append(other)
 		
@@ -244,7 +244,7 @@ func RemoveCollisionException(actor, other):
 		ProjectileServer.RemoveCollisionException(actor, other)
 		return
 	
-	if actor is PhysicsBody:
+	if actor is PhysicsBody3D:
 		
 		actor.remove_collision_exception_with(other)
 		
@@ -252,7 +252,7 @@ func RemoveCollisionException(actor, other):
 			for hitbox in other.get_node('Hitboxes').hitboxes:
 				actor.remove_collision_exception_with(hitbox)
 	
-	if actor is Area:
+	if actor is Area3D:
 		
 		actor.get_node('Movement').collision_exceptions.erase(other)
 		

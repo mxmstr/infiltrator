@@ -1,6 +1,6 @@
 extends "res://Scripts/Action.gd"
 
-export(String) var schema_idle
+@export var schema_idle: String
 
 var animation_list_idle = []
 
@@ -19,6 +19,6 @@ func _on_action(_state, data):
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	animation_list_idle = _load_animations(schema_idle)

@@ -3,15 +3,15 @@
 [ext_resource path="res://Animations/Doors/Door/Close.tres" type="Animation" id=1]
 [ext_resource path="res://Animations/Doors/Door/Open.tres" type="Animation" id=2]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="BoxMesh" id=1]
 size = Vector3( 1, 2, 0.1 )
 
-[node name="Model" type="Spatial"]
+[node name="Model" type="Node3D"]
 
-[node name="DoorControl" type="Spatial" parent="."]
+[node name="DoorControl" type="Node3D" parent="."]
 
-[node name="MeshInstance" type="MeshInstance" parent="DoorControl"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoorControl"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 

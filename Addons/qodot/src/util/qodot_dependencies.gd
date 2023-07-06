@@ -48,7 +48,7 @@ static func check_dependencies(http_request: HTTPRequest) -> void:
 	var dependencies = get_dependencies()
 	for dependency in dependencies:
 		if not check_dependency(http_request, dependency, dependencies[dependency]):
-			var result = yield(http_request, "request_completed")
+			var result = await http_request.request_completed
 			match result[0]:
 				HTTPRequest.RESULT_SUCCESS:
 					match result[1]:
@@ -93,7 +93,7 @@ static func check_dependency(http_request: HTTPRequest, dependency: String, url:
 
 	var dependency_comps = dependency.split("/")
 	dependency_comps.resize(dependency_comps.size() - 1)
-	var dependency_dir = dependency_comps.join("/")
+	var dependency_dir = "/".join(dependency_comps)
 
 	if not dir.dir_exists(dependency_dir):
 		dir.make_dir_recursive(dependency_dir)

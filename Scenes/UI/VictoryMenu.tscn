@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/UI.VictoryMenu.gd" type="Script" id=1]
-[ext_resource path="res://Textures/panel.png" type="Texture" id=2]
-[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Textures/panel.png" type="Texture2D" id=2]
+[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="FontFile" id=3]
 [ext_resource path="res://Scenes/UI/Menu.Scenes.Item.tscn" type="PackedScene" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 40
 font_data = ExtResource( 3 )
 
@@ -30,11 +30,11 @@ __meta__ = {
 
 [node name="Background" type="NinePatchRect" parent="MarginContainer"]
 self_modulate = Color( 0.890196, 1, 0.698039, 0.698039 )
-margin_left = 162.0
-margin_top = 150.0
-margin_right = 862.0
-margin_bottom = 450.0
-rect_min_size = Vector2( 700, 300 )
+offset_left = 162.0
+offset_top = 150.0
+offset_right = 862.0
+offset_bottom = 450.0
+custom_minimum_size = Vector2( 700, 300 )
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 512, 512 )
 patch_margin_left = 25
@@ -46,24 +46,24 @@ __meta__ = {
 }
 
 [node name="ListContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 212.0
-margin_top = 202.0
-margin_right = 812.0
-margin_bottom = 398.0
-rect_min_size = Vector2( 600, 0 )
+offset_left = 212.0
+offset_top = 202.0
+offset_right = 812.0
+offset_bottom = 398.0
+custom_minimum_size = Vector2( 600, 0 )
 
 [node name="VictoryMessage" type="Label" parent="MarginContainer/ListContainer"]
-margin_right = 600.0
-margin_bottom = 49.0
+offset_right = 600.0
+offset_bottom = 49.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Victory Message"
 align = 1
 
 [node name="Rank" type="Label" parent="MarginContainer/ListContainer"]
-margin_top = 57.0
-margin_right = 600.0
-margin_bottom = 106.0
+offset_top = 57.0
+offset_right = 600.0
+offset_bottom = 106.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -72,13 +72,13 @@ text = "Rank: 1st"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ListContainer"]
-margin_top = 114.0
-margin_right = 600.0
-margin_bottom = 163.0
+offset_top = 114.0
+offset_right = 600.0
+offset_bottom = 163.0
 
 [node name="Kills" type="Label" parent="MarginContainer/ListContainer/HBoxContainer"]
-margin_right = 296.0
-margin_bottom = 49.0
+offset_right = 296.0
+offset_bottom = 49.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -87,9 +87,9 @@ text = "Kills: 0"
 align = 1
 
 [node name="Deaths" type="Label" parent="MarginContainer/ListContainer/HBoxContainer"]
-margin_left = 304.0
-margin_right = 600.0
-margin_bottom = 49.0
+offset_left = 304.0
+offset_right = 600.0
+offset_bottom = 49.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -98,13 +98,13 @@ text = "Deaths: 0"
 align = 1
 
 [node name="Exit" parent="MarginContainer/ListContainer" instance=ExtResource( 4 )]
-margin_top = 171.0
-margin_right = 600.0
-margin_bottom = 196.0
+offset_top = 171.0
+offset_right = 600.0
+offset_bottom = 196.0
 alignment = 1
 
 [node name="Button" parent="MarginContainer/ListContainer/Exit" index="0"]
-margin_right = 40.0
+offset_right = 40.0
 text = "Exit"
 
 [editable path="MarginContainer/ListContainer/Exit"]

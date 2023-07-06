@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource path="res://Scripts/ActionSet.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Sounds/FireProjectile.sound2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Action.gd" type="Script" id=4]
+[ext_resource type="Script" path="res://Scripts/ActionSet.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Actions/Action.action.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Sounds/FireProjectile.sound2.tscn" id="3"]
+[ext_resource type="Script" path="res://Scripts/Action.gd" id="4"]
 
 [node name="SoundSet" type="Node"]
 script = ExtResource( 1 )

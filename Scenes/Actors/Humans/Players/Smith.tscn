@@ -7,9 +7,9 @@
 [ext_resource path="res://Scenes/Components/Properties/Hitboxes.property.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" type="PackedScene" id=6]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape3D" id=2]
 resource_local_to_scene = true
-extents = Vector3( 0.15, 0.9, 0.15 )
+size = Vector3( 0.15, 0.9, 0.15 )
 
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport2D")
@@ -17,7 +17,7 @@ viewport_path = NodePath("Viewport2D")
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [node name="Smith" instance=ExtResource( 1 )]
-tags = "Actor Human Male Team:0 Skeleton:Default"
+tags = "Actor Human Male Team:0 Skeleton3D:Default"
 
 [node name="Model" parent="." index="1" instance=ExtResource( 2 )]
 

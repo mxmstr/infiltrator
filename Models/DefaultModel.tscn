@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 roughness = 0.0
 
 [sub_resource type="PrismMesh" id=2]
 material = SubResource( 1 )
 
-[node name="Model" type="Spatial"]
+[node name="Model" type="Node3D"]
 
-[node name="SkeletonName" type="Spatial" parent="."]
+[node name="SkeletonName" type="Node3D" parent="."]
 
-[node name="Skeleton" type="Skeleton" parent="SkeletonName"]
+[node name="Skeleton3D" type="Skeleton3D" parent="SkeletonName"]
 
-[node name="MeshInstance" type="MeshInstance" parent="SkeletonName/Skeleton"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SkeletonName/Skeleton3D"]
 mesh = SubResource( 2 )
 material/0 = null
 

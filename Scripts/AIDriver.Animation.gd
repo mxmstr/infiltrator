@@ -1,10 +1,10 @@
 extends "res://Scripts/AnimationTree.Animation.gd"
 
-#export(Array, Dictionary) var triggers
+#export var triggers # (Array, Dictionary)
 
-export(Meta.DriverMode) var drive_mode = Meta.DriverMode.Steer
-export var move_speed = 0.0
-export var turn_speed = 0.0
+@export var drive_mode = Meta.DriverMode.Steer # (Meta.DriverMode)
+@export var move_speed = 0.0
+@export var turn_speed = 0.0
 
 
 func _on_state_starting(new_name):

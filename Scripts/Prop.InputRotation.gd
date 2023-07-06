@@ -1,6 +1,6 @@
 extends 'res://Scripts/AnimationTree.gd'
 
-export var sensitivity = 0.01
+@export var sensitivity = 0.01
 
 
 func _enter_tree():
@@ -25,4 +25,4 @@ func _process(delta):
 	
 #	mouse(RawInput._get_mousemotion(device))
 	
-	Input.warp_mouse_position(Vector2(0.5, 0.5))
+	Input.warp_mouse(Vector2(0.5, 0.5))

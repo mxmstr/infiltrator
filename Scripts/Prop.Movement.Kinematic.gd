@@ -1,17 +1,17 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
-export var process_movement = true
-export var gravity = -9.8
-export var accel = 3
-export var deaccel = 5
-export var angular_accel = 1.0
-export var angular_deaccel = 1.0
-export var projectile = false
-export var ghost = false
+@export var process_movement = true
+@export var gravity = -9.8
+@export var accel = 3
+@export var deaccel = 5
+@export var angular_accel = 1.0
+@export var angular_deaccel = 1.0
+@export var projectile = false
+@export var ghost = false
 
 var kinematic_collision
 
-onready var collision = get_node_or_null('../Collision')
+@onready var collision = get_node_or_null('../Collision')
 
 signal move_and_slide
 
@@ -23,12 +23,12 @@ func _get_collisions():
 
 func _get_forward_speed():
 	
-	return owner.global_transform.basis.xform_inv(velocity).z
+	return velocity * owner.global_transform.basis.z
 
 
 func _get_sidestep_speed():
 	
-	return owner.global_transform.basis.xform_inv(velocity).x
+	return velocity * owner.global_transform.basis.x
 
 
 func _teleport(new_position=null, new_rotation=null):
@@ -59,7 +59,7 @@ func _face(target, angle_delta=0.0):
 	
 	else:
 		
-		turn_target = owner.global_transform.basis.z.linear_interpolate(turn_target, angle_delta / angle)
+		turn_target = owner.global_transform.basis.z.lerp(turn_target, angle_delta / angle)
 		owner.global_transform.look_at(owner.global_transform.origin - turn_target)
 
 
@@ -84,15 +84,15 @@ func _process(delta):
 	else:
 		factory = angular_deaccel
 	
-	angular_velocity.x = angular_velocity.linear_interpolate(new_velocity, factorx * delta).x
-	angular_velocity.y = angular_velocity.linear_interpolate(new_velocity, factory * delta).y
+	angular_velocity.x = angular_velocity.lerp(new_velocity, factorx * delta).x
+	angular_velocity.y = angular_velocity.lerp(new_velocity, factory * delta).y
 	
 	
 	owner.rotation.y += angular_velocity.x
 	owner.rotation.x += angular_velocity.y
 	
 	if projectile:
-		_set_direction(Vector3(0, 0, 1), true)
+		_set_direction_local(Vector3(0, 0, 1))
 
 
 func _physics_process(delta):
@@ -109,7 +109,7 @@ func _physics_process(delta):
 		factor = deaccel
 	
 	if factor > 0:
-		velocity = velocity.linear_interpolate(new_velocity, factor * delta)
+		velocity = velocity.lerp(new_velocity, factor * delta)
 	else:
 		velocity = new_velocity
 	

@@ -1,16 +1,16 @@
 extends Node
 
-export(String) var stim_type
-export var stim_intensity = 0.0
-export var one_shot = false
-export var continuous = false
-export var raycast = false
+@export var stim_type: String
+@export var stim_intensity = 0.0
+@export var one_shot = false
+@export var continuous = false
+@export var raycast = false
 
 var active = true
 var collisions = []
 
-onready var collision = get_node_or_null('../Collision')
-onready var movement = get_node_or_null('../Movement')
+@onready var collision = get_node_or_null('../Collision')
+@onready var movement = get_node_or_null('../Movement')
 
 
 func _ready():
@@ -20,7 +20,7 @@ func _ready():
 
 #func _test_raycast():
 #
-#	var space_state = owner.get_world().direct_space_state
+#	var space_state = owner.get_world_3d().direct_space_state
 #	var 
 #
 #	var result = space_state.intersect_ray(

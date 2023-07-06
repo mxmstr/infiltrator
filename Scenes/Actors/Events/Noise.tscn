@@ -6,7 +6,7 @@
 
 
 
-[node name="Noise" type="Spatial"]
+[node name="Noise" type="Node3D"]
 script = ExtResource( 1 )
 __meta__ = {
 

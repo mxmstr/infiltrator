@@ -3,7 +3,7 @@ extends 'res://Scripts/Link.gd'
 var spawn_chance = 1.0#0.8
 var spawn_count = 8
 var respawn_time = 15.0
-var pickups = [] setget _set_pickups, _get_pickups
+var pickups = [] : get = _get_pickups, set = _set_pickups
 
 
 func _set_pickups(new_pickups):
@@ -31,7 +31,7 @@ func _on_timeout(marker):
 func _on_stimulate(item, marker):
 	
 	pickups.erase(item)
-	get_tree().create_timer(respawn_time).connect('timeout', self, '_on_timeout', [marker])
+	get_tree().create_timer(respawn_time).connect('timeout',Callable(self,'_on_timeout').bind(marker))
 
 
 func _on_factory_finished(link, marker):
@@ -40,7 +40,7 @@ func _on_factory_finished(link, marker):
 	
 	for output in link.outputs:
 		
-		output.translation = marker.translation + offset
+		output.position = marker.position + offset
 		output.rotation = marker.rotation
 		
 		offset += Vector3(0, 0.5, 0)
@@ -55,7 +55,7 @@ func _on_factory_finished(link, marker):
 				self,
 				'_on_stimulate',
 				[output, marker],
-				CONNECT_ONESHOT
+				CONNECT_ONE_SHOT
 				)
 			
 			break
@@ -69,12 +69,12 @@ func _refresh_spawn(marker):
 	randomize()
 	
 	var weapon_path = Meta.multi_loadout[randi() % Meta.multi_loadout.size()]
-	var node_name = ActorServer.preloader.get_resource('res://Scenes/Actors/' + weapon_path + '.tscn').instance().name
+	var node_name = ActorServer.preloader.get_resource('res://Scenes/Actors/' + weapon_path + '.tscn').instantiate().name
 	
 	for file in Meta._get_files_recursive('res://Scenes/Links/Factories/', 'Factory', '.link.tscn', [node_name]):
 		
-		var new_link = LinkServer.preloader.get_resource(file).instance()
-		new_link.connect('finished', self, '_on_factory_finished', [new_link, marker])
+		var new_link = LinkServer.preloader.get_resource(file).instantiate()
+		new_link.connect('finished',Callable(self,'_on_factory_finished').bind(new_link, marker))
 		
 		$'/root/Mission/Links'.call_deferred('add_child', new_link)
 
@@ -86,7 +86,7 @@ func _enter_tree():
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	if get_child_count() == 0:
 		return

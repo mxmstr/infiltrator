@@ -1,7 +1,7 @@
 extends Node
 
-onready var list = find_node('ListContainer')
-onready var hint = find_node('Hint')
+@onready var list = find_child('ListContainer')
+@onready var hint = find_child('Hint')
 
 
 func _on_multi_toggled(pressed):
@@ -17,9 +17,8 @@ func _on_coop_toggled(pressed):
 func _ready():
 	
 	var files = []
-	var dir = Directory.new()
-	dir.open('res://Scenes/')
-	dir.list_dir_begin()
+	var dir = DirAccess.open('res://Scenes/')
+	dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 	
 	while true:
 		
@@ -30,17 +29,17 @@ func _ready():
 			
 		elif file.ends_with('.tscn'):
 			
-			var item = load('res://Scenes/UI/Menu.Scenes.Item.tscn').instance()
+			var item = load('res://Scenes/UI/Menu.Scenes.Item.tscn').instantiate()
 			item.name = file.replace('.tres', '')
 			list.add_child(item)
 			
 			var button = item.get_node('Button')
 			button.text = file.replace('.tres', '')
-			button.connect('pressed', get_tree(), 'change_scene', ['res://Scenes/' + file])
+			button.connect('pressed',Callable(get_tree(),'change_scene_to_file').bind('res://Scenes/' + file))
 	
 	var multi = list.get_node('Multi/CheckBox')
-	multi.connect('toggled', self, '_on_multi_toggled')
+	multi.connect('toggled',Callable(self,'_on_multi_toggled'))
 	
 	var coop = list.get_node('Coop/CheckBox')
-	coop.connect('toggled', self, '_on_coop_toggled')
+	coop.connect('toggled',Callable(self,'_on_coop_toggled'))
 

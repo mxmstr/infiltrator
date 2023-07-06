@@ -1,19 +1,19 @@
 class_name Projectile
-extends Reference
+extends RefCounted
 
 var valid = true
 var system_path : String
-var visible = true setget _set_visible, _get_visible
-var transform : Transform
-var global_transform : Transform setget _set_global_transform, _get_global_transform
-var translation : Vector3 setget _set_translation, _get_translation
-var rotation : Vector3 setget _set_rotation, _get_rotation
+var visible = true : get = _get_visible, set = _set_visible
+var transform : Transform3D
+var global_transform : Transform3D : get = _get_global_transform, set = _set_global_transform
+var position : Vector3 : get = _get_translation, set = _set_translation
+var rotation : Vector3 : get = _get_rotation, set = _set_rotation
 var direction : Vector3
 var angular_direction : Vector2
 var speed : float
 var model : RID
 var particles : RID
-var particles_transform : Transform
+var particles_transform : Transform3D
 var collision_disabled = false
 var collision_mask : int
 var collision_shape_rid : RID
@@ -28,7 +28,7 @@ func get_parent():
 
 func look_at(target, up):
 	
-	var lookat = Transform()
+	var lookat = Transform3D()
 	lookat.origin = transform.origin
 	lookat = lookat.looking_at(target, up)
 	transform = lookat
@@ -40,10 +40,10 @@ func _set_visible(new_visible):
 		return
 	
 	if model:
-		VisualServer.instance_set_visible(model, new_visible)
+		RenderingServer.instance_set_visible(model, new_visible)
 	
 	if particles:
-		VisualServer.instance_set_visible(particles, new_visible)
+		RenderingServer.instance_set_visible(particles, new_visible)
 	
 	visible = new_visible
 

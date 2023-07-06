@@ -1,17 +1,17 @@
-extends Spatial
+extends Node3D
 
-export var default_state = 'Default'
-export(String) var bus
-export var level_modifier = 0.0
-export var time_scaled = true
+@export var default_state = 'Default'
+@export var bus: String
+@export var level_modifier = 0.0
+@export var time_scaled = true
 
 var switch_mode = 'Immediate'
 
-onready var animation_player = $AnimationPlayer
-onready var audio_stream = $AudioStreamPlayer3D
-onready var bullet_time_server = $'/root/Mission/Links/BulletTimeServer'
+@onready var animation_player = $AnimationPlayer
+@onready var audio_stream = $AudioStreamPlayer3D
+@onready var bullet_time_server = $'/root/Mission/Links/BulletTimeServer'
 
-signal action
+signal action_started
 
 var current_state = ''
 
@@ -29,7 +29,7 @@ func _on_bullet_time_ended():
 
 func _start_state(_name, _data={}):
 	
-	emit_signal('action', _name, _data)
+	emit_signal('action_started', _name, _data)
 
 
 func _can_switch():
@@ -39,7 +39,7 @@ func _can_switch():
 
 func _add_animation(animation_name, animation_res):
 	
-	animation_player.add_animation(animation_name, animation_res)
+	animation_player.add_animation_library(animation_name, animation_res)
 
 
 func _play(new_state, animation, attributes, _data):
@@ -70,26 +70,26 @@ func _play(new_state, animation, attributes, _data):
 	if attributes.has('switch_mode'):
 		switch_mode = attributes.switch_mode
 	
-	audio_stream.unit_db = level + level_modifier
+	audio_stream.volume_db = level + level_modifier
 	animation_player.stop()
 	animation_player.play(animation, -1, scale)
 
 
 func _on_ressurected():
 	
-	call_deferred('emit_signal', 'action', default_state, {})
+	call_deferred('emit_signal', 'action_started', default_state, {})
 
 
 func _ready():
 	
-	owner.connect('ressurected', self, '_on_ressurected')
+	owner.connect('ressurected',Callable(self,'_on_ressurected'))
 	
-	bullet_time_server.connect('started', self, '_on_bullet_time_started')
-	bullet_time_server.connect('ended', self, '_on_bullet_time_ended')
+	bullet_time_server.connect('started',Callable(self,'_on_bullet_time_started'))
+	bullet_time_server.connect('ended',Callable(self,'_on_bullet_time_ended'))
 	
 	audio_stream.bus = bus
 	audio_stream.pitch_scale = Engine.time_scale
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
-	call_deferred('emit_signal', 'action', default_state, {})
+	call_deferred('emit_signal', 'action_started', default_state, {})

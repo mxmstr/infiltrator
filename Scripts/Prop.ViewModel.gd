@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 const viewmodel_offset = 5
 const worldmodel_offset = 15
@@ -21,11 +21,11 @@ var item_rotation_offset
 var world_skeleton
 var vm_skeleton
 
-onready var contains_link = load('res://Scripts/Link.Contains.gd')
-onready var behavior = get_node_or_null('../Behavior')
-onready var perspective = get_node_or_null('../Perspective')
-onready var camera_rig = get_node_or_null('../CameraRig')
-onready var camera = get_node_or_null('../CameraRig/Camera')
+@onready var contains_link = load('res://Scripts/Link.Contains.gd')
+@onready var behavior = get_node_or_null('../Behavior')
+@onready var perspective = get_node_or_null('../Perspective')
+@onready var camera_rig = get_node_or_null('../CameraRig')
+@onready var camera = get_node_or_null('../CameraRig/Camera3D')
 
 signal blended_skeletons
 
@@ -38,17 +38,17 @@ func _init_duplicate_meshes():
 	
 	actor_model = actor.get_node('Model')
 	
-	if actor_model.get_children().size() and actor_model.get_child(0) and actor_model.get_child(0) is Skeleton:
+	if actor_model.get_children().size() and actor_model.get_child(0) and actor_model.get_child(0) is Skeleton3D:
 		world_skeleton = actor_model.get_child(0)
 	
-	var actor_instance = ActorServer.preloader.get_resource('res://Scenes/Actors/' + actor.system_path + '.tscn').instance()
+	var actor_instance = ActorServer.preloader.get_resource('res://Scenes/Actors/' + actor.system_path + '.tscn').instantiate()
 	var model_instance = actor_instance.get_node('Model')
 	
-	if model_instance is MeshInstance:
+	if model_instance is MeshInstance3D:
 		model_instance.cast_shadow = 0
 	
 	for child in model_instance.get_children():
-		if child is MeshInstance:
+		if child is MeshInstance3D:
 			child.cast_shadow = 0
 	
 	actor_instance.remove_child(model_instance)
@@ -57,7 +57,7 @@ func _init_duplicate_meshes():
 	model = model_instance
 	model.transform = actor_model.transform
 	
-	if model_instance.get_children().size() and model_instance.get_child(0) and model_instance.get_child(0) is Skeleton:
+	if model_instance.get_children().size() and model_instance.get_child(0) and model_instance.get_child(0) is Skeleton3D:
 		
 		vm_skeleton = model_instance.get_child(0)
 		
@@ -70,21 +70,21 @@ func _init_duplicate_meshes():
 
 func _cull_mask_bits(world_mesh, view_mesh):
 	
-	camera.set_cull_mask_bit(viewmodel_offset, false)
-	view_mesh.set_layer_mask_bit(viewmodel_offset, false)
+	camera.set_cull_mask_value(viewmodel_offset, false)
+	view_mesh.set_layer_mask_value(viewmodel_offset, false)
 	
-	camera.set_cull_mask_bit(worldmodel_offset, true)
-	world_mesh.set_layer_mask_bit(worldmodel_offset, false)
+	camera.set_cull_mask_value(worldmodel_offset, true)
+	world_mesh.set_layer_mask_value(worldmodel_offset, false)
 	
 	
 	# Make my camera render only the viewmodel
-	camera.set_cull_mask_bit(viewmodel_offset + owner.player_index, true)
-	view_mesh.set_layer_mask_bit(0, false)
-	view_mesh.set_layer_mask_bit(viewmodel_offset + owner.player_index, true)
+	camera.set_cull_mask_value(viewmodel_offset + owner.player_index, true)
+	view_mesh.set_layer_mask_value(0, false)
+	view_mesh.set_layer_mask_value(viewmodel_offset + owner.player_index, true)
 	
-	camera.set_cull_mask_bit(worldmodel_offset + owner.player_index, false)
-	world_mesh.set_layer_mask_bit(0, false)
-	world_mesh.set_layer_mask_bit(worldmodel_offset + owner.player_index, true)
+	camera.set_cull_mask_value(worldmodel_offset + owner.player_index, false)
+	world_mesh.set_layer_mask_value(0, false)
+	world_mesh.set_layer_mask_value(worldmodel_offset + owner.player_index, true)
 
 
 func _init_mesh_layers():
@@ -93,7 +93,7 @@ func _init_mesh_layers():
 		
 		for w_child in world_skeleton.get_children():
 			
-			if not w_child is MeshInstance:
+			if not w_child is MeshInstance3D:
 				continue
 			
 			var path_to_child = actor_model.get_path_to(w_child)
@@ -103,12 +103,12 @@ func _init_mesh_layers():
 	
 	else:
 		
-		if actor_model is MeshInstance:
+		if actor_model is MeshInstance3D:
 			_cull_mask_bits(actor_model, model)
 		
 		for w_child in actor_model.get_children():
 			
-			if not w_child is MeshInstance:
+			if not w_child is MeshInstance3D:
 				continue
 			
 			var path_to_child = actor_model.get_path_to(w_child)
@@ -120,8 +120,8 @@ func _init_mesh_layers():
 func _uncull_mask_bits(world_mesh):
 	
 	# TODO owner can be null
-	world_mesh.set_layer_mask_bit(0, true)
-	world_mesh.set_layer_mask_bit(worldmodel_offset + owner.player_index, false)
+	world_mesh.set_layer_mask_value(0, true)
+	world_mesh.set_layer_mask_value(worldmodel_offset + owner.player_index, false)
 
 
 func _revert_mesh_layers():
@@ -130,7 +130,7 @@ func _revert_mesh_layers():
 		
 		for w_child in world_skeleton.get_children():
 			
-			if not w_child is MeshInstance:
+			if not w_child is MeshInstance3D:
 				continue
 			
 			_uncull_mask_bits(w_child)
@@ -140,12 +140,12 @@ func _revert_mesh_layers():
 		if not is_instance_valid(actor_model):
 			return
 		
-		if actor_model is MeshInstance:
+		if actor_model is MeshInstance3D:
 			_uncull_mask_bits(actor_model)
 		
 		for w_child in actor_model.get_children():
 			
-			if not w_child is MeshInstance:
+			if not w_child is MeshInstance3D:
 				continue
 			
 			_uncull_mask_bits(w_child)
@@ -157,7 +157,7 @@ func _init_container():
 		return
 	
 	var path_to_root = get_node('../Model').get_path_to(container.root.get_parent())
-	container_root = BoneAttachment.new()
+	container_root = BoneAttachment3D.new()
 	
 	var last_owner = owner
 
@@ -168,10 +168,10 @@ func _init_container():
 	set_owner(last_owner)
 
 	container_root.bone_name = container.bone_name
-	container_root.translation = container.position_offset
+	container_root.position = container.position_offset
 	container_root.rotation_degrees = container.rotation_degrees_offset
 
-	translation = contains_link._get_item_position_offset(actor, container)
+	position = contains_link._get_item_position_offset(actor, container)
 	rotation = contains_link._get_item_rotation_offset(actor, container)
 	model.transform = actor_model.transform
 	
@@ -225,13 +225,13 @@ func _blend_skeletons(delta):
 			bone_pose.origin = (
 				camera_rig.transform.origin - 
 				(neck_pose.origin - bone_pose.origin) +
-				camera.transform.basis.xform_inv(Vector3(0, -0.2, -0.05)) +
+				Vector3(0, -0.2, -0.05) * camera.transform.basis +
 				follow_camera_torso_delta
 				)
 
 			vm_skeleton.set_bone_global_pose_override(follow_camera_bone_id, bone_pose, 1.0, true)
 		
-		follow_camera_torso_delta = follow_camera_torso_delta.linear_interpolate(
+		follow_camera_torso_delta = follow_camera_torso_delta.lerp(
 			(torso_pose.origin - follow_camera_torso_origin) * 5,
 			5.0 * delta
 			)
@@ -262,18 +262,18 @@ func _enter_tree():
 func _ready():
 	
 	if not owner:
-		yield(get_tree(), 'idle_frame')
+		await get_tree().idle_frame
 	
-	owner.connect('player_index_changed', self, '_init_mesh_layers')
+	owner.connect('player_index_changed',Callable(self,'_init_mesh_layers'))
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 #	if not is_instance_valid(actor):
 #		perspective._on_item_released(actor, null)
 #		return
 	
 	if world_skeleton and vm_skeleton:
-		behavior.connect('post_advance', self, '_blend_skeletons')
+		behavior.connect('post_advance',Callable(self,'_blend_skeletons'))
 	
 	_init_container()
 	_init_mesh_layers()

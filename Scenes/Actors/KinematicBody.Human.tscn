@@ -1,22 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://j6bs3orxlcmo"]
 
-[ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Components/Properties/Movement.Kinematic.Human.property.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Properties/Behavior.Human.property.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=7]
+[ext_resource type="Script" path="res://Scripts/Actor.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Movement.Kinematic.Human.property.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Behavior.Human.property.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Reception.property.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Audio.property.tscn" id="7"]
 
-[node name="KinematicBody" type="KinematicBody"]
+[node name="CharacterBody3D" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource( 1 )
+script = ExtResource("1")
 tags = "Actor"
 
-[node name="Movement" parent="." instance=ExtResource( 2 )]
-stop_on_slope = true
+[node name="Movement" parent="." instance=ExtResource("2")]
 
-[node name="Behavior" parent="." instance=ExtResource( 3 )]
+[node name="Behavior" parent="." instance=ExtResource("3")]
+parameters/OneShot/request = 0
+parameters/Transition/current_state = ""
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = -1
 
-[node name="Reception" parent="." instance=ExtResource( 4 )]
+[node name="Reception" parent="." instance=ExtResource("4")]
 
-[node name="Audio" parent="." instance=ExtResource( 7 )]
+[node name="Audio" parent="." instance=ExtResource("7")]

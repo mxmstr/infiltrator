@@ -1,178 +1,166 @@
-[gd_resource type="AnimationNodeBlendSpace1D" load_steps=18 format=2]
+[gd_resource type="AnimationNodeBlendSpace1D" load_steps=18 format=3 uid="uid://b7lwfsyj7wdfd"]
 
-[ext_resource path="res://Scripts/AnimationTree.Animation.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/AnimationTree.BlendSpace.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Behavior.BlendSpace.gd" type="Script" id=4]
+[ext_resource type="Script" path="res://Scripts/AnimationTree.Animation.gd" id="2"]
+[ext_resource type="Script" path="res://Scripts/AnimationTree.BlendSpace.gd" id="3"]
+[ext_resource type="Script" path="res://Scripts/Behavior.BlendSpace.gd" id="4"]
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id="3"]
+animation = &"StrafeLeft"
 scale = 1.75
-animation = "StrafeLeft"
-script = ExtResource( 2 )
+script = ExtResource("2")
 chain = false
 schema = "RunLeft"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id="4"]
+animation = &"StrafeRight"
 scale = 1.75
-animation = "StrafeRight"
-script = ExtResource( 2 )
+script = ExtResource("2")
 chain = false
 schema = "RunRight"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id="5"]
+animation = &"WalkBackward"
 scale = 1.75
-animation = "WalkBackward"
-script = ExtResource( 2 )
+script = ExtResource("2")
 chain = false
 schema = "WalkBackward"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id="6"]
+animation = &"Walk"
 scale = 1.75
-animation = "Walk"
-script = ExtResource( 2 )
+script = ExtResource("2")
 chain = false
 schema = "WalkForward"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id="7"]
+animation = &"Run"
 scale = 1.75
-animation = "Run"
-script = ExtResource( 2 )
+script = ExtResource("2")
 chain = false
 schema = "RunForward"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id="8"]
+animation = &"WalkBackward"
 scale = 1.75
-animation = "WalkBackward"
-script = ExtResource( 2 )
+script = ExtResource("2")
 chain = false
 schema = "WalkBackward"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "StrafeLeft"
-script = ExtResource( 2 )
+[sub_resource type="AnimationNodeAnimation" id="17"]
+animation = &"StrafeLeft"
+script = ExtResource("2")
 chain = false
 schema = "Stand"
-custom_script = ""
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=9]
-blend_point_0/node = SubResource( 3 )
-blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 4 )
-blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 5 )
-blend_point_2/pos = Vector2( 0, -0.3 )
-blend_point_3/node = SubResource( 6 )
-blend_point_3/pos = Vector2( 0, 0.3 )
-blend_point_4/node = SubResource( 7 )
-blend_point_4/pos = Vector2( 0, 1 )
-blend_point_5/node = SubResource( 8 )
-blend_point_5/pos = Vector2( 0, -1 )
-blend_point_6/node = SubResource( 17 )
-blend_point_6/pos = Vector2( 0, 0 )
-script = ExtResource( 3 )
+[sub_resource type="AnimationNodeBlendSpace2D" id="9"]
+blend_point_0/node = SubResource("3")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("4")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("5")
+blend_point_2/pos = Vector2(0, -0.3)
+blend_point_3/node = SubResource("6")
+blend_point_3/pos = Vector2(0, 0.3)
+blend_point_4/node = SubResource("7")
+blend_point_4/pos = Vector2(0, 1)
+blend_point_5/node = SubResource("8")
+blend_point_5/pos = Vector2(0, -1)
+blend_point_6/node = SubResource("17")
+blend_point_6/pos = Vector2(0, 0)
+script = ExtResource("3")
 blendspace = ""
 chain = false
 update_mode = "process"
 speed = 0.0
 x_target = "Movement"
 x_method = "_get_sidestep_speed"
-x_args = [  ]
+x_args = []
 x_max_value = -4.5
 x_min_value = 4.5
 y_target = "Movement"
 y_method = "_get_forward_speed"
-y_args = [  ]
+y_args = []
 y_max_value = 4.5
 y_min_value = -4.5
 
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "CrouchSideStepLeft"
-script = ExtResource( 2 )
+[sub_resource type="AnimationNodeAnimation" id="12"]
+animation = &"CrouchSideStepLeft"
+script = ExtResource("2")
 chain = false
 schema = "CrouchLeft"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=13]
-animation = "CrouchSidestepRight"
-script = ExtResource( 2 )
+[sub_resource type="AnimationNodeAnimation" id="13"]
+animation = &"CrouchSidestepRight"
+script = ExtResource("2")
 chain = false
 schema = "CrouchRight"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=14]
-animation = "CrouchForward"
-script = ExtResource( 2 )
+[sub_resource type="AnimationNodeAnimation" id="14"]
+animation = &"CrouchForward"
+script = ExtResource("2")
 chain = false
 schema = "CrouchForward"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "CrouchBackward"
-script = ExtResource( 2 )
+[sub_resource type="AnimationNodeAnimation" id="15"]
+animation = &"CrouchBackward"
+script = ExtResource("2")
 chain = false
 schema = "CrouchBackward"
-custom_script = ""
 
-[sub_resource type="AnimationNodeAnimation" id=18]
-animation = "StrafeLeft"
-script = ExtResource( 2 )
+[sub_resource type="AnimationNodeAnimation" id="18"]
+animation = &"StrafeLeft"
+script = ExtResource("2")
 chain = false
 schema = "Crouch"
-custom_script = ""
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=16]
-blend_point_0/node = SubResource( 12 )
-blend_point_0/pos = Vector2( -0.2, 0 )
-blend_point_1/node = SubResource( 13 )
-blend_point_1/pos = Vector2( 0.2, 0 )
-blend_point_2/node = SubResource( 14 )
-blend_point_2/pos = Vector2( 0, 0.2 )
-blend_point_3/node = SubResource( 15 )
-blend_point_3/pos = Vector2( 0, -0.2 )
-blend_point_4/node = SubResource( 18 )
-blend_point_4/pos = Vector2( 0, 0 )
-script = ExtResource( 3 )
+[sub_resource type="AnimationNodeBlendSpace2D" id="16"]
+blend_point_0/node = SubResource("12")
+blend_point_0/pos = Vector2(-0.2, 0)
+blend_point_1/node = SubResource("13")
+blend_point_1/pos = Vector2(0.2, 0)
+blend_point_2/node = SubResource("14")
+blend_point_2/pos = Vector2(0, 0.2)
+blend_point_3/node = SubResource("15")
+blend_point_3/pos = Vector2(0, -0.2)
+blend_point_4/node = SubResource("18")
+blend_point_4/pos = Vector2(0, 0)
+script = ExtResource("3")
 blendspace = ""
 chain = false
 update_mode = "process"
 speed = 0.0
 x_target = "Movement"
 x_method = "_get_sidestep_speed"
-x_args = [  ]
+x_args = []
 x_max_value = -4.5
 x_min_value = 4.5
 y_target = "Movement"
 y_method = "_get_forward_speed"
-y_args = [  ]
+y_args = []
 y_max_value = 4.5
 y_min_value = -4.5
 
 [resource]
-blend_point_0/node = SubResource( 9 )
+blend_point_0/node = SubResource("9")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 16 )
+blend_point_1/node = SubResource("16")
 blend_point_1/pos = 1.0
 min_space = 0.0
 max_space = 4.0
 snap = 1.0
-script = ExtResource( 4 )
+script = ExtResource("4")
 blendspace = ""
 chain = false
 update_mode = "process"
 speed = 8.0
 x_target = "Stance"
 x_method = "get"
-x_args = [ "stance" ]
+x_args = ["stance"]
 x_max_value = 4.0
 x_min_value = 0.0
 y_target = ""
 y_method = ""
-y_args = [  ]
+y_args = []
 y_max_value = 0.0
 y_min_value = 0.0
 priority = 0

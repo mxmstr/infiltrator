@@ -1,19 +1,27 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://xqodq4r3yx07"]
 
-[ext_resource path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tres" type="AnimationNodeBlendSpace1D" id=1]
-[ext_resource path="res://Scripts/Prop.AnimLayer.Movement.Human.gd" type="Script" id=2]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=3]
+[ext_resource type="AnimationNodeBlendSpace1D" uid="uid://b7lwfsyj7wdfd" path="res://Scenes/Components/Properties/AnimLayer.Movement.Human.property.tres" id="1"]
+[ext_resource type="Script" path="res://Scripts/Prop.AnimLayer.Movement.Human.gd" id="2"]
+[ext_resource type="Animation" path="res://Animations/DefaultAnim.tres" id="3"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fyf1e"]
+_data = {
+"DefaultAnim": ExtResource("3")
+}
 
 [node name="AnimLayerMovement" type="AnimationTree"]
-tree_root = ExtResource( 1 )
+tree_root = ExtResource("1")
 anim_player = NodePath("AnimationPlayer")
 parameters/blend_position = 0.00331675
-parameters/0/blend_position = Vector2( -0.00147277, -0.04 )
-parameters/1/blend_position = Vector2( -0.000893652, 0.0404625 )
-script = ExtResource( 2 )
+parameters/0/blend_position = Vector2(-0.00147277, -0.04)
+parameters/1/blend_position = Vector2(-0.205788, 0)
+script = ExtResource("2")
 root_bone = "Pelvis"
-movement_bones = [ "Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L" ]
+movement_bones = ["Pelvis", "UpLeg-R", "UpLeg-L", "LoLeg-R", "LoLeg-L", "Foot-R", "Foot-L", "Toe-R", "Toe-L"]
+parameters/1/blend_position = Vector2(-0.205788, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("")
-anims/DefaultAnim = ExtResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_fyf1e")
+}

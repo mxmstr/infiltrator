@@ -8,7 +8,7 @@ func _equals(other):
 	
 	other
 	
-	return ._equals(other)
+	return super._equals(other)
 
 
 func _ready():

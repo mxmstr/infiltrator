@@ -1,12 +1,12 @@
 extends 'res://Scripts/Prop.Movement.gd'
 
-export var process_movement = false
-export var gravity = 0
-export var accel = 0
-export var deaccel = 0
-export var projectile = false
+@export var process_movement = false
+@export var gravity = 0
+@export var accel = 0
+@export var deaccel = 0
+@export var projectile = false
 
-onready var collision = get_node_or_null('../Collision')
+@onready var collision = get_node_or_null('../Collision')
 
 signal before_move
 signal after_move
@@ -14,18 +14,18 @@ signal after_move
 
 func _get_forward_speed():
 	
-	return owner.global_transform.basis.xform_inv(velocity).z
+	return velocity * owner.global_transform.basis.z
 
 
 func _get_sidestep_speed():
 	
-	return owner.global_transform.basis.xform_inv(velocity).x
+	return velocity * owner.global_transform.basis.x
 
 
 func _set_direction(new_direction, local=false):
 	
 	if local:
-		direction = owner.global_transform.basis.xform(new_direction)
+		direction = owner.global_transform.basis * new_direction
 	else:
 		direction = new_direction
 
@@ -58,7 +58,7 @@ func _face(target, angle_delta=0.0):
 	
 	else:
 		
-		turn_target = owner.global_transform.basis.z.linear_interpolate(turn_target, angle_delta / angle)
+		turn_target = owner.global_transform.basis.z.lerp(turn_target, angle_delta / angle)
 		owner.global_transform.look_at(owner.global_transform.origin - turn_target)
 
 
@@ -101,7 +101,7 @@ func _physics_process(delta):
 		factor = deaccel
 	
 	if factor > 0:
-		velocity = velocity.linear_interpolate(new_velocity, factor * delta)
+		velocity = velocity.lerp(new_velocity, factor * delta)
 	else:
 		velocity = new_velocity
 	

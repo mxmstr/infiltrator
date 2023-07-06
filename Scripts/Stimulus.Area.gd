@@ -1,11 +1,11 @@
-extends Area
+extends Area3D
 
-export(String) var stim_type
+@export var stim_type: String
 
 var collision_disabled = false
 
-onready var collision = get_node_or_null('../Collision')
-onready var movement = get_node_or_null('../Movement')
+@onready var collision = get_node_or_null('../Collision')
+@onready var movement = get_node_or_null('../Movement')
 
 signal stimulate
 
@@ -29,8 +29,8 @@ func _on_body_exited(body):
 
 func _ready():
 
-	connect('body_entered', self, '_on_body_entered')
-	connect('body_exited', self, '_on_body_exited')
+	connect('body_entered',Callable(self,'_on_body_entered'))
+	connect('body_exited',Callable(self,'_on_body_exited'))
 
 
 func _physics_process(delta):

@@ -80,8 +80,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = false
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [ "get_node(BEHAVIOR).set_indexed(DATAINDEX, get_node(INVENTORY)._get_item_with_tags( get_node(RECEPTION).data.source.get_node(MAGAZINE).required_tags_dict.keys() ) )", {
 "BEHAVIOR": "Behavior",
@@ -100,8 +100,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [ "Reload" ],
 "method": "_start_state"

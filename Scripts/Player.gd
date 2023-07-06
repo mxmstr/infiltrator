@@ -1,6 +1,6 @@
-extends Spatial
+extends Node3D
 
-onready var Yaw = $Being
+@onready var Yaw = $Being
 
 func _ready():
 	## Tell Godot that we want to handle input
@@ -10,7 +10,7 @@ func look_updown_rotation(rotation = 0):
 	"""
 	Get the new rotation for looking up and down
 	"""
-	var toReturn = $Camera.get_rotation() + Vector3(rotation, 0, 0)
+	var toReturn = $Camera3D.get_rotation() + Vector3(rotation, 0, 0)
 
 	##
 	## We don't want the player to be able to bend over backwards
@@ -39,7 +39,7 @@ func mouse(event):
 	##
 	## Now we can simply set our y-rotation for the camera, and let godot
 	## handle the transformation of both together
-	$Camera.set_rotation(look_updown_rotation(event.relative.y / -200))
+	$Camera3D.set_rotation(look_updown_rotation(event.relative.y / -200))
 
 func _input(event):
 	##

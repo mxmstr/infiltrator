@@ -1,7 +1,7 @@
 extends 'res://Scripts/AnimationTree.Animation.gd'
 
-export(String, MULTILINE) var expression
-export(Dictionary) var arguments
+@export_multiline var expression
+@export var arguments: Dictionary
 
 var exec_list = []
 
@@ -25,9 +25,9 @@ func _evaluate():
 	return result
 
 
-func _ready(_owner, _parent, _parameters, _name):
+func __ready(_owner, _parent, _parameters, _name):
 	
-	._ready(_owner, _parent, _parameters, _name)
+	super.__ready(_owner, _parent, _parameters, _name)
 	
 	for line in expression.split('\n'):
 		

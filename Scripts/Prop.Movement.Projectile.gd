@@ -13,4 +13,7 @@ func _teleport(new_position=null, new_rotation=null):
 #func _physics_process(delta):
 #
 #	velocity.y += delta * gravity
-#	velocity = owner.move_and_slide(direction * speed, Vector3(0, 1, 0))
+#owner.set_velocity(direction * speed)
+#owner.set_up_direction(Vector3(0, 1, 0))
+#owner.move_and_slide()
+#	velocity = owner.velocity

@@ -14,4 +14,4 @@ func _ready():
 #	if has_node('../Reception'):
 #
 #		var event_stim = $'../Reception'.tree_root.get_node('Event')
-#		event_stim.connect('state_starting', self, '_on_event_stim')
+#		event_stim.connect('state_starting',Callable(self,'_on_event_stim'))

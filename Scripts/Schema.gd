@@ -1,3 +1,3 @@
 extends AnimationPlayer
 
-export(String, MULTILINE) var attributes
+@export_multiline var attributes

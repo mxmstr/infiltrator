@@ -1,8 +1,8 @@
 extends Node
 
-export var enabled = true
-export(NodePath) var from
-export(NodePath) var to
+@export var enabled = true
+@export var from: NodePath
+@export var to: NodePath
 
 var check_nulls = true
 
@@ -15,7 +15,7 @@ signal destroyed
 
 func _notification(what):
 	
-	if what == NOTIFICATION_INSTANCED:
+	if what == NOTIFICATION_SCENE_INSTANTIATED:
 		base_name = name
 
 
@@ -74,8 +74,8 @@ func _enter_tree():
 	if not to.is_empty():
 		to_node = get_node(to)
 	
-#	from_node.connect('tree_exited', self, 'queue_free')
-#	to_node.connect('tree_exited', self, 'queue_free')
+#	from_node.connect('tree_exited',Callable(self,'queue_free'))
+#	to_node.connect('tree_exited',Callable(self,'queue_free'))
 
 
 #func _process(delta):

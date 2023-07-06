@@ -1,21 +1,21 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=14 format=3]
 
-[ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Components/Properties/Container.property.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Actions/FireProjectile.action2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Responses/Use.Firearm.response2.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Components/Sounds/FireProjectile.sound2.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Components/Actions/LoadChamber.action2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Components/Stimuli/Area.stimulus.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=16]
+[ext_resource type="Script" path="res://Scripts/Actor.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Container.property.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Actions/FireProjectile.action2.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Actions/Action.action.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Responses/Use.Firearm.response2.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Sounds/FireProjectile.sound2.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Actions/LoadChamber.action2.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Stimuli/Area.stimulus.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Movement.RigidBody.property.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Behavior.property.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Reception.property.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Audio.property.tscn" id="16"]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape3D" id=1]
 
-[node name="Firearm" type="RigidBody"]
+[node name="Firearm" type="RigidBody3D"]
 collision_layer = 4
 mode = 1
 script = ExtResource( 1 )
@@ -28,7 +28,7 @@ invisible = true
 required_tags = "Bullet"
 
 [node name="Chamber" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform = Transform3D( 1, -0.000872665, 0, 0.000872665, 1, 0, 0, 0, 1, 0, 0, 0 )
 release_speed = 10.0
 release_exclude_parent = true
 max_quantity = 1
@@ -40,7 +40,7 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="Collision" type="CollisionShape" parent="AreaStim"]
+[node name="Collision" type="CollisionShape3D" parent="AreaStim"]
 shape = SubResource( 1 )
 
 [node name="Movement" parent="." instance=ExtResource( 9 )]

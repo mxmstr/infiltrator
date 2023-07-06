@@ -1,7 +1,7 @@
 extends "res://Scripts/Input.gd"
 
-onready var behavior = get_node_or_null('../Behavior')
-onready var righthand = get_node_or_null('../RightHandContainer')
+@onready var behavior = get_node_or_null('../Behavior')
+@onready var righthand = get_node_or_null('../RightHandContainer')
 
 
 func _on_just_activated():

@@ -5,13 +5,13 @@ const roll_timeout = 0.25
 var roll_input_timeout = false
 var roll_input_active = false
 
-onready var stance = get_node_or_null('../Stance')
-onready var forward = get_node_or_null('../MoveForwardInput')
-onready var backward = get_node_or_null('../MoveBackwardInput')
-onready var right = get_node_or_null('../MoveRightInput')
-onready var left = get_node_or_null('../MoveLeftInput')
-onready var behavior = get_node_or_null('../Behavior')
-onready var movement = get_node_or_null('../Movement')
+@onready var stance = get_node_or_null('../Stance')
+@onready var forward = get_node_or_null('../MoveForwardInput')
+@onready var backward = get_node_or_null('../MoveBackwardInput')
+@onready var right = get_node_or_null('../MoveRightInput')
+@onready var left = get_node_or_null('../MoveLeftInput')
+@onready var behavior = get_node_or_null('../Behavior')
+@onready var movement = get_node_or_null('../Movement')
 
 
 func _on_roll_timeout():
@@ -91,4 +91,4 @@ func _process(delta):
 		roll_input_active = true
 		roll_input_timeout = false
 		
-		get_tree().create_timer(roll_timeout).connect('timeout', self, '_on_roll_timeout')
+		get_tree().create_timer(roll_timeout).connect('timeout',Callable(self,'_on_roll_timeout'))

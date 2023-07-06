@@ -91,8 +91,8 @@ action = "ScrollDown"
 
 [node name="InventoryInput" parent="." index="23" instance=ExtResource( 20 )]
 
-[node name="WeaponTargetLock" type="RayCast" parent="." index="24"]
-cast_to = Vector3( 50, 0, 0 )
+[node name="WeaponTargetLock" type="RayCast3D" parent="." index="24"]
+target_position = Vector3( 50, 0, 0 )
 script = ExtResource( 21 )
 
 [node name="Bot" type="Node" parent="." index="25"]

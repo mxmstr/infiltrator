@@ -1,18 +1,18 @@
 extends 'res://Scripts/AnimationTree.BlendSpace.gd'
 
-export(Meta.Priority) var priority
-export(Meta.Visibility) var type
-export(Meta.BlendLayer) var blend
-export var cache_pose = true
-export var distance = 0.0
-export var enable_abilities = true
-export var lock_stance = false
-export var lock_speed = false
-export var lock_direction = false
-export var lock_rotation = false
-export var lock_movement = false
-export var camera_mode = 'LockYaw'
-export var hud_mode = 'Default'
+@export var priority: Meta.Priority
+@export var type: Meta.Visibility
+@export var blend: Meta.BlendLayer
+@export var cache_pose = true
+@export var distance = 0.0
+@export var enable_abilities = true
+@export var lock_stance = false
+@export var lock_speed = false
+@export var lock_direction = false
+@export var lock_rotation = false
+@export var lock_movement = false
+@export var camera_mode = 'LockYaw'
+@export var hud_mode = 'Default'
 
 var stance
 var camera_mode_node
@@ -52,12 +52,12 @@ func _on_state_starting(new_name):
 				anim_layer_movement.blend_mode = blend
 				anim_layer_movement.cache_poses = cache_pose
 	
-	._on_state_starting(new_name)
+	super._on_state_starting(new_name)
 
 
-func _ready(_owner, _parent, _parameters, _name):
+func __ready(_owner, _parent, _parameters, _name):
 	
-	._ready(_owner, _parent, _parameters, _name)
+	super.__ready(_owner, _parent, _parameters, _name)
 	
 	stance = owner.owner.get_node_or_null('Stance')
 	camera_mode_node = owner.owner.get_node_or_null('CameraMode')

@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="FontFile" id=1]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 20
 font_data = ExtResource( 1 )
 __meta__ = {
@@ -15,8 +15,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_right = 59.0
-margin_bottom = 31.0
+offset_right = 59.0
+offset_bottom = 31.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 text = "Label"
@@ -26,9 +26,9 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="."]
-margin_left = 63.0
-margin_right = 146.0
-margin_bottom = 31.0
+offset_left = 63.0
+offset_right = 146.0
+offset_bottom = 31.0
 size_flags_horizontal = 10
 size_flags_vertical = 2
 custom_fonts/font = SubResource( 1 )

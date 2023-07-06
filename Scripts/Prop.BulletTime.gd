@@ -8,11 +8,11 @@ const cooldown_time = 3.0
 var locked = false
 var active = false
 var cooldown = false
-var amount = 100.0 setget _set_amount
+var amount = 100.0 : set = _set_amount
 
-onready var bullet_time_server = get_node_or_null('/root/Mission/Links/BulletTimeServer')
-onready var perspective_anim_player = $'../Perspective/AnimationPlayer'
-onready var ui_audio = $'../UIAudio'
+@onready var bullet_time_server = get_node_or_null('/root/Mission/Links/BulletTimeServer')
+@onready var perspective_anim_player = $'../Perspective/AnimationPlayer'
+@onready var ui_audio = $'../UIAudio'
 
 signal amount_changed
 
@@ -59,7 +59,7 @@ func _cooldown():
 	
 	cooldown = true
 	
-	get_tree().create_timer(cooldown_time).connect('timeout', self, 'set', ['cooldown', false])
+	get_tree().create_timer(cooldown_time).connect('timeout',Callable(self,'set').bind('cooldown', false))
 
 
 func _ready():

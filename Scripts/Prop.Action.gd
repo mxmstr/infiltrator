@@ -1,12 +1,12 @@
-tool
+@tool
 extends AnimationTree
 
 var make_unique = 0
 
-export(NodePath) var tree_node
-export var start_node = 'Start'
-export var end_node = 'Start'
-export(String, MULTILINE) var tags
+@export var tree_node: NodePath
+@export var start_node = 'Start'
+@export var end_node = 'Start'
+@export_multiline var tags
 
 
 func _on_parameter_changed(base_path, p_name, p_value):
@@ -18,9 +18,9 @@ func _ready():
 	
 	return
 	
-	if Engine.editor_hint:
-		connect('parameter_changed', self, '_on_parameter_changed')
-		return
+#	if Engine.editor_hint:
+#		connect('parameter_changed',Callable(self,'_on_parameter_changed'))
+#		return
 	
 	if tree_node.is_empty():
 		return
@@ -30,7 +30,7 @@ func _ready():
 		return
 	
 	for animation in $AnimationPlayer.get_animation_list():
-		get_node(str(tree_node) + '/AnimationPlayer').add_animation(animation, $AnimationPlayer.get_animation(animation))
+		get_node(str(tree_node) + '/AnimationPlayer').add_animation_library(animation, $AnimationPlayer.get_animation(animation))
 	
 
 	var anim_names = [start_node, end_node]

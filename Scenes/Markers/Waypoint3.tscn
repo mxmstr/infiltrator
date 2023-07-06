@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 albedo_color = Color( 0, 0.929412, 1, 1 )
 roughness = 0.0
 __meta__ = {
@@ -14,28 +14,28 @@ __meta__ = {
 
 }
 
-[node name="Waypoint" type="Spatial"]
+[node name="Waypoint" type="Node3D"]
 __meta__ = {
 
 }
 
-[node name="MeshPivot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+[node name="MeshPivot" type="Node3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 __meta__ = {
 
 }
 
-[node name="MeshInstance" type="MeshInstance" parent="MeshPivot"]
-transform = Transform( 0.500093, 0, 0, 0, -0.5, 4.37195e-08, 0, -4.37114e-08, -0.500093, 0, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshPivot"]
+transform = Transform3D( 0.500093, 0, 0, 0, -0.5, 4.37195e-08, 0, -4.37114e-08, -0.500093, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 __meta__ = {
 
 }
 
-[node name="RayCast" type="RayCast" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="."]
 enabled = true
-cast_to = Vector3( 0, -100, 0 )
+target_position = Vector3( 0, -100, 0 )
 __meta__ = {
 
 }

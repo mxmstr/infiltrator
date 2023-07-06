@@ -3,17 +3,17 @@ extends "res://Scripts/Action.gd"
 const item_names = ['Beretta', 'Colt', 'DesertEagle', 'Ingram', 'Jackhammer', 'M79', 'MP5', 'PumpShotgun', 'SawedoffShotgun', 'Sniper', 'Grenade']
 const dual_wield_items = ['Beretta', 'DesertEagle', 'Ingram', 'SawedoffShotgun']
 
-export(String) var shoot_schema
+@export var shoot_schema: String
 
 var shoot_animations = {}
 var shoot_idle_animations = {}
 var shoot_dual_animations = {}
 var shoot_dual_idle_animations = {}
 
-onready var righthand = get_node_or_null('../../RightHandContainer')
-onready var lefthand = get_node_or_null('../../LeftHandContainer')
-onready var camera_raycast = get_node_or_null('../../CameraRig/Camera')
-onready var camera_raycast_target = get_node_or_null('../../CameraRaycastStim/Target')
+@onready var righthand = get_node_or_null('../../RightHandContainer')
+@onready var lefthand = get_node_or_null('../../LeftHandContainer')
+@onready var camera_raycast = get_node_or_null('../../CameraRig/Camera3D')
+@onready var camera_raycast_target = get_node_or_null('../../CameraRaycastStim/Target')
 
 
 func _use_right_hand_item():
@@ -27,7 +27,7 @@ func _use_right_hand_item():
 		if not lefthand._is_empty():
 			
 			if item._has_tag('DualWieldFireDelay'):
-				get_tree().create_timer(float(item._get_tag('DualWieldFireDelay'))).connect('timeout', self, '_use_left_hand_item')
+				get_tree().create_timer(float(item._get_tag('DualWieldFireDelay'))).connect('timeout',Callable(self,'_use_left_hand_item'))
 			else:
 				_use_left_hand_item()
 		
@@ -51,7 +51,7 @@ func _cock_weapon():
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	for item_name in item_names:
 		
@@ -146,4 +146,4 @@ func _process(delta):
 		var look_direction = camera_raycast.global_transform.origin.direction_to(target_pos).normalized()
 		var look_angle = Vector3(0, -1, 0).angle_to(look_direction)
 		
-		tree_node._set_action_blend((rad2deg(look_angle) - 90) / 90)
+		tree_node._set_action_blend((rad_to_deg(look_angle) - 90) / 90)

@@ -15,12 +15,12 @@
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.15
 
-[node name="DefaultHuman" type="Spatial"]
+[node name="DefaultHuman" type="Node3D"]
 
-[node name="HumanControl" type="Spatial" parent="."]
+[node name="HumanControl" type="Node3D" parent="."]
 
-[node name="MeshInstance" type="MeshInstance" parent="HumanControl"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.75, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HumanControl"]
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.75, 0 )
 mesh = SubResource( 1 )
 skeleton = NodePath("")
 material/0 = null

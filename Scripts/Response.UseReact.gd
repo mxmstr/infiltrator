@@ -1,8 +1,8 @@
 extends 'res://Scripts/Response.gd'
 
-onready var behavior = get_node_or_null('../../Behavior')
-onready var righthand = get_node_or_null('../../RightHandContainer')
-onready var lefthand = get_node_or_null('../../LeftHandContainer')
+@onready var behavior = get_node_or_null('../../Behavior')
+@onready var righthand = get_node_or_null('../../RightHandContainer')
+@onready var lefthand = get_node_or_null('../../LeftHandContainer')
 
 
 func _on_stimulate(stim, data):

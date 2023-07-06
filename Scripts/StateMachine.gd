@@ -1,7 +1,7 @@
 extends 'res://Scripts/AnimationLoader.gd'
 
-export(String) var start
-export(String, MULTILINE) var statemachine_attributes
+@export var start: String
+@export_multiline var statemachine_attributes
 
 var next
 
@@ -16,7 +16,9 @@ func _on_animation_finished(current):
 
 func _ready():
 	
-	attributes = parse_json(statemachine_attributes)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(statemachine_attributes)
+	attributes = test_json_conv.get_data()
 	
 	for animation_name in call('get_animation_list'):
 		
@@ -33,7 +35,7 @@ func _ready():
 			attributes[animation_name] = {}
 	
 	
-	connect('animation_finished', self, '_on_animation_finished')
+	connect('animation_finished',Callable(self,'_on_animation_finished'))
 	
 	if start != '':
 		_start_state(start)

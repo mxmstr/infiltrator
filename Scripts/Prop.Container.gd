@@ -1,28 +1,28 @@
 extends Node
 
-export(NodePath) var path
-export(String) var bone_name
-export var factory_mode = false
-export var parent_position = true
-export var parent_rotation = true
-export(Vector3) var position_offset
-export(Vector3) var rotation_degrees_offset
-export(float) var release_speed
-export(Vector3) var release_direction
-export(Vector2) var release_angular_spread = Vector2(0, 0)
-export(float) var release_lifetime
-export var release_exclude_parent = false
-export var release_exclude_parent_lifetime = 0.0
-export(int) var max_quantity
-export(bool) var invisible
-export(bool) var interactable
-export(String, MULTILINE) var required_tags
+@export var path: NodePath
+@export var bone_name: String
+@export var factory_mode = false
+@export var parent_position = true
+@export var parent_rotation = true
+@export var position_offset: Vector3
+@export var rotation_degrees_offset: Vector3
+@export var release_speed: float
+@export var release_direction: Vector3
+@export var release_angular_spread: Vector2 = Vector2(0, 0)
+@export var release_lifetime: float
+@export var release_exclude_parent = false
+@export var release_exclude_parent_lifetime = 0.0
+@export var max_quantity: int
+@export var invisible: bool
+@export var interactable: bool
+@export_multiline var required_tags
 
 var movement
 var root
 var shooter
 var required_tags_dict = {}
-var items = [] setget _set_items, _get_items
+var items = [] : get = _get_items, set = _set_items
 
 signal item_added
 signal item_removed
@@ -188,9 +188,9 @@ func _apply_launch_attributes(item):
 	if release_angular_spread.length():
 		
 		var spread_x = release_angular_spread.x
-		spread_x = rand_range(-spread_x, spread_x)
+		spread_x = randf_range(-spread_x, spread_x)
 		var spread_y = release_angular_spread.y
-		spread_y = rand_range(-spread_y, spread_y)
+		spread_y = randf_range(-spread_y, spread_y)
 		
 		ActorServer.SetAngularDirection(item, Vector2(spread_x, spread_y))
 	
@@ -204,10 +204,10 @@ func _apply_launch_attributes(item):
 		ActorServer.SetTag(item, 'Shooter', shooter)
 	
 	if release_exclude_parent and release_exclude_parent_lifetime > 0:
-		get_tree().create_timer(release_exclude_parent_lifetime).connect('timeout', self, '_remove_exclusions', [item, parent_list])
+		get_tree().create_timer(release_exclude_parent_lifetime).connect('timeout',Callable(self,'_remove_exclusions').bind(item, parent_list))
 	
 	if release_lifetime > 0:
-		get_tree().create_timer(release_lifetime).connect('timeout', ActorServer, 'Destroy', [item])
+		get_tree().create_timer(release_lifetime).connect('timeout',Callable(ActorServer,'Destroy').bind(item))
 
 
 func _create_and_launch_item(item_path, _rotation=null):
@@ -233,7 +233,7 @@ func _create_and_launch_item(item_path, _rotation=null):
 func _release_front_threaded():
 	
 	var thread = Thread.new()
-	thread.start(self, '_release_front')
+	thread.start(Callable(self,'_release_front'))
 	
 	Meta.threads.append(thread)
 
@@ -332,7 +332,7 @@ func _delete_all():
 
 func _reset_root():
 	
-	root.translation = position_offset
+	root.position = position_offset
 	root.rotation_degrees = rotation_degrees_offset
 
 
@@ -356,7 +356,7 @@ func _ready():
 		
 	else:
 	
-		root = BoneAttachment.new()
+		root = BoneAttachment3D.new()
 		root.name = name + 'Root'
 		get_node(path).call_deferred('add_child', root)
 		

@@ -4,30 +4,30 @@
 
 [sub_resource type="Gradient" id=1]
 
-[sub_resource type="GradientTexture" id=2]
+[sub_resource type="GradientTexture2D" id=2]
 gradient = SubResource( 1 )
 width = 256
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0.139394, 0.448485, 0.724242 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.74, 0.74, 0.74, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0.139394, 0.448485, 0.724242 )
+colors = PackedColorArray( 0, 0, 0, 1, 0.74, 0.74, 0.74, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture2D" id=4]
 gradient = SubResource( 3 )
 
 [sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0.381988, 0.46129, 0.552795, 0.602484 )
-colors = PoolColorArray( 0.965838, 0.965838, 0.965838, 1, 1, 0.801853, 0.503906, 1, 1, 0, 0, 1, 0, 0, 0, 1 )
+offsets = PackedFloat32Array( 0.381988, 0.46129, 0.552795, 0.602484 )
+colors = PackedColorArray( 0.965838, 0.965838, 0.965838, 1, 1, 0.801853, 0.503906, 1, 1, 0, 0, 1, 0, 0, 0, 1 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture2D" id=6]
 gradient = SubResource( 5 )
 width = 256
 
 [sub_resource type="Gradient" id=7]
-offsets = PoolRealArray( 0, 0.0434783, 0.319876 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.438202, 0.438202, 0.438202, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.0434783, 0.319876 )
+colors = PackedColorArray( 0, 0, 0, 1, 0.438202, 0.438202, 0.438202, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=8]
+[sub_resource type="GradientTexture2D" id=8]
 gradient = SubResource( 7 )
 width = 64
 

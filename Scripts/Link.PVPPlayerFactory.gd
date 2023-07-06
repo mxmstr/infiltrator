@@ -93,7 +93,7 @@ func _suspend_players():
 func _respawn(actor):
 	
 	var sorted_markers = markers.duplicate()
-	sorted_markers.sort_custom(Meta.SortActors.new(actor), '_descending')
+	sorted_markers.sort_custom(Callable(Meta.SortActors.new(actor),'_descending'))
 	sorted_markers.slice(0, 2)
 	var marker = sorted_markers[randi() % 3]
 #	var current_pos = actor.global_transform.origin
@@ -121,7 +121,7 @@ func _add_viewport(actor, data):
 	
 	perspective._init_viewport()
 	
-#	perspective.get_node('Viewport').world = get_tree().root.world
+#	perspective.get_node('SubViewport').world = get_tree().root.world
 	
 	perspective.mouse_device = data.mouse
 	perspective.keyboard_device = data.keyboard
@@ -137,7 +137,7 @@ func _ready():
 #		return
 	
 	
-	#yield(get_tree(), 'idle_frame')
+	#await get_tree().idle_frame
 	
 	for child in get_children():
 		if 'RespawnMarker' in child.name:
@@ -164,10 +164,10 @@ func _ready():
 	_play_fight_music()
 	
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	for i in range(Meta.player_count):
 		
 		var data = Meta.player_data[i]
-		actors[i].get_node('Behavior').connect('action', self, '_on_action', [actors[i]])
+		actors[i].get_node('Behavior').connect('action_started',Callable(self,'_on_action').bind(actors[i]))
 	

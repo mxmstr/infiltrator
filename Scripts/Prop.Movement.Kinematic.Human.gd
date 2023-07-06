@@ -21,7 +21,7 @@ var on_wall_count = 0
 var is_step: bool = false
 var step_check = false
 var step_check_height: Vector3 = STEP_HEIGHT_DEFAULT / STEP_CHECK_COUNT
-var gravity_vec: Vector3 = Vector3.ZERO
+var gravity_direction: Vector3 = Vector3.ZERO
 var movement: Vector3 = Vector3.ZERO
 
 var gravity_scale = 1.0
@@ -36,10 +36,10 @@ var factorx = angular_deaccel
 var factory = angular_deaccel
 var root_motion_use_model = false
 
-onready var model = get_node_or_null('../Model')
-onready var behavior = get_node_or_null('../Behavior')
-onready var camera_rig = get_node_or_null('../CameraRig')
-onready var bullet_time = get_node_or_null('../BulletTime')
+@onready var model = get_node_or_null('../Model')
+@onready var behavior = get_node_or_null('../Behavior')
+@onready var camera_rig = get_node_or_null('../CameraRig')
+@onready var bullet_time = get_node_or_null('../BulletTime')
 
 signal move_and_slide
 
@@ -51,27 +51,27 @@ func _get_collisions():
 
 func _get_forward_speed():
 	
-	return owner.global_transform.basis.xform_inv(velocity).z
+	return velocity * owner.global_transform.basis.z
 
 
 func _get_sidestep_speed():
 	
-	return owner.global_transform.basis.xform_inv(velocity).x
+	return velocity * owner.global_transform.basis.x
 
 
 func _set_vertical_velocity(vertical):
 	
-	gravity_vec.y = vertical
+	gravity_direction.y = vertical
 
 
 func _add_vertical_velocity(vertical):
 	
-	gravity_vec.y += vertical
+	gravity_direction.y += vertical
 
 
 func _apply_root_transform(root_transform):
 	
-	if root_transform == Transform():
+	if root_transform == Transform3D():
 		return
 	
 	#root_transform.origin /= get_process_delta_time()
@@ -122,7 +122,7 @@ func _face(target, angle_delta=0.0):
 	
 	else:
 		
-		turn_target = owner.global_transform.basis.z.linear_interpolate(turn_target, angle_delta / angle)
+		turn_target = owner.global_transform.basis.z.lerp(turn_target, angle_delta / angle)
 		owner.global_transform.look_at(owner.global_transform.origin - turn_target)
 
 
@@ -160,18 +160,18 @@ func _physics_process(delta):
 	#jumping and gravity
 	if owner.is_on_floor():
 		
-		if gravity_vec.y > 0:
+		if gravity_direction.y > 0:
 			#factor = ACCEL_AIR
 			snap = Vector3.ZERO
 		else:
 			snap = -owner.get_floor_normal()
 			#factor = ACCEL_DEFAULT
-			gravity_vec = Vector3.ZERO
+			gravity_direction = Vector3.ZERO
 		
 	else:
 		snap = Vector3.DOWN
 		#factor = ACCEL_AIR
-		gravity_vec += Vector3.DOWN * gravity * delta
+		gravity_direction += Vector3.DOWN * gravity * delta
 	
 	
 	var new_velocity = direction * speed
@@ -183,78 +183,87 @@ func _physics_process(delta):
 		factor = deaccel
 
 	if factor > 0:
-		velocity = velocity.linear_interpolate(new_velocity, factor * scaled_delta)
+		velocity = velocity.lerp(new_velocity, factor * scaled_delta)
 	else:
 		velocity = new_velocity
 	
 #	if velocity.y > 0:# and owner.is_on_floor():
 #		snap = Vector3.ZERO
-#		gravity_vec = Vector3.UP * velocity.y
+#		gravity_direction = Vector3.UP * velocity.y
 
-	if step_check and gravity_vec.y >= 0:
+	if step_check and gravity_direction.y >= 0:
 		
 		for i in range(STEP_CHECK_COUNT):
-			var test_motion_result: PhysicsTestMotionResult = PhysicsTestMotionResult.new()
+			var test_motion_result: PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
 
 			var step_height: Vector3 = STEP_HEIGHT_DEFAULT - i * step_check_height
-			var transform3d: Transform = owner.global_transform
-			var motion: Vector3 = step_height
-			var is_player_collided: bool = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+			var params = PhysicsTestMotionParameters3D.new()
+			params.from = owner.global_transform
+			params.motion = step_height
+			var is_player_collided = PhysicsServer3D.body_test_motion(owner.get_rid(), params, test_motion_result)
 #
 			#prints('is_player_collided 0', is_player_collided, test_motion_result.collision_normal.y < 0, str(randi()))
 			if test_motion_result.collision_normal.y < 0:
 				continue
 
 			if not is_player_collided:
-				transform3d.origin += step_height
-				motion = velocity * delta
-				is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+				params.from += step_height
+				params.motion = velocity * delta
+				is_player_collided = PhysicsServer3D.body_test_motion(owner.get_rid(), params, test_motion_result)
 
 				#prints('is_player_collided 1', is_player_collided, str(randi()))
 				if not is_player_collided:
-					transform3d.origin += motion
-					motion = -step_height
-					is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+					params.from += params.motion
+					params.motion = -step_height
+					is_player_collided = PhysicsServer3D.body_test_motion(owner.get_rid(), params, test_motion_result)
 					#prints('is_player_collided 2', is_player_collided, str(randi()))
 					if is_player_collided:
 						#prints('is_player_collided 2', test_motion_result.collision_normal.angle_to(Vector3.UP), str(randi()))
-						if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
+						if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg_to_rad(STEP_MAX_SLOPE_DEGREE):
 							#head_offset = -test_motion_result.motion_remainder
 							is_step = true
 							#prints('is step 1 ' + str(randi()))
 							owner.global_transform.origin += -test_motion_result.motion_remainder
 							break
 				else:
-					var wall_collision_normal: Vector3 = test_motion_result.collision_normal
+					var wall_collision_normal = test_motion_result.collision_normal
 
-					transform3d.origin += test_motion_result.collision_normal * WALL_MARGIN
-					motion = (velocity * delta).slide(wall_collision_normal)
-					is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+					params.from += test_motion_result.collision_normal * WALL_MARGIN
+					params.motion = (velocity * delta).slide(wall_collision_normal)
+					is_player_collided = PhysicsServer3D.body_test_motion(owner.get_rid(), params, test_motion_result)
 					#prints('is_player_collided 3', is_player_collided, str(randi()))
 					if not is_player_collided:
-						transform3d.origin += motion
-						motion = -step_height
-						is_player_collided = PhysicsServer.body_test_motion(owner.get_rid(), transform3d, motion, false, test_motion_result)
+						params.from += params.motion
+						params.motion = -step_height
+						is_player_collided = PhysicsServer3D.body_test_motion(owner.get_rid(), params, test_motion_result)
 						#prints('is_player_collided 4', is_player_collided, str(randi()))
 						if is_player_collided:
-							if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg2rad(STEP_MAX_SLOPE_DEGREE):
+							if test_motion_result.collision_normal.angle_to(Vector3.UP) <= deg_to_rad(STEP_MAX_SLOPE_DEGREE):
 								#head_offset = -test_motion_result.motion_remainder
 								is_step = true
 								#prints('is step 2 ' + str(randi()))
 								owner.global_transform.origin += -test_motion_result.motion_remainder
 								break
 	
-	movement = velocity + gravity_vec
+	movement = velocity + gravity_direction
 	
 	_apply_root_transform(behavior.get_root_motion_transform())
 	
 # warning-ignore:return_value_discarded
-	owner.move_and_slide_with_snap(movement, snap, Vector3.UP, false, 2, deg2rad(46), false)
+	owner.set_velocity(movement)
+	# TODOConverter40 looks that snap in Godot 4.0 is float, not vector like in Godot 3 - previous value `snap`
+	owner.set_up_direction(Vector3.UP)
+	owner.set_floor_stop_on_slope_enabled(false)
+	owner.set_max_slides(3)
+	owner.set_floor_max_angle(deg_to_rad(46))
+	# TODOConverter40 infinite_inertia were removed in Godot 4.0 - previous value `false`
+	owner.move_and_slide()
+	owner.velocity
 	
 	collisions = []
 	var new_on_wall_count = 0
 
-	for index in range(owner.get_slide_count()):
+	for index in range(owner.get_slide_collision_count()):
 		
 		var slide = owner.get_slide_collision(index)
 		
@@ -263,7 +272,7 @@ func _physics_process(delta):
 		
 		collisions.append(slide)
 	
-	#prints(owner.get_slide_count())
+	#prints(owner.get_slide_collision_count())
 	
 #	if new_on_wall_count != on_wall_count:
 #		prints(on_wall_count, new_on_wall_count)

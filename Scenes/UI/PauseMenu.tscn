@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/UI.PauseMenu.gd" type="Script" id=1]
-[ext_resource path="res://Textures/panel.png" type="Texture" id=2]
+[ext_resource path="res://Textures/panel.png" type="Texture2D" id=2]
 [ext_resource path="res://Scenes/UI/Menu.Scenes.Item.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="FontFile" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 40
 font_data = ExtResource( 4 )
 
@@ -27,11 +27,11 @@ __meta__ = {
 
 [node name="Background" type="NinePatchRect" parent="Control"]
 self_modulate = Color( 0.890196, 1, 0.698039, 1 )
-margin_left = 312.0
-margin_top = 200.0
-margin_right = 712.0
-margin_bottom = 400.0
-rect_min_size = Vector2( 400, 200 )
+offset_left = 312.0
+offset_top = 200.0
+offset_right = 712.0
+offset_bottom = 400.0
+custom_minimum_size = Vector2( 400, 200 )
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 512, 512 )
 patch_margin_left = 25
@@ -40,46 +40,46 @@ patch_margin_right = 25
 patch_margin_bottom = 40
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
-margin_left = 182.0
-margin_top = 207.0
-margin_right = 842.0
-margin_bottom = 393.0
+offset_left = 182.0
+offset_top = 207.0
+offset_right = 842.0
+offset_bottom = 393.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_constants/margin_right = 30
-custom_constants/margin_top = 30
-custom_constants/margin_left = 30
-custom_constants/margin_bottom = 50
+custom_constants/offset_right = 30
+custom_constants/offset_top = 30
+custom_constants/offset_left = 30
+custom_constants/offset_bottom = 50
 
 [node name="ListContainer" type="VBoxContainer" parent="Control/MarginContainer"]
-margin_left = 30.0
-margin_top = 30.0
-margin_right = 630.0
-margin_bottom = 136.0
-rect_min_size = Vector2( 600, 0 )
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 630.0
+offset_bottom = 136.0
+custom_minimum_size = Vector2( 600, 0 )
 
 [node name="Resume" parent="Control/MarginContainer/ListContainer" instance=ExtResource( 3 )]
-margin_right = 600.0
-margin_bottom = 49.0
+offset_right = 600.0
+offset_bottom = 49.0
 alignment = 1
 
 [node name="Button" parent="Control/MarginContainer/ListContainer/Resume" index="0"]
-margin_right = 600.0
-margin_bottom = 49.0
+offset_right = 600.0
+offset_bottom = 49.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Resume"
 
 [node name="Exit" parent="Control/MarginContainer/ListContainer" instance=ExtResource( 3 )]
-margin_top = 57.0
-margin_right = 600.0
-margin_bottom = 106.0
+offset_top = 57.0
+offset_right = 600.0
+offset_bottom = 106.0
 alignment = 1
 
 [node name="Button" parent="Control/MarginContainer/ListContainer/Exit" index="0"]
-margin_right = 600.0
-margin_bottom = 49.0
+offset_right = 600.0
+offset_bottom = 49.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )

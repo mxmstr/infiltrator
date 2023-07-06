@@ -1,15 +1,15 @@
 extends "res://Scripts/AnimationLoader.gd"
 
-export(String) var state
+@export var state: String
 
 var new_state = ''
 
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
-	tree_node.connect('action', self, '_on_action')
+	tree_node.connect('action_started',Callable(self,'_on_action'))
 
 
 func _on_action(_state, data): 

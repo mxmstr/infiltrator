@@ -27,7 +27,7 @@ func _stop(user):
 	
 	users.erase(user)
 	
-	if users.empty():
+	if users.is_empty():
 		
 		Engine.time_scale = 1.0
 		

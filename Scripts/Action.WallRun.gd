@@ -25,7 +25,7 @@ func _on_action(_state, _data):
 			return
 		
 		data = _data
-		stance.mode = stance.Mode.WALLRUN
+		stance.surface = stance.SurfaceType.WALL
 		stance.wall_normal = data.normal
 		active = true
 	
@@ -34,7 +34,7 @@ func _on_action(_state, _data):
 		if behavior.current_state == state:
 			
 			behavior._start_state('Default', { 'override': true })
-			stance.mode = stance.Mode.DEFAULT
+			stance.surace = stance.SurfaceType.FLOOR
 			active = false
 			test_off_wall = false
 
@@ -62,5 +62,5 @@ func _process(delta):
 		
 		if not owner.is_on_wall() and not test_off_wall:
 			
-			get_tree().create_timer(test_off_wall_time).connect('timeout', self, '_on_test_off_wall_timeout')
+			get_tree().create_timer(test_off_wall_time).connect('timeout',Callable(self,'_on_test_off_wall_timeout'))
 			test_off_wall = true

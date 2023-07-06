@@ -2,7 +2,7 @@ extends Node
 
 enum StanceType {
 	STANDING,
-	CROUCHING
+	CROUCHING,
 	CRAWLING
 }
 
@@ -18,32 +18,32 @@ enum LeanDirection {
 	RIGHT
 }
 
-enum Mode {
-	DEFAULT,
-	WALLRUN
+enum SurfaceType {
+	FLOOR,
+	WALL
 }
 
 const wall_run_vertical_speed = 4
 const wall_run_vertical_mult = 2
 const wall_run_horizontal_mult = 2
 
-export(float) var forward_speed setget _set_forward_speed
-export(float) var sidestep_speed setget _set_sidestep_speed
-export(float) var turn_speed setget _set_turn_speed
-export(float) var look_speed setget _set_look_speed
+@export var forward_speed: float : set = _set_forward_speed
+@export var sidestep_speed: float : set = _set_sidestep_speed
+@export var turn_speed: float : set = _set_turn_speed
+@export var look_speed: float : set = _set_look_speed
 
-export(StanceType) var stance = StanceType.STANDING setget _set_stance
-export(SpeedType) var speed = SpeedType.RUNNING
-export(LeanDirection) var lean = LeanDirection.DEFAULT
-export(Mode) var mode = Mode.DEFAULT
+@export var stance: StanceType = StanceType.STANDING : set = _set_stance
+@export var speed: SpeedType = SpeedType.RUNNING
+@export var lean: LeanDirection = LeanDirection.DEFAULT
+@export var surface: SurfaceType = SurfaceType.FLOOR
 
-export var max_speed = 3.25
-export var sprint_mult = 1.75
-export var walk_mult = 0.3
-export var crouch_mult = 0.25
-export var crawl_mult = 0.15
+@export var max_speed = 3.25
+@export var sprint_mult = 1.75
+@export var walk_mult = 0.3
+@export var crouch_mult = 0.25
+@export var crawl_mult = 0.15
 
-export var max_slope_angle = 30
+@export var max_slope_angle = 30
 
 var speed_mult = 1.0
 var rotate_speed_mult = 1.0
@@ -58,10 +58,10 @@ var wall_normal = Vector3.FORWARD
 var wall_forward_speed = 0.0
 var wall_sidestep_speed = 0.0
 
-onready var animation_player = $AnimationPlayer
-onready var movement = get_node_or_null('../Movement')
-onready var collision = get_node_or_null('../Collision')
-onready var camera = get_node_or_null('../CameraRig/Camera')
+@onready var animation_player = $AnimationPlayer
+@onready var movement = get_node_or_null('../Movement')
+@onready var collision = get_node_or_null('../Collision')
+@onready var camera = get_node_or_null('../CameraRig/Camera3D')
 
 
 func _turn(delta):
@@ -114,12 +114,12 @@ func _set_stance(new_state):
 #
 #	Vector2(sidestep_speed, forward_speed)
 #
-#	return owner.global_transform.basis.xform_inv(velocity).z
+#	return velocity * owner.global_transform.basis.z
 #
 #
 #func _get_sidestep_speed():
 #
-#	return owner.global_transform.basis.xform_inv(velocity).x
+#	return velocity * owner.global_transform.basis.x
 
 
 func _set_forward_speed(new_speed):
@@ -158,7 +158,7 @@ func _physics_process(delta):
 #		movement.angulardirection = Vector3()
 #		return
 	
-	if mode == Mode.WALLRUN:
+	if surface == SurfaceType.WALL:
 		forward_speed = 1.0
 	
 	
@@ -179,7 +179,7 @@ func _physics_process(delta):
 			velocity.z = (sign(forward_speed) * y2 * 1.0/sqrt(x2 + y2))
 	
 	
-	if mode == Mode.DEFAULT:
+	if surface == SurfaceType.FLOOR:
 		
 		velocity *= max_speed * speed_mult
 		
@@ -191,14 +191,14 @@ func _physics_process(delta):
 		movement._set_speed(velocity.length())
 		movement._set_direction(velocity.normalized(), true)
 	
-	elif mode == Mode.WALLRUN:
+	elif surface == SurfaceType.WALL:
 		
 		velocity *= max_speed
 		
 		var global_rotation = owner.global_transform.basis
-		var global_velocity = global_rotation.xform(velocity)
+		var global_velocity = global_rotation * velocity
 		var slide_direction = global_velocity.slide(wall_normal)
-		slide_direction = slide_direction.linear_interpolate(-wall_normal, 0.1)
+		slide_direction = slide_direction.lerp(-wall_normal, 0.1)
 		
 		var facing_angle_forward = global_rotation.z.angle_to(-wall_normal)
 		var facing_angle_sidestep = global_rotation.z.angle_to(

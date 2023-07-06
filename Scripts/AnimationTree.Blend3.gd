@@ -1,9 +1,9 @@
 extends AnimationNodeBlend3
 
-export(String) var blend3
-export var chain = false
-export(String, MULTILINE) var expression
-export(Dictionary) var arguments
+@export var blend3: String
+@export var chain = false
+@export_multiline var expression
+@export var arguments: Dictionary
 
 var node_name
 var owner
@@ -36,7 +36,7 @@ func _evaluate():
 	return result
 
 
-func _ready(_owner, _parent, _parameters, _name):
+func __ready(_owner, _parent, _parameters, _name):
 	
 	owner = _owner
 	parent = _parent
@@ -44,9 +44,9 @@ func _ready(_owner, _parent, _parameters, _name):
 	node_name = _name
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
-		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+		owner.get(parent.parameters + 'playback').connect('state_starting',Callable(self,'_on_state_starting'))
 	
-	owner.connect('on_process', self, '_process')
+	owner.connect('on_process',Callable(self,'__process'))
 	
 	for line in expression.split('\n'):
 		
@@ -55,6 +55,6 @@ func _ready(_owner, _parent, _parameters, _name):
 		exec_list.append(exec)
 
 
-func _process(delta):
+func __process(delta):
 	
 	owner.set(parameters + node_name + '/blend_amount', _evaluate())

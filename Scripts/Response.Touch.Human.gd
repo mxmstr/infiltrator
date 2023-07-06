@@ -1,9 +1,9 @@
 extends 'res://Scripts/Response.gd'
 
-onready var righthand = get_node_or_null('../../RightHandContainer')
-onready var inventory = get_node_or_null('../../InventoryContainer')
-onready var ui_audio = get_node_or_null('../../UIAudio')
-onready var stamina = get_node_or_null('../../Stamina')
+@onready var righthand = get_node_or_null('../../RightHandContainer')
+@onready var inventory = get_node_or_null('../../InventoryContainer')
+@onready var ui_audio = get_node_or_null('../../UIAudio')
+@onready var stamina = get_node_or_null('../../Stamina')
 
 
 func _is_container(node):
@@ -85,7 +85,7 @@ func _on_stimulate(stim, data):
 			ui_audio._start_state('PickupAmmo')
 			
 			var kind = data.source._get_tag('Kind')
-			var path = data.source._get_tag('Path')
+			var path = data.source._get_tag('Path3D')
 			var amount = int(data.source._get_tag('Amount'))
 			
 			for i in range(amount):

@@ -1,6 +1,6 @@
 [gd_scene format=2]
 
-[node name="IKControl" type="SkeletonIK"]
+[node name="IKControl" type="SkeletonIK3D"]
 target_node = NodePath("Target")
 
-[node name="Target" type="Spatial" parent="."]
+[node name="Target" type="Node3D" parent="."]

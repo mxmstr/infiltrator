@@ -186,9 +186,9 @@ func _on_weapon_toggled(enabled, weapon_name):
 	
 	Meta.multi_loadout = []
 	
-	for weapon_name in weapons:
-		if weapons[weapon_name].enabled:
-			Meta.multi_loadout.append(weapons[weapon_name].scene)
+	for existing_weapon_name in weapons:
+		if weapons[existing_weapon_name].enabled:
+			Meta.multi_loadout.append(weapons[existing_weapon_name].scene)
 
 
 func _ready():
@@ -199,39 +199,39 @@ func _ready():
 		config.save(CONFIG_FILE)
 	
 	
-	var player_count = find_node('NumberOfPlayers')
-	player_count.connect('value_changed', self, '_on_player_count_changed')
+	var player_count = find_child('NumberOfPlayers')
+	player_count.connect('value_changed',Callable(self,'_on_player_count_changed'))
 	player_count.value = config.get_value('Multiplayer', 'player_count', Meta.player_count) 
 	_on_player_count_changed(player_count.value)
 	
 	
-	var max_points = find_node('MaxPoints')
-	max_points.connect('value_changed', self, '_on_max_points_changed')
+	var max_points = find_child('MaxPoints')
+	max_points.connect('value_changed',Callable(self,'_on_max_points_changed'))
 	max_points.value = config.get_value('Multiplayer', 'max_points', Meta.multi_points_to_win)
 	_on_max_points_changed(max_points.value)
 	
 	
-	var radar = find_node('Radar').get_node('CheckBox')
-	radar.connect('toggled', self, '_on_radar_toggled')
-	radar.pressed = config.get_value('Multiplayer', 'radar', Meta.multi_radar)
+	var radar = find_child('Radar').get_node('CheckBox')
+	radar.connect('toggled',Callable(self,'_on_radar_toggled'))
+	radar.button_pressed = config.get_value('Multiplayer', 'radar', Meta.multi_radar)
 	_on_radar_toggled(radar.pressed)
 	
 	
-	var outlines = find_node('Outlines').get_node('CheckBox')
-	outlines.connect('toggled', self, '_on_outlines_toggled')
-	outlines.pressed = config.get_value('Multiplayer', 'outlines',  Meta.multi_outlines)
+	var outlines = find_child('Outlines').get_node('CheckBox')
+	outlines.connect('toggled',Callable(self,'_on_outlines_toggled'))
+	outlines.button_pressed = config.get_value('Multiplayer', 'outlines',  Meta.multi_outlines)
 	_on_outlines_toggled(outlines.pressed)
 	
 	
-	var xray = find_node('Xray').get_node('CheckBox')
-	xray.connect('toggled', self, '_on_xray_toggled')
-	xray.pressed = config.get_value('Multiplayer', 'xray',  Meta.multi_xray)
+	var xray = find_child('Xray').get_node('CheckBox')
+	xray.connect('toggled',Callable(self,'_on_xray_toggled'))
+	xray.button_pressed = config.get_value('Multiplayer', 'xray',  Meta.multi_xray)
 	_on_xray_toggled(xray.pressed)
 	
 	
 	var player_index = 0
 	
-	for child in [find_node('Player1'), find_node('Player2'), find_node('Player3'), find_node('Player4')]:
+	for child in [find_child('Player1'), find_child('Player2'), find_child('Player3'), find_child('Player4')]:
 		
 		var character_selector = child.get_node('CharacterSelector/OptionButton')
 		var hp_selector = child.get_node('HBoxContainer/HP')
@@ -243,12 +243,12 @@ func _ready():
 		for charname in characters.keys():
 			character_selector.add_item(charname)
 		
-		character_selector.connect('item_selected', self, '_on_character_selected', [player_index])
+		character_selector.connect('item_selected',Callable(self,'_on_character_selected').bind(player_index))
 		character_selector.selected = config.get_value('Player' + str(player_index), 'character', 0)
 		_on_character_selected(character_selector.selected, player_index)
 		
 		
-		hp_selector.connect('value_changed', self, '_on_hp_changed', [player_index])
+		hp_selector.connect('value_changed',Callable(self,'_on_hp_changed').bind(player_index))
 		hp_selector.value = config.get_value('Player' + str(player_index), 'hp', Meta.player_data_default.hp)
 		_on_hp_changed(hp_selector.value, player_index)
 		
@@ -256,33 +256,33 @@ func _ready():
 		for team in Meta.Team.keys():
 			team_selector.add_item(team)
 		
-		team_selector.connect('item_selected', self, '_on_team_selected', [player_index])
+		team_selector.connect('item_selected',Callable(self,'_on_team_selected').bind(player_index))
 		team_selector.selected = config.get_value('Player' + str(player_index), 'team', Meta.player_data_default.team)
 		_on_team_selected(team_selector.selected, player_index)
 		
 		
-		auto_aim_checkbox.connect('toggled', self, '_on_autoaim_toggled', [player_index])
-		auto_aim_checkbox.pressed = config.get_value('Player' + str(player_index), 'autoaim', Meta.player_data_default.auto_aim)
+		auto_aim_checkbox.connect('toggled',Callable(self,'_on_autoaim_toggled').bind(player_index))
+		auto_aim_checkbox.button_pressed = config.get_value('Player' + str(player_index), 'autoaim', Meta.player_data_default.auto_aim)
 		_on_autoaim_toggled(auto_aim_checkbox.pressed, player_index)
 		
 		
-		bot_checkbox.connect('toggled', self, '_on_bot_toggled', [player_index])
-		bot_checkbox.pressed = config.get_value('Player' + str(player_index), 'bot', Meta.player_data_default.bot)
+		bot_checkbox.connect('toggled',Callable(self,'_on_bot_toggled').bind(player_index))
+		bot_checkbox.button_pressed = config.get_value('Player' + str(player_index), 'bot', Meta.player_data_default.bot)
 		_on_bot_toggled(bot_checkbox.pressed, player_index)
 		
 		
 		player_index += 1
 	
 	
-	var weapons_grid = find_node('Weapons')
+	var weapons_grid = find_child('Weapons')
 	
 	for weapon_name in weapons:
 		
-		var checkbox = load('res://Scenes/UI/Menu.Checkbox.tscn').instance()
+		var checkbox = load('res://Scenes/UI/Menu.Checkbox.tscn').instantiate()
 		weapons_grid.add_child(checkbox)
 		
 		checkbox.get_node('CheckBox').text = weapon_name
-		checkbox.get_node('CheckBox').connect('toggled', self, '_on_weapon_toggled', [weapon_name])
-		checkbox.get_node('CheckBox').pressed = config.get_value('Weapons', weapon_name, weapons[weapon_name].enabled)
+		checkbox.get_node('CheckBox').connect('toggled',Callable(self,'_on_weapon_toggled').bind(weapon_name))
+		checkbox.get_node('CheckBox').button_pressed = config.get_value('Weapons', weapon_name, weapons[weapon_name].enabled)
 		_on_weapon_toggled(checkbox.get_node('CheckBox').pressed, weapon_name)
 		

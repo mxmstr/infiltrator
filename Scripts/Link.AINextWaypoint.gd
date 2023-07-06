@@ -1,7 +1,7 @@
 extends "res://Scripts/Link.gd"
 
 # class member variables go here, for example:
-export var a = 2
+@export var a = 2
 # var b = "textvar"
 
 func _ready():

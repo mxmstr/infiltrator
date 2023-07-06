@@ -9,9 +9,9 @@ var selected_device
 var selected_action
 var awaiting_raw_type
 
-onready var devices_list = find_node('DevicesList')
-onready var actions_list = find_node('ActionsList')
-onready var hint = find_node('Hint')
+@onready var devices_list = find_child('DevicesList')
+@onready var actions_list = find_child('ActionsList')
+@onready var hint = find_child('Hint')
 
 signal disable_buttons
 
@@ -33,10 +33,10 @@ func load_config():
 		
 		for action_name in INPUT_ACTIONS:
 			
-			var action_list = InputMap.get_action_list(action_name)
-			var scancode = OS.get_scancode_string(action_list[0].scancode)
+			var action_list = InputMap.action_get_events(action_name)
+			var keycode = OS.get_keycode_string(action_list[0].keycode)
 			
-			config.set_value('Actions', action_name, scancode)
+			config.set_value('Actions', action_name, keycode)
 			
 		config.save(CONFIG_FILE)
 	
@@ -48,11 +48,11 @@ func load_config():
 		
 		for action_name in config.get_section_keys('Actions'):
 			
-			var scancode = OS.find_scancode_from_string(config.get_value('Actions', action_name))
+			var keycode = OS.find_keycode_from_string(config.get_value('Actions', action_name))
 			var event = InputEventKey.new()
-			event.scancode = scancode
+			event.keycode = keycode
 			
-			for old_event in InputMap.get_action_list(action_name):
+			for old_event in InputMap.action_get_events(action_name):
 				if old_event is InputEventKey:
 					InputMap.action_erase_event(action_name, old_event)
 			
@@ -84,10 +84,10 @@ func wait_for_input(action_bind):
 func wait_for_rawinput(player_bind, is_keyboard=false):
 	
 	selected_device = player_bind
-	awaiting_raw_type = RawInput.Type.KEYBOARD if is_keyboard else RawInput.Type.BUTTON
-	hint.text = 'Press a key to assign a keyboard to this player.' if is_keyboard else 'Press a mouse button to assign a mouse to this player.'
-	
-	RawInput.connect('device_activated', self, '_on_rawinput_device_activated')
+#	awaiting_raw_type = RawInput.Type.KEYBOARD if is_keyboard else RawInput.Type.BUTTON
+#	hint.text = 'Press a key to assign a keyboard to this player.' if is_keyboard else 'Press a mouse button to assign a mouse to this player.'
+#
+#	RawInput.connect('device_activated',Callable(self,'_on_rawinput_device_activated'))
 	
 	emit_signal('disable_buttons', true)
 
@@ -97,11 +97,11 @@ func quit_wait_for_input():
 	hint.text = ''
 	awaiting_raw_type = null
 	
-	RawInput.disconnect('device_activated', self, '_on_rawinput_device_activated')
+#	RawInput.disconnect('device_activated',Callable(self,'_on_rawinput_device_activated'))
 	
 	emit_signal('disable_buttons', false)
 	
-	get_tree().set_input_as_handled()
+	get_viewport().set_input_as_handled()
 	set_process_input(false)
 
 
@@ -128,14 +128,14 @@ func _input(event):
 		
 			if not event.is_action('ui_cancel'):
 				
-				var scancode = OS.get_scancode_string(event.scancode)
-				selected_action.get_node('Button').text = scancode
+				var keycode = OS.get_keycode_string(event.keycode)
+				selected_action.get_node('Button').text = keycode
 				
-				for old_event in InputMap.get_action_list(selected_action.name):
+				for old_event in InputMap.action_get_events(selected_action.name):
 					InputMap.action_erase_event(selected_action.name, old_event)
 					
 				InputMap.action_add_event(selected_action.name, event)
-				save_to_config('Actions', selected_action.name, scancode)
+				save_to_config('Actions', selected_action.name, keycode)
 			
 			quit_wait_for_input()
 
@@ -149,25 +149,25 @@ func _ready():
 		
 		var button = devices_list.get_node(mouse + '/Button')
 		button.text = str(Meta.get(mouse))
-		button.connect('pressed', self, 'wait_for_rawinput', [mouse])
-		connect('disable_buttons', button, 'set_disabled')
+		button.connect('pressed',Callable(self,'wait_for_rawinput').bind(mouse))
+		connect('disable_buttons',Callable(button,'set_disabled'))
 	
 	
 	for keyboard in KEYBOARDS:
 		
 		var button = devices_list.get_node(keyboard + '/Button')
 		button.text = str(Meta.get(keyboard))
-		button.connect('pressed', self, 'wait_for_rawinput', [keyboard, true])
-		connect('disable_buttons', button, 'set_disabled')
+		button.connect('pressed',Callable(self,'wait_for_rawinput').bind(keyboard, true))
+		connect('disable_buttons',Callable(button,'set_disabled'))
 	
 	
 	for action_name in INPUT_ACTIONS:
 		
-		var input_event = InputMap.get_action_list(action_name)[0]
+		var input_event = InputMap.action_get_events(action_name)[0]
 		
 		if input_event is InputEventKey:
 		
-			var action = load('res://Scenes/UI/Menu.Inputs.Action.tscn').instance()
+			var action = load('res://Scenes/UI/Menu.Inputs.Action.tscn').instantiate()
 			action.name = action_name
 			actions_list.add_child(action)
 			
@@ -175,9 +175,9 @@ func _ready():
 			var button = action.get_node('Button')
 			
 			label.text = action_name
-			button.text = OS.get_scancode_string(input_event.scancode)
-			button.connect('pressed', self, 'wait_for_input', [action_name])
-			connect('disable_buttons', button, 'set_disabled')
+			button.text = OS.get_keycode_string(input_event.keycode)
+			button.connect('pressed',Callable(self,'wait_for_input').bind(action_name))
+			connect('disable_buttons',Callable(button,'set_disabled'))
 	
 	
 	set_process_input(false)

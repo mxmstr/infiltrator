@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Prop.RespawnMenu.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="FontFile" id=5]
 [ext_resource path="res://Scenes/Components/Properties/HUD.property.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/UI/PauseMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/UI/VictoryMenu.tscn" type="PackedScene" id=8]
@@ -9,18 +9,18 @@
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 40
 font_data = ExtResource( 5 )
 
-[node name="UI" type="ViewportContainer"]
+[node name="UI" type="SubViewportContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Viewport" type="Viewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2( 1024, 600 )
 transparent_bg = true
 handle_input_locally = false
@@ -34,24 +34,24 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Control" type="Control" parent="Viewport"]
-margin_right = 1024.0
-margin_bottom = 600.0
+[node name="Control" type="Control" parent="SubViewport"]
+offset_right = 1024.0
+offset_bottom = 600.0
 
-[node name="Panel" type="Panel" parent="Viewport/Control"]
+[node name="Panel" type="Panel" parent="SubViewport/Control"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 
-[node name="HUD" parent="Viewport/Control" instance=ExtResource( 6 )]
+[node name="HUD" parent="SubViewport/Control" instance=ExtResource( 6 )]
 
-[node name="RespawnMenu" type="Control" parent="Viewport/Control"]
+[node name="RespawnMenu" type="Control" parent="SubViewport/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
-[node name="Hint" type="Label" parent="Viewport/Control/RespawnMenu"]
+[node name="Hint" type="Label" parent="SubViewport/Control/RespawnMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
@@ -63,6 +63,6 @@ text = "Press A to respawn"
 align = 1
 valign = 1
 
-[node name="PauseMenu" parent="Viewport/Control" instance=ExtResource( 7 )]
+[node name="PauseMenu" parent="SubViewport/Control" instance=ExtResource( 7 )]
 
-[node name="VictoryMenu" parent="Viewport/Control" instance=ExtResource( 8 )]
+[node name="VictoryMenu" parent="SubViewport/Control" instance=ExtResource( 8 )]

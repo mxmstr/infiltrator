@@ -12,7 +12,7 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.016 ), -2.94591, 0.0, 0
 [sub_resource type="CurveTexture" id=3]
 curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticleProcessMaterial" id=4]
 flag_align_y = true
 gravity = Vector3( 0, 0, 0 )
 angular_velocity = 7.46892e-43
@@ -26,7 +26,7 @@ height = 0.05
 radial_segments = 4
 rings = 1
 
-[sub_resource type="SphereShape" id=6]
+[sub_resource type="SphereShape3D" id=6]
 radius = 0.1
 
 [node name="Bullet" instance=ExtResource( 1 )]
@@ -35,7 +35,7 @@ collision_mask = 17
 tags = "Actor Bullet Damage:0 Force:0"
 
 [node name="Model" type="Particles" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 material_override = SubResource( 1 )
 cast_shadow = 0
 amount = 20
@@ -44,7 +44,7 @@ visibility_aabb = AABB( -0.193909, -0.932309, -0.371607, 0.387815, 1.86463, 0.74
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 5 )
 
-[node name="Collision" type="CollisionShape" parent="." index="1"]
+[node name="Collision" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource( 6 )
 
 [node name="ContactStim" parent="." index="2" instance=ExtResource( 3 )]

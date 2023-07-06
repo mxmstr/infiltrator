@@ -1,11 +1,11 @@
 extends 'res://Scripts/AnimationTree.StateMachine.gd'
 
-export(float) var level
+@export var level: float
 
 
 func _on_state_starting(new_name):
 	
-	._on_state_starting(new_name)
+	super._on_state_starting(new_name)
 	
 	if node_name == new_name:
 		

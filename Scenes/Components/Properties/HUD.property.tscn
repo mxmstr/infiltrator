@@ -1,16 +1,16 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Prop.HUD.gd" type="Script" id=1]
-[ext_resource path="res://Textures/UI/Crosshair.png" type="Texture" id=2]
+[ext_resource path="res://Textures/UI/Crosshair.png" type="Texture2D" id=2]
 [ext_resource path="res://Scenes/UI/HUD.CenterMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Fonts/roboto.font" type="BitmapFont" id=4]
+[ext_resource path="res://Fonts/roboto.font" type="FontFile" id=4]
 [ext_resource path="res://Scripts/FPS.gd" type="Script" id=5]
-[ext_resource path="res://Textures/UI/Radar_small.png" type="Texture" id=6]
-[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Textures/UI/Radar_small.png" type="Texture2D" id=6]
+[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="FontFile" id=7]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 20
 font_data = ExtResource( 7 )
 
@@ -36,9 +36,9 @@ __meta__ = {
 
 [node name="Crosshair" type="TextureRect" parent="."]
 material = SubResource( 1 )
-margin_right = 13.0
-margin_bottom = 13.0
-rect_pivot_offset = Vector2( 6, 6 )
+offset_right = 13.0
+offset_bottom = 13.0
+pivot_offset = Vector2( 6, 6 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 2 )
@@ -61,10 +61,10 @@ script = ExtResource( 5 )
 [node name="Radar" type="GridContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
@@ -76,14 +76,14 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="Radar"]
-margin_right = 901.0
-margin_bottom = 75.0
+offset_right = 901.0
+offset_bottom = 75.0
 size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="Radar"]
-margin_left = 909.0
-margin_right = 984.0
-margin_bottom = 75.0
+offset_left = 909.0
+offset_right = 984.0
+offset_bottom = 75.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 texture = ExtResource( 6 )
@@ -91,10 +91,10 @@ texture = ExtResource( 6 )
 [node name="Ammo" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 custom_colors/font_color = Color( 0, 1, 0.462745, 1 )
@@ -112,10 +112,10 @@ __meta__ = {
 [node name="Bars" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
@@ -127,10 +127,10 @@ __meta__ = {
 }
 
 [node name="BulletTime" type="ProgressBar" parent="Bars"]
-margin_top = 502.0
-margin_right = 100.0
-margin_bottom = 527.0
-rect_min_size = Vector2( 100, 0 )
+offset_top = 502.0
+offset_right = 100.0
+offset_bottom = 527.0
+custom_minimum_size = Vector2( 100, 0 )
 mouse_filter = 2
 size_flags_horizontal = 0
 custom_colors/font_color = Color( 0, 1, 0.462745, 1 )
@@ -146,10 +146,10 @@ __meta__ = {
 }
 
 [node name="Health" type="ProgressBar" parent="Bars"]
-margin_top = 535.0
-margin_right = 100.0
-margin_bottom = 560.0
-rect_min_size = Vector2( 100, 0 )
+offset_top = 535.0
+offset_right = 100.0
+offset_bottom = 560.0
+custom_minimum_size = Vector2( 100, 0 )
 mouse_filter = 2
 size_flags_horizontal = 0
 custom_colors/font_color = Color( 0, 1, 0.462745, 1 )

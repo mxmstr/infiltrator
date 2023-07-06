@@ -3,7 +3,7 @@ extends Control
 const radar_scale = 0.25
 const radar_margin = 0.9
 
-export(NodePath) var viewport
+@export var viewport: NodePath
 
 var window_width
 var window_height
@@ -16,21 +16,21 @@ var radius_x
 var radius_y
 var ammo_container
 
-onready var radar = get_node('Radar/TextureRect')
-onready var radar_dot = preload('res://Scenes/UI/HUD.RadarDot.tscn')
-onready var radar_ammo = preload('res://Scenes/UI/HUD.RadarAmmo.tscn')
+@onready var radar = get_node('Radar/TextureRect')
+@onready var radar_dot = preload('res://Scenes/UI/HUD.RadarDot.tscn')
+@onready var radar_ammo = preload('res://Scenes/UI/HUD.RadarAmmo.tscn')
 
-onready var crosshair = get_node('Crosshair')
-onready var ammo = get_node('Ammo')
-onready var bullet_time_bar = find_node('BulletTime')
-onready var health_bar = find_node('Health')
+@onready var crosshair = get_node('Crosshair')
+@onready var ammo = get_node('Ammo')
+@onready var bullet_time_bar = find_child('BulletTime')
+@onready var health_bar = find_child('Health')
 
-onready var righthand = owner.get_node('../RightHandContainer')
-onready var bullet_time = owner.get_node('../BulletTime')
-onready var stamina = owner.get_node('../Stamina')
-onready var camera = owner.get_node('../CameraRig/Camera')
-onready var camera_raycast_target = owner.get_node('../CameraRaycastStim/Target')
-onready var pickup_factory = $'/root/Mission/Links/PVPPickupFactory'
+@onready var righthand = owner.get_node('../RightHandContainer')
+@onready var bullet_time = owner.get_node('../BulletTime')
+@onready var stamina = owner.get_node('../Stamina')
+@onready var camera = owner.get_node('../CameraRig/Camera3D')
+@onready var camera_raycast_target = owner.get_node('../CameraRaycastStim/Target')
+@onready var pickup_factory = $'/root/Mission/Links/PVPPickupFactory'
 
 
 func _on_bullet_time_changed(amount):
@@ -60,8 +60,8 @@ func _on_item_added(item):
 		ammo.show()
 		
 		if ammo_container:
-			ammo_container.disconnect('item_added', self, '_on_ammo_added')
-			ammo_container.disconnect('item_removed', self, '_on_ammo_removed')
+			ammo_container.disconnect('item_added',Callable(self,'_on_ammo_added'))
+			ammo_container.disconnect('item_removed',Callable(self,'_on_ammo_removed'))
 			ammo_container = null
 		
 	_refresh_ammo()
@@ -70,8 +70,8 @@ func _on_item_added(item):
 func _on_item_removed(item):
 	
 	if ammo_container:
-		ammo_container.disconnect('item_added', self, '_on_ammo_added')
-		ammo_container.disconnect('item_removed', self, '_on_ammo_removed')
+		ammo_container.disconnect('item_added',Callable(self,'_on_ammo_added'))
+		ammo_container.disconnect('item_removed',Callable(self,'_on_ammo_removed'))
 		ammo_container = null
 	
 	_refresh_ammo()
@@ -132,20 +132,20 @@ func _refresh_ammo():
 		if not ammo_container:
 			
 			ammo_container = _get_ammo_container(item)
-			ammo_container.connect('item_added', self, '_on_ammo_added')
-			ammo_container.connect('item_removed', self, '_on_ammo_removed')
+			ammo_container.connect('item_added',Callable(self,'_on_ammo_added'))
+			ammo_container.connect('item_removed',Callable(self,'_on_ammo_removed'))
 			
-			if not chamber.is_connected('item_added', self, '_on_ammo_added'):
-				chamber.connect('item_added', self, '_on_ammo_added')
+			if not chamber.is_connected('item_added',Callable(self,'_on_ammo_added')):
+				chamber.connect('item_added',Callable(self,'_on_ammo_added'))
 			
-			if not chamber.is_connected('item_removed', self, '_on_ammo_removed'):
-				chamber.connect('item_removed', self, '_on_ammo_removed')
+			if not chamber.is_connected('item_removed',Callable(self,'_on_ammo_removed')):
+				chamber.connect('item_removed',Callable(self,'_on_ammo_removed'))
 			
-			if not magazine.is_connected('item_added', self, '_on_ammo_added'):
-				magazine.connect('item_added', self, '_on_ammo_added')
+			if not magazine.is_connected('item_added',Callable(self,'_on_ammo_added')):
+				magazine.connect('item_added',Callable(self,'_on_ammo_added'))
 			
-			if not magazine.is_connected('item_removed', self, '_on_ammo_removed'):
-				magazine.connect('item_removed', self, '_on_ammo_removed')
+			if not magazine.is_connected('item_removed',Callable(self,'_on_ammo_removed')):
+				magazine.connect('item_removed',Callable(self,'_on_ammo_removed'))
 		
 		var inv_ammo = ammo_container.items.size()
 		var chamber_ammo = 1 if chamber.items.size() else 0
@@ -165,18 +165,18 @@ func _notification(what):
 
 func _ready():
 	
-	window_width = ProjectSettings.get_setting('display/window/size/width')
-	window_height = ProjectSettings.get_setting('display/window/size/height')
+	window_width = ProjectSettings.get_setting('display/window/size/viewport_width')
+	window_height = ProjectSettings.get_setting('display/window/size/viewport_height')
 	render_scale = ProjectSettings.get_setting('rendering/quality/filters/render_scale')
 	
-	bullet_time.connect('amount_changed', self, '_on_bullet_time_changed')
-	stamina.connect('damaged', self, '_on_damaged')
+	bullet_time.connect('amount_changed',Callable(self,'_on_bullet_time_changed'))
+	stamina.connect('damaged',Callable(self,'_on_damaged'))
 	health_bar.value = stamina.hp
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
-	radius_x = radar.rect_size.x / 2
-	radius_y = radar.rect_size.y / 2
+	radius_x = radar.size.x / 2
+	radius_y = radar.size.y / 2
 	
 	#set_viewport(get_node(viewport))
 	
@@ -190,10 +190,10 @@ func _ready():
 			if actor != owner.owner and actor.get('tags') and actor._has_tag('Human'):
 				
 				var their_team = int(actor._get_tag('Team'))
-				var dot = radar_dot.instance()
+				var dot = radar_dot.instantiate()
 				
 				if my_team == Meta.Team.None:
-					dot.modulate = Color.red
+					dot.modulate = Color.RED
 				else:
 					dot.modulate = Meta.TeamColors[their_team]
 				
@@ -204,19 +204,19 @@ func _ready():
 		
 		radar.hide()
 	
-	righthand.connect('item_added', self, '_on_item_added')
-	righthand.connect('item_removed', self, '_on_item_removed')
+	righthand.connect('item_added',Callable(self,'_on_item_added'))
+	righthand.connect('item_removed',Callable(self,'_on_item_removed'))
 
 	_refresh_ammo()
 
 
 func _process(delta):
 	
-#	radar_texture.position = rect_size - ((radar_texture.texture.get_size() / 2))
+#	radar_texture.position = size - ((radar_texture.texture.get_size() / 2))
 	
 	if Meta.multi_radar:
 	
-		var owner_position = (owner.owner.translation * 10).round()
+		var owner_position = (owner.owner.position * 10).round()
 		
 		if radar_pickups.size() != pickup_factory.pickups.size():
 			
@@ -226,7 +226,7 @@ func _process(delta):
 			radar_pickups = []
 			
 			for pickup in pickup_factory.pickups:
-				var dot = radar_ammo.instance()
+				var dot = radar_ammo.instantiate()
 				add_child(dot)
 				radar_pickups.append([dot, pickup])
 		
@@ -239,17 +239,17 @@ func _process(delta):
 			if not is_instance_valid(actor):
 				continue
 			
-			var actor_position = (actor.translation * 10).round()
+			var actor_position = (actor.position * 10).round()
 			var distance_to = owner_position.distance_to(actor_position)
 			var direction_to = owner_position.direction_to(actor_position) * -distance_to
-			direction_to = owner.owner.transform.basis.xform_inv(direction_to) * radar_scale
+			direction_to = direction_to * owner.owner.transform.basis * radar_scale
 			direction_to.y = 0
 			
 			if direction_to.length() > (radius_x * radar_margin):
 				direction_to = direction_to.normalized() * (radius_x * radar_margin)
 			
 			var dot_position = Vector2(radius_x + direction_to.x, radius_y + direction_to.z)
-			dot.position = radar.rect_global_position + dot_position
+			dot.position = radar.global_position + dot_position
 	
 	
 	viewport_size = owner.get_viewport().size * render_scale
@@ -257,4 +257,4 @@ func _process(delta):
 	var camera_position = camera.unproject_position(camera_raycast_target.global_transform.origin)
 	camera_position *= viewport_size_scaled
 
-	crosshair.rect_position = camera_position - crosshair.rect_pivot_offset
+	crosshair.position = camera_position - crosshair.pivot_offset

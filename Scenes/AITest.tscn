@@ -8,24 +8,24 @@
 
 
 
-[node name="Mission" type="Spatial"]
+[node name="Mission" type="Node3D"]
 __meta__ = {
 
 }
 
-[node name="Actors" type="Spatial" parent="."]
+[node name="Actors" type="Node3D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Guard" parent="Actors" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3365, 0.201833, -1.47288 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3365, 0.201833, -1.47288 )
 collision_layer = 4
 collision_mask = 1028
 script = ExtResource( 2 )
 tags = "Actor"
 
-[node name="Markers" type="Spatial" parent="."]
+[node name="Markers" type="Node3D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -51,13 +51,13 @@ to = NodePath("../../../Mission/Actors/Door")
 from_interaction = "Push"
 to_interaction = "Close"
 
-[node name="Static" type="Spatial" parent="."]
+[node name="Static" type="Node3D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Static"]
-transform = Transform( 0.707107, -0.578505, 0.40661, 0, 0.575033, 0.81813, -0.707107, -0.578505, 0.40661, 15.5091, 10.4849, 16.3808 )
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Static"]
+transform = Transform3D( 0.707107, -0.578505, 0.40661, 0, 0.575033, 0.81813, -0.707107, -0.578505, 0.40661, 15.5091, 10.4849, 16.3808 )
 light_specular = 0.0
 shadow_enabled = true
 shadow_bias = 0.05

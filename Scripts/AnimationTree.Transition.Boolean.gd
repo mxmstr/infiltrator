@@ -1,14 +1,13 @@
 extends 'res://Scripts/AnimationTree.Transition.gd'
 
-export(String) var transition_boolean
+@export var transition_boolean: String
 
-export(String, 'process', 'state_starting', 'travel_starting') var update_mode = 'process'
-
-export(String, 'True', 'False', 'Null', 'NotNull') var assertion = 'True'
-export(String) var target
-export(String) var method
-export(Array) var args
-export(float) var wait_for_frame
+@export_enum('process', 'state_starting', 'travel_starting') var update_mode = 'process'
+@export_enum('True', 'False', 'Null', 'NotNull') var assertion = 'True'
+@export var target: String
+@export var method: String
+@export var args: Array
+@export var wait_for_frame: float
 
 var target_node
 
@@ -42,13 +41,10 @@ func _update():
 		_args.append(arg)
 	
 	
-	disabled = not _evaluate(target_node.callv(method, _args))
+	advance_mode = _evaluate(target_node.callv(method, _args))
 
 
 func _on_state_starting(new_name):
-	
-#	if from.get('node_name') == null:
-#		return
 	
 	if from.node_name == new_name and update_mode == 'state_starting':
 		_update()
@@ -60,26 +56,22 @@ func _on_travel_starting(new_name):
 		_update()
 
 
-func _ready(_owner, _parent, _parameters, _from, _to):
+func __ready(_owner, _parent, _parameters, _from, _to):
 	
-	._ready(_owner, _parent, _parameters, _from, _to)
+	super.__ready(_owner, _parent, _parameters, _from, _to)
 	
 	target_node = owner.owner.get_node(target)
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
-		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+		owner.get(parent.parameters + 'playback').connect('state_starting',Callable(self,'_on_state_starting'))
 	
 	if parent != null and parent.has_user_signal('travel_starting'):
-		parent.connect('travel_starting', self, '_on_travel_starting')
+		parent.connect('travel_starting',Callable(self,'_on_travel_starting'))
 	
-	owner.connect('on_process', self, '_process')
-	
-#	if owner.name == 'Behavior' and target == 'RightHandContainer':
-#		prints(_owner.owner.name, self)
+	owner.connect('on_process',Callable(self,'__process'))
 
 
-
-func _process(delta):
+func __process(delta):
 	
 	if update_mode == 'process':
 		_update()

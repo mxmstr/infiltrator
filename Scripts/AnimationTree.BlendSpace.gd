@@ -2,24 +2,24 @@ extends AnimationRootNode
 
 const camera_rig_track_path = '../../Perspective'
 
-export(String) var blendspace
+@export var blendspace: String
 
-export var chain = false
+@export var chain = false
 
-export(String, 'process', 'state_starting') var update_mode = 'process'
-export var speed = 0.0
+@export var update_mode = 'process' # (String, 'process', 'state_starting')
+@export var speed = 0.0
 
-export(String) var x_target
-export(String) var x_method
-export(Array) var x_args
-export(float) var x_max_value
-export(float) var x_min_value
+@export var x_target: String
+@export var x_method: String
+@export var x_args: Array
+@export var x_max_value: float
+@export var x_min_value: float
 
-export(String) var y_target
-export(String) var y_method
-export(Array) var y_args
-export(float) var y_max_value
-export(float) var y_min_value
+@export var y_target: String
+@export var y_method: String
+@export var y_args: Array
+@export var y_max_value: float
+@export var y_min_value: float
 
 var node_name
 var owner
@@ -108,7 +108,7 @@ func _update():
 	target_pos = Vector2(x_value, y_value)
 
 
-func _ready(_owner, _parent, _parameters, _node_name):
+func __ready(_owner, _parent, _parameters, _node_name):
 
 	owner = _owner
 	parent = _parent
@@ -126,24 +126,24 @@ func _ready(_owner, _parent, _parameters, _node_name):
 	y_value_range = get('max_space').y - get('min_space').y if is_2d else get('max_space') - get('min_space')
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
-		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+		owner.get(parent.parameters + 'playback').connect('state_starting',Callable(self,'_on_state_starting'))
 	
-	owner.connect('on_process', self, '_process')
+	owner.connect('on_process',Callable(self,'__process'))
 	
 	
 	for child_name in children:
 		
 		var child = children[child_name]
 		
-		if child.has_method('_ready'):
+		if child.has_method('__ready'):
 
 			if child is AnimationNodeStateMachine or \
 				child is AnimationNodeBlendTree or \
 				child is AnimationNodeBlendSpace1D or \
 				child is AnimationNodeBlendSpace2D:
-				child._ready(owner, self, parameters + child_name + '/', child_name)
+				child.__ready(owner, self, parameters + child_name + '/', child_name)
 			else:
-				child._ready(owner, self, parameters, child_name)
+				child.__ready(owner, self, parameters, child_name)
 		
 		
 		if child is AnimationNodeAnimation:
@@ -161,13 +161,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 			statemachine_nodes.append(child_name)
 
 
-func _process(delta):
-
-	if advance:
-		owner.advance(0.01)
-	
-	advance = false
-
+func __process(delta):
 
 	if update_mode == 'process':
 		_update()
@@ -180,7 +174,7 @@ func _process(delta):
 	if speed > 0:
 
 		var current_pos = owner.get(blend_position) if is_2d else Vector2(owner.get(blend_position), 0)
-		var new_pos = current_pos.linear_interpolate(target_pos, delta * speed)
+		var new_pos = current_pos.lerp(target_pos, delta * speed)
 
 		owner.set(blend_position, new_pos if is_2d else new_pos.x)
 

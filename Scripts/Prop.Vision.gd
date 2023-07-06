@@ -1,18 +1,18 @@
-tool
-extends Spatial
+@tool
+extends Node3D
 
 const default_cone = { 'y_angle': 90.0, 'x_angle': 90.0, 'range': 10.0, 'acuity': 1.0 }
 
-export(String) var joint
-export(Array, Dictionary) var cones setget _set_cones
+@export var joint: String
+@export var cones: Array[Dictionary] : set = _set_cones
 
 
 func _set_cones(new_cones):
 	
-	if Engine.editor_hint:
-		
-		if new_cones.size() > cones.size():
-			new_cones[-1] = default_cone.duplicate()
+#	if Engine.editor_hint:
+#
+#		if new_cones.size() > cones.size():
+#			new_cones[-1] = default_cone.duplicate()
 	
 	cones = new_cones
 

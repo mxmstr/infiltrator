@@ -10,18 +10,18 @@ var target
 var travelling = false
 var travel_path = []
 
-onready var map = $'/root/Mission/Static/Map'
-onready var pickup_factory = $'/root/Mission/Links/PVPPickupFactory'
-onready var camera = $'../CameraRig/Camera'
-onready var camera_raycast = $'../CameraRaycastStim'
-onready var weapon_target_lock = $'../WeaponTargetLock'
-onready var behavior = $'../Behavior'
-onready var movement = $'../Movement'
-onready var stance = $'../Stance'
-onready var stamina = $'../Stamina'
-onready var perspective = $'../Perspective'
-onready var right_hand = $'../RightHandContainer'
-onready var inventory = $'../InventoryContainer'
+@onready var map = $'/root/Mission/Static/Map'
+@onready var pickup_factory = $'/root/Mission/Links/PVPPickupFactory'
+@onready var camera = $'../CameraRig/Camera3D'
+@onready var camera_raycast = $'../CameraRaycastStim'
+@onready var weapon_target_lock = $'../WeaponTargetLock'
+@onready var behavior = $'../Behavior'
+@onready var movement = $'../Movement'
+@onready var stance = $'../Stance'
+@onready var stamina = $'../Stamina'
+@onready var perspective = $'../Perspective'
+@onready var right_hand = $'../RightHandContainer'
+@onready var inventory = $'../InventoryContainer'
 
 
 func _get_closest_pickup():
@@ -30,11 +30,11 @@ func _get_closest_pickup():
 		return
 	
 	var closest = pickup_factory.pickups[0]
-	var closest_distance = owner.translation.distance_to(closest.translation)
+	var closest_distance = owner.position.distance_to(closest.position)
 	
 	for pickup in pickup_factory.pickups.slice(1, 0):
 		
-		var distance = owner.translation.distance_to(pickup.translation)
+		var distance = owner.position.distance_to(pickup.position)
 		
 		if distance < closest_distance:
 			
@@ -50,11 +50,11 @@ func _get_closest_enemy():
 	
 	#if weapon_target_lock.enemies.size() > 1:
 	
-	var closest_distance = owner.translation.distance_to(closest.translation)
+	var closest_distance = owner.position.distance_to(closest.position)
 	
 	for enemy in weapon_target_lock.enemies.slice(1, 0):
 		
-		var distance = owner.translation.distance_to(enemy.translation)
+		var distance = owner.position.distance_to(enemy.position)
 		
 		if distance < closest_distance:
 			
@@ -89,20 +89,20 @@ func _start_travel():
 		return
 	
 	travelling = true
-	travel_path = map.get_simple_path(owner.translation, target.translation)
+	travel_path = map.get_simple_path(owner.position, target.position)
 
 
 func _travel():
 	
-	if travel_path.empty():
+	if travel_path.is_empty():
 		
 		travelling = false
 	
 	else:
 		
 		var finish_range = path_finish_range
-		var distance = owner.translation.distance_to(travel_path[0])
-		var local_direction = owner.transform.basis.xform_inv(owner.translation.direction_to(travel_path[0]))
+		var distance = owner.position.distance_to(travel_path[0])
+		var local_direction = owner.position.direction_to(travel_path[0]) * owner.transform.basis
 		stance._set_forward_speed(local_direction.z)
 		stance._set_sidestep_speed(local_direction.x)
 		
@@ -121,7 +121,7 @@ func _face():
 	var enemy_shoulder_bone = closest.get_node('Hitboxes')._get_bone('shoulders')
 	var target_pos = enemy_shoulder_bone.global_transform.origin
 	
-	var forward = camera.global_transform.basis.z.rotated(camera.global_transform.basis.y, deg2rad(180))
+	var forward = camera.global_transform.basis.z.rotated(camera.global_transform.basis.y, deg_to_rad(180))
 	var direction_to_target = camera.global_transform.origin.direction_to(target_pos)
 	var distance_to_target = camera.global_transform.origin.distance_to(target_pos)
 	

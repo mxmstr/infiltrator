@@ -1,18 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/floorsobj.obj-96515e3b1f550386243f25210e1a18ed.mesh"
+uid="uid://choav6rxjw7q0"
+path="res://.godot/imported/floorsobj.obj-96515e3b1f550386243f25210e1a18ed.mesh"
 
 [deps]
 
-files=[ "res://.import/floorsobj.obj-96515e3b1f550386243f25210e1a18ed.mesh" ]
+files=["res://.godot/imported/floorsobj.obj-96515e3b1f550386243f25210e1a18ed.mesh"]
 
 source_file="res://Models/Maps/Floorsobj/floorsobj.obj"
-dest_files=[ "res://.import/floorsobj.obj-96515e3b1f550386243f25210e1a18ed.mesh", "res://.import/floorsobj.obj-96515e3b1f550386243f25210e1a18ed.mesh" ]
+dest_files=["res://.godot/imported/floorsobj.obj-96515e3b1f550386243f25210e1a18ed.mesh", "res://.godot/imported/floorsobj.obj-96515e3b1f550386243f25210e1a18ed.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
 optimize_mesh=true

@@ -35,7 +35,7 @@ func _teleport(_new_position=null, _new_rotation=null):
 
 func _ready():
 	
-	owner.connect('integrate_forces', self, '_integrate_forces')
+	owner.connect('integrate_forces',Callable(self,'_integrate_forces'))
 
 
 func _integrate_forces(state):

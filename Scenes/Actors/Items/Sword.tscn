@@ -4,28 +4,28 @@
 [ext_resource path="res://Models/Items/Sword/Sword.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://Scenes/Components/Stimuli/Area.stimulus.tscn" type="PackedScene" id=4]
 
-[sub_resource type="BoxShape" id=6]
-extents = Vector3( 0.0861287, 0.597, 0.152 )
+[sub_resource type="BoxShape3D" id=6]
+size = Vector3( 0.0861287, 0.597, 0.152 )
 
-[sub_resource type="SphereShape" id=7]
+[sub_resource type="SphereShape3D" id=7]
 
 [node name="Sword" instance=ExtResource( 1 )]
 collision_mask = 3
 gravity_scale = 0.0
 tags = "Item Melee Sword Rank:0 AttachBone:Hand-L Offset-position:neo_reference_skeleton:Hand-L:0.034023,0.026457,0.23843 Offset-rotation:neo_reference_skeleton:Hand-L:-78.814377,23.774532,-14.087647"
 
-[node name="Model" type="MeshInstance" parent="." index="0"]
-transform = Transform( 0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0 )
+[node name="Model" type="MeshInstance3D" parent="." index="0"]
+transform = Transform3D( 0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0 )
 mesh = ExtResource( 3 )
 material/0 = null
 
-[node name="Collision" type="CollisionShape" parent="." index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6008, 0 )
+[node name="Collision" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6008, 0 )
 shape = SubResource( 6 )
 
 [node name="AreaStim" parent="." index="2" instance=ExtResource( 4 )]
 collision_layer = 0
 collision_mask = 2
 
-[node name="Collision" type="CollisionShape" parent="AreaStim" index="0"]
+[node name="Collision" type="CollisionShape3D" parent="AreaStim" index="0"]
 shape = SubResource( 7 )

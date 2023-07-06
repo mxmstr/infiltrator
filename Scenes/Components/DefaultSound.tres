@@ -14,7 +14,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": null
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 

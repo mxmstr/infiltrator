@@ -1,6 +1,6 @@
 extends "res://Scripts/Action.gd"
 
-onready var inventory = $'../../Inventory'
+@onready var inventory = $'../../Inventory'
 
 
 func _select_item():
@@ -16,4 +16,4 @@ func _on_action(_state, _data):
 	if _state == 'ChangeItemSelectItem':
 		_select_item()
 	
-	._on_action(_state, _data)
+	super._on_action(_state, _data)

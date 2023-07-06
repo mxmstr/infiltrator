@@ -4,10 +4,10 @@ var active = false
 var travelling = false
 var travel_path = []
 
-onready var map = $'/root/Mission/Static/Map'
-onready var weapon_target_lock = $'../WeaponTargetLock'
-onready var movement = $'../Movement'
-onready var stance = $'../Stance'
+@onready var map = $'/root/Mission/Static/Map'
+@onready var weapon_target_lock = $'../WeaponTargetLock'
+@onready var movement = $'../Movement'
+@onready var stance = $'../Stance'
 
 
 func _start_travel():
@@ -18,11 +18,11 @@ func _start_travel():
 		
 		if weapon_target_lock.enemies.size() > 1:
 			
-			var closest_distance = owner.translation.distance_to(closest_enemy.translation)
+			var closest_distance = owner.position.distance_to(closest_enemy.position)
 			
 			for enemy in weapon_target_lock.enemies.slice(1):
 				
-				var distance = owner.translation.distance_to(enemy.translation)
+				var distance = owner.position.distance_to(enemy.position)
 				
 				if distance < closest_distance:
 					
@@ -30,18 +30,18 @@ func _start_travel():
 					closest_distance = distance
 		
 		travelling = true
-		travel_path = map.get_simple_path(owner.translation, closest_enemy.translation)
+		travel_path = map.get_simple_path(owner.position, closest_enemy.position)
 
 
 func _travel():
 	
-	if travel_path.empty():
+	if travel_path.is_empty():
 		travelling = false
 	
 	else:
 		
-		var distance = owner.translation.distance_to(travel_path[0])
-		var local_direction = owner.transform.basis.xform_inv(owner.translation.direction_to(travel_path[0]))
+		var distance = owner.position.distance_to(travel_path[0])
+		var local_direction = owner.position.direction_to(travel_path[0]) * owner.transform.basis
 		stance._set_forward_speed(local_direction.z)
 		stance._set_sidestep_speed(local_direction.x)
 		stance

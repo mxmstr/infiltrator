@@ -1,6 +1,6 @@
 extends 'res://Scripts/AnimationTree.Animation.gd'
 
-export(String) var randomizer
+@export var randomizer: String
 
 var last = -1
 

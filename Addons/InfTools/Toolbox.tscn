@@ -1,168 +1,94 @@
-[gd_scene format=2]
+[gd_scene format=3 uid="uid://bcvs2tay42o81"]
 
 [node name="Toolbox" type="VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
+offset_right = 40.0
+offset_bottom = 40.0
 
-}
+[node name="LoadMap2" type="Button" parent="."]
+layout_mode = 2
+text = "Load Map"
 
 [node name="Floor" type="Button" parent="."]
-margin_right = 119.0
-margin_bottom = 20.0
+layout_mode = 2
 text = "Floor"
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="ConvertInput" type="TextEdit" parent="."]
-margin_top = 24.0
-margin_right = 119.0
-margin_bottom = 54.0
-rect_min_size = Vector2( 0, 30 )
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 text = "res://.raw/"
-__meta__ = {
-
-}
 
 [node name="ConvertOutput" type="TextEdit" parent="."]
-margin_top = 58.0
-margin_right = 119.0
-margin_bottom = 88.0
-rect_min_size = Vector2( 0, 30 )
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 text = "res://Animations/Human/"
-__meta__ = {
-
-}
 
 [node name="Convert" type="Button" parent="."]
-margin_top = 92.0
-margin_right = 119.0
-margin_bottom = 112.0
+layout_mode = 2
 text = "Convert"
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="RevertInput" type="TextEdit" parent="."]
-margin_top = 116.0
-margin_right = 119.0
-margin_bottom = 146.0
-rect_min_size = Vector2( 0, 30 )
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 text = "res://Scenes/Actors/Humans/Players/"
-__meta__ = {
-
-}
 
 [node name="Revert" type="Button" parent="."]
-margin_top = 150.0
-margin_right = 119.0
-margin_bottom = 170.0
+layout_mode = 2
 text = "Convert"
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="LoadAnimInput" type="TextEdit" parent="."]
-margin_top = 174.0
-margin_right = 119.0
-margin_bottom = 204.0
-rect_min_size = Vector2( 0, 30 )
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 text = "res://Animations/Player/"
-__meta__ = {
-
-}
 
 [node name="LoadAnim" type="Button" parent="."]
-margin_top = 208.0
-margin_right = 119.0
-margin_bottom = 228.0
+layout_mode = 2
 text = "Load Animations"
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="LoadAudioInput" type="TextEdit" parent="."]
-margin_top = 232.0
-margin_right = 119.0
-margin_bottom = 262.0
-rect_min_size = Vector2( 0, 30 )
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 text = "res://Sounds/"
-__meta__ = {
-
-}
 
 [node name="LoadAudioOutput" type="TextEdit" parent="."]
-margin_top = 266.0
-margin_right = 119.0
-margin_bottom = 296.0
-rect_min_size = Vector2( 0, 30 )
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 text = "res://Animations/Audio/"
-__meta__ = {
-
-}
 
 [node name="LoadAudio" type="Button" parent="."]
-margin_top = 300.0
-margin_right = 119.0
-margin_bottom = 320.0
+layout_mode = 2
 text = "Load Audio"
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="LoadMapInput" type="TextEdit" parent="."]
-margin_top = 324.0
-margin_right = 119.0
-margin_bottom = 354.0
-rect_min_size = Vector2( 0, 30 )
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 text = "res://Models/Maps/"
-__meta__ = {
-
-}
 
 [node name="LoadMap" type="Button" parent="."]
-margin_top = 358.0
-margin_right = 119.0
-margin_bottom = 378.0
+layout_mode = 2
 text = "Load Map"
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="ExpressionInput" type="TextEdit" parent="."]
-margin_top = 382.0
-margin_right = 119.0
-margin_bottom = 412.0
-rect_min_size = Vector2( 0, 30 )
-__meta__ = {
-
-}
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 
 [node name="ArgumentsInput" type="TextEdit" parent="."]
-margin_top = 416.0
-margin_right = 119.0
-margin_bottom = 446.0
-rect_min_size = Vector2( 0, 30 )
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 text = "{}"
-__meta__ = {
-
-}
 
 [node name="Evaluate" type="Button" parent="."]
-margin_top = 450.0
-margin_right = 119.0
-margin_bottom = 470.0
+layout_mode = 2
 text = "Evaluate"
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="PrintTransform" type="Button" parent="."]
-margin_top = 474.0
-margin_right = 119.0
-margin_bottom = 494.0
-text = "Print Transform"
-__meta__ = {
-"_edit_group_": true
-}
+layout_mode = 2
+text = "Print Transform3D"
+
+[node name="ConvertAnimInput" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "res://Animations/Converted/"
+
+[node name="ConvertAnimButton" type="Button" parent="."]
+layout_mode = 2
+text = "Convert anim"

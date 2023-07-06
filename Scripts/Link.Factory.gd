@@ -1,7 +1,7 @@
 extends 'res://Scripts/Link.gd'
 
-export(String) var container
-export(String, MULTILINE) var products
+@export var container: String
+@export_multiline var products
 
 var products_list = []
 var outputs = []
@@ -14,7 +14,7 @@ func _ready():
 	if is_queued_for_deletion():
 		return
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 #	products = products.c_escape().replace('\\n', ' ')
 	
@@ -42,7 +42,7 @@ func _ready():
 			
 			i = i + 1
 		
-		if products_list[-1].empty():
+		if products_list[-1].is_empty():
 			products_list.pop_back()
 		
 		new_product = {}

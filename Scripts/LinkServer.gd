@@ -47,7 +47,7 @@ func Create(from, to, type, data={}):
 	data.from_node = from
 	data.to_node = to
 	
-	var new_link = preloader.get_resource('res://Scenes/Links/' + type + '.link.tscn').instance()
+	var new_link = preloader.get_resource('res://Scenes/Links/' + type + '.link.tscn').instantiate()
 	
 	for prop in data:
 		new_link.set(prop, data[prop])

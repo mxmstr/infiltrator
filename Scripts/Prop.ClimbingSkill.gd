@@ -1,8 +1,8 @@
 extends Node
 
-export var climb_max_height_mult = 3
-export var climb_find_range = 0.5
-export var climb_forward_amount = 0.4
+@export var climb_max_height_mult = 3
+@export var climb_find_range = 0.5
+@export var climb_forward_amount = 0.4
 
 var climbing = false
 var climb_collision_mask = 1024
@@ -17,12 +17,12 @@ var y_target
 var x_drag
 var y_drag
 
-onready var collision = $'../Collision' if has_node('../Collision') else null
+@onready var collision = $'../Collision' if has_node('../Collision') else null
 
 
 func _get_climb_height_mult():
 	
-	return climb_height / (collision.shape.extents.y * climb_max_height_mult) if climb_height != null else 0
+	return climb_height / (collision.shape.size.y * climb_max_height_mult) if climb_height != null else 0
 
 
 func _has_targets():
@@ -106,15 +106,15 @@ func _stop_climbing():
 	climbing = false
 
 
-func _test_for_wall(origin, cast_to):
+func _test_for_wall(origin, target_position):
 
-	var ray = RayCast.new()
+	var ray = RayCast3D.new()
 	ray.collision_mask = climb_collision_mask
 	ray.add_exception(owner)
 	owner.add_child(ray)
 	
 	ray.global_transform.origin = origin
-	ray.cast_to = cast_to
+	ray.target_position = target_position
 	ray.force_raycast_update()
 	
 	var collider = ray.get_collider()
@@ -132,8 +132,8 @@ func _find_climb_target():
 	
 	
 	var in_range = false
-	var collision_width = collision.shape.extents.x
-	var collision_height = collision.shape.extents.y
+	var collision_width = collision.shape.size.x
+	var collision_height = collision.shape.size.y
 	var origin = owner.global_transform.origin
 	var basis = owner.global_transform.basis
 	

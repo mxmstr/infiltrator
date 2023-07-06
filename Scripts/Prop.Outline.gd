@@ -3,7 +3,7 @@ extends Node
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	if not Meta.multi_outlines:
 		return
@@ -19,7 +19,7 @@ func _ready():
 	else:
 		outline = load('res://Shaders/Outline.tres').duplicate(true)
 	
-	outline.set_shader_param('color', color)
+	outline.set_shader_parameter('color', color)
 	
 	for idx in mesh.get_surface_count():
 		

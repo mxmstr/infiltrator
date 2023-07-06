@@ -1,6 +1,6 @@
 extends Node
 
-export var default_state = 'Default'
+@export var default_state = 'Default'
 
 var enable_abilities = true
 var current_state = 'Default'
@@ -16,9 +16,9 @@ var finished = true
 
 var skeleton
 
-onready var model = get_node_or_null('../Model')
+@onready var model = get_node_or_null('../Model')
 
-signal action
+signal action_started
 signal state_started
 
 
@@ -43,9 +43,9 @@ func _on_action_finished(animation_name=null):
 		return
 	
 	if next == 'Default':
-		call_deferred('emit_signal', 'action', next, {})
+		call_deferred('emit_signal', 'action_started', next, {})
 	else:
-		call_deferred('emit_signal', 'action', next, data)
+		call_deferred('emit_signal', 'action_started', next, data)
 
 
 func _start_state(_name, _data={}):
@@ -53,12 +53,12 @@ func _start_state(_name, _data={}):
 	if not enable_abilities:
 		return
 	
-	emit_signal('action', _name, _data)
+	emit_signal('action_started', _name, _data)
 
 
 func _add_animation(animation_name, animation_res):
 	
-	call('add_animation', animation_name, animation_res)
+	call('add_animation_library', animation_name, animation_res)
 
 
 func _set_animation(animation, scale, clip_start, clip_end):
@@ -130,7 +130,7 @@ func _set_skeleton():
 		skeleton = model.get_child(0)
 		set('root_node', get_path_to(skeleton))
 	
-	connect('animation_finished', self, '_on_action_finished')
+	connect('animation_finished',Callable(self,'_on_action_finished'))
 
 
 func _ready():
@@ -140,6 +140,6 @@ func _ready():
 	
 	call_deferred('_set_skeleton')
 	
-	#yield(get_tree(), 'idle_frame')
+	#await get_tree().idle_frame
 	
-	call_deferred('emit_signal', 'action', default_state, {})
+	call_deferred('emit_signal', 'action_started', default_state, {})

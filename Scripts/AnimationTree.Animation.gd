@@ -3,9 +3,8 @@ extends AnimationNodeAnimation
 const schemas_dir = 'res://Scenes/Schemas/'
 const schemas_extension = '.schema.tscn'
 
-export var chain = false
-export(String) var schema
-export(String, MULTILINE) var custom_script
+@export var chain = false
+@export var schema: String
 
 var node_name
 var owner
@@ -24,7 +23,7 @@ signal playing
 
 func _load_animations():
 	
-	if not schema or schema == '':# or not owner.has_node('../Model'):
+	if schema == null or schema == '':# or not owner.has_node('../Model'):
 		return
 	
 	default_scale = scale
@@ -32,39 +31,24 @@ func _load_animations():
 	
 	var animation_player = owner.get_node(owner.anim_player)
 	var owner_tags = owner.owner.tags_dict.keys()
-	var schema_animation_player = Meta.LoadSchema(schema, owner_tags).instance()
+	var schema_animation_player = Meta.LoadSchema(schema, owner_tags).instantiate()
 	animation_list = Array(schema_animation_player.get_animation_list())
 	
 	if schema_animation_player.get('attributes'):
-		attributes = parse_json(schema_animation_player.attributes)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(schema_animation_player.attributes)
+		attributes = test_json_conv.get_data()
 	
 	for animation_name in animation_list:
 		
 		var animation_res = schema_animation_player.get_animation(animation_name)
-		animation_player.add_animation(animation_name, animation_res)
+		animation_player.add_animation_library(animation_name, animation_res)
 	
 	
 	animation = animation_list[0]
 	
 	if attributes.has(animation):
 		scale = default_scale * attributes[animation].speed
-
-
-func _load_script():
-	
-	if custom_script and custom_script != '':
-		
-		var new_script = GDScript.new()
-		new_script.source_code = custom_script
-		
-		var error = new_script.reload()
-		
-		if error:
-			prints(owner.name, error.keys()[error])
-		
-		custom_script_object = Resource.new()
-		custom_script_object.set_script(new_script)
-		custom_script_object._on_ready(self)
 
 
 func _randomize_animation():
@@ -92,7 +76,7 @@ func _on_state_starting(new_name):
 		_randomize_animation()
 
 
-func _ready(_owner, _parent, _parameters, _name):
+func __ready(_owner, _parent, _parameters, _name):
 	
 	owner = _owner
 	parent = _parent
@@ -102,18 +86,14 @@ func _ready(_owner, _parent, _parameters, _name):
 	#print(node_name) if owner.name == 'PrimaryAction' else null
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
-		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
+		owner.get(parent.parameters + 'playback').connect('state_starting', Callable(self, '_on_state_starting'))
 	
-	owner.connect('on_process', self, '_process')
+	owner.connect('on_process',Callable(self,'__process'))
 	
 	_load_animations()
-	_load_script()
 
 
-func _process(delta):
-	
-	if custom_script_object:
-		custom_script_object._on_process()
+func __process(delta):
 	
 	if advance:
 		owner.advance(0.01)

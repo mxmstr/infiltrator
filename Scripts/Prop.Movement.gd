@@ -1,13 +1,13 @@
 extends Node
 
-var speed = 0.0 setget _set_speed, _get_speed
-export var direction = Vector3() setget _set_direction
+var speed = 0.0 : get = _get_speed, set = _set_speed
+@export var direction = Vector3() : set = _set_direction
 var velocity = Vector3()
-export var angular_direction = Vector2()
+@export var angular_direction = Vector2()
 var angular_velocity = Vector2()
 var pitch = 0.0
-var collisions = [] setget _set_collisions, _get_collisions
-var collision_exceptions = [] setget _set_collision_exceptions, _get_collision_exceptions
+var collisions = [] : get = _get_collisions, set = _set_collisions
+var collision_exceptions = [] : get = _get_collision_exceptions, set = _set_collision_exceptions
 
 
 func _set_collisions(new_collisions):
@@ -27,11 +27,11 @@ func _set_collision_exceptions(new_exceptions):
 
 func _get_collision_exceptions():
 	
-#	if not owner is PhysicsBody:
+#	if not owner is PhysicsBody3D:
 #
 #		return []
 	
-	if owner is Area:
+	if owner is Area3D:
 		
 		for exception in collision_exceptions:
 			if not is_instance_valid(exception):
@@ -54,12 +54,14 @@ func _get_speed():
 	return speed
 
 
-func _set_direction(new_direction, local=false):
+func _set_direction(new_direction):
 	
-	if local:
-		direction = owner.global_transform.basis.xform(new_direction)
-	else:
-		direction = new_direction
+	direction = new_direction
+
+
+func _set_direction_local(new_direction):
+	
+	direction = owner.global_transform.basis * new_direction
 
 
 func _get_forward_speed(): return 0

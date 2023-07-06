@@ -80,9 +80,9 @@ func _reflect(reflected_stim=''):
 #func _ready():
 #
 #	var playback = get('parameters/playback')
-#	playback.connect('state_starting', self, '_on_tree_root_state_starting')
-#	playback.connect('pre_process', self, '_on_tree_root_pre_process')
-#	playback.connect('post_process', self, '_on_tree_root_post_process')
+#	playback.connect('state_starting',Callable(self,'_on_tree_root_state_starting'))
+#	playback.connect('pre_process',Callable(self,'_on_tree_root_pre_process'))
+#	playback.connect('post_process',Callable(self,'_on_tree_root_post_process'))
 
 
 #func _process(delta):

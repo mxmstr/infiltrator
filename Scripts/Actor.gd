@@ -1,12 +1,12 @@
-extends Spatial
+extends Node3D
 
-export(NodePath) var new_owner
-export(String, MULTILINE) var tags
+@export var new_owner: NodePath
+@export_multiline var tags = ''
 
 var base_name
 var system_path
 var tags_dict = {}
-var player_index = 0 setget _set_player_index
+var player_index = 0 : set = _set_player_index
 var input_context = 'Default'
 
 signal entered_tree
@@ -69,17 +69,17 @@ func _parse_tags():
 
 func _notification(what):
 	
-	if what == NOTIFICATION_INSTANCED:
+	if what == NOTIFICATION_SCENE_INSTANTIATED:
 		
 		base_name = name
-		system_path = filename.replace('.tscn', '').replace('res://Scenes/Actors/', '')
+		system_path = scene_file_path.replace('.tscn', '').replace('res://Scenes/Actors/', '')
 		
 		_parse_tags()
 
 
 func _enter_tree():
 	
-	#if tags_dict.empty():
+	#if tags_dict.is_empty():
 	_parse_tags()
 	
 	for child in get_children():
@@ -116,7 +116,7 @@ func _ready():
 	
 #	set_process_input(false)
 	
-#	yield(get_tree(), 'idle_frame')
+#	await get_tree().idle_frame
 	
 #	set_physics_process_internal(false)
 #	set_process_internal(false)

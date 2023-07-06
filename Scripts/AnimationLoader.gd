@@ -3,9 +3,9 @@ extends Node
 const schemas_dir = 'res://Scenes/Schemas/'
 const schemas_extension = '.schema.tscn'
 
-export(NodePath) var tree
-export(String) var schema
-export var random = false
+@export var tree: NodePath
+@export var schema: String
+@export var random = false
 
 var tree_node
 var animation_player
@@ -20,13 +20,15 @@ func _load_animations(_schema, _prefix=''):
 		return
 	
 	var owner_tags = owner.tags_dict.keys()
-	var schema_animation_player = Meta.LoadSchema(_schema, owner_tags).instance()
+	var schema_animation_player = Meta.LoadSchema(_schema, owner_tags).instantiate()
 	
 	var _animation_list = Array(schema_animation_player.get_animation_list())
 	var _attributes
 	
 	if schema_animation_player.get('attributes'):
-		_attributes = parse_json(schema_animation_player.attributes)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(schema_animation_player.attributes)
+		_attributes = test_json_conv.get_data()
 		if _attributes == null:
 			prints(_schema)
 	
@@ -73,7 +75,7 @@ func _randomize_animation():
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	if not tree.is_empty():
 		tree_node = get_node(tree)

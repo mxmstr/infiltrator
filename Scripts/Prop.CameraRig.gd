@@ -1,20 +1,20 @@
-extends Spatial
+extends Node3D
 
-export(NodePath) var viewport
+@export var viewport: NodePath
 
-export(NodePath) var path
-export(String) var bone_name
+@export var path: NodePath
+@export var bone_name: String
 
-export var clamp_camera = true
-export var cam_max_x = 0.0
-export var cam_max_y = PI / 2
-export(Vector3) var camera_offset
-export var position_offset = Vector3()
-export var rotation_degrees_offset = Vector3()
+@export var clamp_camera = true
+@export var cam_max_x = 0.0
+@export var cam_max_y = PI / 2
+@export var camera_offset: Vector3
+@export var position_offset = Vector3()
+@export var rotation_degrees_offset = Vector3()
 
 var root
 
-onready var camera = $Camera#get_node_or_null('../Perspective/Viewport/Camera')
+@onready var camera = $Camera3D#get_node_or_null('../Perspective/SubViewport/Camera3D')
 
 
 func _clamp_camera():
@@ -49,9 +49,9 @@ func _reset_camera():
 		root.queue_free()
 		root = null
 	
-	if path and not path.is_empty():
+	if path != null and not path.is_empty():
 		
-		root = BoneAttachment.new()
+		root = BoneAttachment3D.new()
 		get_node(path).add_child(root)
 	
 		if bone_name != '':
@@ -64,11 +64,11 @@ func _ready():
 	
 	_reset_camera()
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
-	$Camera.set_viewport(get_node(viewport))
+	$Camera3D.set_viewport(get_node(viewport))
 	camera.current = true
-	camera.translation = camera_offset
+	camera.position = camera_offset
 
 
 func _process(delta):
@@ -84,13 +84,13 @@ func _process(delta):
 
 		var target_pos = global_transform.origin + root.global_transform.basis.z
 		look_at(target_pos, -root.global_transform.basis.y)
-#		rotate_x(deg2rad(rotation_degrees_offset.x))
-#		rotate_y(deg2rad(rotation_degrees_offset.y))
-#		rotate_z(deg2rad(rotation_degrees_offset.z))
+#		rotate_x(deg_to_rad(rotation_degrees_offset.x))
+#		rotate_y(deg_to_rad(rotation_degrees_offset.y))
+#		rotate_z(deg_to_rad(rotation_degrees_offset.z))
 #
 #		translate_object_local(position_offset)
 
-		#global_transform.basis = Basis(root.global_transform.basis.get_rotation_quat())#.rotated(root.global_transform.basis.y, deg2rad(180))
-#		global_transform.basis = root.global_transform.basis.rotated(root.global_transform.basis.z, deg2rad(180))
+		#global_transform.basis = Basis(root.global_transform.basis.get_rotation_quaternion())#.rotated(root.global_transform.basis.y, deg_to_rad(180))
+#		global_transform.basis = root.global_transform.basis.rotated(root.global_transform.basis.z, deg_to_rad(180))
 	
 #	_clamp_camera()

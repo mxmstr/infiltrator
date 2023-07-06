@@ -10,7 +10,7 @@ func _physics_process(delta):
 	
 	if drive_mode == Meta.DriverMode.Steer:
 		
-		owner.get_node('Movement')._set_direction(Vector3(0, 0, 1), true)
+		owner.get_node('Movement')._set_direction_local(Vector3(0, 0, 1))
 		owner.get_node('Movement')._face(target, turn_speed * delta)
 	
 	if drive_mode == Meta.DriverMode.Sidestep:

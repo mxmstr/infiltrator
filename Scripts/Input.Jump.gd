@@ -2,14 +2,14 @@ extends "res://Scripts/Input.gd"
 
 var wall_run_direction
 
-onready var primary = get_node_or_null('../PrimaryActionInput')
-onready var forward = get_node_or_null('../MoveForwardInput')
-onready var backward = get_node_or_null('../MoveBackwardInput')
-onready var right = get_node_or_null('../MoveRightInput')
-onready var left = get_node_or_null('../MoveLeftInput')
-onready var behavior = get_node_or_null('../Behavior')
-onready var movement = get_node_or_null('../Movement')
-onready var stance = get_node_or_null('../Stance')
+@onready var primary = get_node_or_null('../PrimaryActionInput')
+@onready var forward = get_node_or_null('../MoveForwardInput')
+@onready var backward = get_node_or_null('../MoveBackwardInput')
+@onready var right = get_node_or_null('../MoveRightInput')
+@onready var left = get_node_or_null('../MoveLeftInput')
+@onready var behavior = get_node_or_null('../Behavior')
+@onready var movement = get_node_or_null('../Movement')
+@onready var stance = get_node_or_null('../Stance')
 
 
 func _try_wallrun():
@@ -18,10 +18,14 @@ func _try_wallrun():
 	
 	if vertical > 0.2:
 		
-		for slide in movement.collisions:
-			if slide.on_wall:
-				behavior._start_state('WallRunStart', { 'normal': slide.normal })
-				return true
+#		for slide in movement.collisions:
+#			if slide.on_wall:
+#				behavior._start_state('WallRunStart', { 'normal': slide.normal })
+#				return true
+
+		if owner.is_on_wall():
+			behavior._start_state('WallRunStart', { 'normal': owner.get_wall_normal() })
+			return true
 		
 		var test_collision = movement._test_movement(movement.direction * 1.5)
 		

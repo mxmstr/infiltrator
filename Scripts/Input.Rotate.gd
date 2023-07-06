@@ -8,8 +8,8 @@ const angular_accel = 0.01
 const angular_deaccel = 8.0
 const accel_multiplier = 1
 
-export(NodePath) var positive_input
-export(NodePath) var negative_input
+@export var positive_input: NodePath
+@export var negative_input: NodePath
 
 var right
 var left
@@ -25,10 +25,10 @@ var speed = 0.0
 var speed_pos = 0.0
 var speed_neg = 0.0
 
-onready var movement = $'../Movement'
-onready var camera = $'../CameraRig/Camera'
-onready var camera_raycast = $'../CameraRaycastStim'
-onready var stance = $'../Stance'
+@onready var movement = $'../Movement'
+@onready var camera = $'../CameraRig/Camera3D'
+@onready var camera_raycast = $'../CameraRaycastStim'
+@onready var stance = $'../Stance'
 
 
 func _get_rotation(delta):
@@ -45,10 +45,10 @@ func _get_rotation(delta):
 	
 #	speed_pos = smoothstep(speed_pos, new_speed_pos, 3)
 #	speed_neg = smoothstep(speed_neg, new_speed_neg, 3)
-	speed_pos = Vector2(speed_pos, 0).linear_interpolate(
+	speed_pos = Vector2(speed_pos, 0).lerp(
 		Vector2(new_speed_pos, 0), min(accel_pos, 1.0)
 		).x
-	speed_neg = Vector2(speed_neg, 0).linear_interpolate(
+	speed_neg = Vector2(speed_neg, 0).lerp(
 		Vector2(new_speed_neg, 0), min(accel_neg, 1.0)
 		).x
 	

@@ -2,6 +2,6 @@
 
 [ext_resource path="res://Scripts/Stimulus.Area.gd" type="Script" id=1]
 
-[node name="AreaStim" type="Area"]
+[node name="AreaStim" type="Area3D"]
 script = ExtResource( 1 )
 stim_type = "Touch"

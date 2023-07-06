@@ -9,16 +9,15 @@ func _on_stimulate(stim, data):
 		
 		if data.source._has_tag('Map'):
 			
-			owner.translation = data.position
+			owner.position = data.position
 			
-			#Meta.AddActor('Particles/Smoke', owner.translation)
-			#Meta.AddActor('Particles/Sparks', owner.translation, null, data.direction)
+			#Meta.AddActor('Particles/Smoke', owner.position)
+			#Meta.AddActor('Particles/Sparks', owner.position, null, data.direction)
 			
 			ActorServer.Destroy(owner)
 		
 		elif data.source._has_tag('Hitbox'):
 			
-			ActorServer.Create('Particles/BloodSquirt', owner.translation, null, data.direction)
-			
+			ActorServer.Create('Particles/BloodSquirt', owner.position, null, data.direction)
 			ActorServer.Destroy(owner)
 			

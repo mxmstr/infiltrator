@@ -1,8 +1,8 @@
 extends Node
 
-export var hp = 100 setget _set_hp
+@export var hp = 100 : set = _set_hp
 
-var invulnerable = false setget _set_invulnerable
+var invulnerable = false : set = _set_invulnerable
 
 signal damaged
 signal just_died

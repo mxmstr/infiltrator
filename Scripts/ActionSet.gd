@@ -1,6 +1,6 @@
 extends Node
 
-export(NodePath) var tree
+@export var tree: NodePath
 
 func _enter_tree():
 	

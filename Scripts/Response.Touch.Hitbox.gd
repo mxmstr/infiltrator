@@ -2,12 +2,12 @@ extends 'res://Scripts/Response.gd'
 
 var owner_righthand
 
-onready var audio = get_node_or_null('../../Audio')
+@onready var audio = get_node_or_null('../../Audio')
 
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	owner_righthand = owner.owner.get_node_or_null('RightHandContainer')
 
@@ -34,7 +34,7 @@ func _on_stimulate(stim, data):
 			
 			var blood = ActorServer.Create(
 				'Particles/BloodSquirt',
-				data.source.translation,
+				data.source.position,
 				data.source.rotation.rotated(data.source.transform.basis.y, PI / 2)
 				)
 			
@@ -62,5 +62,5 @@ func _on_stimulate(stim, data):
 			
 			var shooter = data.source._get_tag('Shooter') if data.source._has_tag('Shooter') else data.source
 			
-			ActorServer.Create('Projectiles/Explosions/Explosion1', data.source.translation, data.source.rotation, null, { 'Shooter': shooter })
+			ActorServer.Create('Projectiles/Explosions/Explosion1', data.source.position, data.source.rotation, null, { 'Shooter': shooter })
 			ActorServer.Destroy(data.source)

@@ -1,10 +1,10 @@
 extends "res://Scripts/Input.gd"
 
-onready var behavior = get_node_or_null('../Behavior')
-onready var forward = get_node_or_null('../MoveForwardInput')
-onready var backward = get_node_or_null('../MoveBackwardInput')
-onready var right = get_node_or_null('../MoveRightInput')
-onready var left = get_node_or_null('../MoveLeftInput')
+@onready var behavior = get_node_or_null('../Behavior')
+@onready var forward = get_node_or_null('../MoveForwardInput')
+@onready var backward = get_node_or_null('../MoveBackwardInput')
+@onready var right = get_node_or_null('../MoveRightInput')
+@onready var left = get_node_or_null('../MoveLeftInput')
 
 
 func _on_just_activated():

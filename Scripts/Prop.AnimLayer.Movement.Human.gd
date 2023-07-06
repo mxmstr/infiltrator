@@ -1,7 +1,7 @@
 extends 'res://Scripts/AnimationTree.gd'
 
-export(String) var root_bone
-export(Array, String) var movement_bones
+@export var root_bone: String
+@export var movement_bones: Array[String]
 
 const camera_rig_track_path = '../../Perspective'
 
@@ -196,13 +196,13 @@ func _ready():
 		return
 	
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 #	var playback = behavior.get('parameters/playback')
-#	playback.connect('state_starting', self, '_on_state_starting')
+#	playback.connect('state_starting',Callable(self,'_on_state_starting'))
 
-#	connect('pre_process', self, '_on_pre_process')
-#	connect('post_process', self, '_on_post_process')
+#	connect('pre_process',Callable(self,'_on_pre_process'))
+#	connect('post_process',Callable(self,'_on_post_process'))
 	
 	_set_skeleton()
 

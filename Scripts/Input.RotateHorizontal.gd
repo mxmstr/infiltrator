@@ -1,6 +1,6 @@
 extends 'res://Scripts/Input.Rotate.gd'
 
-onready var bullet_time = $'../BulletTime'
+@onready var bullet_time = $'../BulletTime'
 
 
 func _get_aim_offset(delta):
@@ -8,7 +8,7 @@ func _get_aim_offset(delta):
 	if owner.is_processing_input():
 
 		var aim_offset = Vector2((-right.strength + left.strength) * aim_offset_range * (camera.fov / 65), 0)
-		return Vector2(camera_raycast.rotation_offset.x, 0).linear_interpolate(
+		return Vector2(camera_raycast.rotation_offset.x, 0).lerp(
 			aim_offset,
 			aim_offset_sensitivity * delta
 			).x

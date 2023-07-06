@@ -1,12 +1,12 @@
-extends ViewportContainer
+extends SubViewportContainer
 
-export var mouse_device = -1
-export var keyboard_device = -1
-export var gamepad_device = -1
-export var fp_offset = Vector3(0, 0, 0)
-export(String) var fp_root_bone
-export(String) var fp_shoulder_bone
-export(Array, String) var fp_hidden_bones
+@export var mouse_device = -1
+@export var keyboard_device = -1
+@export var gamepad_device = -1
+@export var fp_offset = Vector3(0, 0, 0)
+@export var fp_root_bone: String
+@export var fp_shoulder_bone: String
+@export var fp_hidden_bones :Array[String] = []
 
 var viewmodel_property = preload('res://Scenes/Components/Properties/ViewModel.property.tscn')
 
@@ -17,14 +17,14 @@ var worldmodel_offset = 15
 var rig_translated = false
 var rig_rotated = false
 
-onready var model = $'../Model'
-onready var mesh = $'../Model'.get_child(0).get_child(0)
-onready var right_hand = $'../RightHandContainer'
-onready var left_hand = $'../LeftHandContainer'
-onready var viewport = get_node('Viewport2D')
-onready var ui = get_node('../UI')
-onready var rig = get_node_or_null('../CameraRig')
-onready var camera = rig.get_node('Camera')
+@onready var model = $'../Model'
+@onready var mesh = $'../Model'.get_child(0).get_child(0)
+@onready var right_hand = $'../RightHandContainer'
+@onready var left_hand = $'../LeftHandContainer'
+@onready var viewport = get_node('Viewport2D')
+@onready var ui = get_node('../UI')
+@onready var rig = get_node_or_null('../CameraRig')
+@onready var camera = rig.get_node('Camera3D')
 
 
 func _on_pre_draw(viewport_rid):
@@ -68,7 +68,7 @@ func _on_item_contained(item, container):
 	
 	if container.bone_name != '':
 		
-		var viewmodel = viewmodel_property.instance()
+		var viewmodel = viewmodel_property.instantiate()
 		var contains_link = preload('res://Scripts/Link.Contains.gd')
 		viewmodel.name = item.base_name + 'ViewModel'
 		viewmodel.actor = item
@@ -108,7 +108,7 @@ func _init_fp_skeleton():
 			shoulders_id = idx
 	
 	
-	var viewmodel = viewmodel_property.instance()
+	var viewmodel = viewmodel_property.instantiate()
 	viewmodel.name = 'ActorViewModel'
 	viewmodel.actor = owner
 	viewmodel.hidden_bones = fp_hidden_bones
@@ -120,18 +120,18 @@ func _init_fp_skeleton():
 	
 	viewmodels.append(viewmodel)
 	
-	right_hand.connect('item_added', self, '_on_item_contained', [right_hand])
-	right_hand.connect('item_removed', self, '_on_item_released', [right_hand])
-	left_hand.connect('item_added', self, '_on_item_contained', [left_hand])
-	left_hand.connect('item_removed', self, '_on_item_released', [left_hand])
+	right_hand.connect('item_added',Callable(self,'_on_item_contained').bind(right_hand))
+	right_hand.connect('item_removed',Callable(self,'_on_item_released').bind(right_hand))
+	left_hand.connect('item_added',Callable(self,'_on_item_contained').bind(left_hand))
+	left_hand.connect('item_removed',Callable(self,'_on_item_released').bind(left_hand))
 
 
 func _init_viewport():
 	
 	var render_width = owner.get_viewport().size.x
 	var render_height = owner.get_viewport().size.y
-	var window_width = ProjectSettings.get_setting('display/window/size/width')
-	var window_height = ProjectSettings.get_setting('display/window/size/height')
+	var window_width = ProjectSettings.get_setting('display/window/size/viewport_width')
+	var window_height = ProjectSettings.get_setting('display/window/size/viewport_height')
 	var render_scale = ProjectSettings.get_setting('rendering/quality/filters/render_scale')
 	
 #	prints(window_width
@@ -142,23 +142,23 @@ func _init_viewport():
 	if Meta.player_count > 2:
 		
 		if owner.player_index in [0, 2]:
-			ui.rect_position.x = 0
-			rect_position.x = 0
+			ui.position.x = 0
+			position.x = 0
 		else:
-			ui.rect_position.x = window_width / 2
-			rect_position.x = window_width / 2
+			ui.position.x = window_width / 2
+			position.x = window_width / 2
 
 		if owner.player_index in [0, 1]:
-			ui.rect_position.y = 0
-			rect_position.y = 0
+			ui.position.y = 0
+			position.y = 0
 		else:
-			ui.rect_position.y = window_height / 2
-			rect_position.y = window_height / 2
+			ui.position.y = window_height / 2
+			position.y = window_height / 2
 		
-		ui.get_node('Viewport/Control').rect_size.x =  window_width / 2
-		ui.get_node('Viewport/Control').rect_size.y = window_height / 2
-		rect_size.x = window_width / 2
-		rect_size.y = window_height / 2
+		ui.get_node('SubViewport/Control').size.x =  window_width / 2
+		ui.get_node('SubViewport/Control').size.y = window_height / 2
+		size.x = window_width / 2
+		size.y = window_height / 2
 		viewport.size.x = render_width / 2
 		viewport.size.y = render_height / 2
 		viewport.size *= render_scale
@@ -166,16 +166,16 @@ func _init_viewport():
 	else:
 		
 		if owner.player_index == 0:
-			ui.rect_position.y = 0
-			rect_position.y = 0
+			ui.position.y = 0
+			position.y = 0
 		else:
-			ui.rect_position.y = window_height / 2
-			rect_position.y = window_height / 2
+			ui.position.y = window_height / 2
+			position.y = window_height / 2
 
-		ui.get_node('Viewport/Control').rect_size.x = window_width
-		ui.get_node('Viewport/Control').rect_size.y = window_height / 2
-		rect_size.x = window_width
-		rect_size.y = window_height / 2
+		ui.get_node('SubViewport/Control').size.x = window_width
+		ui.get_node('SubViewport/Control').size.y = window_height / 2
+		size.x = window_width
+		size.y = window_height / 2
 		viewport.size.x = render_width
 		viewport.size.y = render_height / 2
 		viewport.size *= render_scale
@@ -187,21 +187,21 @@ func _init_viewport():
 #
 #		if script_name == 'Prop.Container.gd' and child.bone_name != '':
 #
-#			child.connect('item_added', self, '_on_item_contained')
-#			child.connect('item_removed', self, '_on_item_released')
+#			child.connect('item_added',Callable(self,'_on_item_contained'))
+#			child.connect('item_removed',Callable(self,'_on_item_released'))
 
 
 func _ready():
 	
-#	VisualServer.connect('viewport_pre_draw', self, '_on_pre_draw')
-#	VisualServer.connect('viewport_post_draw', self, '_on_post_draw')
+#	RenderingServer.connect('viewport_pre_draw',Callable(self,'_on_pre_draw'))
+#	RenderingServer.connect('viewport_post_draw',Callable(self,'_on_post_draw'))
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	_init_fp_skeleton()
 	_init_viewport()
 	
-	get_tree().root.connect('size_changed', self, '_init_viewport')
+	get_tree().root.connect('size_changed',Callable(self,'_init_viewport'))
 
 
 #func _process(delta):

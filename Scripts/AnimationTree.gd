@@ -1,6 +1,6 @@
 extends AnimationTree
 
-export(String, 'Action', 'Sound') var schema_type = 'Action'
+@export_enum('Action', 'Sound') var schema_type = 'Action'
 
 var make_unique = 0
 var advances = 0
@@ -103,27 +103,21 @@ func _ready():
 #	if 'Input' in name:
 #		return
 	
-	if tree_root.has_method('_ready'):
-		tree_root._ready(self, null, 'parameters/', 'root')
+	if tree_root.has_method('__ready'):
+		tree_root.__ready(self, null, 'parameters/', 'root')
 
-#	connect('pre_call_method_track', self, '_on_pre_call_method_track')
-#	connect('post_call_method_track', self, '_on_post_call_method_track')
+#	connect('pre_call_method_track',Callable(self,'_on_pre_call_method_track'))
+#	connect('post_call_method_track',Callable(self,'_on_post_call_method_track'))
 	
 	active = true
 
 
 func _physics_process(delta):
 	
-	return
-	
 	emit_signal('on_physics_process', delta)
 
 
 func _process(delta):
-	
-	return
-	
-	if Engine.editor_hint: return
 	
 	emit_signal('on_process', delta)
 	

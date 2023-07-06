@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Menu.Bindings.gd" type="Script" id=1]
-[ext_resource path="res://Textures/panel.png" type="Texture" id=2]
-[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Textures/panel.png" type="Texture2D" id=2]
+[ext_resource path="res://Fonts/Xolonium-Regular.ttf" type="FontFile" id=3]
 [ext_resource path="res://Scenes/UI/Menu.Inputs.Action.tscn" type="PackedScene" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 20
 font_data = ExtResource( 3 )
 __meta__ = {
@@ -17,10 +17,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -230.0
-margin_top = -84.5
-margin_right = 230.0
-margin_bottom = 26.5
+offset_left = -230.0
+offset_top = -84.5
+offset_right = 230.0
+offset_bottom = 26.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -32,8 +32,8 @@ __meta__ = {
 
 [node name="Background" type="NinePatchRect" parent="."]
 self_modulate = Color( 0.890196, 1, 0.698039, 1 )
-margin_right = 672.0
-margin_bottom = 480.0
+offset_right = 672.0
+offset_bottom = 480.0
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 512, 512 )
 patch_margin_left = 25
@@ -45,8 +45,8 @@ __meta__ = {
 }
 
 [node name="Hint" type="Label" parent="."]
-margin_right = 672.0
-margin_bottom = 480.0
+offset_right = 672.0
+offset_bottom = 480.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.992157, 1, 0, 1 )
@@ -58,22 +58,22 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 672.0
-margin_bottom = 480.0
-custom_constants/margin_right = 30
-custom_constants/margin_top = 30
-custom_constants/margin_left = 30
-custom_constants/margin_bottom = 50
+offset_right = 672.0
+offset_bottom = 480.0
+custom_constants/offset_right = 30
+custom_constants/offset_top = 30
+custom_constants/offset_left = 30
+custom_constants/offset_bottom = 50
 __meta__ = {
 
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
-margin_left = 30.0
-margin_top = 30.0
-margin_right = 642.0
-margin_bottom = 430.0
-rect_min_size = Vector2( 600, 400 )
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 642.0
+offset_bottom = 430.0
+custom_minimum_size = Vector2( 600, 400 )
 mouse_filter = 1
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -81,25 +81,25 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
-margin_right = 600.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 600, 0 )
+offset_right = 600.0
+offset_bottom = 550.0
+custom_minimum_size = Vector2( 600, 0 )
 custom_constants/separation = 25
 __meta__ = {
 
 }
 
 [node name="DevicesList" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
-margin_right = 600.0
-margin_bottom = 445.0
-rect_min_size = Vector2( 600, 0 )
+offset_right = 600.0
+offset_bottom = 445.0
+custom_minimum_size = Vector2( 600, 0 )
 __meta__ = {
 
 }
 
 [node name="Hint" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList"]
-margin_right = 600.0
-margin_bottom = 25.0
+offset_right = 600.0
+offset_bottom = 25.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 text = "Assign devices to each player."
@@ -110,186 +110,186 @@ __meta__ = {
 }
 
 [node name="p1_mouse" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 29.0
-margin_right = 600.0
-margin_bottom = 60.0
+offset_top = 29.0
+offset_right = 600.0
+offset_bottom = 60.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p1_mouse" index="0"]
-margin_right = 165.0
+offset_right = 165.0
 text = "Player 1 Mouse"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p1_mouse" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p1_keyboard" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 64.0
-margin_right = 600.0
-margin_bottom = 95.0
+offset_top = 64.0
+offset_right = 600.0
+offset_bottom = 95.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p1_keyboard" index="0"]
-margin_right = 195.0
+offset_right = 195.0
 text = "Player 1 Keyboard"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p1_keyboard" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p1_gamepad" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 99.0
-margin_right = 600.0
-margin_bottom = 130.0
+offset_top = 99.0
+offset_right = 600.0
+offset_bottom = 130.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p1_gamepad" index="0"]
-margin_right = 194.0
+offset_right = 194.0
 text = "Player 1 Gamepad"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p1_gamepad" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p2_mouse" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 134.0
-margin_right = 600.0
-margin_bottom = 165.0
+offset_top = 134.0
+offset_right = 600.0
+offset_bottom = 165.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p2_mouse" index="0"]
-margin_right = 165.0
+offset_right = 165.0
 text = "Player 2 Mouse"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p2_mouse" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p2_keyboard" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 169.0
-margin_right = 600.0
-margin_bottom = 200.0
+offset_top = 169.0
+offset_right = 600.0
+offset_bottom = 200.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p2_keyboard" index="0"]
-margin_right = 195.0
+offset_right = 195.0
 text = "Player 2 Keyboard"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p2_keyboard" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p2_gamepad" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 204.0
-margin_right = 600.0
-margin_bottom = 235.0
+offset_top = 204.0
+offset_right = 600.0
+offset_bottom = 235.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p2_gamepad" index="0"]
-margin_right = 194.0
+offset_right = 194.0
 text = "Player 2 Gamepad"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p2_gamepad" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p3_mouse" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 239.0
-margin_right = 600.0
-margin_bottom = 270.0
+offset_top = 239.0
+offset_right = 600.0
+offset_bottom = 270.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p3_mouse" index="0"]
-margin_right = 165.0
+offset_right = 165.0
 text = "Player 3 Mouse"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p3_mouse" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p3_keyboard" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 274.0
-margin_right = 600.0
-margin_bottom = 305.0
+offset_top = 274.0
+offset_right = 600.0
+offset_bottom = 305.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p3_keyboard" index="0"]
-margin_right = 195.0
+offset_right = 195.0
 text = "Player 3 Keyboard"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p3_keyboard" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p3_gamepad" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 309.0
-margin_right = 600.0
-margin_bottom = 340.0
+offset_top = 309.0
+offset_right = 600.0
+offset_bottom = 340.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p3_gamepad" index="0"]
-margin_right = 194.0
+offset_right = 194.0
 text = "Player 3 Gamepad"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p3_gamepad" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p4_mouse" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 344.0
-margin_right = 600.0
-margin_bottom = 375.0
+offset_top = 344.0
+offset_right = 600.0
+offset_bottom = 375.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p4_mouse" index="0"]
-margin_right = 165.0
+offset_right = 165.0
 text = "Player 4 Mouse"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p4_mouse" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p4_keyboard" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 379.0
-margin_right = 600.0
-margin_bottom = 410.0
+offset_top = 379.0
+offset_right = 600.0
+offset_bottom = 410.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p4_keyboard" index="0"]
-margin_right = 195.0
+offset_right = 195.0
 text = "Player 4 Keyboard"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p4_keyboard" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="p4_gamepad" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList" instance=ExtResource( 4 )]
-margin_top = 414.0
-margin_right = 600.0
-margin_bottom = 445.0
+offset_top = 414.0
+offset_right = 600.0
+offset_bottom = 445.0
 
 [node name="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p4_gamepad" index="0"]
-margin_right = 194.0
+offset_right = 194.0
 text = "Player 4 Gamepad"
 
 [node name="Button" parent="MarginContainer/ScrollContainer/HBoxContainer/DevicesList/p4_gamepad" index="1"]
-margin_left = 565.0
-margin_right = 600.0
+offset_left = 565.0
+offset_right = 600.0
 text = "-1"
 
 [node name="ActionsList" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
-margin_top = 470.0
-margin_right = 600.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 600, 0 )
+offset_top = 470.0
+offset_right = 600.0
+offset_bottom = 550.0
+custom_minimum_size = Vector2( 600, 0 )
 __meta__ = {
 
 }
 
 [node name="Hint" type="Label" parent="MarginContainer/ScrollContainer/HBoxContainer/ActionsList"]
-margin_right = 600.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 0, 80 )
+offset_right = 600.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 0, 80 )
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 text = "Click a key binding to reassign it, or press Escape.."

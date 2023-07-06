@@ -1,14 +1,14 @@
 extends "res://Scripts/Action.gd"
 
-onready var reception = get_node_or_null('../../Reception')
-onready var chamber = get_node_or_null('../../Chamber')
-onready var magazine = get_node_or_null('../../Magazine')
+@onready var reception = get_node_or_null('../../Reception')
+@onready var chamber = get_node_or_null('../../Chamber')
+@onready var magazine = get_node_or_null('../../Magazine')
 
 
 func _fire_effect(effect_path):
 	
 	prints(effect_path)
-	ActorServer.Create(effect_path, owner.translation, owner.rotation)
+	ActorServer.Create(effect_path, owner.position, owner.rotation)
 
 
 func _clone_and_shoot():
@@ -34,7 +34,7 @@ func _shoot_array_threaded(count):
 	for i in range(count):
 		
 		var thread = Thread.new()
-		thread.start(self, '_shoot_array', [item.system_path])
+		thread.start(Callable(self,'_shoot_array').bind([item.system_path]))
 		
 		Meta.threads.append(thread)
 
@@ -58,6 +58,6 @@ func _state_start():
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	attributes[animation_list[0]].speed = float(owner._get_tag('FireRate'))

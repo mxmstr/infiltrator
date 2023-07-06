@@ -25,7 +25,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 2 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Animation" id=5]
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "start_offset": 2.99,
 "stream": ExtResource( 7 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Animation" id=6]
@@ -61,7 +61,7 @@ tracks/0/keys = {
 "start_offset": 24.61,
 "stream": ExtResource( 8 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Animation" id=2]
@@ -79,7 +79,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 3 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Animation" id=7]
@@ -97,7 +97,7 @@ tracks/0/keys = {
 "start_offset": 137.0,
 "stream": ExtResource( 6 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Animation" id=8]
@@ -115,7 +115,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 9 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Animation" id=3]
@@ -132,7 +132,7 @@ tracks/0/keys = {
 "start_offset": 38.56,
 "stream": ExtResource( 4 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Music:volume_db")
@@ -141,8 +141,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 0.0 ]
 }
@@ -161,7 +161,7 @@ tracks/0/keys = {
 "start_offset": 7.45,
 "stream": ExtResource( 5 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Music:volume_db")
@@ -170,8 +170,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 3, 4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 3, 4 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ -15.0, -15.0, -5.0 ]
 }
@@ -185,8 +185,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ -5.0 ]
 }

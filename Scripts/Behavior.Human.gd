@@ -14,7 +14,7 @@ const right_arm_bones = ['LoArm-R', 'Hand-R', 'Gun']
 const blend_time_max = 0.05
 
 var arms_only = false
-var layer = Meta.BlendLayer.MOVEMENT setget _set_layer
+var layer = Meta.BlendLayer.MOVEMENT : set = _set_layer
 var can_use_item = false
 var can_zoom = false
 var root_motion_use_model = false
@@ -22,7 +22,7 @@ var cached_action_pose
 var cached_blend_pose
 var blend_time = 0
 
-var oneshot
+var one_shot
 var action
 var action_up
 var action_down
@@ -37,19 +37,19 @@ var blend_space_downleft
 var blend_space_left
 var blend_space_upleft
 
-onready var animation_player = $AnimationPlayer
-onready var viewport = $'../Perspective/Viewport2D'
-onready var movement = get_node_or_null('../Movement')
-onready var perspective = get_node_or_null('../Perspective')
-onready var stance = get_node_or_null('../Stance')
-onready var stamina = get_node_or_null('../Stamina')
-onready var camera_rig = get_node_or_null('../CameraRig')
-onready var camera = get_node_or_null('../CameraRig/Camera')
-onready var camera_mode = get_node_or_null('../CameraMode')
-onready var hud_mode = get_node_or_null('../HUDMode')
-onready var anim_layer_movement = get_node_or_null('../AnimLayerMovement')
-onready var weapon_target_lock = get_node_or_null('../WeaponTargetLock')
-onready var bullet_time = get_node_or_null('../BulletTime')
+@onready var animation_player = $AnimationPlayer
+@onready var viewport = $'../Perspective/Viewport2D'
+@onready var movement = get_node_or_null('../Movement')
+@onready var perspective = get_node_or_null('../Perspective')
+@onready var stance = get_node_or_null('../Stance')
+@onready var stamina = get_node_or_null('../Stamina')
+@onready var camera_rig = get_node_or_null('../CameraRig')
+@onready var camera = get_node_or_null('../CameraRig/Camera3D')
+@onready var camera_mode = get_node_or_null('../CameraMode')
+@onready var hud_mode = get_node_or_null('../HUDMode')
+@onready var anim_layer_movement = get_node_or_null('../AnimLayerMovement')
+@onready var weapon_target_lock = get_node_or_null('../WeaponTargetLock')
+@onready var bullet_time = get_node_or_null('../BulletTime')
 
 signal pre_advance
 signal post_advance
@@ -105,7 +105,7 @@ func _set_action_blend(blend):
 
 func _add_animation(animation_name, animation_res):
 	
-	animation_player.add_animation(animation_name, animation_res)
+	animation_player.add_animation_library(animation_name, animation_res)
 
 
 func _set_animation(animation, scale, clip_start, clip_end):
@@ -180,7 +180,7 @@ func _apply_action_pose():
 			if bone_name in [left_arm_root, right_arm_root]:
 
 				var global_pose = skeleton.get_bone_global_pose_no_override(idx)
-				cached_action_pose[idx] = Transform(cached_action_pose[idx].basis, global_pose.origin)
+				cached_action_pose[idx] = Transform3D(cached_action_pose[idx].basis, global_pose.origin)
 
 				skeleton.set_bone_global_pose_override(idx, cached_action_pose[idx], 1.0, true)
 
@@ -193,7 +193,7 @@ func _apply_action_pose():
 			if bone_name == torso_bone:
 				
 				var global_pose = skeleton.get_bone_global_pose_no_override(idx)
-				cached_action_pose[idx] = Transform(cached_action_pose[idx].basis, global_pose.origin)
+				cached_action_pose[idx] = Transform3D(cached_action_pose[idx].basis, global_pose.origin)
 				skeleton.set_bone_global_pose_override(idx, cached_action_pose[idx], 1.0, true)
 			
 			elif bone_name in upper_body_bones:
@@ -213,7 +213,7 @@ func _apply_blend_pose():
 		if bone_name == torso_bone:
 
 			var global_pose = skeleton.get_bone_global_pose_no_override(idx)
-			cached_blend_pose[idx] = Transform(cached_blend_pose[idx].basis, global_pose.origin)
+			cached_blend_pose[idx] = Transform3D(cached_blend_pose[idx].basis, global_pose.origin)
 			global_pose = global_pose.interpolate_with(cached_blend_pose[idx], blend_time / blend_time_max)
 			skeleton.set_bone_global_pose_override(idx, global_pose, 1.0, true)
 
@@ -293,11 +293,11 @@ func _play(new_state, animation, attributes, _data, up_animation=null, down_anim
 	call('advance', 0)
 	_set_oneshot_active(true)
 	
-	if not oneshot.is_connected('finished', self, '_on_action_finished'):
-		oneshot.connect('finished', self, '_on_action_finished')
+	if not one_shot.is_connected('finished',Callable(self,'_on_action_finished')):
+		one_shot.connect('finished',Callable(self,'_on_action_finished'))
 	
-	if blend_space_2d.is_connected('finished', self, '_on_action_finished'):
-		blend_space_2d.disconnect('finished', self, '_on_action_finished')
+	if blend_space_2d.is_connected('finished',Callable(self,'_on_action_finished')):
+		blend_space_2d.disconnect('finished',Callable(self,'_on_action_finished'))
 	
 	set('parameters/Transition/current', Mode.OneShot)
 	
@@ -336,11 +336,11 @@ func _play_8way(new_state, animation_list, attributes, _data):
 	_set_oneshot_active(false)
 	call('advance', 0)
 	
-	if oneshot.is_connected('finished', self, '_on_action_finished'):
-		oneshot.disconnect('finished', self, '_on_action_finished')
+	if one_shot.is_connected('finished',Callable(self,'_on_action_finished')):
+		one_shot.disconnect('finished',Callable(self,'_on_action_finished'))
 	
-	if not blend_space_2d.is_connected('finished', self, '_on_action_finished'):
-		blend_space_2d.connect('finished', self, '_on_action_finished')
+	if not blend_space_2d.is_connected('finished',Callable(self,'_on_action_finished')):
+		blend_space_2d.connect('finished',Callable(self,'_on_action_finished'))
 	
 	var animation_nodes = [
 		blend_space_up,
@@ -401,11 +401,11 @@ func _ready():
 	
 	set_physics_process(false)
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	set('tree_root', get('tree_root').duplicate(true))
 	
-	oneshot = get('tree_root').get_node('OneShot')
+	one_shot = get('tree_root').get_node('OneShot')
 	action = get('tree_root').get_node('Action')
 	transition = get('tree_root').get_node('Transition')
 	action_up = get('tree_root').get_node('ActionUp')
@@ -423,7 +423,7 @@ func _ready():
 	var anim_layer_player = anim_layer_movement.get_node('AnimationPlayer')
 	
 	for animation in anim_layer_player.get_animation_list():
-		animation_player.add_animation(animation, anim_layer_player.get_animation(animation))
+		animation_player.add_animation_library(animation, anim_layer_player.get_animation(animation))
 	
 	anim_layer_movement.anim_player = anim_layer_movement.get_path_to(animation_player)
 	anim_layer_movement.tree_root = anim_layer_movement.tree_root.duplicate(true)

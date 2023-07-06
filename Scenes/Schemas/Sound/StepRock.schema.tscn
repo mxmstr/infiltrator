@@ -20,7 +20,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 1 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -41,7 +41,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 2 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -62,7 +62,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 3 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -83,7 +83,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 4 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 

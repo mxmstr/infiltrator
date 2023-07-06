@@ -9,7 +9,7 @@ func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
 	var projectile = Projectile.new()
 	
 	
-	var new_transform = Transform(
+	var new_transform = Transform3D(
 		Basis(rotation if rotation else Vector3.FORWARD),
 		position if position else Vector3()
 		)
@@ -22,7 +22,7 @@ func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
 #
 #		var old_model_base = old_model.mesh.get_rid()
 #
-#		new_model = VisualServer.instance_create2(old_model_base, actors.get_world().scenario)
+#		new_model = RenderingServer.instance_create2(old_model_base, actors.get_world_3d().scenario)
 	
 	
 	var new_particles
@@ -33,31 +33,31 @@ func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
 		old_particles
 		var old_particles_base = old_particles.get_base()
 
-		new_particles = VisualServer.particles_create()
+		new_particles = RenderingServer.particles_create()
 
-		VisualServer.particles_set_amount(new_particles, old_particles.amount)
-		VisualServer.particles_set_custom_aabb(new_particles, old_particles.visibility_aabb)
-		VisualServer.particles_set_draw_order(new_particles, old_particles.draw_order)
-		VisualServer.particles_set_draw_passes(new_particles, old_particles.draw_passes)
-		VisualServer.particles_set_draw_pass_mesh(new_particles, 0, old_particles.draw_pass_1)
-		#VisualServer.particles_set_emission_transform(new_particles, old_particles.emission_transform)
-		VisualServer.particles_set_emitting(new_particles, true)
-		VisualServer.particles_set_explosiveness_ratio(new_particles, old_particles.explosiveness)
-		VisualServer.particles_set_fixed_fps(new_particles, old_particles.fixed_fps)
-		VisualServer.particles_set_fractional_delta(new_particles, old_particles.fract_delta)
-		VisualServer.particles_set_lifetime(new_particles, old_particles.lifetime)
-		VisualServer.particles_set_one_shot(new_particles, old_particles.one_shot)
-		VisualServer.particles_set_pre_process_time(new_particles, old_particles.preprocess)
-		VisualServer.particles_set_process_material(new_particles, old_particles.process_material)
-		VisualServer.particles_set_randomness_ratio(new_particles, old_particles.randomness)
-		VisualServer.particles_set_speed_scale(new_particles, old_particles.speed_scale)
-		VisualServer.particles_set_use_local_coordinates(new_particles, old_particles.local_coords)
+		RenderingServer.particles_set_amount(new_particles, old_particles.amount)
+		RenderingServer.particles_set_custom_aabb(new_particles, old_particles.visibility_aabb)
+		RenderingServer.particles_set_draw_order(new_particles, old_particles.draw_order)
+		RenderingServer.particles_set_draw_passes(new_particles, old_particles.draw_passes)
+		RenderingServer.particles_set_draw_pass_mesh(new_particles, 0, old_particles.draw_pass_1)
+		#RenderingServer.particles_set_emission_transform(new_particles, old_particles.emission_transform)
+		RenderingServer.particles_set_emitting(new_particles, true)
+		RenderingServer.particles_set_explosiveness_ratio(new_particles, old_particles.explosiveness)
+		RenderingServer.particles_set_fixed_fps(new_particles, old_particles.fixed_fps)
+		RenderingServer.particles_set_fractional_delta(new_particles, old_particles.fract_delta)
+		RenderingServer.particles_set_lifetime(new_particles, old_particles.lifetime)
+		RenderingServer.particles_set_one_shot(new_particles, old_particles.one_shot)
+		RenderingServer.particles_set_pre_process_time(new_particles, old_particles.preprocess)
+		RenderingServer.particles_set_process_material(new_particles, old_particles.process_material)
+		RenderingServer.particles_set_randomness_ratio(new_particles, old_particles.randomness)
+		RenderingServer.particles_set_speed_scale(new_particles, old_particles.speed_scale)
+		RenderingServer.particles_set_use_local_coordinates(new_particles, old_particles.local_coords)
 		
-		new_particles = VisualServer.instance_create2(new_particles, actors.get_world().scenario)
+		new_particles = RenderingServer.instance_create2(new_particles, actors.get_world_3d().scenario)
 		
 		if old_particles.one_shot:
 			var time = (old_particles.lifetime * 2) / old_particles.speed_scale
-			get_tree().create_timer(time).connect('timeout', self, 'Destroy', [projectile])
+			get_tree().create_timer(time).connect('timeout',Callable(self,'Destroy').bind(projectile))
 	
 	
 #	var new_collision
@@ -66,13 +66,13 @@ func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
 #	if old_collision:
 #
 #		var old_collision_rid = old_collision.shape.get_rid()
-#		var old_collision_type = PhysicsServer.shape_get_type(old_collision_rid)
-#		var old_collision_data = PhysicsServer.shape_get_data(old_collision_rid)
+#		var old_collision_type = PhysicsServer3D.shape_get_type(old_collision_rid)
+#		var old_collision_data = PhysicsServer3D.shape_get_data(old_collision_rid)
 #
-#		new_collision = PhysicsServer.shape_create(old_collision_type)
-#		PhysicsServer.shape_set_data(new_collision, old_collision_data)
+#		new_collision = PhysicsServer3D.shape_create(old_collision_type)
+#		PhysicsServer3D.shape_set_data(new_collision, old_collision_data)
 #
-#		PhysicsServer.area_add_shape(
+#		PhysicsServer3D.area_add_shape(
 #			physics_shared_area.get_rid(), new_collision, new_transform
 #			)
 	
@@ -94,7 +94,7 @@ func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
 	projectile.collision_exceptions = []
 	projectile.tags_dict = new_actor.tags_dict
 	
-	if new_actor is CollisionObject:
+	if new_actor is CollisionObject3D:
 		projectile.collision_mask = new_actor.collision_mask
 	
 	Meta._merge_dir(projectile.tags_dict, tags)
@@ -109,10 +109,10 @@ func Destroy(projectile):
 	projectile.valid = false
 	
 	if projectile.model:
-		VisualServer.free_rid(projectile.model)
+		RenderingServer.free_rid(projectile.model)
 	
 	if projectile.particles:
-		VisualServer.free_rid(projectile.particles)
+		RenderingServer.free_rid(projectile.particles)
 	
 	projectiles.erase(projectile)
 
@@ -148,7 +148,7 @@ func SetDirection(projectile, new_direction):
 
 func SetDirectionLocal(projectile, new_direction):
 	
-	projectile.direction = projectile.transform.basis.xform(new_direction)
+	projectile.direction = projectile.transform.basis * new_direction
 
 
 func SetSpeed(projectile, new_speed):
@@ -189,8 +189,8 @@ func _on_node_removed(node):
 
 func _ready():
 	
-	get_tree().connect('node_added', self, '_on_node_added')
-	get_tree().connect('node_removed', self, '_on_node_removed')
+	get_tree().connect('node_added',Callable(self,'_on_node_added'))
+	get_tree().connect('node_removed',Callable(self,'_on_node_removed'))
 
 
 func _physics_process(delta):
@@ -206,10 +206,10 @@ func _physics_process(delta):
 		
 		
 		if projectile.model:
-			VisualServer.instance_set_transform(projectile.model, projectile.transform)
+			RenderingServer.instance_set_transform(projectile.model, projectile.transform)
 		
 		if projectile.particles:
-			VisualServer.instance_set_transform(projectile.particles, projectile.transform * projectile.particles_transform)
+			RenderingServer.instance_set_transform(projectile.particles, projectile.transform * projectile.particles_transform)
 		
 		
 		var angular_velocity = projectile.angular_direction * delta
@@ -218,7 +218,7 @@ func _physics_process(delta):
 		projectile.transform.basis = projectile.transform.basis.rotated(projectile.transform.basis.x, angular_velocity.y)
 		
 		var offset = (
-			projectile.transform.basis.xform(Vector3(0, 0, 1)) *#projectile.direction.normalized() * 
+			projectile.transform.basis * Vector3(0, 0, 1) *#projectile.direction.normalized() * 
 			projectile.speed * 
 			delta
 			)
@@ -227,7 +227,7 @@ func _physics_process(delta):
 		
 		if not projectile.collision_disabled and projectile.collision_mask:
 			
-			var space_state = actors.get_world().direct_space_state
+			var space_state = actors.get_world_3d().direct_space_state
 			var result = space_state.intersect_ray(
 				projectile.transform.origin,
 				new_position,
@@ -235,7 +235,7 @@ func _physics_process(delta):
 				projectile.collision_mask
 				)
 			
-			if not result.empty():
+			if not result.is_empty():
 				
 				ActorServer.Stim(
 					result.collider, 

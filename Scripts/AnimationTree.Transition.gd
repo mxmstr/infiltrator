@@ -7,7 +7,7 @@ var from
 var to
 
 
-func _ready(_owner, _parent, _parameters, _from, _to):
+func __ready(_owner, _parent, _parameters, _from, _to):
 	
 	owner = _owner
 	parent = _parent

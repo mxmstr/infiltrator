@@ -1,12 +1,12 @@
 extends 'res://Scripts/AnimationTree.Transition.gd'
 
-export(String) var transition_expression
+@export var transition_expression: String
 
-export(String, 'process', 'state_starting', 'travel_starting') var update_mode = 'process'
+@export_enum('process', 'state_starting', 'travel_starting') var update_mode = 'process'
 
-export(String, MULTILINE) var expression
-export(Dictionary) var arguments
-export(float) var delay
+@export_multiline var expression
+@export var arguments: Dictionary
+@export var delay: float
 
 var exec_list = []
 var timeout = false
@@ -34,7 +34,7 @@ func _evaluate():
 func _update():
 	
 	if delay > 0 and not timeout:
-		disabled = true
+		advance_mode = AnimationNodeStateMachineTransition.ADVANCE_MODE_ENABLED
 	
 	var _args = []
 	
@@ -45,7 +45,7 @@ func _update():
 		
 		_args.append(arg)
 	
-	disabled = not _evaluate()
+	advance_mode = _evaluate()
 
 
 func _on_state_starting(new_name):
@@ -55,7 +55,7 @@ func _on_state_starting(new_name):
 	if from_name == new_name:
 		
 		if delay > 0:
-			owner.get_tree().create_timer(delay).connect('timeout', self, 'set', ['timeout', true])
+			owner.get_tree().create_timer(delay).connect('timeout',Callable(self,'set').bind('timeout', true))
 		
 		if update_mode == 'state_starting':
 			_update()
@@ -67,21 +67,21 @@ func _on_travel_starting(new_name):
 		_update()
 
 
-func _ready(_owner, _parent, _parameters, _from, _to):
+func __ready(_owner, _parent, _parameters, _from, _to):
 	
-	._ready(_owner, _parent, _parameters, _from, _to)
+	super.__ready(_owner, _parent, _parameters, _from, _to)
 	
 #	if owner.name == 'Behavior':
 #		prints(owner.owner.name, owner.name, self)
 	
 	if parent != null and owner.get(parent.parameters + 'playback') != null:
-		owner.get(parent.parameters + 'playback').connect('state_starting', self, '_on_state_starting')
-		owner.get(parent.parameters + 'playback').connect('pre_process', self, '_process', [0])
+		owner.get(parent.parameters + 'playback').connect('state_starting',Callable(self,'_on_state_starting'))
+		owner.get(parent.parameters + 'playback').connect('pre_process',Callable(self,'__process').bind(0))
 	
 	if parent != null and parent.has_user_signal('travel_starting'):
-		parent.connect('travel_starting', self, '_on_travel_starting')
+		parent.connect('travel_starting',Callable(self,'_on_travel_starting'))
 	
-#	owner.connect('on_process', self, '_process')
+#	owner.connect('on_process',Callable(self,'_process'))
 	
 	
 	for line in expression.split('\n'):
@@ -91,7 +91,7 @@ func _ready(_owner, _parent, _parameters, _from, _to):
 		exec_list.append(exec)
 
 
-func _process(delta):
+func __process(delta):
 	
 	if update_mode == 'process':
 		

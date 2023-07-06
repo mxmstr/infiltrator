@@ -3,10 +3,10 @@ extends "res://Scripts/Input.gd"
 var zooming = false
 var default_fov
 
-onready var behavior = get_node_or_null('../Behavior')
-onready var right_hand = get_node_or_null('../RightHandContainer')
-onready var stance = get_node_or_null('../Stance')
-onready var camera = get_node_or_null('../CameraRig/Camera')
+@onready var behavior = get_node_or_null('../Behavior')
+@onready var right_hand = get_node_or_null('../RightHandContainer')
+@onready var stance = get_node_or_null('../Stance')
+@onready var camera = get_node_or_null('../CameraRig/Camera3D')
 
 
 func _ready():

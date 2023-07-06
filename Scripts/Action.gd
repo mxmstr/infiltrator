@@ -1,18 +1,18 @@
 extends "res://Scripts/AnimationLoader.gd"
 
-export(String) var state
+@export var state: String
 
 var data = {}
 var new_data = {}
 
-onready var behavior = $'../../Behavior'
+@onready var behavior = $'../../Behavior'
 
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
-	tree_node.connect('action', self, '_on_action')
+	tree_node.connect('action_started',Callable(self,'_on_action'))
 
 
 func _play(_state, _animation, _attributes_prefix='', _down=null, _up=null):
@@ -48,7 +48,7 @@ func _on_state_started(new_state):
 		
 		_state_end()
 		
-		behavior.disconnect('state_started', self, '_on_state_started')
+		behavior.disconnect('state_started',Callable(self,'_on_state_started'))
 
 
 func _on_action(_state, _data):
@@ -59,7 +59,7 @@ func _on_action(_state, _data):
 		
 		data = new_data
 		
-		if not behavior.is_connected('state_started', self, '_on_state_started'):
-			behavior.connect('state_started', self, '_on_state_started')
+		if not behavior.is_connected('state_started',Callable(self,'_on_state_started')):
+			behavior.connect('state_started',Callable(self,'_on_state_started'))
 		
 		_state_start()

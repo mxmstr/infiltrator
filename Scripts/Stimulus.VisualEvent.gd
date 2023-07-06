@@ -1,10 +1,10 @@
 extends Node
 
-export(String) var stim_type
-export var continuous = false
+@export var stim_type: String
+@export var continuous = false
 
-export var intensity = 1.0
-export var radius = 0.0
+@export var intensity = 1.0
+@export var radius = 0.0
 
 var collisions = []
 

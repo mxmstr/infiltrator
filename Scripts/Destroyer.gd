@@ -1,4 +1,4 @@
-extends Area
+extends Area3D
 
 
 func _on_body_entered(body):
@@ -8,5 +8,5 @@ func _on_body_entered(body):
 
 func _ready():
 	
-	connect('area_entered', self, '_on_body_entered')
-	connect('body_entered', self, '_on_body_entered')
+	connect('area_entered',Callable(self,'_on_body_entered'))
+	connect('body_entered',Callable(self,'_on_body_entered'))

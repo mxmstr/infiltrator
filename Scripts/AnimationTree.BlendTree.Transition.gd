@@ -1,4 +1,4 @@
-tool
+@tool
 extends AnimationNodeTransition
 
 var owner
@@ -13,7 +13,7 @@ func _evaluate(target, method, args):
 	return owner.owner.get_node(target).callv(method, args)
 
 
-func _ready(_owner, _parent, _parameters):
+func __ready(_owner, _parent, _parameters):
 	
 	return
 	
@@ -21,10 +21,10 @@ func _ready(_owner, _parent, _parameters):
 	parent = _parent
 	parameters = _parameters
 	
-	owner.connect('on_process', self, '_process')
+	owner.connect('on_process',Callable(self,'__process'))
 
 
-func _process(delta):
+func __process(delta):
 	
 	var best_input
 	var best_score = 0

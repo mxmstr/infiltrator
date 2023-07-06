@@ -1,15 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource path="res://Scenes/Actors/Items/Firearm.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Models/Items/Max Payne Weapons/Grenade/Grenade.obj" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Stimuli/Contact.RigidBody.stimulus.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Responses/Touch.Grenade.response2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Components/Actions/Action.action2.tscn" type="PackedScene" id=5]
+[ext_resource type="PackedScene" path="res://Scenes/Actors/Items/Firearm.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c66kcqbsujd0j" path="res://Models/Items/Max Payne Weapons/Grenade/Grenade.obj" id="2"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Stimuli/Contact.RigidBody.stimulus.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Responses/Touch.Grenade.response2.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Actions/Action.action.tscn" id="5"]
 
 [sub_resource type="PhysicsMaterial" id=2]
 bounce = 0.75
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape3D" id=1]
 radius = 0.109011
 
 [node name="Grenade" instance=ExtResource( 1 )]
@@ -18,9 +18,9 @@ physics_material_override = SubResource( 2 )
 tags = "Item Firearm Grenade Rank:70 UseAction:FireProjectile FireRate:0.33 Offset-position:neo_reference_skeleton:Gun:-0.023118,0.000963,0.024605 Offset-rotation:neo_reference_skeleton:Gun:-72.911118,-4.245605,-10.726698"
 
 [node name="Model" parent="." index="0" instance=ExtResource( 2 )]
-transform = Transform( 0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0 )
+transform = Transform3D( 0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0 )
 
-[node name="Collision" type="CollisionShape" parent="." index="1"]
+[node name="Collision" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource( 1 )
 
 [node name="ContactStim" parent="." index="2" instance=ExtResource( 3 )]

@@ -32,11 +32,11 @@ enum Team {
 }
 
 const TeamColors = [
-	Color.white,
-	Color.red,
-	Color.blue,
-	Color.green,
-	Color.yellow
+	Color.WHITE,
+	Color.RED,
+	Color.BLUE,
+	Color.GREEN,
+	Color.YELLOW
 	]
 
 const schemas_dir = 'res://Scenes/Schemas/'
@@ -127,18 +127,17 @@ func _make_unique(old, new_owner=null):
 			export_props[prop.name] = old.get(prop.name)
 	
 	
-	var dir = Directory.new()
 	var new_name = old.name
 	var new_filename = 'res://duplicated' + str(tree_count) + '.tscn'
 	
 	
 	prints('old', old.filename, old.tree_root.get_node('Start'))
 	var new = load(old.filename)
-	prints('new', new.instance().tree_root.get_node('Start'))
+	prints('new', new.instantiate().tree_root.get_node('Start'))
 	ResourceSaver.save(new_filename, new)
 	
 	
-	new = load(new_filename).instance()
+	new = load(new_filename).instantiate()
 	prints('new', new.filename, new.tree_root)
 	new.name = old.name
 	new.set_meta('unique', true)
@@ -149,7 +148,7 @@ func _make_unique(old, new_owner=null):
 		new.set(prop, export_props[prop])
 	
 	
-	old.get_parent().add_child_below_node(old, new)
+	old.get_parent().add_sibling(old, new)
 	
 	if new_owner:
 		new.set_owner(new_owner)
@@ -160,7 +159,7 @@ func _make_unique(old, new_owner=null):
 	old.free()
 	
 	
-	dir.remove(new_filename)
+	DirAccess.open(new_filename).remove(new_filename)
 	
 	tree_count += 1
 
@@ -173,19 +172,16 @@ func _get_files_recursive(root, begins_with='', ends_with='', actor_tags=null):
 	var file_to_add
 	var highest_tag_count = 0
 	
-	while not dirs.empty():
+	while not dirs.is_empty():
 		
-		var dir = Directory.new()
-		dir.open(dirs.pop_front())
-		dir.list_dir_begin()
+		var dir = DirAccess.open(dirs.pop_front())
+		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		
 		while true:
 			
 			var file = dir.get_next()
 			
-			if not file:
-				
-				dir.list_dir_end()
+			if file.is_empty():
 				break
 			
 			if file in ['.', '..']:
@@ -269,13 +265,15 @@ func PreloadSchemas():
 	
 	var schemas = _get_files_recursive('res://Scenes/Schemas/', '', '.tscn')
 	
-	for schema in schemas:
-		
-		var packed_scene = load(schema)
-		var animation_player = packed_scene.instance()
-		packed_scene.pack(animation_player)
-		
-		preloader.add_resource(schema, packed_scene)
+#	for schema in schemas:
+#
+#		prints(schema)
+#
+#		var packed_scene = load(schema)
+#		var animation_player = packed_scene.instantiate()
+#		packed_scene.pack(animation_player)
+#
+#		preloader.add_resource(schema, packed_scene)
 
 
 func LoadSchema(schema, owner_tags):
@@ -324,14 +322,14 @@ func LoadSchema(schema, owner_tags):
 
 func AddWayPoint(position):
 
-	var waypoint = load('res://Scenes/Markers/Waypoint2.tscn').instance()
+	var waypoint = load('res://Scenes/Markers/Waypoint2.tscn').instantiate()
 	$'/root/Mission/Actors'.add_child(waypoint)
 	waypoint.global_transform.origin = position
 
 
 func CreateEvent(actor, event_name):
 	
-	var event = load('res://Scenes/Actors/Events' + event_name + '.tscn').instance()
+	var event = load('res://Scenes/Actors/Events' + event_name + '.tscn').instantiate()
 	$'/root/Mission/Actors'.add_child(event)
 	
 	LinkServer.Create(event, actor, 'EventMaster')

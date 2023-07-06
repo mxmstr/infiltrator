@@ -1,11 +1,11 @@
 extends 'res://Scripts/AnimationTree.Animation.gd'
 
-export(float) var level
+@export var level: float
 
 
 func _on_state_starting(new_name):
 	
-	._on_state_starting(new_name)
+	super._on_state_starting(new_name)
 	
 	if node_name == new_name:
 		
@@ -15,9 +15,9 @@ func _on_state_starting(new_name):
 			owner.level = level
 
 
-func _ready(_owner, _parent, _parameters, _name):
+func __ready(_owner, _parent, _parameters, _name):
 	
-	._ready(_owner, _parent, _parameters, _name)
+	super.__ready(_owner, _parent, _parameters, _name)
 	
 	var stream = owner.get_node('AnimationPlayer').get_animation(animation).audio_track_get_key_stream(0, 0)
 	

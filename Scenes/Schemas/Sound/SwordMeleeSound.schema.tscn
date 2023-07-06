@@ -18,7 +18,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 1 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Animation" id=2]
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 2 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer"]

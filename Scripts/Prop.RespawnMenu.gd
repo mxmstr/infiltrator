@@ -1,6 +1,6 @@
 extends Control
 
-onready var perspective = owner.get_node_or_null('../Perspective')
+@onready var perspective = owner.get_node_or_null('../Perspective')
 
 
 func _just_pressed(event, action):

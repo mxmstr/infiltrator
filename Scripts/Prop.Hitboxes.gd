@@ -1,21 +1,21 @@
 extends Node
 
-export(PackedScene) var source
+@export var source: PackedScene
 
 var bone_attachments = []
 var hitboxes = []
 var bone_to_hitbox = {}
 
-onready var skeleton = get_node('../Model').get_child(0)
+@onready var skeleton = get_node('../Model').get_child(0)
 
 
 func _add_children():
 	
-	for child in source.instance().get_child(0).get_children():
+	for child in source.instantiate().get_child(0).get_children():
 		
-		if child is BoneAttachment:
+		if child is BoneAttachment3D:
 			
-			var new_bone = BoneAttachment.new()
+			var new_bone = BoneAttachment3D.new()
 			new_bone.bone_name = child.bone_name
 			owner.get_node('Model').get_child(0).add_child(new_bone)
 			new_bone.name = child.name
@@ -51,6 +51,6 @@ func _get_bone(bone_name):
 
 func _ready():
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	_add_children()

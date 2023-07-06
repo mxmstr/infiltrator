@@ -5,18 +5,18 @@ var y_min
 var x_value_range
 var y_value_range
 
-onready var model = $'../../Model'
-onready var movement = $'../../Movement'
-onready var stance = $'../../Stance'
-onready var camera_rig = $'../../CameraRig'
-onready var camera = $'../../CameraRig/Camera'
-onready var camera_raycast = $'../../CameraRaycastStim'
-onready var camera_raycast_target = $'../../CameraRaycastStim/Target'
+@onready var model = $'../../Model'
+@onready var movement = $'../../Movement'
+@onready var stance = $'../../Stance'
+@onready var camera_rig = $'../../CameraRig'
+@onready var camera = $'../../CameraRig/Camera3D'
+@onready var camera_raycast = $'../../CameraRaycastStim'
+@onready var camera_raycast_target = $'../../CameraRaycastStim/Target'
 
 
 func _load_animations(_schema, _prefix=''):
 	
-	var _animation_list = ._load_animations(_schema, _prefix)
+	var _animation_list = super._load_animations(_schema, _prefix)
 	
 	var sorted_animation_list = []
 	sorted_animation_list.resize(_animation_list.size())
@@ -60,7 +60,7 @@ func _set_blendspace_position():
 func _state_start():
 	
 	var model_pos = owner.global_transform.origin
-	var target_pos = model_pos - owner.global_transform.basis.xform(Vector3(data.direction.x, 0, data.direction.y))
+	var target_pos = model_pos - owner.global_transform.basis * Vector3(data.direction.x, 0, data.direction.y)
 	target_pos.y = model_pos.y
 	
 	camera_rig.clamp_camera = false
@@ -73,7 +73,7 @@ func _state_start():
 
 func _ready():
 	
-	yield(behavior, 'pre_advance')
+	await behavior.pre_advance
 	
 	x_min = behavior.blend_space_2d.get('min_space').x
 	y_min = behavior.blend_space_2d.get('min_space').y

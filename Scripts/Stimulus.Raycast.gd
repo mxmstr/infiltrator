@@ -1,24 +1,24 @@
-extends RayCast
+extends RayCast3D
 
-export(String) var stim_type
-export var auto = true
-export var one_shot = false
-export var continuous = false
-export var send_to_self = false
+@export var stim_type: String
+@export var auto = true
+@export var one_shot = false
+@export var continuous = false
+@export var send_to_self = false
 
-export var move_target = true
-export var predict_collision = false
-export(NodePath) var path
-export(String) var bone_name
-export(String, MULTILINE) var required_tags
+@export var move_target = true
+@export var predict_collision = false
+@export var path: NodePath
+@export var bone_name: String
+@export_multiline var required_tags
 
 var required_tags_dict = {}
 var root
 var selection
 var rotation_offset = Vector2()
 
-onready var movement = get_node_or_null('../Movement')
-onready var reception = get_node_or_null('../Reception')
+@onready var movement = get_node_or_null('../Movement')
+@onready var reception = get_node_or_null('../Reception')
 
 signal selection_changed
 signal triggered
@@ -61,20 +61,20 @@ func _update_raycast_selection():
 
 func _reset_root():
 	
-	root.translation = Vector3()
+	root.position = Vector3()
 	root.rotation_degrees = Vector3()
 
 
 func _on_before_move(velocity):
 	
-	if velocity.length() > 0:#cast_to.length():
+	if velocity.length() > 0:#target_position.length():
 		
 		var origin = owner.global_transform.origin
 		var next_origin = owner.global_transform.translated(velocity).origin
 		var temp_raycast = duplicate()
 
 		owner.add_child(temp_raycast)
-		temp_raycast.cast_to = Vector3(0, 0, -origin.distance_to(next_origin))
+		temp_raycast.target_position = Vector3(0, 0, -origin.distance_to(next_origin))
 		temp_raycast.force_raycast_update()
 
 		if temp_raycast.get_collider():
@@ -95,7 +95,7 @@ func _ready():
 	
 	if not path.is_empty():
 		
-		root = BoneAttachment.new()
+		root = BoneAttachment3D.new()
 		get_node(path).call_deferred('add_child', root)
 		
 		if bone_name != '':
@@ -105,10 +105,10 @@ func _ready():
 	
 	
 	if predict_collision:
-		movement.connect('before_move', self, '_on_before_move')
+		movement.connect('before_move',Callable(self,'_on_before_move'))
 	
 	
-	yield(get_tree(), 'idle_frame')
+	await get_tree().idle_frame
 	
 	if owner.has_node('Hitboxes'):
 		for hitbox in owner.get_node('Hitboxes').hitboxes:

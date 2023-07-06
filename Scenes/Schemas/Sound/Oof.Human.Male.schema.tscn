@@ -42,7 +42,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 1 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -62,7 +62,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 2 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -82,7 +82,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 3 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -102,7 +102,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 4 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -122,7 +122,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 5 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -142,7 +142,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 6 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -162,7 +162,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 7 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -182,7 +182,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 8 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -202,7 +202,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 9 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -222,7 +222,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 10 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -242,7 +242,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 11 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -262,7 +262,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 12 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -282,7 +282,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 13 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -302,7 +302,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 14 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -322,7 +322,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 15 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -342,7 +342,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 16 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -362,7 +362,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 17 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -382,7 +382,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 18 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -402,7 +402,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 19 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -422,7 +422,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 20 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -442,7 +442,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 21 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -462,7 +462,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 22 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -482,7 +482,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 23 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -502,7 +502,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 24 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -522,7 +522,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 25 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -542,7 +542,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 26 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 
@@ -562,7 +562,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 27 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 __meta__ = {
 

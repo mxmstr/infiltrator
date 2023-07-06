@@ -1,21 +1,21 @@
 class_name TrenchBroomGameConfigFolder
 extends Resource
-tool
+@tool
 
 ## A node used to to express a set of entity definitions that can be exproted
 
 #psuedo-button to export
-export(bool) var export_file : bool setget set_export_file
-export(String, DIR, GLOBAL) var trenchbroom_games_folder : String
+@export var export_file: bool : bool : set = set_export_file
+@export var trenchbroom_games_folder : String # (String, DIR, GLOBAL)
 
-export(String) var game_name := "Qodot"
-export(Texture) var icon : Texture
-export(Resource) var game_config_file : Resource = preload("res://addons/qodot/game_definitions/trenchbroom/qodot_trenchbroom_config_file.tres")
-export(Array, Resource) var fgd_files : Array = [
+@export var game_name: String := "Qodot"
+@export var icon: Texture2D : Texture2D
+@export var game_config_file: Resource : Resource = preload("res://addons/qodot/game_definitions/trenchbroom/qodot_trenchbroom_config_file.tres")
+@export var fgd_files : Array = [ # (Array, Resource)
 	preload("res://addons/qodot/game_definitions/fgd/qodot_fgd.tres")
 ]
 
-func _init() -> void:
+func _init():
 	if not icon:
 		if ResourceLoader.exists("res://icon.png"):
 			icon = ResourceLoader.load("res://icon.png")

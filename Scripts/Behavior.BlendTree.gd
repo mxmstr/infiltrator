@@ -1,22 +1,22 @@
 extends "res://Scripts/AnimationTree.BlendTree.gd"
 
-export(String, MULTILINE) var expression
-export(Dictionary) var arguments
+@export_multiline var expression
+@export var arguments: Dictionary
 var exec_list = []
 
-export(Meta.Priority) var priority
-export(Meta.Visibility) var type
-export(Meta.BlendLayer) var blend
-export var cache_pose = true
-export var distance = 0.0
-export var enable_abilities = true
-export var lock_stance = false
-export var lock_speed = false
-export var lock_direction = false
-export var lock_rotation = false
-export var lock_movement = false
-export var camera_mode = 'LockYaw'
-export var hud_mode = 'Default'
+@export var priority: Meta.Priority
+@export var type: Meta.Visibility
+@export var blend: Meta.BlendLayer
+@export var cache_pose = true
+@export var distance = 0.0
+@export var enable_abilities = true
+@export var lock_stance = false
+@export var lock_speed = false
+@export var lock_direction = false
+@export var lock_rotation = false
+@export var lock_movement = false
+@export var camera_mode = 'LockYaw'
+@export var hud_mode = 'Default'
 
 var playing = false
 var stance
@@ -79,12 +79,12 @@ func _on_state_starting(new_name):
 		
 		playing = false
 	
-	._on_state_starting(new_name)
+	super._on_state_starting(new_name)
 
 
 func _ready(_owner, _parent, _parameters, _node_name):
 	
-	._ready(_owner, _parent, _parameters, _node_name)
+	super.__ready(_owner, _parent, _parameters, _node_name)
 	
 	stance = owner.owner.get_node_or_null('Stance')
 	camera_mode_node = owner.owner.get_node_or_null('CameraMode')
@@ -98,7 +98,7 @@ func _ready(_owner, _parent, _parameters, _node_name):
 		exec_list.append(exec)
 
 
-func _process(delta):
+func __process(delta):
 	
 	if parent and owner.get(parent.parameters + 'playback'):
 		
@@ -109,7 +109,7 @@ func _process(delta):
 			if anim_layer_movement:
 				
 				if _evaluate():
-					anim_layer_movement.blend_mode = Meta.BlendLayer.LAYERED
+					anim_layer_movement.blend_mode = Meta.BlendLayer.MIXED
 				else:
 					anim_layer_movement.blend_mode = Meta.BlendLayer.ACTION
 	
@@ -117,4 +117,4 @@ func _process(delta):
 		
 		playing = false
 	
-	._process(delta)
+	super.__process(delta)

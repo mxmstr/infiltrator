@@ -1,10 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dm5fae8mm5jiq"]
 
-[ext_resource path="res://Scripts/AnimationLoader.gd" type="Script" id=1]
-
+[ext_resource type="Script" path="res://Scripts/AnimationLoader.gd" id="1"]
 
 [node name="Action" type="Node"]
-script = ExtResource( 1 )
-__meta__ = {
-
-}
+script = ExtResource("1")

@@ -2,9 +2,9 @@ extends Node
 
 var selected_item
 
-onready var right_hand = get_node_or_null('../RightHandContainer')
-onready var inventory = get_node_or_null('../InventoryContainer')
-onready var behavior = get_node_or_null('../Behavior')
+@onready var right_hand = get_node_or_null('../RightHandContainer')
+@onready var inventory = get_node_or_null('../InventoryContainer')
+@onready var behavior = get_node_or_null('../Behavior')
 
 
 func _go_to_unarmed():
