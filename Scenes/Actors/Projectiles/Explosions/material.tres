@@ -1,46 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=10 format=2]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://donu4vhuuigo6"]
 
-[ext_resource path="res://Scenes/Actors/Projectiles/Explosions/smokeshader.tres" type="Shader" id=1]
-
-[sub_resource type="Gradient" id=1]
-
-[sub_resource type="GradientTexture2D" id=2]
-gradient = SubResource( 1 )
-width = 256
-
-[sub_resource type="Gradient" id=3]
-offsets = PackedFloat32Array( 0.139394, 0.448485, 0.724242 )
-colors = PackedColorArray( 0, 0, 0, 1, 0.74, 0.74, 0.74, 1, 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture2D" id=4]
-gradient = SubResource( 3 )
-
-[sub_resource type="Gradient" id=5]
-offsets = PackedFloat32Array( 0.381988, 0.46129, 0.552795, 0.602484 )
-colors = PackedColorArray( 0.965838, 0.965838, 0.965838, 1, 1, 0.801853, 0.503906, 1, 1, 0, 0, 1, 0, 0, 0, 1 )
-
-[sub_resource type="GradientTexture2D" id=6]
-gradient = SubResource( 5 )
-width = 256
-
-[sub_resource type="Gradient" id=7]
-offsets = PackedFloat32Array( 0, 0.0434783, 0.319876 )
-colors = PackedColorArray( 0, 0, 0, 1, 0.438202, 0.438202, 0.438202, 1, 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture2D" id=8]
-gradient = SubResource( 7 )
-width = 64
+[ext_resource type="Shader" uid="uid://c57ng3cgqimlp" path="res://Scenes/Actors/Projectiles/Explosions/smokeshader.tres" id="1"]
 
 [resource]
-shader = ExtResource( 1 )
-shader_param/particle_h_frames = 8.0
-shader_param/particle_v_frames = 8.0
-shader_param/particles_anim_loop = null
-shader_param/still_frame = -1.0
-shader_param/Soft_limit = 0.1
-shader_param/blend_scale = 1.0
-shader_param/emission_falloff_multiplier = 0.5
-shader_param/Smoke_color_ramp = SubResource( 2 )
-shader_param/blend_help = SubResource( 4 )
-shader_param/emission_falloff = SubResource( 8 )
-shader_param/emission_color_ramp = SubResource( 6 )
+render_priority = 0
+shader = ExtResource("1")

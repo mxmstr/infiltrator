@@ -7,7 +7,9 @@ var owner_righthand
 
 func _ready():
 	
-	await get_tree().idle_frame
+	super()
+	
+	await get_tree().process_frame
 	
 	owner_righthand = owner.owner.get_node_or_null('RightHandContainer')
 

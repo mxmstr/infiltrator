@@ -1,21 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://bl5j665v37lrb"]
 
-[ext_resource path="res://Scripts/Actor.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Components/Properties/Behavior.property.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Components/Properties/Reception.property.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Components/Properties/Audio.property.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Components/Properties/Movement.Static.property.tscn" type="PackedScene" id=6]
+[ext_resource type="Script" path="res://Scripts/Actor.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://xcfmp6kwv8f" path="res://Scenes/Components/Properties/Behavior.property.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Reception.property.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Audio.property.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Movement.Static.property.tscn" id="6"]
 
-[node name="Area3D" type="Area3D"]
+[node name="Area" type="Area3D"]
 collision_layer = 16
 collision_mask = 8
-script = ExtResource( 1 )
-tags = "Area3D"
+script = ExtResource("1")
+tags = "Area"
 
-[node name="Movement" parent="." instance=ExtResource( 6 )]
+[node name="Movement" parent="." instance=ExtResource("6")]
 
-[node name="Behavior" parent="." instance=ExtResource( 2 )]
+[node name="Behavior" parent="." instance=ExtResource("2")]
 
-[node name="Reception" parent="." instance=ExtResource( 3 )]
+[node name="Reception" parent="." instance=ExtResource("3")]
 
-[node name="Audio" parent="." instance=ExtResource( 5 )]
+[node name="Audio" parent="." instance=ExtResource("5")]

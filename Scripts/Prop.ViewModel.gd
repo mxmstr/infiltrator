@@ -153,7 +153,7 @@ func _revert_mesh_layers():
 
 func _init_container():
 
-	if not container:
+	if container == null:
 		return
 	
 	var path_to_root = get_node('../Model').get_path_to(container.root.get_parent())
@@ -261,12 +261,12 @@ func _enter_tree():
 
 func _ready():
 	
-	if not owner:
-		await get_tree().idle_frame
+	if owner == null:
+		await get_tree().process_frame
 	
 	owner.connect('player_index_changed',Callable(self,'_init_mesh_layers'))
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 #	if not is_instance_valid(actor):
 #		perspective._on_item_released(actor, null)

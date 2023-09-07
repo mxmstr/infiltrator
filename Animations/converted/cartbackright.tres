@@ -150,3 +150,55 @@ tracks/20/path = NodePath(".:Foot-L")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = PackedFloat32Array(0, 1, -0.0902548, 0.0457389, 0.00961983, 0.994821, 0.0666667, 1, -0.0627963, 0.0523276, 0.0105775, 0.996598, 0.133333, 1, 0.0151549, 0.0711177, 0.0132028, 0.997265, 0.2, 1, 0.049047, 0.0823643, 0.013729, 0.9953, 0.266667, 1, -0.0266696, 0.0782842, 0.00701531, 0.99655, 0.333333, 1, -0.167044, 0.0636786, -0.00387792, 0.983883, 0.4, 1, -0.278852, 0.0410506, -0.00652877, 0.959434, 0.466667, 1, -0.328106, 0.014475, 0.0031845, 0.944525, 0.533333, 1, -0.359296, -0.0177477, 0.0196538, 0.932848, 0.6, 1, -0.381163, -0.052761, 0.0394158, 0.922159, 0.666667, 1, -0.394937, -0.0874756, 0.0601038, 0.912557, 0.733333, 1, -0.400398, -0.118175, 0.0791599, 0.905235, 0.8, 1, -0.399726, -0.142311, 0.0944918, 0.900577, 0.866667, 1, -0.393641, -0.156392, 0.103586, 0.899921, 0.933333, 1, -0.378401, -0.152755, 0.101725, 0.907265, 1, 1, -0.347018, -0.127112, 0.0869569, 0.925127, 1.06667, 1, -0.300069, -0.0868474, 0.0641147, 0.94779, 1.13333, 1, -0.244366, -0.0453628, 0.0413703, 0.967738, 1.2, 1, -0.184431, -0.0139516, 0.0259215, 0.982405, 1.26667, 1, -0.0976835, -0.000792964, 0.0265093, 0.994864, 1.33333, 1, -0.00453438, 0.00204768, 0.034528, 0.999391, 1.4, 1, 0.043141, 0.000446361, 0.0373731, 0.99837, 1.46667, 1, 0.0588081, -0.00430664, 0.0377216, 0.997547, 1.53333, 1, 0.0437771, -0.00121765, 0.0341815, 0.998456, 1.6, 1, 0.0412156, -0.00066222, 0.0337294, 0.998581, 1.66667, 1, 0.0399107, -0.000488911, 0.0335558, 0.99864, 1.70833, 1, 0.0399107, -0.000488911, 0.0335558, 0.99864)
+tracks/21/type = "method"
+tracks/21/path = NodePath("../../Movement")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PackedFloat32Array( 0.416667 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ 5.0 ],
+"method": "_set_vertical_velocity"
+} ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("../../CameraRig:translation")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PackedFloat32Array( 0, 0.333333, 0.583333, 1.08333, 1.45833, 1.66667 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.7, 0 ), Vector3( 0, 0.937483, 0 ), Vector3( 0, 1.25172, 0 ), Vector3( 0, 1.252, 0 ), Vector3( 0, 1.06713, 0 ), Vector3( 0, 1.7, 0 ) ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("../../CameraRig:rotation_degrees")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ) ]
+}
+tracks/24/type = "method"
+tracks/24/path = NodePath("../../FoleyAudio")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PackedFloat32Array( 0.1 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ "JumpUp" ],
+"method": "_start_state"
+} ]
+}

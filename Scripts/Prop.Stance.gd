@@ -189,7 +189,7 @@ func _physics_process(delta):
 			velocity *= sprint_mult
 		
 		movement._set_speed(velocity.length())
-		movement._set_direction(velocity.normalized(), true)
+		movement._set_direction_local(velocity.normalized())
 	
 	elif surface == SurfaceType.WALL:
 		

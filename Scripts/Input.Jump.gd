@@ -118,6 +118,8 @@ func _on_just_deactivated():
 
 func _process(delta):
 	
+	super(delta)
+	
 	if active:
 		
 		if behavior.current_state == 'PreJump':

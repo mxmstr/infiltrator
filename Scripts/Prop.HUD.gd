@@ -129,7 +129,7 @@ func _refresh_ammo():
 		var chamber = item.get_node('Chamber')
 		var magazine = item.get_node('Magazine')
 		
-		if not ammo_container:
+		if ammo_container == null:
 			
 			ammo_container = _get_ammo_container(item)
 			ammo_container.connect('item_added',Callable(self,'_on_ammo_added'))
@@ -173,7 +173,7 @@ func _ready():
 	stamina.connect('damaged',Callable(self,'_on_damaged'))
 	health_bar.value = stamina.hp
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	radius_x = radar.size.x / 2
 	radius_y = radar.size.y / 2

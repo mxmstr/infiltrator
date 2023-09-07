@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Animations/Human/ShootDodgeBackward_Getup.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/converted/ShootDodgeBackward_Getup.tres" type="Animation" id=1]
 [ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
-[ext_resource path="res://Animations/Human/ShootDodgeForward_Getup.tres" type="Animation" id=3]
-[ext_resource path="res://Animations/Human/ShootDodgeLeft_Getup.tres" type="Animation" id=4]
-[ext_resource path="res://Animations/Human/ShootDodgeRight_Getup.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/converted/ShootDodgeForward_Getup.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/converted/ShootDodgeLeft_Getup.tres" type="Animation" id=4]
+[ext_resource path="res://Animations/converted/ShootDodgeRight_Getup.tres" type="Animation" id=5]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/ShootDodgeBackward_Getup = ExtResource( 1 )

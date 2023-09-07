@@ -42,7 +42,7 @@ func _on_fire(projectile, item):
 
 				projectile.visible = false
 
-				await get_tree().idle_frame
+				await get_tree().process_frame
 
 				if not is_instance_valid(projectile):
 					return
@@ -186,7 +186,7 @@ func _ready():
 	right_kick.connect('item_released',Callable(self,'_on_punch'))
 	left_kick.connect('item_released',Callable(self,'_on_punch'))
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	shoulder_bone = owner.get_node('Hitboxes')._get_bone(shoulder_bone_name)
 	

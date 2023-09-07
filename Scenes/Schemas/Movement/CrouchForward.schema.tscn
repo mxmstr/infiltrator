@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Animations/Human/Movement/CrouchForward.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/converted/Movement/CrouchForward.tres" type="Animation" id=1]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/CrouchForward = ExtResource( 1 )

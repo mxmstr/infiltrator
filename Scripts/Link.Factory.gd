@@ -14,7 +14,7 @@ func _ready():
 	if is_queued_for_deletion():
 		return
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 #	products = products.c_escape().replace('\\n', ' ')
 	
@@ -70,7 +70,7 @@ func _ready():
 
 func _create_product(target, target_container, amount, item):
 	
-	for i in range(amount):
+	for i in range(int(amount)):
 		
 		if target.get_node(target_container).factory_mode:
 			

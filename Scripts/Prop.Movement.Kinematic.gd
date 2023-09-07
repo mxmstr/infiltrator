@@ -65,7 +65,7 @@ func _face(target, angle_delta=0.0):
 
 func _process(delta):
 	
-	if not process_movement or (collision and collision.disabled):
+	if not process_movement or (collision == null and collision.disabled):
 		return
 	
 	var new_velocity = angular_direction * delta
@@ -97,7 +97,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	
-	if not process_movement or (collision and collision.disabled):
+	if not process_movement or (collision != null and collision.disabled):
 		return
 	
 	var new_velocity = direction * speed * delta

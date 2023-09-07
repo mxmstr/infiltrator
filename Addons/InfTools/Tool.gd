@@ -94,7 +94,9 @@ func on_revert_statemachines():
 
 func on_loadanim_pressed():
 	
-	return
+	var current_path = EditorPlugin.new().get_editor_interface().get_current_path()
+	var res = load(current_path)
+	prints(res.get_track_count())
 #	if not selection.get_selected_nodes().is_empty():
 #
 #		var selected = selection.get_selected_nodes()[0]
@@ -326,7 +328,7 @@ func on_convert_anim_pressed():
 		if dir.current_is_dir():
 			continue
 		
-		if not file.ends_with('.blend'):
+		if not file.ends_with('.glb'):
 			continue
 		
 		
@@ -344,7 +346,7 @@ func on_convert_anim_pressed():
 			var anim_source = anim_player.get_animation(anim_name)
 			#prints(anim_source)
 			
-			anim_name = file.replace('.blend', '')
+			anim_name = file.replace('.glb', '')
 #			anim_name = anim_name.replace('kf2001', '').replace('kf2', '')
 			
 			for i in range(anim_source.get_track_count()):

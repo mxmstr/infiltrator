@@ -42,7 +42,8 @@ func _load_animations():
 	for animation_name in animation_list:
 		
 		var animation_res = schema_animation_player.get_animation(animation_name)
-		animation_player.add_animation_library(animation_name, animation_res)
+		var library = animation_player.get_animation_library(animation_player.get_animation_library_list()[0])
+		library.add_animation(animation_name, animation_res)
 	
 	
 	animation = animation_list[0]

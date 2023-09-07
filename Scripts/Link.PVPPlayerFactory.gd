@@ -34,7 +34,7 @@ func _on_player_died(player, data):
 		var shooter = data.shooter
 		var shooter_team = 0
 		
-		if not shooter or shooter == player:
+		if shooter == null or shooter == player:
 			return
 		
 		if shooter._has_tag('Team'):
@@ -110,6 +110,8 @@ func _respawn(actor):
 
 func _enter_tree():
 	
+	super()
+	
 	check_nulls = false
 
 
@@ -137,7 +139,7 @@ func _ready():
 #		return
 	
 	
-	#await get_tree().idle_frame
+	#await get_tree().process_frame
 	
 	for child in get_children():
 		if 'RespawnMarker' in child.name:
@@ -164,7 +166,7 @@ func _ready():
 	_play_fight_music()
 	
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	for i in range(Meta.player_count):
 		

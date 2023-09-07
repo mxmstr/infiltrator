@@ -39,7 +39,8 @@ func _can_switch():
 
 func _add_animation(animation_name, animation_res):
 	
-	animation_player.add_animation_library(animation_name, animation_res)
+	var library = animation_player.get_animation_library(animation_player.get_animation_library_list()[0])
+	library.add_animation(animation_name, animation_res)
 
 
 func _play(new_state, animation, attributes, _data):
@@ -90,6 +91,6 @@ func _ready():
 	audio_stream.bus = bus
 	audio_stream.pitch_scale = Engine.time_scale
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	call_deferred('emit_signal', 'action_started', default_state, {})

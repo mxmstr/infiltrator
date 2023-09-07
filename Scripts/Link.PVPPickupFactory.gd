@@ -52,9 +52,7 @@ func _on_factory_finished(link, marker):
 			pickups.append(output)
 			output.get_node('AreaStim').connect(
 				'stimulate',
-				self,
-				'_on_stimulate',
-				[output, marker],
+				Callable(self, '_on_stimulate').bind(output, marker),
 				CONNECT_ONE_SHOT
 				)
 			
@@ -81,12 +79,14 @@ func _refresh_spawn(marker):
 
 func _enter_tree():
 	
+	super()
+	
 	check_nulls = false
 
 
 func _ready():
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	if get_child_count() == 0:
 		return

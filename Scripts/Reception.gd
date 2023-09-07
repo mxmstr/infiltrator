@@ -68,9 +68,6 @@ func _reflect(reflected_stim=''):
 	
 #	prints(owner.name, 'reflect', reflected_stim)
 	
-	if not data:
-		return
-	
 	if reflected_stim == '':
 		reflected_stim = stim
 	

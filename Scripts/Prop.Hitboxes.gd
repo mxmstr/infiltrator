@@ -51,6 +51,6 @@ func _get_bone(bone_name):
 
 func _ready():
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	_add_children()

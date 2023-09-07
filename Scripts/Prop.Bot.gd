@@ -80,12 +80,12 @@ func _start_travel():
 	
 	if right_hand._is_empty():
 		target = _get_closest_pickup()
-		if not target:
+		if target == null:
 			target = _get_closest_enemy()
 	else:
 		target = _get_closest_enemy()
 	
-	if not target:
+	if target == null:
 		return
 	
 	travelling = true

@@ -41,7 +41,7 @@ func _on_state_starting(_name):
 	
 	var node = behavior.tree_root.get_node(_name)
 	
-	if not node.get('blend'):
+	if node.get('blend') == null:
 		return
 	
 	
@@ -79,7 +79,7 @@ func _blend_camera(delta):
 
 func _blend_skeletons(delta):
 	
-	if not model_skeleton:
+	if model_skeleton == null:
 		return
 	
 	
@@ -148,7 +148,7 @@ func _blend_skeletons(delta):
 
 func _set_skeleton():
 	
-	if not model:
+	if model == null:
 		return
 	
 	
@@ -167,7 +167,7 @@ func _enter_tree():
 	model = get_node_or_null('../Model')
 	animation_player = $AnimationPlayer
 	
-	if not model:
+	if model == null:
 		return
 	
 	
@@ -188,7 +188,7 @@ func _ready():
 	behavior = get_node_or_null('../Behavior')
 	behavior_animation_player = get_node_or_null('../Behavior/AnimationPlayer')
 	
-	if not model:
+	if model == null:
 		
 		set_process(false)
 		set_physics_process(false)
@@ -196,7 +196,7 @@ func _ready():
 		return
 	
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 #	var playback = behavior.get('parameters/playback')
 #	playback.connect('state_starting',Callable(self,'_on_state_starting'))
@@ -209,7 +209,7 @@ func _ready():
 
 func _process(delta):
 	
-	if not model:
+	if model == null:
 		return
 	
 	_blend_camera(delta)

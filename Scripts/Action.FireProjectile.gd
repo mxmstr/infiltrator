@@ -58,6 +58,6 @@ func _state_start():
 
 func _ready():
 	
-	await get_tree().idle_frame
+	await super()
 	
 	attributes[animation_list[0]].speed = float(owner._get_tag('FireRate'))

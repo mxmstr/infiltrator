@@ -128,7 +128,7 @@ func _ready():
 	
 	_deactivate_actor()
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	if _is_invalid():
 		return

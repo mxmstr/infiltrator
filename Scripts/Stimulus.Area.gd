@@ -12,7 +12,7 @@ signal stimulate
 
 func _on_body_entered(body):
 	
-	if not collision or collision.disabled:
+	if collision == null or collision.disabled:
 		return
 
 	if body in movement.collision_exceptions:

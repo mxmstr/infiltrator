@@ -64,7 +64,7 @@ func _ready():
 	
 	_reset_camera()
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	$Camera3D.set_viewport(get_node(viewport))
 	camera.current = true

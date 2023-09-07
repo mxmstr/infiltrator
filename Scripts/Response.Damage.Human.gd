@@ -35,19 +35,19 @@ func _on_stimulate(stim, data):
 			right_hand._release_front()
 			inventory._release_all()
 			
-			for data in [[inv_9mm, 'Items/AmmoBox9mm'],
+			for item_map in [[inv_9mm, 'Items/AmmoBox9mm'],
 					[inv_rifle, 'Items/AmmoBoxRifle'],
 					[inv_magnum, 'Items/AmmoBoxMagnum'],
 					[inv_shotgun, 'Items/AmmoBoxShotgun'],
 					[inv_sniper, 'Items/AmmoBoxSniper']]:
 				
-				if not data[0]._is_empty():
+				if not item_map[0]._is_empty():
 					
-					var ammo_box = ActorServer.Create(data[1], inventory.global_transform.origin)
-					ammo_box._set_tag('amount', str(data[0].items.size()))
+					var ammo_box = ActorServer.Create(item_map[1], inventory.global_transform.origin)
+					ammo_box._set_tag('amount', str(item_map[0].items.size()))
 					#inventory._exclude_recursive(ammo_box, owner)
 					
-					data[0]._delete_all()
+					item_map[0]._delete_all()
 			
 			if data.source._has_tag('Explosion'):
 				

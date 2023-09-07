@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
-[ext_resource path="res://Animations/Human/Action/Reload/ReloadBerettaDual.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/converted/Action/Reload/ReloadBerettaDual.tres" type="Animation" id=3]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/ReloadBerettaDual = ExtResource( 3 )

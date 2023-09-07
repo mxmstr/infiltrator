@@ -29,7 +29,7 @@ func _is_invalid():
 	if is_queued_for_deletion():
 		return true
 	
-	if not from_node:
+	if from_node == null:
 		return true
 	
 	if not is_instance_valid(from_node):
@@ -41,7 +41,7 @@ func _is_invalid():
 	if not is_instance_valid(from_node.get_parent()):
 		return true
 	
-	if not to_node:
+	if not to_node == null:
 		return true
 	
 	if not is_instance_valid(to_node):

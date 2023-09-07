@@ -39,7 +39,7 @@ func _ready():
 		return
 	
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	if from_node.has_node('Perspective') and to_node.has_node('Perspective'):
 		_split_viewports()

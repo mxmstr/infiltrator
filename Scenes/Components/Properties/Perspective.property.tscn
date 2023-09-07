@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://b43p7v0nslfcv"]
 
-[ext_resource path="res://Scripts/Prop.Perspective.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://Scripts/Prop.Perspective.gd" id="1"]
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id="3"]
 code = "shader_type canvas_item;
 
 uniform float brightness : hint_range(0.0,8.0) = 1.0;
@@ -35,171 +35,177 @@ void fragment(){
 	COLOR.a = input_color.a;
 }"
 
-[sub_resource type="Gradient" id=4]
-colors = PackedColorArray( 0, 0, 0, 0, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="4"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture2D" id="5"]
+gradient = SubResource("4")
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 3 )
-shader_param/brightness = 1.0
-shader_param/contrast = 1.0
-shader_param/saturation = 1.0
-shader_param/gradient = SubResource( 5 )
+[sub_resource type="ShaderMaterial" id="6"]
+shader = SubResource("3")
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/gradient = SubResource("5")
 
-[sub_resource type="ViewportTexture" id=11]
+[sub_resource type="ViewportTexture" id="11"]
 viewport_path = NodePath("Viewport2D")
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id="8"]
 resource_name = "BulletTime"
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Control/ColorCorrection:material:shader_param/brightness")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.1 ]
+"values": [1.1]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Control/ColorCorrection:material:shader_param/contrast")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.25 ]
+"values": [1.25]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Control/ColorCorrection:material:shader_param/saturation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0.75 ]
+"values": [0.75]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id="9"]
 resource_name = "Default"
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Control/ColorCorrection:material:shader_param/brightness")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.0 ]
+"values": [1.0]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Control/ColorCorrection:material:shader_param/contrast")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.0 ]
+"values": [1.0]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Control/ColorCorrection:material:shader_param/saturation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.0 ]
+"values": [1.0]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id="10"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Control/ColorCorrection:material:shader_param/brightness")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.0 ]
+"values": [1.0]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Control/ColorCorrection:material:shader_param/contrast")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.0 ]
+"values": [1.0]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Control/ColorCorrection:material:shader_param/saturation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 1.0 ]
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vcee6"]
+_data = {
+"BulletTime": SubResource("8"),
+"Default": SubResource("9"),
+"RESET": SubResource("10")
 }
 
 [node name="Perspective" type="SubViewportContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 stretch = true
-script = ExtResource( 1 )
+script = ExtResource("1")
 fp_root_bone = "Pelvis"
-fp_hidden_bones = [ "Head", "Neck" ]
+fp_hidden_bones = Array[String](["Head", "Neck"])
 
 [node name="Viewport2D" type="SubViewport" parent="."]
-size = Vector2( 1024, 600 )
 handle_input_locally = false
-hdr = false
-render_target_update_mode = 3
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-shadow_atlas_size = 1
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
 
 [node name="Control" type="AspectRatioContainer" parent="."]
+layout_mode = 2
 
 [node name="ColorCorrection" type="TextureRect" parent="Control"]
-material = SubResource( 6 )
-offset_right = 1024.0
-offset_bottom = 600.0
+material = SubResource("6")
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = SubResource( 11 )
+texture = SubResource("11")
 stretch_mode = 1
 flip_v = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Default"
 playback_default_blend_time = 0.1
-anims/BulletTime = SubResource( 8 )
-anims/Default = SubResource( 9 )
-anims/RESET = SubResource( 10 )
+libraries = {
+"": SubResource("AnimationLibrary_vcee6")
+}

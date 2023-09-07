@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://k7gappmj5eb1"]
 
-[ext_resource type="PackedScene" uid="uid://dwtk55cgtiw5c" path="res://Models/Humans/Trinity/Trinity.escn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dwtk55cgtiw5c" path="res://Models/Humans2/trinity.blend" id="1"]
 [ext_resource type="Animation" path="res://Animations/Human/Action/Kick/rspinkickA.tres" id="2"]
 [ext_resource type="Animation" path="res://Animations/Human/Action/Kick/rspinkick.tres" id="3"]
 [ext_resource type="Animation" path="res://Animations/Human/Action/Kick/jumpspinkickup_new.tres" id="4"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Actors/Items/Kick.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://Scenes/Actors/Items/Sword.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://Scenes/Actors/Items/SwordHit.tscn" id="10"]
-[ext_resource type="PackedScene" uid="uid://bi2e5nxbxpn3c" path="res://Models/Humans/Anderson/Anderson.escn" id="12"]
+[ext_resource type="PackedScene" uid="uid://bi2e5nxbxpn3c" path="res://Models/Humans2/anderson.blend" id="12"]
 [ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Stance.property.tscn" id="14"]
 [ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Stamina.property.tscn" id="27"]
 [ext_resource type="Animation" path="res://Animations/Human/Action/Kick/leftjumpspinkick.tres" id="28"]

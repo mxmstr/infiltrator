@@ -73,6 +73,8 @@ func _state_start():
 
 func _ready():
 	
+	await super()
+	
 	await behavior.pre_advance
 	
 	x_min = behavior.blend_space_2d.get('min_space').x

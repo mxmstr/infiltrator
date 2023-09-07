@@ -116,7 +116,7 @@ func _ready():
 	
 #	set_process_input(false)
 	
-#	await get_tree().idle_frame
+#	await get_tree().process_frame
 	
 #	set_physics_process_internal(false)
 #	set_process_internal(false)

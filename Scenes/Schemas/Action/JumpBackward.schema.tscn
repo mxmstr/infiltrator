@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dq5pu1u3ugd2r"]
 
-[ext_resource path="res://Animations/Human/Action/Jump/HOPBACK.tres" type="Animation" id=1]
-[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
+[ext_resource type="Animation" uid="uid://bl4774mj1i2wd" path="res://Animations/converted/hopback.tres" id="1"]
+[ext_resource type="Script" path="res://Scripts/Schema.gd" id="2"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fn0ll"]
+_data = {
+"HOPBACK": ExtResource("1")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-anims/HOPBACK = ExtResource( 1 )
-script = ExtResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_fn0ll")
+}
+script = ExtResource("2")
 attributes = "{
 	\"*\": {
 		\"speed\": 2.0,

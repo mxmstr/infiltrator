@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://fhddflu57qj7"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Actors/Humans/Players/Player.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://dsmr2r768ob7p" path="res://Models/Humans2/Anderson/anderson.blend" id="2_a4iaa"]
+[ext_resource type="PackedScene" uid="uid://dlkwg7q7m0qsn" path="res://Models/Humans2/anderson.blend" id="2_a4iaa"]
 [ext_resource type="PackedScene" path="res://Models/Humans/DefaultHumanCollision.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dd7kgt153j5fv" path="res://Scenes/Components/Properties/Outline.property.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Hitboxes.property.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://Scenes/Actors/Humans/Human.Hitboxes.tscn" id="6"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yp7r3"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0gjj0"]
 resource_local_to_scene = true
 size = Vector3(0.15, 0.9, 0.15)
 
@@ -19,7 +19,7 @@ tags = "Actor Human Male Team:0 Skeleton3D:Default"
 [node name="Model" parent="." index="1" instance=ExtResource("2_a4iaa")]
 
 [node name="Collision" parent="." index="2" instance=ExtResource("3")]
-shape = SubResource("BoxShape3D_yp7r3")
+shape = SubResource("BoxShape3D_0gjj0")
 
 [node name="Outline" parent="." index="3" instance=ExtResource("4")]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqffh1e7p53i5"]
 
-[ext_resource type="Animation" path="res://Animations/Human/GetWeapon.tres" id="1"]
+[ext_resource type="Animation" path="res://Animations/converted/GetWeapon.tres" id="1"]
 [ext_resource type="Script" path="res://Scripts/Schema.gd" id="2"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ku22n"]

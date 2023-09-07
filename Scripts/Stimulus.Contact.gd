@@ -33,7 +33,7 @@ func _ready():
 
 func _physics_process(delta):
 	
-	if not active or owner.is_queued_for_deletion() or (collision and collision.disabled):
+	if not active or owner.is_queued_for_deletion() or (collision == null and collision.disabled):
 		return
 	
 	

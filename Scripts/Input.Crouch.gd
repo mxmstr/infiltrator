@@ -78,6 +78,8 @@ func _roll():
 
 func _process(delta):
 	
+	super(delta)
+	
 	if roll_input_active:
 		
 		if roll_input_timeout and strength < 0.9:

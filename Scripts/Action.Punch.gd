@@ -19,6 +19,6 @@ func _on_action(_state, data):
 
 func _ready():
 	
-	await get_tree().idle_frame
+	await super()
 	
 	animation_list_idle = _load_animations(schema_idle)

@@ -31,7 +31,7 @@ func _evaluate():
 		
 		var result = exec.execute(arguments.values(), owner)
 		
-		if not result:
+		if result == null:
 		
 			if exec.has_execute_failed():
 				

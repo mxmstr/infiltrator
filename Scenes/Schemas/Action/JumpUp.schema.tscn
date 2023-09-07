@@ -1,11 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://bx6cg14nmwt03"]
 
-[ext_resource path="res://Animations/Human/Action/Jump/JumpUp.tres" type="Animation" id=1]
-[ext_resource path="res://Scripts/Schema.gd" type="Script" id=2]
+[ext_resource type="Animation" uid="uid://baskx2k8iia0w" path="res://Animations/converted/Action/Jump/JumpUp.tres" id="1"]
+[ext_resource type="Script" path="res://Scripts/Schema.gd" id="2"]
+[ext_resource type="Animation" uid="uid://c6yp88rqi0nbp" path="res://Animations/new_animation.res" id="2_u0w4a"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mu7uj"]
+_data = {
+"JumpUp": ExtResource("1"),
+"new_animation": ExtResource("2_u0w4a")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-anims/JumpUp = ExtResource( 1 )
-script = ExtResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_mu7uj")
+}
+script = ExtResource("2")
 attributes = "{
 	\"*\": {
 		\"clip_start\": 0.05,

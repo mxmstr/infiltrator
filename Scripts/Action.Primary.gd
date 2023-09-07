@@ -51,7 +51,7 @@ func _cock_weapon():
 
 func _ready():
 	
-	await get_tree().idle_frame
+	await super()
 	
 	for item_name in item_names:
 		

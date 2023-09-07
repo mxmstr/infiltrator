@@ -26,12 +26,12 @@ signal triggered
 
 func _has_selection():
 	
-	if not get_collider() or not get_collider().get('tags'):
+	if get_collider() == null or get_collider().get('tags') == null:
 		return false
 	
 	for item_tag in required_tags_dict.keys():
 		
-		if item_tag.length() and not get_collider()._has_tag(item_tag):
+		if item_tag.length() > 0 and get_collider()._has_tag(item_tag) == null:
 			return false
 	
 	return true
@@ -41,7 +41,7 @@ func _stimulate(stim_type_override=''):
 	
 	var new_stim = stim_type_override if stim_type_override != '' else stim_type
 	
-	if not new_stim.length() or not selection:
+	if new_stim.length() == 0 or selection == null:
 		return
 	
 	
@@ -85,12 +85,14 @@ func _on_before_move(velocity):
 
 func _ready():
 	
-	for tag in required_tags.split(' '):
+	if required_tags != null:
 		
-		var values = Array(tag.split(':'))
-		var key = values.pop_front()
-		
-		required_tags_dict[key] = values
+		for tag in required_tags.split(' '):
+			
+			var values = Array(tag.split(':'))
+			var key = values.pop_front()
+			
+			required_tags_dict[key] = values
 	
 	
 	if not path.is_empty():
@@ -108,7 +110,7 @@ func _ready():
 		movement.connect('before_move',Callable(self,'_on_before_move'))
 	
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	if owner.has_node('Hitboxes'):
 		for hitbox in owner.get_node('Hitboxes').hitboxes:
@@ -117,12 +119,12 @@ func _ready():
 
 func _process(delta):
 	
-	if root:
+	if root != null:
 		
 		global_transform.origin = root.global_transform.origin
 		global_transform.basis = root.global_transform.basis
 		
-		if rotation_offset.length():
+		if rotation_offset.length() > 0:
 			global_transform.basis = global_transform.basis.rotated(root.global_transform.basis.y, rotation_offset.x)
 			global_transform.basis = global_transform.basis.rotated(root.global_transform.basis.x, -rotation_offset.y)
 	

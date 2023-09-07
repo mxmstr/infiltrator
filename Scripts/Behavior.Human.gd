@@ -37,7 +37,6 @@ var blend_space_downleft
 var blend_space_left
 var blend_space_upleft
 
-@onready var animation_player = $AnimationPlayer
 @onready var viewport = $'../Perspective/Viewport2D'
 @onready var movement = get_node_or_null('../Movement')
 @onready var perspective = get_node_or_null('../Perspective')
@@ -105,7 +104,8 @@ func _set_action_blend(blend):
 
 func _add_animation(animation_name, animation_res):
 	
-	animation_player.add_animation_library(animation_name, animation_res)
+	var library = animation_player.get_animation_library(animation_player.get_animation_library_list()[0])
+	library.add_animation(animation_name, animation_res)
 
 
 func _set_animation(animation, scale, clip_start, clip_end):
@@ -286,7 +286,7 @@ func _play(new_state, animation, attributes, _data, up_animation=null, down_anim
 	
 	data = _data
 	
-	if not up_animation and not down_animation:
+	if up_animation == null and down_animation == null:
 		_set_action_blend(0)
 	
 	_set_oneshot_active(false)
@@ -401,7 +401,7 @@ func _ready():
 	
 	set_physics_process(false)
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	set('tree_root', get('tree_root').duplicate(true))
 	
@@ -423,11 +423,13 @@ func _ready():
 	var anim_layer_player = anim_layer_movement.get_node('AnimationPlayer')
 	
 	for animation in anim_layer_player.get_animation_list():
-		animation_player.add_animation_library(animation, anim_layer_player.get_animation(animation))
+		
+		var library = anim_layer_player.get_animation_library(anim_layer_player.get_animation_library_list()[0])
+		library.add_animation(animation, anim_layer_player.get_animation(animation))
 	
 	anim_layer_movement.anim_player = anim_layer_movement.get_path_to(animation_player)
 	anim_layer_movement.tree_root = anim_layer_movement.tree_root.duplicate(true)
-	anim_layer_movement.tree_root._ready(anim_layer_movement, null, 'parameters/', 'root')
+	anim_layer_movement.tree_root.__ready(anim_layer_movement, null, 'parameters/', 'root')
 	anim_layer_movement.active = true
 	
 	set('active', true)

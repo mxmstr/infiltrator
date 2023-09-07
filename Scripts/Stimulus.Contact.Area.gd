@@ -15,7 +15,7 @@ var one_shot_frames = 2
 
 func _on_body_shape_entered(body_id, body, body_shape, area_shape):
 	
-	if not active or (not collision or collision.disabled):
+	if not active or (collision == null or collision.disabled):
 		return
 	
 	if body in movement.collision_exceptions:

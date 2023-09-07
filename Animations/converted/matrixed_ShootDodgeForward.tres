@@ -129,3 +129,101 @@ tracks/17/path = NodePath(".:LoLeg-L")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = PackedFloat32Array(0, 1, -0.231668, 0.0383636, -0.0241772, 0.971737, 0.0666667, 1, -0.299656, 0.0517876, -0.0221455, 0.952383, 0.133333, 1, -0.468625, 0.0853292, -0.0163412, 0.879115, 0.2, 1, -0.597326, 0.111085, -0.0110477, 0.794191, 0.266667, 1, -0.677532, 0.127255, -0.00724184, 0.724365, 0.333333, 1, -0.649338, 0.121558, -0.0086327, 0.750672, 0.4, 1, -0.590449, 0.109703, -0.0113534, 0.799504, 0.466667, 1, -0.476675, 0.0869343, -0.0160345, 0.874623, 0.533333, 1, -0.374168, 0.0665455, -0.0197265, 0.92476, 0.6, 1, -0.376993, 0.0671059, -0.0196305, 0.923573, 0.666667, 1, -0.467642, 0.0851333, -0.0163786, 0.879656, 0.733333, 1, -0.592702, 0.110155, -0.0112536, 0.797774, 0.8, 1, -0.688781, 0.129532, -0.00666911, 0.713272, 0.866667, 1, -0.670454, 0.125824, -0.00759663, 0.731165, 0.933333, 1, -0.614209, 0.11448, -0.0102833, 0.780728, 1, 1, -0.548632, 0.101315, -0.0131545, 0.829798, 1.06667, 1, -0.537631, 0.0991126, -0.0136119, 0.837224, 1.13333, 1, -0.46516, 0.0560104, -0.0827541, 0.879568, 1.2, 1, -0.362928, -0.00176259, -0.172954, 0.915624, 1.26667, 1, -0.283363, -0.038503, -0.223948, 0.931703, 1.4, 1, -0.302872, 0.0148015, -0.109113, 0.946649, 1.46667, 1, -0.310755, 0.0414169, -0.0508934, 0.948223, 1.53333, 1, -0.220842, 0.0362293, -0.0244864, 0.974329, 1.6, 1, -0.028552, -0.00152539, -0.0293368, 0.999161, 1.66667, 1, 0.052555, -0.0173674, -0.0310334, 0.997985, 1.73333, 1, 0.0658323, -0.0199558, -0.0312919, 0.99714, 1.8, 1, 0.0281154, -0.0125989, -0.030544, 0.999059, 1.86667, 1, -0.0266616, -0.00189533, -0.0293785, 0.999211, 1.93333, 1, -0.0457858, 0.00184707, -0.0289499, 0.99853, 1.95833, 1, -0.0510463, 0.00287713, -0.0288301, 0.998276)
+tracks/18/type = "value"
+tracks/18/path = NodePath("../../CameraRig:translation")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.7, 0 ) ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("../../CameraRig:rotation_degrees")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ) ]
+}
+tracks/19/type = "method"
+tracks/19/path = NodePath("../../Movement")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PackedFloat32Array( 0.5 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ 4.5 ],
+"method": "_add_vertical_velocity"
+} ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("../../Stance:stance")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PackedFloat32Array( 0.05 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/21/type = "method"
+tracks/21/path = NodePath("../../Stamina")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PackedFloat32Array( 0.05, 0.458334 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "_set_invulnerable"
+}, {
+"args": [ false ],
+"method": "_set_invulnerable"
+} ]
+}
+tracks/22/type = "method"
+tracks/22/path = NodePath("../../StingerAudio")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PackedFloat32Array( 0.1 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ "ShootDodgeStinger" ],
+"method": "_start_state"
+} ]
+}
+tracks/23/type = "method"
+tracks/23/path = NodePath("../../BulletTime")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PackedFloat32Array( 0.458333, 1.875 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_start"
+}, {
+"args": [  ],
+"method": "_stop"
+} ]
+}

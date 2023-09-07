@@ -73,7 +73,7 @@ func __ready(_owner, _parent, _parameters, _from, _to):
 	if parent != null and parent.has_user_signal('travel_starting'):
 		parent.connect('travel_starting',Callable(self,'_on_travel_starting'))
 	
-	#await owner.get_tree().idle_frame
+	#await owner.get_tree().process_frame
 	
 	owner.connect('on_process',Callable(self,'__process'))
 

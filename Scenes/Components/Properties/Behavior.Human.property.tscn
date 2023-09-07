@@ -1,133 +1,127 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=3 uid="uid://u8816td673lh"]
 
-[ext_resource path="res://Scripts/Behavior.Human.gd" type="Script" id=1]
-[ext_resource path="res://Animations/DefaultAnim.tres" type="Animation" id=2]
-[ext_resource path="res://Animations/Human/Action/Reload/ReloadMP5.tres" type="Animation" id=3]
+[ext_resource type="Script" path="res://Scripts/Behavior.Human.gd" id="1"]
+[ext_resource type="Animation" uid="uid://cptybn6j7yrgf" path="res://Animations/DefaultAnim.tres" id="2"]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeAnimation" id="1"]
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeBlend3" id=2]
+[sub_resource type="AnimationNodeBlend3" id="2"]
 
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeAnimation" id="3"]
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeAnimation" id="4"]
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeAnimation" id="5"]
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id="14"]
 resource_name = "Forward"
-animation = "DefaultAnim"
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id="15"]
 resource_name = "ForwardRight"
-animation = "DefaultAnim"
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id="16"]
 resource_name = "Right"
-animation = "DefaultAnim"
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id="17"]
 resource_name = "BackwardRight"
-animation = "DefaultAnim"
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id="18"]
 resource_name = "Backward"
-animation = "DefaultAnim"
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id="19"]
 resource_name = "BackwardLeft"
-animation = "DefaultAnim"
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id="20"]
 resource_name = "Left"
-animation = "DefaultAnim"
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id="21"]
 resource_name = "ForwardLeft"
-animation = "DefaultAnim"
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
-animation = "DefaultAnim"
+[sub_resource type="AnimationNodeAnimation" id="22"]
+animation = &"DefaultAnim"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=12]
-blend_point_0/node = SubResource( 14 )
-blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 15 )
-blend_point_1/pos = Vector2( 0.7, 0.7 )
-blend_point_2/node = SubResource( 16 )
-blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 17 )
-blend_point_3/pos = Vector2( 0.7, -0.7 )
-blend_point_4/node = SubResource( 18 )
-blend_point_4/pos = Vector2( 0, -1 )
-blend_point_5/node = SubResource( 19 )
-blend_point_5/pos = Vector2( -0.7, -0.7 )
-blend_point_6/node = SubResource( 20 )
-blend_point_6/pos = Vector2( -1, 0 )
-blend_point_7/node = SubResource( 21 )
-blend_point_7/pos = Vector2( -0.7, 0.7 )
-blend_point_8/node = SubResource( 22 )
-blend_point_8/pos = Vector2( 0, 0 )
+[sub_resource type="AnimationNodeBlendSpace2D" id="12"]
+blend_point_0/node = SubResource("14")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("15")
+blend_point_1/pos = Vector2(0.7, 0.7)
+blend_point_2/node = SubResource("16")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("17")
+blend_point_3/pos = Vector2(0.7, -0.7)
+blend_point_4/node = SubResource("18")
+blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("19")
+blend_point_5/pos = Vector2(-0.7, -0.7)
+blend_point_6/node = SubResource("20")
+blend_point_6/pos = Vector2(-1, 0)
+blend_point_7/node = SubResource("21")
+blend_point_7/pos = Vector2(-0.7, 0.7)
+blend_point_8/node = SubResource("22")
+blend_point_8/pos = Vector2(0, 0)
 
-[sub_resource type="AnimationNodeOneShot" id=7]
-filters = [ ".", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:Neck", ".:Pelvis", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:shoulders" ]
-fadein_time = 0.0
-fadeout_time = 0.0
+[sub_resource type="AnimationNodeOneShot" id="7"]
+filters = [".", ".:Gun", ".:Hand-L", ".:Hand-R", ".:Head", ".:JBLL", ".:JBRL", ".:JBack", ".:JFLL", ".:JFLR", ".:JfUL", ".:JfUR", ".:LoArm-L", ".:LoArm-R", ".:Neck", ".:Pelvis", ".:Torso", ".:UpArm-L", ".:UpArm-R", ".:shoulders"]
 
-[sub_resource type="AnimationNodeTransition" id=13]
-input_count = 2
+[sub_resource type="AnimationNodeTransition" id="13"]
 input_0/name = "OneShot"
 input_0/auto_advance = false
+input_0/reset = true
 input_1/name = "BlendSpace2D"
 input_1/auto_advance = false
+input_1/reset = true
 
-[sub_resource type="AnimationNodeBlendTree" id=8]
-graph_offset = Vector2( 0.00012207, 0 )
-nodes/Action/node = SubResource( 1 )
-nodes/Action/position = Vector2( 80, -40 )
-nodes/ActionBlend/node = SubResource( 2 )
-nodes/ActionBlend/position = Vector2( 300, -60 )
-nodes/ActionDown/node = SubResource( 3 )
-nodes/ActionDown/position = Vector2( 80, -160 )
-nodes/ActionUp/node = SubResource( 4 )
-nodes/ActionUp/position = Vector2( 80, 80 )
-nodes/Animation/node = SubResource( 5 )
-nodes/Animation/position = Vector2( 280, 140 )
-nodes/BlendSpace2D/node = SubResource( 12 )
-nodes/BlendSpace2D/position = Vector2( 500, 200 )
-nodes/OneShot/node = SubResource( 7 )
-nodes/OneShot/position = Vector2( 500, 0 )
-nodes/Transition/node = SubResource( 13 )
-nodes/Transition/position = Vector2( 720, 60 )
-nodes/output/position = Vector2( 940, 100 )
-node_connections = [ "OneShot", 0, "Animation", "OneShot", 1, "ActionBlend", "ActionBlend", 0, "ActionDown", "ActionBlend", 1, "Action", "ActionBlend", 2, "ActionUp", "Transition", 0, "OneShot", "Transition", 1, "BlendSpace2D", "output", 0, "Transition" ]
+[sub_resource type="AnimationNodeBlendTree" id="8"]
+nodes/Action/node = SubResource("1")
+nodes/Action/position = Vector2(80, -40)
+nodes/ActionBlend/node = SubResource("2")
+nodes/ActionBlend/position = Vector2(300, -60)
+nodes/ActionDown/node = SubResource("3")
+nodes/ActionDown/position = Vector2(80, -160)
+nodes/ActionUp/node = SubResource("4")
+nodes/ActionUp/position = Vector2(80, 80)
+nodes/Animation/node = SubResource("5")
+nodes/Animation/position = Vector2(280, 140)
+nodes/BlendSpace2D/node = SubResource("12")
+nodes/BlendSpace2D/position = Vector2(500, 200)
+nodes/OneShot/node = SubResource("7")
+nodes/OneShot/position = Vector2(500, 0)
+nodes/Transition/node = SubResource("13")
+nodes/Transition/position = Vector2(720, 60)
+nodes/output/position = Vector2(940, 100)
+node_connections = [&"output", 0, &"Transition", &"ActionBlend", 0, &"ActionDown", &"ActionBlend", 1, &"Action", &"ActionBlend", 2, &"ActionUp", &"OneShot", 0, &"Animation", &"OneShot", 1, &"ActionBlend", &"Transition", 0, &"OneShot", &"Transition", 1, &"BlendSpace2D"]
 
-[sub_resource type="Animation" id=11]
-resource_name = "DefaultHumanAnim"
-length = 0.001
-tracks/0/type = "transform"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = PackedFloat32Array( 0, 1, 0, 0, 0, -1, 3.30012e-15, 4.37114e-08, 7.54979e-08, -1, -1, -1, 9.16667, 1, 0, 0, 0, -1, 3.30012e-15, 4.37114e-08, 7.54979e-08, -1, -1, -1 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x2ryo"]
+_data = {
+"DefaultAnim": ExtResource("2")
+}
 
 [node name="Behavior" type="AnimationTree"]
-tree_root = SubResource( 8 )
-anim_player = NodePath("AnimationPlayer")
 process_mode = 2
+tree_root = SubResource("8")
+anim_player = NodePath("AnimationPlayer")
 parameters/ActionBlend/blend_amount = 0.0
-parameters/BlendSpace2D/blend_position = Vector2( -0.660731, 0.676301 )
+parameters/BlendSpace2D/blend_position = Vector2(-0.660731, 0.676301)
 parameters/OneShot/active = false
-parameters/Transition/current = 0
-script = ExtResource( 1 )
+parameters/OneShot/request = 0
+parameters/Transition/current_state = ""
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = -1
+script = ExtResource("1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DefaultAnim = ExtResource( 2 )
-anims/DefaultHumanAnim = SubResource( 11 )
-anims/ReloadMP5 = ExtResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_x2ryo")
+}

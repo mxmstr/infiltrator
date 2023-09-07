@@ -129,3 +129,59 @@ tracks/17/path = NodePath(".:Toe-L")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = PackedFloat32Array(0, 1, 0.00485485, 1.56551e-06, 0.000322522, 0.999988, 0.133333, 1, 0.00593514, 1.90978e-06, 0.00032252, 0.999982, 0.2, 1, 0.00574874, 1.84414e-06, 0.00032252, 0.999983, 0.266667, 1, 0.00458976, 1.4719e-06, 0.000322529, 0.999989, 0.333333, 1, 0.00343086, 1.09929e-06, 0.000322527, 0.999994, 0.4, 1, 0.00227197, 7.26312e-07, 0.000322529, 0.999997, 0.466667, 1, 0.00111297, 3.50544e-07, 0.000322531, 0.999999, 0.533333, 1, -4.58299e-05, -2.39187e-08, 0.000322531, 1, 0.6, 1, -0.00120493, -3.98475e-07, 0.000322531, 0.999999, 0.666667, 1, -0.00236362, -7.72973e-07, 0.000322531, 0.999997, 0.733333, 1, -0.00352282, -1.14694e-06, 0.000322531, 0.999994, 0.933333, 1, -0.00279032, -9.13641e-07, 0.000322542, 0.999996, 1, 1, -0.000815627, -2.78837e-07, 0.000322548, 1, 1.06667, 1, 0.00191467, 6.0287e-07, 0.000322542, 0.999998, 1.13333, 1, 0.00590344, 1.88854e-06, 0.000322524, 0.999983, 1.2, 1, 0.0108985, 3.49698e-06, 0.000322525, 0.999941, 1.26667, 1, 0.0173606, 5.58257e-06, 0.000322493, 0.999849, 1.33333, 1, 0.0252052, 8.11186e-06, 0.000322428, 0.999682, 1.4, 1, 0.0350932, 1.13061e-05, 0.000322364, 0.999384, 1.46667, 1, 0.0516219, 1.66366e-05, 0.000322098, 0.998667, 1.53333, 1, 0.127569, 4.11281e-05, 0.000319909, 0.99183, 1.6, 1, 0.234252, 7.554e-05, 0.000313577, 0.972176, 1.66667, 1, 0.300128, 9.67829e-05, 0.000307681, 0.953899, 1.73333, 1, 0.298112, 9.61321e-05, 0.000307885, 0.954531, 1.8, 1, 0.277944, 8.96295e-05, 0.000309842, 0.960597, 1.86667, 1, 0.245265, 7.9089e-05, 0.000312686, 0.969456, 1.93333, 1, 0.208465, 6.72221e-05, 0.000315471, 0.97803, 2, 1, 0.174128, 5.61411e-05, 0.000317622, 0.984723, 2.06667, 1, 0.15258, 4.91882e-05, 0.000318786, 0.988291, 2.13333, 1, 0.157778, 5.08616e-05, 0.000318512, 0.987475, 2.2, 1, 0.273901, 8.83161e-05, 0.000310245, 0.961758, 2.26667, 1, 0.350208, 0.000112945, 0.000302148, 0.936672, 2.33333, 1, 0.350208, 0.000112946, 0.000302135, 0.936672)
+tracks/18/type = "method"
+tracks/18/path = NodePath("../../FoleyAudio")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PackedFloat32Array( 0.55 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ "SwordMelee" ],
+"method": "_start_state"
+} ]
+}
+tracks/19/type = "method"
+tracks/19/path = NodePath("../../RightPunchContainer")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PackedFloat32Array( 0.7 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ "Items/SwordHit" ],
+"method": "_create_and_launch_item"
+} ]
+}
+tracks/20/type = "method"
+tracks/20/path = NodePath("../../LeftPunchContainer")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PackedFloat32Array( 1.2 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ "Items/SwordHit" ],
+"method": "_create_and_launch_item"
+} ]
+}
+tracks/21/type = "method"
+tracks/21/path = NodePath("../../FoleyAudio")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PackedFloat32Array( 1.05 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ "SwordMelee" ],
+"method": "_start_state"
+} ]
+}

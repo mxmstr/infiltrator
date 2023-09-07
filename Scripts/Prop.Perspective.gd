@@ -90,7 +90,7 @@ func _on_item_released(item, container):
 
 func _init_fp_skeleton():
 	
-	if not model:
+	if model == null:
 		return
 	
 	
@@ -196,7 +196,7 @@ func _ready():
 #	RenderingServer.connect('viewport_pre_draw',Callable(self,'_on_pre_draw'))
 #	RenderingServer.connect('viewport_post_draw',Callable(self,'_on_post_draw'))
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	_init_fp_skeleton()
 	_init_viewport()

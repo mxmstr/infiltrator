@@ -10,7 +10,7 @@ func Create(new_actor, position=null, rotation=null, direction=null, tags={}):
 	
 	
 	var new_transform = Transform3D(
-		Basis(rotation if rotation else Vector3.FORWARD),
+		Basis().from_euler(rotation if rotation != null else Vector3.FORWARD),
 		position if position else Vector3()
 		)
 	
@@ -173,7 +173,7 @@ func RemoveCollisionException(projectile, other):
 
 func _on_node_added(node):
 	
-	if not actors or not is_instance_valid(actors):
+	if actors == null or not is_instance_valid(actors):
 		actors = get_node_or_null('/root/Mission/Actors')
 
 

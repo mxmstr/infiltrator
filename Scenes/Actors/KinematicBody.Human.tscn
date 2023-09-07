@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://Scripts/Actor.gd" id="1"]
 [ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Movement.Kinematic.Human.property.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Behavior.Human.property.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://u8816td673lh" path="res://Scenes/Components/Properties/Behavior.Human.property.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Reception.property.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://Scenes/Components/Properties/Audio.property.tscn" id="7"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="KinematicBody" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1")
@@ -15,10 +15,6 @@ tags = "Actor"
 [node name="Movement" parent="." instance=ExtResource("2")]
 
 [node name="Behavior" parent="." instance=ExtResource("3")]
-parameters/OneShot/request = 0
-parameters/Transition/current_state = ""
-parameters/Transition/transition_request = ""
-parameters/Transition/current_index = -1
 
 [node name="Reception" parent="." instance=ExtResource("4")]
 

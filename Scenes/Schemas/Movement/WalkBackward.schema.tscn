@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Animations/Human/Movement/WalkBackward.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/converted/Movement/WalkBackward.tres" type="Animation" id=1]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 anims/WalkBackward = ExtResource( 1 )

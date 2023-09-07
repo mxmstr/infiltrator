@@ -3,7 +3,7 @@ extends Node
 
 func _ready():
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	if not Meta.multi_outlines:
 		return

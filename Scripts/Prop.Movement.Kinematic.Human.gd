@@ -69,24 +69,20 @@ func _add_vertical_velocity(vertical):
 	gravity_direction.y += vertical
 
 
-func _apply_root_transform(root_transform):
+func _apply_root_transform():
 	
-	if root_transform == Transform3D():
-		return
+	var new_velocity = behavior.get_root_motion_position()
+	var new_rotation = behavior.get_root_motion_rotation().get_euler()
 	
-	#root_transform.origin /= get_process_delta_time()
-	
-	if root_motion_use_model:
+	if new_velocity != Vector3() and new_rotation != Vector3():
 		
-		var transform_offset = owner.global_transform
-		transform_offset.basis = model.global_transform.basis
-		transform_offset *= root_transform
-		transform_offset.basis = owner.global_transform.basis
-		owner.global_transform = transform_offset
-	
-	else:
+		owner.global_transform.basis = owner.global_transform.basis.rotated(new_rotation)
 		
-		owner.global_transform *= root_transform
+		if root_motion_use_model:
+			movement += new_velocity * model.global_transform.basis
+		
+		else:
+			movement += new_velocity
 
 
 func _teleport(new_position=null, new_rotation=null):
@@ -247,7 +243,7 @@ func _physics_process(delta):
 	
 	movement = velocity + gravity_direction
 	
-	_apply_root_transform(behavior.get_root_motion_transform())
+	_apply_root_transform()
 	
 # warning-ignore:return_value_discarded
 	owner.set_velocity(movement)

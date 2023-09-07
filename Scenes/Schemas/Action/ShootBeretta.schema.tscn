@@ -1,15 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://b0tgfmrebe66k"]
 
-[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBeretta.tres" type="Animation" id=1]
-[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBeretta_Down.tres" type="Animation" id=2]
-[ext_resource path="res://Animations/Human/Action/Shoot/Beretta/ShootBeretta_Up.tres" type="Animation" id=3]
-[ext_resource path="res://Scripts/Schema.gd" type="Script" id=4]
+[ext_resource type="Animation" uid="uid://cydp4jgh25711" path="res://Animations/converted/Action/Shoot/Beretta/ShootBeretta.tres" id="1"]
+[ext_resource type="Animation" uid="uid://cae7683erb3gd" path="res://Animations/converted/Action/Shoot/Beretta/ShootBeretta_Down.tres" id="2"]
+[ext_resource type="Animation" uid="uid://bq05fjwi41233" path="res://Animations/converted/Action/Shoot/Beretta/ShootBeretta_Up.tres" id="3"]
+[ext_resource type="Script" path="res://Scripts/Schema.gd" id="4"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxr4t"]
+_data = {
+"ShootBeretta": ExtResource("1"),
+"ShootBeretta_Down": ExtResource("2"),
+"ShootBeretta_Up": ExtResource("3")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-anims/ShootBeretta = ExtResource( 1 )
-anims/ShootBeretta_Down = ExtResource( 2 )
-anims/ShootBeretta_Up = ExtResource( 3 )
-script = ExtResource( 4 )
+libraries = {
+"": SubResource("AnimationLibrary_rxr4t")
+}
+script = ExtResource("4")
 attributes = "{
 	\"*\": {
 		\"clip_start\": 0.05,

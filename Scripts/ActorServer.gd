@@ -14,6 +14,8 @@ func _preload():
 	
 	for actor in actors:
 		
+		#push_warning(actor)
+
 		var actor_res = load(actor)
 		var actor_instance = actor_res.instantiate()
 
@@ -167,7 +169,7 @@ func SetDirection(actor, release_direction):
 	
 	var actor_movement = actor.get_node_or_null('Movement')
 	
-	if not actor_movement:
+	if actor_movement == null:
 		return
 	
 	actor_movement._set_direction(release_direction)
@@ -181,7 +183,7 @@ func SetDirectionLocal(actor, release_direction):
 	
 	var actor_movement = actor.get_node_or_null('Movement')
 	
-	if not actor_movement:
+	if actor_movement == null:
 		return
 	
 	actor_movement._set_direction_local(release_direction)
@@ -195,7 +197,7 @@ func SetSpeed(actor, release_speed):
 	
 	var actor_movement = actor.get_node_or_null('Movement')
 	
-	if not actor_movement:
+	if actor_movement == null:
 		return
 	
 	actor_movement._set_speed(release_speed)
@@ -209,7 +211,7 @@ func SetAngularDirection(actor, new_direction):
 	
 	var actor_movement = actor.get_node_or_null('Movement')
 	
-	if not actor_movement:
+	if actor_movement == null:
 		return
 	
 	actor_movement.angular_direction = new_direction

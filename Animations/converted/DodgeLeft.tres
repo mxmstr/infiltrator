@@ -192,3 +192,55 @@ tracks/26/path = NodePath(".:Toe-L")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = PackedFloat32Array(0, 1, 0.0101813, 1.86274e-09, -9.66297e-09, 0.999948, 0.2, 1, 0.0590179, 2.98582e-09, 2.50754e-09, 0.998257, 0.266667, 1, 0.0349818, 4.47184e-09, -5.16128e-10, 0.999388, 0.333333, 1, 0.0600279, 1.11961e-08, 3.28738e-09, 0.998197, 0.4, 1, 0.401205, 0, -2.44602e-09, 0.915988, 0.466667, 1, 0.307171, 2.71931e-09, 7.57593e-10, 0.951654, 0.533333, 1, 0.0210154, 1.58616e-09, -7.38472e-10, 0.999779, 0.6, 1, -0.0223292, -3.95852e-10, 1.73552e-19, 0.999751, 0.666667, 1, -0.041527, 4.66063e-10, -1.11118e-16, 0.999137, 0.733333, 1, -0.0549636, -9.79442e-10, 9.32659e-11, 0.998488, 0.933333, 1, -0.0665233, 3.38333e-09, -1.84901e-09, 0.997785, 1, 1, -0.0634992, 1.11985e-08, 9.33206e-10, 0.997982, 1.53333, 1, -0.00621716, 1.58328e-09, 2.05011e-08, 0.999981, 1.6, 1, -0.000842999, -9.31323e-10, -5.35511e-09, 1, 1.625, 1, -0.000842999, -9.31323e-10, -5.35511e-09, 1)
+tracks/27/type = "method"
+tracks/27/path = NodePath("../../Movement")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = false
+tracks/27/keys = {
+"times": PackedFloat32Array( 0.42 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ 3.0 ],
+"method": "_set_vertical_velocity"
+} ]
+}
+tracks/28/type = "value"
+tracks/28/path = NodePath("../../CameraRig:translation")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"times": PackedFloat32Array( 0, 0.3, 0.5, 1, 1.4, 1.7 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.43657, 0 ), Vector3( 0, 0.843856, 0 ), Vector3( 0, 0.982888, 0 ), Vector3( 0, 0.126744, 0 ), Vector3( 0, 1.13655, 0 ), Vector3( 0, 1.43657, 0 ) ]
+}
+tracks/29/type = "value"
+tracks/29/path = NodePath("../../CameraRig:rotation_degrees")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"times": PackedFloat32Array( 0, 0.8, 1, 1.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 180, 180 ), Vector3( 0, 180, 360 ) ]
+}
+tracks/30/type = "method"
+tracks/30/path = NodePath("../../FoleyAudio")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PackedFloat32Array( 0.666667 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ "Roll" ],
+"method": "_start_state"
+} ]
+}

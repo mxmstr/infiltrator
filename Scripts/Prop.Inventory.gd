@@ -17,7 +17,7 @@ func _go_to_unarmed():
 
 func _go_to_next(next=null):
 	
-	if not next:
+	if next == null:
 		next = selected_item
 	
 	if not is_instance_valid(next):
@@ -117,7 +117,7 @@ func _has_enough_ammo(next):
 
 func _try_dual_wield(next=null):
 	
-	if not next:
+	if next == null:
 		next = selected_item
 	
 	if not is_instance_valid(next):

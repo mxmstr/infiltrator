@@ -214,19 +214,19 @@ func _ready():
 	var radar = find_child('Radar').get_node('CheckBox')
 	radar.connect('toggled',Callable(self,'_on_radar_toggled'))
 	radar.button_pressed = config.get_value('Multiplayer', 'radar', Meta.multi_radar)
-	_on_radar_toggled(radar.pressed)
+	_on_radar_toggled(radar.button_pressed)
 	
 	
 	var outlines = find_child('Outlines').get_node('CheckBox')
 	outlines.connect('toggled',Callable(self,'_on_outlines_toggled'))
 	outlines.button_pressed = config.get_value('Multiplayer', 'outlines',  Meta.multi_outlines)
-	_on_outlines_toggled(outlines.pressed)
+	_on_outlines_toggled(outlines.button_pressed)
 	
 	
 	var xray = find_child('Xray').get_node('CheckBox')
 	xray.connect('toggled',Callable(self,'_on_xray_toggled'))
 	xray.button_pressed = config.get_value('Multiplayer', 'xray',  Meta.multi_xray)
-	_on_xray_toggled(xray.pressed)
+	_on_xray_toggled(xray.button_pressed)
 	
 	
 	var player_index = 0
@@ -263,12 +263,12 @@ func _ready():
 		
 		auto_aim_checkbox.connect('toggled',Callable(self,'_on_autoaim_toggled').bind(player_index))
 		auto_aim_checkbox.button_pressed = config.get_value('Player' + str(player_index), 'autoaim', Meta.player_data_default.auto_aim)
-		_on_autoaim_toggled(auto_aim_checkbox.pressed, player_index)
+		_on_autoaim_toggled(auto_aim_checkbox.button_pressed, player_index)
 		
 		
 		bot_checkbox.connect('toggled',Callable(self,'_on_bot_toggled').bind(player_index))
 		bot_checkbox.button_pressed = config.get_value('Player' + str(player_index), 'bot', Meta.player_data_default.bot)
-		_on_bot_toggled(bot_checkbox.pressed, player_index)
+		_on_bot_toggled(bot_checkbox.button_pressed, player_index)
 		
 		
 		player_index += 1
@@ -284,5 +284,5 @@ func _ready():
 		checkbox.get_node('CheckBox').text = weapon_name
 		checkbox.get_node('CheckBox').connect('toggled',Callable(self,'_on_weapon_toggled').bind(weapon_name))
 		checkbox.get_node('CheckBox').button_pressed = config.get_value('Weapons', weapon_name, weapons[weapon_name].enabled)
-		_on_weapon_toggled(checkbox.get_node('CheckBox').pressed, weapon_name)
+		_on_weapon_toggled(checkbox.get_node('CheckBox').button_pressed, weapon_name)
 		

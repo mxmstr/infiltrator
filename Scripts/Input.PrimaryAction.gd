@@ -31,6 +31,8 @@ func _on_just_deactivated():
 
 func _process(delta):
 	
+	super(delta)
+	
 	righthand.items.size()
 	
 	if not righthand._is_empty():

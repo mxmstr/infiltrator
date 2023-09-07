@@ -7,7 +7,7 @@ var new_state = ''
 
 func _ready():
 	
-	await get_tree().idle_frame
+	await super()
 	
 	tree_node.connect('action_started',Callable(self,'_on_action'))
 

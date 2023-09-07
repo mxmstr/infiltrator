@@ -199,3 +199,101 @@ tracks/27/path = NodePath(".:Toe-L")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = PackedFloat32Array(0, 1, 0.020682, 9.31522e-10, 2.3288e-09, 0.999786, 0.666667, 1, 0.0203886, 1.86303e-09, 1.1644e-09, 0.999792, 1.2, 1, 0.0488018, -1.49176e-09, -7.4598e-09, 0.998809, 1.26667, 1, 0.053424, -3.73027e-09, 1.49167e-09, 0.998572, 1.4, 1, 0.0629709, -5.27235e-09, 1.49376e-09, 0.998015, 1.46667, 1, 0.0643676, -9.70585e-09, 8.95922e-09, 0.997926, 1.73333, 1, 0.0654547, -8.95985e-09, -5.97323e-09, 0.997856, 2, 1, 0.0665423, -1.49343e-08, 0, 0.997784, 2.26667, 1, 0.0676295, -1.49351e-09, -4.48059e-09, 0.997711, 2.5, 1, 0.068411, -7.46808e-09, 0, 0.997657)
+tracks/28/type = "value"
+tracks/28/path = NodePath("../../CameraRig:translation")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"times": PackedFloat32Array( 0, 0.458333, 0.916667, 1.25 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.43657, 0 ), Vector3( 0, 1.17898, 0.251799 ), Vector3( 0, 0.672129, -0.546918 ), Vector3( 0, 0.530345, -0.66722 ) ]
+}
+tracks/29/type = "value"
+tracks/29/path = NodePath("../../CameraRig:rotation_degrees")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ) ]
+}
+tracks/30/type = "method"
+tracks/30/path = NodePath("../../Movement")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PackedFloat32Array( 0.708333 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ 4.5 ],
+"method": "_set_vertical_velocity"
+} ]
+}
+tracks/31/type = "value"
+tracks/31/path = NodePath("../../Stance:stance")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/keys = {
+"times": PackedFloat32Array( 0.05, 0.541667 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/32/type = "method"
+tracks/32/path = NodePath("../../Stamina")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PackedFloat32Array( 0.05, 0.458334 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "_set_invulnerable"
+}, {
+"args": [ false ],
+"method": "_set_invulnerable"
+} ]
+}
+tracks/33/type = "method"
+tracks/33/path = NodePath("../../StingerAudio")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PackedFloat32Array( 0.1 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ "ShootDodgeStinger" ],
+"method": "_start_state"
+} ]
+}
+tracks/34/type = "method"
+tracks/34/path = NodePath("../../BulletTime")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/keys = {
+"times": PackedFloat32Array( 0.458333, 1.875 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_start"
+}, {
+"args": [  ],
+"method": "_stop"
+} ]
+}

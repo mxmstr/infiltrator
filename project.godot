@@ -1275,11 +1275,6 @@ Reload={
 3d_physics/layer_4="Projectile"
 3d_physics/layer_5="Hitbox"
 
-[network]
-
-limits/debugger/max_queued_messages=100
-limits/debugger_stdout/max_errors_per_frame=100
-
 [physics]
 
 3d/physics_engine="GodotPhysics"

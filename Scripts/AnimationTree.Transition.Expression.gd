@@ -20,7 +20,7 @@ func _evaluate():
 #		if 'Anderson' in owner.owner.name:
 #			print(owner.data.source._has_tag('Item'))
 		
-		if not result:
+		if result == null:
 			
 			if exec.has_execute_failed():
 				

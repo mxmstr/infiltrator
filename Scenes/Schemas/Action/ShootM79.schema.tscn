@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Animations/Human/Action/Shoot/M79/ShootM79.tres" type="Animation" id=1]
-[ext_resource path="res://Animations/Human/Action/Shoot/M79/ShootM79_Down.tres" type="Animation" id=2]
-[ext_resource path="res://Animations/Human/Action/Shoot/M79/ShootM79_Up.tres" type="Animation" id=3]
+[ext_resource path="res://Animations/converted/Action/Shoot/M79/ShootM79.tres" type="Animation" id=1]
+[ext_resource path="res://Animations/converted/Action/Shoot/M79/ShootM79_Down.tres" type="Animation" id=2]
+[ext_resource path="res://Animations/converted/Action/Shoot/M79/ShootM79_Up.tres" type="Animation" id=3]
 [ext_resource path="res://Scripts/Schema.gd" type="Script" id=4]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]

@@ -16,21 +16,21 @@ var animation
 
 func _load_animations(_schema, _prefix=''):
 	
-	if not _schema or _schema == '':
+	if _schema == null or _schema == '':
 		return
 	
 	var owner_tags = owner.tags_dict.keys()
 	var schema_animation_player = Meta.LoadSchema(_schema, owner_tags).instantiate()
 	
 	var _animation_list = Array(schema_animation_player.get_animation_list())
-	var _attributes
+	var _attributes = {}
 	
 	if schema_animation_player.get('attributes'):
 		var test_json_conv = JSON.new()
 		test_json_conv.parse(schema_animation_player.attributes)
 		_attributes = test_json_conv.get_data()
 		if _attributes == null:
-			prints(_schema)
+			push_warning(_schema)
 	
 	
 	for animation_name in _animation_list:
@@ -40,7 +40,7 @@ func _load_animations(_schema, _prefix=''):
 		
 		animation_name = _prefix + animation_name
 		
-		if _attributes:
+		if _attributes != null:
 			
 			if not attributes.has(animation_name):
 				attributes[animation_name] = {}
@@ -75,7 +75,7 @@ func _randomize_animation():
 
 func _ready():
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	if not tree.is_empty():
 		tree_node = get_node(tree)

@@ -14,7 +14,7 @@ var active = true
 
 func _on_before_move(velocity):
 	
-	if not active or owner.is_queued_for_deletion() or (collision and collision.disabled):
+	if not active or owner.is_queued_for_deletion() or (collision == null and collision.disabled):
 		return
 	
 	var space_state = owner.get_world_3d().direct_space_state
@@ -46,7 +46,7 @@ func _physics_process(delta):
 	
 	return
 	
-	if not active or owner.is_queued_for_deletion() or (collision and collision.disabled):
+	if not active or owner.is_queued_for_deletion() or (collision == null and collision.disabled):
 		return
 
 	var space_state = owner.get_world_3d().direct_space_state

@@ -16,6 +16,7 @@ var finished = true
 
 var skeleton
 
+@onready var animation_player = $AnimationPlayer
 @onready var model = get_node_or_null('../Model')
 
 signal action_started
@@ -58,7 +59,8 @@ func _start_state(_name, _data={}):
 
 func _add_animation(animation_name, animation_res):
 	
-	call('add_animation_library', animation_name, animation_res)
+	var library = animation_player.get_animation_library(animation_player.get_animation_library_list()[0])
+	library.call('add_animation', animation_name, animation_res)
 
 
 func _set_animation(animation, scale, clip_start, clip_end):
@@ -140,6 +142,6 @@ func _ready():
 	
 	call_deferred('_set_skeleton')
 	
-	#await get_tree().idle_frame
+	#await get_tree().process_frame
 	
 	call_deferred('emit_signal', 'action_started', default_state, {})

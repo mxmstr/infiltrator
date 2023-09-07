@@ -136,3 +136,101 @@ tracks/18/path = NodePath(".:LoLeg-L")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = PackedFloat32Array(0, 1, -0.231668, 0.0383636, -0.0241772, 0.971737, 0.0666667, 1, -0.299656, 0.0517876, -0.0221455, 0.952383, 0.133333, 1, -0.468625, 0.0853292, -0.0163412, 0.879115, 0.2, 1, -0.597326, 0.111085, -0.0110477, 0.794191, 0.266667, 1, -0.677532, 0.127255, -0.00724184, 0.724365, 0.333333, 1, -0.649338, 0.121558, -0.00863264, 0.750672, 0.4, 1, -0.590449, 0.109703, -0.0113534, 0.799504, 0.466667, 1, -0.476675, 0.0869343, -0.0160345, 0.874623, 0.533333, 1, -0.374168, 0.0665454, -0.0197265, 0.92476, 0.6, 1, -0.376993, 0.0671059, -0.0196305, 0.923573, 0.666667, 1, -0.467641, 0.0851333, -0.0163786, 0.879657, 0.733333, 1, -0.592702, 0.110155, -0.0112536, 0.797774, 0.8, 1, -0.688781, 0.129533, -0.00666906, 0.713272, 0.866667, 1, -0.670454, 0.125824, -0.00759692, 0.731165, 0.933333, 1, -0.614209, 0.11448, -0.0102834, 0.780728, 1, 1, -0.548632, 0.101315, -0.0131546, 0.829798, 1.06667, 1, -0.53763, 0.0991126, -0.013612, 0.837225, 1.13333, 1, -0.557172, 0.103026, -0.0127949, 0.823882, 1.2, 1, -0.586263, 0.108862, -0.0115387, 0.80269, 1.26667, 1, -0.606574, 0.112944, -0.0106312, 0.786892, 1.33333, 1, -0.602577, 0.11214, -0.010812, 0.790069, 1.46667, 1, -0.375793, 0.066868, -0.0196712, 0.924079, 1.53333, 1, -0.220842, 0.0362293, -0.0244864, 0.974329, 1.6, 1, -0.0285519, -0.00152538, -0.0293368, 0.999161, 1.66667, 1, 0.0525549, -0.0173674, -0.0310334, 0.997985, 1.73333, 1, 0.0658323, -0.0199558, -0.0312919, 0.99714, 1.8, 1, 0.0403295, -0.0149827, -0.0307909, 0.9986, 1.86667, 1, 0.00185223, -0.00746964, -0.0299971, 0.99952, 1.95833, 1, -0.0510468, 0.00287714, -0.02883, 0.998276)
+tracks/19/type = "value"
+tracks/19/path = NodePath("../../CameraRig:translation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.7, 0 ) ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("../../CameraRig:rotation_degrees")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ) ]
+}
+tracks/21/type = "method"
+tracks/21/path = NodePath("../../Movement")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PackedFloat32Array( 0.5 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ 4.5 ],
+"method": "_add_vertical_velocity"
+} ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("../../Stance:stance")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PackedFloat32Array( 0.05 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/23/type = "method"
+tracks/23/path = NodePath("../../Stamina")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PackedFloat32Array( 0.05, 0.458334 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "_set_invulnerable"
+}, {
+"args": [ false ],
+"method": "_set_invulnerable"
+} ]
+}
+tracks/24/type = "method"
+tracks/24/path = NodePath("../../StingerAudio")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PackedFloat32Array( 0.1 ),
+"transitions": PackedFloat32Array( 1 ),
+"values": [ {
+"args": [ "ShootDodgeStinger" ],
+"method": "_start_state"
+} ]
+}
+tracks/25/type = "method"
+tracks/25/path = NodePath("../../BulletTime")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PackedFloat32Array( 0.458333, 1.875 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_start"
+}, {
+"args": [  ],
+"method": "_stop"
+} ]
+}
